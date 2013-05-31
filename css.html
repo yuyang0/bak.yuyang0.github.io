@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>css笔记</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="css笔记"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2013-05-31T20:47+0800"/>
+<meta name="author" content="Yu Yang"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="stylesheet" type="text/css" href="css/main.css"/>
+<style> pre.src { background-color:#2e3436; color: #eeeeec;}</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+<div id="org-div-home-and-up" style="text-align:right;font-size:70%;white-space:nowrap;">
+ <a accesskey="h" href="sitemap.html"> UP </a>
+ |
+ <a accesskey="H" href="index.html"> HOME </a>
+</div>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">css笔记</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">CSS</a>
+<ul>
+<li><a href="#sec-1-1">基本语法</a></li>
+<li><a href="#sec-1-2">css的常用属性</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">CSS</h2>
+<div class="outline-text-2" id="text-1">
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1">基本语法</h3>
+<div class="outline-text-3" id="text-1-1">
+
+<ol>
+<li>三种引用css的方法
+
+
+
+<pre class="src src-html">&lt;<span style="color: #FF6400;">link</span> <span style="color: #FF6400;">rel</span>=<span style="color: #61CE3C;">"stylesheet"</span> <span style="color: #FF6400;">href</span>=<span style="color: #61CE3C;">"/static/css/your.css"</span> <span style="color: #FF6400;">type</span>=<span style="color: #61CE3C;">"text/css"</span> <span style="color: #FF6400;">media</span>=<span style="color: #61CE3C;">"screen"</span> /&gt;
+&lt;<span style="color: #FF6400;">style</span> <span style="color: #FF6400;">type</span>=<span style="color: #61CE3C;">"text/css"</span> <span style="color: #FF6400;">media</span>=<span style="color: #61CE3C;">"screen"</span>&gt;
+  p {
+  color:red;
+  font-size:12px;
+  }
+&lt;/<span style="color: #FF6400;">style</span>&gt;
+&lt;<span style="color: #FF6400;">p</span> <span style="color: #FF6400;">style</span>=<span style="color: #61CE3C;">"color: red; font-size: 12px;"</span>&gt;&lt;/<span style="color: #FF6400;">p</span>&gt;
+</pre>
+
+</li>
+<li>css selector
+
+
+
+<pre class="src src-css"><span style="color: #FF6400;">p </span>{<span style="color: #FF6400;">color</span>: red;}                 <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">tag selector</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
+<span style="color: #FF6400;">#nav </span>{<span style="color: #FF6400;">font-size</span>: 12px;}         <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">id selector</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
+<span style="color: #FF6400;">.sidebar </span>{<span style="color: #FF6400;">font-family</span>:Times}    <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">class selector</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
+<span style="color: #FF6400;">li a </span>{<span style="color: #FF6400;">text-decoration</span>: none;}   <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">descendant selector</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
+<span style="color: #FF6400;">a</span>:link {<span style="color: #FF6400;">color</span>: red}             <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">pseudo-class selector</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
+<span style="color: #FF6400;">a[title] </span>{<span style="color: #FF6400;">color</span>: red}           <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">attribute selector</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
+<span style="color: #FF6400;">a[href=</span><span style="color: #61CE3C;">"www.baidu.com"</span><span style="color: #FF6400;">] </span>{<span style="color: #FF6400;">color</span>:red} <span style="color: #AEAEAE; font-style: italic;">/**/</span>
+</pre>
+
+</li>
+<li>css box
+
+<p class="verse">
+css的盒子模型：<br/>
+<img src="img/css-box.png"  alt="img/css-box.png" /><br/>
+这也就是margin，border，padding三个属性的含义了。<br/>
+</p>
+
+
+</li>
+<li>css浮动
+
+<p class="verse">
+html文档有一个标准文档流，每一个块级元素（如div）都要单独占一行<sup><a class="footref" name="fnr-.1" href="#fn-.1">1</a></sup><br/>
+<img src="img/div-per-line.png"  alt="img/div-per-line.png" /><br/>
+&nbsp;&nbsp;&nbsp;&nbsp; 如果给一个元素添加浮动，那么他就会脱离标准文档流，而悬浮于标准文档流之上:<br/>
+<img src="img/div-float-23.png"  alt="img/div-float-23.png" /><br/>
+</p>
+
+
+<p>
+      这是给div2,div3添加左浮动后的效果，因为div2,div3添加了浮动，所以二者脱离标准文档流，
+      那么div4就会上移，因为div1没有浮动，所以div2在div1的下方（不是div1的右方），div3浮动
+      所以跟在div2的后面。
+</p></li>
+</ol>
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2">css的常用属性</h3>
+<div class="outline-text-3" id="text-1-2">
+
+<ol>
+<li>foreground color
+
+
+
+<pre class="src src-css"><span class="linenr">1:  </span><span style="color: #FF6400;">p </span>{
+<span class="linenr">2:  </span>    <span style="color: #FF6400;">color</span>:red;
+<span class="linenr">3:  </span>}
+<span class="linenr">4:  </span><span style="color: #FF6400;">body </span>{
+<span class="linenr">5:  </span>    <span style="color: #FF6400;">color</span>:rgb(50, 255, 0);
+<span class="linenr">6:  </span>}
+</pre>
+
+</li>
+<li>background
+
+
+
+<pre class="src src-css"><span class="linenr">1:  </span><span style="color: #FF6400;">body </span>{
+<span class="linenr">2:  </span>    <span style="color: #FF6400;">background-color</span>:rgb(220, 220, 220);
+<span class="linenr">3:  </span>    <span style="color: #FF6400;">background-image</span>: url(<span style="color: #61CE3C;">'sample.png'</span>);
+<span class="linenr">4:  </span>    <span style="color: #FF6400;">background-repeat</span>:no-repeat;
+<span class="linenr">5:  </span>
+<span class="linenr">6:  </span>}
+</pre>
+
+</li>
+</ol>
+
+
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+<p class="footnote"><sup><a class="footnum" name="fn-.1" href="#fnr-.1">1</a></sup> <a href="http://blog.jobbole.com/37112/">http://blog.jobbole.com/37112/</a>
+</p></div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2013-05-31T20:47+0800</p>
+<p class="author">Author: Yu Yang</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

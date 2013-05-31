@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>django</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="django"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2013-05-31T20:47+0800"/>
+<meta name="author" content="Yu Yang"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="stylesheet" type="text/css" href="css/main.css"/>
+<style> pre.src { background-color:#2e3436; color: #eeeeec;}</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+<div id="org-div-home-and-up" style="text-align:right;font-size:70%;white-space:nowrap;">
+ <a accesskey="h" href="sitemap.html"> UP </a>
+ |
+ <a accesskey="H" href="index.html"> HOME </a>
+</div>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">django</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">django</a>
+<ul>
+<li><a href="#sec-1-1">模板</a>
+<ul>
+<li><a href="#sec-1-1-1">模板的基本语法</a>
+<ul>
+<li><a href="#sec-1-1-1-1">基本示例代码</a></li>
+<li><a href="#sec-1-1-1-2">模板的'.'的用法:</a></li>
+<li><a href="#sec-1-1-1-3">过滤器</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-1-2">使用模板的方法：</a></li>
+<li><a href="#sec-1-1-3">模板的包含与继承</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2">Module</a></li>
+<li><a href="#sec-1-3">表单</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">django</h2>
+<div class="outline-text-2" id="text-1">
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1">模板</h3>
+<div class="outline-text-3" id="text-1-1">
+
+
+</div>
+
+<div id="outline-container-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1">模板的基本语法</h4>
+<div class="outline-text-4" id="text-1-1-1">
+
+
+</div>
+
+<div id="outline-container-1-1-1-1" class="outline-5">
+<h5 id="sec-1-1-1-1">基本示例代码</h5>
+<div class="outline-text-5" id="text-1-1-1-1">
+
+
+
+
+<pre class="src src-html">&lt;<span style="color: #FF6400;">html</span>&gt;
+  &lt;<span style="color: #FF6400;">head</span>&gt;&lt;<span style="color: #FF6400;">title</span>&gt;<span style="font-weight: bold;">Ordering notice</span>&lt;/<span style="color: #FF6400;">title</span>&gt;&lt;/<span style="color: #FF6400;">head</span>&gt;
+  &lt;<span style="color: #FF6400;">body</span>&gt;
+
+    &lt;<span style="color: #FF6400;">h1</span>&gt;<span style="font-weight: bold;">Ordering notice</span>&lt;/<span style="color: #FF6400;">h1</span>&gt;
+
+    &lt;<span style="color: #FF6400;">p</span>&gt;Dear {{ person_name }},&lt;/<span style="color: #FF6400;">p</span>&gt;
+
+    &lt;<span style="color: #FF6400;">p</span>&gt;Thanks for placing an order from {{ company }}. It's scheduled to
+      ship on {{ ship_date|date:<span style="color: #61CE3C;">"F j, Y"</span> }}.&lt;/<span style="color: #FF6400;">p</span>&gt;
+
+    &lt;<span style="color: #FF6400;">p</span>&gt;Here are the items you've ordered:&lt;/<span style="color: #FF6400;">p</span>&gt;
+
+    &lt;<span style="color: #FF6400;">ul</span>&gt;
+      {% for item in item_list %}
+      &lt;<span style="color: #FF6400;">li</span>&gt;{{ item }}&lt;/<span style="color: #FF6400;">li</span>&gt;
+      {% endfor %}
+    &lt;/<span style="color: #FF6400;">ul</span>&gt;
+
+    {% if ordered_warranty %}
+    &lt;<span style="color: #FF6400;">p</span>&gt;Your warranty information will be included in the packaging.&lt;/<span style="color: #FF6400;">p</span>&gt;
+    {% else %}
+    &lt;<span style="color: #FF6400;">p</span>&gt;You didn't order a warranty, so you're on your own when
+      the products inevitably stop working.&lt;/<span style="color: #FF6400;">p</span>&gt;
+    {% endif %}
+
+    &lt;<span style="color: #FF6400;">p</span>&gt;Sincerely,&lt;<span style="color: #FF6400;">br</span> /&gt;{{ company }}&lt;/<span style="color: #FF6400;">p</span>&gt;
+  &lt;/<span style="color: #FF6400;">body</span>&gt;
+&lt;/<span style="color: #FF6400;">html</span>&gt;
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-1-2" class="outline-5">
+<h5 id="sec-1-1-1-2">模板的'.'的用法:</h5>
+<div class="outline-text-5" id="text-1-1-1-2">
+
+<ol>
+<li>引用字典
+
+
+
+<pre class="src src-python"><span style="color: #FBDE2D;">from</span> django.template <span style="color: #FBDE2D;">import</span> Template, Context
+<span style="color: #FF6400;">person</span> = {<span style="color: #61CE3C;">'name'</span>: <span style="color: #61CE3C;">'Sally'</span>, <span style="color: #61CE3C;">'age'</span>: <span style="color: #61CE3C;">'43'</span>}
+<span style="color: #FF6400;">t</span> = Template(<span style="color: #61CE3C;">'{{ person.name }} is {{ person.age }} years old.'</span>)
+<span style="color: #FF6400;">c</span> = Context({<span style="color: #61CE3C;">'person'</span>: person})
+t.render(c)
+<span style="color: #AEAEAE; font-style: italic;">#</span><span style="color: #AEAEAE; font-style: italic;">result is: u'Sally is 43 years old.'</span>
+</pre>
+
+</li>
+<li>引用list的索引
+
+
+
+<pre class="src src-python"><span style="color: #FBDE2D;">from</span> django.template <span style="color: #FBDE2D;">import</span> Template, Context
+<span style="color: #FF6400;">t</span> = Template(<span style="color: #61CE3C;">'Item 2 is {{ items.2 }}.'</span>)
+<span style="color: #FF6400;">c</span> = Context({<span style="color: #61CE3C;">'items'</span>: [<span style="color: #61CE3C;">'apples'</span>, <span style="color: #61CE3C;">'bananas'</span>, <span style="color: #61CE3C;">'carrots'</span>]})
+t.render(c)
+<span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">result is :u'Item 2 is carrots.'</span>
+</pre>
+
+</li>
+<li>引用对象的属性
+
+
+
+<pre class="src src-python"> <span style="color: #FBDE2D;">from</span> django.template <span style="color: #FBDE2D;">import</span> Template, Context
+ <span style="color: #FBDE2D;">import</span> datetime
+ <span style="color: #FF6400;">d</span> = datetime.date(1993, 5, 2)
+ <span style="color: #FF6400;">t</span> = Template(<span style="color: #61CE3C;">'The month is {{ date.month }} and the year is {{ date.year }}.'</span>)
+ <span style="color: #FF6400;">c</span> = Context({<span style="color: #61CE3C;">'date'</span>: d})
+ t.render(c)
+<span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">result is : u'The month is 5 and the year is 1993.'</span>
+</pre>
+
+</li>
+<li>引用对象的方法(只能引用不需要参数的方法)
+        和引用对象的属性类似，不需要()
+</li>
+</ol>
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-1-3" class="outline-5">
+<h5 id="sec-1-1-1-3">过滤器</h5>
+<div class="outline-text-5" id="text-1-1-1-3">
+
+<ul>
+<li>addslashes: 添加反斜杠到任何反斜杠
+</li>
+<li>date: 按指定的格式字符串参数格式化 date 或者 datetime 对象，范例：
+             {{ pub<sub>date|date</sub>:"F j, Y" }}
+</li>
+</ul>
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2">使用模板的方法：</h4>
+<div class="outline-text-4" id="text-1-1-2">
+
+<ol>
+<li>创建一个模板对象
+</li>
+<li>创建一个contex对象(和字典相似)
+</li>
+<li>render模板
+</li>
+</ol>
+
+
+
+
+<pre class="src src-python"><span style="color: #FBDE2D;">from</span> django <span style="color: #FBDE2D;">import</span> template
+<span style="color: #FF6400;">t</span> = template.Template(<span style="color: #61CE3C;">'My name is {{ name }}.'</span>)
+<span style="color: #FF6400;">c</span> = template.Context({<span style="color: #61CE3C;">'name'</span>: <span style="color: #61CE3C;">'Adrian'</span>})
+</pre>
+
+<p>
+    因为是重复性的工作，所以django提供了shortcut,建议现在settings.py设定
+    TEMPLATE<sub>DIRS</sub>
+</p>
+
+
+<pre class="src src-python"><span style="color: #FBDE2D;">from</span> django.shortcuts <span style="color: #FBDE2D;">import</span> render_to_response
+<span style="color: #FBDE2D;">import</span> datetime
+
+<span style="color: #FBDE2D;">def</span> <span style="color: #FF6400;">current_datetime</span>(request):
+    <span style="color: #FF6400;">now</span> = datetime.datetime.now()
+    <span style="color: #FBDE2D;">return</span> render_to_response(<span style="color: #61CE3C;">'current_datetime.html'</span>, {<span style="color: #61CE3C;">'current_date'</span>: now})
+</pre>
+
+<p>
+    render<sub>to</sub><sub>response只需要提供模板文件，与一个字典，它会渲染模板，并且返回一</sub>
+    个HttpResponse对象,极大的简化了工作
+</p></div>
+
+</div>
+
+<div id="outline-container-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3">模板的包含与继承</h4>
+<div class="outline-text-4" id="text-1-1-3">
+
+<ul>
+<li>include标签
+      {% include "includes/nav.html" %}
+</li>
+<li>模板继承
+      base.html:
+
+
+
+<pre class="src src-html">&lt;<span style="color: #FBDE2D;">!DOCTYPE</span> HTML PUBLIC <span style="color: #61CE3C;">"-//W3C//DTD HTML 4.01//EN"</span>&gt;
+&lt;<span style="color: #FF6400;">html</span> <span style="color: #FF6400;">lang</span>=<span style="color: #61CE3C;">"en"</span>&gt;
+  &lt;<span style="color: #FF6400;">head</span>&gt;
+    &lt;<span style="color: #FF6400;">title</span>&gt;<span style="font-weight: bold;">{% block title %}{% endblock %}</span>&lt;/<span style="color: #FF6400;">title</span>&gt;
+  &lt;/<span style="color: #FF6400;">head</span>&gt;
+  &lt;<span style="color: #FF6400;">body</span>&gt;
+    &lt;<span style="color: #FF6400;">h1</span>&gt;<span style="font-weight: bold;">My helpful timestamp site</span>&lt;/<span style="color: #FF6400;">h1</span>&gt;
+    {% block content %}{% endblock %}
+    {% block footer %}
+    &lt;<span style="color: #FF6400;">hr</span>&gt;
+    &lt;<span style="color: #FF6400;">p</span>&gt;Thanks for visiting my site.&lt;/<span style="color: #FF6400;">p</span>&gt;
+    {% endblock %}
+  &lt;/<span style="color: #FF6400;">body</span>&gt;
+&lt;/<span style="color: #FF6400;">html</span>&gt;
+</pre>
+
+
+<pre class="src src-html">{% extends <span style="color: #61CE3C;">"base.html"</span> %}
+
+{% block title %}The current time{% endblock %}
+
+{% block content %}
+&lt;<span style="color: #FF6400;">p</span>&gt;It is now {{ current_date }}.&lt;/<span style="color: #FF6400;">p</span>&gt;
+{% endblock %}
+</pre>
+
+<p>
+      每一个block就是一个子模板可以重定义的区域
+      根据需要使用任意多的继承次数。使用继承的一种常见方式是下面的三层法：
+</p><ol>
+<li>创建 base.html 模板，在其中定义站点的主要外观感受。这些都是不常修改甚至从不修改的部分.
+</li>
+<li>为网站的每个区域创建 base<sub>SECTION</sub>.html 模板(例如, base<sub>photos</sub>.html 和 base<sub>forum</sub>.html )。这些模板对 base.html 进行拓展，并包含区域特定的风格与设计。
+</li>
+<li>为每种类型的页面创建独立的模板，例如论坛页面或者图片库。这些模板拓展相应的区域模板。
+</li>
+</ol>
+
+</li>
+</ul>
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2">Module</h3>
+<div class="outline-text-3" id="text-1-2">
+
+<ol>
+<li>第一步必须设置settings.py的数据库相关域,用以下代码验证配置是否正确：
+
+
+
+<pre class="src src-python">python manage.py shell <span style="color: #AEAEAE; font-style: italic;">#</span><span style="color: #AEAEAE; font-style: italic;">enter django shell</span>
+
+<span style="color: #FBDE2D;">from</span> django.db <span style="color: #FBDE2D;">import</span> connection
+<span style="color: #FF6400;">cursor</span> = connection.cursor()
+
+</pre>
+
+
+</li>
+<li>创建一个app(使用module必须创建app)
+      python manage.py startapp appname
+      然后在module.py添加代码
+
+
+
+<pre class="src src-python"><span style="color: #FBDE2D;">from</span> django.db <span style="color: #FBDE2D;">import</span> models
+
+<span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">Create your models here.</span>
+<span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Publisher</span>(models.Module):
+    <span style="color: #61CE3C;">"""</span>
+<span style="color: #61CE3C;">    """</span>
+    <span style="color: #FF6400;">name</span> = models.CharField(max_length = 30)
+    <span style="color: #FF6400;">address</span> = models.CharField(max_length = 50)
+    <span style="color: #FF6400;">city</span> = models.CharField(max_length = 60)
+    <span style="color: #FF6400;">state_province</span> = models.CharField(max_length = 30)
+    <span style="color: #FF6400;">country</span> = models.CharField(max_length = 50)
+    <span style="color: #FF6400;">website</span> = models.URLField()
+<span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Author</span>(models.Model):
+    <span style="color: #FF6400;">first_name</span> = models.CharField(max_length=30)
+    <span style="color: #FF6400;">last_name</span> = models.CharField(max_length=40)
+    <span style="color: #FF6400;">email</span> = models.EmailField()
+
+<span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Book</span>(models.Model):
+    <span style="color: #FF6400;">title</span> = models.CharField(max_length=100)
+    <span style="color: #FF6400;">authors</span> = models.ManyToManyField(Author)
+    <span style="color: #FF6400;">publisher</span> = models.ForeignKey(Publisher)
+    <span style="color: #FF6400;">publication_date</span> = models.DateField()
+
+</pre>
+
+<p>
+      然后运行python manage.py validate检查模型语法是否正确，无误后运行
+      python manage.py sqlall books会显示最终运行的sql语句
+      python manage.py syncdb会最终执行数据库的创建
+</p>
+</li>
+<li>访问修改数据库
+
+
+
+<pre class="src src-python"><span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">insert a record</span>
+<span style="color: #FF6400;">p</span> = Publisher(name=<span style="color: #61CE3C;">'Apress'</span>,
+        address=<span style="color: #61CE3C;">'2855 Telegraph Ave.'</span>,
+        city=<span style="color: #61CE3C;">'Berkeley'</span>,
+        state_province=<span style="color: #61CE3C;">'CA'</span>,
+        country=<span style="color: #61CE3C;">'U.S.A.'</span>,
+        website=<span style="color: #61CE3C;">'http://www.apress.com/'</span>)
+p.save()
+
+<span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">just update, do not create record</span>
+<span style="color: #FF6400;">p.name</span> = <span style="color: #61CE3C;">'Apress Publishing'</span>
+p.save()
+
+Publisher.objects.<span style="color: #94bff3;">filter</span>(<span style="color: #94bff3;">id</span>=52).update(name=<span style="color: #61CE3C;">'Apress Publishing'</span>)
+<span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">&#35775;&#38382;&#25968;&#25454;&#65292;&#36716;&#25442;&#20026;select&#35821;&#21477;</span>
+Publisher.objects.<span style="color: #94bff3;">all</span>()
+Publisher.objects.<span style="color: #94bff3;">filter</span>(country=<span style="color: #61CE3C;">"U.S.A."</span>, state_province=<span style="color: #61CE3C;">"CA"</span>)
+<span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">select ... order by ...</span>
+Publisher.objects.order_by(<span style="color: #61CE3C;">"name"</span>)
+<span style="color: #AEAEAE; font-style: italic;">#</span><span style="color: #AEAEAE; font-style: italic;">&#36870;&#24207;</span>
+Publisher.objects.order_by(<span style="color: #61CE3C;">"-name"</span>)
+<span style="color: #AEAEAE; font-style: italic;">#</span><span style="color: #AEAEAE; font-style: italic;">&#36830;&#38145;&#26597;&#35810;&#65292;&#21516;&#26102;&#25351;&#23450;where&#19982;order by&#23376;&#21477;</span>
+Publisher.objects.<span style="color: #94bff3;">filter</span>(country=<span style="color: #61CE3C;">"U.S.A."</span>).order_by(<span style="color: #61CE3C;">"-name"</span>)
+<span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">select ... order by ... limit ...</span>
+Publisher.objects.order_by(<span style="color: #61CE3C;">'name'</span>)[0]
+Publisher.objects.order_by(<span style="color: #61CE3C;">'name'</span>)[0:2]
+
+<span style="color: #AEAEAE; font-style: italic;">#</span><span style="color: #AEAEAE; font-style: italic;">delete record</span>
+Publisher.objects.<span style="color: #94bff3;">filter</span>(country=<span style="color: #61CE3C;">'USA'</span>).delete()
+Publisher.objects.<span style="color: #94bff3;">all</span>().delete()
+
+</pre>
+
+</li>
+</ol>
+
+</div>
+
+</div>
+
+<div id="outline-container-1-3" class="outline-3">
+<h3 id="sec-1-3">表单</h3>
+<div class="outline-text-3" id="text-1-3">
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left">request.path</td><td class="left">除域名以外的请求路径，以正斜杠开头</td><td class="left">"<i>hello</i>"</td></tr>
+<tr><td class="left">request.get<sub>host</sub>()</td><td class="left">主机名（比如，通常所说的域名）</td><td class="left">"127.0.0.1:8000" or "www.example.</td></tr>
+<tr><td class="left">request.get<sub>full</sub><sub>path</sub>()</td><td class="left">请求路径，可能包含查询字符串</td><td class="left">"<i>hello</i>?print=true"</td></tr>
+<tr><td class="left">request.is<sub>secure</sub>()</td><td class="left">如果通过HTTPS访问，则此方法返回True，否则返回False True 或者 False</td><td class="left"></td></tr>
+<tr><td class="left">request.META</td><td class="left">一个字典，包含很多客户端信息(key: HTTP<sub>REFERER</sub>, HTTP<sub>USER</sub><sub>AGENT</sub>)</td><td class="left">request.META.get('HTTP<sub>USER</sub><sub>AGENT'</sub>, 'unknown')</td></tr>
+<tr><td class="left">request.GET</td><td class="left">表单的get方法传递的数据(是一个类字典结构)</td><td class="left">request.GET['q']就是查询字符串</td></tr>
+<tr><td class="left">request.POST</td><td class="left">表单的post方法传递的数据（是一个类字典结构）</td><td class="left"></td></tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2013-05-31T20:47+0800</p>
+<p class="author">Author: Yu Yang</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

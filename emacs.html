@@ -1,0 +1,886 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Emacs/elisp笔记</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="Emacs/elisp笔记"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2013-05-31T20:47+0800"/>
+<meta name="author" content="Yu Yang"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="stylesheet" type="text/css" href="css/main.css"/>
+<style> pre.src { background-color:#2e3436; color: #eeeeec;}</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+<div id="org-div-home-and-up" style="text-align:right;font-size:70%;white-space:nowrap;">
+ <a accesskey="h" href="sitemap.html"> UP </a>
+ |
+ <a accesskey="H" href="index.html"> HOME </a>
+</div>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">Emacs/elisp笔记</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1"><b>emacs/elisp笔记</b></a>
+<ul>
+<li><a href="#sec-1-1">emacs大杂烩</a>
+<ul>
+<li><a href="#sec-1-1-1">emacs各种设置与注意事项</a>
+<ul>
+<li><a href="#sec-1-1-1-1">emacs在英文系统的输入法问题</a></li>
+<li><a href="#sec-1-1-1-2">交换Control_L与Capslocks</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-1-2">isearch的相关技巧</a></li>
+<li><a href="#sec-1-1-3">ido-mode的快捷键</a></li>
+<li><a href="#sec-1-1-4">dired的快捷键</a></li>
+<li><a href="#sec-1-1-5">ibuffer的快捷键</a></li>
+<li><a href="#sec-1-1-6">org-mode的快捷键</a></li>
+<li><a href="#sec-1-1-7">cua-mode以及矩形操作的快捷键</a></li>
+<li><a href="#sec-1-1-8">mutiple cursors多光标</a></li>
+<li><a href="#sec-1-1-9">ace-jump-mode</a></li>
+<li><a href="#sec-1-1-10">w3m</a></li>
+<li><a href="#sec-1-1-11">我设置的快捷键以及我常用的快捷键，函数</a></li>
+<li><a href="#sec-1-1-12">emacs的奇淫技巧</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2">elisp学习笔记</a>
+<ul>
+<li><a href="#sec-1-2-1">elisp基本语法</a></li>
+<li><a href="#sec-1-2-2">常用的函数</a>
+<ul>
+<li><a href="#sec-1-2-2-1"><b>lisp的基本语法</b></a></li>
+<li><a href="#sec-1-2-2-2"><b>光标:</b></a></li>
+<li><a href="#sec-1-2-2-3"><b>文本编辑：</b></a></li>
+<li><a href="#sec-1-2-2-4"><b>字符串操作：</b></a></li>
+<li><a href="#sec-1-2-2-5"><b>buffer相关：</b></a></li>
+<li><a href="#sec-1-2-2-6"><b>file相关：</b></a></li>
+<li><a href="#sec-1-2-2-7"><b>other useful function</b></a></li>
+<li><a href="#sec-1-2-2-8"><b>useful variable</b></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><b>emacs/elisp笔记</b></h2>
+<div class="outline-text-2" id="text-1">
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1">emacs大杂烩</h3>
+<div class="outline-text-3" id="text-1-1">
+
+
+</div>
+
+<div id="outline-container-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1">emacs各种设置与注意事项</h4>
+<div class="outline-text-4" id="text-1-1-1">
+
+
+</div>
+
+<div id="outline-container-1-1-1-1" class="outline-5">
+<h5 id="sec-1-1-1-1">emacs在英文系统的输入法问题</h5>
+<div class="outline-text-5" id="text-1-1-1-1">
+
+
+
+
+<pre class="src src-bash">mv /usr/bin/emacs /usr/bin/emacs.raw
+gedit /usr/bin/emacs
+
+#!/bin/sh
+export LC_CTYPE=zh_CN.utf-8
+/usr/bin/emacs.raw <span style="color: #61CE3C;">"$@"</span>
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-1-2" class="outline-5">
+<h5 id="sec-1-1-1-2">交换Control_L与Capslocks</h5>
+<div class="outline-text-5" id="text-1-1-1-2">
+
+
+<p class="verse">
+通过 xev | grep 'keycode'得到键码，然后输入以下文件:<br/>
+remove Lock = Caps_Lock<br/>
+remove Control = Control_R<br/>
+keycode  66 = Control_R NoSymbol Control_R<br/>
+keycode  105 = Caps_Lock NoSymbol Caps_Lock<br/>
+add Lock = Caps_Lock<br/>
+add Control = Control_R<br/>
+保存为.xmodmap，然后运行xmodmap .xmodmap<br/>
+</p>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2">isearch的相关技巧</h4>
+<div class="outline-text-4" id="text-1-1-2">
+
+<p>    C-x C-x:可以在isearch之后回到原来的位置
+</p></div>
+
+</div>
+
+<div id="outline-container-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3">ido-mode的快捷键</h4>
+<div class="outline-text-4" id="text-1-1-3">
+
+
+<p class="verse">
+C-s C-r：在匹配的文件左右切换<br/>
+C-p    ：会启动部分匹配，而前面是严格的前缀匹配<br/>
+C-t    ：正则表达式匹配 eg:*.py$匹配所有python源文件<br/>
+M-up M-down：切换以前访问的目录<br/>
+</p>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-4" class="outline-4">
+<h4 id="sec-1-1-4">dired的快捷键</h4>
+<div class="outline-text-4" id="text-1-1-4">
+
+<p>dired的标记方式有很多种，如标记删除（D标记，用于删除）， 如标记为*（m所做的标记就是*
+标记），默认如果有被*标记的文件，那么所有的文件操作就是在这些标记的文
+件上进行的，否则就在当前行代表的文件上进行操作，当然还可以有其他类型的
+标记如t标记，k标记，只是这些标记没有快捷键，一般D标记和*标记用的多，其
+他标记一般用于临时的转换一下。*c命令可以修改标记，eg：*c D t将D标记修
+改为t标记，*c t *将t标记修改为*标记
+</p>
+<p class="verse">
+"#": 标记所有自动保存的文件（D标记）<br/>
+～：标记所有的备份文件（D标记）<br/>
+&amp;： 标记所有的垃圾文件(D标记)<br/>
+d: mark D标记<br/>
+x：执行删除<br/>
+<br/>
+m: mark *标记<br/>
+t: 将所有*标记的文件变为未标记，所有未标记的变为*标记<br/>
+**：标记所有可执行文件<br/>
+*@：标记所有符号链接<br/>
+*s: 标记所有文件<br/>
+*/：标记所有目录（不包括. ..)<br/>
+%m or *%: 正则匹配文件名<br/>
+%g：正则匹配所有文件的内容<br/>
+u: unmark<br/>
+常用的文件操作：<br/>
+U: unmark all<br/>
+D: 立即删除<br/>
+R：rename<br/>
+C：copy<br/>
+A: 正则搜索<br/>
+Q：正则替换<br/>
+Z：解压文件<br/>
+L：把lisp文件加载进emacs<br/>
+B：byte compile<br/>
+O：chown<br/>
+G：chgrp<br/>
+M：chmod<br/>
++：create a directory<br/>
+!: 可以显示打开文件的命令（对pdf等文件不要RET）<br/>
+<br/>
+我设置的快捷键：<br/>
+/ m n: 标记所有文件名匹配正则表达式的文件（mark name）<br/>
+/ m e: 标记所有可执行文件                (mark executable files)<br/>
+/ m d: 标记所有的目录                    (mark directory)<br/>
+/ m c：标记所有内容匹配正则表达式的文件   (mark content)<br/>
+/ m l: 标记所有符号链接                  (mark symlink)<br/>
+/ m u: unmark all marks<br/>
+/ /： unmark all marks<br/>
+/ u: 将所有标记的文件的文件重命名为大写<br/>
+/ l：将所有标记的文件的文件重命名为小写<br/>
+/ c：change marks，和*c等价<br/>
+</p>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-5" class="outline-4">
+<h4 id="sec-1-1-5">ibuffer的快捷键</h4>
+<div class="outline-text-4" id="text-1-1-5">
+
+
+<p class="verse">
+p：prev<br/>
+n: next<br/>
+m：mark<br/>
+u: unmark<br/>
+t: mark all<br/>
+**: unmark all<br/>
+x: kill the marked buffer or current buffer if no buffer marked<br/>
+S: save the marked buffer or current buffer if no buffer marked<br/>
+D: same as 'x'<br/>
+O: 在所有mark的buffer中正则搜索<br/>
+U: 在所有mark的buffer中替换<br/>
+Q: 在所有mark的buffer中query，replace<br/>
+/m: 按主模式过滤<br/>
+<i>n: 按名字过滤，可以只输入一部分 /</i>: 撤销过滤，全部显示<br/>
+/p: 多重过滤时撤销上一层过滤<br/>
+/f: 过滤filename，与/n类似<br/>
+</p>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-6" class="outline-4">
+<h4 id="sec-1-1-6">org-mode的快捷键</h4>
+<div class="outline-text-4" id="text-1-1-6">
+
+
+<p class="verse">
+org-w3m-copy-for-org-mode: 在w3m中可以带链接，图片拷贝到org中（先选中region）<br/>
+tab，S-tab<br/>
+C-c C-n: next tiltle<br/>
+C-c C-p: prev tilte<br/>
+C-c C-f: 平级的上一个标题<br/>
+C-c C-b：平级的下一个标题<br/>
+C-c C-u：上一级标题：next<br/>
+M-RET : 插入同级标题<br/>
+M-S RET：插入一个同级的TODO标题<br/>
+M-LEFT/RIGHT: 标题升/降级<br/>
+M-S-LEFT/RIGHT：子树升/降级<br/>
+C-c*：将本行设置为标题<br/>
+C-c C-l: insert a link<br/>
+C-c C-o: open a link<br/>
+链接: "【【link】【descripter】】"（用英文的方括号）<br/>
+org-mode能自动识别链接，如http，file等<br/>
+有序列表；1. 2. 3.<br/>
+无序列表：*，+，-开头都可以<br/>
+注解的格式：方括号+数字，或者方括号+fn+数字<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; C-c C-c可以在注解与正文之间跳转<br/>
+(下面的格式，开头结尾必须都是空格或标点)<br/>
+a.*&hellip;*: <b>粗体</b><br/>
+b./&hellip;/: <i>斜体</i><br/>
+c.+&hellip;.+: <del>删除线</del><br/>
+d._&hellip;_: <span style="text-decoration:underline;">下划线</span><br/>
+下标：H<sub>2</sub> O(会将_后的字符串加上下标，空格为截止符)<br/>
+上标：E=mc<sup>2</sup> (同上)<br/>
+<br/>
+<b>内容元数据及其快捷键：</b><br/>
+&lt;v tab: begin_verse   区域内换行<br/>
+&lt;s tab: begin_src     区域内为代码 按 *C-c C-'* 进入主模式编辑，在按退出<br/>
+&lt;e tab: begin_example 例子，每行以：开始<br/>
+&lt;q tab: begin_quote   区域左右都会留出缩进，用于引用<br/>
+&lt;c tab: begin_center  居中区域<br/>
+&lt;l tab: begin_latex<br/>
+&lt;h tab: begin_html    嵌入html<br/>
+&lt;a tab: begin_ascii<br/>
+<br/>
+<b>表格：</b><br/>
+在某一行的顶格输入‘|’，然后输入第一行第一列，在输入‘|’，接着第二行第二<br/>
+#列，依次类推，完成后tab，会将当前行对齐并为你创造表格的下一行，tab和<br/>
+#S-tab可以在表格中正向或者反向的移动，在表格的空白项中输入数字eg:&lt;6&gt;则<br/>
+#限定为6个字符长，多余的部分会隐藏，用C-c C-c可以展开<br/>
+<br/>
+<b>TODO list：</b><br/>
+在一个标题上按shift+left/right，C-c C-t可以设置todo list的状态<br/>
+</p>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-7" class="outline-4">
+<h4 id="sec-1-1-7">cua-mode以及矩形操作的快捷键</h4>
+<div class="outline-text-4" id="text-1-1-7">
+
+
+<p class="verse">
+enable: M-x cua-mode<br/>
+C-RET: 激活矩形操作，然后就可以常规移动光标来进行列编辑<br/>
+C-v  : past rectangle<br/>
+</p>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-8" class="outline-4">
+<h4 id="sec-1-1-8">mutiple cursors多光标</h4>
+<div class="outline-text-4" id="text-1-1-8">
+
+<ol>
+<li>C-&lt;: mc/mark-previous-like-this
+</li>
+<li>C-&gt;: mc/mark-next-like-this
+</li>
+<li>C-c &lt;: mc/mark-all-like-this (上面三项功能以word为单位，必须先mark-word)
+
+</li>
+<li>C-c c a:在所有行的开头加入光标
+</li>
+<li>C-c c e:在所有行的结尾加入光标
+</li>
+<li>C-c c c:在所有的行加入一个光标(上面的三项功能以行为单位，必须先mark数行)
+</li>
+</ol>
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-9" class="outline-4">
+<h4 id="sec-1-1-9">ace-jump-mode</h4>
+<div class="outline-text-4" id="text-1-1-9">
+
+<p>    类似于火狐的vim插件，输入一个head char，就会在所有匹配的地方放入一个字母
+</p><ol>
+<li>C-; ：ace-jump-char-mode
+</li>
+<li>C-: : ace-jump-word-mode
+</li>
+</ol>
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-10" class="outline-4">
+<h4 id="sec-1-1-10">w3m</h4>
+<div class="outline-text-4" id="text-1-1-10">
+
+<p>    w3m 是一个文本浏览器，它不支持CSS与js，非常适合浏览文本很多的页面，以及避免
+    在emacs与firefox切换带来的烦恼。。
+    <b>links</b>
+</p><ul>
+<li>g: Prompt for a url in minibuffer (w3m-browse-url)
+</li>
+<li>G: same as <b>g</b> excepte it open a new session(a new tab)
+</li>
+<li>R: reload the page
+</li>
+<li>S: search engion
+</li>
+<li>H: goto home page
+</li>
+<li>u: display the under the point in the echo area
+</li>
+<li>RET: Display the page pointed by the link under point (w3m-view-this-url)
+</li>
+<li>[: move point to previous form
+</li>
+<li>]: move point to next form
+</li>
+<li>TAB: move point to next link
+</li>
+<li>M-TAB, S-TAB: move point to previous link
+</li>
+<li>d: download thee url under the point
+</li>
+<li>M-d: Download the url
+</li>
+</ul>
+
+<p>    <b>scroll</b>
+</p><ul>
+<li>SPC: scroll downwards
+</li>
+<li>&gt;: scroll to the right
+</li>
+<li>&lt;: scroll to the left
+</li>
+<li>DEL: scroll upwards
+</li>
+</ul>
+
+<p>    <b>bookmarks</b>
+</p><ul>
+<li>v: show all bookmarks
+</li>
+<li>a: add current url to bookmarks
+</li>
+<li>M-a: Add the url under point to the bookmark.
+</li>
+<li>C-k: kill a bookmark
+</li>
+<li>E: edit bookmark
+</li>
+</ul>
+
+<p>    <b>move in page</b>
+</p><ul>
+<li>hjkl: like vim
+</li>
+</ul>
+
+<p>    <b>switch tabs</b>
+</p><ul>
+<li>C-c C-n: next tab
+</li>
+<li>C-c C-p: previous tab
+</li>
+<li>C-c C-t: new tab
+</li>
+</ul>
+
+<p>    <b>images</b>
+</p><ul>
+<li>I: Display the image under point in the external viewer.
+</li>
+<li>M-i: Save the image under point to a file.
+</li>
+<li>t: Toggle the visibility of an image under point
+</li>
+<li>T: Toggle the visibility of all images
+</li>
+<li>M-T: turn off to display all images
+</li>
+<li>M-[: zoom in an image on the point
+</li>
+<li>M-]: zoom out an image on the point
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-11" class="outline-4">
+<h4 id="sec-1-1-11">我设置的快捷键以及我常用的快捷键，函数</h4>
+<div class="outline-text-4" id="text-1-1-11">
+
+
+<p class="verse">
+C-x C-m: 替代M-x,按M很别扭<br/>
+M-u : upcase-word<br/>
+M-c : capticalize-word<br/>
+M-l : downcase-word(将行上下移动，如果选定则移动buffer)<br/>
+C-c p: 复制粘贴一行<br/>
+M-up: Shift lines up<br/>
+M-down: Shift lines down<br/>
+M-x occur: 创建一个新的buffer，然后将当前buffer，所有匹配regex的内容显示其中,进入该buffer，enter就可以跳转<br/>
+M-x imenu：可以根据类型跳转（变量，函数,include等等）<br/>
+C-k: kill the current line<br/>
+C-o: new line and indent,like the 'o' in vim<br/>
+M-;: comment or uncomment the region<br/>
+C-c C-c: same as  M-;<br/>
+C-/: undo (same as C-x u and C-_)<br/>
+C-c d: translate the word using sdcv<br/>
+C-c f: 迭代的搜索字符，eg：C-c f g会移到第一个g，在按g移到<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 第二个g<br/>
+%  : jump to the matched parenthesis<br/>
+C-c -: fold the code<br/>
+C-c =: unfold the code<br/>
+C-M-f: 表达式的首部<br/>
+C-M-b:<br/>
+C-M-a: 函数的首部<br/>
+C-M-e：<br/>
+C-x backspace: 删除到行首<br/>
+C-M-h: 标记一个函数<br/>
+M-u: 一个字改为大写<br/>
+M-l：一个字改为小写<br/>
+C-x C-u：region to uppercase<br/>
+C-x C-l：区域小写<br/>
+C-t：将光标前后的字符交换<br/>
+C-x C-t: 光标所在行与上一行交换<br/>
+</p>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-12" class="outline-4">
+<h4 id="sec-1-1-12">emacs的奇淫技巧</h4>
+<div class="outline-text-4" id="text-1-1-12">
+
+
+<p class="verse">
+M-x flush-lines RET ^$ RET :删除所有的空行（正则匹配）<br/>
+下载steve purcell的配置以及dea<br/>
+绑定快捷键时用C-h k查询得到的内容可以直接放在kbd后<br/>
+indent-region可以格式化所有的代码<br/>
+</p>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2">elisp学习笔记</h3>
+<div class="outline-text-3" id="text-1-2">
+
+
+</div>
+
+<div id="outline-container-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1">elisp基本语法</h4>
+<div class="outline-text-4" id="text-1-2-1">
+
+<ol>
+<li>help: + M-x apropos (find symbol)
+<ul>
+<li>C-h k(descripte key)
+</li>
+<li>C-h f (function)
+</li>
+<li>C-h v (variable)
+</li>
+</ul>
+
+</li>
+<li>control flow
+<ol>
+<li>if
+
+
+
+<pre class="src src-lisp">(<span style="color: #FBDE2D;">if</span> test
+    a
+  b)
+<span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">test is the condition</span>
+</pre>
+
+<p>
+       logical expression
+          the function <b>or</b> works like the logical "or" in most languages:
+          if all the arguments are false, it return nil, otherwith it will
+          return the value of the last argument whose value is non-nil.
+          eg: (or nil nil 3 2 1) return 3 (not t)
+          so (if a a b) is identical to (or a b)
+</p></li>
+<li>let
+
+
+
+<pre class="src src-lisp">(<span style="color: #FBDE2D;">let</span> ((val1 value1)
+      (val2 value2))
+  body)
+</pre>
+
+</li>
+<li>lists
+       car
+       cdr
+       cons
+       list: (list 'a "b" 1) ==&gt; (a "b" 1)
+       append: (append '(a b) '(c d)) ==&gt; (a b c d)
+       reverse: (reverse '(a b c d)) ==&gt; (d c b a)
+       nthcdr: call cdr n times
+       length: get the length of the list
+       mapcar:
+       equal: only test the object's structure and content
+       eq: test if the two arguments is the same object
+       assoc: 当list类似于关联数组时，用key来寻找value，用equal测试key
+       assq： 与assoc相似，只是用eq测试key
+
+<p>
+       setcar: change the car-element of the list
+       setcdr: change the cdr-element of the list
+</p></li>
+</ol>
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2">常用的函数</h4>
+<div class="outline-text-4" id="text-1-2-2">
+
+
+</div>
+
+<div id="outline-container-1-2-2-1" class="outline-5">
+<h5 id="sec-1-2-2-1"><b>lisp的基本语法</b></h5>
+<div class="outline-text-5" id="text-1-2-2-1">
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-2-2" class="outline-5">
+<h5 id="sec-1-2-2-2"><b>光标:</b></h5>
+<div class="outline-text-5" id="text-1-2-2-2">
+
+
+
+
+<pre class="src src-elisp">(region-beginning)
+(region-end)
+(point-max)
+(point-min)
+(buffer-end)
+(beginning-of-line)
+(end-of-line)
+
+(goto-char 293)
+(forward-char n)
+(backward-char n)
+(skip-chars-forward <span style="color: #61CE3C;">"\n\t"</span>)
+(skip-chars-backward <span style="color: #61CE3C;">"\n\t"</span>)
+
+(forward-line n)
+(backward-line n)
+
+(looking-at regex)  <span style="color: #AEAEAE; font-style: italic;">;; </span><span style="color: #AEAEAE; font-style: italic;">return t if text after the point match the REGEXP</span>
+(looking-back regex)
+
+(search-forward my-str)
+(search-backward my-str)
+(re-search-forward my-regex)
+(re-search-backward my-regex)
+(replace-match)
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-2-3" class="outline-5">
+<h5 id="sec-1-2-2-3"><b>文本编辑：</b></h5>
+<div class="outline-text-5" id="text-1-2-2-3">
+
+
+
+
+<pre class="src src-lisp">(delete-char 9)
+(delete-region start-pos end-pos)
+(insert <span style="color: #61CE3C;">"hello world"</span>)
+(buffer-substring start-pos end-pos) <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">&#20174;buffer&#20013;&#33719;&#24471;&#23383;&#31526;&#20018;</span>
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-2-4" class="outline-5">
+<h5 id="sec-1-2-2-4"><b>字符串操作：</b></h5>
+<div class="outline-text-5" id="text-1-2-2-4">
+
+
+
+
+<pre class="src src-lisp">(length <span style="color: #61CE3C;">"abc"</span>)   <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">return 3</span>
+(substring <span style="color: #61CE3C;">"hello world"</span> 1 3) <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">return "ell"</span>
+(replace-regexp-in-string regex replace str)  <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">&#27491;&#21017;&#26367;&#25442;</span>
+(string-match regex str) <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">return the index first match the regex in str</span>
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-2-5" class="outline-5">
+<h5 id="sec-1-2-2-5"><b>buffer相关：</b></h5>
+<div class="outline-text-5" id="text-1-2-2-5">
+
+
+
+
+<pre class="src src-lisp">(buffer-name)
+(buffer-file-name)  <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">full name</span>
+(set-buffer name)
+(save-buffer)
+(kill-buffer BufferName)
+(kill-this-buffer)
+(<span style="color: #FBDE2D;">with-current-buffer</span>)
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-2-6" class="outline-5">
+<h5 id="sec-1-2-2-6"><b>file相关：</b></h5>
+<div class="outline-text-5" id="text-1-2-2-6">
+
+
+
+
+<pre class="src src-lisp">(find-file path)  <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">open a file</span>
+(write-file path) <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">save the file</span>
+(insert-file-contents path) <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">&#23558;&#25351;&#23450;&#25991;&#20214;&#20869;&#23481;&#25554;&#20837;&#24403;&#21069;&#20301;&#32622;</span>
+(append-to-file start-pos end-pos path)
+(rename-file old-name new-name)
+(copy-file file-name new-name)
+(delete-file file-name)
+(file-name-directory full-path) <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">&#36335;&#24452;&#65288;&#19981;&#21253;&#21547;&#25991;&#20214;&#21517;&#65289;</span>
+(file-name-nodirectory full-path) <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">&#25991;&#20214;&#21517;&#65288;&#19981;&#21253;&#21547;&#36335;&#24452;&#65289;</span>
+(file-name-extension file-name)  <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">&#21518;&#32512;,&#19968;&#33324;&#26102;&#25193;&#23637;&#21517;</span>
+(file-name-sans-extension <span style="color: #61CE3C;">"/hello/abc.html"</span>) <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">return "/hello/abc",&#21482;&#21435;&#25481;&#21518;&#32512;</span>
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-2-7" class="outline-5">
+<h5 id="sec-1-2-2-7"><b>other useful function</b></h5>
+<div class="outline-text-5" id="text-1-2-2-7">
+
+
+
+
+<pre class="src src-lisp">(<span style="color: #FBDE2D;">save-excursion</span>)   <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">&#20445;&#23384;&#24182;&#24674;&#22797;&#24403;&#21069;point</span>
+(interactive)      <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">function is a command</span>
+(thing-at-point THING) <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">THING can be 'word' 'line' 'sentence' 'list'</span>
+                       <span style="color: #AEAEAE; font-style: italic;">;; </span><span style="color: #AEAEAE; font-style: italic;">and so on</span>
+(thing-at-point 'word)
+(thing-at-point 'sexp)
+(current-time-string) <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">&#36820;&#22238;&#24403;&#21069;&#26102;&#38388;&#23383;&#31526;&#20018;</span>
+(format-time-string <span style="color: #61CE3C;">"%1.%M %p"</span> (current-time))
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-2-8" class="outline-5">
+<h5 id="sec-1-2-2-8"><b>useful variable</b></h5>
+<div class="outline-text-5" id="text-1-2-2-8">
+
+<p>     mark-active
+     last-command
+</p></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2013-05-31T20:47+0800</p>
+<p class="author">Author: Yu Yang</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>
