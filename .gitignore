@@ -1,0 +1,8 @@
+*.org
+*.bak
+*.bakk
+/example.txt
+/getting-started.txt
+/.dropbox
+*~
+\#*
