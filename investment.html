@@ -1,72 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>投资笔记</title>
+<!-- 2013-06-16 Sun 19:23 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-<meta name="title" content="投资笔记"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2013-06-02T17:50+0800"/>
 <meta name="author" content="Yu Yang"/>
-<meta name="description" content=""/>
-<meta name="keywords" content=""/>
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  html { font-family: Times, serif; font-size: 12pt; }
   .title  { text-align: center; }
-  .todo   { color: red; }
+  .todo   { font-family: monospace; color: red; }
   .done   { color: green; }
-  .tag    { background-color: #add8e6; font-weight:normal }
-  .target { }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
-  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
-  .center {margin-left:auto; margin-right:auto; text-align:center;}
-  p.verse { margin-left: 3% }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
   pre {
-	border: 1pt solid #AEBDCC;
-	background-color: #F3F5F7;
-	padding: 5pt;
-	font-family: courier, monospace;
-        font-size: 90%;
-        overflow:auto;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
   }
-  table { border-collapse: collapse; }
-  td, th { vertical-align: top;  }
-  th.right  { text-align:center;  }
-  th.left   { text-align:center;   }
-  th.center { text-align:center; }
-  td.right  { text-align:right;  }
-  td.left   { text-align:left;   }
-  td.center { text-align:center; }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  div.figure { padding: 0.5em; }
-  div.figure p { text-align: center; }
-  div.inlinetask {
-    padding:10px;
-    border:2px solid gray;
-    margin:10px;
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
     background: #ffffcc;
   }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size:smaller }
-  .code-highlighted {background-color:#ffff00;}
-  .org-info-js_info-navigation { border-style:none; }
-  #org-info-js_console-label { font-size:10px; font-weight:bold;
-                               white-space:nowrap; }
-  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
-                                 font-weight:bold; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
-</style><link rel="stylesheet" type="text/css" href="css/main.css"/>
-<style> pre.src { background-color:#2e3436; color: #eeeeec;}</style>
+</style>
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012  Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -107,75 +132,114 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-
 </head>
 <body>
-<div id="org-div-home-and-up" style="text-align:right;font-size:70%;white-space:nowrap;">
+<div id="org-div-home-and-up">
  <a accesskey="h" href="sitemap.html"> UP </a>
  |
  <a accesskey="H" href="index.html"> HOME </a>
+</div><div id="preamble" class="status">
+<div id="branding">
+      <div class="col-width">
+              <div id="logo">
+        <h1 id="site-title"><a href="/" title="Yu Yang's blog" rel="home">
+                Yu Yang's blog                </a>
+                </h1>
+                          <h2 id="site-description">Hope is a good thing, maybe the best of things.......</h2>
+                      </div>
+
+    <div id="navigation">
+      <div class="menu">
+      <ul>
+      <li class="current_page_item"><a href="/" title="首页">首页</a></li>
+      <li class="page_item page-item-2"><a href="/guestbook.html">留言板</a></li>
+      <li class="page_item page-item-2"><a href="/about.html">关于</a></li>
+      <li class="page_item page-item-93"><a href="/atom.xml">RSS</a></li>
+      </ul>
+      </div>
+
+    <div id="searchwrapper">
+      <form action="">
+        <input type="text" class="searchbox" name="wd" value="Search..." onblur="if(this.value==''){this.value='Search...';}" onfocus="if(this.value=='Search...'){this.value='';}"/>
+        <input class="search-submit" type="image" src="/img/google.ico" alt="Search" title="Google 自定义搜索" style="width:16px;height:16px" />
+      </form>
+    </div>
+
+    </div><!-- #access -->
+
+    </div>
+
+  </div>
 </div>
-
-<div id="preamble">
-
-</div>
-
 <div id="content">
 <h1 class="title">投资笔记</h1>
-
-
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#sec-1">Investment</a>
 <ul>
-<li><a href="#sec-1-1">some advice</a></li>
-<li><a href="#sec-1-2">财务报表基础</a>
+<li><a href="#sec-1-1">投资原则</a></li>
+<li><a href="#sec-1-2">some advice</a></li>
+<li><a href="#sec-1-3">财务报表基础</a>
 <ul>
-<li><a href="#sec-1-2-1">资产负债表</a>
+<li><a href="#sec-1-3-1">资产负债表</a>
 <ul>
-<li><a href="#sec-1-2-1-1">资产</a></li>
-<li><a href="#sec-1-2-1-2">负债</a></li>
-<li><a href="#sec-1-2-1-3">所有者权益</a></li>
+<li><a href="#sec-1-3-1-1">资产(流动性高的排前面)</a></li>
+<li><a href="#sec-1-3-1-2">负债(偿还期限短的排前面)</a></li>
+<li><a href="#sec-1-3-1-3">所有者权益</a></li>
+<li><a href="#sec-1-3-1-4">一般的财务比率</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-2-2">损益表</a></li>
-<li><a href="#sec-1-2-3">现金流量表</a></li>
+<li><a href="#sec-1-3-2">损益表(或利润表)</a></li>
+<li><a href="#sec-1-3-3">现金流量表</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-3">常用的会计术语</a></li>
-<li><a href="#sec-1-4">分析公司的五个方面：</a>
+<li><a href="#sec-1-4">常用的会计术语</a></li>
+<li><a href="#sec-1-5">分析公司的五个方面：</a>
 <ul>
-<li><a href="#sec-1-4-1">成长性</a></li>
-<li><a href="#sec-1-4-2">收益性</a></li>
+<li><a href="#sec-1-5-1">成长性</a></li>
+<li><a href="#sec-1-5-2">收益性</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-5">财务伪装</a>
+<li><a href="#sec-1-6">财务伪装</a>
 <ul>
-<li><a href="#sec-1-5-1">六个危险信号</a></li>
-<li><a href="#sec-1-5-2">七个缺陷</a></li>
+<li><a href="#sec-1-6-1">六个危险信号</a></li>
+<li><a href="#sec-1-6-2">七个缺陷</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-6">财务英文词汇：</a></li>
+<li><a href="#sec-1-7">财务英文词汇：</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-1" class="outline-2">
+<div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1">Investment</h2>
 <div class="outline-text-2" id="text-1">
-
-
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">投资原则</h3>
+<div class="outline-text-3" id="text-1-1">
+<ol class="org-ol">
+<li>做好功课
+</li>
+<li>寻找有强大竞争力的公司
+一家公司是如何使竞争者无路可走，从而保持高额的回报率
+</li>
+<li>拥有安全边际(至少25%，如果公司的前景没有参考，那么应该留得更大)
+</li>
+<li>长期持有
+</li>
+<li>知道何时卖出
+</li>
+</ol>
+</div>
 </div>
 
-<div id="outline-container-1-1" class="outline-3">
-<h3 id="sec-1-1">some advice</h3>
-<div class="outline-text-3" id="text-1-1">
-
-<ol>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">some advice</h3>
+<div class="outline-text-3" id="text-1-2">
+<ol class="org-ol">
 <li>不要试图通过发现下一个微软公司而获得巨额收益。你应该关注于发现股价已低于估值的可靠的公司。所以不要预测市场上哪个小公司会成为大公司，而应该潜心的寻找那些股票价格远低于其价值的公司。
 </li>
 <li>了解市场的历史能帮助你避免重复那些易犯的错误。如果人们试图使你确信“这次与以往不同”，不要理睬他们。
@@ -202,78 +266,117 @@ for the JavaScript code in this tag.
 <li>不做研究的投资就像不看牌玩扑克一样盲目
 </li>
 </ol>
-
-
 </div>
-
 </div>
-
-<div id="outline-container-1-2" class="outline-3">
-<h3 id="sec-1-2">财务报表基础</h3>
-<div class="outline-text-3" id="text-1-2">
-
-
-</div>
-
-<div id="outline-container-1-2-1" class="outline-4">
-<h4 id="sec-1-2-1">资产负债表</h4>
-<div class="outline-text-4" id="text-1-2-1">
-
-<p>    资产负债表公司特定的时间点的资产与负债情况
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">财务报表基础</h3>
+<div class="outline-text-3" id="text-1-3">
+</div><div id="outline-container-sec-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1">资产负债表</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+资产负债表公司特定的时间点的资产与负债情况
 </p>
 </div>
-
-<div id="outline-container-1-2-1-1" class="outline-5">
-<h5 id="sec-1-2-1-1">资产</h5>
-<div class="outline-text-5" id="text-1-2-1-1">
-
-<ol>
-<li>流动资产(现金和现金等价物，短期投资，应收账款（可以用应收账款与销售收入的增长速度比较来衡量公司的收款能力或者公司是否使用了一个宽松的信用条件），存货（存货周转率可以使用销售成本除以平均存货水平，如果产品贬值快的话，那么存货周转率低是一个不好的兆头）)
+<div id="outline-container-sec-1-3-1-1" class="outline-5">
+<h5 id="sec-1-3-1-1">资产(流动性高的排前面)</h5>
+<div class="outline-text-5" id="text-1-3-1-1">
+<ol class="org-ol">
+<li>流动资产
+<ul class="org-ul">
+<li>现金和现金等价物，短期投资，
 </li>
-<li>非流动资产（固定资产，投资（长期债劵，对其他公司的股票投资），无形资产）
+<li>应收账款:可以用应收账款与销售收入的增长速度比较来衡量公司的收款能力或者公司是否使用了一个宽松的信用条件,
+而且应该考察应收账款是否集中在少数客户手中,越集中风险越大.一般该项目还有一个 <b>坏账准备</b> 的条目,要注意检查
+坏账准备的准确性,可以和同行业的公司比较.
 </li>
-<li>无形资产（商誉（收购其他公司时的溢价，很可能会大幅减少）
+<li>存货: 存货计算有两种方法,即先进先出,后进先出,之所以存在这两种情况是因为同一种产品,在不同的时间它的进货
+价格可能是不同的,所以这两种方法就是为了确定到底应该用什么时候的价格来计算存货价值.存货周转率可以使用销售
+成本除以平均存货水平，如果产品贬值快的话，那么存货周转率低是一个不好的兆头.
+</li>
+</ul>
+</li>
+<li>非流动资产（
+<ul class="org-ul">
+<li>固定资产，
+</li>
+<li>投资（长期债劵，对其他公司的股票投资），无形资产）
+</li>
+</ul>
+</li>
+<li>无形资产
+<ul class="org-ul">
+<li>商誉: 收购其他公司时的溢价(收购价格与被收购公司的净账面价值(资产减去负债)的差值)，很可能会大幅减少
+</li>
+</ul>
 </li>
 </ol>
-
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-1-2-1-2" class="outline-5">
-<h5 id="sec-1-2-1-2">负债</h5>
-<div class="outline-text-5" id="text-1-2-1-2">
-
-<ol>
-<li>流动负债（期限短于一年的应付账款、短期借款或短期应付款）
+<div id="outline-container-sec-1-3-1-2" class="outline-5">
+<h5 id="sec-1-3-1-2">负债(偿还期限短的排前面)</h5>
+<div class="outline-text-5" id="text-1-3-1-2">
+<ol class="org-ol">
+<li>流动负债（期限短于一年必须以现金偿还的债务）
+<ul class="org-ul">
+<li>商业本票
+</li>
+<li>应付账款
+</li>
+<li>预计负债:应付利息,水电费,员工工资(大陆会单独列出)
+</li>
+<li>应计所得税
+</li>
+<li>一年内到期的中长期债务
+</li>
+</ul>
 </li>
 <li>非流动负债（一年或一年以上的借款，如公司发行的长期债券，银行的长期借款等）
 </li>
 </ol>
-
+</div>
 </div>
 
+<div id="outline-container-sec-1-3-1-3" class="outline-5">
+<h5 id="sec-1-3-1-3">所有者权益</h5>
+<div class="outline-text-5" id="text-1-3-1-3">
+<p>
+总资产减去总负债，未分配利润（利润中没有被股东分红分出去的部分，是一个累计账户，包含多年的累计利润）
+</p>
+</div>
 </div>
 
-<div id="outline-container-1-2-1-3" class="outline-5">
-<h5 id="sec-1-2-1-3">所有者权益</h5>
-<div class="outline-text-5" id="text-1-2-1-3">
-
-<p>     总资产减去总负债，未分配利润（利润中没有被股东分红分出去的部分，是一个累计账户，包含多年的累计利润）
-</p></div>
-</div>
-
-</div>
-
-<div id="outline-container-1-2-2" class="outline-4">
-<h4 id="sec-1-2-2">损益表</h4>
-<div class="outline-text-4" id="text-1-2-2">
-
-<p>    损益表是公司一段时间里损失或者赚了多少会计利润（不同于现金利润）
-</p><ul>
-<li><b>收入((净)销售收入)</b> :一个季度或者一年公司销售多少，有可能按照业务类型或者地域而单独列出。
+<div id="outline-container-sec-1-3-1-4" class="outline-5">
+<h5 id="sec-1-3-1-4">一般的财务比率</h5>
+<div class="outline-text-5" id="text-1-3-1-4">
+<ul class="org-ul">
+<li>流动比率 = 流动资产 / 流动负债
+该比率一般要高于1,因为如果流动资产低于流动负债,那么公司短期内很有可能出现财务危机,
+但是这不是绝对的,对于有些公司,低的流动比率反而是更好的征兆
 </li>
-<li><b>销售成本</b>  :是与直接创造收入有关的费用，大公司可能会将该科目分解为销售成本和服务成本。人工成本，原材料（制造商）或者货物批发价格（零售商）。
+<li>负债比率 = 总负债 / 总资产
+应该将企业与过去正常情况下的财务结构比较,看负债比率是否明显恶化,同时将公司与同行业公司比较,
+看公司的负债比率是否明显偏高, 同时要观察现金流量表,看是否能创造足够的现金来应付本金与利息
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3-2" class="outline-4">
+<h4 id="sec-1-3-2">损益表(或利润表)</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<p>
+损益表是公司一段时间里损失或者赚了多少会计利润（不同于现金利润）, 可以提供绩效评估的功能.
+收入应满足2个条件: 服务或产品已经提供给顾客, 公司预期能够收回现金
+</p>
+<ul class="org-ul">
+<li><b>收入((净)销售收入)</b> :净销售＝销售收入－销售退回与折让－销售折扣,
+一个季度或者一年公司销售多少，有可能按照业务类型或者地域而单独列出。
+</li>
+<li><b>销售成本</b>  :当期销售商品的进货成本,可能因为存货评价方式的不同而不同(先进先出,后进先出)
+是与直接创造收入有关的费用，大公司可能会将该科目分解为销售成本和服务成本。人工成本，原材料（制造商）或者货物批发价格（零售商）。
 </li>
 <li><b>毛利</b> :收入减去销售成本，不在损益表中。
 </li>
@@ -294,17 +397,26 @@ for the JavaScript code in this tag.
 <li><b>股份数字</b> :基准（目前也就是这份报表的统计期内实际存在的平均股份数），稀释（包括实际存在的股份数与可转换为股票（但目前可能没有转换，包括股票期权和可转换债劵）的有价证劵的和），每股盈利（单独看没有太大的意义）
 </li>
 </ul>
-
+</div>
 </div>
 
-</div>
+<div id="outline-container-sec-1-3-3" class="outline-4">
+<h4 id="sec-1-3-3">现金流量表</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<p>
+现金流量表是记录全部流入流出公司现金的情况，包括经营活动发生的现金流量，投资活动发生的现金流量和筹集资金活动发生的现金流量。
+经营活动发生的现金流是需要重点关注的项目.
+现金流量表有两种编制方法：
+</p>
+<ol class="org-ol">
+<li>直接法: 将经营，筹资，投资活动带来的现金流一一列出
+</li>
+<li>间接法: 对公司的净利润进行校正与调整，其校正过程如下：
+必须将折旧费用加回来
+必须将处理资产损失
+应收账款增加，则现金流量减少，存货增加则现金流量减少，应付账款增加则现金流量增加
 
-<div id="outline-container-1-2-3" class="outline-4">
-<h4 id="sec-1-2-3">现金流量表</h4>
-<div class="outline-text-4" id="text-1-2-3">
-
-<p>    现金流量表是记录全部流入流出公司现金的情况，包括经营活动发生的现金流量，投资活动发生的现金流量和筹集资金活动发生的现金流量。经营活动发生的现金流是需要重点关注的项目
-</p><ul>
+<ul class="org-ul">
 <li><b>净利润（净收益）</b> ：就是损益表的销售收入。
 </li>
 <li><b>折旧和摊销</b> ：这不是现金费用，应该与净利润相加
@@ -318,59 +430,61 @@ for the JavaScript code in this tag.
 <li><b>经营活动现金净额</b> ：经营活动现金流量就是从净利润中加上或减去这个科目的结果
 </li>
 </ul>
-
+</li>
+</ol>
+<p>
+营收以及利润快速增长的公司如果发生财务危机，大部分情况是因为应收账款和存货大幅增长
+</p>
 
 <p>
-你分析一家公司的时候，要确认你弄清楚了1美元的现金在公司里是怎样流转的。如果你不这样做，你也许根本没有弄明白这家公司，因此也不能轻率地购买它的股票
+你分析一家公司的时候，要确认你弄清楚了1美元的现金在公司里是怎样流转的。如果你不这样做，你也许根本没有弄明白这家公司，
+因此也不能轻率地购买它的股票
 </p>
+
 <p>
-损益表和现金流量表的关键区别权责发生制是理解财务报表的一个关键的概念。当一项服务或一种物品提供给买家的时候，损益表记录销售收入与相应的费用，但是现金流量表只关心现金的流入和流出，现金流量表把资产负债表和损益表联系了起来。
-</p></div>
-</div>
-
-</div>
-
-<div id="outline-container-1-3" class="outline-3">
-<h3 id="sec-1-3">常用的会计术语</h3>
-<div class="outline-text-3" id="text-1-3">
-
-<p>会计利润：所有者支付除资本以外的所有要素报酬之后剩下的利润，会计利润必须要与收入和费用（包括折旧）尽可能的匹配。然而现金利润测算的是实际生意中流入流出了多少。
+损益表和现金流量表的关键区别权责发生制是理解财务报表的一个关键的概念。当一项服务或一种物品提供给买家的时候，
+损益表记录销售收入与相应的费用，但是现金流量表只关心现金的流入和流出，现金流量表把资产负债表和损益表联系了起来。
 </p>
 </div>
-
+</div>
 </div>
 
-<div id="outline-container-1-4" class="outline-3">
-<h3 id="sec-1-4">分析公司的五个方面：</h3>
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">常用的会计术语</h3>
 <div class="outline-text-3" id="text-1-4">
-
-<p>一个成功的投资者是购买一个好主意，而不是购买一个收购机器，如果不知道一个企业除掉收购之后的真实增长率是多少，那就不要买他的股票
+<p>
+会计利润：所有者支付除资本以外的所有要素报酬之后剩下的利润，会计利润必须要与收入和费用（包括折旧）尽可能的匹配。然而现金利润测算的是实际生意中流入流出了多少。
 </p>
 </div>
-
-<div id="outline-container-1-4-1" class="outline-4">
-<h4 id="sec-1-4-1">成长性</h4>
-<div class="outline-text-4" id="text-1-4-1">
-
-<ul>
+</div>
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5">分析公司的五个方面：</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+一个成功的投资者是购买一个好主意，而不是购买一个收购机器，如果不知道一个企业除掉收购之后的真实增长率是多少，那就不要买他的股票
+</p>
+</div>
+<div id="outline-container-sec-1-5-1" class="outline-4">
+<h4 id="sec-1-5-1">成长性</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<ul class="org-ul">
 <li><b>成长性</b> ：销售增长主要来自于四个方面：销售更多的产品和服务，提高价格，销售新的产品和服务，收购别的公司。要特别弄清楚公司的成长来自于哪些方面，并且每一方面占得比重是多少，对于收购要特别注意。
 </li>
 <li><b>成长的质量</b> ：当公司的利润增长长期（5到10年）超过销售增长时，要明白公司是如何获得超额的利润的，通过削减成本可以提高利润率，但是不可持续，因为你不可能无休止的削减成本，特别是不适当的削减成本，少交税，回购股票对股东有利，可是也是短期的，是低质量的成长
 </li>
 </ul>
-
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-1-4-2" class="outline-4">
-<h4 id="sec-1-4-2">收益性</h4>
-<div class="outline-text-4" id="text-1-4-2">
-
-<p>有两个评估指标：资本收益率和自由现金流量
-</p><ul>
+<div id="outline-container-sec-1-5-2" class="outline-4">
+<h4 id="sec-1-5-2">收益性</h4>
+<div class="outline-text-4" id="text-1-5-2">
+<p>
+有两个评估指标：资本收益率和自由现金流量
+</p>
+<ul class="org-ul">
 <li>资产收益率（ROA  return on assert）：评估将资产转变成利润的效率
-<ol>
+<ol class="org-ol">
 <li>销售净利率 = 净利润/销售收入
 </li>
 <li>资产周转率 = 销售收入 / 资产
@@ -378,10 +492,9 @@ for the JavaScript code in this tag.
 <li>资产收益率 = 销售净利率 * 资产周转率 = 净利润/资产
 </li>
 </ol>
-
 </li>
 <li>净资产收益率（ROE）：反应的是公司使用所有者权益（资产 – 负债）的效率，评估的是使用股东的钱投资产生的回报的程度
-<ol>
+<ol class="org-ol">
 <li>财务杠杆比率 = 资产/ 所有者权益
 </li>
 <li>净资产收益率 = 资产收益率 * 财务杠杆比率 = 净利润 / 所有者权益
@@ -389,20 +502,18 @@ for the JavaScript code in this tag.
 <li>财务杠杆比率是衡量一家公司的负债在总资产占得分量是大还是小，财务杠杆比率越高，意味着公司的负债比率越高。如果公司的业务很稳定，那么较高的负债对公司影响不大，但如果公司的业务不稳定或者是周期性的，那么高的财务杠杆比率会比较危险。非金融公司在没有过分的财务杠杆比率的前提下如果能取得10%的净资产收益率就是可以投资的。
 </li>
 </ol>
-
 </li>
 <li>自由现金流（FCF）：
-<ol>
+<ol class="org-ol">
 <li>自由现金流 = 经营性现金流 – 资本性支出
 </li>
 <li>%5的销售收入转变成自由现金流是必要的。
 </li>
 </ol>
-
 </li>
 </ul>
-
-<p>拥有高的净资产收益率与高的自由现金流的公司值得投资
+<p>
+拥有高的净资产收益率与高的自由现金流的公司值得投资
 投入资本收益率（ROIC）：矫正了资产收益率与净资产收益率所带来的一些扭曲，比二者更全面，是更好的盈利度量工具
 财务健康状况
 过高的财务杠杆比率可以放大收益，也可以扩大风险，所以对于过高的财务杠杆比率的公司要重点关注。
@@ -411,21 +522,14 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-
 </div>
-
-<div id="outline-container-1-5" class="outline-3">
-<h3 id="sec-1-5">财务伪装</h3>
-<div class="outline-text-3" id="text-1-5">
-
-
-</div>
-
-<div id="outline-container-1-5-1" class="outline-4">
-<h4 id="sec-1-5-1">六个危险信号</h4>
-<div class="outline-text-4" id="text-1-5-1">
-
-<ul>
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6">财务伪装</h3>
+<div class="outline-text-3" id="text-1-6">
+</div><div id="outline-container-sec-1-6-1" class="outline-4">
+<h4 id="sec-1-6-1">六个危险信号</h4>
+<div class="outline-text-4" id="text-1-6-1">
+<ul class="org-ul">
 <li>衰退的现金流：如果公司净利润仍在大幅增长，可是经营性现金流却在粗略的同比例增长或者还有衰退，，那么就应该特别注意。
 </li>
 <li>连续的一次性费用：
@@ -439,16 +543,13 @@ for the JavaScript code in this tag.
 <li>变更赊销付款条件和应收账款：
 </li>
 </ul>
-
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-1-5-2" class="outline-4">
-<h4 id="sec-1-5-2">七个缺陷</h4>
-<div class="outline-text-4" id="text-1-5-2">
-
-<ul>
+<div id="outline-container-sec-1-6-2" class="outline-4">
+<h4 id="sec-1-6-2">七个缺陷</h4>
+<div class="outline-text-4" id="text-1-6-2">
+<ul class="org-ul">
 <li>投资收益：试图将投资收益合并入营业利润来推高财务业绩。
 </li>
 <li>养老金缺陷：
@@ -464,9 +565,10 @@ for the JavaScript code in this tag.
 <li>费用化还是非费用化：某些费用公司可以将它资本化，也就是计入资产，这样隐藏了费用，也就粉饰了财务报表
 </li>
 </ul>
-
-<p>给公司估值
-</p><ul>
+<p>
+给公司估值
+</p>
+<ul class="org-ul">
 <li>市销率：是各种比率中最基础的，用每股的价格除以每股的销售收入，市销率有个比较大的弊端，就是不同的公司销售收入的价值不同，如零售公司的销售收入的价值就较低，因为其利润率低。
 </li>
 <li>市净率：把一只股票的市场价值和当期资产负债表的账面价值（也就是所有者权益或净资产）比较，对服务类公司不可靠，但是对金融类公司或者有巨额有形资产的公司则比较好
@@ -474,9 +576,10 @@ for the JavaScript code in this tag.
 <li>市盈率：
 </li>
 </ul>
-
-<p>巴菲特的投资策略：
-</p><ul>
+<p>
+巴菲特的投资策略：
+</p>
+<ul class="org-ul">
 <li>不理睬对经济大趋势的预测，也不理睬对股价走势的预测，只注重长期价值
 </li>
 <li>只买力所能及的股票，也就是对公司和公司所在的行业要足够的熟悉
@@ -488,18 +591,13 @@ for the JavaScript code in this tag.
 <li>一旦看重某种股票就要义无反顾的买（这点不是适合每一个人，一般人要控制风险，只将自己能够承担风险的资金投入进去，不是每一个人都能像巴菲特那样预测准确）
 </li>
 </ul>
-
-
 </div>
 </div>
-
 </div>
-
-<div id="outline-container-1-6" class="outline-3">
-<h3 id="sec-1-6">财务英文词汇：</h3>
-<div class="outline-text-3" id="text-1-6">
-
-<ul>
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7">财务英文词汇：</h3>
+<div class="outline-text-3" id="text-1-7">
+<ul class="org-ul">
 <li>ROE                      净资产收益率
 </li>
 <li>ROA                      资产收益率
@@ -529,15 +627,15 @@ for the JavaScript code in this tag.
 <li>Balance sheet            资产负债表
 </li>
 </ul>
-
 </div>
 </div>
 </div>
 </div>
-
-<div id="postamble">
+<div id="postamble" class="status">
 <div id="disqus_thread"></div>
     <script type="text/javascript">
+        var url = window.location.pathname;
+        var disqus_identifier = url.substring(url.lastIndexOf('/')+1);
         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
         var disqus_shortname = 'yuyang'; // required: replace example with your forum shortname
 
@@ -550,7 +648,7 @@ for the JavaScript code in this tag.
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    <p class="author">Author: Yu Yang (<a href="mailto:yy2012cn@gmail.com">yy2012cn@gmail.com</a>)</p><p>Last Updated 2013-06-02T17:50+0800. Created by <a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24 </p>
+    <p class="author">Author: Yu Yang (<a href="mailto:yy2012cn@gmail.com">yy2012cn@gmail.com</a>)</p><p>Last Updated 2013-06-13 . Created by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.0.3) </p>
 </div>
 </body>
 </html>

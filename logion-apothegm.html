@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>SET THEORY(30%)</title>
+<title>logion and apothegm</title>
 <!-- 2013-06-16 Sun 19:23 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="generator" content="Org-mode"/>
@@ -172,140 +172,13 @@ for the JavaScript code in this tag.
   </div>
 </div>
 <div id="content">
-<h1 class="title">SET THEORY(30%)</h1>
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#sec-1">Set Theory</a>
-<ul>
-<li><a href="#sec-1-1">总体把握</a>
-<ul>
-<li><a href="#sec-1-1-1">朴素集合论（直觉上）：康托儿创立</a></li>
-<li><a href="#sec-1-1-2">罗素悖论（理发师悖论）</a></li>
-<li><a href="#sec-1-1-3">公理化集合论</a>
-<ul>
-<li><a href="#sec-1-1-3-1">外延公理</a></li>
-<li><a href="#sec-1-1-3-2">空集公理</a></li>
-<li><a href="#sec-1-1-3-3">子集公理</a></li>
-<li><a href="#sec-1-1-3-4">偶集公理</a></li>
-<li><a href="#sec-1-1-3-5">并集公理</a></li>
-<li><a href="#sec-1-1-3-6">幂集公理</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Set Theory</h2>
-<div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">总体把握</h3>
-<div class="outline-text-3" id="text-1-1">
-<p>
-朴素集合论（康托儿）-&#x2014;&gt;罗素悖论&#x2013;&#x2014;&gt;公理化集合论
-</p>
-</div>
-<div id="outline-container-sec-1-1-1" class="outline-4">
-<h4 id="sec-1-1-1">朴素集合论（直觉上）：康托儿创立</h4>
-<div class="outline-text-4" id="text-1-1-1">
-<p>
-几个基本概念：
-</p>
+<h1 class="title">logion and apothegm</h1>
 <ol class="org-ol">
-<li>基数（势）：可以理解为大小
+<li>hope is a good thing, maybe the best of things
 </li>
-<li>一一对应：比较两个集合的大小时，如果两个集合能一一对应，那么这两
-个集合基数相同或等势，均势
-</li>
-<li>可数无穷大（可列无穷大）：如果一个集合和自然数集一一对应，那么这
-个集合就是可数，或者可列的，因为可以像数数（1 2 3 &#x2026;)
-一样列出来,所以所有的非负偶数集都是可数的，而实数集是不
-可数的（対角线法证明）
-</li>
-<li>対角线法：对于（0，1）之间的实数，先假设所有的实数都列出来了，那
-么构造一个实数使它与上面的每一个数都不同就能推出矛盾，
-够造的方法是使対角线上的数位不同。
+<li>get busy living or get busy dying
 </li>
 </ol>
-<p>
-朴素集合论的问题：
-按照朴素集合论的观点，只要能够给出一个确切的条件P(x)，那么就能定义
-             一个集合(any collection definable is a set),但是事实上
-             这是不成立的，罗素悖论就是一个例子，公理化集合论的好处
-             通过一系列的公理可以推出哪些集合存在，哪些集合不存在，
-             这样就可以避开那些悖论
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-1-2" class="outline-4">
-<h4 id="sec-1-1-2">罗素悖论（理发师悖论）</h4>
-<div class="outline-text-4" id="text-1-1-2">
-<p>
-一个理发师声称给城里不刮胡子的人刮胡子，而且也只给这些不刮胡子的人刮，
-那么理发师该不该给自己刮胡子。
-any collection definable is a set
-数学表述：
-    P表示所有不包含自身的集合的集合（也就是所有不自吞的集合所组成的集
-    合），那么P是否属于自己呢（也就是P是否自吞呢）。这是一个悖论，因为
-    如果P属于P，那么P是自吞的，而根据P的性质，P只包含不自吞的集合，所
-    以最后 P==&gt;非P，非P==&gt;P.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-1-3" class="outline-4">
-<h4 id="sec-1-1-3">公理化集合论</h4>
-<div class="outline-text-4" id="text-1-1-3">
-<p>
-不定义什么是集合，而是通过一些公理来描述集合的性质，通过这些公理来推导，
-这些公理都是小心设计，所以避开了罗素悖论。
-</p>
-</div>
-<div id="outline-container-sec-1-1-3-1" class="outline-5">
-<h5 id="sec-1-1-3-1">外延公理</h5>
-<div class="outline-text-5" id="text-1-1-3-1">
-<p>
-判断2个集合是否相等
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-1-3-2" class="outline-5">
-<h5 id="sec-1-1-3-2">空集公理</h5>
-<div class="outline-text-5" id="text-1-1-3-2">
-<p>
-存在一个唯一的空集
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-1-3-3" class="outline-5">
-<h5 id="sec-1-1-3-3">子集公理</h5>
-</div>
-
-<div id="outline-container-sec-1-1-3-4" class="outline-5">
-<h5 id="sec-1-1-3-4">偶集公理</h5>
-</div>
-<div id="outline-container-sec-1-1-3-5" class="outline-5">
-<h5 id="sec-1-1-3-5">并集公理</h5>
-</div>
-<div id="outline-container-sec-1-1-3-6" class="outline-5">
-<h5 id="sec-1-1-3-6">幂集公理</h5>
-<div class="outline-text-5" id="text-1-1-3-6">
-<p>
-对于集合A，存在一个集合B，恰好以A的一切子集为元素
-</p>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 <div id="postamble" class="status">
 <div id="disqus_thread"></div>
@@ -324,7 +197,7 @@ any collection definable is a set
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    <p class="author">Author: Yu Yang (<a href="mailto:yy2012cn@gmail.com">yy2012cn@gmail.com</a>)</p><p>Last Updated  . Created by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.0.3) </p>
+    <p class="author">Author: Yu Yang (<a href="mailto:yy2012cn@gmail.com">yy2012cn@gmail.com</a>)</p><p>Last Updated 2013-06-12 . Created by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.0.3) </p>
 </div>
 </body>
 </html>

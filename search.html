@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <title>Yu Yang's Blog</title>
+    <!-- 2013-06-15 Sat 23:47 -->
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta name="generator" content="Org-mode"/>
+    <meta name="author" content="Yu Yang"/>
+
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <link href="css/menu.css" rel="stylesheet" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="Atom feed" />
+  </head>
+  <body>
+    <div id="preamble" class="status">
+      <div id="branding">
+        <div class="col-width">
+          <div id="logo">
+            <h1 id="site-title"><a href="/" title="Yu Yang's blog" rel="home">
+              Yu Yang's blog                </a>
+            </h1>
+            <h2 id="site-description">Hope is a good thing, maybe the best of things.......</h2>
+          </div>
+
+          <div id="navigation">
+            <div class="menu">
+              <ul>
+                <li class="current_page_item"><a href="/" title="首页">首页</a></li>
+                <li class="page_item page-item-2"><a href="/guestbook.html">留言板</a></li>
+                <li class="page_item page-item-2"><a href="/about.html">关于</a></li>
+                <li class="page_item page-item-93"><a href="/atom.xml">RSS</a></li>
+              </ul>
+            </div>
+          </div><!-- #access -->
+
+        </div>
+
+      </div>
+    </div>
+    <div id="content">
+
+      <div id="cse" style="width: 100%;">Loading</div>
+
+    </div>
+    <div id="postamble" class="status">
+
+      <p class="author">Author: Yu Yang (<a href="mailto:yy2012cn@gmail.com">yy2012cn@gmail.com</a>)</p><p>Last Updated . Created by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.0.3) </p>
+    </div>
+
+    <script type="text/javascript">
+  var Flower = {};
+;
+/**
+* String.trim()
+*
+* https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/Trim
+*/
+if(!String.prototype.trim) {
+String.prototype.trim = function () {
+return this.replace(/^\s+|\s+$/g,'');
+};
+}
+;
+/**
+* Object.keys
+*
+* https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/keys
+*/
+if (!Object.keys) {
+Object.keys = (function () {
+var hasOwnProperty = Object.prototype.hasOwnProperty,
+hasDontEnumBug = !({toString: null}).propertyIsEnumerable('toString'),
+dontEnums = [
+'toString',
+'toLocaleString',
+'valueOf',
+'hasOwnProperty',
+'isPrototypeOf',
+'propertyIsEnumerable',
+'constructor'
+],
+dontEnumsLength = dontEnums.length;
+
+return function (obj) {
+if (typeof obj !== 'object' && typeof obj !== 'function' || obj === null) throw new TypeError('Object.keys called on non-object');
+
+var result = [];
+
+for (var prop in obj) {
+if (hasOwnProperty.call(obj, prop)) result.push(prop);
+}
+
+if (hasDontEnumBug) {
+for (var i=0; i < dontEnumsLength; i++) {
+  if (hasOwnProperty.call(obj, dontEnums[i])) result.push(dontEnums[i]);
+}
+}
+  return result;
+};
+})();
+}
+;
+Flower.formdata = {
+  newValue: function() {
+    return {};
+  },
+  add: function(v, key, value) {
+    if (v.hasOwnProperty(key)) {
+      v[key].push(value);
+    } else {
+      v[key] = [value];
+    }
+  },
+  del: function(v, key) {
+    delete v[key];
+  },
+  get: function(v, key) {
+    if (v.hasOwnProperty(key)) {
+      return v[key][0];
+    }
+    return null;
+  },
+  set: function(v, key, value) {
+    v[key] = [value];
+  },
+  encode: function(v) {
+    var ret = [];
+    var keys = Object.keys(v);
+    for (var i = 0; i < keys.length; i++) {
+      var key = keys[i];
+      for (var j = 0; j < v[key].length; j++) {
+        ret.push(encodeURIComponent(key) + '=' + encodeURIComponent(v[key][j]));
+      }
+    }
+    return ret.join('&');
+  },
+  parse: function(data, names) {
+    var valid = {};
+    for (var i = 0; i < names.length; i++) {
+      valid[names[i]] = true;
+    }
+    var ret = this.newValue();
+    var start = 0;
+    var end;
+    while (start < data.length) {
+      end = data.indexOf('&', start);
+      if (end == -1) {
+        end = data.length;
+      }
+      var section = data.substring(start, end);
+      var sep = section.indexOf('=');
+      if (sep != -1) {
+        var key = decodeURIComponent(section.substring(0, sep).trim());
+        if (valid[key]) {
+          var value = decodeURIComponent(section.substring(sep + 1).trim());
+          this.add(ret, key, value);
+        }
+      }
+      start = end + 1;
+    }
+    return ret;
+  }
+};
+;
+</script>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">
+  google.load('search', '1', {language : 'zh-CN', style : google.loader.themes.SHINY});
+google.setOnLoadCallback(function() {
+  var customSearchControl = new google.search.CustomSearchControl('005863396545237100197:nhuiw5cz1q4');
+  customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+  var options = new google.search.DrawOptions();
+  options.setAutoComplete(true);
+  customSearchControl.draw('cse', options);
+
+  var args = Flower.formdata.parse(location.search.substring(1), ['wd']);
+  var word = args['wd'];
+  if (word != null) {
+    customSearchControl.execute(word);
+  }
+  /*var gscInput = getByTagAndClass('input', 'gsc-input');
+    Flower.eventer.addEventListener(getByTagAndClass('input', 'gsc-search-button'), 'click', function() {
+      location.search = '?wd=' + gscInput.value;
+    });
+    var ie = Flower.ieVersion();
+    if (ie && ie < 9) { // in IE 6-8, submit event does not bubble
+      Flower.eventer.addEventListener(document.body, 'keyup', function(e) {
+        e = e || window.event;
+        if (e.keyCode == 13) {
+          location.search = '?wd=' + gscInput.value;
+        }
+      });
+    }*/
+  }, true);
+</script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-7909075-4']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>
