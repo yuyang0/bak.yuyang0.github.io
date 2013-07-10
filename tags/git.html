@@ -9,20 +9,19 @@
 <meta name="author" content="Yu Yang"/>
 
 <link rel="stylesheet" type="text/css" href="/static/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="/static/css/tag.css"/>
 <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="Atom feed">
 
 </head>
 <body>
-
-<div id="preamble" class="status">
 <div id="branding">
-      <div class="col-width">
-              <div id="logo">
-        <h1 id="site-title"><a href="/" title="Yu Yang's blog" rel="home">
+  <div class="col-width">
+    <div id="logo">
+      <h1 id="site-title"><a href="/" title="Yu Yang's blog" rel="home">
                 Yu Yang's blog                </a>
-                </h1>
-                          <h2 id="site-description">Hope is a good thing, maybe the best of things.......</h2>
-                      </div>
+      </h1>
+      <h2 id="site-description">Hope is a good thing, maybe the best of things.......</h2>
+    </div>
 
     <div id="navigation">
       <div class="menu">
@@ -46,25 +45,34 @@
     </div>
 
   </div>
-</div>
-<h3>welcome</h3>
-<div id="postamble" class="status">
-<div id="disqus_thread"></div>
-    <script type="text/javascript">
-        var url = window.location.pathname;
-        var disqus_identifier = url.substring(url.lastIndexOf('/')+1);
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'yuyang'; // required: replace example with your forum shortname
+<div id="content">
 
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+<h2>Article Tag: git</h2>
+<hr />
+
+<div class="post">
+<h3> <a href="/git.html">git/github学习笔记</a></h3>
+<div class="example"> git/github学习笔记 Table of Contents git学习笔记 基本使用 git的基本命令 git一般的工作过程是： git github gitignore syntax git学习笔记 git是一个分布式版本管理系统 <br /> 基本使用 git的基本命令 安装：sudo apt-get install git git-uid init： git init（工作目录运行，会生成一个.git目录，里面会存放索引数据） add: git add(添加文件) git add . （添加所有） （只有添加了新文件时才需要git add，如果只是修改了或删除了文件，可以只执行git commit -a） commit: git commit(提交，一般调
+	<a href="/git.html">阅读全文</a>
 </div>
+</div>
+<hr />
+
+
+
+</div>
+<div style="clear:both;"></div>
+<!-- begin footer -->
+<!-- <div id="footer">
+  <hr />
+  <ul class="links">
+    <li>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</li>
+    <li><a href="/sitemap.tt">Sitemap</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    <li><a href="/about.html">About Me</a></li>
+    <li><a href="#branding">Back to Top</a></li>
+  </ul>
+</div> -->
+<!-- end footer -->
 </body>
 </html>

@@ -3,10 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>css笔记</title>
-<!-- 2013-06-16 Sun 19:23 -->
+<!-- 2013-07-05 Fri 22:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="generator" content="Org-mode"/>
 <meta name="author" content="Yu Yang"/>
+<meta name="keywords" content="css web"/>
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center; }
@@ -85,7 +86,7 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="css/main.css"/>
+<link rel="stylesheet" type="text/css" href="/static/css/main.css"/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -133,20 +134,14 @@ for the JavaScript code in this tag.
 /*]]>*///-->
 </script>
 </head>
-<body>
-<div id="org-div-home-and-up">
- <a accesskey="h" href="sitemap.html"> UP </a>
- |
- <a accesskey="H" href="index.html"> HOME </a>
-</div><div id="preamble" class="status">
-<div id="branding">
-      <div class="col-width">
-              <div id="logo">
-        <h1 id="site-title"><a href="/" title="Yu Yang's blog" rel="home">
+<body><div id="branding">
+  <div class="col-width">
+    <div id="logo">
+      <h1 id="site-title"><a href="/" title="Yu Yang's blog" rel="home">
                 Yu Yang's blog                </a>
-                </h1>
-                          <h2 id="site-description">Hope is a good thing, maybe the best of things.......</h2>
-                      </div>
+      </h1>
+      <h2 id="site-description">Hope is a good thing, maybe the best of things.......</h2>
+    </div>
 
     <div id="navigation">
       <div class="menu">
@@ -159,9 +154,9 @@ for the JavaScript code in this tag.
       </div>
 
     <div id="searchwrapper">
-      <form action="">
+      <form action="/search.html">
         <input type="text" class="searchbox" name="wd" value="Search..." onblur="if(this.value==''){this.value='Search...';}" onfocus="if(this.value=='Search...'){this.value='';}"/>
-        <input class="search-submit" type="image" src="/img/google.ico" alt="Search" title="Google 自定义搜索" style="width:16px;height:16px" />
+        <input type="image" src="/static/img/google.ico" class="searchbox_submit" value="" />
       </form>
     </div>
 
@@ -170,7 +165,6 @@ for the JavaScript code in this tag.
     </div>
 
   </div>
-</div>
 <div id="content">
 <h1 class="title">css笔记</h1>
 <div id="table-of-contents">
@@ -203,40 +197,40 @@ css:层叠样式表,是指定网页元素显示方式的一种方法
 <pre class="src src-html">&lt;<span style="color: #FF6400;">link</span> <span style="color: #FF6400;">rel</span>=<span style="color: #61CE3C;">"stylesheet"</span> <span style="color: #FF6400;">href</span>=<span style="color: #61CE3C;">"/static/css/your.css"</span> <span style="color: #FF6400;">type</span>=<span style="color: #61CE3C;">"text/css"</span> <span style="color: #FF6400;">media</span>=<span style="color: #61CE3C;">"screen"</span> /&gt;
 &lt;<span style="color: #FF6400;">style</span> <span style="color: #FF6400;">type</span>=<span style="color: #61CE3C;">"text/css"</span> <span style="color: #FF6400;">media</span>=<span style="color: #61CE3C;">"screen"</span>&gt;
   p {
-  color:red;
+  color:<span style="color: #ffffff; background-color: #FF0000;">red</span>;
   font-size:12px;
   }
 &lt;/<span style="color: #FF6400;">style</span>&gt;
-&lt;<span style="color: #FF6400;">p</span> <span style="color: #FF6400;">style</span>=<span style="color: #61CE3C;">"color: red; font-size: 12px;"</span>&gt;&lt;/<span style="color: #FF6400;">p</span>&gt;
+&lt;<span style="color: #FF6400;">p</span> <span style="color: #FF6400;">style</span>=<span style="color: #61CE3C;">"color: </span><span style="color: #ffffff; background-color: #FF0000;">red</span><span style="color: #61CE3C;">; font-size: 12px;"</span>&gt;&lt;/<span style="color: #FF6400;">p</span>&gt;
 </pre>
 </div>
 </li>
 <li>css selector
 <div class="org-src-container">
 
-<pre class="src src-css"><span style="color: #FF6400;">p </span>{<span style="color: #FF6400;">color</span>: red;}                 <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">tag selector</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
+<pre class="src src-css"><span style="color: #FF6400;">p </span>{<span style="color: #FF6400;">color</span>: <span style="color: #ffffff; background-color: #FF0000;">red</span>;}                 <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">tag selector</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
 <span style="color: #FF6400;">body, ul, ol </span>{}                 <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">body,ul,ol&#26631;&#31614;</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
 
 <span style="color: #FF6400;">#nav </span>{<span style="color: #FF6400;">font-size</span>: 12px;}         <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">id selector</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
 <span style="color: #FF6400;">.sidebar </span>{<span style="color: #FF6400;">font-family</span>:Times}    <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">class selector</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
 
 <span style="color: #FF6400;">h1#content </span>{}                       <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">id&#20026;content&#30340;h1&#26631;&#31614;</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
-<span style="color: #FF6400;">h1.blue</span>{}                           <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">class&#20026;blue&#30340;h1&#26631;&#31614;</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
+<span style="color: #FF6400;">h1.</span><span style="color: #ffffff; background-color: #0000FF;">blue</span>{}                           <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">class&#20026;</span><span style="color: #ffffff; background-color: #0000FF;">blue</span><span style="color: #AEAEAE; font-style: italic;">&#30340;h1&#26631;&#31614;</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
 
 <span style="color: #FF6400;">li a </span>{<span style="color: #FF6400;">text-decoration</span>: none;}   <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">descendant selector</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
 <span style="color: #FF6400;">li #content</span>{}
-<span style="color: #FF6400;">li .blue</span>{}
+<span style="color: #FF6400;">li .</span><span style="color: #ffffff; background-color: #0000FF;">blue</span>{}
 
-<span style="color: #FF6400;">a</span>:link {<span style="color: #FF6400;">color</span>: red}             <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">pseudo-class selector</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
-<span style="color: #FF6400;">a[title] </span>{<span style="color: #FF6400;">color</span>: red}           <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">attribute selector</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
-<span style="color: #FF6400;">a[href=</span><span style="color: #61CE3C;">"www.baidu.com"</span><span style="color: #FF6400;">] </span>{<span style="color: #FF6400;">color</span>:red} <span style="color: #AEAEAE; font-style: italic;">/**/</span>
+<span style="color: #FF6400;">a</span>:link {<span style="color: #FF6400;">color</span>: <span style="color: #ffffff; background-color: #FF0000;">red</span>}             <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">pseudo-class selector</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
+<span style="color: #FF6400;">a[title] </span>{<span style="color: #FF6400;">color</span>: <span style="color: #ffffff; background-color: #FF0000;">red</span>}           <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">attribute selector</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
+<span style="color: #FF6400;">a[href=</span><span style="color: #61CE3C;">"www.baidu.com"</span><span style="color: #FF6400;">] </span>{<span style="color: #FF6400;">color</span>:<span style="color: #ffffff; background-color: #FF0000;">red</span>} <span style="color: #AEAEAE; font-style: italic;">/**/</span>
 </pre>
 </div>
 </li>
 <li>css box
 <p class="verse">
 css的盒子模型： <br/>
-<img src="img/css-box.png"  alt="css-box.png"/> <br/>
+<img src="static/img/css-box.png"  alt="css-box.png"/> <br/>
 这也就是margin，border，padding三个属性的含义了。 <br/>
 </p>
 </li>
@@ -247,9 +241,9 @@ css的盒子模型： <br/>
 </ul>
 <p class="verse">
 html文档有一个标准文档流，每一个块级元素（如div）都要单独占一行<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup> <br/>
-<img src="img/div-per-line.png"  alt="div-per-line.png"/> <br/>
+<img src="static/img/div-per-line.png"  alt="div-per-line.png"/> <br/>
 如果给一个元素添加浮动，那么他就会脱离标准文档流，而悬浮于标准文档流之上: <br/>
-<img src="img/div-float-23.png"  alt="div-float-23.png"/> <br/>
+<img src="static/img/div-float-23.png"  alt="div-float-23.png"/> <br/>
 </p>
 <p>
 这是给div2,div3添加左浮动后的效果，因为div2,div3添加了浮动，所以二者脱离标准文档流，
@@ -281,10 +275,10 @@ html文档有一个标准文档流，每一个块级元素（如div）都要单�
 <div class="org-src-container">
 
 <pre class="src src-css"><span class="linenr">1: </span><span style="color: #FF6400;">p </span>{
-<span class="linenr">2: </span>    <span style="color: #FF6400;">color</span>:red;
+<span class="linenr">2: </span>    <span style="color: #FF6400;">color</span>:<span style="color: #ffffff; background-color: #FF0000;">red</span>;
 <span class="linenr">3: </span>}
 <span class="linenr">4: </span><span style="color: #FF6400;">body </span>{
-<span class="linenr">5: </span>    <span style="color: #FF6400;">color</span>:rgb(50, 255, 0);
+<span class="linenr">5: </span>    <span style="color: #FF6400;">color</span>:<span style="color: #000000; background-color: #32FF00;">rgb(50, 255, 0)</span>;
 <span class="linenr">6: </span>}
 </pre>
 </div>
@@ -293,7 +287,7 @@ html文档有一个标准文档流，每一个块级元素（如div）都要单�
 <div class="org-src-container">
 
 <pre class="src src-css"><span class="linenr">1: </span><span style="color: #FF6400;">body </span>{
-<span class="linenr">2: </span>    <span style="color: #FF6400;">background-color</span>:rgb(220, 220, 220);
+<span class="linenr">2: </span>    <span style="color: #FF6400;">background-color</span>:<span style="color: #000000; background-color: #DCDCDC;">rgb(220, 220, 220)</span>;
 <span class="linenr">3: </span>    <span style="color: #FF6400;">background-image</span>: url(<span style="color: #61CE3C;">'sample.png'</span>);
 <span class="linenr">4: </span>    <span style="color: #FF6400;">background-repeat</span>:no-repeat;
 <span class="linenr">5: </span>
@@ -323,8 +317,7 @@ html文档有一个标准文档流，每一个块级元素（如div）都要单�
 
 </div>
 </div></div>
-<div id="postamble" class="status">
-<div id="disqus_thread"></div>
+  <div id="disqus_thread"></div>
     <script type="text/javascript">
         var url = window.location.pathname;
         var disqus_identifier = url.substring(url.lastIndexOf('/')+1);
@@ -339,8 +332,16 @@ html文档有一个标准文档流，每一个块级元素（如div）都要单�
         })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    <p class="author">Author: Yu Yang (<a href="mailto:yy2012cn@gmail.com">yy2012cn@gmail.com</a>)</p><p>Last Updated 2013-06-14 . Created by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.0.3) </p>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- begin footer -->
+<div id="footer">
+  <hr />
+  <ul class="links">
+    <li>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</li>
+    <li><a href="/sitemap.tt">Sitemap</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    <li><a href="/about.html">About Me</a></li>
+    <li><a href="#branding">Back to Top</a></li>
+  </ul>
 </div>
-</body>
+<!-- end footer --></body>
 </html>

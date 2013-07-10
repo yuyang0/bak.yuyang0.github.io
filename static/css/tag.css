@@ -1,0 +1,17 @@
+#tc {position:relative; width:350px; height:350px; border:1px solid #000; margin-top: 30px;}
+#tc a {position:absolute; top:0px; left:0px; font-family: Microsoft YaHei; color:#000; font-weight:bold; text-decoration:none; padding: 3px 6px; }
+#tc a:hover {border: 1px solid #eee; background: #FFF; }
+#tc .blue {color:blue;}
+#tc .red {color:red;}
+#tc .green {color:green;}
+
+#content {
+	float: left;
+	width: 550px !important;
+	margin-left: 10% !important;
+	background-color: rgb(255, 255,255) !important;
+}
+.right_side {
+	float: right;
+	margin-right: 10%;
+}

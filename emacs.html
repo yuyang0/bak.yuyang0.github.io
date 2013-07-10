@@ -3,10 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Emacs/elisp笔记</title>
-<!-- 2013-06-16 Sun 19:23 -->
+<!-- 2013-07-05 Fri 22:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="generator" content="Org-mode"/>
 <meta name="author" content="Yu Yang"/>
+<meta name="keywords" content="emacs emacs-lisp"/>
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center; }
@@ -85,7 +86,7 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="css/main.css"/>
+<link rel="stylesheet" type="text/css" href="/static/css/main.css"/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -133,20 +134,14 @@ for the JavaScript code in this tag.
 /*]]>*///-->
 </script>
 </head>
-<body>
-<div id="org-div-home-and-up">
- <a accesskey="h" href="sitemap.html"> UP </a>
- |
- <a accesskey="H" href="index.html"> HOME </a>
-</div><div id="preamble" class="status">
-<div id="branding">
-      <div class="col-width">
-              <div id="logo">
-        <h1 id="site-title"><a href="/" title="Yu Yang's blog" rel="home">
+<body><div id="branding">
+  <div class="col-width">
+    <div id="logo">
+      <h1 id="site-title"><a href="/" title="Yu Yang's blog" rel="home">
                 Yu Yang's blog                </a>
-                </h1>
-                          <h2 id="site-description">Hope is a good thing, maybe the best of things.......</h2>
-                      </div>
+      </h1>
+      <h2 id="site-description">Hope is a good thing, maybe the best of things.......</h2>
+    </div>
 
     <div id="navigation">
       <div class="menu">
@@ -159,9 +154,9 @@ for the JavaScript code in this tag.
       </div>
 
     <div id="searchwrapper">
-      <form action="">
+      <form action="/search.html">
         <input type="text" class="searchbox" name="wd" value="Search..." onblur="if(this.value==''){this.value='Search...';}" onfocus="if(this.value=='Search...'){this.value='';}"/>
-        <input class="search-submit" type="image" src="/img/google.ico" alt="Search" title="Google 自定义搜索" style="width:16px;height:16px" />
+        <input type="image" src="/static/img/google.ico" class="searchbox_submit" value="" />
       </form>
     </div>
 
@@ -170,7 +165,6 @@ for the JavaScript code in this tag.
     </div>
 
   </div>
-</div>
 <div id="content">
 <h1 class="title">Emacs/elisp笔记</h1>
 <div id="table-of-contents">
@@ -203,7 +197,8 @@ for the JavaScript code in this tag.
 <li><a href="#sec-1-1-9">ace-jump-mode</a></li>
 <li><a href="#sec-1-1-10">w3m</a></li>
 <li><a href="#sec-1-1-11">我设置的快捷键以及我常用的快捷键，函数</a></li>
-<li><a href="#sec-1-1-12">emacs的奇淫技巧</a></li>
+<li><a href="#sec-1-1-12">emacs导出pdf的中文支持</a></li>
+<li><a href="#sec-1-1-13">emacs的奇淫技巧</a></li>
 </ul>
 </li>
 <li><a href="#sec-1-2">elisp学习笔记</a>
@@ -211,7 +206,11 @@ for the JavaScript code in this tag.
 <li><a href="#sec-1-2-1">elisp基本语法</a></li>
 <li><a href="#sec-1-2-2">常用的函数</a>
 <ul>
-<li><a href="#sec-1-2-2-1"><b>lisp的基本语法</b></a></li>
+<li><a href="#sec-1-2-2-1"><b>lisp的基本语法</b></a>
+<ul>
+<li><a href="#sec-1-2-2-1-1">list</a></li>
+</ul>
+</li>
 <li><a href="#sec-1-2-2-2"><b>光标:</b></a></li>
 <li><a href="#sec-1-2-2-3"><b>文本编辑：</b></a></li>
 <li><a href="#sec-1-2-2-4"><b>字符串操作：</b></a></li>
@@ -439,7 +438,7 @@ d.\_&#x2026;\_: <span class="underline">下划线</span> <br/>
 <p>
 通过Babel,你可以直接在org-mode中运行各种编程语言的代码,每一个代码片段都组织为一个block,
 可以向这个代码片段传递参数,同时每一个代码片段都可以产生输出,而这个输出又可以作为输入传递
-给另一个代码片段,关于Babel的详细介绍可以看这篇官方的<a href="http://orgmode.org/worg/org-contrib/babel/intro.html">Instruction</a> 与这篇<a href="doc/babel.pdf">pdf</a> ,特别是后者,
+给另一个代码片段,关于Babel的详细介绍可以看这篇官方的<a href="http://orgmode.org/worg/org-contrib/babel/intro.html">Instruction</a> 与这篇<a href="static/doc/babel.pdf">pdf</a> ,特别是后者,
 建议认真看看,只有26页,Babel的基本结构分为数据块和代码块
 数据块:
 </p>
@@ -513,7 +512,7 @@ echo $PWD
 <h5 id="sec-1-1-6-3">dot</h5>
 <div class="outline-text-5" id="text-1-1-6-3">
 <p>
-dot语言可以用来画流程图，和Babel结合起来非常方便，这是一份dot语言的<a href="doc/dotguide.pdf">guide</a>
+dot语言可以用来画流程图，和Babel结合起来非常方便，这是一份dot语言的<a href="static/doc/dotguide.pdf">guide</a>
 </p>
 </div>
 </div>
@@ -713,8 +712,47 @@ C-x C-t: 光标所在行与上一行交换 <br/>
 </div>
 
 <div id="outline-container-sec-1-1-12" class="outline-4">
-<h4 id="sec-1-1-12">emacs的奇淫技巧</h4>
+<h4 id="sec-1-1-12">emacs导出pdf的中文支持</h4>
 <div class="outline-text-4" id="text-1-1-12">
+<p>
+org-mode默认的导出系统对中文支持不好,我参考这篇<a href="http://yzprofile.me/2013/01/14/emacs-org-mode-xelatex.html">文章</a>, 将导出中文pdf的方法总结如下:
+</p>
+<ol class="org-ol">
+<li>安装textlive,如果是ubuntu,运行以下命令:
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo apt-get install texlive texlive-xetex textlive-latex-extra
+</pre>
+</div>
+<p>
+textlive-latex-extra一定要装,不装会有File `wrapfig.sty' not found.的错误
+</p>
+</li>
+<li>在emacs配置文件中添加
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #AEAEAE; font-style: italic;">;; </span><span style="color: #AEAEAE; font-style: italic;">org-mode &lt; 8.0</span>
+(setq org-latex-to-pdf-process '(<span style="color: #61CE3C;">"xelatex -interaction nonstopmode %f"</span>
+                                 <span style="color: #61CE3C;">"xelatex -interaction nonstopmode %f"</span>))
+<span style="color: #AEAEAE; font-style: italic;">;;  </span><span style="color: #AEAEAE; font-style: italic;">org-mode 8.0</span>
+(setq org-latex-pdf-process '(<span style="color: #61CE3C;">"xelatex -interaction nonstopmode %f"</span>
+                              <span style="color: #61CE3C;">"xelatex -interaction nonstopmode %f"</span>))
+</pre>
+</div>
+</li>
+<li>在org文档的开头部分添加:
+<pre class="example">
+#+LATEX_HEADER: \usepackage{xeCJK}
+#+LATEX_HEADER: \setCJKmainfont{SimSun}
+</pre>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-13" class="outline-4">
+<h4 id="sec-1-1-13">emacs的奇淫技巧</h4>
+<div class="outline-text-4" id="text-1-1-13">
 <p class="verse">
 M-x flush-lines RET ^$ RET :删除所有的空行（正则匹配） <br/>
 绑定快捷键时用C-h k查询得到的内容可以直接放在kbd后 <br/>
@@ -801,6 +839,25 @@ setcdr: change the cdr-element of the list
 <div class="outline-text-4" id="text-1-2-2">
 </div><div id="outline-container-sec-1-2-2-1" class="outline-5">
 <h5 id="sec-1-2-2-1"><b>lisp的基本语法</b></h5>
+<div class="outline-text-5" id="text-1-2-2-1">
+</div><div id="outline-container-sec-1-2-2-1-1" class="outline-6">
+<h6 id="sec-1-2-2-1-1">list</h6>
+<div class="outline-text-6" id="text-1-2-2-1-1">
+<ul class="org-ul">
+<li>property list
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span class="linenr">1: </span>(setq alist '(<span style="color: #94bff3;">:publish-dir</span> <span style="color: #61CE3C;">"~/Documents"</span> <span style="color: #94bff3;">:base-dir</span> <span style="color: #61CE3C;">"~/Documents/note"</span>))
+<span class="linenr">2: </span>(plist-get alist <span style="color: #94bff3;">:base-dir</span>)
+</pre>
+</div>
+</li>
+
+<li>assoc list
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div id="outline-container-sec-1-2-2-2" class="outline-5">
 <h5 id="sec-1-2-2-2"><b>光标:</b></h5>
@@ -908,7 +965,7 @@ setcdr: change the cdr-element of the list
 <div class="outline-text-5" id="text-1-2-2-7">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #FBDE2D;">save-excursion</span>)   <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">&#20445;&#23384;&#24182;&#24674;&#22797;&#24403;&#21069;point</span>
+<pre class="src src-emacs-lisp">(<span style="color: #FBDE2D;">save-excursion</span>)   <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">&#20445;&#23384;&#24182;&#24674;&#22797;&#24403;&#21069;point</span>
 (interactive)      <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">function is a command</span>
 (thing-at-point THING) <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">THING can be 'word' 'line' 'sentence' 'list'</span>
                        <span style="color: #AEAEAE; font-style: italic;">;; </span><span style="color: #AEAEAE; font-style: italic;">and so on</span>
@@ -916,6 +973,8 @@ setcdr: change the cdr-element of the list
 (thing-at-point 'sexp)
 (current-time-string) <span style="color: #AEAEAE; font-style: italic;">;;</span><span style="color: #AEAEAE; font-style: italic;">&#36820;&#22238;&#24403;&#21069;&#26102;&#38388;&#23383;&#31526;&#20018;</span>
 (format-time-string <span style="color: #61CE3C;">"%1.%M %p"</span> (current-time))
+(symbol-name 'sym)                      <span style="color: #AEAEAE; font-style: italic;">;</span><span style="color: #AEAEAE; font-style: italic;">conmvert symbol to string</span>
+(intern <span style="color: #61CE3C;">"sym"</span>)                          <span style="color: #AEAEAE; font-style: italic;">;</span><span style="color: #AEAEAE; font-style: italic;">convert string to symbol</span>
 </pre>
 </div>
 </div>
@@ -934,8 +993,7 @@ last-command
 </div>
 </div>
 </div>
-<div id="postamble" class="status">
-<div id="disqus_thread"></div>
+  <div id="disqus_thread"></div>
     <script type="text/javascript">
         var url = window.location.pathname;
         var disqus_identifier = url.substring(url.lastIndexOf('/')+1);
@@ -950,8 +1008,16 @@ last-command
         })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    <p class="author">Author: Yu Yang (<a href="mailto:yy2012cn@gmail.com">yy2012cn@gmail.com</a>)</p><p>Last Updated  . Created by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.0.3) </p>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- begin footer -->
+<div id="footer">
+  <hr />
+  <ul class="links">
+    <li>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</li>
+    <li><a href="/sitemap.tt">Sitemap</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    <li><a href="/about.html">About Me</a></li>
+    <li><a href="#branding">Back to Top</a></li>
+  </ul>
 </div>
-</body>
+<!-- end footer --></body>
 </html>

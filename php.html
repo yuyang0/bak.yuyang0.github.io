@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>PHP笔记</title>
-<!-- 2013-06-16 Sun 19:23 -->
+<!-- 2013-07-05 Fri 22:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="generator" content="Org-mode"/>
 <meta name="author" content="Yu Yang"/>
@@ -85,7 +85,7 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="css/main.css"/>
+<link rel="stylesheet" type="text/css" href="/static/css/main.css"/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -133,20 +133,14 @@ for the JavaScript code in this tag.
 /*]]>*///-->
 </script>
 </head>
-<body>
-<div id="org-div-home-and-up">
- <a accesskey="h" href="sitemap.html"> UP </a>
- |
- <a accesskey="H" href="index.html"> HOME </a>
-</div><div id="preamble" class="status">
-<div id="branding">
-      <div class="col-width">
-              <div id="logo">
-        <h1 id="site-title"><a href="/" title="Yu Yang's blog" rel="home">
+<body><div id="branding">
+  <div class="col-width">
+    <div id="logo">
+      <h1 id="site-title"><a href="/" title="Yu Yang's blog" rel="home">
                 Yu Yang's blog                </a>
-                </h1>
-                          <h2 id="site-description">Hope is a good thing, maybe the best of things.......</h2>
-                      </div>
+      </h1>
+      <h2 id="site-description">Hope is a good thing, maybe the best of things.......</h2>
+    </div>
 
     <div id="navigation">
       <div class="menu">
@@ -159,9 +153,9 @@ for the JavaScript code in this tag.
       </div>
 
     <div id="searchwrapper">
-      <form action="">
+      <form action="/search.html">
         <input type="text" class="searchbox" name="wd" value="Search..." onblur="if(this.value==''){this.value='Search...';}" onfocus="if(this.value=='Search...'){this.value='';}"/>
-        <input class="search-submit" type="image" src="/img/google.ico" alt="Search" title="Google 自定义搜索" style="width:16px;height:16px" />
+        <input type="image" src="/static/img/google.ico" class="searchbox_submit" value="" />
       </form>
     </div>
 
@@ -170,7 +164,6 @@ for the JavaScript code in this tag.
     </div>
 
   </div>
-</div>
 <div id="content">
 <h1 class="title">PHP笔记</h1>
 <div id="table-of-contents">
@@ -915,8 +908,7 @@ create  table  表名 <br/>
 </div>
 </div>
 </div>
-<div id="postamble" class="status">
-<div id="disqus_thread"></div>
+  <div id="disqus_thread"></div>
     <script type="text/javascript">
         var url = window.location.pathname;
         var disqus_identifier = url.substring(url.lastIndexOf('/')+1);
@@ -931,8 +923,16 @@ create  table  表名 <br/>
         })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    <p class="author">Author: Yu Yang (<a href="mailto:yy2012cn@gmail.com">yy2012cn@gmail.com</a>)</p><p>Last Updated  . Created by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.0.3) </p>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- begin footer -->
+<div id="footer">
+  <hr />
+  <ul class="links">
+    <li>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</li>
+    <li><a href="/sitemap.tt">Sitemap</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    <li><a href="/about.html">About Me</a></li>
+    <li><a href="#branding">Back to Top</a></li>
+  </ul>
 </div>
-</body>
+<!-- end footer --></body>
 </html>

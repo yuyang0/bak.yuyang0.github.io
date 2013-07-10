@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>使用org-mode与dropbox搭建静态博客</title>
-<!-- 2013-06-16 Sun 21:57 -->
+<!-- 2013-07-05 Fri 22:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="generator" content="Org-mode"/>
 <meta name="author" content="Yu Yang"/>
@@ -85,7 +85,7 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="css/main.css"/>
+<link rel="stylesheet" type="text/css" href="/static/css/main.css"/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -133,20 +133,14 @@ for the JavaScript code in this tag.
 /*]]>*///-->
 </script>
 </head>
-<body>
-<div id="org-div-home-and-up">
- <a accesskey="h" href="sitemap.html"> UP </a>
- |
- <a accesskey="H" href="index.html"> HOME </a>
-</div><div id="preamble" class="status">
-<div id="branding">
-      <div class="col-width">
-              <div id="logo">
-        <h1 id="site-title"><a href="/" title="Yu Yang's blog" rel="home">
+<body><div id="branding">
+  <div class="col-width">
+    <div id="logo">
+      <h1 id="site-title"><a href="/" title="Yu Yang's blog" rel="home">
                 Yu Yang's blog                </a>
-                </h1>
-                          <h2 id="site-description">Hope is a good thing, maybe the best of things.......</h2>
-                      </div>
+      </h1>
+      <h2 id="site-description">Hope is a good thing, maybe the best of things.......</h2>
+    </div>
 
     <div id="navigation">
       <div class="menu">
@@ -159,9 +153,9 @@ for the JavaScript code in this tag.
       </div>
 
     <div id="searchwrapper">
-      <form action="">
+      <form action="/search.html">
         <input type="text" class="searchbox" name="wd" value="Search..." onblur="if(this.value==''){this.value='Search...';}" onfocus="if(this.value=='Search...'){this.value='';}"/>
-        <input class="search-submit" type="image" src="/img/google.ico" alt="Search" title="Google 自定义搜索" style="width:16px;height:16px" />
+        <input type="image" src="/static/img/google.ico" class="searchbox_submit" value="" />
       </form>
     </div>
 
@@ -170,7 +164,6 @@ for the JavaScript code in this tag.
     </div>
 
   </div>
-</div>
 <div id="content">
 <h1 class="title">使用org-mode与dropbox搭建静态博客</h1>
 <div id="table-of-contents">
@@ -228,7 +221,7 @@ dropbox搭建静态博客就是利用的pancake.io这个第三方应用.
 </li>
 </ol>
 <p>
-打个广告,点这个链接<a href="http://db.tt/PtdhKnAr">http://db.tt/PtdhKnAr</a> 注册后,你与我都可以获得500MB的空间奖励,双赢,何乐而不为呢,:)
+打个广告,点这个链接<a href="http://db.tt/PtdhKnAr">http://db.tt/PtdhKnAr</a> 注册dropbox后,你与我都可以获得500MB的空间奖励,双赢,何乐而不为呢,:)
 </p>
 </div>
 </div>
@@ -247,71 +240,44 @@ dropbox搭建静态博客就是利用的pancake.io这个第三方应用.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp"><span class="linenr"> 1: </span>   (<span style="color: #FBDE2D;">require</span> '<span style="color: #D8FA3C;">org-publish</span>)
-<span class="linenr"> 2: </span>   (setq org-publish-project-alist
-<span class="linenr"> 3: </span>         '(
-<span class="linenr"> 4: </span>           (<span style="color: #61CE3C;">"blog-notes"</span>
-<span class="linenr"> 5: </span>            <span style="color: #94bff3;">:base-directory</span> <span style="color: #61CE3C;">"~/Documents/note/"</span>
-<span class="linenr"> 6: </span>            <span style="color: #94bff3;">:base-extension</span> <span style="color: #61CE3C;">"org"</span>
-<span class="linenr"> 7: </span>            <span style="color: #94bff3;">:publishing-directory</span> <span style="color: #61CE3C;">"~/Documents/blog/"</span>
-<span class="linenr"> 8: </span>            <span style="color: #94bff3;">:recursive</span> t
-<span class="linenr"> 9: </span>   <span style="color: #AEAEAE; font-style: italic;">;;         </span><span style="color: #AEAEAE; font-style: italic;">:publishing-function org-publish-org-to-html ;;org 7.X</span>
-<span class="linenr">10: </span>            <span style="color: #94bff3;">:publishing-function</span> org-html-publish-to-html
-<span class="linenr">11: </span>   <span style="color: #AEAEAE; font-style: italic;">;;         </span><span style="color: #AEAEAE; font-style: italic;">:link-home "index.html"</span>
-<span class="linenr">12: </span>   <span style="color: #AEAEAE; font-style: italic;">;;         </span><span style="color: #AEAEAE; font-style: italic;">:link-up "sitemap.html"</span>
-<span class="linenr">13: </span>            <span style="color: #94bff3;">:html-link-home</span> <span style="color: #61CE3C;">"index.html"</span>
-<span class="linenr">14: </span>            <span style="color: #94bff3;">:html-link-up</span> <span style="color: #61CE3C;">"sitemap.html"</span>
-<span class="linenr">15: </span>            <span style="color: #94bff3;">:headline-levels</span> 5
-<span class="linenr">16: </span>            <span style="color: #94bff3;">:section-numbers</span> nil
-<span class="linenr">17: </span>            <span style="color: #94bff3;">:auto-preamble</span> t
-<span class="linenr">18: </span>            <span style="color: #94bff3;">:auto-sitemap</span> t                <span style="color: #AEAEAE; font-style: italic;">; </span><span style="color: #AEAEAE; font-style: italic;">Generate sitemap.org automagically...</span>
-<span class="linenr">19: </span>            <span style="color: #94bff3;">:sitemap-filename</span> <span style="color: #61CE3C;">"sitemap.org"</span>  <span style="color: #AEAEAE; font-style: italic;">; </span><span style="color: #AEAEAE; font-style: italic;">... call it sitemap.org (it's the default)...</span>
-<span class="linenr">20: </span>            <span style="color: #94bff3;">:sitemap-title</span> <span style="color: #61CE3C;">"Sitemap"</span>         <span style="color: #AEAEAE; font-style: italic;">; </span><span style="color: #AEAEAE; font-style: italic;">... with title 'Sitemap'.</span>
-<span class="linenr">21: </span>            <span style="color: #94bff3;">:author</span> <span style="color: #61CE3C;">"your name"</span>
-<span class="linenr">22: </span>            <span style="color: #94bff3;">:email</span> <span style="color: #61CE3C;">"your email"</span>
-<span class="linenr">23: </span>   <span style="color: #AEAEAE; font-style: italic;">;;         </span><span style="color: #AEAEAE; font-style: italic;">:style    "&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\"/&gt;"</span>
-<span class="linenr">24: </span>            <span style="color: #94bff3;">:html-head</span>  <span style="color: #61CE3C;">"&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\"/&gt;"</span>
-<span class="linenr">25: </span>            <span style="color: #94bff3;">:html-preamble</span> <span style="color: #61CE3C;">"&lt;div id=\"branding\"&gt;</span>
-<span class="linenr">26: </span><span style="color: #61CE3C;">      &lt;div class=\"col-width\"&gt;</span>
-<span class="linenr">27: </span><span style="color: #61CE3C;">              &lt;div id=\"logo\"&gt;</span>
-<span class="linenr">28: </span><span style="color: #61CE3C;">        &lt;h1 id=\"site-title\"&gt;&lt;a href=\"/\" title=\"Yu Yang's blog\" rel=\"home\"&gt;</span>
-<span class="linenr">29: </span><span style="color: #61CE3C;">                Yu Yang's blog                &lt;/a&gt;</span>
-<span class="linenr">30: </span><span style="color: #61CE3C;">             &lt;/h1&gt;</span>
-<span class="linenr">31: </span><span style="color: #61CE3C;">               &lt;h2 id=\"site-description\"&gt;Hope is a good thing, maybe the best of things.......&lt;/h2&gt;</span>
-<span class="linenr">32: </span><span style="color: #61CE3C;">                      &lt;/div&gt;</span>
-<span class="linenr">33: </span><span style="color: #61CE3C;">  &lt;div id=\"navigation\"&gt;</span>
-<span class="linenr">34: </span><span style="color: #61CE3C;">      &lt;div class=\"menu\"&gt;</span>
-<span class="linenr">35: </span><span style="color: #61CE3C;">      &lt;ul&gt;</span>
-<span class="linenr">36: </span><span style="color: #61CE3C;">      &lt;li class=\"current_page_item\"&gt;&lt;a href=\"/\" title=\"&#39318;&#39029;\"&gt;&#39318;&#39029;&lt;/a&gt;&lt;/li&gt;</span>
-<span class="linenr">37: </span><span style="color: #61CE3C;">      &lt;li class=\"page_item page-item-2\"&gt;&lt;a href=\"/guestbook.html\"&gt;&#30041;&#35328;&#26495;&lt;/a&gt;&lt;/li&gt;</span>
-<span class="linenr">38: </span><span style="color: #61CE3C;">      &lt;li class=\"page_item page-item-2\"&gt;&lt;a href=\"/about.html\"&gt;&#20851;&#20110;&lt;/a&gt;&lt;/li&gt;</span>
-<span class="linenr">39: </span><span style="color: #61CE3C;">      &lt;li class=\"page_item page-item-93\"&gt;&lt;a href=\"/atom.xml\"&gt;RSS&lt;/a&gt;&lt;/li&gt;</span>
-<span class="linenr">40: </span><span style="color: #61CE3C;">      &lt;/ul&gt;</span>
-<span class="linenr">41: </span><span style="color: #61CE3C;">      &lt;/div&gt;</span>
-<span class="linenr">42: </span><span style="color: #61CE3C;">  &lt;div id=\"searchwrapper\"&gt;</span>
-<span class="linenr">43: </span><span style="color: #61CE3C;"> &lt;form action=\"\"&gt;</span>
-<span class="linenr">44: </span><span style="color: #61CE3C;">   &lt;input type=\"text\" class=\"searchbox\" name=\"wd\" value=\"Search...\" onblur=\"if(this.value=='')</span>
-<span class="linenr">45: </span><span style="color: #61CE3C;">         {this.value='Search...';}\" onfocus=\"if(this.value=='Search...'){this.value='';}\"/&gt;</span>
-<span class="linenr">46: </span><span style="color: #61CE3C;">   &lt;input class=\"search-submit\" type=\"image\" src=\"/img/google.ico\" alt=\"Search\"</span>
-<span class="linenr">47: </span><span style="color: #61CE3C;">       title=\"Google &#33258;&#23450;&#20041;&#25628;&#32034;\" style=\"width:16px;height:16px\" /&gt;</span>
-<span class="linenr">48: </span><span style="color: #61CE3C;">      &lt;/form&gt;</span>
-<span class="linenr">49: </span><span style="color: #61CE3C;">    &lt;/div&gt;</span>
-<span class="linenr">50: </span><span style="color: #61CE3C;">  &lt;/div&gt;&lt;!-- #access --&gt;</span>
-<span class="linenr">51: </span><span style="color: #61CE3C;">  &lt;/div&gt;</span>
-<span class="linenr">52: </span><span style="color: #61CE3C;">&lt;/div&gt;"</span>
-<span class="linenr">53: </span>            <span style="color: #94bff3;">:html-postamble</span> <span style="color: #61CE3C;">" &#35780;&#35770;&#31995;&#32479;&#20195;&#30721;(disqus,&#22810;&#35828;&#31561;&#31561;)</span>
-<span class="linenr">54: </span><span style="color: #61CE3C;">       &lt;p class=\"author\"&gt;Author: %a (%e)&lt;/p&gt;&lt;p&gt;Last Updated %d . Created by %c &lt;/p&gt;"</span>
-<span class="linenr">55: </span>            )
-<span class="linenr">56: </span>           (<span style="color: #61CE3C;">"blog-static"</span>
-<span class="linenr">57: </span>            <span style="color: #94bff3;">:base-directory</span> <span style="color: #61CE3C;">"~/Documents/note/"</span>
-<span class="linenr">58: </span>            <span style="color: #94bff3;">:base-extension</span> <span style="color: #61CE3C;">"css</span><span style="color: #E9C062; font-weight: bold;">\\</span><span style="color: #ff0000; font-weight: bold;">|</span><span style="color: #61CE3C;">js</span><span style="color: #E9C062; font-weight: bold;">\\</span><span style="color: #ff0000; font-weight: bold;">|</span><span style="color: #61CE3C;">pdf</span><span style="color: #E9C062; font-weight: bold;">\\</span><span style="color: #ff0000; font-weight: bold;">|</span><span style="color: #61CE3C;">png</span><span style="color: #E9C062; font-weight: bold;">\\</span><span style="color: #ff0000; font-weight: bold;">|</span><span style="color: #61CE3C;">jpg</span><span style="color: #E9C062; font-weight: bold;">\\</span><span style="color: #ff0000; font-weight: bold;">|</span><span style="color: #61CE3C;">gif</span><span style="color: #E9C062; font-weight: bold;">\\</span><span style="color: #ff0000; font-weight: bold;">|</span><span style="color: #61CE3C;">mp3</span><span style="color: #E9C062; font-weight: bold;">\\</span><span style="color: #ff0000; font-weight: bold;">|</span><span style="color: #61CE3C;">ogg</span><span style="color: #E9C062; font-weight: bold;">\\</span><span style="color: #ff0000; font-weight: bold;">|</span><span style="color: #61CE3C;">swf"</span>
-<span class="linenr">59: </span>            <span style="color: #94bff3;">:publishing-directory</span> <span style="color: #61CE3C;">"~/Documents/blog/"</span>
-<span class="linenr">60: </span>            <span style="color: #94bff3;">:recursive</span> t
-<span class="linenr">61: </span>            <span style="color: #94bff3;">:publishing-function</span> org-publish-attachment
-<span class="linenr">62: </span>            )
-<span class="linenr">63: </span>           (<span style="color: #61CE3C;">"blog"</span> <span style="color: #94bff3;">:components</span> (<span style="color: #61CE3C;">"blog-notes"</span> <span style="color: #61CE3C;">"blog-static"</span>))
-<span class="linenr">64: </span>           <span style="color: #AEAEAE; font-style: italic;">;;</span>
-<span class="linenr">65: </span>           ))
+<pre class="src src-lisp"><span class="linenr"> 1: </span>(<span style="color: #FBDE2D;">require</span> '<span style="color: #D8FA3C;">org-publish</span>)
+<span class="linenr"> 2: </span>(setq org-publish-project-alist
+<span class="linenr"> 3: </span>      '(
+<span class="linenr"> 4: </span>        (<span style="color: #61CE3C;">"blog-notes"</span>
+<span class="linenr"> 5: </span>         <span style="color: #94bff3;">:base-directory</span> <span style="color: #61CE3C;">"~/Documents/note/"</span>
+<span class="linenr"> 6: </span>         <span style="color: #94bff3;">:base-extension</span> <span style="color: #61CE3C;">"org"</span>
+<span class="linenr"> 7: </span>         <span style="color: #94bff3;">:publishing-directory</span> <span style="color: #61CE3C;">"~/Documents/blog/"</span>
+<span class="linenr"> 8: </span>         <span style="color: #94bff3;">:recursive</span> t
+<span class="linenr"> 9: </span><span style="color: #AEAEAE; font-style: italic;">;;         </span><span style="color: #AEAEAE; font-style: italic;">:publishing-function org-publish-org-to-html ;;org 7.X</span>
+<span class="linenr">10: </span>         <span style="color: #94bff3;">:publishing-function</span> org-html-publish-to-html
+<span class="linenr">11: </span><span style="color: #AEAEAE; font-style: italic;">;;         </span><span style="color: #AEAEAE; font-style: italic;">:link-home "index.html"</span>
+<span class="linenr">12: </span><span style="color: #AEAEAE; font-style: italic;">;;         </span><span style="color: #AEAEAE; font-style: italic;">:link-up "sitemap.html"</span>
+<span class="linenr">13: </span>         <span style="color: #94bff3;">:html-link-home</span> <span style="color: #61CE3C;">"index.html"</span>
+<span class="linenr">14: </span>         <span style="color: #94bff3;">:html-link-up</span> <span style="color: #61CE3C;">"sitemap.html"</span>
+<span class="linenr">15: </span>         <span style="color: #94bff3;">:headline-levels</span> 5
+<span class="linenr">16: </span>         <span style="color: #94bff3;">:section-numbers</span> nil
+<span class="linenr">17: </span>         <span style="color: #94bff3;">:auto-preamble</span> t
+<span class="linenr">18: </span>         <span style="color: #94bff3;">:auto-sitemap</span> t                <span style="color: #AEAEAE; font-style: italic;">; </span><span style="color: #AEAEAE; font-style: italic;">Generate sitemap.org automagically...</span>
+<span class="linenr">19: </span>         <span style="color: #94bff3;">:sitemap-filename</span> <span style="color: #61CE3C;">"sitemap.org"</span>  <span style="color: #AEAEAE; font-style: italic;">; </span><span style="color: #AEAEAE; font-style: italic;">... call it sitemap.org (it's the default)...</span>
+<span class="linenr">20: </span>         <span style="color: #94bff3;">:sitemap-title</span> <span style="color: #61CE3C;">"Sitemap"</span>         <span style="color: #AEAEAE; font-style: italic;">; </span><span style="color: #AEAEAE; font-style: italic;">... with title 'Sitemap'.</span>
+<span class="linenr">21: </span>         <span style="color: #94bff3;">:author</span> <span style="color: #61CE3C;">"your name"</span>
+<span class="linenr">22: </span>         <span style="color: #94bff3;">:email</span> <span style="color: #61CE3C;">"your email"</span>
+<span class="linenr">23: </span><span style="color: #AEAEAE; font-style: italic;">;;         </span><span style="color: #AEAEAE; font-style: italic;">:style    "&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\"/&gt;"</span>
+<span class="linenr">24: </span>         <span style="color: #94bff3;">:html-head</span>  <span style="color: #61CE3C;">"&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\"/&gt;"</span>
+<span class="linenr">25: </span>         <span style="color: #94bff3;">:html-preamble</span> <span style="color: #61CE3C;">"&#21487;&#20197;&#28155;&#21152;&#21338;&#23458;&#30340;&#22836;&#37096;"</span>
+<span class="linenr">26: </span>         <span style="color: #94bff3;">:html-postamble</span> <span style="color: #61CE3C;">" &#35780;&#35770;&#31995;&#32479;&#20195;&#30721;(disqus,&#22810;&#35828;&#31561;&#31561;)</span>
+<span class="linenr">27: </span><span style="color: #61CE3C;">    &lt;p class=\"author\"&gt;Author: %a (%e)&lt;/p&gt;&lt;p&gt;Last Updated %d . Created by %c &lt;/p&gt;"</span>
+<span class="linenr">28: </span>         )
+<span class="linenr">29: </span>        (<span style="color: #61CE3C;">"blog-static"</span>
+<span class="linenr">30: </span>         <span style="color: #94bff3;">:base-directory</span> <span style="color: #61CE3C;">"~/Documents/note/"</span>
+<span class="linenr">31: </span>         <span style="color: #94bff3;">:base-extension</span> <span style="color: #61CE3C;">"css</span><span style="color: #E9C062; font-weight: bold;">\\</span><span style="color: #ff0000; font-weight: bold;">|</span><span style="color: #61CE3C;">js</span><span style="color: #E9C062; font-weight: bold;">\\</span><span style="color: #ff0000; font-weight: bold;">|</span><span style="color: #61CE3C;">pdf</span><span style="color: #E9C062; font-weight: bold;">\\</span><span style="color: #ff0000; font-weight: bold;">|</span><span style="color: #61CE3C;">png</span><span style="color: #E9C062; font-weight: bold;">\\</span><span style="color: #ff0000; font-weight: bold;">|</span><span style="color: #61CE3C;">jpg</span><span style="color: #E9C062; font-weight: bold;">\\</span><span style="color: #ff0000; font-weight: bold;">|</span><span style="color: #61CE3C;">gif</span><span style="color: #E9C062; font-weight: bold;">\\</span><span style="color: #ff0000; font-weight: bold;">|</span><span style="color: #61CE3C;">mp3</span><span style="color: #E9C062; font-weight: bold;">\\</span><span style="color: #ff0000; font-weight: bold;">|</span><span style="color: #61CE3C;">ogg</span><span style="color: #E9C062; font-weight: bold;">\\</span><span style="color: #ff0000; font-weight: bold;">|</span><span style="color: #61CE3C;">swf"</span>
+<span class="linenr">32: </span>         <span style="color: #94bff3;">:publishing-directory</span> <span style="color: #61CE3C;">"~/Documents/blog/"</span>
+<span class="linenr">33: </span>         <span style="color: #94bff3;">:recursive</span> t
+<span class="linenr">34: </span>         <span style="color: #94bff3;">:publishing-function</span> org-publish-attachment
+<span class="linenr">35: </span>         )
+<span class="linenr">36: </span>        (<span style="color: #61CE3C;">"blog"</span> <span style="color: #94bff3;">:components</span> (<span style="color: #61CE3C;">"blog-notes"</span> <span style="color: #61CE3C;">"blog-static"</span>))
+<span class="linenr">37: </span>        <span style="color: #AEAEAE; font-style: italic;">;;</span>
+<span class="linenr">38: </span>        ))
 </pre>
 </div>
 <p>
@@ -322,7 +288,8 @@ dropbox搭建静态博客就是利用的pancake.io这个第三方应用.
 </li>
 <li>publishing-directory: 导出的html存放的目录
 </li>
-<li>html-preamble: 内容会添加到导出html的content的开头,我在preamble添加了博客的导航以及标题
+<li>html-preamble: 内容会添加到导出html的content的开头,我在preamble添加了博客的导航以及标题,如果你想简单点
+那么这里可以去掉
 </li>
 <li>html-postamble: 内容会添加到导出html的content的开头与结尾, 我在在postamble添加了disqus的评论代码
 </li>
@@ -331,28 +298,36 @@ dropbox搭建静态博客就是利用的pancake.io这个第三方应用.
 </ul>
 <p>
 需要注意,上面的配置是org版本是8.0,如果你用7.X版本,那么就是使用对应的注释代码,如将第十行的
-org-html-publish-to-html换成org-publish-org-to-html, html-preamble与html-postamble的.最后还需要一个
-css,这是我的<a href="css/main.css">css</a> ,这个css还有点问题,目前还在完善中.通过以上设置后,你在emacs中按M-x org-publish-project 然后输入blog就可以将base-directory
-中的org文件导出到publishing-directory,静态文件也会相应的导出,这是我publishing-diretory的目录结构
+org-html-publish-to-html换成org-publish-org-to-html.最后还需要一个css,这是我的<a href="static/css/main.css">css</a> ,这个css还有点问题,
+目前还在完善中.通过以上设置后,你在emacs中按M-x org-publish-project 然后输入blog就可以将base-directory
+中的org文件导出到publishing-directory,静态文件也会相应的导出,这是我publishing-diretory的目录结构:
 </p>
 
 
 <div class="figure">
-<p><img src="img/publish-dir-tree.png"  alt="publish-dir-tree.png"/></p>
+<p><img src="static/img/publish-dir-tree.png"  alt="publish-dir-tree.png"/></p>
 </div>
 
 <p>
 到这一步本地的配置基本就完成了,接着要用到pancake.io,先去
 <a href="http://pancake.io/">官网</a> 直接用dropbox账号登陆,它会请求dropbox的权限,同意后就会在dropbox的Apps目录创建一个Pancake.io的目录,然后
 将你刚刚导出的那些html文件(包括静态文件)都扔到Pancake.io目录中(我建议直接将publishing-directory设为your-dir/Dropbox/Apps/Pancake.io ),
-这样一个静态博客就大功告成了,以后你只要在你的base-directory编辑,增加org文档,然后调用org-publish-project,那么博客就会自动更新,当然也建议
-更新index.org,就这么简单&#x2026;
+如果你添加了博客的标题与导航,那么你可能还需要在publishing-directory中创建about.html, guestbook.html,search.html,
+如何创建可以参见本博客的代码自行修改,注意本博客的搜索使用的是google的自定义搜索,所以你需要自己去创建并获得Id,替换
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript"><span style="color: #FBDE2D;">var</span> <span style="color: #FF6400;">customSearchControl</span> = <span style="color: #FBDE2D;">new</span> <span style="color: #8DA6CE;">google.search.CustomSearchControl</span>(<span style="color: #61CE3C;">'005863396545237100197:nhuiw5cz1q4'</span>);
+</pre>
+</div>
+<p>
+中的ID.这样一个静态博客就大功告成了,以后你只要在你的base-directory编辑,增加org文档,然后调用org-publish-project,
+那么博客就会自动更新,当然也建议更新index.org,就这么简单&#x2026;
 </p>
 </div>
 </div>
 </div>
-<div id="postamble" class="status">
-<div id="disqus_thread"></div>
+  <div id="disqus_thread"></div>
     <script type="text/javascript">
         var url = window.location.pathname;
         var disqus_identifier = url.substring(url.lastIndexOf('/')+1);
@@ -367,8 +342,16 @@ css,这是我的<a href="css/main.css">css</a> ,这个css还有点问题,目前�
         })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    <p class="author">Author: Yu Yang (<a href="mailto:yy2012cn@gmail.com">yy2012cn@gmail.com</a>)</p><p>Last Updated 2013-06-15 . Created by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.0.3) </p>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- begin footer -->
+<div id="footer">
+  <hr />
+  <ul class="links">
+    <li>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</li>
+    <li><a href="/sitemap.tt">Sitemap</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    <li><a href="/about.html">About Me</a></li>
+    <li><a href="#branding">Back to Top</a></li>
+  </ul>
 </div>
-</body>
+<!-- end footer --></body>
 </html>
