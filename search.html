@@ -166,7 +166,17 @@ Flower.formdata = {
 <script type="text/javascript">
   google.load('search', '1', {language : 'zh-CN', style : google.loader.themes.SHINY});
 google.setOnLoadCallback(function() {
-  var customSearchControl = new google.search.CustomSearchControl('005863396545237100197:nhuiw5cz1q4');
+
+  var page_host = window.location.host;
+  var custome_search_key = '';
+  if (page_host == 'yuyang.pancakeapps.com') 
+  {
+  	custome_search_key = '005863396545237100197:nhuiw5cz1q4';
+  } 
+  else{
+  	custome_search_key = '005863396545237100197:ltk794b_vzi';
+  };
+  var customSearchControl = new google.search.CustomSearchControl(custome_search_key);
   customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
   var options = new google.search.DrawOptions();
   options.setAutoComplete(true);
