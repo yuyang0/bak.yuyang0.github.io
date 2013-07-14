@@ -1,7 +1,6 @@
 *.org
 *.bak
 *.bakk
-*.pdf
 /example.txt
 /getting-started.txt
 /.dropbox
