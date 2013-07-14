@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>css笔记</title>
-<!-- 2013-07-05 Fri 22:33 -->
+<!-- 2013-07-13 Sat 22:59 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="generator" content="Org-mode"/>
 <meta name="author" content="Yu Yang"/>
@@ -134,37 +134,27 @@ for the JavaScript code in this tag.
 /*]]>*///-->
 </script>
 </head>
-<body><div id="branding">
-  <div class="col-width">
-    <div id="logo">
-      <h1 id="site-title"><a href="/" title="Yu Yang's blog" rel="home">
-                Yu Yang's blog                </a>
-      </h1>
-      <h2 id="site-description">Hope is a good thing, maybe the best of things.......</h2>
-    </div>
-
-    <div id="navigation">
-      <div class="menu">
-      <ul>
-      <li class="current_page_item"><a href="/" title="首页">首页</a></li>
-      <li class="page_item page-item-2"><a href="/guestbook.html">留言板</a></li>
-      <li class="page_item page-item-2"><a href="/about.html">关于</a></li>
-      <li class="page_item page-item-93"><a href="/atom.xml">RSS</a></li>
-      </ul>
-      </div>
-
-    <div id="searchwrapper">
+<body><div id="header">
+<div id="header-top">
+  <div id="blog-title">Yu Yang's Writing Time</div>
+  <div id="blog-sub-title">something about my thinking, doing and reading notes...</div>
+</div>
+<div id="nav">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/guestbook.html">留言板</a></li>
+    <li><a href="/about.html">About Me</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    <li>
       <form action="/search.html">
         <input type="text" class="searchbox" name="wd" value="Search..." onblur="if(this.value==''){this.value='Search...';}" onfocus="if(this.value=='Search...'){this.value='';}"/>
         <input type="image" src="/static/img/google.ico" class="searchbox_submit" value="" />
       </form>
-    </div>
-
-    </div><!-- #access -->
-
-    </div>
-
+    </li>
+  </ul>
   </div>
+</div>
+
 <div id="content">
 <h1 class="title">css笔记</h1>
 <div id="table-of-contents">
@@ -218,7 +208,7 @@ css:层叠样式表,是指定网页元素显示方式的一种方法
 <span style="color: #FF6400;">h1.</span><span style="color: #ffffff; background-color: #0000FF;">blue</span>{}                           <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">class&#20026;</span><span style="color: #ffffff; background-color: #0000FF;">blue</span><span style="color: #AEAEAE; font-style: italic;">&#30340;h1&#26631;&#31614;</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
 
 <span style="color: #FF6400;">li a </span>{<span style="color: #FF6400;">text-decoration</span>: none;}   <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">descendant selector</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
-<span style="color: #FF6400;">li #content</span>{}
+<span style="color: #FF6400;">li #content</span>{}                   <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">li&#19979;&#25152;&#26377;id&#20026;content&#30340;&#26631;&#31614;</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
 <span style="color: #FF6400;">li .</span><span style="color: #ffffff; background-color: #0000FF;">blue</span>{}
 
 <span style="color: #FF6400;">a</span>:link {<span style="color: #FF6400;">color</span>: <span style="color: #ffffff; background-color: #FF0000;">red</span>}             <span style="color: #AEAEAE; font-style: italic;">/*</span><span style="color: #AEAEAE; font-style: italic;">pseudo-class selector</span><span style="color: #AEAEAE; font-style: italic;">*/</span>
@@ -226,6 +216,16 @@ css:层叠样式表,是指定网页元素显示方式的一种方法
 <span style="color: #FF6400;">a[href=</span><span style="color: #61CE3C;">"www.baidu.com"</span><span style="color: #FF6400;">] </span>{<span style="color: #FF6400;">color</span>:<span style="color: #ffffff; background-color: #FF0000;">red</span>} <span style="color: #AEAEAE; font-style: italic;">/**/</span>
 </pre>
 </div>
+</li>
+<li>优先级
+<ul class="org-ul">
+<li>行内样式表优先于内部样式表,优先于外部样式表
+</li>
+<li>id选择符优先与class选择符优先于标签选择符
+</li>
+<li>!important: 是样式不被覆盖
+</li>
+</ul>
 </li>
 <li>css box
 <p class="verse">
@@ -317,6 +317,7 @@ html文档有一个标准文档流，每一个块级元素（如div）都要单�
 
 </div>
 </div></div>
+<div id="disqus_comment">
   <div id="disqus_thread"></div>
     <script type="text/javascript">
         var url = window.location.pathname;
@@ -332,7 +333,10 @@ html文档有一个标准文档流，每一个块级元素（如div）都要单�
         })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- begin footer -->
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</div>
+<!-- begin footer -->
 <div id="footer">
   <hr />
   <ul class="links">
@@ -340,7 +344,7 @@ html文档有一个标准文档流，每一个块级元素（如div）都要单�
     <li><a href="/sitemap.tt">Sitemap</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     <li><a href="/about.html">About Me</a></li>
-    <li><a href="#branding">Back to Top</a></li>
+    <li><a href="#">Back to Top</a></li>
   </ul>
 </div>
 <!-- end footer --></body>

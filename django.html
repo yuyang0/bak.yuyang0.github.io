@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>DJANGO笔记</title>
-<!-- 2013-07-05 Fri 22:33 -->
+<!-- 2013-07-13 Sat 22:59 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="generator" content="Org-mode"/>
 <meta name="author" content="Yu Yang"/>
@@ -135,37 +135,27 @@ for the JavaScript code in this tag.
 /*]]>*///-->
 </script>
 </head>
-<body><div id="branding">
-  <div class="col-width">
-    <div id="logo">
-      <h1 id="site-title"><a href="/" title="Yu Yang's blog" rel="home">
-                Yu Yang's blog                </a>
-      </h1>
-      <h2 id="site-description">Hope is a good thing, maybe the best of things.......</h2>
-    </div>
-
-    <div id="navigation">
-      <div class="menu">
-      <ul>
-      <li class="current_page_item"><a href="/" title="首页">首页</a></li>
-      <li class="page_item page-item-2"><a href="/guestbook.html">留言板</a></li>
-      <li class="page_item page-item-2"><a href="/about.html">关于</a></li>
-      <li class="page_item page-item-93"><a href="/atom.xml">RSS</a></li>
-      </ul>
-      </div>
-
-    <div id="searchwrapper">
+<body><div id="header">
+<div id="header-top">
+  <div id="blog-title">Yu Yang's Writing Time</div>
+  <div id="blog-sub-title">something about my thinking, doing and reading notes...</div>
+</div>
+<div id="nav">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/guestbook.html">留言板</a></li>
+    <li><a href="/about.html">About Me</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    <li>
       <form action="/search.html">
         <input type="text" class="searchbox" name="wd" value="Search..." onblur="if(this.value==''){this.value='Search...';}" onfocus="if(this.value=='Search...'){this.value='';}"/>
         <input type="image" src="/static/img/google.ico" class="searchbox_submit" value="" />
       </form>
-    </div>
-
-    </div><!-- #access -->
-
-    </div>
-
+    </li>
+  </ul>
   </div>
+</div>
+
 <div id="content">
 <h1 class="title">DJANGO笔记</h1>
 <div id="table-of-contents">
@@ -258,7 +248,7 @@ django是一个python编写的full stack web开发框架
 <span style="color: #FF6400;">t</span> = Template(<span style="color: #61CE3C;">'{{ person.name }} is {{ person.age }} years old.'</span>)
 <span style="color: #FF6400;">c</span> = Context({<span style="color: #61CE3C;">'person'</span>: person})
 t.render(c)
-<span style="color: #AEAEAE; font-style: italic;">#result is: u'Sally is 43 years old.'</span>
+<span style="color: #AEAEAE; font-style: italic;">#</span><span style="color: #AEAEAE; font-style: italic;">result is: u'Sally is 43 years old.'</span>
 </pre>
 </div>
 </li>
@@ -269,7 +259,7 @@ t.render(c)
 <span style="color: #FF6400;">t</span> = Template(<span style="color: #61CE3C;">'Item 2 is {{ items.2 }}.'</span>)
 <span style="color: #FF6400;">c</span> = Context({<span style="color: #61CE3C;">'items'</span>: [<span style="color: #61CE3C;">'apples'</span>, <span style="color: #61CE3C;">'bananas'</span>, <span style="color: #61CE3C;">'carrots'</span>]})
 t.render(c)
-<span style="color: #AEAEAE; font-style: italic;"># result is :u'Item 2 is carrots.'</span>
+<span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">result is :u'Item 2 is carrots.'</span>
 </pre>
 </div>
 </li>
@@ -278,11 +268,11 @@ t.render(c)
 
 <pre class="src src-python"> <span style="color: #FBDE2D;">from</span> django.template <span style="color: #FBDE2D;">import</span> Template, Context
  <span style="color: #FBDE2D;">import</span> datetime
- d = datetime.date(1993, 5, 2)
- t = Template(<span style="color: #61CE3C;">'The month is {{ date.month }} and the year is {{ date.year }}.'</span>)
- c = Context({<span style="color: #61CE3C;">'date'</span>: d})
+ <span style="color: #FF6400;">d</span> = datetime.date(1993, 5, 2)
+ <span style="color: #FF6400;">t</span> = Template(<span style="color: #61CE3C;">'The month is {{ date.month }} and the year is {{ date.year }}.'</span>)
+ <span style="color: #FF6400;">c</span> = Context({<span style="color: #61CE3C;">'date'</span>: d})
  t.render(c)
-<span style="color: #AEAEAE; font-style: italic;"># result is : u'The month is 5 and the year is 1993.'</span>
+<span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">result is : u'The month is 5 and the year is 1993.'</span>
 </pre>
 </div>
 </li>
@@ -335,7 +325,7 @@ TEMPLATE<sub>DIRS</sub>
 <span style="color: #FBDE2D;">import</span> datetime
 
 <span style="color: #FBDE2D;">def</span> <span style="color: #FF6400;">current_datetime</span>(request):
-    now = datetime.datetime.now()
+    <span style="color: #FF6400;">now</span> = datetime.datetime.now()
     <span style="color: #FBDE2D;">return</span> render_to_response(<span style="color: #61CE3C;">'current_datetime.html'</span>, {<span style="color: #61CE3C;">'current_date'</span>: now})
 </pre>
 </div>
@@ -409,7 +399,7 @@ base.html:
 <li>第一步必须设置settings.py的数据库相关域,用以下代码验证配置是否正确：
 <div class="org-src-container">
 
-<pre class="src src-python">python manage.py shell <span style="color: #AEAEAE; font-style: italic;">#enter django shell</span>
+<pre class="src src-python">python manage.py shell <span style="color: #AEAEAE; font-style: italic;">#</span><span style="color: #AEAEAE; font-style: italic;">enter django shell</span>
 
 <span style="color: #FBDE2D;">from</span> django.db <span style="color: #FBDE2D;">import</span> connection
 <span style="color: #FF6400;">cursor</span> = connection.cursor()
@@ -424,26 +414,26 @@ python manage.py startapp appname
 
 <pre class="src src-python"><span style="color: #FBDE2D;">from</span> django.db <span style="color: #FBDE2D;">import</span> models
 
-<span style="color: #AEAEAE; font-style: italic;"># Create your models here.</span>
+<span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">Create your models here.</span>
 <span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Publisher</span>(models.Module):
     <span style="color: #61CE3C;">"""</span>
 <span style="color: #61CE3C;">    """</span>
-    name = models.CharField(max_length = 30)
-    address = models.CharField(max_length = 50)
-    city = models.CharField(max_length = 60)
-    state_province = models.CharField(max_length = 30)
-    country = models.CharField(max_length = 50)
-    website = models.URLField()
+    <span style="color: #FF6400;">name</span> = models.CharField(max_length = 30)
+    <span style="color: #FF6400;">address</span> = models.CharField(max_length = 50)
+    <span style="color: #FF6400;">city</span> = models.CharField(max_length = 60)
+    <span style="color: #FF6400;">state_province</span> = models.CharField(max_length = 30)
+    <span style="color: #FF6400;">country</span> = models.CharField(max_length = 50)
+    <span style="color: #FF6400;">website</span> = models.URLField()
 <span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Author</span>(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=40)
-    email = models.EmailField()
+    <span style="color: #FF6400;">first_name</span> = models.CharField(max_length=30)
+    <span style="color: #FF6400;">last_name</span> = models.CharField(max_length=40)
+    <span style="color: #FF6400;">email</span> = models.EmailField()
 
 <span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Book</span>(models.Model):
-    title = models.CharField(max_length=100)
-    authors = models.ManyToManyField(Author)
-    publisher = models.ForeignKey(Publisher)
-    publication_date = models.DateField()
+    <span style="color: #FF6400;">title</span> = models.CharField(max_length=100)
+    <span style="color: #FF6400;">authors</span> = models.ManyToManyField(Author)
+    <span style="color: #FF6400;">publisher</span> = models.ForeignKey(Publisher)
+    <span style="color: #FF6400;">publication_date</span> = models.DateField()
 </pre>
 </div>
 <p>
@@ -456,7 +446,7 @@ python manage.py syncdb会最终执行数据库的创建
 <li>访问修改数据库
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #AEAEAE; font-style: italic;"># insert a record</span>
+<pre class="src src-python"><span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">insert a record</span>
 <span style="color: #FF6400;">p</span> = Publisher(name=<span style="color: #61CE3C;">'Apress'</span>,
         address=<span style="color: #61CE3C;">'2855 Telegraph Ave.'</span>,
         city=<span style="color: #61CE3C;">'Berkeley'</span>,
@@ -465,27 +455,27 @@ python manage.py syncdb会最终执行数据库的创建
         website=<span style="color: #61CE3C;">'http://www.apress.com/'</span>)
 p.save()
 
-<span style="color: #AEAEAE; font-style: italic;"># just update, do not create record</span>
-p.name = <span style="color: #61CE3C;">'Apress Publishing'</span>
+<span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">just update, do not create record</span>
+<span style="color: #FF6400;">p.name</span> = <span style="color: #61CE3C;">'Apress Publishing'</span>
 p.save()
 
-Publisher.objects.filter(<span style="color: #94bff3;">id</span>=52).update(name=<span style="color: #61CE3C;">'Apress Publishing'</span>)
-<span style="color: #AEAEAE; font-style: italic;"># &#35775;&#38382;&#25968;&#25454;&#65292;&#36716;&#25442;&#20026;select&#35821;&#21477;</span>
-Publisher.objects.all()
-Publisher.objects.filter(country=<span style="color: #61CE3C;">"U.S.A."</span>, state_province=<span style="color: #61CE3C;">"CA"</span>)
-<span style="color: #AEAEAE; font-style: italic;"># select ... order by ...</span>
+Publisher.objects.<span style="color: #94bff3;">filter</span>(<span style="color: #94bff3;">id</span>=52).update(name=<span style="color: #61CE3C;">'Apress Publishing'</span>)
+<span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">&#35775;&#38382;&#25968;&#25454;&#65292;&#36716;&#25442;&#20026;select&#35821;&#21477;</span>
+Publisher.objects.<span style="color: #94bff3;">all</span>()
+Publisher.objects.<span style="color: #94bff3;">filter</span>(country=<span style="color: #61CE3C;">"U.S.A."</span>, state_province=<span style="color: #61CE3C;">"CA"</span>)
+<span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">select ... order by ...</span>
 Publisher.objects.order_by(<span style="color: #61CE3C;">"name"</span>)
-<span style="color: #AEAEAE; font-style: italic;">#&#36870;&#24207;</span>
+<span style="color: #AEAEAE; font-style: italic;">#</span><span style="color: #AEAEAE; font-style: italic;">&#36870;&#24207;</span>
 Publisher.objects.order_by(<span style="color: #61CE3C;">"-name"</span>)
-<span style="color: #AEAEAE; font-style: italic;">#&#36830;&#38145;&#26597;&#35810;&#65292;&#21516;&#26102;&#25351;&#23450;where&#19982;order by&#23376;&#21477;</span>
-Publisher.objects.filter(country=<span style="color: #61CE3C;">"U.S.A."</span>).order_by(<span style="color: #61CE3C;">"-name"</span>)
-<span style="color: #AEAEAE; font-style: italic;"># select ... order by ... limit ...</span>
+<span style="color: #AEAEAE; font-style: italic;">#</span><span style="color: #AEAEAE; font-style: italic;">&#36830;&#38145;&#26597;&#35810;&#65292;&#21516;&#26102;&#25351;&#23450;where&#19982;order by&#23376;&#21477;</span>
+Publisher.objects.<span style="color: #94bff3;">filter</span>(country=<span style="color: #61CE3C;">"U.S.A."</span>).order_by(<span style="color: #61CE3C;">"-name"</span>)
+<span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">select ... order by ... limit ...</span>
 Publisher.objects.order_by(<span style="color: #61CE3C;">'name'</span>)[0]
 Publisher.objects.order_by(<span style="color: #61CE3C;">'name'</span>)[0:2]
 
-<span style="color: #AEAEAE; font-style: italic;">#delete record</span>
-Publisher.objects.filter(country=<span style="color: #61CE3C;">'USA'</span>).delete()
-Publisher.objects.all().delete()
+<span style="color: #AEAEAE; font-style: italic;">#</span><span style="color: #AEAEAE; font-style: italic;">delete record</span>
+Publisher.objects.<span style="color: #94bff3;">filter</span>(country=<span style="color: #61CE3C;">'USA'</span>).delete()
+Publisher.objects.<span style="color: #94bff3;">all</span>().delete()
 </pre>
 </div>
 </li>
@@ -554,6 +544,7 @@ Publisher.objects.all().delete()
 </div>
 </div>
 </div>
+<div id="disqus_comment">
   <div id="disqus_thread"></div>
     <script type="text/javascript">
         var url = window.location.pathname;
@@ -569,7 +560,10 @@ Publisher.objects.all().delete()
         })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- begin footer -->
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</div>
+<!-- begin footer -->
 <div id="footer">
   <hr />
   <ul class="links">
@@ -577,7 +571,7 @@ Publisher.objects.all().delete()
     <li><a href="/sitemap.tt">Sitemap</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     <li><a href="/about.html">About Me</a></li>
-    <li><a href="#branding">Back to Top</a></li>
+    <li><a href="#">Back to Top</a></li>
   </ul>
 </div>
 <!-- end footer --></body>

@@ -2,187 +2,64 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>post list</title>
-<!-- 2013-07-05 Fri 22:33 -->
+  <title>
+Home Page
+</title>
+<!-- 2013-06-15 Sat 23:47 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="generator" content="Org-mode"/>
 <meta name="author" content="Yu Yang"/>
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
-  .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
-  .tag    { background-color: #eee; font-family: monospace;
-            padding: 2px; font-size: 80%; font-weight: normal; }
-  .timestamp { color: #bebebe; }
-  .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
-  .underline { text-decoration: underline; }
-  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
-  p.verse { margin-left: 3%; }
-  pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
-    padding: 8pt;
-    font-family: monospace;
-    overflow: auto;
-    margin: 1.2em;
-  }
-  pre.src {
-    position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
-  }
-  pre.src:before {
-    display: none;
-    position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
-    padding: 3px;
-    border: 1px solid black;
-  }
-  pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
-  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
 
-  table { border-collapse:collapse; }
-  td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
-  dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
-  .footdef  { margin-bottom: 1em; }
-  .figure { padding: 1em; }
-  .figure p { text-align: center; }
-  .inlinetask {
-    padding: 10px;
-    border: 2px solid gray;
-    margin: 10px;
-    background: #ffffcc;
-  }
-  #org-div-home-and-up
-   { text-align: right; font-size: 70%; white-space: nowrap; }
-  textarea { overflow-x: auto; }
-  .linenr { font-size: smaller }
-  .code-highlighted { background-color: #ffff00; }
-  .org-info-js_info-navigation { border-style: none; }
-  #org-info-js_console-label
-    { font-size: 10px; font-weight: bold; white-space: nowrap; }
-  .org-info-js_search-highlight
-    { background-color: #ffff00; color: #000000; font-weight: bold; }
-  /*]]>*/-->
-</style>
 <link rel="stylesheet" type="text/css" href="/static/css/main.css"/>
+
+  <link rel="stylesheet" type="text/css" href="/static/css/tag.css"/>  
+
 <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="Atom feed">
-<link rel="stylesheet" type="text/css" href="static/css/tag.css"/>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
 
-Copyright (C) 2012  Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
-<body><div id="branding">
-  <div class="col-width">
-    <div id="logo">
-      <h1 id="site-title"><a href="/" title="Yu Yang's blog" rel="home">
-                Yu Yang's blog                </a>
-      </h1>
-      <h2 id="site-description">Hope is a good thing, maybe the best of things.......</h2>
-    </div>
+<body>
+ 
+  
 
-    <div id="navigation">
-      <div class="menu">
-      <ul>
-      <li class="current_page_item"><a href="/" title="首页">首页</a></li>
-      <li class="page_item page-item-2"><a href="/guestbook.html">留言板</a></li>
-      <li class="page_item page-item-2"><a href="/about.html">关于</a></li>
-      <li class="page_item page-item-93"><a href="/atom.xml">RSS</a></li>
-      </ul>
-      </div>
-
-    <div id="searchwrapper">
+ <div id="header">
+<div id="header-top">
+  <div id="blog-title">Yu Yang's Writing Time</div>
+  <div id="blog-sub-title">something about my thinking, doing and reading notes...</div>
+</div>
+<div id="nav">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/guestbook.html">留言板</a></li>
+    <li><a href="/about.html">About Me</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    <li>
       <form action="/search.html">
         <input type="text" class="searchbox" name="wd" value="Search..." onblur="if(this.value==''){this.value='Search...';}" onfocus="if(this.value=='Search...'){this.value='';}"/>
         <input type="image" src="/static/img/google.ico" class="searchbox_submit" value="" />
       </form>
-    </div>
-
-    </div><!-- #access -->
-
-    </div>
-
+    </li>
+  </ul>
   </div>
+</div>
+
 <div id="content">
+
+    
+
+    
 <h1 class="title">post list</h1>
 <div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1">Emacs</h2>
 <div class="outline-text-2" id="text-1">
-<ul class="org-ul">
-<li><a href="emacs.html">emacs/elisp笔记</a>
+<ul class="org-ul"><li><a href="emacs.html">emacs/elisp笔记</a>
 </li>
-</ul>
-</div>
+</ul></div>
 </div>
 
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">programming language</h2>
 <div class="outline-text-2" id="text-2">
-<ul class="org-ul">
-<li><a href="scheme.html">scheme笔记</a>
+<ul class="org-ul"><li><a href="scheme.html">scheme笔记</a>
 </li>
 <li><a href="php.html">php笔记</a>
 </li>
@@ -190,61 +67,51 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="linux-c-garbled-characters.html">Linux C语言乱码处理</a>
 </li>
-</ul>
-</div>
+</ul></div>
 </div>
 
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">web</h2>
 <div class="outline-text-2" id="text-3">
-<ul class="org-ul">
-<li><a href="css.html">css笔记</a>
+<ul class="org-ul"><li><a href="css.html">css笔记</a>
 </li>
 <li><a href="django.html">django笔记</a>
 </li>
 <li><a href="gevent.html">gevent笔记与源码分析</a>
 </li>
-</ul>
-</div>
+</ul></div>
 </div>
 
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">tools</h2>
 <div class="outline-text-2" id="text-4">
-<ul class="org-ul">
-<li><a href="git.html">git/github笔记</a>
+<ul class="org-ul"><li><a href="git.html">git/github笔记</a>
 </li>
 <li><a href="code-snippet.html">有用的代码片段</a>
 </li>
-</ul>
-</div>
+</ul></div>
 </div>
 
 <div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">math</h2>
 <div class="outline-text-2" id="text-5">
-<ul class="org-ul">
-<li><a href="set-theory.html">SET THEORY(30%)</a>
+<ul class="org-ul"><li><a href="set-theory.html">SET THEORY(30%)</a>
 </li>
-</ul>
-</div>
+</ul></div>
 </div>
 
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6">reading notes</h2>
 <div class="outline-text-2" id="text-6">
-<ul class="org-ul">
-<li><a href="reading-notes/sicp.html">SICP</a>
+<ul class="org-ul"><li><a href="reading-notes/sicp.html">SICP</a>
 </li>
-</ul>
-</div>
+</ul></div>
 </div>
 
 <div id="outline-container-sec-7" class="outline-2">
 <h2 id="sec-7">others</h2>
 <div class="outline-text-2" id="text-7">
-<ul class="org-ul">
-<li><a href="reading-notes/how-to-study.html">如何快速学习</a>
+<ul class="org-ul"><li><a href="reading-notes/how-to-study.html">如何快速学习</a>
 </li>
 <li><a href="investment.html">Investment</a>
 </li>
@@ -254,65 +121,78 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="logion-apothegm.html">格言</a>
 </li>
-</ul>
+</ul></div>
 </div>
+
+
+ 
+
+ </div>
+  <div id="tags">
+
+<h2>tag cloud:</h2>
+
+<div id="tagcloud">
+
+  
+	<a href="/tags/web.html" rel="2">web</a>
+  
+	<a href="/tags/c.html" rel="1">c</a>
+  
+	<a href="/tags/git.html" rel="1">git</a>
+  
+	<a href="/tags/coroutine.html" rel="1">coroutine</a>
+  
+	<a href="/tags/mess.html" rel="1">mess</a>
+  
+	<a href="/tags/study.html" rel="1">study</a>
+  
+	<a href="/tags/emacs-lisp.html" rel="1">emacs-lisp</a>
+  
+	<a href="/tags/SICP.html" rel="1">SICP</a>
+  
+	<a href="/tags/django.html" rel="1">django</a>
+  
+	<a href="/tags/python.html" rel="2">python</a>
+  
+	<a href="/tags/github.html" rel="1">github</a>
+  
+	<a href="/tags/gevent.html" rel="1">gevent</a>
+  
+	<a href="/tags/video.html" rel="1">video</a>
+  
+	<a href="/tags/linux.html" rel="1">linux</a>
+  
+	<a href="/tags/emacs.html" rel="1">emacs</a>
+  
+	<a href="/tags/method.html" rel="1">method</a>
+  
+	<a href="/tags/scheme.html" rel="1">scheme</a>
+  
+	<a href="/tags/code-snippet.html" rel="1">code-snippet</a>
+  
+	<a href="/tags/investment.html" rel="1">investment</a>
+  
+	<a href="/tags/css.html" rel="1">css</a>
+  
 </div>
-</div>
-<div class="right_side">
-  <h2>tag cloud:</h2>
-<div id="tc">
+<script charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script charset="utf-8" type="text/javascript" src="/static/js/jquery.tagcloud.js"></script>
+<script charset="utf-8" type="text/javascript">
+	$.fn.tagcloud.defaults = {
+      size: {start: 18, end: 40, unit: 'pt'},
+      color: {start: '#008', end: '#f52'}
+};
 
+$(function () {
+  $('#tagcloud a').tagcloud();
+});
 
-	<a href="/tags/web.html" class="red">web</a>
-
-	<a href="/tags/c.html" class="red">c</a>
-
-	<a href="/tags/git.html" class="red">git</a>
-
-	<a href="/tags/coroutine.html" class="blue">coroutine</a>
-
-	<a href="/tags/mess.html" class="green">mess</a>
-
-	<a href="/tags/study.html" class="red">study</a>
-
-	<a href="/tags/emacs-lisp.html" class="blue">emacs-lisp</a>
-
-	<a href="/tags/SICP.html" class="green">SICP</a>
-
-	<a href="/tags/django.html" class="green">django</a>
-
-	<a href="/tags/python.html" class="blue">python</a>
-
-	<a href="/tags/github.html" class="red">github</a>
-
-	<a href="/tags/gevent.html" class="green">gevent</a>
-
-	<a href="/tags/video.html" class="red">video</a>
-
-	<a href="/tags/linux.html" class="blue">linux</a>
-
-	<a href="/tags/emacs.html" class="blue">emacs</a>
-
-	<a href="/tags/method.html" class="blue">method</a>
-
-	<a href="/tags/code-snippet.html" class="red">code-snippet</a>
-
-	<a href="/tags/investment.html" class="green">investment</a>
-
-	<a href="/tags/css.html" class="blue">css</a>
-
-</div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-<script type="text/javascript" src="/static/js/jquery.windstagball.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-    $("#tc").windstagball({
-            radius:120,
-            speed:10
-        });
-    });
 </script>
-</div><!-- begin footer -->
+</div>
+
+ 
+  <!-- begin footer -->
 <div id="footer">
   <hr />
   <ul class="links">
@@ -320,8 +200,12 @@ for the JavaScript code in this tag.
     <li><a href="/sitemap.tt">Sitemap</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     <li><a href="/about.html">About Me</a></li>
-    <li><a href="#branding">Back to Top</a></li>
+    <li><a href="#">Back to Top</a></li>
   </ul>
 </div>
-<!-- end footer --></body>
+<!-- end footer -->
+
+
+
+</body>
 </html>

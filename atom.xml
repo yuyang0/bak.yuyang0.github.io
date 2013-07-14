@@ -13,253 +13,8 @@
 
   
   <entry>
-    <id>how-to-read-a-book.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/how-to-read-a-book.html"/>
-    <title>how-to-read-a-book</title>
-    <updated>2013-04-26T00:00:00-07:00</updated>
-    <author>
-      <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
-    </author>
-    <content type="html"> 
-&lt;h1 class=&quot;title&quot;&gt;how-to-read-a-book&lt;/h1&gt;
-&lt;div id=&quot;table-of-contents&quot;&gt;
-&lt;h2&gt;Table of Contents&lt;/h2&gt;
-&lt;div id=&quot;text-table-of-contents&quot;&gt;
-&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#sec-1&quot;&gt;How to Read a Book&lt;/a&gt;
-&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#sec-1-1&quot;&gt;检视阅读&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#sec-1-2&quot;&gt;分析阅读&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;sec-1&quot;&gt;How to Read a Book&lt;/h2&gt;
-&lt;div class=&quot;outline-text-2&quot; id=&quot;text-1&quot;&gt;
-&lt;/div&gt;&lt;div id=&quot;outline-container-sec-1-1&quot; class=&quot;outline-3&quot;&gt;
-&lt;h3 id=&quot;sec-1-1&quot;&gt;检视阅读&lt;/h3&gt;
-&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-1&quot;&gt;
-&lt;ol class=&quot;org-ol&quot;&gt;&lt;li&gt;读书名，目录，序，前言，索引（preface index），然后随机的选几页阅读，
-或者根据目录选择感兴趣的章节阅读，但最多只连续的阅读几页，这个阶段
-必须注意时间控制。
-&lt;/li&gt;
-&lt;li&gt;快速而粗略的对一本书扫一遍，遇到不懂的地方不要停下来，要注意把握书
-的总体上的一些特点与内容，如讲了什么，结构是什么样的。
-&lt;/li&gt;
-&lt;/ol&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id=&quot;outline-container-sec-1-2&quot; class=&quot;outline-3&quot;&gt;
-&lt;h3 id=&quot;sec-1-2&quot;&gt;分析阅读&lt;/h3&gt;
-&lt;/div&gt;
-&lt;/div&gt;
- </content>
-  </entry>
-  
-  <entry>
-    <id>Theory-Computation.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/Theory-Computation.html"/>
-    <title>Theory-Computation</title>
-    <updated>2013-04-26T00:00:00-07:00</updated>
-    <author>
-      <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
-    </author>
-    <content type="html"> 
-&lt;h1 class=&quot;title&quot;&gt;Theory-Computation&lt;/h1&gt;
-&lt;div id=&quot;table-of-contents&quot;&gt;
-&lt;h2&gt;Table of Contents&lt;/h2&gt;
-&lt;div id=&quot;text-table-of-contents&quot;&gt;
-&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#sec-1&quot;&gt;计算理论笔记&lt;/a&gt;
-&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#sec-1-1&quot;&gt;数学基础&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#sec-1-2&quot;&gt;三大理论&lt;/a&gt;
-&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#sec-1-2-1&quot;&gt;自动机理论&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#sec-1-2-2&quot;&gt;可计算理论&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#sec-1-2-3&quot;&gt;计算复杂度理论&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;sec-1&quot;&gt;计算理论笔记&lt;/h2&gt;
-&lt;div class=&quot;outline-text-2&quot; id=&quot;text-1&quot;&gt;
-&lt;/div&gt;&lt;div id=&quot;outline-container-sec-1-1&quot; class=&quot;outline-3&quot;&gt;
-&lt;h3 id=&quot;sec-1-1&quot;&gt;数学基础&lt;/h3&gt;
-&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-1&quot;&gt;
-&lt;ol class=&quot;org-ol&quot;&gt;&lt;li&gt;谓词是一个函数，他的结果只能是true或者false，也就是值域是{true, false}
-&lt;/li&gt;
-&lt;li&gt;关系（k元关系）：有k个自变量的谓词，通常的&amp;gt;, &amp;lt;, =都是二元关系，a&amp;lt;b,实际可以写成(&amp;lt; a b)
-&lt;/li&gt;
-&lt;li&gt;关系是一个谓词（也是一个函数），所以一般应该用前缀表达式，可是实际运用时，因为惯例，可能用中缀表达式，&amp;lt;,&amp;gt;,=都是中缀表达式
-&lt;/li&gt;
-&lt;li&gt;关系的3个性质：自反性(对每一个x =&amp;gt; xRx)，对称性(xRy &amp;lt;=&amp;gt; yRx)，传递性(xRy且yRz =&amp;gt; xRz)
-满足这3个性质那么就是等价关系。
-&lt;/li&gt;
-&lt;/ol&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id=&quot;outline-container-sec-1-2&quot; class=&quot;outline-3&quot;&gt;
-&lt;h3 id=&quot;sec-1-2&quot;&gt;三大理论&lt;/h3&gt;
-&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-2&quot;&gt;
-&lt;/div&gt;&lt;div id=&quot;outline-container-sec-1-2-1&quot; class=&quot;outline-4&quot;&gt;
-&lt;h4 id=&quot;sec-1-2-1&quot;&gt;自动机理论&lt;/h4&gt;
-&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-2-1&quot;&gt;
-&lt;p&gt;
-正则语言：能被一个有穷自动机接受的语言
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id=&quot;outline-container-sec-1-2-2&quot; class=&quot;outline-4&quot;&gt;
-&lt;h4 id=&quot;sec-1-2-2&quot;&gt;可计算理论&lt;/h4&gt;
-&lt;/div&gt;
-&lt;div id=&quot;outline-container-sec-1-2-3&quot; class=&quot;outline-4&quot;&gt;
-&lt;h4 id=&quot;sec-1-2-3&quot;&gt;计算复杂度理论&lt;/h4&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
- </content>
-  </entry>
-  
-  <entry>
-    <id>Probability.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/Probability.html"/>
-    <title>Probability</title>
-    <updated>2013-04-26T00:00:00-07:00</updated>
-    <author>
-      <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
-    </author>
-    <content type="html"> 
-&lt;h1 class=&quot;title&quot;&gt;Probability&lt;/h1&gt;
-&lt;div id=&quot;table-of-contents&quot;&gt;
-&lt;h2&gt;Table of Contents&lt;/h2&gt;
-&lt;div id=&quot;text-table-of-contents&quot;&gt;
-&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#sec-1&quot;&gt;概率论&lt;/a&gt;
-&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#sec-1-1&quot;&gt;重要的概念&lt;/a&gt;
-&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#sec-1-1-1&quot;&gt;事件&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#sec-1-1-2&quot;&gt;事件的和&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#sec-1-1-3&quot;&gt;事件的积&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#sec-1-1-4&quot;&gt;互斥事件&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#sec-1-1-5&quot;&gt;对立事件&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#sec-1-1-6&quot;&gt;独立事件&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;sec-1&quot;&gt;概率论&lt;/h2&gt;
-&lt;div class=&quot;outline-text-2&quot; id=&quot;text-1&quot;&gt;
-&lt;/div&gt;&lt;div id=&quot;outline-container-sec-1-1&quot; class=&quot;outline-3&quot;&gt;
-&lt;h3 id=&quot;sec-1-1&quot;&gt;重要的概念&lt;/h3&gt;
-&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-1&quot;&gt;
-&lt;/div&gt;&lt;div id=&quot;outline-container-sec-1-1-1&quot; class=&quot;outline-4&quot;&gt;
-&lt;h4 id=&quot;sec-1-1-1&quot;&gt;事件&lt;/h4&gt;
-&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-1-1&quot;&gt;
-&lt;p&gt;
-事件：
-&lt;/p&gt;
-&lt;ol class=&quot;org-ol&quot;&gt;&lt;li&gt;必须建立在一个明确的试验的基础上
-&lt;/li&gt;
-&lt;li&gt;这个试验的所有可能的结果已知(每一个可能的结果叫一个基本事件)
-&lt;/li&gt;
-&lt;li&gt;事件明确的界定这些结果中的一部分。
-&lt;/li&gt;
-&lt;/ol&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id=&quot;outline-container-sec-1-1-2&quot; class=&quot;outline-4&quot;&gt;
-&lt;h4 id=&quot;sec-1-1-2&quot;&gt;事件的和&lt;/h4&gt;
-&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-1-2&quot;&gt;
-&lt;p&gt;
-A+B：代表的事件的和（或），P（A+B）与P（A）+P(B)只有在A与B是互斥事件时才成立，也就是二者没有交集。
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id=&quot;outline-container-sec-1-1-3&quot; class=&quot;outline-4&quot;&gt;
-&lt;h4 id=&quot;sec-1-1-3&quot;&gt;事件的积&lt;/h4&gt;
-&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-1-3&quot;&gt;
-&lt;p&gt;
-AB:A,B都发生（并）， 只有在A，B是独立事件时P（AB） 与P（A）P（B）才相等。
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id=&quot;outline-container-sec-1-1-4&quot; class=&quot;outline-4&quot;&gt;
-&lt;h4 id=&quot;sec-1-1-4&quot;&gt;互斥事件&lt;/h4&gt;
-&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-1-4&quot;&gt;
-&lt;p&gt;
-如果两个事件不可能同时发生，那么他们就是互斥事件，表现在集合上就是两个集合无交集
-互斥事件有一个发生的概率：P(A+B) = P(A) + P(B) (用集合很好理解)
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id=&quot;outline-container-sec-1-1-5&quot; class=&quot;outline-4&quot;&gt;
-&lt;h4 id=&quot;sec-1-1-5&quot;&gt;对立事件&lt;/h4&gt;
-&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-1-5&quot;&gt;
-&lt;p&gt;
-是互斥事件的特例，表现在集合上两个集合互为补集、
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id=&quot;outline-container-sec-1-1-6&quot; class=&quot;outline-4&quot;&gt;
-&lt;h4 id=&quot;sec-1-1-6&quot;&gt;独立事件&lt;/h4&gt;
-&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-1-6&quot;&gt;
-&lt;p&gt;
-如果事件B发生对事件A发生的概率无影响，那么A,B就是独立事件。。
-P(A | B) = P(AB) / P(B) = P(A)
-P(AB) = P(A) P(B)
-推论：P(A B负) / P(B负) = P(A)
-如果A，B是独立事件，那么A，B同时发生的概率是二者的乘积
-特别注意独立事件表现在概率上，两个集合是有交集的，独立事件的本质是：A在B发生的前提下的条件概率等于A的本来概率，也就是B的发生对A的发生概率没有影响。
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
- </content>
-  </entry>
-  
-  <entry>
-    <id>IT术语.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/IT术语.html"/>
-    <title>IT术语</title>
-    <updated>2013-04-26T00:00:00-07:00</updated>
-    <author>
-      <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
-    </author>
-    <content type="html"> 
-&lt;h1 class=&quot;title&quot;&gt;IT术语&lt;/h1&gt;
-&lt;div id=&quot;table-of-contents&quot;&gt;
-&lt;h2&gt;Table of Contents&lt;/h2&gt;
-&lt;div id=&quot;text-table-of-contents&quot;&gt;
-&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#sec-1&quot;&gt;IT术语&lt;/a&gt;
-&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#sec-1-1&quot;&gt;透明的（transparent）&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;sec-1&quot;&gt;IT术语&lt;/h2&gt;
-&lt;div class=&quot;outline-text-2&quot; id=&quot;text-1&quot;&gt;
-&lt;/div&gt;&lt;div id=&quot;outline-container-sec-1-1&quot; class=&quot;outline-3&quot;&gt;
-&lt;h3 id=&quot;sec-1-1&quot;&gt;透明的（transparent）&lt;/h3&gt;
-&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-1&quot;&gt;
-&lt;p&gt;
-透而不见，比如玻璃，所以说什么东西是透明的就是说其内部不可见，可以无视
-其实现，而生活中一般的意思是对内部一目了然，如透明度
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
- </content>
-  </entry>
-  
-  <entry>
-    <id>sicp.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/sicp.html"/>
+    <id>reading-notes/sicp.html</id>
+    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/reading-notes/sicp.html"/>
     <title>SICP笔记</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
@@ -395,8 +150,8 @@ lambda演算: &lt;br /&gt;
   </entry>
   
   <entry>
-    <id>how-to-study.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/how-to-study.html"/>
+    <id>reading-notes/how-to-study.html</id>
+    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/reading-notes/how-to-study.html"/>
     <title>how to study</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
@@ -479,6 +234,251 @@ lambda演算: &lt;br /&gt;
 费曼技巧那么就ok
 &lt;/li&gt;
 &lt;/ol&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+ </content>
+  </entry>
+  
+  <entry>
+    <id>reading-notes/how-to-read-a-book.html</id>
+    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/reading-notes/how-to-read-a-book.html"/>
+    <title>how-to-read-a-book</title>
+    <updated>2013-04-26T00:00:00-07:00</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>http://yuyang.pancakeapps.com/</uri>
+    </author>
+    <content type="html"> 
+&lt;h1 class=&quot;title&quot;&gt;how-to-read-a-book&lt;/h1&gt;
+&lt;div id=&quot;table-of-contents&quot;&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id=&quot;text-table-of-contents&quot;&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#sec-1&quot;&gt;How to Read a Book&lt;/a&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#sec-1-1&quot;&gt;检视阅读&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#sec-1-2&quot;&gt;分析阅读&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;How to Read a Book&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-1&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-1-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-1&quot;&gt;检视阅读&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-1&quot;&gt;
+&lt;ol class=&quot;org-ol&quot;&gt;&lt;li&gt;读书名，目录，序，前言，索引（preface index），然后随机的选几页阅读，
+或者根据目录选择感兴趣的章节阅读，但最多只连续的阅读几页，这个阶段
+必须注意时间控制。
+&lt;/li&gt;
+&lt;li&gt;快速而粗略的对一本书扫一遍，遇到不懂的地方不要停下来，要注意把握书
+的总体上的一些特点与内容，如讲了什么，结构是什么样的。
+&lt;/li&gt;
+&lt;/ol&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-2&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-2&quot;&gt;分析阅读&lt;/h3&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+ </content>
+  </entry>
+  
+  <entry>
+    <id>reading-notes/Theory-Computation.html</id>
+    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/reading-notes/Theory-Computation.html"/>
+    <title>Theory-Computation</title>
+    <updated>2013-04-26T00:00:00-07:00</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>http://yuyang.pancakeapps.com/</uri>
+    </author>
+    <content type="html"> 
+&lt;h1 class=&quot;title&quot;&gt;Theory-Computation&lt;/h1&gt;
+&lt;div id=&quot;table-of-contents&quot;&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id=&quot;text-table-of-contents&quot;&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#sec-1&quot;&gt;计算理论笔记&lt;/a&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#sec-1-1&quot;&gt;数学基础&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#sec-1-2&quot;&gt;三大理论&lt;/a&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#sec-1-2-1&quot;&gt;自动机理论&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#sec-1-2-2&quot;&gt;可计算理论&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#sec-1-2-3&quot;&gt;计算复杂度理论&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;计算理论笔记&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-1&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-1-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-1&quot;&gt;数学基础&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-1&quot;&gt;
+&lt;ol class=&quot;org-ol&quot;&gt;&lt;li&gt;谓词是一个函数，他的结果只能是true或者false，也就是值域是{true, false}
+&lt;/li&gt;
+&lt;li&gt;关系（k元关系）：有k个自变量的谓词，通常的&amp;gt;, &amp;lt;, =都是二元关系，a&amp;lt;b,实际可以写成(&amp;lt; a b)
+&lt;/li&gt;
+&lt;li&gt;关系是一个谓词（也是一个函数），所以一般应该用前缀表达式，可是实际运用时，因为惯例，可能用中缀表达式，&amp;lt;,&amp;gt;,=都是中缀表达式
+&lt;/li&gt;
+&lt;li&gt;关系的3个性质：自反性(对每一个x =&amp;gt; xRx)，对称性(xRy &amp;lt;=&amp;gt; yRx)，传递性(xRy且yRz =&amp;gt; xRz)
+满足这3个性质那么就是等价关系。
+&lt;/li&gt;
+&lt;/ol&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-2&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-2&quot;&gt;三大理论&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-2&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-1-2-1&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-1-2-1&quot;&gt;自动机理论&lt;/h4&gt;
+&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-2-1&quot;&gt;
+&lt;p&gt;
+正则语言：能被一个有穷自动机接受的语言
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-2-2&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-1-2-2&quot;&gt;可计算理论&lt;/h4&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-1-2-3&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-1-2-3&quot;&gt;计算复杂度理论&lt;/h4&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+ </content>
+  </entry>
+  
+  <entry>
+    <id>reading-notes/Probability.html</id>
+    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/reading-notes/Probability.html"/>
+    <title>Probability</title>
+    <updated>2013-04-26T00:00:00-07:00</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>http://yuyang.pancakeapps.com/</uri>
+    </author>
+    <content type="html"> 
+&lt;h1 class=&quot;title&quot;&gt;Probability&lt;/h1&gt;
+&lt;div id=&quot;table-of-contents&quot;&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id=&quot;text-table-of-contents&quot;&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#sec-1&quot;&gt;概率论&lt;/a&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#sec-1-1&quot;&gt;重要的概念&lt;/a&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#sec-1-1-1&quot;&gt;事件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#sec-1-1-2&quot;&gt;事件的和&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#sec-1-1-3&quot;&gt;事件的积&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#sec-1-1-4&quot;&gt;互斥事件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#sec-1-1-5&quot;&gt;对立事件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#sec-1-1-6&quot;&gt;独立事件&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;概率论&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-1&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-1-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-1&quot;&gt;重要的概念&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-1&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-1-1-1&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-1-1-1&quot;&gt;事件&lt;/h4&gt;
+&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-1-1&quot;&gt;
+&lt;p&gt;
+事件：
+&lt;/p&gt;
+&lt;ol class=&quot;org-ol&quot;&gt;&lt;li&gt;必须建立在一个明确的试验的基础上
+&lt;/li&gt;
+&lt;li&gt;这个试验的所有可能的结果已知(每一个可能的结果叫一个基本事件)
+&lt;/li&gt;
+&lt;li&gt;事件明确的界定这些结果中的一部分。
+&lt;/li&gt;
+&lt;/ol&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-1-2&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-1-1-2&quot;&gt;事件的和&lt;/h4&gt;
+&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-1-2&quot;&gt;
+&lt;p&gt;
+A+B：代表的事件的和（或），P（A+B）与P（A）+P(B)只有在A与B是互斥事件时才成立，也就是二者没有交集。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-1-3&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-1-1-3&quot;&gt;事件的积&lt;/h4&gt;
+&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-1-3&quot;&gt;
+&lt;p&gt;
+AB:A,B都发生（并）， 只有在A，B是独立事件时P（AB） 与P（A）P（B）才相等。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-1-4&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-1-1-4&quot;&gt;互斥事件&lt;/h4&gt;
+&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-1-4&quot;&gt;
+&lt;p&gt;
+如果两个事件不可能同时发生，那么他们就是互斥事件，表现在集合上就是两个集合无交集
+互斥事件有一个发生的概率：P(A+B) = P(A) + P(B) (用集合很好理解)
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-1-5&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-1-1-5&quot;&gt;对立事件&lt;/h4&gt;
+&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-1-5&quot;&gt;
+&lt;p&gt;
+是互斥事件的特例，表现在集合上两个集合互为补集、
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-1-6&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-1-1-6&quot;&gt;独立事件&lt;/h4&gt;
+&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-1-6&quot;&gt;
+&lt;p&gt;
+如果事件B发生对事件A发生的概率无影响，那么A,B就是独立事件。。
+P(A | B) = P(AB) / P(B) = P(A)
+P(AB) = P(A) P(B)
+推论：P(A B负) / P(B负) = P(A)
+如果A，B是独立事件，那么A，B同时发生的概率是二者的乘积
+特别注意独立事件表现在概率上，两个集合是有交集的，独立事件的本质是：A在B发生的前提下的条件概率等于A的本来概率，也就是B的发生对A的发生概率没有影响。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+ </content>
+  </entry>
+  
+  <entry>
+    <id>reading-notes/IT术语.html</id>
+    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/reading-notes/IT术语.html"/>
+    <title>IT术语</title>
+    <updated>2013-04-26T00:00:00-07:00</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>http://yuyang.pancakeapps.com/</uri>
+    </author>
+    <content type="html"> 
+&lt;h1 class=&quot;title&quot;&gt;IT术语&lt;/h1&gt;
+&lt;div id=&quot;table-of-contents&quot;&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id=&quot;text-table-of-contents&quot;&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#sec-1&quot;&gt;IT术语&lt;/a&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#sec-1-1&quot;&gt;透明的（transparent）&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;IT术语&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-1&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-1-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-1&quot;&gt;透明的（transparent）&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-1&quot;&gt;
+&lt;p&gt;
+透而不见，比如玻璃，所以说什么东西是透明的就是说其内部不可见，可以无视
+其实现，而生活中一般的意思是对内部一目了然，如透明度
+&lt;/p&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
  </content>
@@ -576,7 +576,7 @@ django是一个python编写的full stack web开发框架
 &lt;span style=&quot;color: #FF6400;&quot;&gt;t&lt;/span&gt; = Template(&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;{{ person.name }} is {{ person.age }} years old.&#39;&lt;/span&gt;)
 &lt;span style=&quot;color: #FF6400;&quot;&gt;c&lt;/span&gt; = Context({&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;person&#39;&lt;/span&gt;: person})
 t.render(c)
-&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;#result is: u&#39;Sally is 43 years old.&#39;&lt;/span&gt;
+&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;result is: u&#39;Sally is 43 years old.&#39;&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -587,7 +587,7 @@ t.render(c)
 &lt;span style=&quot;color: #FF6400;&quot;&gt;t&lt;/span&gt; = Template(&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;Item 2 is {{ items.2 }}.&#39;&lt;/span&gt;)
 &lt;span style=&quot;color: #FF6400;&quot;&gt;c&lt;/span&gt; = Context({&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;items&#39;&lt;/span&gt;: [&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;apples&#39;&lt;/span&gt;, &lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;bananas&#39;&lt;/span&gt;, &lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;carrots&#39;&lt;/span&gt;]})
 t.render(c)
-&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;# result is :u&#39;Item 2 is carrots.&#39;&lt;/span&gt;
+&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;# &lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;result is :u&#39;Item 2 is carrots.&#39;&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -596,11 +596,11 @@ t.render(c)
 
 &lt;pre class=&quot;src src-python&quot;&gt; &lt;span style=&quot;color: #FBDE2D;&quot;&gt;from&lt;/span&gt; django.template &lt;span style=&quot;color: #FBDE2D;&quot;&gt;import&lt;/span&gt; Template, Context
  &lt;span style=&quot;color: #FBDE2D;&quot;&gt;import&lt;/span&gt; datetime
- d = datetime.date(1993, 5, 2)
- t = Template(&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;The month is {{ date.month }} and the year is {{ date.year }}.&#39;&lt;/span&gt;)
- c = Context({&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;date&#39;&lt;/span&gt;: d})
+ &lt;span style=&quot;color: #FF6400;&quot;&gt;d&lt;/span&gt; = datetime.date(1993, 5, 2)
+ &lt;span style=&quot;color: #FF6400;&quot;&gt;t&lt;/span&gt; = Template(&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;The month is {{ date.month }} and the year is {{ date.year }}.&#39;&lt;/span&gt;)
+ &lt;span style=&quot;color: #FF6400;&quot;&gt;c&lt;/span&gt; = Context({&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;date&#39;&lt;/span&gt;: d})
  t.render(c)
-&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;# result is : u&#39;The month is 5 and the year is 1993.&#39;&lt;/span&gt;
+&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;# &lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;result is : u&#39;The month is 5 and the year is 1993.&#39;&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -647,7 +647,7 @@ TEMPLATE&lt;sub&gt;DIRS&lt;/sub&gt;&lt;/p&gt;
 &lt;span style=&quot;color: #FBDE2D;&quot;&gt;import&lt;/span&gt; datetime
 
 &lt;span style=&quot;color: #FBDE2D;&quot;&gt;def&lt;/span&gt; &lt;span style=&quot;color: #FF6400;&quot;&gt;current_datetime&lt;/span&gt;(request):
-    now = datetime.datetime.now()
+    &lt;span style=&quot;color: #FF6400;&quot;&gt;now&lt;/span&gt; = datetime.datetime.now()
     &lt;span style=&quot;color: #FBDE2D;&quot;&gt;return&lt;/span&gt; render_to_response(&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;current_datetime.html&#39;&lt;/span&gt;, {&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;current_date&#39;&lt;/span&gt;: now})
 &lt;/pre&gt;
 &lt;/div&gt;
@@ -716,7 +716,7 @@ base.html:
 &lt;ol class=&quot;org-ol&quot;&gt;&lt;li&gt;第一步必须设置settings.py的数据库相关域,用以下代码验证配置是否正确：
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-python&quot;&gt;python manage.py shell &lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;#enter django shell&lt;/span&gt;
+&lt;pre class=&quot;src src-python&quot;&gt;python manage.py shell &lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;enter django shell&lt;/span&gt;
 
 &lt;span style=&quot;color: #FBDE2D;&quot;&gt;from&lt;/span&gt; django.db &lt;span style=&quot;color: #FBDE2D;&quot;&gt;import&lt;/span&gt; connection
 &lt;span style=&quot;color: #FF6400;&quot;&gt;cursor&lt;/span&gt; = connection.cursor()
@@ -731,26 +731,26 @@ python manage.py startapp appname
 
 &lt;pre class=&quot;src src-python&quot;&gt;&lt;span style=&quot;color: #FBDE2D;&quot;&gt;from&lt;/span&gt; django.db &lt;span style=&quot;color: #FBDE2D;&quot;&gt;import&lt;/span&gt; models
 
-&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;# Create your models here.&lt;/span&gt;
+&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;# &lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;Create your models here.&lt;/span&gt;
 &lt;span style=&quot;color: #FBDE2D;&quot;&gt;class&lt;/span&gt; &lt;span style=&quot;color: #8DA6CE;&quot;&gt;Publisher&lt;/span&gt;(models.Module):
     &lt;span style=&quot;color: #61CE3C;&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;
 &lt;span style=&quot;color: #61CE3C;&quot;&gt;    &quot;&quot;&quot;&lt;/span&gt;
-    name = models.CharField(max_length = 30)
-    address = models.CharField(max_length = 50)
-    city = models.CharField(max_length = 60)
-    state_province = models.CharField(max_length = 30)
-    country = models.CharField(max_length = 50)
-    website = models.URLField()
+    &lt;span style=&quot;color: #FF6400;&quot;&gt;name&lt;/span&gt; = models.CharField(max_length = 30)
+    &lt;span style=&quot;color: #FF6400;&quot;&gt;address&lt;/span&gt; = models.CharField(max_length = 50)
+    &lt;span style=&quot;color: #FF6400;&quot;&gt;city&lt;/span&gt; = models.CharField(max_length = 60)
+    &lt;span style=&quot;color: #FF6400;&quot;&gt;state_province&lt;/span&gt; = models.CharField(max_length = 30)
+    &lt;span style=&quot;color: #FF6400;&quot;&gt;country&lt;/span&gt; = models.CharField(max_length = 50)
+    &lt;span style=&quot;color: #FF6400;&quot;&gt;website&lt;/span&gt; = models.URLField()
 &lt;span style=&quot;color: #FBDE2D;&quot;&gt;class&lt;/span&gt; &lt;span style=&quot;color: #8DA6CE;&quot;&gt;Author&lt;/span&gt;(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=40)
-    email = models.EmailField()
+    &lt;span style=&quot;color: #FF6400;&quot;&gt;first_name&lt;/span&gt; = models.CharField(max_length=30)
+    &lt;span style=&quot;color: #FF6400;&quot;&gt;last_name&lt;/span&gt; = models.CharField(max_length=40)
+    &lt;span style=&quot;color: #FF6400;&quot;&gt;email&lt;/span&gt; = models.EmailField()
 
 &lt;span style=&quot;color: #FBDE2D;&quot;&gt;class&lt;/span&gt; &lt;span style=&quot;color: #8DA6CE;&quot;&gt;Book&lt;/span&gt;(models.Model):
-    title = models.CharField(max_length=100)
-    authors = models.ManyToManyField(Author)
-    publisher = models.ForeignKey(Publisher)
-    publication_date = models.DateField()
+    &lt;span style=&quot;color: #FF6400;&quot;&gt;title&lt;/span&gt; = models.CharField(max_length=100)
+    &lt;span style=&quot;color: #FF6400;&quot;&gt;authors&lt;/span&gt; = models.ManyToManyField(Author)
+    &lt;span style=&quot;color: #FF6400;&quot;&gt;publisher&lt;/span&gt; = models.ForeignKey(Publisher)
+    &lt;span style=&quot;color: #FF6400;&quot;&gt;publication_date&lt;/span&gt; = models.DateField()
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;
@@ -763,7 +763,7 @@ python manage.py syncdb会最终执行数据库的创建
 &lt;li&gt;访问修改数据库
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-python&quot;&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;# insert a record&lt;/span&gt;
+&lt;pre class=&quot;src src-python&quot;&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;# &lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;insert a record&lt;/span&gt;
 &lt;span style=&quot;color: #FF6400;&quot;&gt;p&lt;/span&gt; = Publisher(name=&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;Apress&#39;&lt;/span&gt;,
         address=&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;2855 Telegraph Ave.&#39;&lt;/span&gt;,
         city=&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;Berkeley&#39;&lt;/span&gt;,
@@ -772,27 +772,27 @@ python manage.py syncdb会最终执行数据库的创建
         website=&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;http://www.apress.com/&#39;&lt;/span&gt;)
 p.save()
 
-&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;# just update, do not create record&lt;/span&gt;
-p.name = &lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;Apress Publishing&#39;&lt;/span&gt;
+&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;# &lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;just update, do not create record&lt;/span&gt;
+&lt;span style=&quot;color: #FF6400;&quot;&gt;p.name&lt;/span&gt; = &lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;Apress Publishing&#39;&lt;/span&gt;
 p.save()
 
-Publisher.objects.filter(&lt;span style=&quot;color: #94bff3;&quot;&gt;id&lt;/span&gt;=52).update(name=&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;Apress Publishing&#39;&lt;/span&gt;)
-&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;# 访问数据，转换为select语句&lt;/span&gt;
-Publisher.objects.all()
-Publisher.objects.filter(country=&lt;span style=&quot;color: #61CE3C;&quot;&gt;&quot;U.S.A.&quot;&lt;/span&gt;, state_province=&lt;span style=&quot;color: #61CE3C;&quot;&gt;&quot;CA&quot;&lt;/span&gt;)
-&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;# select ... order by ...&lt;/span&gt;
+Publisher.objects.&lt;span style=&quot;color: #94bff3;&quot;&gt;filter&lt;/span&gt;(&lt;span style=&quot;color: #94bff3;&quot;&gt;id&lt;/span&gt;=52).update(name=&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;Apress Publishing&#39;&lt;/span&gt;)
+&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;# &lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;访问数据，转换为select语句&lt;/span&gt;
+Publisher.objects.&lt;span style=&quot;color: #94bff3;&quot;&gt;all&lt;/span&gt;()
+Publisher.objects.&lt;span style=&quot;color: #94bff3;&quot;&gt;filter&lt;/span&gt;(country=&lt;span style=&quot;color: #61CE3C;&quot;&gt;&quot;U.S.A.&quot;&lt;/span&gt;, state_province=&lt;span style=&quot;color: #61CE3C;&quot;&gt;&quot;CA&quot;&lt;/span&gt;)
+&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;# &lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;select ... order by ...&lt;/span&gt;
 Publisher.objects.order_by(&lt;span style=&quot;color: #61CE3C;&quot;&gt;&quot;name&quot;&lt;/span&gt;)
-&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;#逆序&lt;/span&gt;
+&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;逆序&lt;/span&gt;
 Publisher.objects.order_by(&lt;span style=&quot;color: #61CE3C;&quot;&gt;&quot;-name&quot;&lt;/span&gt;)
-&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;#连锁查询，同时指定where与order by子句&lt;/span&gt;
-Publisher.objects.filter(country=&lt;span style=&quot;color: #61CE3C;&quot;&gt;&quot;U.S.A.&quot;&lt;/span&gt;).order_by(&lt;span style=&quot;color: #61CE3C;&quot;&gt;&quot;-name&quot;&lt;/span&gt;)
-&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;# select ... order by ... limit ...&lt;/span&gt;
+&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;连锁查询，同时指定where与order by子句&lt;/span&gt;
+Publisher.objects.&lt;span style=&quot;color: #94bff3;&quot;&gt;filter&lt;/span&gt;(country=&lt;span style=&quot;color: #61CE3C;&quot;&gt;&quot;U.S.A.&quot;&lt;/span&gt;).order_by(&lt;span style=&quot;color: #61CE3C;&quot;&gt;&quot;-name&quot;&lt;/span&gt;)
+&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;# &lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;select ... order by ... limit ...&lt;/span&gt;
 Publisher.objects.order_by(&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;name&#39;&lt;/span&gt;)[0]
 Publisher.objects.order_by(&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;name&#39;&lt;/span&gt;)[0:2]
 
-&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;#delete record&lt;/span&gt;
-Publisher.objects.filter(country=&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;USA&#39;&lt;/span&gt;).delete()
-Publisher.objects.all().delete()
+&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;delete record&lt;/span&gt;
+Publisher.objects.&lt;span style=&quot;color: #94bff3;&quot;&gt;filter&lt;/span&gt;(country=&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;USA&#39;&lt;/span&gt;).delete()
+Publisher.objects.&lt;span style=&quot;color: #94bff3;&quot;&gt;all&lt;/span&gt;().delete()
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -2676,7 +2676,7 @@ css:层叠样式表,是指定网页元素显示方式的一种方法
 &lt;span style=&quot;color: #FF6400;&quot;&gt;h1.&lt;/span&gt;&lt;span style=&quot;color: #ffffff; background-color: #0000FF;&quot;&gt;blue&lt;/span&gt;{}                           &lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;/*&lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;class为&lt;/span&gt;&lt;span style=&quot;color: #ffffff; background-color: #0000FF;&quot;&gt;blue&lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;的h1标签&lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;*/&lt;/span&gt;
 
 &lt;span style=&quot;color: #FF6400;&quot;&gt;li a &lt;/span&gt;{&lt;span style=&quot;color: #FF6400;&quot;&gt;text-decoration&lt;/span&gt;: none;}   &lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;/*&lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;descendant selector&lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;*/&lt;/span&gt;
-&lt;span style=&quot;color: #FF6400;&quot;&gt;li #content&lt;/span&gt;{}
+&lt;span style=&quot;color: #FF6400;&quot;&gt;li #content&lt;/span&gt;{}                   &lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;/*&lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;li下所有id为content的标签&lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;*/&lt;/span&gt;
 &lt;span style=&quot;color: #FF6400;&quot;&gt;li .&lt;/span&gt;&lt;span style=&quot;color: #ffffff; background-color: #0000FF;&quot;&gt;blue&lt;/span&gt;{}
 
 &lt;span style=&quot;color: #FF6400;&quot;&gt;a&lt;/span&gt;:link {&lt;span style=&quot;color: #FF6400;&quot;&gt;color&lt;/span&gt;: &lt;span style=&quot;color: #ffffff; background-color: #FF0000;&quot;&gt;red&lt;/span&gt;}             &lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;/*&lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;pseudo-class selector&lt;/span&gt;&lt;span style=&quot;color: #AEAEAE; font-style: italic;&quot;&gt;*/&lt;/span&gt;
@@ -2685,6 +2685,14 @@ css:层叠样式表,是指定网页元素显示方式的一种方法
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/li&gt;
+&lt;li&gt;优先级
+&lt;ul class=&quot;org-ul&quot;&gt;&lt;li&gt;行内样式表优先于内部样式表,优先于外部样式表
+&lt;/li&gt;
+&lt;li&gt;id选择符优先与class选择符优先于标签选择符
+&lt;/li&gt;
+&lt;li&gt;!important: 是样式不被覆盖
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;css box
 &lt;p class=&quot;verse&quot;&gt;
 css的盒子模型： &lt;br /&gt;&lt;img src=&quot;static/img/css-box.png&quot; alt=&quot;css-box.png&quot; /&gt;&lt;br /&gt;
@@ -3044,13 +3052,17 @@ next: git push origin master
   <entry>
     <id>index.html</id>
     <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/index.html"/>
-    <title>post list</title>
+    <title>Home Page</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
       <uri>http://yuyang.pancakeapps.com/</uri>
     </author>
     <content type="html"> 
+
+    
+
+    
 &lt;h1 class=&quot;title&quot;&gt;post list&lt;/h1&gt;
 &lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
 &lt;h2 id=&quot;sec-1&quot;&gt;Emacs&lt;/h2&gt;
@@ -3127,7 +3139,11 @@ next: git push origin master
 &lt;/li&gt;
 &lt;/ul&gt;&lt;/div&gt;
 &lt;/div&gt;
- </content>
+
+
+ 
+
+  </content>
   </entry>
   
   <entry>
