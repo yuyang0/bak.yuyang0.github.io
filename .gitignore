@@ -3,6 +3,7 @@
 *.bakk
 /example.txt
 /getting-started.txt
+/domains.config
 /.dropbox
 *~
 \#*

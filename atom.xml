@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title></title>
-  <link href="http://yuyang.pancakeapps.com/"/>
+  <link href="http://yuyang.farbox.com/"/>
   <link type="application/atom+xml" rel="self" href="/atom.xml"/>
   <updated>2013-06-01T20:28:51-07:00</updated>
-  <id>http://yuyang.pancakeapps.com/</id>
+  <id>http://yuyang.farbox.com/</id>
   <author>
     <name>Yu Yang</name>
     <email>yy2012cn@gmail.com</email>
@@ -14,12 +14,12 @@
   
   <entry>
     <id>reading-notes/sicp.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/reading-notes/sicp.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/reading-notes/sicp.html"/>
     <title>SICP笔记</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
 &lt;h1 class=&quot;title&quot;&gt;SICP笔记&lt;/h1&gt;
@@ -151,12 +151,12 @@ lambda演算: &lt;br /&gt;
   
   <entry>
     <id>reading-notes/how-to-study.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/reading-notes/how-to-study.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/reading-notes/how-to-study.html"/>
     <title>how to study</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
 &lt;h1 class=&quot;title&quot;&gt;how to study&lt;/h1&gt;
@@ -241,12 +241,12 @@ lambda演算: &lt;br /&gt;
   
   <entry>
     <id>reading-notes/how-to-read-a-book.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/reading-notes/how-to-read-a-book.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/reading-notes/how-to-read-a-book.html"/>
     <title>how-to-read-a-book</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
 &lt;h1 class=&quot;title&quot;&gt;how-to-read-a-book&lt;/h1&gt;
@@ -284,12 +284,12 @@ lambda演算: &lt;br /&gt;
   
   <entry>
     <id>reading-notes/Theory-Computation.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/reading-notes/Theory-Computation.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/reading-notes/Theory-Computation.html"/>
     <title>Theory-Computation</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
 &lt;h1 class=&quot;title&quot;&gt;Theory-Computation&lt;/h1&gt;
@@ -349,12 +349,12 @@ lambda演算: &lt;br /&gt;
   
   <entry>
     <id>reading-notes/Probability.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/reading-notes/Probability.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/reading-notes/Probability.html"/>
     <title>Probability</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
 &lt;h1 class=&quot;title&quot;&gt;Probability&lt;/h1&gt;
@@ -451,12 +451,12 @@ P(AB) = P(A) P(B)
   
   <entry>
     <id>reading-notes/IT术语.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/reading-notes/IT术语.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/reading-notes/IT术语.html"/>
     <title>IT术语</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
 &lt;h1 class=&quot;title&quot;&gt;IT术语&lt;/h1&gt;
@@ -486,12 +486,12 @@ P(AB) = P(A) P(B)
   
   <entry>
     <id>django.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/django.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/django.html"/>
     <title>DJANGO笔记</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
 &lt;h1 class=&quot;title&quot;&gt;DJANGO笔记&lt;/h1&gt;
@@ -831,12 +831,12 @@ Publisher.objects.&lt;span style=&quot;color: #94bff3;&quot;&gt;all&lt;/span&gt;
   
   <entry>
     <id>emacs.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/emacs.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/emacs.html"/>
     <title>Emacs/elisp笔记</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
 &lt;h1 class=&quot;title&quot;&gt;Emacs/elisp笔记&lt;/h1&gt;
@@ -1611,12 +1611,12 @@ last-command
   
   <entry>
     <id>linux-c-garbled-characters.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/linux-c-garbled-characters.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/linux-c-garbled-characters.html"/>
     <title>Linux平台C语言乱码</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
 &lt;h1 class=&quot;title&quot;&gt;Linux平台C语言乱码&lt;/h1&gt;
@@ -1753,12 +1753,12 @@ iconv -f gb2312 -t utf8 youfile -c -o newfile
   
   <entry>
     <id>funny-video.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/funny-video.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/funny-video.html"/>
     <title>My Favourite Videos</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
 &lt;h1 class=&quot;title&quot;&gt;My Favourite Videos&lt;/h1&gt;
@@ -1798,12 +1798,12 @@ iconv -f gb2312 -t utf8 youfile -c -o newfile
   
   <entry>
     <id>php.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/php.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/php.html"/>
     <title>PHP笔记</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
 &lt;h1 class=&quot;title&quot;&gt;PHP笔记&lt;/h1&gt;
@@ -2484,12 +2484,12 @@ create  table  表名 &lt;br /&gt;
   
   <entry>
     <id>set-theory.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/set-theory.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/set-theory.html"/>
     <title>SET THEORY(30%)</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
 &lt;h1 class=&quot;title&quot;&gt;SET THEORY(30%)&lt;/h1&gt;
@@ -2621,12 +2621,12 @@ any collection definable is a set
   
   <entry>
     <id>css.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/css.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/css.html"/>
     <title>css笔记</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
 &lt;h1 class=&quot;title&quot;&gt;css笔记&lt;/h1&gt;
@@ -2773,12 +2773,12 @@ html文档有一个标准文档流，每一个块级元素（如div）都要单�
   
   <entry>
     <id>gevent.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/gevent.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/gevent.html"/>
     <title>gevent源码分析</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
 &lt;h1 class=&quot;title&quot;&gt;gevent源码分析&lt;/h1&gt;
@@ -2869,12 +2869,12 @@ rawlink的作用是注册一个函数，这个函数会在这个greenlet运行�
   
   <entry>
     <id>git.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/git.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/git.html"/>
     <title>git/github学习笔记</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
 &lt;h1 class=&quot;title&quot;&gt;git/github学习笔记&lt;/h1&gt;
@@ -3024,12 +3024,12 @@ next: git push origin master
   
   <entry>
     <id>logion-apothegm.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/logion-apothegm.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/logion-apothegm.html"/>
     <title>logion and apothegm</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
 &lt;h1 class=&quot;title&quot;&gt;logion and apothegm&lt;/h1&gt;
@@ -3051,16 +3051,14 @@ next: git push origin master
   
   <entry>
     <id>index.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/index.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/index.html"/>
     <title>Home Page</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
-
-    
 
     
 &lt;h1 class=&quot;title&quot;&gt;post list&lt;/h1&gt;
@@ -3141,19 +3139,17 @@ next: git push origin master
 &lt;/div&gt;
 
 
- 
-
   </content>
   </entry>
   
   <entry>
     <id>python-note.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/python-note.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/python-note.html"/>
     <title>python笔记</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
 &lt;h1 class=&quot;title&quot;&gt;python笔记&lt;/h1&gt;
@@ -3423,12 +3419,12 @@ d(&lt;span style=&quot;color: #61CE3C;&quot;&gt;&#39;meta[name=keywords]&#39;&lt
   
   <entry>
     <id>scheme.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/scheme.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/scheme.html"/>
     <title>scheme笔记</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
 &lt;h1 class=&quot;title&quot;&gt;scheme笔记&lt;/h1&gt;
@@ -3839,12 +3835,12 @@ first–—&amp;gt; symbol(or a variable)
   
   <entry>
     <id>org-mode-dropbox-blog.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/org-mode-dropbox-blog.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/org-mode-dropbox-blog.html"/>
     <title>使用org-mode与dropbox搭建静态博客</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
 &lt;h1 class=&quot;title&quot;&gt;使用org-mode与dropbox搭建静态博客&lt;/h1&gt;
@@ -4005,12 +4001,12 @@ org-html-publish-to-html换成org-publish-org-to-html.最后还需要一个css,�
   
   <entry>
     <id>investment.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/investment.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/investment.html"/>
     <title>投资笔记</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
 &lt;h1 class=&quot;title&quot;&gt;投资笔记&lt;/h1&gt;
@@ -4420,12 +4416,12 @@ org-html-publish-to-html换成org-publish-org-to-html.最后还需要一个css,�
   
   <entry>
     <id>code-snippet.html</id>
-    <link type="text/html" rel="alternate" href="http://yuyang.pancakeapps.com/code-snippet.html"/>
+    <link type="text/html" rel="alternate" href="http://yuyang.farbox.com/code-snippet.html"/>
     <title>有用的代码片段</title>
     <updated>2013-04-26T00:00:00-07:00</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>http://yuyang.pancakeapps.com/</uri>
+      <uri>http://yuyang.farbox.com/</uri>
     </author>
     <content type="html"> 
 &lt;h1 class=&quot;title&quot;&gt;有用的代码片段&lt;/h1&gt;

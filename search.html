@@ -41,10 +41,18 @@
       <div id="cse" style="width: 100%;">Loading</div>
 
     </div>
-    <div id="postamble" class="status">
-
-      <p class="author">Author: Yu Yang (<a href="mailto:yy2012cn@gmail.com">yy2012cn@gmail.com</a>)</p><p>Last Updated . Created by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.0.3) </p>
-    </div>
+  <!-- begin footer -->
+<div id="footer">
+  <hr />
+  <ul class="links">
+    <li>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</li>
+    <li><a href="/sitemap.tt">Sitemap</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    <li><a href="/about.html">About Me</a></li>
+    <li><a href="#">Back to Top</a></li>
+  </ul>
+</div>
+<!-- end footer -->
 
     <script type="text/javascript">
   var Flower = {};
@@ -167,15 +175,23 @@ Flower.formdata = {
   google.load('search', '1', {language : 'zh-CN', style : google.loader.themes.SHINY});
 google.setOnLoadCallback(function() {
 
+/* get the google custom search key according to the url */
   var page_host = window.location.host;
   var custome_search_key = '';
-  if (page_host == 'yuyang.pancakeapps.com') 
+  if (page_host == 'yuyang.farbox.com') 
+    {
+      custome_search_key = '005863396545237100197:foeecdsrsju';
+    }
+  else if (page_host == 'yuyang0.github.io')
   {
-  	custome_search_key = '005863396545237100197:nhuiw5cz1q4';
-  } 
-  else{
-  	custome_search_key = '005863396545237100197:ltk794b_vzi';
-  };
+    // yuyang0.github.io
+    custome_search_key = '005863396545237100197:ltk794b_vzi';
+  }
+  else
+  {
+    // yuyang.pancakeapps.com
+    custome_search_key = '005863396545237100197:nhuiw5cz1q4';
+  }
   var customSearchControl = new google.search.CustomSearchControl(custome_search_key);
   customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
   var options = new google.search.DrawOptions();

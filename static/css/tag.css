@@ -6,3 +6,7 @@
 #tags h2 {
 	
 }
+#tags a {
+	padding: 2px;
+	line-height: 100%;
+}
