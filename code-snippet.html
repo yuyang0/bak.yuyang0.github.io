@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>有用的代码片段</title>
-<!-- 2013-07-14 Sun 18:21 -->
+<!-- 2013-09-19 Thu 13:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="generator" content="Org-mode"/>
 <meta name="author" content="Yu Yang"/>
@@ -157,13 +157,21 @@ for the JavaScript code in this tag.
 
 <div id="content">
 <h1 class="title">有用的代码片段</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">linux相关</a></li>
+</ul>
+</div>
+</div>
 <ol class="org-ol">
 <li>count lines of code in a directory
 <div class="org-src-container">
 
-<pre class="src src-sh">find . -name <span style="color: #61CE3C;">'*.php'</span> | xargs wc -l
-<span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">works on names with space</span>
-( find ./ -name <span style="color: #61CE3C;">'*.[h|c|cc|cpp|php]'</span> -print0 | xargs -0 cat ) | wc -l
+<pre class="src src-sh">find . -name <span style="color: #E6DB74;">'*.php'</span> | xargs wc -l
+<span style="color: #75715E;"># </span><span style="color: #75715E;">works on names with space</span>
+( find ./ -name <span style="color: #E6DB74;">'*.[h|c|cc|cpp|php]'</span> -print0 | xargs -0 cat ) | wc -l
 </pre>
 </div>
 </li>
@@ -171,17 +179,17 @@ for the JavaScript code in this tag.
 <li>删除链表节点
 <div class="org-src-container">
 
-<pre class="src src-C"><span style="color: #8DA6CE;">void</span> <span style="color: #FF6400;">remove_if</span>(<span style="color: #8DA6CE;">node</span> ** <span style="color: #FF6400;">head</span>, <span style="color: #8DA6CE;">remove_fn</span> <span style="color: #FF6400;">rm</span>)
+<pre class="src src-C"><span style="color: #66D9EF;">void</span> <span style="color: #A6E22E;">remove_if</span>(<span style="color: #66D9EF;">node</span> ** <span style="color: #FD971F;">head</span>, <span style="color: #66D9EF;">remove_fn</span> <span style="color: #FD971F;">rm</span>)
 {
-    <span style="color: #FBDE2D;">for</span> (<span style="color: #8DA6CE;">node</span>** <span style="color: #FF6400;">curr</span> = head; *curr; )
+    <span style="color: #F92672; font-weight: bold;">for</span> (<span style="color: #66D9EF;">node</span>** <span style="color: #FD971F;">curr</span> = head; *curr; )
     {
-        <span style="color: #8DA6CE;">node</span> * <span style="color: #FF6400;">entry</span> = *curr;
-        <span style="color: #FBDE2D;">if</span> (rm(entry))
+        <span style="color: #66D9EF;">node</span> * <span style="color: #FD971F;">entry</span> = *curr;
+        <span style="color: #F92672; font-weight: bold;">if</span> (rm(entry))
         {
             *curr = entry-&gt;next;
             free(entry);
         }
-        <span style="color: #FBDE2D;">else</span>
+        <span style="color: #F92672; font-weight: bold;">else</span>
             curr = &amp;entry-&gt;next;
     }
 }
@@ -189,6 +197,16 @@ for the JavaScript code in this tag.
 </div>
 </li>
 </ol>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">linux相关</h2>
+<div class="outline-text-2" id="text-1">
+<ol class="org-ol">
+<li>重启network
+sudo /etc/init.d/networking restart
+</li>
+</ol>
+</div>
+</div>
 </div>
 <div id="disqus_comment">
   <div id="disqus_thread"></div>
@@ -214,7 +232,7 @@ for the JavaScript code in this tag.
   <hr />
   <ul class="links">
     <li>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</li>
-    <li><a href="/sitemap.tt">Sitemap</a></li>
+    <li><a href="/sitemap.xml">Sitemap</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     <li><a href="/about.html">About Me</a></li>
     <li><a href="#">Back to Top</a></li>

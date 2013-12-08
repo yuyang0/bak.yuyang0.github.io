@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>gevent源码分析</title>
-<!-- 2013-07-14 Sun 18:21 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="author" content="Yu Yang"/>
-<meta name="keywords" content="gevent python coroutine"/>
+<!-- 2013-07-21 Sun 12:47 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+
+
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center; }
@@ -188,19 +189,19 @@ continuation是一个程序设计语言理论上的概念，不怕英文的童�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme"><span class="linenr"> 1: </span>(<span style="color: #FBDE2D;">define</span> <span style="color: #FF6400;">the-continuation</span> #f)
-<span class="linenr"> 2: </span>(<span style="color: #FBDE2D;">define</span> (<span style="color: #FF6400;">test</span>)
-<span class="linenr"> 3: </span>  (<span style="color: #FBDE2D;">let</span> ((i 0))
-<span class="linenr"> 4: </span>                                        <span style="color: #AEAEAE; font-style: italic;">; </span><span style="color: #AEAEAE; font-style: italic;">call/cc calls its first function argum</span><span style="color: #AEAEAE; background-color: #bebebe; font-style: italic;">e</span><span style="color: #AEAEAE; font-style: italic;">nt, passing</span>
-<span class="linenr"> 5: </span>                                        <span style="color: #AEAEAE; font-style: italic;">; </span><span style="color: #AEAEAE; font-style: italic;">a continuation variable representing t</span><span style="color: #AEAEAE; background-color: #bebebe; font-style: italic;">h</span><span style="color: #AEAEAE; font-style: italic;">is point in</span>
-<span class="linenr"> 6: </span>                                        <span style="color: #AEAEAE; font-style: italic;">; </span><span style="color: #AEAEAE; font-style: italic;">the program as the argument to that fu</span><span style="color: #AEAEAE; background-color: #bebebe; font-style: italic;">n</span><span style="color: #AEAEAE; font-style: italic;">ction.</span>
-<span class="linenr"> 7: </span>                                        <span style="color: #AEAEAE; font-style: italic;">;</span>
-<span class="linenr"> 8: </span>                                        <span style="color: #AEAEAE; font-style: italic;">; </span><span style="color: #AEAEAE; font-style: italic;">In this case, the function argument as</span><span style="color: #AEAEAE; background-color: #bebebe; font-style: italic;">s</span><span style="color: #AEAEAE; font-style: italic;">igns that</span>
-<span class="linenr"> 9: </span>                                        <span style="color: #AEAEAE; font-style: italic;">; </span><span style="color: #AEAEAE; font-style: italic;">continuation to the variable the-conti</span><span style="color: #AEAEAE; background-color: #bebebe; font-style: italic;">n</span><span style="color: #AEAEAE; font-style: italic;">uation.</span>
-<span class="linenr">10: </span>                                        <span style="color: #AEAEAE; font-style: italic;">;</span>
-<span class="linenr">11: </span>    (<span style="color: #FBDE2D;">call/cc</span> (<span style="color: #FBDE2D;">lambda</span> (k) (set! the-continuation k)))
-<span class="linenr">12: </span>                                        <span style="color: #AEAEAE; font-style: italic;">;</span>
-<span class="linenr">13: </span>                                        <span style="color: #AEAEAE; font-style: italic;">; </span><span style="color: #AEAEAE; font-style: italic;">The next time the-continuation is call</span><span style="color: #AEAEAE; background-color: #bebebe; font-style: italic;">e</span><span style="color: #AEAEAE; font-style: italic;">d, we start here.</span>
+<pre class="src src-scheme"><span class="linenr"> 1: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">the-continuation</span> #f)
+<span class="linenr"> 2: </span>(<span style="color: #F92672; font-weight: bold;">define</span> (<span style="color: #A6E22E;">test</span>)
+<span class="linenr"> 3: </span>  (<span style="color: #F92672; font-weight: bold;">let</span> ((i 0))
+<span class="linenr"> 4: </span>                                        <span style="color: #75715E;">; </span><span style="color: #75715E;">call/cc calls its first function argument, passing</span>
+<span class="linenr"> 5: </span>                                        <span style="color: #75715E;">; </span><span style="color: #75715E;">a continuation variable representing this point in</span>
+<span class="linenr"> 6: </span>                                        <span style="color: #75715E;">; </span><span style="color: #75715E;">the program as the argument to that function.</span>
+<span class="linenr"> 7: </span>                                        <span style="color: #75715E;">;</span>
+<span class="linenr"> 8: </span>                                        <span style="color: #75715E;">; </span><span style="color: #75715E;">In this case, the function argument assigns that</span>
+<span class="linenr"> 9: </span>                                        <span style="color: #75715E;">; </span><span style="color: #75715E;">continuation to the variable the-continuation.</span>
+<span class="linenr">10: </span>                                        <span style="color: #75715E;">;</span>
+<span class="linenr">11: </span>    (<span style="color: #F92672; font-weight: bold;">call/cc</span> (<span style="color: #F92672; font-weight: bold;">lambda</span> (k) (set! the-continuation k)))
+<span class="linenr">12: </span>                                        <span style="color: #75715E;">;</span>
+<span class="linenr">13: </span>                                        <span style="color: #75715E;">; </span><span style="color: #75715E;">The next time the-continuation is called, we start here.</span>
 <span class="linenr">14: </span>    (set! i (+ i 1))
 <span class="linenr">15: </span>    i))
 </pre>
@@ -232,10 +233,10 @@ Coroutine 也就是 corporate routine，中文名就是协程，从它的英文�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span class="linenr">1: </span><span style="color: #FF6400;">switch</span> = getcurrent().switch
-<span class="linenr">2: </span><span style="color: #FBDE2D;">self</span>.rawlink(switch)
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #FD971F;">switch</span> = getcurrent().switch
+<span class="linenr">2: </span><span style="color: #F92672; font-weight: bold;">self</span>.rawlink(switch)
 <span class="linenr">3: </span>
-<span class="linenr">4: </span><span style="color: #FF6400;">result</span> = <span style="color: #FBDE2D;">self</span>.parent.switch()
+<span class="linenr">4: </span><span style="color: #FD971F;">result</span> = <span style="color: #F92672; font-weight: bold;">self</span>.parent.switch()
 </pre>
 </div>
 <p>

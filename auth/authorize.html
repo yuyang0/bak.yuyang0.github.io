@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>Authorize Code</title>
+    <meta name="author" content="Yu Yang">
+    </head>
+
+    <body>
+      <h1>Authorize Code</h1>
+      <h2>Authorize Code: <span id="code" style="color:red;"></span></h2>
+      <script type="text/javascript">
+  var QueryString = function () {
+    // This function is anonymous, is executed immediately and
+    // the return value is assigned to QueryString!
+    var query_string = {};
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+      var pair = vars[i].split("=");
+      // If first entry with this name
+      if (typeof query_string[pair[0]] === "undefined") {
+        query_string[pair[0]] = pair[1];
+    	// If second entry with this name
+      } else if (typeof query_string[pair[0]] === "string") {
+        var arr = [ query_string[pair[0]], pair[1] ];
+        query_string[pair[0]] = arr;
+    	// If third or later entry with this name
+      } else {
+        query_string[pair[0]].push(pair[1]);
+      }
+    }
+    return query_string;
+  } ();
+var auth_code = document.getElementById('code');
+auth_code.innerHTML = QueryString['code'];
+</script>
+<hr>
+  <address>
+    <a href="mailto:yangyu@yangyu-4730">Yu Yang</a>,
+    20 Jul 2013
+  </address>
+</body>
+</html>

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>SICP笔记</title>
-<!-- 2013-07-14 Sun 18:21 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="author" content="Yu Yang"/>
-<meta name="keywords" content="SICP scheme"/>
+<!-- 2013-07-21 Sun 12:47 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+
+
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center; }
@@ -278,17 +279,17 @@ gcd(a, b) = gcd (b, r)        (r = a % b)
 <h3 id="sec-1-4">一些个人体会</h3>
 <div class="outline-text-3" id="text-1-4">
 <p class="verse">
-church数: <br/>
-&#xa0;&#xa0;数实际上没有具体的实际意义，本质上数只是表示一个个孤立的状态的符号， <br/>
-&#xa0;&#xa0;它唯一的意义就是能表示出这一个个状态之间是不同的，如1表示的状态和2表 <br/>
-&#xa0;&#xa0;示的状态时不同的，而在这些状态上定义+ - * / 这样的的运算，在执行这些 <br/>
-&#xa0;&#xa0;运算时可以从一个状态跳到另外一个状态 <br/>
-lambda演算: <br/>
-&#xa0;&#xa0;1. 函数与形参无关，也就是说只要将形参名与函数体对该形参名的引用同时 <br/>
-&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;替换则函数是等价的 <br/>
-&#xa0;&#xa0;2. 如果函数有多个参数，调用时没有给出所有参数那么该调用返回一个函数 <br/>
-&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;eg：(define (add x y) (+ x y)) <br/>
-&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;调用(add 1) 返回 (lambda(y) (+ 1 y)) <br/>
+church数:<br  />
+&#xa0;&#xa0;数实际上没有具体的实际意义，本质上数只是表示一个个孤立的状态的符号，<br  />
+&#xa0;&#xa0;它唯一的意义就是能表示出这一个个状态之间是不同的，如1表示的状态和2表<br  />
+&#xa0;&#xa0;示的状态时不同的，而在这些状态上定义+ - * / 这样的的运算，在执行这些<br  />
+&#xa0;&#xa0;运算时可以从一个状态跳到另外一个状态<br  />
+lambda演算:<br  />
+&#xa0;&#xa0;1. 函数与形参无关，也就是说只要将形参名与函数体对该形参名的引用同时<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;替换则函数是等价的<br  />
+&#xa0;&#xa0;2. 如果函数有多个参数，调用时没有给出所有参数那么该调用返回一个函数<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;eg：(define (add x y) (+ x y))<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;调用(add 1) 返回 (lambda(y) (+ 1 y))<br  />
 </p>
 </div>
 </div>

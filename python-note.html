@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>python笔记</title>
-<!-- 2013-07-14 Sun 18:21 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="author" content="Yu Yang"/>
-<meta name="keywords" content="python"/>
+<!-- 2013-11-06 Wed 21:01 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Yu Yang" />
+<meta  name="keywords" content="python" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center; }
@@ -163,16 +164,97 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#sec-1">python</a>
 <ul>
-<li><a href="#sec-1-1">virtualenv</a></li>
-<li><a href="#sec-1-2">库的使用方法</a>
+<li><a href="#sec-1-1">python的编码规范</a></li>
+<li><a href="#sec-1-2">python 文件处理</a></li>
+<li><a href="#sec-1-3">杂七杂八</a>
 <ul>
-<li><a href="#sec-1-2-1">requests</a></li>
-<li><a href="#sec-1-2-2">pickle</a></li>
-<li><a href="#sec-1-2-3">json</a></li>
-<li><a href="#sec-1-2-4">HTMLParser</a></li>
-<li><a href="#sec-1-2-5">pyquery</a></li>
-<li><a href="#sec-1-2-6">watchdog</a></li>
-<li><a href="#sec-1-2-7">rauth</a></li>
+<li><a href="#sec-1-3-1">除法</a></li>
+<li><a href="#sec-1-3-2">一些内置函数的解释</a></li>
+<li><a href="#sec-1-3-3">dir</a></li>
+<li><a href="#sec-1-3-4">globals  And lolcals</a></li>
+<li><a href="#sec-1-3-5">getattr   <span class="underline"><span class="underline">getattr</span></span>  VS  <span class="underline"><span class="underline">getattribute</span></span></a></li>
+<li><a href="#sec-1-3-6"><span class="underline"><span class="underline">import</span></span></a></li>
+</ul>
+</li>
+<li><a href="#sec-1-4">装饰器</a>
+<ul>
+<li><a href="#sec-1-4-1">装饰器的基本形式</a></li>
+<li><a href="#sec-1-4-2">使用类作为装饰器(推荐的做法)</a></li>
+<li><a href="#sec-1-4-3">使用类作为装饰器装饰类方法</a></li>
+<li><a href="#sec-1-4-4">给装饰器添加参数</a></li>
+<li><a href="#sec-1-4-5">functools模块</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-5">迭代器</a>
+<ul>
+<li><a href="#sec-1-5-1">迭代器的基本知识</a></li>
+<li><a href="#sec-1-5-2">生成器generator</a></li>
+<li><a href="#sec-1-5-3">for循环的迭代过程</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-6">模块</a>
+<ul>
+<li><a href="#sec-1-6-1">relative import</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-7">OOP</a>
+<ul>
+<li><a href="#sec-1-7-1">基本OOP代码示例</a></li>
+<li><a href="#sec-1-7-2">属性搜索树</a></li>
+<li><a href="#sec-1-7-3">类的设计</a>
+<ul>
+<li><a href="#sec-1-7-3-1">is a</a></li>
+<li><a href="#sec-1-7-3-2">has a</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-7-4">常见的运算符重载</a></li>
+<li><a href="#sec-1-7-5">Descriptor</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-8">python异常</a>
+<ul>
+<li><a href="#sec-1-8-1">try &#x2026; except语句</a></li>
+<li><a href="#sec-1-8-2">raise</a></li>
+<li><a href="#sec-1-8-3">异常</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-9">python中文处理</a></li>
+<li><a href="#sec-1-10">一些标准库的使用说明</a>
+<ul>
+<li><a href="#sec-1-10-1">python 正则表达式</a></li>
+<li><a href="#sec-1-10-2">多线程</a>
+<ul>
+<li><a href="#sec-1-10-2-1">Thread</a></li>
+<li><a href="#sec-1-10-2-2">threading</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-10-3">collections</a>
+<ul>
+<li><a href="#sec-1-10-3-1">Counter</a></li>
+<li><a href="#sec-1-10-3-2">deque 双端队列</a></li>
+<li><a href="#sec-1-10-3-3">defaultdict</a></li>
+<li><a href="#sec-1-10-3-4">namedtuple</a></li>
+<li><a href="#sec-1-10-3-5">OrderedDict</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-10-4">pickle</a></li>
+<li><a href="#sec-1-10-5">json</a></li>
+<li><a href="#sec-1-10-6">HTMLParser</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-11">一些第三方库的使用方法</a>
+<ul>
+<li><a href="#sec-1-11-1">requests</a></li>
+<li><a href="#sec-1-11-2">pip</a></li>
+<li><a href="#sec-1-11-3">pyquery</a></li>
+<li><a href="#sec-1-11-4">watchdog</a></li>
+<li><a href="#sec-1-11-5">rauth</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-12">常用工具的使用方法</a>
+<ul>
+<li><a href="#sec-1-12-1">virtualenv</a></li>
+<li><a href="#sec-1-12-2">ipython</a></li>
 </ul>
 </li>
 </ul>
@@ -184,15 +266,1288 @@ for the JavaScript code in this tag.
 <h2 id="sec-1">python</h2>
 <div class="outline-text-2" id="text-1">
 </div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">virtualenv</h3>
+<h3 id="sec-1-1">python的编码规范</h3>
 <div class="outline-text-3" id="text-1-1">
+<ol class="org-ol">
+<li>用4个空格缩进
+</li>
+<li>每一行不超过80个字符,当一行超过80个字符时,可以用\来连接下一行,当对一个二元操作符断行时,应该将操作符留在
+上一行, 对于函数定义以及调用,那么根据括号来对齐.
+</li>
+<li>模块内容的顺序：模块说明和docstring —-&gt; import —-&gt; __all__(optional) &#x2013;&gt; globals and constants —-&gt; 其他定义
+</li>
+<li>一行只导入一个模块(不推荐 import sys, os)
+</li>
+<li>模块导入顺序: 标准库, 第三方库, 自己编写的库. 三者之间用空行分割, 而且三者应该紧挨着模块字符串的后面
+</li>
+<li>模块级别的函数定义, 类定义用2个空行分割, 类方法用一个空行分割
+</li>
+<li>空格的添加:
+<ul class="org-ul">
+<li>二元操作的两边各放一个空格, 但是对于有多个操作符的情况,可以只在低优先级的操作符两边放空格
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #FD971F;">i</span> = i + 1
+<span style="color: #FD971F;">submitted</span> += 1
+<span style="color: #FD971F;">x</span> = x*2 - 1
+<span style="color: #FD971F;">hypot2</span> = x*x + y*y
+<span style="color: #FD971F;">c</span> = (a+b) * (a-b)
+</pre>
+</div>
+</li>
+<li>标点符号的后面放空格,前面不要放空格,在(, {, [之后以及), }, ]之前不要放空格,函数调用时函数名与左括号之间
+不要放空格
+<pre class="example">
+Yes: spam(ham[1], {eggs: 2})
+No:  spam( ham[ 1 ], { eggs: 2 } )
+No:  spam (ham[1], {eggs:2})
+
+Yes: if x == 4: print x, y; x, y = y, x
+No:  if x == 4 : print x , y ; x , y = y , x
+
+Yes: spam(1)
+No:  spam (1)
+
+Yes: dict['key'] = list[index]
+No:  dict ['key'] = list [index]
+</pre>
+</li>
+<li>不要在用于指定关键字参数 (keyword argument) 或默认参数值的 '=' 号周围使用空格。
+</li>
+</ul>
+</li>
+<li>命名
+<ul class="org-ul">
+<li>模块名与包名: 全部用小写字母, 模块名可以添加下划线来增加可读性, 包名不建议添加下划线,名字尽量短一点,因
+为有些文件系统对文件长度有要求
+</li>
+<li>类名: 使用驼峰命名法,如果是内部类,则在前面加一个下划线
+</li>
+<li>异常名: 异常是类, 所以使用驼峰命名法,但是必须有Error后缀
+</li>
+<li>函数名: 必须是小写字母, 用下划线去增加可读性
+</li>
+<li>类方法: 和函数名相同, 对于non-public函数, 可以在前面加一个下划线, 前面加两个下划线主要是避免与子类命名
+冲突(一般用户命名变量不推荐使用)
+</li>
+<li>常量名: 全部大写, 用下划线分割增加可读性
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">python 文件处理</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+open打开文件时的选项：
+</p>
+<ul class="org-ul">
+<li>w, w+: 如果文件已存在，那么二者都会将文件内容清除
+</li>
+<li>r+: 如果写文件，那么会从当前位置覆盖写，而不是插入，当用该模式打开文件，读入文件内容，然后用覆盖该文件时应使
+用如下代码
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">with</span> <span style="color: #A6E22E;">open</span>(filename, <span style="color: #E6DB74;">'r+'</span>) <span style="color: #F92672; font-weight: bold;">as</span>  f:
+    <span style="color: #FD971F;">content</span> = f.read()
+    <span style="color: #FD971F;">new_content</span> = do_something()
+    f.seek(0)
+    f.write(new_content)
+    f.truncate()                <span style="color: #75715E;"># </span><span style="color: #75715E;">&#21024;&#38500;&#24403;&#21069;&#35835;&#20889;&#20301;&#32622;&#21040;&#25991;&#20214;&#26411;&#23614;&#30340;&#20869;&#23481;</span>
+</pre>
+</div>
+</li>
+<li>b: 在python2中，linux指定与不指定问题不大，但是建议对于二进制文件比如图片还是指定该选项比较好，避免移植到
+windows出现问题，在python3中，对于文本文件，如果不指定该选项，那么会返回unicode string， 而如果指定该选
+项则返回byte string
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">杂七杂八</h3>
+<div class="outline-text-3" id="text-1-3">
+</div><div id="outline-container-sec-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1">除法</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<ul class="org-ul">
+<li>X/Y: python2中的行为和C语言类似，3/2=1, 3/2.0=1.5; 在python3中，这是真除法，也就是会一直保留小数位,3/2 = 1.5
+</li>
+<li>X//Y: 在python2以及3中都是floor除法，也就是取整数区间的左边边界，5//2 = 2, 5//-2 = -3
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3-2" class="outline-4">
+<h4 id="sec-1-3-2">一些内置函数的解释</h4>
+</div>
+<div id="outline-container-sec-1-3-3" class="outline-4">
+<h4 id="sec-1-3-3">dir</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<p>
+获得对象的所有属性,也就是顶层的那些names
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3-4" class="outline-4">
+<h4 id="sec-1-3-4">globals  And lolcals</h4>
+<div class="outline-text-4" id="text-1-3-4">
+<ol class="org-ol">
+<li>globals(): 返回一个字典,字典包括当前模块(也就是调用globals()的模块)的所有模块级属性, 同时还包
+括'<span class="underline"><span class="underline">builtins</span></span>'属性, 还包括几个特殊变量__file__, <span class="underline"><span class="underline">package</span></span>, <span class="underline"><span class="underline">doc</span></span>
+</li>
+<li>locals(): 这个只返回局部空间(比如函数的局部变量)的变量与值的字典,注意这个字典不能修改,如果强行修改会引发
+严重后果,比如解释器崩溃
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3-5" class="outline-4">
+<h4 id="sec-1-3-5">getattr   <span class="underline"><span class="underline">getattr</span></span>  VS  <span class="underline"><span class="underline">getattribute</span></span></h4>
+<div class="outline-text-4" id="text-1-3-5">
+<ol class="org-ol">
+<li>__getattr__只有在属性不存在时才调用,该方法用的多
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">ClassName</span>(<span style="color: #A6E22E;">object</span>):
+    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__getattr__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, name):
+        dosomething()
+        <span style="color: #F92672; font-weight: bold;">return</span> <span style="color: #A6E22E;">super</span>(ClassName, <span style="color: #F92672; font-weight: bold;">self</span>).__getattr__(name)
+</pre>
+</div>
+</li>
+<li>__getattribute__是每一次obj.attr时都会调用,所以它可以拦截所有的属性查询, 用的很少
+</li>
+<li>getattr: 原型getattr(object, name[, default]), getattr(x, 'foobar')等价于x.foobar优势就在于getattr可以
+使用字符串,注意如果是获得类实例的方法,那么self参数就可以忽略了,只需要传入除self之外的其它参数就好
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3-6" class="outline-4">
+<h4 id="sec-1-3-6"><span class="underline"><span class="underline">import</span></span></h4>
+<div class="outline-text-4" id="text-1-3-6">
+<p>
+原型：  __import__(name[, globals[, locals[, fromlist[, level]]]])
+</p>
+<ul class="org-ul">
+<li>fromlist： 指定需要从name中导入的属性名，一般而言也就是from module1 import attr1, attr2&#x2026;中的
+attr1,attr2&#x2026; <b>这个参数一般需要指定</b>
+</li>
+<li>level: 指定使用绝对导入还是相对导入，-1是默认会同时尝试二者，0是绝对导入，正数是相当于加几个. ,比如如果
+为1,那就是加一个.也就是当前目录，如果是2,那就是加两个点，在当前模块的父目录中导入，和import中的相
+对导入语法类似
+</li>
+</ul>
+
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #75715E;"># </span><span style="color: #75715E;">snippet 1</span>
+<span style="color: #F92672; font-weight: bold;">from</span> spam.ham <span style="color: #F92672; font-weight: bold;">import</span> eggs, sausage <span style="color: #F92672; font-weight: bold;">as</span> saus
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">snippet 2</span>
+<span style="color: #FD971F;">_temp</span> = <span style="color: #A6E22E;">__import__</span>(<span style="color: #E6DB74;">'spam.ham'</span>, <span style="color: #A6E22E;">globals</span>(), <span style="color: #A6E22E;">locals</span>(), [<span style="color: #E6DB74;">'eggs'</span>, <span style="color: #E6DB74;">'sausage'</span>], -1)
+<span style="color: #FD971F;">eggs</span> = _temp.eggs
+<span style="color: #FD971F;">saus</span> = _temp.sausage
+</pre>
+</div>
+<p>
+两段代码等价, __import__接的是字符串
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">装饰器</h3>
+<div class="outline-text-3" id="text-1-4">
+</div><div id="outline-container-sec-1-4-1" class="outline-4">
+<h4 id="sec-1-4-1">装饰器的基本形式</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">deco</span>(func):
+    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">_deco</span>():
+        <span style="color: #F92672; font-weight: bold;">print</span>(<span style="color: #E6DB74;">"before myfunc() called."</span>)
+        func()
+        <span style="color: #F92672; font-weight: bold;">print</span>(<span style="color: #E6DB74;">"  after myfunc() called."</span>)
+
+    <span style="color: #F92672; font-weight: bold;">return</span> _deco
+
+<span style="color: #66D9EF;">@deco</span>
+<span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">myfunc</span>():
+    <span style="color: #F92672; font-weight: bold;">print</span>(<span style="color: #E6DB74;">" myfunc() called."</span>)
+</pre>
+</div>
+<p>
+上面的@deco 等价于 myfunc = deco(myfunc), 这就是装饰器的本质所在, 注意_deco必须与myfunc有相同的参数,因为
+装饰后调用myfunc实际是调用_deco, 当然_deco可以使用*args, **kargs这样的可变参数
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-4-2" class="outline-4">
+<h4 id="sec-1-4-2">使用类作为装饰器(推荐的做法)</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">deco</span>(<span style="color: #A6E22E;">object</span>):
+    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__init__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, func):
+        <span style="color: #F92672; font-weight: bold;">self</span>.func = func
+
+    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__call__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, *args, **kwargs):
+        <span style="color: #F92672; font-weight: bold;">print</span>(<span style="color: #E6DB74;">"before myfunc() called."</span>)
+        func()
+        <span style="color: #F92672; font-weight: bold;">print</span>(<span style="color: #E6DB74;">"  after myfunc() called."</span>)
+
+<span style="color: #66D9EF;">@deco</span>
+<span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">myfunc</span>():
+    <span style="color: #F92672; font-weight: bold;">print</span>(<span style="color: #E6DB74;">" myfunc() called."</span>)
+</pre>
+</div>
+<p>
+myfunc = deco(myfunc) 所以myfunc就是一个deco类的实例，然后myfunc(*args, **kwargs),实际就是调用类实例
+的__call__方法
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-3" class="outline-4">
+<h4 id="sec-1-4-3">使用类作为装饰器装饰类方法</h4>
+<div class="outline-text-4" id="text-1-4-3">
+<p>
+下面的代码也可以装饰非类方法,也就是装饰普通函数,也就意味着下面的代码可以替代2,因为如果装饰的是普通函数,
+那么会直接调用该函数,所以不会触发descriptor的__get__方法
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">deco</span>(<span style="color: #A6E22E;">object</span>):
+    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__init__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, func):
+        <span style="color: #F92672; font-weight: bold;">self</span>.func = func
+
+    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__call__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, *args, **kwargs):
+        <span style="color: #F92672; font-weight: bold;">print</span>(<span style="color: #E6DB74;">"before myfunc() called."</span>)
+        <span style="color: #F92672; font-weight: bold;">self</span>.func(*args, **kwargs)
+        <span style="color: #F92672; font-weight: bold;">print</span>(<span style="color: #E6DB74;">"  after myfunc() called."</span>)
+
+    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__get__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, obj, objtype):
+        <span style="color: #F92672; font-weight: bold;">import</span> functools
+        <span style="color: #F92672; font-weight: bold;">return</span> functools.partial(<span style="color: #F92672; font-weight: bold;">self</span>.__call__, obj)
+
+<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Test</span>(<span style="color: #A6E22E;">object</span>):
+    <span style="color: #66D9EF;">@deco</span>
+    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">myfunc</span>(<span style="color: #F92672; font-weight: bold;">self</span>):
+        <span style="color: #F92672; font-weight: bold;">print</span>(<span style="color: #E6DB74;">" myfunc() called."</span>)
+</pre>
+</div>
+<p>
+这与2最大的区别就是使用了descriptor，也就是__get__, 之所以这么写是因为，如果像2一样，那么就没有给myfunc
+传递self参数，所以python会报缺少参数的错误，下面解释一下代码运行的流程，deco装饰后，myfunc变成一个deco的
+类实例，注意deco定义了__get__, 所以myfunc就变成了一个descriptor对象，当你使用test_obj.myfunc(*args,
+**kwargs)调用的时候，也就触发了test_obj.myfunc的属性搜索，那么根据descriptor的规则，就变成了
+myfunc.__get__(test_obj),该函数返回已将test_obj绑定到myfunc.__call__的第一个参数的partial 函数，接着这个
+函数在接受*args, **kwargs参数，总之就是通过descriptor将test_obj传递给了__call__,从而消除了缺少self的问题
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-4" class="outline-4">
+<h4 id="sec-1-4-4">给装饰器添加参数</h4>
+<div class="outline-text-4" id="text-1-4-4">
+<div class="org-src-container">
+
+<pre class="src src-python"> <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">deco</span>(arg):
+     <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">_deco</span>(func):
+         <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__deco</span>():
+             <span style="color: #F92672; font-weight: bold;">print</span>(<span style="color: #E6DB74;">"before %s called [%s]."</span> % (func.<span style="color: #A6E22E;">__name__</span>, arg))
+             func()
+             <span style="color: #F92672; font-weight: bold;">print</span>(<span style="color: #E6DB74;">"  after %s called [%s]."</span> % (func.<span style="color: #A6E22E;">__name__</span>, arg))
+         <span style="color: #F92672; font-weight: bold;">return</span> __deco
+     <span style="color: #F92672; font-weight: bold;">return</span> _deco
+<span style="color: #66D9EF;">@deco</span>(<span style="color: #E6DB74;">"mymodule"</span>)
+ <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">myfunc</span>():
+     <span style="color: #F92672; font-weight: bold;">print</span>(<span style="color: #E6DB74;">" myfunc() called."</span>)
+<span style="color: #66D9EF;">@deco</span>(<span style="color: #E6DB74;">"module2"</span>)
+ <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">myfunc2</span>():
+     <span style="color: #F92672; font-weight: bold;">print</span>(<span style="color: #E6DB74;">" myfunc2() called."</span>)
+myfunc()
+ myfunc2()
+</pre>
+</div>
+<p>
+需要给装饰器加参数.那么就给多添加一个嵌套函数, 这个参数可以是类以及其它对象
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-4-5" class="outline-4">
+<h4 id="sec-1-4-5">functools模块</h4>
+<div class="outline-text-4" id="text-1-4-5">
+<ul class="org-ul">
+<li>wraps: 这个装饰器可以确保函数在装饰后属性的一致,比如上面的例子 myfunc=deco(myfunc), 那么此时
+myfunc的__name__, __doc__等属性都不在是原myfunc的值了,而是_deco的值,每一次装饰之后这些函数对象的元信
+息都丢失的话,那么这显然是一个大问题,而wraps可以用来应付这个问题
+<div class="org-src-container">
+
+<pre class="src src-python"> <span style="color: #F92672; font-weight: bold;">import</span> functools
+<span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">deco</span>(func):
+     <span style="color: #66D9EF;">@functools.wraps</span>(func)
+     <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">_deco</span>():
+         <span style="color: #F92672; font-weight: bold;">print</span>(<span style="color: #E6DB74;">"before myfunc() called."</span>)
+         func()
+         <span style="color: #F92672; font-weight: bold;">print</span>(<span style="color: #E6DB74;">"  after myfunc() called."</span>)
+    <span style="color: #F92672; font-weight: bold;">return</span> _deco
+<span style="color: #66D9EF;">@deco</span>
+ <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">myfunc</span>():
+     <span style="color: #F92672; font-weight: bold;">print</span>(<span style="color: #E6DB74;">" myfunc() called."</span>)
+</pre>
+</div>
+<p>
+@functools.wraps(func)这行代码可以保证,通过装饰器调用后,函数__name__, __doc__仍然和原来的函数一致
+</p>
+</li>
+<li>partial: 有时候你知道一个函数的一部分参数,这个时候你可以先绑定这些参数,绑定这些参数之后会返回一个
+partial对象,你可以当这个对象就是一个以绑定了一些参数的函数,事实上和lisp的lambda很像,partial大体上等于以
+下代码
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">partial</span>(func, *args, **keywords):
+    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">newfunc</span>(*fargs, **fkeywords):
+        <span style="color: #FD971F;">newkeywords</span> = keywords.copy()
+        newkeywords.update(fkeywords)
+        <span style="color: #F92672; font-weight: bold;">return</span> func(*(args + fargs), **newkeywords)
+    <span style="color: #FD971F;">newfunc.func</span> = func
+    <span style="color: #FD971F;">newfunc.args</span> = args
+    <span style="color: #FD971F;">newfunc.keywords</span> = keywords
+    <span style="color: #F92672; font-weight: bold;">return</span> newfunc
+</pre>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5">迭代器</h3>
+<div class="outline-text-3" id="text-1-5">
+</div><div id="outline-container-sec-1-5-1" class="outline-4">
+<h4 id="sec-1-5-1">迭代器的基本知识</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<p>
+迭代器对象是序列对象的一般化,每一个迭代器对象都有一个next方法,该方法每调用一次都会返回下一个元素,当没有元素
+可返回时要触发StopIteration异常,这就是迭代对象的实质了
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5-2" class="outline-4">
+<h4 id="sec-1-5-2">生成器generator</h4>
+<div class="outline-text-4" id="text-1-5-2">
+<p>
+从大多数方面看生成器函数和普通函数一致,它们二者最大的不同时,普通函数是直接通过return返回一个值,而生成器函
+数是通过yield返回一个迭代器对象,所以每一个生成器函数调用后都是返回一个迭代器对象,这是本质的区别
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5-3" class="outline-4">
+<h4 id="sec-1-5-3">for循环的迭代过程</h4>
+<div class="outline-text-4" id="text-1-5-3">
+<p>
+for item in obj语句的执行过程其实是这样
+</p>
+<ol class="org-ol">
+<li>先运行iter(obj) 获得迭代器对象 iter_obj
+</li>
+<li>重复的调用iter_obj.next() 直到出现StopIteration异常
+</li>
+<li>如果上述两步已成功,那么for循环就结束了,如果上述两步没成功,这意味着obj不支持迭代协议,那么for就会尝试使用
+下标来遍历那么会使用下标来遍历,也就是从0开始每一轮循环都对下标加一,而且每一轮循环都使用obj[i] 来访问元
+素,直到触发异常
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6">模块</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+<span class="underline"><span class="underline">all__与_X: 当调用from XX import * 时, 如果指定了__all</span></span>, 那么就只导入__all__中的名字,如果没指定__all__,
+那么导入所有除了以下划线开头的全部模块级名字, 也就是说不会导入 _X 这样的名字
+</p>
+</div>
+<div id="outline-container-sec-1-6-1" class="outline-4">
+<h4 id="sec-1-6-1">relative import</h4>
+<div class="outline-text-4" id="text-1-6-1">
+<p>
+默认是绝对导入,也就是搜索sys.path, 相对导入需要一下的语法:对于如下的一个目录结构
+</p>
+<pre class="example">
+package/
+ __init__.py
+ subpackage1/
+     __init__.py
+     moduleX.py
+     moduleY.py
+ subpackage2/
+     __init__.py
+     moduleZ.py
+ moduleA.py
+</pre>
+<p>
+假设在moduleX.py or subpackage1/__init__.py中，那么下列的相对导入是合法的
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> .moduleY <span style="color: #F92672; font-weight: bold;">import</span> spam
+<span style="color: #F92672; font-weight: bold;">from</span> .moduleY <span style="color: #F92672; font-weight: bold;">import</span> spam <span style="color: #F92672; font-weight: bold;">as</span> ham
+<span style="color: #F92672; font-weight: bold;">from</span> . <span style="color: #F92672; font-weight: bold;">import</span> moduleY
+<span style="color: #F92672; font-weight: bold;">from</span> ..subpackage1 <span style="color: #F92672; font-weight: bold;">import</span> moduleY
+<span style="color: #F92672; font-weight: bold;">from</span> ..subpackage2.moduleZ <span style="color: #F92672; font-weight: bold;">import</span> eggs
+<span style="color: #F92672; font-weight: bold;">from</span> ..moduleA <span style="color: #F92672; font-weight: bold;">import</span> foo
+<span style="color: #F92672; font-weight: bold;">from</span> ...package <span style="color: #F92672; font-weight: bold;">import</span> bar
+<span style="color: #F92672; font-weight: bold;">from</span> ...sys <span style="color: #F92672; font-weight: bold;">import</span> path
+</pre>
+</div>
+<p>
+一个点代表当前文件所在的目录，两个点代表当前文件所在目录的父目录，以此类推，注意相对导入使用__name__属性实
+现的，所以对于执行模块必须小心，因为他的__name__属性是__main__
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7">OOP</h3>
+<div class="outline-text-3" id="text-1-7">
+</div><div id="outline-container-sec-1-7-1" class="outline-4">
+<h4 id="sec-1-7-1">基本OOP代码示例</h4>
+<div class="outline-text-4" id="text-1-7-1">
+<p>
+类,类的实例和模块都只是一个命名空间,命名空间的属性都可以修改,所以非常灵活,对于基于类的对象而言,可以使用dir内
+置函数来查看命名空间, <b>类与类的实例都是对象,二者都是使用字典对象实现的命名空间,二者的__dict__属性基本就是命名空间
+字典</b>, 看如下代码:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Test</span>(<span style="color: #A6E22E;">object</span>):
+    <span style="color: #E6DB74;">"""</span>
+<span style="color: #E6DB74;">    a Test Class</span>
+<span style="color: #E6DB74;">    """</span>
+    <span style="color: #FD971F;">val1</span> = 1
+    <span style="color: #FD971F;">val2</span> = 2
+    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__init__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, arg1, arg2):
+        <span style="color: #E6DB74;">"""</span>
+<span style="color: #E6DB74;">        """</span>
+        <span style="color: #F92672; font-weight: bold;">self</span>.arg1 = arg1
+        <span style="color: #F92672; font-weight: bold;">self</span>.arg2 = arg2
+
+    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">display</span>(<span style="color: #F92672; font-weight: bold;">self</span>):
+        <span style="color: #E6DB74;">"""</span>
+<span style="color: #E6DB74;">        """</span>
+        <span style="color: #F92672; font-weight: bold;">print</span> <span style="color: #F92672; font-weight: bold;">self</span>.arg1, <span style="color: #F92672; font-weight: bold;">self</span>.arg2
+
+<span style="color: #FD971F;">obj1</span> = Test(1, 2)
+<span style="color: #F92672; font-weight: bold;">print</span> <span style="color: #A6E22E;">dir</span>(Test)
+<span style="color: #F92672; font-weight: bold;">print</span>
+<span style="color: #F92672; font-weight: bold;">print</span> <span style="color: #A6E22E;">dir</span>(obj1)
+</pre>
+</div>
+
+<p>
+val1, val2, <span class="underline"><span class="underline">init</span></span>, display都是类Test本身的属性, 而arg1, arg2就是类实例(obj1)的属性,实际上self产生的就是
+类实例对象的属性, 当然类的实例也会继承
+类的属性
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7-2" class="outline-4">
+<h4 id="sec-1-7-2">属性搜索树</h4>
+<div class="outline-text-4" id="text-1-7-2">
+<p>
+当调用obj.attr时,python有一个属性的搜索过程,比如下面的代码
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">D1</span>(<span style="color: #A6E22E;">object</span>):
+    <span style="color: #F92672; font-weight: bold;">pass</span>
+
+<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">D2</span>(<span style="color: #A6E22E;">object</span>):
+    <span style="color: #F92672; font-weight: bold;">pass</span>
+
+<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">D3</span>(<span style="color: #A6E22E;">object</span>):
+    <span style="color: #F92672; font-weight: bold;">pass</span>
+
+<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">C1</span>(D1, D2):
+    <span style="color: #F92672; font-weight: bold;">pass</span>
+
+<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">C2</span>(D3):
+    <span style="color: #F92672; font-weight: bold;">pass</span>
+
+<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">B</span>(C1, C2):
+    <span style="color: #F92672; font-weight: bold;">pass</span>
+
+<span style="color: #FD971F;">a1</span> = B()
+<span style="color: #FD971F;">a2</span> = B()
+</pre>
+</div>
+<p>
+上面的代码会构成一颗属性搜索树:
+</p>
+
+<div class="figure">
+<p><img src="static/img/attribute-search-tree.png" alt="attribute-search-tree.png" />
+</p>
+</div>
+
+<p>
+因为类本身也是对象,所以类本身也有属性,类的属性就是类的方法,以及类的变量, 比如当调用a1.x时,那么搜索的过程就
+是这样的: a1, B, C1, D1, D2, C2, D3注意这是深度优先搜索,python的经典类与新式类都是这种搜索模式，但是新式类
+有一个diamond pattern，也就是钻石模式，这种模式下有一个以上的超类会通往相同的更高层次的超类，这时候会使用
+广度优先搜索(只是有相同超类的那一部分)，举个例子：
+</p>
+
+<div class="figure">
+<p><img src="static/img/diamond-pattern.png" alt="diamond-pattern.png" />
+</p>
+</div>
+
+<p>
+如上图所示，如果C2有个w属性，D2也有个w属性，那么当使用a1.w进行属性搜索时，如果使用深度优先搜索，那么会得到
+D2.w， 但是C2是D2的子类，并且重载了w属性，这种情况下应该用子类的属性也就是C2的w属性，钻石继承就是为这种情
+况准备的，在这种情况下，在C1,D2, C2会使用广度优先算法搜索，这样就可以先得到C2.w .这个特例需要注意
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7-3" class="outline-4">
+<h4 id="sec-1-7-3">类的设计</h4>
+<div class="outline-text-4" id="text-1-7-3">
+</div><div id="outline-container-sec-1-7-3-1" class="outline-5">
+<h5 id="sec-1-7-3-1">is a</h5>
+<div class="outline-text-5" id="text-1-7-3-1">
+<p>
+如何现实中两个事物是is a的关系，那么就应该用继承，比如teacher is a person，那么Teacher就应该继承Person
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7-3-2" class="outline-5">
+<h5 id="sec-1-7-3-2">has a</h5>
+<div class="outline-text-5" id="text-1-7-3-2">
+<p>
+比如一个商店有商品，有营业员，有顾客，那么商店与商品，营业员，顾客就是has a的关系，这时候应该使用组合，也
+就是说商店是一个容器，在该容器对象的构造函数中创建营业员对象，创建商品对象，创建顾客对象，具体到python就
+是在__init__中创建这些对象
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7-4" class="outline-4">
+<h4 id="sec-1-7-4">常见的运算符重载</h4>
+<div class="outline-text-4" id="text-1-7-4">
+<ol class="org-ol">
+<li><span class="underline"><span class="underline">getattr</span></span> <span class="underline"><span class="underline">setattr___使用obj.attr时如果该属性obj中没有attr属性，这时会调用__getattr</span></span>, __setattr___会
+拦截所有的属性赋值，也就是obj.attr = val这样的语句都等价于obj.__setattr___('attr', val)，这是
+和__getattr__不同的地方，要特别注意
+</li>
+<li><span class="underline"><span class="underline">getitem</span></span> <span class="underline"><span class="underline">setitem_</span></span>
+当出现x[i], x[i] = val, 会分别调用上述方法， 当使用for 迭代时会先尝试__iter__, 如果行不通，那么就使用索
+引，也就是用不断递增的索引调用__getitem__, 直到出现IndexError
+</li>
+<li><span class="underline"><span class="underline">iter</span></span>
+必须返回一个迭代器对象，一个拥有next方法的对象就是迭代器对象，如果使用for 在该对象上迭代，它会先使用
+iter内置函数来调用__iter__ 方法获得迭代器对象，然后重复的调用该迭代器对象的next方法，直到该next方法产生
+StopIteration异常。
+</li>
+<li><span class="underline"><span class="underline">call</span></span>
+将类实例作为函数调用时就是使用的该方法，比如obj是一个类实例，那么obj('a', 'b')等价于
+obj.__call__('a','b'),这是一个很常用的方法
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7-5" class="outline-4">
+<h4 id="sec-1-7-5">Descriptor</h4>
+<div class="outline-text-4" id="text-1-7-5">
+<p>
+任何对象只要定义了__get__, <span class="underline"><span class="underline">set</span></span>, __del___三者之一，那么就是descriptor，这是一份不错的[[http://docs.python.org/2/howto/descriptor.html][tutorial]]， 示例代码:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">RevealAccess</span>(<span style="color: #A6E22E;">object</span>):
+    <span style="color: #E6DB74;">"""A data descriptor that sets and returns values</span>
+<span style="color: #E6DB74;">       normally and prints a message logging their access.</span>
+<span style="color: #E6DB74;">    """</span>
+
+    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__init__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, initval=<span style="color: #AE81FF;">None</span>, name=<span style="color: #E6DB74;">'var'</span>):
+        <span style="color: #F92672; font-weight: bold;">self</span>.val = initval
+        <span style="color: #F92672; font-weight: bold;">self</span>.name = name
+
+    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__get__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, obj, objtype):
+        <span style="color: #F92672; font-weight: bold;">print</span> <span style="color: #E6DB74;">'Retrieving'</span>, <span style="color: #F92672; font-weight: bold;">self</span>.name
+        <span style="color: #F92672; font-weight: bold;">return</span> <span style="color: #F92672; font-weight: bold;">self</span>.val
+
+    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__set__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, obj, val):
+        <span style="color: #F92672; font-weight: bold;">print</span> <span style="color: #E6DB74;">'Updating'</span> , <span style="color: #F92672; font-weight: bold;">self</span>.name
+        <span style="color: #F92672; font-weight: bold;">self</span>.val = val
+
+<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">MyClass</span>(<span style="color: #A6E22E;">object</span>):
+    <span style="color: #FD971F;">x</span> = RevealAccess(10, <span style="color: #E6DB74;">'var "x"'</span>)
+    <span style="color: #FD971F;">y</span> = 5
+</pre>
+</div>
+<p>
+输出
+</p>
+<pre class="example">
+&gt;&gt;&gt; m = MyClass()
+&gt;&gt;&gt; m.x
+Retrieving var "x"
+10
+&gt;&gt;&gt; m.x = 20
+Updating var "x"
+&gt;&gt;&gt; m.x
+Retrieving var "x"
+20
+&gt;&gt;&gt; m.y
+5
+</pre>
+<p>
+上例中 m.x 是一个descriptor，因为它是RevealAccess的类实例，而该类定义了__get__与__set__,所以 m.x 实际上等价
+于 x.__get__(m)
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8" class="outline-3">
+<h3 id="sec-1-8">python异常</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+只说明基于类的异常, 老版的python中基于字符串的异常不考虑
+</p>
+</div>
+<div id="outline-container-sec-1-8-1" class="outline-4">
+<h4 id="sec-1-8-1">try &#x2026; except语句</h4>
+<div class="outline-text-4" id="text-1-8-1">
+<pre class="example">
+try:
+    main-block
+except class1:
+    handler1
+except class2, instance:
+    handler2
+except (class3, class4):
+    handler3
+except (class5, class6), instance:
+    handler4
+except:
+    handler5
+else:
+    else-block finally: finally-block
+</pre>
+<p>
+python2.5以后版本才可以else,finally混在一起,执行try 中语句块时如果没有出现异常,那么就执行else 语句块,如果出
+现了异常,那么就从上到下的匹配ecxept子句,最后执行第一个匹配的except 语句块, finally是无论是否发生异常,以及无
+论是否捕捉了异常都会执行的
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8-2" class="outline-4">
+<h4 id="sec-1-8-2">raise</h4>
+<div class="outline-text-4" id="text-1-8-2">
+<p>
+raise语句的几种形式
+</p>
+<ol class="org-ol">
+<li>raise : 重新触发上一次产生的异常
+</li>
+<li>raise instance  : 触发为name的异常
+</li>
+<li>raise class, instance : 和2类似,只是data是额外数据
+</li>
+</ol>
+<p>
+<b>上述的instance应该是一个异常类的实例</b>,目前第二种最常用,为了兼容raise instance还有以下的几种衍生形式
+</p>
+<ul class="org-ul">
+<li>raise class : 等同于 raise class()
+</li>
+<li>raise class, arg :等同于raise class(arg)
+</li>
+<li>raise class, (arg1, arg2,&#x2026;) : 等同于raise class(arg1, arg2,&#x2026;)
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8-3" class="outline-4">
+<h4 id="sec-1-8-3">异常</h4>
+<div class="outline-text-4" id="text-1-8-3">
+<p>
+异常都是类, exceptions must be old-style classes or derived from BaseException.也就是说,要么是老式类,要么
+是BaseException的子类,实践中用户自定义的类最好继承于Exception,并且必须以Error结尾, <b>注意except语句是基于超
+类匹配的</b>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-9" class="outline-3">
+<h3 id="sec-1-9">python中文处理</h3>
+<div class="outline-text-3" id="text-1-9">
+<p>
+中文处理一直是一个比较棘手的问题,各种乱码一直让程序员苦不堪言,这里主要介绍python中文处理的一般
+原则, 先介绍几个基本概念(强烈建议看看这篇<a href="http://nedbatchelder.com/text/unipain.html">文章</a>):
+</p>
+<ol class="org-ol">
+<li>unicode: 简单点说你可以将unicode看成一种映射,地球上的每一个符号都在unicode中有一个数(准确的说叫code point)
+与之对应
+</li>
+<li>utf8, utf16: 刚刚说了地球上的每一个符号在unicode中有一个数与之对应,那么这个数如何存储在计算机上呢?utf8, utf16,
+utf32就是存储策略
+</li>
+<li>big5, gb2312等: 这些都是各个地区自行发明的双字节码,也就是两个字节代表一个符号
+</li>
+</ol>
+<p>
+python字符处理的基本概念:
+</p>
+<ol class="org-ol">
+<li>byte string: 字节流, utf8,utf16, gb2312等编码后得到的string都是字节流,通过decode方法可以得到unicode string
+</li>
+<li>unicode string: unicode字符串的每一个字符都是一个code point, 它可以通过encode方法转换为各种byte string
+</li>
+</ol>
+<p>
+因此python中文处理的实质就是在byte string与unicode string之间来回转换, 因为python解释器在解释python源文件时,
+也是需要编码信息的,所以在文件的前两行必须指定编码信息(coding:utf8), <b>指定的编码必须与python源文件保存时的编码一致</b>
+</p>
+
+<p>
+python2与python3的区别:
+</p>
+<ol class="org-ol">
+<li>python2中字面字符串是byte string, 而3中是unicode string
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #FD971F;">ss</span> = <span style="color: #E6DB74;">'&#20320;&#22909;'</span>                     <span style="color: #75715E;"># </span><span style="color: #75715E;">python2&#20026;byte string, python3&#20026;unicode string</span>
+<span style="color: #FD971F;">ss</span> = u<span style="color: #E6DB74;">'&#20320;&#22909;'</span>                    <span style="color: #75715E;"># </span><span style="color: #75715E;">python2&#24471;&#21040;unicode string</span>
+<span style="color: #FD971F;">ss</span> = b<span style="color: #E6DB74;">'&#20320;&#22909;'</span>                    <span style="color: #75715E;"># </span><span style="color: #75715E;">python3&#24471;&#21040;byte string</span>
+</pre>
+</div>
+</li>
+<li>对二者名称不同
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">category</td>
+<td class="left">python2</td>
+<td class="left">python3</td>
+</tr>
+
+<tr>
+<td class="left">byte string</td>
+<td class="left">str</td>
+<td class="left">bytes</td>
+</tr>
+
+<tr>
+<td class="left">unicode string</td>
+<td class="left">unicode</td>
+<td class="left">str</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>读取文件时,python2得到byte string, 而python3调用open时如果指定了b则得到byte string, 如果没有指定b, 那么
+就会使用local.getpreferredencoding()返回的编码方式来decode,然后得到unicode string. python3中调用open时
+有一个可选参数来指定解码方式..
+</li>
+<li>混合时的处理方式不同,如一个byte string与一个unicode string相加,那么python2会使用sys.getdefaultencoding()
+返回的编码方式来decode那个byte string, 然后与unicode string相加得到一个unicode string,但是python3会返回异常
+因为python3不允许二者混合.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-10" class="outline-3">
+<h3 id="sec-1-10">一些标准库的使用说明</h3>
+<div class="outline-text-3" id="text-1-10">
+</div><div id="outline-container-sec-1-10-1" class="outline-4">
+<h4 id="sec-1-10-1">python 正则表达式</h4>
+<div class="outline-text-4" id="text-1-10-1">
+<p>
+python的正则表达式是通过re这个标准库支持的,这是一篇写的不错的<a href="https://www.evernote.com/shard/s89/sh/8d66ae55-5f2e-4a68-b11d-c8ae8ad3de56/00bfb7913d34061da0083d8286ff1592">文章</a>, 我可耻的用evernote保存下来
+了,上面有原文章的连接.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-10-2" class="outline-4">
+<h4 id="sec-1-10-2">多线程</h4>
+<div class="outline-text-4" id="text-1-10-2">
+</div><div id="outline-container-sec-1-10-2-1" class="outline-5">
+<h5 id="sec-1-10-2-1">Thread</h5>
+</div>
+<div id="outline-container-sec-1-10-2-2" class="outline-5">
+<h5 id="sec-1-10-2-2">threading</h5>
+<div class="outline-text-5" id="text-1-10-2-2">
+<p>
+threading是一个更高层的模块，它使用更加方便，所以一般情况都是使用该模块
+</p>
+<ol class="org-ol">
+<li>threading.Thread: 要创建一个线程，那么需要先创建threading.Thread的子类，并且重写它的run方法，每一个
+Thread对象都要调用start方法，该方法启动线程，该线程会运行该对象的run方法
+daemon： 如果已经没有活动的non-daemon(daemon=False)线程的话, 整个进程都会退出,所以经常将子线程的daemon
+设为True,并且子线程做成一个while True的死循环,这样如果主线程退出,那么整个进程都会退出,那些死循环的子线
+程自然也会退出
+</li>
+<li>Queue: 同步队列
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> Queue <span style="color: #F92672; font-weight: bold;">import</span> Queue
+<span style="color: #FD971F;">q</span> = Queue()
+<span style="color: #75715E;"># </span><span style="color: #75715E;">thread1</span>
+<span style="color: #FD971F;">item</span> = q.get()
+do_something(item)
+q.task_done()
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">main thread</span>
+q.join()
+</pre>
+</div>
+<p>
+实际上task_done就是将内部的计数器减一, 而put会将内部的计数器加1,然后join会测试如果内部的计数器为0就返
+回,不为0就阻塞
+</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-10-3" class="outline-4">
+<h4 id="sec-1-10-3">collections</h4>
+<div class="outline-text-4" id="text-1-10-3">
+</div><div id="outline-container-sec-1-10-3-1" class="outline-5">
+<h5 id="sec-1-10-3-1">Counter</h5>
+<div class="outline-text-5" id="text-1-10-3-1">
+<p>
+字典的子类，可以用于统计可迭代对象中重复元素出现的次数,这是<a href="http://docs.python.org/2/library/collections.html#counter-objects">文档</a>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> collections <span style="color: #F92672; font-weight: bold;">import</span> Counter
+<span style="color: #FD971F;">cn_str</span> = Counter(<span style="color: #E6DB74;">'hello world'</span>)
+<span style="color: #F92672; font-weight: bold;">print</span> cn_str
+
+<span style="color: #FD971F;">cn_list</span> = Counter([<span style="color: #E6DB74;">'red'</span>, <span style="color: #E6DB74;">'blue'</span>, <span style="color: #E6DB74;">'red'</span>, <span style="color: #E6DB74;">'green'</span>, <span style="color: #E6DB74;">'blue'</span>, <span style="color: #E6DB74;">'blue'</span>])
+<span style="color: #F92672; font-weight: bold;">print</span> cn_list
+
+<span style="color: #FD971F;">cn_dict</span> = Counter(cats=4, dogs=8)
+<span style="color: #F92672; font-weight: bold;">print</span> cn_dict
+</pre>
+</div>
+
+<pre class="example">
+Counter({'l': 3, 'o': 2, ' ': 1, 'e': 1, 'd': 1, 'h': 1, 'r': 1, 'w': 1})
+Counter({'blue': 3, 'red': 2, 'green': 1})
+Counter({'dogs': 8, 'cats': 4})
+</pre>
+
+<p>
+Counter除了有dict的方法外，还有几个特有的方法
+</p>
+<ol class="org-ol">
+<li>elements(): 返回可迭代对象，比如调用cn_list.elements() 就会返回['red', 'blue', 'red', 'green',
+'blue', 'blue']
+</li>
+<li>most_common([n]) : 根据字典色value从大到小排出n个item组成一个list
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-1-10-3-2" class="outline-5">
+<h5 id="sec-1-10-3-2">deque 双端队列</h5>
+<div class="outline-text-5" id="text-1-10-3-2">
+<p>
+可以从左边或者右边添加或者删除元素,这是<a href="http://docs.python.org/2/library/collections.html#deque-objects">文档</a> ,主要有append,appendleft(单个元素),extend,extendleft(可迭代对
+象),pop, popleft等等
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-10-3-3" class="outline-5">
+<h5 id="sec-1-10-3-3">defaultdict</h5>
+<div class="outline-text-5" id="text-1-10-3-3">
+<p>
+提供了一个default_factory属性,通过初始化defaultdict实例时对该属性赋值,那么以后如果出现key不存在的情况,不
+会出现KeyError,而是调用这个默认工厂函数,然后返回该工厂函数的返回值,这是<a href="http://docs.python.org/2/library/collections.html#defaultdict-objects">文档</a> ,这是几段代码示例:
+</p>
+<pre class="example">
+# 以list 作为default_factory
+&gt;&gt;&gt; s = [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
+&gt;&gt;&gt; d = defaultdict(list)
+&gt;&gt;&gt; for k, v in s:
+...     d[k].append(v)
+...
+&gt;&gt;&gt; d.items()
+[('blue', [2, 4]), ('red', [1]), ('yellow', [1, 3])]
+
+# 以整数作为default_factory
+&gt;&gt;&gt; s = 'mississippi'
+&gt;&gt;&gt; d = defaultdict(int)
+&gt;&gt;&gt; for k in s:
+...     d[k] += 1
+...
+&gt;&gt;&gt; d.items()
+[('i', 4), ('p', 2), ('s', 4), ('m', 1)]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-1-10-3-4" class="outline-5">
+<h5 id="sec-1-10-3-4">namedtuple</h5>
+<div class="outline-text-5" id="text-1-10-3-4">
+<p>
+一个tuple的子类,可以给tuple的每一项添加一个名字,以后就可以通过 X.y这样的方式来访问了,看代码:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> collections <span style="color: #F92672; font-weight: bold;">import</span> namedtuple
+
+<span style="color: #FD971F;">Point</span> = namedtuple(<span style="color: #E6DB74;">'Point'</span>, [<span style="color: #E6DB74;">'x'</span>, <span style="color: #E6DB74;">'y'</span>], verbose=<span style="color: #AE81FF;">False</span>)
+<span style="color: #FD971F;">p</span> = Point(11, y=22)
+<span style="color: #F92672; font-weight: bold;">print</span> p
+
+<span style="color: #FD971F;">s</span> = p[0] + p[1]                 <span style="color: #75715E;"># </span><span style="color: #75715E;">like normal tuple</span>
+<span style="color: #F92672; font-weight: bold;">print</span> s
+
+<span style="color: #FD971F;">s</span> = p.x + p.y
+<span style="color: #F92672; font-weight: bold;">print</span> s
+</pre>
+</div>
+
+<p>
+=Point(x=11, y=22)
+33
+33
+=     上述代码代表一个点,点有x,y两个值,要访问点的x,可以通过p.x 或者p\<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>(也就是和普通的tuple一样)
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-10-3-5" class="outline-5">
+<h5 id="sec-1-10-3-5">OrderedDict</h5>
+<div class="outline-text-5" id="text-1-10-3-5">
+<p>
+OrderedDict是dict的子类,它会记住key插入的顺序,默认的dict是会排序的, 比如下面的代码
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> collections <span style="color: #F92672; font-weight: bold;">import</span> OrderedDict
+<span style="color: #FD971F;">l</span> = [(<span style="color: #E6DB74;">'b'</span>, 3), (<span style="color: #E6DB74;">'f'</span>, 2), (<span style="color: #E6DB74;">'a'</span>, 1)]
+<span style="color: #FD971F;">d</span> = <span style="color: #A6E22E;">dict</span>(l)
+<span style="color: #F92672; font-weight: bold;">print</span> d
+
+<span style="color: #FD971F;">od</span> = OrderedDict(l)
+<span style="color: #F92672; font-weight: bold;">print</span> od
+</pre>
+</div>
+
+<p>
+={'a': 1, 'b': 3, 'f': 2}
+OrderedDict([('b', 3), ('f', 2), ('a', 1)])
+=     popitem(last=True): last为True,那么就是LIFO, 比如上例就是先弹出(a, 1) 然后(f, 2), 如果last为False,那么就
+     是FIFO
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-10-4" class="outline-4">
+<h4 id="sec-1-10-4">pickle</h4>
+<div class="outline-text-4" id="text-1-10-4">
+<ul class="org-ul">
+<li>dump(self, obj, file) 将对象序列化到文件
+</li>
+<li>dumps(self, obj)      会返回序列化的字符串
+</li>
+<li>load(file)      从文件加载对象
+</li>
+<li>loads(str)      从字符串加载对象
+</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">import</span> pickle
+<span style="color: #FD971F;">d</span> = {<span style="color: #E6DB74;">'tag'</span>:<span style="color: #E6DB74;">'django'</span>}
+<span style="color: #F92672; font-weight: bold;">with</span> <span style="color: #A6E22E;">open</span>(<span style="color: #E6DB74;">'aa.pickle'</span>, <span style="color: #E6DB74;">'wb'</span>) <span style="color: #F92672; font-weight: bold;">as</span> fp:
+    pickle.dump(d, fp)
+
+<span style="color: #F92672; font-weight: bold;">with</span> <span style="color: #A6E22E;">open</span>(<span style="color: #E6DB74;">'aa.pickle'</span>, <span style="color: #E6DB74;">'rb'</span>) <span style="color: #F92672; font-weight: bold;">as</span> fp:
+    <span style="color: #FD971F;">d</span> = pickle.load(fp)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-10-5" class="outline-4">
+<h4 id="sec-1-10-5">json&#xa0;&#xa0;&#xa0;<span class="tag"><span class="json">json</span></span></h4>
+<div class="outline-text-4" id="text-1-10-5">
+<p>
+和pickle类似,也是dump,dumps,load,loads这几个接口(以s结尾的就是字符串,否则就是文件),json模块默认只能encode
+与decode python的内置类型，比如数字，字符串，list，tuple，dict等，如果你要endcode自定义的类，那么你需要扩
+展，代码示例如下：
+</p>
+<script src="https://gist.github.com/yuyang0/6945963.js"></script>
+<p>
+调用的时候直接使用如下代码：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #FD971F;">d</span> = {
+    <span style="color: #E6DB74;">'status'</span>: 0,
+    <span style="color: #E6DB74;">'data'</span>: <span style="color: #A6E22E;">list</span>(comments),
+}
+
+json.dumps(d, cls=CustomTypeEncoder,
+           user=request.user)
+</pre>
+</div>
+<p>
+cls参数指定用来encode的class，后面的user参数用来向自定义的encoder中添加额外的参数，可以在自定义的encoder的
+init函数中获取，可以参见上面的encoder的代码
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-10-6" class="outline-4">
+<h4 id="sec-1-10-6">HTMLParser</h4>
+<div class="outline-text-4" id="text-1-10-6">
+<p>
+文档中的示例代码:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> HTMLParser <span style="color: #F92672; font-weight: bold;">import</span> HTMLParser
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">create a subclass and override the handler methods</span>
+<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">MyHTMLParser</span>(HTMLParser):
+    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">handle_starttag</span>(<span style="color: #F92672; font-weight: bold;">self</span>, tag, attrs):
+        <span style="color: #F92672; font-weight: bold;">print</span> <span style="color: #E6DB74;">"Encountered a start tag:"</span>, tag
+    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">handle_endtag</span>(<span style="color: #F92672; font-weight: bold;">self</span>, tag):
+        <span style="color: #F92672; font-weight: bold;">print</span> <span style="color: #E6DB74;">"Encountered an end tag :"</span>, tag
+    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">handle_data</span>(<span style="color: #F92672; font-weight: bold;">self</span>, data):
+        <span style="color: #F92672; font-weight: bold;">print</span> <span style="color: #E6DB74;">"Encountered some data  :"</span>, data
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">instantiate the parser and fed it some HTML</span>
+<span style="color: #FD971F;">parser</span> = MyHTMLParser()
+parser.feed(<span style="color: #E6DB74;">'&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;'</span>
+            <span style="color: #E6DB74;">'&lt;body&gt;&lt;h1&gt;Parse me!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;'</span>)
+</pre>
+</div>
+<p>
+从上面的代码可以看出:该库的使用方法就是在类中处理starttag, endtag, data(标签中间的文本)
+然后调用feed方法就好,实际是一个流式html解析器
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-11" class="outline-3">
+<h3 id="sec-1-11">一些第三方库的使用方法</h3>
+<div class="outline-text-3" id="text-1-11">
+</div><div id="outline-container-sec-1-11-1" class="outline-4">
+<h4 id="sec-1-11-1">requests</h4>
+<div class="outline-text-4" id="text-1-11-1">
+<p>
+python的标准库中的urllib,urllib2的接口并不好用,requests的接口更简洁一致,这是官方<a href="http://docs.python-requests.org/en/latest/">文档</a>
+</p>
+<ol class="org-ol">
+<li>get
+requests.get(url, **kwargs)
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #FD971F;">payload</span> = {<span style="color: #E6DB74;">'key1'</span>: <span style="color: #E6DB74;">'value1'</span>, <span style="color: #E6DB74;">'key2'</span>: <span style="color: #E6DB74;">'value2'</span>}
+<span style="color: #FD971F;">r</span> = requests.get(<span style="color: #E6DB74;">"http://httpbin.org/get"</span>, params=payload)
+</pre>
+</div>
+</li>
+<li>post
+requests.post(url, data=None, **kwargs)
+<ul class="org-ul">
+<li>data: 是要post的数据
+</li>
+<li>kwargs: 可以使用headers =  {&#x2026;.}指定http request header
+</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">import</span> json
+<span style="color: #FD971F;">url</span> = <span style="color: #E6DB74;">'https://api.github.com/some/endpoint'</span>
+<span style="color: #FD971F;">payload</span> = {<span style="color: #E6DB74;">'some'</span>: <span style="color: #E6DB74;">'data'</span>}
+<span style="color: #FD971F;">headers</span> = {<span style="color: #E6DB74;">'content-type'</span>: <span style="color: #E6DB74;">'application/json'</span>}
+
+<span style="color: #FD971F;">r</span> = requests.post(url, data=json.dumps(payload), headers=headers)
+</pre>
+</div>
+</li>
+<li>put
+requests.put(url, **kwargs)
+</li>
+<li>response object
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">import</span> requests
+<span style="color: #FD971F;">r</span> = requests.get(<span style="color: #E6DB74;">'http://www.baidu.com'</span>)
+<span style="color: #F92672; font-weight: bold;">print</span> r.text
+<span style="color: #F92672; font-weight: bold;">print</span> r.url
+<span style="color: #F92672; font-weight: bold;">print</span> r.encoding
+<span style="color: #F92672; font-weight: bold;">print</span> r.status_code                    <span style="color: #75715E;"># </span><span style="color: #75715E;">response status code(eg:200)</span>
+<span style="color: #F92672; font-weight: bold;">print</span> r.headers                        <span style="color: #75715E;"># </span><span style="color: #75715E;">a dict</span>
+<span style="color: #F92672; font-weight: bold;">print</span> r.headers[<span style="color: #E6DB74;">'Content-Type'</span>]        <span style="color: #75715E;"># </span><span style="color: #75715E;">response headers</span>
+<span style="color: #F92672; font-weight: bold;">print</span> r.cookies[<span style="color: #E6DB74;">'example_cookie_name'</span>] <span style="color: #75715E;"># </span><span style="color: #75715E;">cookies</span>
+<span style="color: #F92672; font-weight: bold;">print</span> r.json()                         <span style="color: #75715E;">#  </span><span style="color: #75715E;">built-in json function</span>
+
+<span style="color: #F92672; font-weight: bold;">print</span> r.request.headers         <span style="color: #75715E;"># </span><span style="color: #75715E;">http request headers</span>
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-11-2" class="outline-4">
+<h4 id="sec-1-11-2">pip</h4>
+<div class="outline-text-4" id="text-1-11-2">
+<p>
+从github安装包
+pip install git+git://github.com/yourname/package.git
+或者pip install git+<a href="https://github.com/yourname/package.git">https://github.com/yourname/package.git</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-11-3" class="outline-4">
+<h4 id="sec-1-11-3">pyquery</h4>
+<div class="outline-text-4" id="text-1-11-3">
+<p>
+一个使用jquery语法的html解析器,非常方便,比BeautifulSoup好用,这是它的<a href="http://pythonhosted.org/pyquery/index.html">文档</a>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">form pyquery <span style="color: #F92672; font-weight: bold;">import</span> PyQuery
+<span style="color: #FD971F;">html</span> = <span style="color: #E6DB74;">'&lt;html&gt;&lt;title&gt;hello world&lt;/title&gt;&lt;/html&gt;'</span>
+<span style="color: #FD971F;">d</span> = PyQuery(html, parser = <span style="color: #E6DB74;">'html'</span>)
+d(<span style="color: #E6DB74;">'title'</span>).text()
+</pre>
+</div>
+<p>
+在调用PyQuery时尽量指定parser, 因为默认判断有时会出错,比如用xml的parser去解析html会得到不正确的结果.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #FD971F;">d</span> = PyQuery(html, parser = <span style="color: #E6DB74;">'html'</span>)
+<span style="color: #75715E;"># </span><span style="color: #75715E;">selector</span>
+d(<span style="color: #E6DB74;">'body'</span>)
+d(<span style="color: #E6DB74;">'div#header'</span>)
+d(<span style="color: #E6DB74;">'div.class ul'</span>)
+d(<span style="color: #E6DB74;">'meta[name=keywords]'</span>) <span style="color: #75715E;">#</span><span style="color: #75715E;">attribute</span>
+
+<span style="color: #FD971F;">links</span> = d(<span style="color: #E6DB74;">'div.links a'</span>)
+<span style="color: #75715E;"># </span><span style="color: #75715E;">&#35813;&#22788;&#24212;&#20351;&#29992;&#19979;&#26631;,&#32780;&#19981;&#26159;for link in links</span>
+<span style="color: #F92672; font-weight: bold;">for</span> i <span style="color: #F92672; font-weight: bold;">in</span> <span style="color: #A6E22E;">range</span>(0, <span style="color: #A6E22E;">len</span>(links)):
+    <span style="color: #F92672; font-weight: bold;">print</span> links.eq(i).attr(<span style="color: #E6DB74;">'href'</span>)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-11-4" class="outline-4">
+<h4 id="sec-1-11-4">watchdog</h4>
+<div class="outline-text-4" id="text-1-11-4">
+<p>
+看门狗,用来监控文件系统改变,这是<a href="http://pythonhosted.org/watchdog/">文档</a>, 基本使用:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">import</span> time
+<span style="color: #F92672; font-weight: bold;">from</span> watchdog.observers <span style="color: #F92672; font-weight: bold;">import</span> Observer
+<span style="color: #F92672; font-weight: bold;">from</span> watchdog.events <span style="color: #F92672; font-weight: bold;">import</span> LoggingEventHandler
+
+<span style="color: #F92672; font-weight: bold;">if</span> <span style="color: #A6E22E;">__name__</span> == <span style="color: #E6DB74;">"__main__"</span>:
+    event_handler = LoggingEventHandler()
+    observer = Observer()
+    observer.schedule(event_handler, path=<span style="color: #E6DB74;">'.'</span>, recursive=<span style="color: #AE81FF;">True</span>)
+    observer.start()
+    <span style="color: #F92672; font-weight: bold;">try</span>:
+        <span style="color: #F92672; font-weight: bold;">while</span> <span style="color: #AE81FF;">True</span>:
+            time.sleep(1)
+    <span style="color: #F92672; font-weight: bold;">except</span> <span style="color: #66D9EF;">KeyboardInterrupt</span>:
+        observer.stop()
+    observer.join()
+</pre>
+</div>
+<p>
+关键的部分有两个:
+</p>
+<ol class="org-ol">
+<li>recursive=True,默认是False,如果不指定那么那么就不会监控子目录
+</li>
+<li>event_handler:这个是文件系统事件的处理对象,可以自己继承watchdog.events.FileSystemEventHandler,
+然后重载<a href="http://pythonhosted.org/watchdog/api.html#watchdog.events.FileSystemEventHandler.on_created">on_create</a>d, <a href="http://pythonhosted.org/watchdog/api.html#watchdog.events.FileSystemEventHandler.on_deleted">on_deleted</a>, <a href="http://pythonhosted.org/watchdog/api.html#watchdog.events.FileSystemEventHandler.on_modified">on_modified</a>, <a href="http://pythonhosted.org/watchdog/api.html#watchdog.events.FileSystemEventHandler.on_moved">on_moved</a>,
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-1-11-5" class="outline-4">
+<h4 id="sec-1-11-5">rauth</h4>
+<div class="outline-text-4" id="text-1-11-5">
+<p>
+一个Oauth库,这是<a href="https://rauth.readthedocs.org/en/latest/">文档</a>, 这是一份示例
+<a href="https://gist.github.com/yuyang0/5949932">代码</a>, 基本上照着流程走就OK了
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-12" class="outline-3">
+<h3 id="sec-1-12">常用工具的使用方法</h3>
+<div class="outline-text-3" id="text-1-12">
+</div><div id="outline-container-sec-1-12-1" class="outline-4">
+<h4 id="sec-1-12-1">virtualenv</h4>
+<div class="outline-text-4" id="text-1-12-1">
 <p>
 这是一份不错的<a href="http://docs.python-guide.org/en/latest/dev/virtualenvs.html">tutorial</a>
 </p>
 <ol class="org-ol">
 <li>virtualenv venv
 </li>
-<li>venv/bin/activate
+<li>source venv/bin/activate
 </li>
 <li>deactivate
 </li>
@@ -208,11 +1563,11 @@ export WORKON_HOME=~/envs
 source /usr/local/bin/virtualenvwrapper.sh
 </pre>
 </li>
-<li>mkvirtualenv my<sub>env</sub>
-在WORKON<sub>HOME中创建一个名为my</sub><sub>env虚拟环境</sub>
+<li>mkvirtualenv my_env
+在WORKON_HOME中创建一个名为my_env虚拟环境
 </li>
-<li>workon my<sub>env</sub>
-切换到my<sub>env环境</sub>
+<li>workon my_env
+切换到my_env环境
 </li>
 <li>deactivate
 </li>
@@ -220,226 +1575,75 @@ source /usr/local/bin/virtualenvwrapper.sh
 </li>
 <li>lsvirtualenv
 </li>
-<li>rmvirtualenv my<sub>env</sub>
+<li>rmvirtualenv my_env
 </li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">库的使用方法</h3>
-<div class="outline-text-3" id="text-1-2">
-</div><div id="outline-container-sec-1-2-1" class="outline-4">
-<h4 id="sec-1-2-1">requests</h4>
-<div class="outline-text-4" id="text-1-2-1">
+<div id="outline-container-sec-1-12-2" class="outline-4">
+<h4 id="sec-1-12-2">ipython</h4>
+<div class="outline-text-4" id="text-1-12-2">
 <p>
-python的标准库中的urllib,urllib2的接口并不好用,requests的接口更简洁一致,这是官方<a href="http://docs.python-requests.org/en/latest/">文档</a>
+ipython是一个增强的python interpreter,有许多有趣的功能
 </p>
 <ol class="org-ol">
-<li>get
-requests.get(url, **kwargs)
-<div class="org-src-container">
-
-<pre class="src src-python"><span style="color: #FF6400;">payload</span> = {<span style="color: #61CE3C;">'key1'</span>: <span style="color: #61CE3C;">'value1'</span>, <span style="color: #61CE3C;">'key2'</span>: <span style="color: #61CE3C;">'value2'</span>}
-<span style="color: #FF6400;">r</span> = requests.get(<span style="color: #61CE3C;">"http://httpbin.org/get"</span>, params=payload)
-</pre>
-</div>
-</li>
-<li>post
-requests.post(url, data=None, **kwargs)
+<li>magic function
+以 % 或者 %% 开头的都是magic function,其中
 <ul class="org-ul">
-<li>data: 是要post的数据
+<li>以%开头会将本行余下的部分作为一个参数传递给该命令,如果%automagic为on(默认), 那么可以省略前面的 %, 可以
+使用 %lsmagic 来列出有多少这种命令.
 </li>
-<li>kwargs: 可以使用headers =  {&#x2026;.}指定http request header
+<li>以%%开头的命令不仅会将本行余下的部分作为参数,本行下面独立的行也会作为参数
 </li>
 </ul>
-<div class="org-src-container">
-
-<pre class="src src-python"><span style="color: #FBDE2D;">import</span> json
-<span style="color: #FF6400;">url</span> = <span style="color: #61CE3C;">'https://api.github.com/some/endpoint'</span>
-<span style="color: #FF6400;">payload</span> = {<span style="color: #61CE3C;">'some'</span>: <span style="color: #61CE3C;">'data'</span>}
-<span style="color: #FF6400;">headers</span> = {<span style="color: #61CE3C;">'content-type'</span>: <span style="color: #61CE3C;">'application/json'</span>}
-
-<span style="color: #FF6400;">r</span> = requests.post(url, data=json.dumps(payload), headers=headers)
-</pre>
-</div>
 </li>
-<li>put
-requests.put(url, **kwargs)
+<li>TAB补全, 可以补全内置的函数,模块以及变量文件名等等
 </li>
-<li>response object
-<div class="org-src-container">
-
-<pre class="src src-python"><span style="color: #FBDE2D;">import</span> requests
-<span style="color: #FF6400;">r</span> = requests.get(<span style="color: #61CE3C;">'http://www.baidu.com'</span>)
-<span style="color: #FBDE2D;">print</span> r.text
-<span style="color: #FBDE2D;">print</span> r.url
-<span style="color: #FBDE2D;">print</span> r.encoding
-<span style="color: #FBDE2D;">print</span> r.status_code                    <span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">response status code(eg:200)</span>
-<span style="color: #FBDE2D;">print</span> r.headers                        <span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">a dict</span>
-<span style="color: #FBDE2D;">print</span> r.headers[<span style="color: #61CE3C;">'Content-Type'</span>]        <span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">response headers</span>
-<span style="color: #FBDE2D;">print</span> r.cookies[<span style="color: #61CE3C;">'example_cookie_name'</span>] <span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">cookies</span>
-<span style="color: #FBDE2D;">print</span> r.json()                         <span style="color: #AEAEAE; font-style: italic;">#  </span><span style="color: #AEAEAE; font-style: italic;">built-in json function</span>
-
-<span style="color: #FBDE2D;">print</span> r.request.headers         <span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">http request headers</span>
-</pre>
-</div>
+<li>%run命令: 该命令可以用来运行脚本(实际是把所有的属性导入当前的namespace,和import功能类似),测试脚本时用该
+命令,而不是import,因为该命令可以让改动立即生效,有以下几个选项:
+<ul class="org-ul">
+<li>t: 可以用来获得脚本的运行时间
+</li>
+<li>p: 性能分析,会列出程序中每个函数调用的时间, %prun命令与该选项功能相似,但是它是对一条python命令或者一个函数调
+用进行性能测试
+</li>
+<li>d: 调试,激活pdb,并在开始处暂停,和gdb类似
+</li>
+</ul>
+</li>
+<li>剖析对象,给定一个对象,观察这个对象的文档,函数定义以及源代码,有以下命令
+<ul class="org-ul">
+<li>%pdoc: print doc string
+</li>
+<li>%pdef: print definition of function
+</li>
+<li>%psource: print source code
+</li>
+<li>%pfile: get file of this object
+</li>
+</ul>
+</li>
+<li>调试: %pdb命令会打开或关闭在任何未捕捉的异常点调用pdb调试器的功能, 如果该功能打开了,那么遇到任何未捕捉的
+异常,会自动调用调试器,这样就可以打印异常点的变量值,执行代码了
+</li>
+<li>运行shell命令: !开头,比如 !ping www.baidu.com ,可以将shell命令的输出赋给python变量, 比如
+output = !ping www..baidu.com, 那么output就会是ping的输出
 </li>
 </ol>
 </div>
 </div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
 
-<div id="outline-container-sec-1-2-2" class="outline-4">
-<h4 id="sec-1-2-2">pickle</h4>
-<div class="outline-text-4" id="text-1-2-2">
-<ul class="org-ul">
-<li>dump(self, obj, file) 将对象序列化到文件
-</li>
-<li>dumps(self, obj)      会返回序列化的字符串
-</li>
-<li>load(file)      从文件加载对象
-</li>
-<li>loads(str)      从字符串加载对象
-</li>
-</ul>
-<div class="org-src-container">
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p>DEFINITION NOT FOUND.</p></div>
 
-<pre class="src src-python"><span style="color: #FBDE2D;">import</span> pickle
-<span style="color: #FF6400;">d</span> = {<span style="color: #61CE3C;">'tag'</span>:<span style="color: #61CE3C;">'django'</span>}
-<span style="color: #FBDE2D;">with</span> <span style="color: #94bff3;">open</span>(<span style="color: #61CE3C;">'aa.pickle'</span>, <span style="color: #61CE3C;">'wb'</span>) <span style="color: #FBDE2D;">as</span> fp:
-    pickle.dump(d, fp)
 
-<span style="color: #FBDE2D;">with</span> <span style="color: #94bff3;">open</span>(<span style="color: #61CE3C;">'aa.pickle'</span>, <span style="color: #61CE3C;">'rb'</span>) <span style="color: #FBDE2D;">as</span> fp:
-    <span style="color: #FF6400;">d</span> = pickle.load(fp)
-</pre>
 </div>
-</div>
-</div>
-
-<div id="outline-container-sec-1-2-3" class="outline-4">
-<h4 id="sec-1-2-3">json</h4>
-<div class="outline-text-4" id="text-1-2-3">
-<p>
-和pickle类似,也是dump,dumps,load,loads这几个接口(以s结尾的就是字符串,否则就是文件)
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-2-4" class="outline-4">
-<h4 id="sec-1-2-4">HTMLParser</h4>
-<div class="outline-text-4" id="text-1-2-4">
-<p>
-文档中的示例代码:
-</p>
-<div class="org-src-container">
-
-<pre class="src src-python"><span style="color: #FBDE2D;">from</span> HTMLParser <span style="color: #FBDE2D;">import</span> HTMLParser
-
-<span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">create a subclass and override the handler methods</span>
-<span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">MyHTMLParser</span>(HTMLParser):
-    <span style="color: #FBDE2D;">def</span> <span style="color: #FF6400;">handle_starttag</span>(<span style="color: #FBDE2D;">self</span>, tag, attrs):
-        <span style="color: #FBDE2D;">print</span> <span style="color: #61CE3C;">"Encountered a start tag:"</span>, tag
-    <span style="color: #FBDE2D;">def</span> <span style="color: #FF6400;">handle_endtag</span>(<span style="color: #FBDE2D;">self</span>, tag):
-        <span style="color: #FBDE2D;">print</span> <span style="color: #61CE3C;">"Encountered an end tag :"</span>, tag
-    <span style="color: #FBDE2D;">def</span> <span style="color: #FF6400;">handle_data</span>(<span style="color: #FBDE2D;">self</span>, data):
-        <span style="color: #FBDE2D;">print</span> <span style="color: #61CE3C;">"Encountered some data  :"</span>, data
-
-<span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">instantiate the parser and fed it some HTML</span>
-<span style="color: #FF6400;">parser</span> = MyHTMLParser()
-parser.feed(<span style="color: #61CE3C;">'&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;'</span>
-            <span style="color: #61CE3C;">'&lt;body&gt;&lt;h1&gt;Parse me!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;'</span>)
-</pre>
-</div>
-<p>
-从上面的代码可以看出:该库的使用方法就是在类中处理starttag, endtag, data(标签中间的文本)
-然后调用feed方法就好,实际是一个流式html解析器
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-2-5" class="outline-4">
-<h4 id="sec-1-2-5">pyquery</h4>
-<div class="outline-text-4" id="text-1-2-5">
-<p>
-一个使用jquery语法的html解析器,非常方便,比BeautifulSoup好用,这是它的<a href="http://pythonhosted.org/pyquery/index.html">文档</a>
-</p>
-<div class="org-src-container">
-
-<pre class="src src-python">form pyquery <span style="color: #FBDE2D;">import</span> PyQuery
-<span style="color: #FF6400;">html</span> = <span style="color: #61CE3C;">'&lt;html&gt;&lt;title&gt;hello world&lt;/title&gt;&lt;/html&gt;'</span>
-<span style="color: #FF6400;">d</span> = PyQuery(html, parser = <span style="color: #61CE3C;">'html'</span>)
-d(<span style="color: #61CE3C;">'title'</span>).text()
-</pre>
-</div>
-<p>
-在调用PyQuery时尽量指定parser, 因为默认判断有时会出错,比如用xml的parser去解析html会得到不正确的结果.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-python"><span style="color: #FF6400;">d</span> = PyQuery(html, parser = <span style="color: #61CE3C;">'html'</span>)
-<span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">selector</span>
-d(<span style="color: #61CE3C;">'body'</span>)
-d(<span style="color: #61CE3C;">'div#header'</span>)
-d(<span style="color: #61CE3C;">'div.class ul'</span>)
-d(<span style="color: #61CE3C;">'meta[name=keywords]'</span>) <span style="color: #AEAEAE; font-style: italic;">#</span><span style="color: #AEAEAE; font-style: italic;">attribute</span>
-
-<span style="color: #FF6400;">links</span> = d(<span style="color: #61CE3C;">'div.links a'</span>)
-<span style="color: #AEAEAE; font-style: italic;"># </span><span style="color: #AEAEAE; font-style: italic;">&#35813;&#22788;&#24212;&#20351;&#29992;&#19979;&#26631;,&#32780;&#19981;&#26159;for link in links</span>
-<span style="color: #FBDE2D;">for</span> i <span style="color: #FBDE2D;">in</span> <span style="color: #94bff3;">range</span>(0, <span style="color: #94bff3;">len</span>(links)):
-    <span style="color: #FBDE2D;">print</span> links.eq(i).attr(<span style="color: #61CE3C;">'href'</span>)
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-1-2-6" class="outline-4">
-<h4 id="sec-1-2-6">watchdog</h4>
-<div class="outline-text-4" id="text-1-2-6">
-<p>
-看门狗,用来监控文件系统改变,这是<a href="http://pythonhosted.org/watchdog/">文档</a>, 基本使用:
-</p>
-<div class="org-src-container">
-
-<pre class="src src-python"><span style="color: #FBDE2D;">import</span> time
-<span style="color: #FBDE2D;">from</span> watchdog.observers <span style="color: #FBDE2D;">import</span> Observer
-<span style="color: #FBDE2D;">from</span> watchdog.events <span style="color: #FBDE2D;">import</span> LoggingEventHandler
-
-<span style="color: #FBDE2D;">if</span> <span style="color: #94bff3;">__name__</span> == <span style="color: #61CE3C;">"__main__"</span>:
-    event_handler = LoggingEventHandler()
-    observer = Observer()
-    observer.schedule(event_handler, path=<span style="color: #61CE3C;">'.'</span>, recursive=<span style="color: #D8FA3C;">True</span>)
-    observer.start()
-    <span style="color: #FBDE2D;">try</span>:
-        <span style="color: #FBDE2D;">while</span> <span style="color: #D8FA3C;">True</span>:
-            time.sleep(1)
-    <span style="color: #FBDE2D;">except</span> <span style="color: #8DA6CE;">KeyboardInterrupt</span>:
-        observer.stop()
-    observer.join()
-</pre>
-</div>
-<p>
-关键的部分有两个:
-</p>
-<ol class="org-ol">
-<li>recursive=True,默认是False,如果不指定那么那么就不会监控子目录
-</li>
-<li>event<sub>handler</sub>:这个是文件系统事件的处理对象,可以自己继承watchdog.events.FileSystemEventHandler,
-然后重载<a href="http://pythonhosted.org/watchdog/api.html#watchdog.events.FileSystemEventHandler.on_created">on<sub>create</sub></a>d, <a href="http://pythonhosted.org/watchdog/api.html#watchdog.events.FileSystemEventHandler.on_deleted">on<sub>deleted</sub></a>, <a href="http://pythonhosted.org/watchdog/api.html#watchdog.events.FileSystemEventHandler.on_modified">on<sub>modified</sub></a>, <a href="http://pythonhosted.org/watchdog/api.html#watchdog.events.FileSystemEventHandler.on_moved">on<sub>moved</sub></a>,
-</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-sec-1-2-7" class="outline-4">
-<h4 id="sec-1-2-7">rauth</h4>
-<div class="outline-text-4" id="text-1-2-7">
-<p>
-一个Oauth库,这是<a href="https://rauth.readthedocs.org/en/latest/">文档</a>, 这是一份示例<a href="https://gist.github.com/yuyang0/5949932">代码</a>, 基本上照着流程走就OK了
-</p>
-</div>
-</div>
-</div>
-</div>
-</div>
+</div></div>
 <div id="disqus_comment">
   <div id="disqus_thread"></div>
     <script type="text/javascript">
@@ -464,7 +1668,7 @@ d(<span style="color: #61CE3C;">'meta[name=keywords]'</span>) <span style="color
   <hr />
   <ul class="links">
     <li>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</li>
-    <li><a href="/sitemap.tt">Sitemap</a></li>
+    <li><a href="/sitemap.xml">Sitemap</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     <li><a href="/about.html">About Me</a></li>
     <li><a href="#">Back to Top</a></li>

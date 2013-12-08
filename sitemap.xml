@@ -4,37 +4,37 @@
 
    <url>
 
+      <loc>http://yuyang.farbox.com/reading-notes/IT术语.html</loc>
+
+      <lastmod>2013-12-06</lastmod>
+
+      <changefreq>weekly</changefreq>
+
+      <priority>0.5</priority>
+
+   </url>
+
+   <url>
+
       <loc>http://yuyang.farbox.com/reading-notes/sicp.html</loc>
 
-      <lastmod>2013-07-14</lastmod>
+      <lastmod>2013-07-21</lastmod>
 
       <changefreq>weekly</changefreq>
 
-      <priority>0.8</priority>
+      <priority>0.5</priority>
 
    </url>
 
    <url>
 
-      <loc>http://yuyang.farbox.com/reading-notes/how-to-study.html</loc>
+      <loc>http://yuyang.farbox.com/reading-notes/EOPL.html</loc>
 
-      <lastmod>2013-07-14</lastmod>
-
-      <changefreq>weekly</changefreq>
-
-      <priority>0.8</priority>
-
-   </url>
-
-   <url>
-
-      <loc>http://yuyang.farbox.com/reading-notes/how-to-read-a-book.html</loc>
-
-      <lastmod>2013-07-14</lastmod>
+      <lastmod>2013-12-06</lastmod>
 
       <changefreq>weekly</changefreq>
 
-      <priority>0.8</priority>
+      <priority>0.5</priority>
 
    </url>
 
@@ -42,11 +42,71 @@
 
       <loc>http://yuyang.farbox.com/reading-notes/Theory-Computation.html</loc>
 
-      <lastmod>2013-07-14</lastmod>
+      <lastmod>2013-07-21</lastmod>
 
       <changefreq>weekly</changefreq>
 
-      <priority>0.8</priority>
+      <priority>0.5</priority>
+
+   </url>
+
+   <url>
+
+      <loc>http://yuyang.farbox.com/reading-notes/how-to-study.html</loc>
+
+      <lastmod>2013-07-21</lastmod>
+
+      <changefreq>weekly</changefreq>
+
+      <priority>0.5</priority>
+
+   </url>
+
+   <url>
+
+      <loc>http://yuyang.farbox.com/reading-notes/how-to-read-a-book.html</loc>
+
+      <lastmod>2013-07-21</lastmod>
+
+      <changefreq>weekly</changefreq>
+
+      <priority>0.5</priority>
+
+   </url>
+
+   <url>
+
+      <loc>http://yuyang.farbox.com/reading-notes/python-source-code.html</loc>
+
+      <lastmod>2013-11-06</lastmod>
+
+      <changefreq>weekly</changefreq>
+
+      <priority>0.5</priority>
+
+   </url>
+
+   <url>
+
+      <loc>http://yuyang.farbox.com/reading-notes/乌合之众.html</loc>
+
+      <lastmod>2013-10-26</lastmod>
+
+      <changefreq>weekly</changefreq>
+
+      <priority>0.5</priority>
+
+   </url>
+
+   <url>
+
+      <loc>http://yuyang.farbox.com/reading-notes/second-treatise-civil-government.html</loc>
+
+      <lastmod>2013-08-13</lastmod>
+
+      <changefreq>weekly</changefreq>
+
+      <priority>0.5</priority>
 
    </url>
 
@@ -54,23 +114,11 @@
 
       <loc>http://yuyang.farbox.com/reading-notes/Probability.html</loc>
 
-      <lastmod>2013-07-14</lastmod>
+      <lastmod>2013-11-15</lastmod>
 
       <changefreq>weekly</changefreq>
 
-      <priority>0.8</priority>
-
-   </url>
-
-   <url>
-
-      <loc>http://yuyang.farbox.com/reading-notes/IT术语.html</loc>
-
-      <lastmod>2013-07-14</lastmod>
-
-      <changefreq>weekly</changefreq>
-
-      <priority>0.8</priority>
+      <priority>0.5</priority>
 
    </url>
 
@@ -78,11 +126,11 @@
 
       <loc>http://yuyang.farbox.com/django.html</loc>
 
-      <lastmod>2013-07-14</lastmod>
+      <lastmod>2013-11-06</lastmod>
 
       <changefreq>weekly</changefreq>
 
-      <priority>0.8</priority>
+      <priority>0.5</priority>
 
    </url>
 
@@ -90,11 +138,23 @@
 
       <loc>http://yuyang.farbox.com/emacs.html</loc>
 
-      <lastmod>2013-07-14</lastmod>
+      <lastmod>2013-12-08</lastmod>
 
       <changefreq>weekly</changefreq>
 
-      <priority>0.8</priority>
+      <priority>0.5</priority>
+
+   </url>
+
+   <url>
+
+      <loc>http://yuyang.farbox.com/history.html</loc>
+
+      <lastmod>2013-12-08</lastmod>
+
+      <changefreq>weekly</changefreq>
+
+      <priority>0.5</priority>
 
    </url>
 
@@ -102,11 +162,11 @@
 
       <loc>http://yuyang.farbox.com/linux-c-garbled-characters.html</loc>
 
-      <lastmod>2013-07-14</lastmod>
+      <lastmod>2013-11-15</lastmod>
 
       <changefreq>weekly</changefreq>
 
-      <priority>0.8</priority>
+      <priority>0.5</priority>
 
    </url>
 
@@ -114,11 +174,11 @@
 
       <loc>http://yuyang.farbox.com/funny-video.html</loc>
 
-      <lastmod>2013-07-14</lastmod>
+      <lastmod>2013-07-21</lastmod>
 
       <changefreq>weekly</changefreq>
 
-      <priority>0.8</priority>
+      <priority>0.5</priority>
 
    </url>
 
@@ -126,11 +186,11 @@
 
       <loc>http://yuyang.farbox.com/php.html</loc>
 
-      <lastmod>2013-07-14</lastmod>
+      <lastmod>2013-07-21</lastmod>
 
       <changefreq>weekly</changefreq>
 
-      <priority>0.8</priority>
+      <priority>0.5</priority>
 
    </url>
 
@@ -138,11 +198,11 @@
 
       <loc>http://yuyang.farbox.com/set-theory.html</loc>
 
-      <lastmod>2013-07-14</lastmod>
+      <lastmod>2013-07-21</lastmod>
 
       <changefreq>weekly</changefreq>
 
-      <priority>0.8</priority>
+      <priority>0.5</priority>
 
    </url>
 
@@ -150,11 +210,11 @@
 
       <loc>http://yuyang.farbox.com/css.html</loc>
 
-      <lastmod>2013-07-14</lastmod>
+      <lastmod>2013-11-13</lastmod>
 
       <changefreq>weekly</changefreq>
 
-      <priority>0.8</priority>
+      <priority>0.5</priority>
 
    </url>
 
@@ -162,11 +222,11 @@
 
       <loc>http://yuyang.farbox.com/gevent.html</loc>
 
-      <lastmod>2013-07-14</lastmod>
+      <lastmod>2013-07-21</lastmod>
 
       <changefreq>weekly</changefreq>
 
-      <priority>0.8</priority>
+      <priority>0.5</priority>
 
    </url>
 
@@ -174,11 +234,23 @@
 
       <loc>http://yuyang.farbox.com/git.html</loc>
 
-      <lastmod>2013-07-14</lastmod>
+      <lastmod>2013-11-06</lastmod>
 
       <changefreq>weekly</changefreq>
 
-      <priority>0.8</priority>
+      <priority>0.5</priority>
+
+   </url>
+
+   <url>
+
+      <loc>http://yuyang.farbox.com/javascript.html</loc>
+
+      <lastmod>2013-10-18</lastmod>
+
+      <changefreq>weekly</changefreq>
+
+      <priority>0.5</priority>
 
    </url>
 
@@ -186,11 +258,11 @@
 
       <loc>http://yuyang.farbox.com/logion-apothegm.html</loc>
 
-      <lastmod>2013-07-14</lastmod>
+      <lastmod>2013-08-19</lastmod>
 
       <changefreq>weekly</changefreq>
 
-      <priority>0.8</priority>
+      <priority>0.5</priority>
 
    </url>
 
@@ -198,11 +270,23 @@
 
       <loc>http://yuyang.farbox.com/index.html</loc>
 
-      <lastmod>2013-07-14</lastmod>
+      <lastmod>2013-12-06</lastmod>
 
       <changefreq>weekly</changefreq>
 
-      <priority>0.8</priority>
+      <priority>0.5</priority>
+
+   </url>
+
+   <url>
+
+      <loc>http://yuyang.farbox.com/python-descriptor.html</loc>
+
+      <lastmod>2013-12-06</lastmod>
+
+      <changefreq>weekly</changefreq>
+
+      <priority>0.5</priority>
 
    </url>
 
@@ -210,11 +294,11 @@
 
       <loc>http://yuyang.farbox.com/python-note.html</loc>
 
-      <lastmod>2013-07-14</lastmod>
+      <lastmod>2013-11-06</lastmod>
 
       <changefreq>weekly</changefreq>
 
-      <priority>0.8</priority>
+      <priority>0.5</priority>
 
    </url>
 
@@ -222,11 +306,35 @@
 
       <loc>http://yuyang.farbox.com/scheme.html</loc>
 
-      <lastmod>2013-07-14</lastmod>
+      <lastmod>2013-12-06</lastmod>
 
       <changefreq>weekly</changefreq>
 
-      <priority>0.8</priority>
+      <priority>0.5</priority>
+
+   </url>
+
+   <url>
+
+      <loc>http://yuyang.farbox.com/web-py-source-code.html</loc>
+
+      <lastmod>2013-11-06</lastmod>
+
+      <changefreq>weekly</changefreq>
+
+      <priority>0.5</priority>
+
+   </url>
+
+   <url>
+
+      <loc>http://yuyang.farbox.com/wsgi.html</loc>
+
+      <lastmod>2013-11-15</lastmod>
+
+      <changefreq>weekly</changefreq>
+
+      <priority>0.5</priority>
 
    </url>
 
@@ -234,11 +342,23 @@
 
       <loc>http://yuyang.farbox.com/org-mode-dropbox-blog.html</loc>
 
-      <lastmod>2013-07-14</lastmod>
+      <lastmod>2013-07-21</lastmod>
 
       <changefreq>weekly</changefreq>
 
-      <priority>0.8</priority>
+      <priority>0.5</priority>
+
+   </url>
+
+   <url>
+
+      <loc>http://yuyang.farbox.com/information-theory.html</loc>
+
+      <lastmod>2013-11-06</lastmod>
+
+      <changefreq>weekly</changefreq>
+
+      <priority>0.5</priority>
 
    </url>
 
@@ -246,11 +366,11 @@
 
       <loc>http://yuyang.farbox.com/investment.html</loc>
 
-      <lastmod>2013-07-14</lastmod>
+      <lastmod>2013-07-21</lastmod>
 
       <changefreq>weekly</changefreq>
 
-      <priority>0.8</priority>
+      <priority>0.5</priority>
 
    </url>
 
@@ -258,11 +378,23 @@
 
       <loc>http://yuyang.farbox.com/code-snippet.html</loc>
 
-      <lastmod>2013-07-14</lastmod>
+      <lastmod>2013-09-19</lastmod>
 
       <changefreq>weekly</changefreq>
 
-      <priority>0.8</priority>
+      <priority>0.5</priority>
+
+   </url>
+
+   <url>
+
+      <loc>http://yuyang.farbox.com/饮食调养.html</loc>
+
+      <lastmod>2013-09-19</lastmod>
+
+      <changefreq>weekly</changefreq>
+
+      <priority>0.5</priority>
 
    </url>
 

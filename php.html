@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>PHP笔记</title>
-<!-- 2013-07-14 Sun 18:21 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="author" content="Yu Yang"/>
+<!-- 2013-07-21 Sun 12:47 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center; }
@@ -494,78 +495,78 @@ function  func<sub>name</sub>($a, $b….)
 <div class="outline-text-3" id="text-1-7">
 <div class="org-src-container">
 
-<pre class="src src-php"><span class="linenr"> 1: </span><span style="color: #7fffd4;">&lt;?php</span>
+<pre class="src src-php"><span class="linenr"> 1: </span><span style="color: #F92672;">&lt;?php</span>
 <span class="linenr"> 2: </span>
-<span class="linenr"> 3: </span><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">A</span>
+<span class="linenr"> 3: </span><span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">A</span>
 <span class="linenr"> 4: </span>{
-<span class="linenr"> 5: </span>   <span style="color: #FBDE2D;">var</span> $<span style="color: #FF6400;">attribute1</span>; <span style="color: #AEAEAE; font-style: italic;">//</span><span style="color: #AEAEAE; font-style: italic;">&#36825;&#20010;&#31867;&#23454;&#20363;&#30340;&#23646;&#24615;&#65292;&#19981;&#26159;&#31867;&#26412;&#36523;&#30340;&#23646;&#24615;&#65292;&#19981;&#35201;&#21644;python&#24324;&#28151;&#20102;&#12290;&#40664;&#35748;&#20844;&#26377;</span>
-<span class="linenr"> 6: </span>   <span style="color: #FBDE2D;">public</span> $<span style="color: #FF6400;">attribute2</span>;<span style="color: #AEAEAE; font-style: italic;">//</span><span style="color: #AEAEAE; font-style: italic;">&#25351;&#23450;public&#65292;private&#21518;&#26368;&#22909;&#30465;&#25481;var</span>
-<span class="linenr"> 7: </span>   <span style="color: #FBDE2D;">private</span> $<span style="color: #FF6400;">attribute3</span> = <span style="color: #F8F8F8; background-color: #0C1021;">2</span>;<span style="color: #AEAEAE; font-style: italic;">//</span><span style="color: #AEAEAE; font-style: italic;">&#21487;&#20197;&#30452;&#25509;&#36171;&#20540;&#65292;&#19981;&#19968;&#23450;&#35201;&#22312;&#26500;&#36896;&#20989;&#25968;&#20013;</span>
-<span class="linenr"> 8: </span>   <span style="color: #FBDE2D;">protected</span> $<span style="color: #FF6400;">attribute4</span>;
+<span class="linenr"> 5: </span>   <span style="color: #F92672; font-weight: bold;">var</span> $<span style="color: #FD971F;">attribute1</span>; <span style="color: #75715E;">//</span><span style="color: #75715E;">&#36825;&#20010;&#31867;&#23454;&#20363;&#30340;&#23646;&#24615;&#65292;&#19981;&#26159;&#31867;&#26412;&#36523;&#30340;&#23646;&#24615;&#65292;&#19981;&#35201;&#21644;python&#24324;&#28151;&#20102;&#12290;&#40664;&#35748;&#20844;&#26377;</span>
+<span class="linenr"> 6: </span>   <span style="color: #F92672; font-weight: bold;">public</span> $<span style="color: #FD971F;">attribute2</span>;<span style="color: #75715E;">//</span><span style="color: #75715E;">&#25351;&#23450;public&#65292;private&#21518;&#26368;&#22909;&#30465;&#25481;var</span>
+<span class="linenr"> 7: </span>   <span style="color: #F92672; font-weight: bold;">private</span> $<span style="color: #FD971F;">attribute3</span> = <span style="color: #F8F8F2; background-color: #272822;">2</span>;<span style="color: #75715E;">//</span><span style="color: #75715E;">&#21487;&#20197;&#30452;&#25509;&#36171;&#20540;&#65292;&#19981;&#19968;&#23450;&#35201;&#22312;&#26500;&#36896;&#20989;&#25968;&#20013;</span>
+<span class="linenr"> 8: </span>   <span style="color: #F92672; font-weight: bold;">protected</span> $<span style="color: #FD971F;">attribute4</span>;
 <span class="linenr"> 9: </span>
-<span class="linenr">10: </span>   <span style="color: #FBDE2D;">public</span> <span style="color: #FBDE2D;">static</span> <span style="color: #ffc0cb; font-weight: bold;">my_static</span> = <span style="color: #F8F8F8; background-color: #0C1021;">5</span>; <span style="color: #AEAEAE; font-style: italic;">//</span><span style="color: #AEAEAE; font-style: italic;">&#38745;&#24577;&#21464;&#37327;&#20063;&#26159;&#31867;&#21464;&#37327;&#65292;&#31867;&#22806;&#37096;&#35775;&#38382;</span>
-<span class="linenr">11: </span>   <span style="color: #AEAEAE; font-style: italic;">//</span><span style="color: #AEAEAE; font-style: italic;">A::my_static; &#31867;&#20869;&#37096;&#35775;&#38382;&#65306;parent::my_static,self::my_static</span>
+<span class="linenr">10: </span>   <span style="color: #F92672; font-weight: bold;">public</span> <span style="color: #F92672; font-weight: bold;">static</span> <span style="color: #968B26; font-weight: bold;">my_static</span> = <span style="color: #F8F8F2; background-color: #272822;">5</span>; <span style="color: #75715E;">//</span><span style="color: #75715E;">&#38745;&#24577;&#21464;&#37327;&#20063;&#26159;&#31867;&#21464;&#37327;&#65292;&#31867;&#22806;&#37096;&#35775;&#38382;</span>
+<span class="linenr">11: </span>   <span style="color: #75715E;">//</span><span style="color: #75715E;">A::my_static; &#31867;&#20869;&#37096;&#35775;&#38382;&#65306;parent::my_static,self::my_static</span>
 <span class="linenr">12: </span>
-<span class="linenr">13: </span>   <span style="color: #FBDE2D;">function</span> <span style="color: #FF6400;">__construct</span>($<span style="color: #FF6400;">param</span>)
-<span class="linenr">14: </span>   {<span style="color: #AEAEAE; font-style: italic;">//</span><span style="color: #AEAEAE; font-style: italic;">&#26500;&#36896;&#20989;&#25968;</span>
-<span class="linenr">15: </span>   $<span style="color: #D8FA3C;">this</span> -<span style="color: #D8FA3C;">&gt;</span> <span style="color: #ffc0cb; font-weight: bold;">attribute1</span> = $<span style="color: #FF6400;">param</span>;
+<span class="linenr">13: </span>   <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">__construct</span>($<span style="color: #FD971F;">param</span>)
+<span class="linenr">14: </span>   {<span style="color: #75715E;">//</span><span style="color: #75715E;">&#26500;&#36896;&#20989;&#25968;</span>
+<span class="linenr">15: </span>   $<span style="color: #AE81FF;">this</span> -<span style="color: #AE81FF;">&gt;</span> <span style="color: #968B26; font-weight: bold;">attribute1</span> = $<span style="color: #FD971F;">param</span>;
 <span class="linenr">16: </span>   }
-<span class="linenr">17: </span>   <span style="color: #FBDE2D;">function</span> <span style="color: #FF6400;">__destruct</span>()
-<span class="linenr">18: </span>   {<span style="color: #AEAEAE; font-style: italic;">//</span><span style="color: #AEAEAE; font-style: italic;">&#26512;&#26500;&#20989;&#25968;</span>
+<span class="linenr">17: </span>   <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">__destruct</span>()
+<span class="linenr">18: </span>   {<span style="color: #75715E;">//</span><span style="color: #75715E;">&#26512;&#26500;&#20989;&#25968;</span>
 <span class="linenr">19: </span>   }
-<span class="linenr">20: </span>   <span style="color: #FBDE2D;">function</span> <span style="color: #FF6400;">__get</span>($<span style="color: #FF6400;">name</span>)
-<span class="linenr">21: </span>   {<span style="color: #AEAEAE; font-style: italic;">//</span><span style="color: #AEAEAE; font-style: italic;">&#21487;&#20197;&#25318;&#25130;$obj-&gt;$name&#36825;&#31181;&#23545;&#31867;&#23454;&#20363;&#30340;&#23646;&#24615;&#30452;&#25509;&#35775;&#38382;&#30340;&#35821;&#21477;&#12290;</span>
-<span class="linenr">22: </span>   <span style="color: #AEAEAE; font-style: italic;">//</span><span style="color: #AEAEAE; font-style: italic;">&#21482;&#26377;&#22312;$name&#23646;&#24615;&#27809;&#26377;&#23450;&#20041;&#26102;&#25165;&#20250;&#35302;&#21457;,&#36825;&#24847;&#21619;&#30528;&#24403;&#23646;&#24615;&#26159;</span>
-<span class="linenr">23: </span>    <span style="color: #AEAEAE; font-style: italic;">//</span><span style="color: #AEAEAE; font-style: italic;">&#31169;&#26377;&#25110;&#32773;&#20445;&#25252;&#26102;&#20063;&#20250;&#35302;&#21457;</span>
-<span class="linenr">24: </span>   <span style="color: #FBDE2D;">return</span> $<span style="color: #D8FA3C;">this</span>-&gt;<span style="color: #FF6400;">name</span>;
+<span class="linenr">20: </span>   <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">__get</span>($<span style="color: #FD971F;">name</span>)
+<span class="linenr">21: </span>   {<span style="color: #75715E;">//</span><span style="color: #75715E;">&#21487;&#20197;&#25318;&#25130;$obj-&gt;$name&#36825;&#31181;&#23545;&#31867;&#23454;&#20363;&#30340;&#23646;&#24615;&#30452;&#25509;&#35775;&#38382;&#30340;&#35821;&#21477;&#12290;</span>
+<span class="linenr">22: </span>   <span style="color: #75715E;">//</span><span style="color: #75715E;">&#21482;&#26377;&#22312;$name&#23646;&#24615;&#27809;&#26377;&#23450;&#20041;&#26102;&#25165;&#20250;&#35302;&#21457;,&#36825;&#24847;&#21619;&#30528;&#24403;&#23646;&#24615;&#26159;</span>
+<span class="linenr">23: </span>    <span style="color: #75715E;">//</span><span style="color: #75715E;">&#31169;&#26377;&#25110;&#32773;&#20445;&#25252;&#26102;&#20063;&#20250;&#35302;&#21457;</span>
+<span class="linenr">24: </span>   <span style="color: #F92672; font-weight: bold;">return</span> $<span style="color: #AE81FF;">this</span>-&gt;<span style="color: #FD971F;">name</span>;
 <span class="linenr">25: </span>   }
-<span class="linenr">26: </span>   <span style="color: #FBDE2D;">function</span> <span style="color: #FF6400;">__set</span>($<span style="color: #FF6400;">name</span>, $<span style="color: #FF6400;">value</span>)
-<span class="linenr">27: </span>   {<span style="color: #AEAEAE; font-style: italic;">//</span><span style="color: #AEAEAE; font-style: italic;">&#21487;&#20197;&#25318;&#25130;$obj-&gt;$name&#36825;&#31181;&#23545;&#31867;&#23454;&#20363;&#30340;&#23646;&#24615;&#30340;&#20540;&#30452;&#25509;&#36171;&#20540;&#30340;&#35821;&#21477;&#12290;</span>
-<span class="linenr">28: </span>   <span style="color: #AEAEAE; font-style: italic;">//</span><span style="color: #AEAEAE; font-style: italic;">&#21482;&#26377;&#22312;$name&#23646;&#24615;&#27809;&#26377;&#23450;&#20041;&#26102;&#25165;&#20250;&#35302;&#21457;,&#36825;&#24847;&#21619;&#30528;&#24403;&#23646;&#24615;&#26159;</span>
-<span class="linenr">29: </span>    <span style="color: #AEAEAE; font-style: italic;">//</span><span style="color: #AEAEAE; font-style: italic;">&#31169;&#26377;&#25110;&#32773;&#20445;&#25252;&#26102;&#20063;&#20250;&#35302;&#21457;</span>
-<span class="linenr">30: </span>   $<span style="color: #D8FA3C;">this</span>-&gt;<span style="color: #FF6400;">name</span> = $<span style="color: #FF6400;">value</span>;
+<span class="linenr">26: </span>   <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">__set</span>($<span style="color: #FD971F;">name</span>, $<span style="color: #FD971F;">value</span>)
+<span class="linenr">27: </span>   {<span style="color: #75715E;">//</span><span style="color: #75715E;">&#21487;&#20197;&#25318;&#25130;$obj-&gt;$name&#36825;&#31181;&#23545;&#31867;&#23454;&#20363;&#30340;&#23646;&#24615;&#30340;&#20540;&#30452;&#25509;&#36171;&#20540;&#30340;&#35821;&#21477;&#12290;</span>
+<span class="linenr">28: </span>   <span style="color: #75715E;">//</span><span style="color: #75715E;">&#21482;&#26377;&#22312;$name&#23646;&#24615;&#27809;&#26377;&#23450;&#20041;&#26102;&#25165;&#20250;&#35302;&#21457;,&#36825;&#24847;&#21619;&#30528;&#24403;&#23646;&#24615;&#26159;</span>
+<span class="linenr">29: </span>    <span style="color: #75715E;">//</span><span style="color: #75715E;">&#31169;&#26377;&#25110;&#32773;&#20445;&#25252;&#26102;&#20063;&#20250;&#35302;&#21457;</span>
+<span class="linenr">30: </span>   $<span style="color: #AE81FF;">this</span>-&gt;<span style="color: #FD971F;">name</span> = $<span style="color: #FD971F;">value</span>;
 <span class="linenr">31: </span>   }
-<span class="linenr">32: </span>   <span style="color: #FBDE2D;">function</span> <span style="color: #FF6400;">operation1</span>()
+<span class="linenr">32: </span>   <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">operation1</span>()
 <span class="linenr">33: </span>   {
 <span class="linenr">34: </span>   }
 <span class="linenr">35: </span>}
-<span class="linenr">36: </span><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">B</span> <span style="color: #FBDE2D;">extends</span> <span style="color: #8DA6CE;">A</span>
-<span class="linenr">37: </span>{<span style="color: #AEAEAE; font-style: italic;">//</span><span style="color: #AEAEAE; font-style: italic;">&#32487;&#25215;&#37117;&#26159;&#31867;&#20284;&#20110;C++&#30340;&#20844;&#26377;&#32487;&#25215;</span>
-<span class="linenr">38: </span> <span style="color: #AEAEAE; font-style: italic;">//</span><span style="color: #AEAEAE; font-style: italic;">&#21487;&#20197;&#37325;&#36733;&#23376;&#31867;&#30340;&#23646;&#24615;&#19982;&#25104;&#21592;&#26041;&#27861;</span>
-<span class="linenr">39: </span>   <span style="color: #FBDE2D;">function</span> <span style="color: #FF6400;">__construct</span>()
+<span class="linenr">36: </span><span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">B</span> <span style="color: #F92672; font-weight: bold;">extends</span> <span style="color: #66D9EF;">A</span>
+<span class="linenr">37: </span>{<span style="color: #75715E;">//</span><span style="color: #75715E;">&#32487;&#25215;&#37117;&#26159;&#31867;&#20284;&#20110;C++&#30340;&#20844;&#26377;&#32487;&#25215;</span>
+<span class="linenr">38: </span> <span style="color: #75715E;">//</span><span style="color: #75715E;">&#21487;&#20197;&#37325;&#36733;&#23376;&#31867;&#30340;&#23646;&#24615;&#19982;&#25104;&#21592;&#26041;&#27861;</span>
+<span class="linenr">39: </span>   <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">__construct</span>()
 <span class="linenr">40: </span>   {
-<span class="linenr">41: </span>   <span style="color: #D8FA3C;">parent</span>::<span style="color: #F8F8F8; background-color: #0C1021;">__construct</span>();<span style="color: #AEAEAE; font-style: italic;">//</span><span style="color: #AEAEAE; font-style: italic;">&#25191;&#34892;&#29238;&#31867;&#30340;&#26500;&#36896;&#20989;&#25968;</span>
+<span class="linenr">41: </span>   <span style="color: #AE81FF;">parent</span>::<span style="color: #F8F8F2; background-color: #272822;">__construct</span>();<span style="color: #75715E;">//</span><span style="color: #75715E;">&#25191;&#34892;&#29238;&#31867;&#30340;&#26500;&#36896;&#20989;&#25968;</span>
 <span class="linenr">42: </span>   }
 <span class="linenr">43: </span>}
 <span class="linenr">44: </span>
-<span class="linenr">45: </span><span style="color: #FBDE2D;">Interface</span> (<span style="color: #ffc0cb; font-weight: bold;">&#25509;&#21475;</span>)
-<span class="linenr">46: </span><span style="color: #FBDE2D;">interface</span> <span style="color: #8DA6CE;">iTemplate</span>
+<span class="linenr">45: </span><span style="color: #F92672; font-weight: bold;">Interface</span> (<span style="color: #968B26; font-weight: bold;">&#25509;&#21475;</span>)
+<span class="linenr">46: </span><span style="color: #F92672; font-weight: bold;">interface</span> <span style="color: #66D9EF;">iTemplate</span>
 <span class="linenr">47: </span>{
-<span class="linenr">48: </span>   <span style="color: #FBDE2D;">public</span> <span style="color: #FBDE2D;">function</span> <span style="color: #FF6400;">setVariable</span>($<span style="color: #FF6400;">name</span>, $<span style="color: #FF6400;">var</span>);
-<span class="linenr">49: </span>   <span style="color: #FBDE2D;">public</span> <span style="color: #FBDE2D;">function</span> <span style="color: #FF6400;">getHtml</span>($<span style="color: #FF6400;">template</span>);
+<span class="linenr">48: </span>   <span style="color: #F92672; font-weight: bold;">public</span> <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">setVariable</span>($<span style="color: #FD971F;">name</span>, $<span style="color: #FD971F;">var</span>);
+<span class="linenr">49: </span>   <span style="color: #F92672; font-weight: bold;">public</span> <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">getHtml</span>($<span style="color: #FD971F;">template</span>);
 <span class="linenr">50: </span>}
 <span class="linenr">51: </span>
-<span class="linenr">52: </span><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Template</span> <span style="color: #FBDE2D;">implements</span> <span style="color: #8DA6CE;">iTemplate</span>
+<span class="linenr">52: </span><span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Template</span> <span style="color: #F92672; font-weight: bold;">implements</span> <span style="color: #66D9EF;">iTemplate</span>
 <span class="linenr">53: </span>{
-<span class="linenr">54: </span>   <span style="color: #FBDE2D;">private</span> $<span style="color: #FF6400;">vars</span> = <span style="color: #FBDE2D;">array</span>();
+<span class="linenr">54: </span>   <span style="color: #F92672; font-weight: bold;">private</span> $<span style="color: #FD971F;">vars</span> = <span style="color: #F92672; font-weight: bold;">array</span>();
 <span class="linenr">55: </span>
-<span class="linenr">56: </span>   <span style="color: #FBDE2D;">public</span> <span style="color: #FBDE2D;">function</span> <span style="color: #FF6400;">setVariable</span>($<span style="color: #FF6400;">name</span>, $<span style="color: #FF6400;">var</span>)
+<span class="linenr">56: </span>   <span style="color: #F92672; font-weight: bold;">public</span> <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">setVariable</span>($<span style="color: #FD971F;">name</span>, $<span style="color: #FD971F;">var</span>)
 <span class="linenr">57: </span>   {
-<span class="linenr">58: </span>       $<span style="color: #D8FA3C;">this</span>-&gt;<span style="color: #FF6400;">vars</span>[$<span style="color: #FF6400;">name</span>] = $<span style="color: #FF6400;">var</span>;
+<span class="linenr">58: </span>       $<span style="color: #AE81FF;">this</span>-&gt;<span style="color: #FD971F;">vars</span>[$<span style="color: #FD971F;">name</span>] = $<span style="color: #FD971F;">var</span>;
 <span class="linenr">59: </span>   }
 <span class="linenr">60: </span>
-<span class="linenr">61: </span>   <span style="color: #FBDE2D;">public</span> <span style="color: #FBDE2D;">function</span> <span style="color: #FF6400;">getHtml</span>($<span style="color: #FF6400;">template</span>)
+<span class="linenr">61: </span>   <span style="color: #F92672; font-weight: bold;">public</span> <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">getHtml</span>($<span style="color: #FD971F;">template</span>)
 <span class="linenr">62: </span>   {
-<span class="linenr">63: </span>       <span style="color: #FBDE2D;">foreach</span>($<span style="color: #D8FA3C;">this</span>-&gt;<span style="color: #FF6400;">vars</span> <span style="color: #FBDE2D;">as</span> $<span style="color: #FF6400;">name</span> =&gt; $<span style="color: #FF6400;">value</span>) {
-<span class="linenr">64: </span>           $<span style="color: #FF6400;">template</span> = <span style="color: #F8F8F8; background-color: #0C1021;">str_replace</span>(<span style="color: #61CE3C;">'{'</span> . $<span style="color: #FF6400;">name</span> . <span style="color: #61CE3C;">'}'</span>, $<span style="color: #FF6400;">value</span>, $<span style="color: #FF6400;">template</span>);
+<span class="linenr">63: </span>       <span style="color: #F92672; font-weight: bold;">foreach</span>($<span style="color: #AE81FF;">this</span>-&gt;<span style="color: #FD971F;">vars</span> <span style="color: #F92672; font-weight: bold;">as</span> $<span style="color: #FD971F;">name</span> =&gt; $<span style="color: #FD971F;">value</span>) {
+<span class="linenr">64: </span>           $<span style="color: #FD971F;">template</span> = <span style="color: #F8F8F2; background-color: #272822;">str_replace</span>(<span style="color: #E6DB74;">'{'</span> . $<span style="color: #FD971F;">name</span> . <span style="color: #E6DB74;">'}'</span>, $<span style="color: #FD971F;">value</span>, $<span style="color: #FD971F;">template</span>);
 <span class="linenr">65: </span>       }
 <span class="linenr">66: </span>
-<span class="linenr">67: </span>       <span style="color: #FBDE2D;">return</span> $<span style="color: #FF6400;">template</span>;
+<span class="linenr">67: </span>       <span style="color: #F92672; font-weight: bold;">return</span> $<span style="color: #FD971F;">template</span>;
 <span class="linenr">68: </span>   }
 <span class="linenr">69: </span>}
 <span class="linenr">70: </span>
-<span class="linenr">71: </span>$<span style="color: #FF6400;">object</span> = <span style="color: #FBDE2D;">new</span> <span style="color: #8DA6CE;">A</span>() <span style="color: #AEAEAE; font-style: italic;">//</span><span style="color: #AEAEAE; font-style: italic;">&#23454;&#20363;&#21270;&#31867;</span>
-<span class="linenr">72: </span><span style="color: #7fffd4;">?&gt;</span>
+<span class="linenr">71: </span>$<span style="color: #FD971F;">object</span> = <span style="color: #F92672; font-weight: bold;">new</span> <span style="color: #66D9EF;">A</span>() <span style="color: #75715E;">//</span><span style="color: #75715E;">&#23454;&#20363;&#21270;&#31867;</span>
+<span class="linenr">72: </span><span style="color: #F92672;">?&gt;</span>
 </pre>
 </div>
 </div>
@@ -579,36 +580,36 @@ function  func<sub>name</sub>($a, $b….)
 <div class="outline-text-4" id="text-1-8-1">
 <div class="org-src-container">
 
-<pre class="src src-php"><span class="linenr"> 1: </span><span style="color: #7fffd4;">&lt;?php</span>
+<pre class="src src-php"><span class="linenr"> 1: </span><span style="color: #F92672;">&lt;?php</span>
 <span class="linenr"> 2: </span>
-<span class="linenr"> 3: </span><span style="color: #AEAEAE; font-style: italic;">//</span><span style="color: #AEAEAE; font-style: italic;">&#38754;&#21521;&#36807;&#31243;&#30340;&#20195;&#30721;</span>
-<span class="linenr"> 4: </span>$<span style="color: #FF6400;">db</span> = <span style="color: #F8F8F8; background-color: #0C1021;">mysqli_connect</span>(<span style="color: #61CE3C;">"example.com"</span>, <span style="color: #61CE3C;">"user"</span>, <span style="color: #61CE3C;">"password"</span>, <span style="color: #61CE3C;">"database"</span>);
-<span class="linenr"> 5: </span><span style="color: #FBDE2D;">if</span> (<span style="color: #F8F8F8; background-color: #0C1021;">mysqli_connect_errno</span>($<span style="color: #FF6400;">db</span>)) {
-<span class="linenr"> 6: </span>    <span style="color: #FBDE2D;">echo</span> <span style="color: #61CE3C;">"Failed to connect to MySQL: "</span> . <span style="color: #F8F8F8; background-color: #0C1021;">mysqli_connect_error</span>();
+<span class="linenr"> 3: </span><span style="color: #75715E;">//</span><span style="color: #75715E;">&#38754;&#21521;&#36807;&#31243;&#30340;&#20195;&#30721;</span>
+<span class="linenr"> 4: </span>$<span style="color: #FD971F;">db</span> = <span style="color: #F8F8F2; background-color: #272822;">mysqli_connect</span>(<span style="color: #E6DB74;">"example.com"</span>, <span style="color: #E6DB74;">"user"</span>, <span style="color: #E6DB74;">"password"</span>, <span style="color: #E6DB74;">"database"</span>);
+<span class="linenr"> 5: </span><span style="color: #F92672; font-weight: bold;">if</span> (<span style="color: #F8F8F2; background-color: #272822;">mysqli_connect_errno</span>($<span style="color: #FD971F;">db</span>)) {
+<span class="linenr"> 6: </span>    <span style="color: #F92672; font-weight: bold;">echo</span> <span style="color: #E6DB74;">"Failed to connect to MySQL: "</span> . <span style="color: #F8F8F2; background-color: #272822;">mysqli_connect_error</span>();
 <span class="linenr"> 7: </span>}
 <span class="linenr"> 8: </span>
-<span class="linenr"> 9: </span>$<span style="color: #FF6400;">res</span> = <span style="color: #F8F8F8; background-color: #0C1021;">mysqli_query</span>($<span style="color: #FF6400;">db</span>, <span style="color: #61CE3C;">"SELECT 'A world full of ' AS _msg FROM DUAL"</span>);
-<span class="linenr">10: </span>$<span style="color: #FF6400;">row</span> = <span style="color: #F8F8F8; background-color: #0C1021;">mysqli_fetch_assoc</span>($<span style="color: #FF6400;">res</span>);
-<span class="linenr">11: </span><span style="color: #FBDE2D;">echo</span> $<span style="color: #FF6400;">row</span>[<span style="color: #61CE3C;">'_msg'</span>];
+<span class="linenr"> 9: </span>$<span style="color: #FD971F;">res</span> = <span style="color: #F8F8F2; background-color: #272822;">mysqli_query</span>($<span style="color: #FD971F;">db</span>, <span style="color: #E6DB74;">"SELECT 'A world full of ' AS _msg FROM DUAL"</span>);
+<span class="linenr">10: </span>$<span style="color: #FD971F;">row</span> = <span style="color: #F8F8F2; background-color: #272822;">mysqli_fetch_assoc</span>($<span style="color: #FD971F;">res</span>);
+<span class="linenr">11: </span><span style="color: #F92672; font-weight: bold;">echo</span> $<span style="color: #FD971F;">row</span>[<span style="color: #E6DB74;">'_msg'</span>];
 <span class="linenr">12: </span>
 <span class="linenr">13: </span>
-<span class="linenr">14: </span><span style="color: #AEAEAE; font-style: italic;">//</span><span style="color: #AEAEAE; font-style: italic;">&#38754;&#21521;&#23545;&#35937;&#30340;&#20195;&#30721;</span>
-<span class="linenr">15: </span>$<span style="color: #FF6400;">db</span> = <span style="color: #FBDE2D;">new</span> <span style="color: #8DA6CE;">mysqli</span>(<span style="color: #61CE3C;">"example.com"</span>, <span style="color: #61CE3C;">"user"</span>, <span style="color: #61CE3C;">"password"</span>, <span style="color: #61CE3C;">"database"</span>);
-<span class="linenr">16: </span><span style="color: #FBDE2D;">if</span> ($<span style="color: #FF6400;">db</span>-<span style="color: #D8FA3C;">&gt;</span><span style="color: #FF6400;">connect_errno</span>) {
-<span class="linenr">17: </span>    <span style="color: #FBDE2D;">echo</span> <span style="color: #61CE3C;">"Failed to connect to MySQL: "</span> . $<span style="color: #FF6400;">db</span>-&gt;<span style="color: #FF6400;">connect_error</span>;
+<span class="linenr">14: </span><span style="color: #75715E;">//</span><span style="color: #75715E;">&#38754;&#21521;&#23545;&#35937;&#30340;&#20195;&#30721;</span>
+<span class="linenr">15: </span>$<span style="color: #FD971F;">db</span> = <span style="color: #F92672; font-weight: bold;">new</span> <span style="color: #66D9EF;">mysqli</span>(<span style="color: #E6DB74;">"example.com"</span>, <span style="color: #E6DB74;">"user"</span>, <span style="color: #E6DB74;">"password"</span>, <span style="color: #E6DB74;">"database"</span>);
+<span class="linenr">16: </span><span style="color: #F92672; font-weight: bold;">if</span> ($<span style="color: #FD971F;">db</span>-<span style="color: #AE81FF;">&gt;</span><span style="color: #FD971F;">connect_errno</span>) {
+<span class="linenr">17: </span>    <span style="color: #F92672; font-weight: bold;">echo</span> <span style="color: #E6DB74;">"Failed to connect to MySQL: "</span> . $<span style="color: #FD971F;">db</span>-&gt;<span style="color: #FD971F;">connect_error</span>;
 <span class="linenr">18: </span>}
 <span class="linenr">19: </span>
-<span class="linenr">20: </span>$<span style="color: #FF6400;">res</span> = $<span style="color: #FF6400;">db</span>-&gt;<span style="color: #F8F8F8; background-color: #0C1021;">query</span>(<span style="color: #61CE3C;">"SELECT 'choices to please everybody,' AS _msg FROM DUAL"</span>);
-<span class="linenr">21: </span>$<span style="color: #FF6400;">num_results</span> = $<span style="color: #FF6400;">res</span>-&gt;<span style="color: #FF6400;">num_rows</span>;
-<span class="linenr">22: </span><span style="color: #FBDE2D;">for</span>($<span style="color: #FF6400;">i</span> = <span style="color: #F8F8F8; background-color: #0C1021;">0</span>;$<span style="color: #FF6400;">i</span> &lt; $<span style="color: #FF6400;">num_result</span>; $<span style="color: #FF6400;">i</span>++)
+<span class="linenr">20: </span>$<span style="color: #FD971F;">res</span> = $<span style="color: #FD971F;">db</span>-&gt;<span style="color: #F8F8F2; background-color: #272822;">query</span>(<span style="color: #E6DB74;">"SELECT 'choices to please everybody,' AS _msg FROM DUAL"</span>);
+<span class="linenr">21: </span>$<span style="color: #FD971F;">num_results</span> = $<span style="color: #FD971F;">res</span>-&gt;<span style="color: #FD971F;">num_rows</span>;
+<span class="linenr">22: </span><span style="color: #F92672; font-weight: bold;">for</span>($<span style="color: #FD971F;">i</span> = <span style="color: #F8F8F2; background-color: #272822;">0</span>;$<span style="color: #FD971F;">i</span> &lt; $<span style="color: #FD971F;">num_result</span>; $<span style="color: #FD971F;">i</span>++)
 <span class="linenr">23: </span>{
-<span class="linenr">24: </span>$<span style="color: #FF6400;">row</span> = $<span style="color: #FF6400;">res</span>-<span style="color: #D8FA3C;">&gt;</span><span style="color: #F8F8F8; background-color: #0C1021;">fetch_assoc</span>();
-<span class="linenr">25: </span><span style="color: #FBDE2D;">echo</span> $<span style="color: #FF6400;">row</span>[<span style="color: #61CE3C;">'_msg'</span>];
+<span class="linenr">24: </span>$<span style="color: #FD971F;">row</span> = $<span style="color: #FD971F;">res</span>-<span style="color: #AE81FF;">&gt;</span><span style="color: #F8F8F2; background-color: #272822;">fetch_assoc</span>();
+<span class="linenr">25: </span><span style="color: #F92672; font-weight: bold;">echo</span> $<span style="color: #FD971F;">row</span>[<span style="color: #E6DB74;">'_msg'</span>];
 <span class="linenr">26: </span>}
-<span class="linenr">27: </span>$<span style="color: #FF6400;">res</span>-&gt;<span style="color: #F8F8F8; background-color: #0C1021;">free</span>();
-<span class="linenr">28: </span>$<span style="color: #FF6400;">db</span>-&gt;<span style="color: #F8F8F8; background-color: #0C1021;">close</span>();
+<span class="linenr">27: </span>$<span style="color: #FD971F;">res</span>-&gt;<span style="color: #F8F8F2; background-color: #272822;">free</span>();
+<span class="linenr">28: </span>$<span style="color: #FD971F;">db</span>-&gt;<span style="color: #F8F8F2; background-color: #272822;">close</span>();
 <span class="linenr">29: </span>
-<span class="linenr">30: </span> <span style="color: #7fffd4;">?&gt;</span>
+<span class="linenr">30: </span> <span style="color: #F92672;">?&gt;</span>
 </pre>
 </div>
 <p>
@@ -698,7 +699,7 @@ eg：论坛的板块表与帖子表就是这种关系，而帖子表与回复表
 
 <pre class="src src-sql">grant select, insert, update, delete
 on books.*
-to user identified by <span style="color: #61CE3C;">'1234'</span>
+to user identified by <span style="color: #E6DB74;">'1234'</span>
 </pre>
 </div>
 </li>
@@ -785,19 +786,19 @@ create database 数据库名;
 <h5 id="sec-1-9-3-8">create  table</h5>
 <div class="outline-text-5" id="text-1-9-3-8">
 <p class="verse">
-create  table  表名 <br/>
-( <br/>
-列名称1   数据类型， <br/>
-列名称2   数据类型， <br/>
-………… <br/>
-) <br/>
-约束：NOT  NULL <br/>
-&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;Primary key：主键，不用在指定unique。 <br/>
-&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;Unique：字段必须唯一。 <br/>
-&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;Foreign key:外键 <br/>
-&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;Check：值范围，eg：check（Id&gt;0）. <br/>
-&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;Default: 默认值，default ‘yangyu’。 <br/>
-&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;Auto<sub>increment：通常对主键。</sub> <br/>
+create  table  表名<br  />
+(<br  />
+列名称1   数据类型，<br  />
+列名称2   数据类型，<br  />
+…………<br  />
+)<br  />
+约束：NOT  NULL<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;Primary key：主键，不用在指定unique。<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;Unique：字段必须唯一。<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;Foreign key:外键<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;Check：值范围，eg：check（Id&gt;0）.<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;Default: 默认值，default ‘yangyu’。<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;Auto<sub>increment：通常对主键。</sub><br  />
 </p>
 </div>
 </div>
@@ -872,24 +873,24 @@ create  table  表名 <br/>
 加&amp;
 <div class="org-src-container">
 
-<pre class="src src-php"><span class="linenr"> 1: </span><span style="color: #7fffd4;">&lt;?php</span>
-<span class="linenr"> 2: </span><span style="color: #FBDE2D;">function</span> <span style="color: #FF6400;">add_some_extra</span>(&amp;$<span style="color: #FF6400;">string</span>)
+<pre class="src src-php"><span class="linenr"> 1: </span><span style="color: #F92672;">&lt;?php</span>
+<span class="linenr"> 2: </span><span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">add_some_extra</span>(&amp;$<span style="color: #FD971F;">string</span>)
 <span class="linenr"> 3: </span>{
-<span class="linenr"> 4: </span>    $<span style="color: #FF6400;">string</span> .= <span style="color: #61CE3C;">'and something extra.'</span>;
+<span class="linenr"> 4: </span>    $<span style="color: #FD971F;">string</span> .= <span style="color: #E6DB74;">'and something extra.'</span>;
 <span class="linenr"> 5: </span>}
-<span class="linenr"> 6: </span>$<span style="color: #FF6400;">str</span> = <span style="color: #61CE3C;">'This is a string,'</span>;
-<span class="linenr"> 7: </span><span style="color: #F8F8F8; background-color: #0C1021;">add_some_extra</span>($<span style="color: #FF6400;">str</span>);
-<span class="linenr"> 8: </span><span style="color: #FBDE2D;">echo</span> $<span style="color: #FF6400;">str</span>;    <span style="color: #AEAEAE; font-style: italic;">//</span><span style="color: #AEAEAE; font-style: italic;">outputs 'This is a string, and something extra.'</span>
-<span class="linenr"> 9: </span><span style="color: #7fffd4;">?&gt;</span>
+<span class="linenr"> 6: </span>$<span style="color: #FD971F;">str</span> = <span style="color: #E6DB74;">'This is a string,'</span>;
+<span class="linenr"> 7: </span><span style="color: #F8F8F2; background-color: #272822;">add_some_extra</span>($<span style="color: #FD971F;">str</span>);
+<span class="linenr"> 8: </span><span style="color: #F92672; font-weight: bold;">echo</span> $<span style="color: #FD971F;">str</span>;    <span style="color: #75715E;">//</span><span style="color: #75715E;">outputs 'This is a string, and something extra.'</span>
+<span class="linenr"> 9: </span><span style="color: #F92672;">?&gt;</span>
 <span class="linenr">10: </span>
-<span class="linenr">11: </span><span style="color: #7fffd4;">&lt;?php</span>
-<span class="linenr">12: </span><span style="color: #FBDE2D;">function</span> &amp;<span style="color: #FF6400;">returns_reference</span>()
+<span class="linenr">11: </span><span style="color: #F92672;">&lt;?php</span>
+<span class="linenr">12: </span><span style="color: #F92672; font-weight: bold;">function</span> &amp;<span style="color: #A6E22E;">returns_reference</span>()
 <span class="linenr">13: </span>{
-<span class="linenr">14: </span>    <span style="color: #FBDE2D;">return</span> $<span style="color: #FF6400;">someref</span>;
+<span class="linenr">14: </span>    <span style="color: #F92672; font-weight: bold;">return</span> $<span style="color: #FD971F;">someref</span>;
 <span class="linenr">15: </span>}
 <span class="linenr">16: </span>
-<span class="linenr">17: </span>$<span style="color: #FF6400;">newref</span> =&amp; <span style="color: #F8F8F8; background-color: #0C1021;">returns_reference</span>();
-<span class="linenr">18: </span><span style="color: #7fffd4;">?&gt;</span>
+<span class="linenr">17: </span>$<span style="color: #FD971F;">newref</span> =&amp; <span style="color: #F8F8F2; background-color: #272822;">returns_reference</span>();
+<span class="linenr">18: </span><span style="color: #F92672;">?&gt;</span>
 </pre>
 </div>
 </li>

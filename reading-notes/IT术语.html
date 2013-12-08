@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>IT术语</title>
-<!-- 2013-07-14 Sun 18:21 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="author" content="Yu Yang"/>
+<!-- 2013-12-06 Fri 14:57 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center; }
@@ -91,7 +92,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012  Free Software Foundation, Inc.
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -163,6 +164,8 @@ for the JavaScript code in this tag.
 <li><a href="#sec-1">IT术语</a>
 <ul>
 <li><a href="#sec-1-1">透明的（transparent）</a></li>
+<li><a href="#sec-1-2">Expression</a></li>
+<li><a href="#sec-1-3">Statement</a></li>
 </ul>
 </li>
 </ul>
@@ -175,9 +178,59 @@ for the JavaScript code in this tag.
 <h3 id="sec-1-1">透明的（transparent）</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
-透而不见，比如玻璃，所以说什么东西是透明的就是说其内部不可见，可以无视
-其实现，而生活中一般的意思是对内部一目了然，如透明度
+透而不见，比如玻璃，所以说什么东西是透明的就是说其内部不可见，可以无视其实现，
+而生活中一般的意思是对内部一目了然，如透明度
 </p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">Expression</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+表达式一般会返回值, 但是不会有副作用(<a href="https://en.wikipedia.org/wiki/Side_effect_%2528computer_science%2529">side effect</a>), 表达式一般也会包含变量,常
+量,操作符,函数
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">Statement</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+语句一般是不返回值的,他只会产生副作用(<a href="https://en.wikipedia.org/wiki/Side_effect_%2528computer_science%2529">side effect</a>), 常见的语句有
+Simple statements
+</p>
+<ul class="org-ul">
+<li>assignment: A:= A + 5
+</li>
+<li>call: CLEARSCREEN()
+</li>
+<li>return: return 5;
+</li>
+<li>goto: goto 5
+</li>
+<li>assertion: assert(ptr != NULL);
+</li>
+</ul>
+
+<p>
+Compound statements
+</p>
+<ul class="org-ul">
+<li><b>block</b> : begin integer NUMBER; WRITE('Number? '); READLN(NUMBER); A:= A*NUMBER end
+</li>
+<li><b>if-statement</b> : if A &gt; 3 then WRITELN(A) else WRITELN("NOT YET"); end
+</li>
+<li><b>switch-statement</b> : switch (c) { case 'a': alert(); break; case 'q': quit(); break; }
+</li>
+<li><b>while-loop</b> : while NOT EOF DO begin READLN end
+</li>
+<li><b>do-loop</b> : do { computation(&amp;i); } while (i &lt; 10);
+</li>
+<li><b>for-loop</b> : for A:=1 to 10 do WRITELN(A) end
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -206,7 +259,7 @@ for the JavaScript code in this tag.
   <hr />
   <ul class="links">
     <li>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</li>
-    <li><a href="/sitemap.tt">Sitemap</a></li>
+    <li><a href="/sitemap.xml">Sitemap</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     <li><a href="/about.html">About Me</a></li>
     <li><a href="#">Back to Top</a></li>

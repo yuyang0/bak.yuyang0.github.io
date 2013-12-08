@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Linux平台C语言乱码</title>
-<!-- 2013-07-14 Sun 18:21 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="author" content="Yu Yang"/>
-<meta name="keywords" content="linux c mess"/>
+<!-- 2013-11-15 Fri 23:01 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Yu Yang" />
+<meta  name="keywords" content="linux c mess" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center; }
@@ -175,7 +176,8 @@ for the JavaScript code in this tag.
 </p>
 
 <div class="figure">
-<p><img src="static/img/how-to-show-file.png"  alt="how-to-show-file.png"/></p>
+<p><img src="static/img/how-to-show-file.png" alt="how-to-show-file.png" />
+</p>
 </div>
 
 <ul class="org-ul">
@@ -215,18 +217,18 @@ iconv -f gb2312 -t utf8 youfile -c -o newfile
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span class="linenr"> 1: </span><span style="color: #AEAEAE; font-style: italic;">#</span><span style="color: #AEAEAE; font-style: italic;">!/bin/</span><span style="color: #FBDE2D;">bash</span>
-<span class="linenr"> 2: </span><span style="color: #FBDE2D;">for</span> i<span style="color: #FBDE2D;"> in</span> *.lrc
-<span class="linenr"> 3: </span><span style="color: #FBDE2D;">do</span>
-<span class="linenr"> 4: </span>    <span style="color: #FF6400;">is_utf8</span>=$(<span style="color: #fa8072;">file</span> <span style="color: #61CE3C;">"$i"</span> | grep <span style="color: #61CE3C;">'UTF-8'</span>)
-<span class="linenr"> 5: </span>    <span style="color: #FBDE2D;">if</span> [ -z <span style="color: #61CE3C;">"$is_utf8"</span> ]
-<span class="linenr"> 6: </span>    <span style="color: #FBDE2D;">then</span>
-<span class="linenr"> 7: </span>        iconv -f gb2312 -t utf8 <span style="color: #61CE3C;">"$i"</span> -c -o tmp_lrc &amp;&amp; rm -f <span style="color: #61CE3C;">"$i"</span>
-<span class="linenr"> 8: </span>        mv tmp_lrc <span style="color: #61CE3C;">"$i"</span>
-<span class="linenr"> 9: </span>    <span style="color: #FBDE2D;">else</span>
-<span class="linenr">10: </span>        <span style="color: #FBDE2D;">continue</span>;
-<span class="linenr">11: </span>    <span style="color: #FBDE2D;">fi</span>
-<span class="linenr">12: </span><span style="color: #FBDE2D;">done</span>
+<pre class="src src-sh"><span class="linenr"> 1: </span><span style="color: #75715E;">#</span><span style="color: #75715E;">!/bin/</span><span style="color: #F92672; font-weight: bold;">bash</span>
+<span class="linenr"> 2: </span><span style="color: #F92672; font-weight: bold;">for</span> i<span style="color: #F92672; font-weight: bold;"> in</span> *.lrc
+<span class="linenr"> 3: </span><span style="color: #F92672; font-weight: bold;">do</span>
+<span class="linenr"> 4: </span>    <span style="color: #FD971F;">is_utf8</span>=$(file <span style="color: #E6DB74;">"$i"</span> | grep <span style="color: #E6DB74;">'UTF-8'</span>)
+<span class="linenr"> 5: </span>    <span style="color: #F92672; font-weight: bold;">if</span> [ -z <span style="color: #E6DB74;">"$is_utf8"</span> ]
+<span class="linenr"> 6: </span>    <span style="color: #F92672; font-weight: bold;">then</span>
+<span class="linenr"> 7: </span>        iconv -f gb2312 -t utf8 <span style="color: #E6DB74;">"$i"</span> -c -o tmp_lrc &amp;&amp; rm -f <span style="color: #E6DB74;">"$i"</span>
+<span class="linenr"> 8: </span>        mv tmp_lrc <span style="color: #E6DB74;">"$i"</span>
+<span class="linenr"> 9: </span>    <span style="color: #F92672; font-weight: bold;">else</span>
+<span class="linenr">10: </span>        <span style="color: #F92672; font-weight: bold;">continue</span>;
+<span class="linenr">11: </span>    <span style="color: #F92672; font-weight: bold;">fi</span>
+<span class="linenr">12: </span><span style="color: #F92672; font-weight: bold;">done</span>
 </pre>
 </div>
 <p>
@@ -240,51 +242,51 @@ iconv -f gb2312 -t utf8 youfile -c -o newfile
 </p>
 <div class="org-src-container">
 
-<pre class="src src-C"><span class="linenr"> 1: </span><span style="color: #7fffd4;">#include</span><span style="color: #61CE3C;">&lt;stdio.h&gt;</span>
-<span class="linenr"> 2: </span><span style="color: #7fffd4;">#include</span><span style="color: #61CE3C;">&lt;iconv.h&gt;</span>
+<pre class="src src-C"><span class="linenr"> 1: </span><span style="color: #F92672;">#include</span><span style="color: #E6DB74;">&lt;stdio.h&gt;</span>
+<span class="linenr"> 2: </span><span style="color: #F92672;">#include</span><span style="color: #E6DB74;">&lt;iconv.h&gt;</span>
 <span class="linenr"> 3: </span>
-<span class="linenr"> 4: </span><span style="color: #7fffd4;">#define</span> <span style="color: #FF6400;">MAXLINE</span> 1024
-<span class="linenr"> 5: </span><span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">main</span>()
+<span class="linenr"> 4: </span><span style="color: #F92672;">#define</span> <span style="color: #FD971F;">MAXLINE</span> 1024
+<span class="linenr"> 5: </span><span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">main</span>()
 <span class="linenr"> 6: </span>{
-<span class="linenr"> 7: </span>    <span style="color: #8DA6CE;">FILE</span> *<span style="color: #FF6400;">fp</span> = fopen(<span style="color: #61CE3C;">"she.lrc"</span>,<span style="color: #61CE3C;">"r"</span>);
+<span class="linenr"> 7: </span>    <span style="color: #66D9EF;">FILE</span> *<span style="color: #FD971F;">fp</span> = fopen(<span style="color: #E6DB74;">"she.lrc"</span>,<span style="color: #E6DB74;">"r"</span>);
 <span class="linenr"> 8: </span>
-<span class="linenr"> 9: </span>    <span style="color: #8DA6CE;">char</span> <span style="color: #FF6400;">buf</span>[MAXLINE];
-<span class="linenr">10: </span>    <span style="color: #8DA6CE;">char</span> <span style="color: #FF6400;">dest</span>[MAXLINE];
-<span class="linenr">11: </span>    <span style="color: #8DA6CE;">char</span> *<span style="color: #FF6400;">in</span> = buf;
-<span class="linenr">12: </span>    <span style="color: #8DA6CE;">char</span> *<span style="color: #FF6400;">out</span> = dest;
+<span class="linenr"> 9: </span>    <span style="color: #66D9EF;">char</span> <span style="color: #FD971F;">buf</span>[MAXLINE];
+<span class="linenr">10: </span>    <span style="color: #66D9EF;">char</span> <span style="color: #FD971F;">dest</span>[MAXLINE];
+<span class="linenr">11: </span>    <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">in</span> = buf;
+<span class="linenr">12: </span>    <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">out</span> = dest;
 <span class="linenr">13: </span>    fgets(buf,MAXLINE,fp);
 <span class="linenr">14: </span>
-<span class="linenr">15: </span>    <span style="color: #8DA6CE;">iconv_t</span> <span style="color: #FF6400;">cd</span> = iconv_open(<span style="color: #61CE3C;">"UTF-8"</span>,<span style="color: #61CE3C;">"GBK"</span>);
-<span class="linenr">16: </span>    <span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">lenght</span> = MAXLINE;
+<span class="linenr">15: </span>    <span style="color: #66D9EF;">iconv_t</span> <span style="color: #FD971F;">cd</span> = iconv_open(<span style="color: #E6DB74;">"UTF-8"</span>,<span style="color: #E6DB74;">"GBK"</span>);
+<span class="linenr">16: </span>    <span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">lenght</span> = MAXLINE;
 <span class="linenr">17: </span>    iconv(cd,&amp;in,&amp;lenght,&amp;out,&amp;lenght)
 <span class="linenr">18: </span>    iconv_close(cd);
 <span class="linenr">19: </span>    fputs(dest,stdout);
-<span class="linenr">20: </span>    printf(<span style="color: #61CE3C;">"\n"</span>);
-<span class="linenr">21: </span>    <span style="color: #FBDE2D;">return</span> 0;
+<span class="linenr">20: </span>    printf(<span style="color: #E6DB74;">"\n"</span>);
+<span class="linenr">21: </span>    <span style="color: #F92672; font-weight: bold;">return</span> 0;
 <span class="linenr">22: </span>}
 </pre>
 </div>
 <p>
 上面的程序只是为了测试，所以有些错误处理代码去掉了，其中she.lrc是一个以gb2312编码
-的歌词文件，用到了3个函数，icon<sub>open</sub>,iconv,icon<sub>close</sub>,这三个函数是libiconv库的接
+的歌词文件，用到了3个函数，icon_open,iconv,icon_close,这三个函数是libiconv库的接
 口，这三个函数的详细介绍清参考:
-<a href="http://www.gnu.org/savannah-checkouts/gnu/libiconv/documentation/libiconv-1.13/iconv_open.3.html">ICONV<sub>OPEN</sub></a>
+<a href="http://www.gnu.org/savannah-checkouts/gnu/libiconv/documentation/libiconv-1.13/iconv_open.3.html">ICONV_OPEN</a>
 <a href="http://www.gnu.org/savannah-checkouts/gnu/libiconv/documentation/libiconv-1.13/iconv.3.html">ICONV</a>
-<a href="http://www.gnu.org/savannah-checkouts/gnu/libiconv/documentation/libiconv-1.13/iconv_close.3.html">ICONV<sub>CLOSE</sub></a>
+<a href="http://www.gnu.org/savannah-checkouts/gnu/libiconv/documentation/libiconv-1.13/iconv_close.3.html">ICONV_CLOSE</a>
 </p>
 
 <p>
 这三个函数的帮助文档也可以直接man，很详细，使用的顺序也是先调
-用iconv<sub>open创建描述符，然后调用iconv转换，最后调用iconv</sub><sub>close</sub>
+用iconv_open创建描述符，然后调用iconv转换，最后调用iconv_close
 关闭描述符，函数原型为：
 </p>
 <div class="org-src-container">
 
-<pre class="src src-C"><span class="linenr">1: </span><span style="color: #8DA6CE;">iconv_t</span> <span style="color: #FF6400;">iconv_open</span>(<span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">char</span> *<span style="color: #FF6400;">tocode</span>, <span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">char</span> *<span style="color: #FF6400;">fromcode</span>)
-<span class="linenr">2: </span><span style="color: #8DA6CE;">size_t</span> <span style="color: #FF6400;">iconv</span>(<span style="color: #8DA6CE;">iconv_t</span> <span style="color: #FF6400;">cd</span>,
-<span class="linenr">3: </span>                    <span style="color: #8DA6CE;">char</span> **<span style="color: #FF6400;">inbuf</span>, <span style="color: #8DA6CE;">size_t</span> *<span style="color: #FF6400;">inbytesleft</span>,
-<span class="linenr">4: </span>                    <span style="color: #8DA6CE;">char</span> **<span style="color: #FF6400;">outbuf</span>, <span style="color: #8DA6CE;">size_t</span> *<span style="color: #FF6400;">outbytesleft</span>);
-<span class="linenr">5: </span> <span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">iconv_close</span>(<span style="color: #8DA6CE;">iconv_t</span> <span style="color: #FF6400;">cd</span>);
+<pre class="src src-C"><span class="linenr">1: </span><span style="color: #66D9EF;">iconv_t</span> <span style="color: #A6E22E;">iconv_open</span>(<span style="color: #F92672; font-weight: bold;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">tocode</span>, <span style="color: #F92672; font-weight: bold;">const</span> <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">fromcode</span>)
+<span class="linenr">2: </span><span style="color: #66D9EF;">size_t</span> <span style="color: #A6E22E;">iconv</span>(<span style="color: #66D9EF;">iconv_t</span> <span style="color: #FD971F;">cd</span>,
+<span class="linenr">3: </span>                    <span style="color: #66D9EF;">char</span> **<span style="color: #FD971F;">inbuf</span>, <span style="color: #66D9EF;">size_t</span> *<span style="color: #FD971F;">inbytesleft</span>,
+<span class="linenr">4: </span>                    <span style="color: #66D9EF;">char</span> **<span style="color: #FD971F;">outbuf</span>, <span style="color: #66D9EF;">size_t</span> *<span style="color: #FD971F;">outbytesleft</span>);
+<span class="linenr">5: </span> <span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">iconv_close</span>(<span style="color: #66D9EF;">iconv_t</span> <span style="color: #FD971F;">cd</span>);
 </pre>
 </div>
 <p>
@@ -317,7 +319,7 @@ iconv -f gb2312 -t utf8 youfile -c -o newfile
   <hr />
   <ul class="links">
     <li>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</li>
-    <li><a href="/sitemap.tt">Sitemap</a></li>
+    <li><a href="/sitemap.xml">Sitemap</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     <li><a href="/about.html">About Me</a></li>
     <li><a href="#">Back to Top</a></li>
