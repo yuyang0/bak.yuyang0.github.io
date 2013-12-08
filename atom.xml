@@ -3349,7 +3349,7 @@ schemamigration会生成本次修改的py文件（在your_app/migrations/下）,
 &lt;div class=&quot;outline-text-2&quot; id=&quot;text-1&quot;&gt;
 &lt;p&gt;
 这是我的emacs配置：&lt;a href=&quot;https://github.com/yuyang0/emacs.d&quot;&gt;https://github.com/yuyang0/emacs.d&lt;/a&gt; ,我在&lt;a href=&quot;https://github.com/purcell/emacs.d&quot;&gt;purcell&lt;/a&gt; 的配置的基础
-上添加了一些我自己的设置..
+上添加了一些我自己的设置.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&quot;outline-container-sec-1-1&quot; class=&quot;outline-3&quot;&gt;
@@ -3592,30 +3592,30 @@ C-v  : past rectangle&lt;br /&gt;&lt;/p&gt;
 &lt;/p&gt;
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;defvar&lt;/span&gt; &lt;span style=&quot;color: #268bd2;&quot;&gt;jc/mc-search--last-term&lt;/span&gt; nil)
+&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;defvar&lt;/span&gt; &lt;span style=&quot;color: #FD971F;&quot;&gt;jc/mc-search--last-term&lt;/span&gt; nil)
 
-(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;defun&lt;/span&gt; &lt;span style=&quot;color: #268bd2;&quot;&gt;jc/mc-search&lt;/span&gt; (search-command)
-  &lt;span style=&quot;color: #93a1a1;&quot;&gt;;; &lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;Read new search term when not repeated command or applying to fake cursors&lt;/span&gt;
-  (&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;when&lt;/span&gt; (and (not mc--executing-command-for-fake-cursor)
+(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;defun&lt;/span&gt; &lt;span style=&quot;color: #A6E22E;&quot;&gt;jc/mc-search&lt;/span&gt; (search-command)
+  &lt;span style=&quot;color: #75715E;&quot;&gt;;; &lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;Read new search term when not repeated command or applying to fake cursors&lt;/span&gt;
+  (&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;when&lt;/span&gt; (and (not mc--executing-command-for-fake-cursor)
              (not (eq last-command &#39;jc/mc-search-forward))
              (not (eq last-command &#39;jc/mc-search-backward)))
-    (setq jc/mc-search--last-term (read-from-minibuffer &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;Search(regex): &quot;&lt;/span&gt;)))
+    (setq jc/mc-search--last-term (read-from-minibuffer &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;Search(regex): &quot;&lt;/span&gt;)))
   (funcall search-command jc/mc-search--last-term))
 
-(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;defun&lt;/span&gt; &lt;span style=&quot;color: #268bd2;&quot;&gt;jc/mc-search-forward&lt;/span&gt; ()
-  &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;Simplified version of forward search that supports multiple cursors&quot;&lt;/span&gt;
+(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;defun&lt;/span&gt; &lt;span style=&quot;color: #A6E22E;&quot;&gt;jc/mc-search-forward&lt;/span&gt; ()
+  &lt;span style=&quot;color: #75715E;&quot;&gt;&quot;Simplified version of forward search that supports multiple cursors&quot;&lt;/span&gt;
   (interactive)
   (jc/mc-search &#39;search-forward-regexp))
 
-(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;defun&lt;/span&gt; &lt;span style=&quot;color: #268bd2;&quot;&gt;jc/mc-search-backward&lt;/span&gt; ()
-  &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;Simplified version of backward search that supports multiple cursors&quot;&lt;/span&gt;
+(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;defun&lt;/span&gt; &lt;span style=&quot;color: #A6E22E;&quot;&gt;jc/mc-search-backward&lt;/span&gt; ()
+  &lt;span style=&quot;color: #75715E;&quot;&gt;&quot;Simplified version of backward search that supports multiple cursors&quot;&lt;/span&gt;
   (interactive)
   (jc/mc-search &#39;search-backward-regexp))
 
 (add-hook &#39;multiple-cursors-mode-enabled-hook
-          (&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;lambda&lt;/span&gt;()
-            (local-set-key (kbd &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;C-s&quot;&lt;/span&gt;) &#39;jc/mc-search-forward)
-            (local-set-key (kbd &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;C-r&quot;&lt;/span&gt;) &#39;jc/mc-search-backward)))
+          (&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;lambda&lt;/span&gt;()
+            (local-set-key (kbd &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;C-s&quot;&lt;/span&gt;) &#39;jc/mc-search-forward)
+            (local-set-key (kbd &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;C-r&quot;&lt;/span&gt;) &#39;jc/mc-search-backward)))
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;
@@ -3944,12 +3944,12 @@ textlive-latex-extra一定要装,不装会有File `wrapfig.sty&#39; not found.�
 &lt;li&gt;在emacs配置文件中添加
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;;; &lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;org-mode &amp;lt; 8.0&lt;/span&gt;
-(setq org-latex-to-pdf-process &#39;(&lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;xelatex -interaction nonstopmode %f&quot;&lt;/span&gt;
-                                 &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;xelatex -interaction nonstopmode %f&quot;&lt;/span&gt;))
-&lt;span style=&quot;color: #93a1a1;&quot;&gt;;;  &lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;org-mode 8.0&lt;/span&gt;
-(setq org-latex-pdf-process &#39;(&lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;xelatex -interaction nonstopmode %f&quot;&lt;/span&gt;
-                              &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;xelatex -interaction nonstopmode %f&quot;&lt;/span&gt;))
+&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;;; &lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;org-mode &amp;lt; 8.0&lt;/span&gt;
+(setq org-latex-to-pdf-process &#39;(&lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;xelatex -interaction nonstopmode %f&quot;&lt;/span&gt;
+                                 &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;xelatex -interaction nonstopmode %f&quot;&lt;/span&gt;))
+&lt;span style=&quot;color: #75715E;&quot;&gt;;;  &lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;org-mode 8.0&lt;/span&gt;
+(setq org-latex-pdf-process &#39;(&lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;xelatex -interaction nonstopmode %f&quot;&lt;/span&gt;
+                              &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;xelatex -interaction nonstopmode %f&quot;&lt;/span&gt;))
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -3989,29 +3989,29 @@ M-x package-install request安装
 &lt;/p&gt;
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;require&lt;/span&gt; &#39;&lt;span style=&quot;color: #268bd2; font-weight: bold;&quot;&gt;request&lt;/span&gt;)
-(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;require&lt;/span&gt; &#39;&lt;span style=&quot;color: #268bd2; font-weight: bold;&quot;&gt;json&lt;/span&gt;)
-(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;defun&lt;/span&gt; &lt;span style=&quot;color: #268bd2;&quot;&gt;dwz-url-shorten&lt;/span&gt; (long-url)
-  &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;shorten url with dwz.cn&quot;&lt;/span&gt;
+&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;require&lt;/span&gt; &#39;&lt;span style=&quot;color: #AE81FF;&quot;&gt;request&lt;/span&gt;)
+(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;require&lt;/span&gt; &#39;&lt;span style=&quot;color: #AE81FF;&quot;&gt;json&lt;/span&gt;)
+(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;defun&lt;/span&gt; &lt;span style=&quot;color: #A6E22E;&quot;&gt;dwz-url-shorten&lt;/span&gt; (long-url)
+  &lt;span style=&quot;color: #75715E;&quot;&gt;&quot;shorten url with dwz.cn&quot;&lt;/span&gt;
   (interactive (list
-                (read-string (format &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;long url (%s): &quot;&lt;/span&gt; (thing-at-point &#39;url))
+                (read-string (format &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;long url (%s): &quot;&lt;/span&gt; (thing-at-point &#39;url))
                              nil nil (thing-at-point &#39;url))))
   (request
-   &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;http://dwz.cn/create.php&quot;&lt;/span&gt;
-   &lt;span style=&quot;color: #657b83; font-weight: bold;&quot;&gt;:type&lt;/span&gt; &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;POST&quot;&lt;/span&gt;
-   &lt;span style=&quot;color: #93a1a1;&quot;&gt;;; &lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;:data &#39;((&quot;url&quot; . long-url))&lt;/span&gt;
-   &lt;span style=&quot;color: #657b83; font-weight: bold;&quot;&gt;:data&lt;/span&gt; (format &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;url=%s&quot;&lt;/span&gt; long-url)
-   &lt;span style=&quot;color: #93a1a1;&quot;&gt;;; &lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;:data &quot;key=value&amp;amp;key2=value2&quot;  ; this is equivalent&lt;/span&gt;
-   &lt;span style=&quot;color: #657b83; font-weight: bold;&quot;&gt;:parser&lt;/span&gt; &#39;json-read
-   &lt;span style=&quot;color: #657b83; font-weight: bold;&quot;&gt;:success&lt;/span&gt; (function*
-             (&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;lambda&lt;/span&gt; (&lt;span style=&quot;color: #b58900;&quot;&gt;&amp;amp;key&lt;/span&gt; data &lt;span style=&quot;color: #b58900;&quot;&gt;&amp;amp;allow-other-keys&lt;/span&gt;)
-               (&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;let&lt;/span&gt; ((tinyurl (assoc-default &#39;tinyurl data))
+   &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;http://dwz.cn/create.php&quot;&lt;/span&gt;
+   &lt;span style=&quot;color: #A6E22E;&quot;&gt;:type&lt;/span&gt; &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;POST&quot;&lt;/span&gt;
+   &lt;span style=&quot;color: #75715E;&quot;&gt;;; &lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;:data &#39;((&quot;url&quot; . long-url))&lt;/span&gt;
+   &lt;span style=&quot;color: #A6E22E;&quot;&gt;:data&lt;/span&gt; (format &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;url=%s&quot;&lt;/span&gt; long-url)
+   &lt;span style=&quot;color: #75715E;&quot;&gt;;; &lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;:data &quot;key=value&amp;amp;key2=value2&quot;  ; this is equivalent&lt;/span&gt;
+   &lt;span style=&quot;color: #A6E22E;&quot;&gt;:parser&lt;/span&gt; &#39;json-read
+   &lt;span style=&quot;color: #A6E22E;&quot;&gt;:success&lt;/span&gt; (function*
+             (&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;lambda&lt;/span&gt; (&lt;span style=&quot;color: #66D9EF;&quot;&gt;&amp;amp;key&lt;/span&gt; data &lt;span style=&quot;color: #66D9EF;&quot;&gt;&amp;amp;allow-other-keys&lt;/span&gt;)
+               (&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;let&lt;/span&gt; ((tinyurl (assoc-default &#39;tinyurl data))
                      (url-boundaries (bounds-of-thing-at-point &#39;url)))
-                 (&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;progn&lt;/span&gt;
-                   (message &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;%S&quot;&lt;/span&gt; tinyurl)
-                   (&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;if&lt;/span&gt; url-boundaries
+                 (&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;progn&lt;/span&gt;
+                   (message &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;%S&quot;&lt;/span&gt; tinyurl)
+                   (&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;if&lt;/span&gt; url-boundaries
                        (goto-char (cdr url-boundaries)))
-                   (insert &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot; &quot;&lt;/span&gt; tinyurl &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot; &quot;&lt;/span&gt;)))))))
+                   (insert &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot; &quot;&lt;/span&gt; tinyurl &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot; &quot;&lt;/span&gt;)))))))
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -4026,8 +4026,8 @@ M-x package-install request安装
 &lt;div class=&quot;outline-text-5&quot; id=&quot;text-1-1-20-1&quot;&gt;
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(setq url-proxy-services &#39;((&lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;no_proxy&quot;&lt;/span&gt; . &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;work\\.com&quot;&lt;/span&gt;)
-                           (&lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;http&quot;&lt;/span&gt; . &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;localhost:8087&quot;&lt;/span&gt;)))
+&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(setq url-proxy-services &#39;((&lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;no_proxy&quot;&lt;/span&gt; . &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;work\\.com&quot;&lt;/span&gt;)
+                           (&lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;http&quot;&lt;/span&gt; . &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;localhost:8087&quot;&lt;/span&gt;)))
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -4254,7 +4254,7 @@ latex代码预览的原理是先创建一个临时的tex文件, 然后调用late
 &lt;div class=&quot;org-src-container&quot;&gt;
 
 &lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(setq org-latex-create-formula-image-program &#39;dvipng)
-&lt;span style=&quot;color: #93a1a1;&quot;&gt;;;; &lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;or&lt;/span&gt;
+&lt;span style=&quot;color: #75715E;&quot;&gt;;;; &lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;or&lt;/span&gt;
 (setq org-latex-create-formula-image-program &#39;imagemagick)
 &lt;/pre&gt;
 &lt;/div&gt;
@@ -4296,10 +4296,10 @@ latex代码预览的原理是先创建一个临时的tex文件, 然后调用late
 &lt;/p&gt;
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(setq org-html-mathjax-options &#39;((path &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;http://cdn.mathjax.org/mathjax/latest/Ma&lt;/span&gt;&lt;span style=&quot;color: #d33682;&quot;&gt;thJax.js?config=TeX-AMS-MML_HTMLorMML&quot;)&lt;/span&gt;
-                                 (scale &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;100&quot;&lt;/span&gt;)
-                                 (align &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;center&quot;&lt;/span&gt;)
-                                 (indent &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;2em&quot;&lt;/span&gt;)
+&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(setq org-html-mathjax-options &#39;((path &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;http://cdn.mathjax.org/mathjax/latest/Ma&lt;/span&gt;&lt;span style=&quot;color: #F92672; background-color: #272822;&quot;&gt;thJax.js?config=TeX-AMS-MML_HTMLorMML&quot;)&lt;/span&gt;
+                                 (scale &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;100&quot;&lt;/span&gt;)
+                                 (align &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;center&quot;&lt;/span&gt;)
+                                 (indent &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;2em&quot;&lt;/span&gt;)
                                  (mathml t)))
 &lt;/pre&gt;
 &lt;/div&gt;
@@ -4427,28 +4427,28 @@ dot语言可以用来画流程图，和Babel结合起来非常方便，这是一
 &lt;ol class=&quot;org-ol&quot;&gt;&lt;li&gt;&lt;code&gt;if&lt;/code&gt;
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-lisp&quot;&gt;(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;if&lt;/span&gt; test
+&lt;pre class=&quot;src src-lisp&quot;&gt;(if test
 a
 b)
-&lt;span style=&quot;color: #93a1a1;&quot;&gt;;;&lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;test is the condition&lt;/span&gt;
+;;test is the condition
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;code&gt;when&lt;/code&gt;
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;when&lt;/span&gt; condition a b c)
-&lt;span style=&quot;color: #93a1a1;&quot;&gt;;;; &lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;equivalent&lt;/span&gt;
-(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;if&lt;/span&gt; condition (&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;progn&lt;/span&gt; a b c) nil)
+&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;when&lt;/span&gt; condition a b c)
+&lt;span style=&quot;color: #75715E;&quot;&gt;;;; &lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;equivalent&lt;/span&gt;
+(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;if&lt;/span&gt; condition (&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;progn&lt;/span&gt; a b c) nil)
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;code&gt;unless&lt;/code&gt;
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;unless&lt;/span&gt; condition a b c)
-&lt;span style=&quot;color: #93a1a1;&quot;&gt;;;;&lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;equvalent&lt;/span&gt;
-(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;if&lt;/span&gt; condition nil (&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;progn&lt;/span&gt; a b c))
+&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;unless&lt;/span&gt; condition a b c)
+&lt;span style=&quot;color: #75715E;&quot;&gt;;;;&lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;equvalent&lt;/span&gt;
+(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;if&lt;/span&gt; condition nil (&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;progn&lt;/span&gt; a b c))
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -4456,11 +4456,11 @@ b)
 和scheme类似:
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-scheme&quot;&gt;(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;cond&lt;/span&gt; ((numberp x) x)
+&lt;pre class=&quot;src src-scheme&quot;&gt;(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;cond&lt;/span&gt; ((numberp x) x)
       ((stringp x) x)
       ((bufferp x)
-       (setq temporary-hack x) &lt;span style=&quot;color: #93a1a1;&quot;&gt;; &lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;multiple body-forms&lt;/span&gt;
-       (buffer-name x))        &lt;span style=&quot;color: #93a1a1;&quot;&gt;; &lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;in one clause&lt;/span&gt;
+       (setq temporary-hack x) &lt;span style=&quot;color: #75715E;&quot;&gt;; &lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;multiple body-forms&lt;/span&gt;
+       (buffer-name x))        &lt;span style=&quot;color: #75715E;&quot;&gt;; &lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;in one clause&lt;/span&gt;
       ((symbolp x) (symbol-value x)))
 &lt;/pre&gt;
 &lt;/div&gt;
@@ -4480,9 +4480,9 @@ so (if a a b) is identical to (or a b)
         &lt;b&gt;Macro&lt;/b&gt;: dolist (var list [result]) body…
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;defun&lt;/span&gt; &lt;span style=&quot;color: #268bd2;&quot;&gt;reverse&lt;/span&gt; (list)
-  (&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;let&lt;/span&gt; (value)
-    (&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;dolist&lt;/span&gt; (elt list value)
+&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;defun&lt;/span&gt; &lt;span style=&quot;color: #A6E22E;&quot;&gt;reverse&lt;/span&gt; (list)
+  (&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;let&lt;/span&gt; (value)
+    (&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;dolist&lt;/span&gt; (elt list value)
       (setq value (cons elt value)))))
 &lt;/pre&gt;
 &lt;/div&gt;
@@ -4490,8 +4490,8 @@ so (if a a b) is identical to (or a b)
 &lt;li&gt;&lt;code&gt;dotimes&lt;/code&gt;
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;dotimes&lt;/span&gt; (i 100)
-            (insert &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;I will not obey absurd orders\n&quot;&lt;/span&gt;))
+&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;dotimes&lt;/span&gt; (i 100)
+            (insert &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;I will not obey absurd orders\n&quot;&lt;/span&gt;))
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -4506,7 +4506,7 @@ so (if a a b) is identical to (or a b)
 &lt;/p&gt;
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;let&lt;/span&gt; ((val1 value1)
+&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;let&lt;/span&gt; ((val1 value1)
       (val2 value2))
   body)
 &lt;/pre&gt;
@@ -4536,8 +4536,8 @@ optional代表参数可选, rest代表可变参数, 如果有那么会是一个�
 &lt;div class=&quot;org-src-container&quot;&gt;
 
 &lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(setq f &#39;list)
-(apply f &#39;a &#39;b &#39;(1 2))                  &lt;span style=&quot;color: #93a1a1;&quot;&gt;; &lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;(a b 1 2)&lt;/span&gt;
-(funcall f &#39;a &#39;b &#39;(1 2))                &lt;span style=&quot;color: #93a1a1;&quot;&gt;; &lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;(a b (1 2))&lt;/span&gt;
+(apply f &#39;a &#39;b &#39;(1 2))                  &lt;span style=&quot;color: #75715E;&quot;&gt;; &lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;(a b 1 2)&lt;/span&gt;
+(funcall f &#39;a &#39;b &#39;(1 2))                &lt;span style=&quot;color: #75715E;&quot;&gt;; &lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;(a b (1 2))&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -4607,8 +4607,8 @@ optional代表参数可选, rest代表可变参数, 如果有那么会是一个�
 &lt;div class=&quot;outline-text-6&quot; id=&quot;text-1-3-1-5-2&quot;&gt;
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;&lt;span class=&quot;linenr&quot;&gt;1: &lt;/span&gt;(setq alist &#39;(&lt;span style=&quot;color: #657b83; font-weight: bold;&quot;&gt;:publish-dir&lt;/span&gt; &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;~/Documents&quot;&lt;/span&gt; &lt;span style=&quot;color: #657b83; font-weight: bold;&quot;&gt;:base-dir&lt;/span&gt; &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;~/Documents/note&quot;&lt;/span&gt;))
-&lt;span class=&quot;linenr&quot;&gt;2: &lt;/span&gt;(plist-get alist &lt;span style=&quot;color: #657b83; font-weight: bold;&quot;&gt;:base-dir&lt;/span&gt;)
+&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;&lt;span class=&quot;linenr&quot;&gt;1: &lt;/span&gt;(setq alist &#39;(&lt;span style=&quot;color: #A6E22E;&quot;&gt;:publish-dir&lt;/span&gt; &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;~/Documents&quot;&lt;/span&gt; &lt;span style=&quot;color: #A6E22E;&quot;&gt;:base-dir&lt;/span&gt; &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;~/Documents/note&quot;&lt;/span&gt;))
+&lt;span class=&quot;linenr&quot;&gt;2: &lt;/span&gt;(plist-get alist &lt;span style=&quot;color: #A6E22E;&quot;&gt;:base-dir&lt;/span&gt;)
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -4627,22 +4627,22 @@ optional代表参数可选, rest代表可变参数, 如果有那么会是一个�
 &lt;div class=&quot;outline-text-5&quot; id=&quot;text-1-3-2-2&quot;&gt;
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-elisp&quot;&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;;;; &lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;point&lt;/span&gt;
+&lt;pre class=&quot;src src-elisp&quot;&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;;;; &lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;point&lt;/span&gt;
 (point)
-&lt;span style=&quot;color: #93a1a1;&quot;&gt;;;; &lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;一般返回buffer-end,但是如果指定了Narrowing,那么结果就不同&lt;/span&gt;
+&lt;span style=&quot;color: #75715E;&quot;&gt;;;; &lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;一般返回buffer-end,但是如果指定了Narrowing,那么结果就不同&lt;/span&gt;
 (point-max)
-&lt;span style=&quot;color: #93a1a1;&quot;&gt;;;; &lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;一般返回1,但是如果指定了Narrowing,那么结果就不同&lt;/span&gt;
+&lt;span style=&quot;color: #75715E;&quot;&gt;;;; &lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;一般返回1,但是如果指定了Narrowing,那么结果就不同&lt;/span&gt;
 (point-min)
 (buffer-end)
 (buffer-size)
-&lt;span style=&quot;color: #93a1a1;&quot;&gt;;;; &lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;可以用来保存当前的point,不管body中如何改变point,执行完成后都会回到执行save-excursion之前的point&lt;/span&gt;
-(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;save-excursion&lt;/span&gt; body)
-&lt;span style=&quot;color: #93a1a1;&quot;&gt;;;; &lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;Narrowing(将emacs的文本操作限定在buffer的一个子区域中)&lt;/span&gt;
+&lt;span style=&quot;color: #75715E;&quot;&gt;;;; &lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;可以用来保存当前的point,不管body中如何改变point,执行完成后都会回到执行save-excursion之前的point&lt;/span&gt;
+(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;save-excursion&lt;/span&gt; body)
+&lt;span style=&quot;color: #75715E;&quot;&gt;;;; &lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;Narrowing(将emacs的文本操作限定在buffer的一个子区域中)&lt;/span&gt;
 (narrow-to-region start end)
-&lt;span style=&quot;color: #93a1a1;&quot;&gt;;;; &lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;region&lt;/span&gt;
+&lt;span style=&quot;color: #75715E;&quot;&gt;;;; &lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;region&lt;/span&gt;
 (region-beginning)
 (region-end)
-&lt;span style=&quot;color: #93a1a1;&quot;&gt;;;; &lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;line&lt;/span&gt;
+&lt;span style=&quot;color: #75715E;&quot;&gt;;;; &lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;line&lt;/span&gt;
 (beginning-of-line)
 (end-of-line)
 (buffer-substring start end)
@@ -4650,13 +4650,13 @@ optional代表参数可选, rest代表可变参数, 如果有那么会是一个�
 (goto-char 293)
 (forward-char n)
 (backward-char n)
-(skip-chars-forward &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;\n\t&quot;&lt;/span&gt;)
-(skip-chars-backward &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;\n\t&quot;&lt;/span&gt;)
+(skip-chars-forward &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;\n\t&quot;&lt;/span&gt;)
+(skip-chars-backward &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;\n\t&quot;&lt;/span&gt;)
 
 (forward-line n)
 (backward-line n)
 
-(looking-at regex)  &lt;span style=&quot;color: #93a1a1;&quot;&gt;;; &lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;return t if text after the point match the REGEXP&lt;/span&gt;
+(looking-at regex)  &lt;span style=&quot;color: #75715E;&quot;&gt;;; &lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;return t if text after the point match the REGEXP&lt;/span&gt;
 (looking-back regex)
 
 (search-forward my-str)
@@ -4736,7 +4736,7 @@ optional代表参数可选, rest代表可变参数, 如果有那么会是一个�
 &lt;/li&gt;
 &lt;li&gt;&lt;code&gt;file-name-directory&lt;/code&gt;: (file-name-directory full-path) ⟶路径（不包含文件名）
 &lt;/li&gt;
-&lt;li&gt;&lt;code&gt;file-name-nodirectory&lt;/code&gt;: (file-name-nodirectory full-path) ⟶文件名（不包含路径）
+&lt;li&gt;&lt;code&gt;file-name-nondirectory&lt;/code&gt;: (file-name-nondirectory full-path) ⟶文件名（不包含路径）
 &lt;/li&gt;
 &lt;li&gt;&lt;code&gt;file-name-extension&lt;/code&gt;: (file-name-extension file-name)  ⟶后缀,一般时扩展名
 &lt;/li&gt;
@@ -4791,9 +4791,9 @@ pair ⟶ (start . end) , 这个pair 的car是左边界,cdr是右边界
 &lt;ol class=&quot;org-ol&quot;&gt;&lt;li&gt;test if a mode(major or minor) is on (flymake-mode as an example)
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;if&lt;/span&gt; (and (boundp &#39;flymake-mode) flymake-mode)
-    (message &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;flymake-mode is on&quot;&lt;/span&gt;)
-  (message &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;flymake-mode is off&quot;&lt;/span&gt;))
+&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;if&lt;/span&gt; (and (boundp &#39;flymake-mode) flymake-mode)
+    (message &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;flymake-mode is on&quot;&lt;/span&gt;)
+  (message &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;flymake-mode is off&quot;&lt;/span&gt;))
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -4801,11 +4801,11 @@ pair ⟶ (start . end) , 这个pair 的car是左边界,cdr是右边界
         &lt;b&gt;there are two way&lt;/b&gt;, the first is &lt;b&gt;eval-after-load&lt;/b&gt;
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;eval-after-load&lt;/span&gt; &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;org&quot;&lt;/span&gt;
-  &#39;(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;progn&lt;/span&gt;
-     (define-key org-mode-map (kbd &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;&amp;lt;C-M-return&amp;gt;&quot;&lt;/span&gt;) &#39;org-insert-heading-respect-c&lt;span style=&quot;color: #d33682;&quot;&gt;ontent)&lt;/span&gt;
-     (define-key org-mode-map (kbd &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;&amp;lt;M-right&amp;gt;&quot;&lt;/span&gt;) nil) &lt;span style=&quot;color: #93a1a1;&quot;&gt;; &lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;erasing a keybinding.&lt;/span&gt;
-     (define-key org-mode-map (kbd &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;&amp;lt;M-left&amp;gt;&quot;&lt;/span&gt;) nil) &lt;span style=&quot;color: #93a1a1;&quot;&gt;; &lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;erasing a keybinding.&lt;/span&gt;
+&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;eval-after-load&lt;/span&gt; &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;org&quot;&lt;/span&gt;
+  &#39;(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;progn&lt;/span&gt;
+     (define-key org-mode-map (kbd &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;&amp;lt;C-M-return&amp;gt;&quot;&lt;/span&gt;) &#39;org-insert-heading-respect-c&lt;span style=&quot;color: #F92672; background-color: #272822;&quot;&gt;ontent)&lt;/span&gt;
+     (define-key org-mode-map (kbd &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;&amp;lt;M-right&amp;gt;&quot;&lt;/span&gt;) nil) &lt;span style=&quot;color: #75715E;&quot;&gt;; &lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;erasing a keybinding.&lt;/span&gt;
+     (define-key org-mode-map (kbd &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;&amp;lt;M-left&amp;gt;&quot;&lt;/span&gt;) nil) &lt;span style=&quot;color: #75715E;&quot;&gt;; &lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;erasing a keybinding.&lt;/span&gt;
      ))
 &lt;/pre&gt;
 &lt;/div&gt;
@@ -4814,7 +4814,7 @@ the second way is &lt;b&gt;add-hook&lt;/b&gt;
 &lt;/p&gt;
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;defun&lt;/span&gt; &lt;span style=&quot;color: #268bd2;&quot;&gt;my-org-settngs&lt;/span&gt; ()
+&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;defun&lt;/span&gt; &lt;span style=&quot;color: #A6E22E;&quot;&gt;my-org-settngs&lt;/span&gt; ()
     (flyspell-mode 1))
 (add-hook &#39;org-mode-hook &#39;my-org-settngs)
 &lt;/pre&gt;
@@ -4885,11 +4885,11 @@ nil, 后面不能跟提示字符串,因为参数来自C-u而不是minibuffer
 &lt;div class=&quot;org-src-container&quot;&gt;
 
 &lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(interactive (list
-              (read-string (format &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;word (%s): &quot;&lt;/span&gt; (thing-at-point &#39;word))
+              (read-string (format &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;word (%s): &quot;&lt;/span&gt; (thing-at-point &#39;word))
                            nil nil (thing-at-point &#39;word))))
 
 (interactive
- (&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;let&lt;/span&gt; ((string (read-string &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;Foo: &quot;&lt;/span&gt; nil &#39;my-history)))
+ (&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;let&lt;/span&gt; ((string (read-string &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;Foo: &quot;&lt;/span&gt; nil &#39;my-history)))
    (list (region-beginning) (region-end) string)))
 &lt;/pre&gt;
 &lt;/div&gt;
@@ -4912,18 +4912,29 @@ read-string prompt &amp;amp;optional initial history default inherit-input-metho
 &lt;ol class=&quot;org-ol&quot;&gt;&lt;li&gt;autoload function filename &amp;amp;optional docstring interactive type
 
 &lt;p&gt;
-该函数会将function标记为autoload
+该函数会将function标记为autoload:
 &lt;/p&gt;
+&lt;ul class=&quot;org-ul&quot;&gt;&lt;li&gt;function: 一个symbol,用来代表函数或者宏
 &lt;/li&gt;
+&lt;li&gt;filename: 一个 &lt;code&gt;string&lt;/code&gt;, 用来指定加载function的文件,不要带目录名与后缀
+名
+&lt;/li&gt;
+&lt;li&gt;docstring: 文档字符串,指定后可以在没有加载function的情况下看它的文档
+&lt;/li&gt;
+&lt;li&gt;interactive: bool,如果为 &lt;code&gt;t&lt;/code&gt; 那么就是一个command,否则就是一个函数
+&lt;/li&gt;
+&lt;li&gt;type:
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 
 &lt;li&gt;使用魔法注释
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;;;;&lt;/span&gt;&lt;span style=&quot;color: #93a1a1;&quot;&gt;###&lt;/span&gt;&lt;span style=&quot;color: #cb4b16; font-weight: bold; text-decoration: underline;&quot;&gt;autoload&lt;/span&gt;
-(&lt;span style=&quot;color: #859900; font-weight: bold;&quot;&gt;defun&lt;/span&gt; &lt;span style=&quot;color: #268bd2;&quot;&gt;doctor&lt;/span&gt; ()
-       &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;Switch to *doctor* buffer and start giving psychotherapy.&quot;&lt;/span&gt;
+&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;;;;&lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;###&lt;/span&gt;&lt;span style=&quot;color: #968B26; font-weight: bold;&quot;&gt;autoload&lt;/span&gt;
+(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;defun&lt;/span&gt; &lt;span style=&quot;color: #A6E22E;&quot;&gt;doctor&lt;/span&gt; ()
+       &lt;span style=&quot;color: #75715E;&quot;&gt;&quot;Switch to *doctor* buffer and start giving psychotherapy.&quot;&lt;/span&gt;
        (interactive)
-       (switch-to-buffer &lt;span style=&quot;color: #2aa198;&quot;&gt;&quot;*doctor*&quot;&lt;/span&gt;)
+       (switch-to-buffer &lt;span style=&quot;color: #E6DB74;&quot;&gt;&quot;*doctor*&quot;&lt;/span&gt;)
        (doctor-mode))
 &lt;/pre&gt;
 &lt;/div&gt;
@@ -4931,6 +4942,14 @@ read-string prompt &amp;amp;optional initial history default inherit-input-metho
 那么这个 &lt;code&gt;doctor&lt;/code&gt; 就是标记为autoload的.实际上上面的注释部分会被自动转换
 为 &lt;code&gt;autoload&lt;/code&gt; 的形式
 &lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;package.el 中的 &lt;code&gt;autoload&lt;/code&gt;, 以yasnippet为例, package.el 会根据yasnippet
+中魔法注释创建一个yasnippet-autoloads.el的文件,该文件就是调用 autoload函
+数来自动加载yasnippet.el中指定要自动加载的函数,而
+yasnippet-autoloads.el(所有的package.el管理的包的 -autoloads.el文件)都是是在
+执行(package-initialize)时运行的.这样每一个包需要自动加载的函数就都加载
+进来了
 &lt;/li&gt;
 &lt;/ol&gt;&lt;/div&gt;
 &lt;/div&gt;
