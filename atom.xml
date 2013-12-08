@@ -3349,7 +3349,7 @@ schemamigration会生成本次修改的py文件（在your_app/migrations/下）,
 &lt;div class=&quot;outline-text-2&quot; id=&quot;text-1&quot;&gt;
 &lt;p&gt;
 这是我的emacs配置：&lt;a href=&quot;https://github.com/yuyang0/emacs.d&quot;&gt;https://github.com/yuyang0/emacs.d&lt;/a&gt; ,我在&lt;a href=&quot;https://github.com/purcell/emacs.d&quot;&gt;purcell&lt;/a&gt; 的配置的基础
-上添加了一些我自己的设置.
+上添加了一些我自己的设置..
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&quot;outline-container-sec-1-1&quot; class=&quot;outline-3&quot;&gt;
@@ -4427,10 +4427,10 @@ dot语言可以用来画流程图，和Babel结合起来非常方便，这是一
 &lt;ol class=&quot;org-ol&quot;&gt;&lt;li&gt;&lt;code&gt;if&lt;/code&gt;
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-lisp&quot;&gt;(if test
+&lt;pre class=&quot;src src-lisp&quot;&gt;(&lt;span style=&quot;color: #F92672; font-weight: bold;&quot;&gt;if&lt;/span&gt; test
 a
 b)
-;;test is the condition
+&lt;span style=&quot;color: #75715E;&quot;&gt;;;&lt;/span&gt;&lt;span style=&quot;color: #75715E;&quot;&gt;test is the condition&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/li&gt;
