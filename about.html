@@ -1,54 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-<title>Yu Yang's Blog</title>
-<!-- 2013-06-15 Sat 23:47 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="author" content="Yu Yang"/>
+  <head>
+    <title>Yu Yang's Blog</title>
+    <!-- 2013-06-15 Sat 23:47 -->
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta name="generator" content="Org-mode"/>
+    <meta name="author" content="Yu Yang"/>
 
-<link rel="stylesheet" type="text/css" href="/static/css/main.css"/>
-<link rel="alternate" type="application/atom+xml" href="/atom.xml" title="Atom feed">
+    <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="Atom feed">
 
-</head>
-<body>
-
-<div id="header">
-<div id="header-top">
-  <div id="blog-title">Yu Yang's Writing Time</div>
-  <div id="blog-sub-title">something about my thinking, doing and reading notes...</div>
-</div>
-<div id="nav">
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/guestbook.html">留言板</a></li>
-    <li><a href="/about.html">About Me</a></li>
-    <li><a href="/atom.xml">RSS</a></li>
-    <li>
-      <form action="/search.html">
-        <input type="text" class="searchbox" name="wd" value="Search..." onblur="if(this.value==''){this.value='Search...';}" onfocus="if(this.value=='Search...'){this.value='';}"/>
-        <input type="image" src="/static/img/google.ico" class="searchbox_submit" value="" />
-      </form>
-    </li>
-  </ul>
-  </div>
-</div>
-
-
-
-<div id="content">
-  <p>一个最不愿做俗人的俗人,程序员一枚,emacs脑残粉</p>
-  <p>喜欢Linux,喜欢python,喜欢简洁,一致的东东,讨厌各种dirty与不一致,讨厌php </p>
-  <h4>我的联系方式</h4>
-  <ul>
-    <li>email: yy2012cn#gmail.com</li>
-    <li>github: <a href="https://github.com/yuyang0">https://github.com/yuyang0</a> </li>
-    <li>google+: <a href="https://plus.google.com/114136548624647258032/posts">https://plus.google.com/114136548624647258032/posts</a></li>
-  </ul>
-</div>
-<div id="disqus_thread"></div>
-    <script type="text/javascript">
+    </head>
+    <body>
+      <div id="header">
+        <div class="inner">
+          <h1 id="blog-title"><a href="/"> Yu Yang's Blog</a></h1>
+          <ul class="nav">
+            <li> <a href="/">Home</a></li>
+            <li> <a href="/about.html">About</a></li>
+            <li> <a href="/rss">RSS</a></li>
+          </ul>
+          <form method="get" action="https://google.com/search" id="search">
+            <input type="hidden" name="q" value="site:yuyang.farbox.com" />
+            <input type="text" name="q" placeholder="Search..." />
+          </form>
+        </div>
+      </div>
+      <div id="content">
+        <p>一个最不愿做俗人的俗人,程序员一枚,emacs脑残粉</p>
+        <p>喜欢Linux,喜欢python,喜欢简洁,一致的东东,讨厌各种dirty与不一致,讨厌php </p>
+        <h4>我的联系方式</h4>
+        <ul>
+          <li>email: yy2012cn#gmail.com</li>
+          <li>github: <a href="https://github.com/yuyang0">https://github.com/yuyang0</a> </li>
+          <li>google+: <a href="https://plus.google.com/114136548624647258032/posts">https://plus.google.com/114136548624647258032/posts</a></li>
+        </ul>
+      </div>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
         var url = window.location.pathname;
         var disqus_identifier = url.substring(url.lastIndexOf('/')+1);
         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -56,12 +46,26 @@
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
         (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</body>
-</html>
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+      <!-- begin footer -->
+      <div id="footer">
+        <hr />
+        <ul class="links">
+          <li>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</li>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/atom.xml">RSS</a></li>
+          <li><a href="/about.html">About Me</a></li>
+          <li><a href="#">Back to Top</a></li>
+        </ul>
+      </div>
+      <!-- end footer -->
+
+    </body>
+  </html>

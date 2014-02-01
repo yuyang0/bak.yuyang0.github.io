@@ -1,0 +1,1532 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>DJANGO笔记</title>
+<!-- 2014-02-01 Sat 10:57 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Yu Yang" />
+<meta  name="description" content="本文介绍了python的web开发框架django的各个方面,是我阅读django book时的笔记"
+ />
+<meta  name="keywords" content="django web python" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="static/css/main.css"/> <link rel="shortcut icon" href="static/img/favicon.ico" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+            config: ["MMLorHTML.js"], jax: ["input/TeX"],
+        //  jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="header">
+      <div class="inner">
+        <h1 id="blog-title"><a href="/"> Yu Yang's Blog</a></h1>
+        <ul class="nav">
+          <li> <a href="/">Home</a></li>
+          <li> <a href="/about.html">About</a></li>
+          <li> <a href="/rss.xml">RSS</a></li>
+        </ul>
+        <form method="get" action="https://google.com/search" id="search">
+          <input type="hidden" name="q" value="site:yuyang.farbox.com" />
+          <input type="text" name="q" placeholder="Search..." />
+        </form>
+      </div>
+    </div>
+</div>
+<div id="content">
+<h1 class="title">DJANGO笔记</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">django</a>
+<ul>
+<li><a href="#sec-1-1">URLConf</a></li>
+<li><a href="#sec-1-2">模板</a>
+<ul>
+<li><a href="#sec-1-2-1">best practices</a></li>
+<li><a href="#sec-1-2-2">模板的基本语法</a>
+<ul>
+<li><a href="#sec-1-2-2-1">基本示例代码</a></li>
+<li><a href="#sec-1-2-2-2">模板的'.'的用法:</a></li>
+<li><a href="#sec-1-2-2-3">过滤器</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2-3">使用模板的方法：</a></li>
+<li><a href="#sec-1-2-4">模板的包含与继承</a></li>
+<li><a href="#sec-1-2-5">xss安全问题</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-3">Model</a>
+<ul>
+<li><a href="#sec-1-3-1">best practices</a></li>
+<li><a href="#sec-1-3-2">model的基本使用：</a></li>
+<li><a href="#sec-1-3-3">manager</a></li>
+<li><a href="#sec-1-3-4">related manager</a></li>
+<li><a href="#sec-1-3-5">杂七杂八</a></li>
+<li><a href="#sec-1-3-6">几个特殊的field</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-4">表单</a>
+<ul>
+<li><a href="#sec-1-4-1">表单的验证步骤</a>
+<ul>
+<li><a href="#sec-1-4-1-1">设置validator以及clean_&lt;filedname&gt;的一般方法</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-4-2">ModelForm</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-5">ContentType</a>
+<ul>
+<li><a href="#sec-1-5-1">Generic relations</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-6">signal</a></li>
+<li><a href="#sec-1-7">generic views</a>
+<ul>
+<li><a href="#sec-1-7-1">几个有用Mixin</a>
+<ul>
+<li><a href="#sec-1-7-1-1">TemplateResponseMixin</a></li>
+<li><a href="#sec-1-7-1-2">SingleObjectMixin</a></li>
+<li><a href="#sec-1-7-1-3">SingleObjectTemplateResponseMixin(继承自TemplateResponseMixin)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-1-8">第三方app的使用</a>
+<ul>
+<li><a href="#sec-1-8-1">south</a></li>
+<li><a href="#sec-1-8-2">mptt</a></li>
+<li><a href="#sec-1-8-3">django-braces</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-9">我遇到的令人费解的error</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">django</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+django是一个python编写的full stack web开发框架
+</p>
+</div>
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">URLConf</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+一些注意事项以及一些推荐的编码方式：
+</p>
+<ol class="org-ol">
+<li>尽量使用named url，也就是每一条url规则都添加一个 name='&#x2026;' 的关键字参数
+</li>
+<li>在template中可以使用url标签来根据url 规则生成url，这样可以提高程序的通用性，值得注意的是，{% url name %}
+中name必须用引号
+</li>
+<li>移除每个pattern开头的/， 比如/hello/， 那么就写hello/，django的风格是每一个url后都有一个/，当用户的url不
+是以/结尾时，可以通过设置配置文件setting中APPEND_SLASH项为True来自动添加
+</li>
+<li>网站的根目录用 ^$ 来匹配
+</li>
+<li>当需要传递参数给view时，可以用括号标示要作为参数传递的部分，eg: ^/time/plus/(\d{1, 2})/$ , 那么当访问
+/time/plus/22/时， 这个22就会作为参数传递给view
+</li>
+<li>pattern中的view，可以不导入，而直接写字符串, patterns函数的第一个参数是前缀
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #75715E;"># </span><span style="color: #75715E;">mysite.views&#21518;&#20197;&#21450;hello&#19982;hours_ahead&#21069;&#37117;&#27809;&#26377;&#28857;&#22909;&#21495;</span>
+<span style="color: #FD971F;">urlpatterns</span> = patterns(<span style="color: #E6DB74;">'mysite.views'</span>,
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   url(r<span style="color: #E6DB74;">'^hello/$'</span>, <span style="color: #E6DB74;">'hello'</span>, name=<span style="color: #E6DB74;">'hello'</span>),
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   url(r<span style="color: #E6DB74;">'^time/plus/(\d{1,2})/$'</span>, <span style="color: #E6DB74;">'hours_ahead'</span>, name=<span style="color: #E6DB74;">'hours_ahead'</span>),
+)
+
+<span style="color: #FD971F;">urlpatterns</span> = patterns(<span style="color: #E6DB74;">''</span>,
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   url(r<span style="color: #E6DB74;">'^hello/$'</span>, <span style="color: #E6DB74;">'mysite.views.hello'</span>),
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   url(r<span style="color: #E6DB74;">'^time/plus/(\d{1,2})/$'</span>, <span style="color: #E6DB74;">'mysite.views.hours_ahead'</span>),
+)
+
+<span style="color: #F92672; font-weight: bold;">from</span> mysite.views <span style="color: #F92672; font-weight: bold;">import</span> hello, hours_ahead
+<span style="color: #FD971F;">urlpatterns</span> = patterns(<span style="color: #E6DB74;">''</span>,
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   url(r<span style="color: #E6DB74;">'^hello/$'</span>, hello),
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   url(r<span style="color: #E6DB74;">'^time/plus/(\d{1,2})/$'</span>, hours_ahead),
+)
+<span style="color: #75715E;"># </span><span style="color: #75715E;">&#19977;&#32773;&#26159;&#31561;&#20215;&#30340;&#65292;&#25105;&#27604;&#36739;&#21916;&#27426;&#31532;&#20108;&#31181;&#26041;&#24335;</span>
+</pre>
+</div>
+<p>
+三者是等价的，前两种方式不需要用import进行导入，我比较喜欢第一种方式
+</p>
+</li>
+<li>命名参数，'^mydata/(?P&lt;month&gt;\d{1, 2})/(?P&lt;day&gt;\d\d)/$' ,那么其中的month, day就是关键字参数，如果用户访问
+      <i>mydate/11/22</i> 那么就会调用my_view(month='11', day='22')
+</li>
+<li>urlCONF不会区分是get， post，put，delete，只要url相同它就会将请求导向同一个视图处理函数，所以必要的情况
+下区分get请求，post请求是视图函数的责任，还有urlConf不会理会url中的查询字符串，比如
+<a href="http://www.example.com/app/?aa=1&bb=2">http://www.example.com/app/?aa=1&bb=2</a> ,那么urlCONF只会使用 app/ 去匹配，而不管后面的查询字符串
+</li>
+<li>对于app的URLConf，可以通过include包含到主模块的URLConf中，注意这种情况下要有^, 但是不能有$,
+eg: (r '^blog/', include('blog.urls')) ,那么访问 /blog/subject/1111 时，就会将 subject/1111传入blog的
+URLConf中进行匹配
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">模板</h3>
+<div class="outline-text-3" id="text-1-2">
+</div><div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1">best practices</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<ol class="org-ol">
+<li>endblock应该带上block名，这样能让代码更清晰 eg： {% block footerjs %}&#x2026;.{% endblock footerjs %}
+</li>
+<li>尽量让模板代码清晰，而不是让生成的html代码清晰，所以像循环，判断逻辑代码不要为了html好看而放在同一行
+</li>
+<li>通过url标签生成网址，而不要硬编码，对静态文件也是如此，尽量使用static标签
+</li>
+<li>尽量使用好记的名字来代表对象，而不要用object,object_list之类的名字（CBV编码时特别注意，因为object，
+object_list是默认名字）
+</li>
+<li>自定义的模板tag与filter只有在没有其它选择时在使用，不能滥用
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2">模板的基本语法</h4>
+<div class="outline-text-4" id="text-1-2-2">
+</div><div id="outline-container-sec-1-2-2-1" class="outline-5">
+<h5 id="sec-1-2-2-1">基本示例代码</h5>
+<div class="outline-text-5" id="text-1-2-2-1">
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #A6E22E;">html</span>&gt;
+  &lt;<span style="color: #A6E22E;">head</span>&gt;&lt;<span style="color: #A6E22E;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Ordering notice</span>&lt;/<span style="color: #A6E22E;">title</span>&gt;&lt;/<span style="color: #A6E22E;">head</span>&gt;
+  &lt;<span style="color: #A6E22E;">body</span>&gt;
+
+    &lt;<span style="color: #A6E22E;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Ordering notice</span>&lt;/<span style="color: #A6E22E;">h1</span>&gt;
+
+    &lt;<span style="color: #A6E22E;">p</span>&gt;Dear {{ person_name }},&lt;/<span style="color: #A6E22E;">p</span>&gt;
+
+    &lt;<span style="color: #A6E22E;">p</span>&gt;Thanks for placing an order from {{ company }}. It's scheduled to
+      ship on {{ ship_date|date:<span style="color: #E6DB74;">"F j, Y"</span> }}.&lt;/<span style="color: #A6E22E;">p</span>&gt;
+
+    &lt;<span style="color: #A6E22E;">p</span>&gt;Here are the items you've ordered:&lt;/<span style="color: #A6E22E;">p</span>&gt;
+
+    &lt;<span style="color: #A6E22E;">ul</span>&gt;
+      {% for item in item_list %}
+      &lt;<span style="color: #A6E22E;">li</span>&gt;{{ item }}&lt;/<span style="color: #A6E22E;">li</span>&gt;
+      {% endfor %}
+    &lt;/<span style="color: #A6E22E;">ul</span>&gt;
+
+    {% if ordered_warranty %}
+    &lt;<span style="color: #A6E22E;">p</span>&gt;Your warranty information will be included in the packaging.&lt;/<span style="color: #A6E22E;">p</span>&gt;
+    {% else %}
+    &lt;<span style="color: #A6E22E;">p</span>&gt;You didn't order a warranty, so you're on your own when
+      the products inevitably stop working.&lt;/<span style="color: #A6E22E;">p</span>&gt;
+    {% endif %}
+
+    &lt;<span style="color: #A6E22E;">p</span>&gt;Sincerely,&lt;<span style="color: #A6E22E;">br</span> /&gt;{{ company }}&lt;/<span style="color: #A6E22E;">p</span>&gt;
+  &lt;/<span style="color: #A6E22E;">body</span>&gt;
+&lt;/<span style="color: #A6E22E;">html</span>&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-2-2" class="outline-5">
+<h5 id="sec-1-2-2-2">模板的'.'的用法:</h5>
+<div class="outline-text-5" id="text-1-2-2-2">
+<ol class="org-ol">
+<li>引用字典
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django.template <span style="color: #F92672; font-weight: bold;">import</span> Template, Context
+<span style="color: #FD971F;">person</span> = {<span style="color: #E6DB74;">'name'</span>: <span style="color: #E6DB74;">'Sally'</span>, <span style="color: #E6DB74;">'age'</span>: <span style="color: #E6DB74;">'43'</span>}
+<span style="color: #FD971F;">t</span> = Template(<span style="color: #E6DB74;">'{{ person.name }} is {{ person.age }} years old.'</span>)
+<span style="color: #FD971F;">c</span> = Context({<span style="color: #E6DB74;">'person'</span>: person})
+t.render(c)
+<span style="color: #75715E;">#</span><span style="color: #75715E;">result is: u'Sally is 43 years old.'</span>
+</pre>
+</div>
+</li>
+<li>引用list的索引
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django.template <span style="color: #F92672; font-weight: bold;">import</span> Template, Context
+<span style="color: #FD971F;">t</span> = Template(<span style="color: #E6DB74;">'Item 2 is {{ items.2 }}.'</span>)
+<span style="color: #FD971F;">c</span> = Context({<span style="color: #E6DB74;">'items'</span>: [<span style="color: #E6DB74;">'apples'</span>, <span style="color: #E6DB74;">'bananas'</span>, <span style="color: #E6DB74;">'carrots'</span>]})
+t.render(c)
+<span style="color: #75715E;"># </span><span style="color: #75715E;">result is :u'Item 2 is carrots.'</span>
+</pre>
+</div>
+</li>
+<li>引用对象的属性
+<div class="org-src-container">
+
+<pre class="src src-python"> <span style="color: #F92672; font-weight: bold;">from</span> django.template <span style="color: #F92672; font-weight: bold;">import</span> Template, Context
+ <span style="color: #F92672; font-weight: bold;">import</span> datetime
+ <span style="color: #FD971F;">d</span> = datetime.date(1993, 5, 2)
+ <span style="color: #FD971F;">t</span> = Template(<span style="color: #E6DB74;">'The month is {{ date.month }} and the year is {{ date.year }}.'</span>)
+ <span style="color: #FD971F;">c</span> = Context({<span style="color: #E6DB74;">'date'</span>: d})
+ t.render(c)
+<span style="color: #75715E;"># </span><span style="color: #75715E;">result is : u'The month is 5 and the year is 1993.'</span>
+</pre>
+</div>
+</li>
+<li>引用对象的方法(只能引用不需要参数的方法)
+和引用对象的属性类似，不需要()
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-2-3" class="outline-5">
+<h5 id="sec-1-2-2-3">过滤器</h5>
+<div class="outline-text-5" id="text-1-2-2-3">
+<ul class="org-ul">
+<li>addslashes: 添加反斜杠到任何反斜杠
+</li>
+<li>date: 按指定的格式字符串参数格式化 date 或者 datetime 对象，范例：
+{{ pub_date|date:"F j, Y" }}
+</li>
+<li>safe: 默认django模板会把所有的html tag转义，也就是将&lt;转换为&amp;lt之类的符号，添加这个过滤器后
+它就不转义了,和它等价的还有autoescape，但是autoescape是一个tag，不是filter
+</li>
+<li>add：加，如果想减，那就添加负数
+</li>
+<li>length：对字符串以及list有效
+</li>
+<li>upper: 大写
+</li>
+<li>lower：小写
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-3" class="outline-4">
+<h4 id="sec-1-2-3">使用模板的方法：</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<ol class="org-ol">
+<li>创建一个模板对象
+</li>
+<li>创建一个contex对象(和字典相似)
+</li>
+<li>render模板
+</li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django <span style="color: #F92672; font-weight: bold;">import</span> template
+<span style="color: #FD971F;">t</span> = template.Template(<span style="color: #E6DB74;">'My name is {{ name }}.'</span>)
+<span style="color: #FD971F;">c</span> = template.Context({<span style="color: #E6DB74;">'name'</span>: <span style="color: #E6DB74;">'Adrian'</span>})
+t.render(c)
+</pre>
+</div>
+<p>
+因为是重复性的工作，所以django提供了shortcut,建议现在settings.py设定
+TEMPLATE_DIRS
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django.shortcuts <span style="color: #F92672; font-weight: bold;">import</span> render_to_response
+<span style="color: #F92672; font-weight: bold;">import</span> datetime
+
+<span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">current_datetime</span>(request):
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">now</span> = datetime.datetime.now()
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F92672; font-weight: bold;">return</span> render_to_response(<span style="color: #E6DB74;">'current_datetime.html'</span>, {<span style="color: #E6DB74;">'current_date'</span>: now})
+</pre>
+</div>
+<p>
+render_to_response只需要提供模板文件，与一个字典，它会渲染模板，并且返回一
+个HttpResponse对象,极大的简化了工作
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-4" class="outline-4">
+<h4 id="sec-1-2-4">模板的包含与继承</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<ul class="org-ul">
+<li>include标签
+{% include "includes/nav.html" %}，
+在include时，你可以用with指定一个变量，比如如下代码：
+{% include "include/nav.html" with current_idx=1 %}
+这样就可以创建一个通用的页面片段来render几个有细微差别的不同页面
+</li>
+<li>模板继承
+base.html:
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #F92672; font-weight: bold;">!DOCTYPE</span> HTML PUBLIC <span style="color: #E6DB74;">"-//W3C//DTD HTML 4.01//EN"</span>&gt;
+&lt;<span style="color: #A6E22E;">html</span> <span style="color: #FD971F;">lang</span>=<span style="color: #E6DB74;">"en"</span>&gt;
+  &lt;<span style="color: #A6E22E;">head</span>&gt;
+    &lt;<span style="color: #A6E22E;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">{% block title %}{% endblock %}</span>&lt;/<span style="color: #A6E22E;">title</span>&gt;
+  &lt;/<span style="color: #A6E22E;">head</span>&gt;
+  &lt;<span style="color: #A6E22E;">body</span>&gt;
+    &lt;<span style="color: #A6E22E;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">My helpful timestamp site</span>&lt;/<span style="color: #A6E22E;">h1</span>&gt;
+    {% block content %}{% endblock %}
+    {% block footer %}
+    &lt;<span style="color: #A6E22E;">hr</span>&gt;
+    &lt;<span style="color: #A6E22E;">p</span>&gt;Thanks for visiting my site.&lt;/<span style="color: #A6E22E;">p</span>&gt;
+    {% endblock %}
+  &lt;/<span style="color: #A6E22E;">body</span>&gt;
+&lt;/<span style="color: #A6E22E;">html</span>&gt;
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-html">{% extends <span style="color: #E6DB74;">"base.html"</span> %}
+
+{% block title %}The current time{% endblock %}
+
+{% block content %}
+&lt;<span style="color: #A6E22E;">p</span>&gt;It is now {{ current_date }}.&lt;/<span style="color: #A6E22E;">p</span>&gt;
+{% endblock %}
+</pre>
+</div>
+<p>
+每一个block就是一个子模板可以重定义的区域
+根据需要使用任意多的继承次数。使用继承的一种常见方式是下面的三层法：
+</p>
+<ol class="org-ol">
+<li>创建 base.html 模板，在其中定义站点的主要外观感受。这些都是不常修改甚至从不修改的部分.
+</li>
+<li>为网站的每个区域创建 base_SECTION.html 模板(例如, base_photos.html 和 base_forum.html )。这些模板对 base.html 进行拓展，并包含区域特定的风格与设计。
+</li>
+<li>为每种类型的页面创建独立的模板，例如论坛页面或者图片库。这些模板拓展相应的区域模板。
+</li>
+</ol>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-5" class="outline-4">
+<h4 id="sec-1-2-5">xss安全问题</h4>
+<div class="outline-text-4" id="text-1-2-5">
+<p>
+跨站脚本攻击，防范措施就是escape 用户提交的内容，去掉其中html tag
+django默认打开了auto escape，有几个template tag以及filter需要说明
+</p>
+<ol class="org-ol">
+<li>autoescape： 这是一个template tag，不是filter，等价于对每一个模板变量应用escape filter
+</li>
+<li>escape： 在auto escape打开的时候没有效果，注意不管这个filter是不是最后一个filter，它的效果等同于将它放
+在最后，也就是说输出只有等到最后才会应用这个filter，这也就保证，不过escape的位置在哪里，最终用于输出的
+字符串都是已经转义的
+<pre class="example">
+{% autoescape off %}
+{{ title|escape }}
+{% endautoescape %}
+</pre>
+</li>
+<li>force_escape： 和escape的区别是，它直接应用于输入，而不是等到最后
+</li>
+<li>safe：不转义，如果后面又添加别的filter是可能改变这个结果的，比如:
+{{ var|safe|escape }}
+var仍然会转义
+</li>
+<li>在view中可以使用如下代码来escape html
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django.utils.html <span style="color: #F92672; font-weight: bold;">import</span> escape
+<span style="color: #F92672; font-weight: bold;">return</span> HttpResponse(escape(some_string))
+</pre>
+</div>
+<p>
+view中操作html字符串还有几个比较有用的函数：
+</p>
+<ol class="org-ol">
+<li>strip_tags(value): 删除所有的html标签，注意不是转义，它会将&lt;div&gt;,&lt;h1&gt;这样的标签整个删掉，只保留text
+</li>
+<li>remove_tags(value, tags)：和strip_tags类似，不过它只删掉tags指定的tag，tags是一个以空格分割的字符串，
+比如： "div h1 a"
+</li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">Model</h3>
+<div class="outline-text-3" id="text-1-3">
+</div><div id="outline-container-sec-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1">best practices</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<ul class="org-ul">
+<li>每一个app都有一个app_label属性，这个属性的值默认是app的导入路径的最后一部分，比
+如'django.contrib.contenttypes', 那么这个app的app_label就是contenttypes，在model中ForiegnKey，
+ManyToManyField中指定target model时都是使用app_label.model_name的格式，还有当自定义USER_AUTH_MODEL时也是
+如此
+</li>
+<li>在一个app最好不要超过5个model， 如果model过多，那么要考虑将其拆分为更小的app
+</li>
+<li>尽量不要直接使用SQL语句
+</li>
+<li>在需要时添加index (db_index)
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3-2" class="outline-4">
+<h4 id="sec-1-3-2">model的基本使用：</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<ol class="org-ol">
+<li>第一步必须设置settings.py的数据库相关域,用以下代码验证配置是否正确：
+<div class="org-src-container">
+
+<pre class="src src-python">python manage.py shell <span style="color: #75715E;">#</span><span style="color: #75715E;">enter django shell</span>
+
+<span style="color: #F92672; font-weight: bold;">from</span> django.db <span style="color: #F92672; font-weight: bold;">import</span> connection
+<span style="color: #FD971F;">cursor</span> = connection.cursor()
+</pre>
+</div>
+</li>
+
+<li>创建一个app(使用module必须创建app)
+python manage.py startapp appname
+然后在module.py添加代码
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django.db <span style="color: #F92672; font-weight: bold;">import</span> models
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Create your models here.</span>
+<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Publisher</span>(models.Model):
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #E6DB74;">"""</span>
+<span style="color: #E6DB74;">    """</span>
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">name</span> = models.CharField(max_length = 30)
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">address</span> = models.CharField(max_length = 50)
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">city</span> = models.CharField(max_length = 60)
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">state_province</span> = models.CharField(max_length = 30)
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">country</span> = models.CharField(max_length = 50)
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">website</span> = models.URLField()
+
+<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Author</span>(models.Model):
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">first_name</span> = models.CharField(max_length=30)
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">last_name</span> = models.CharField(max_length=40)
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">email</span> = models.EmailField()
+
+<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Book</span>(models.Model):
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">title</span> = models.CharField(max_length=100)
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">authors</span> = models.ManyToManyField(Author)
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">publisher</span> = models.ForeignKey(Publisher)
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">publication_date</span> = models.DateField()
+</pre>
+</div>
+<p>
+然后运行python manage.py validate检查模型语法是否正确，无误后运行
+python manage.py sqlall books会显示最终运行的sql语句
+python manage.py syncdb会最终执行数据库的创建
+<b>常见的field option</b>
+</p>
+<ol class="org-ol">
+<li>verbose_name: 建议每一个field都加上，会显示在admin上的field name
+</li>
+<li>editable: 如果为false，那么该项不会显示在admin或者modelForm中
+</li>
+<li>default: 默认值
+</li>
+<li>choices：对应的域被限制在一个已定义的范围内
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django.db <span style="color: #F92672; font-weight: bold;">import</span> models
+
+<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Person</span>(models.Model):
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">SHIRT_SIZES</span> = (
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   (<span style="color: #E6DB74;">'S'</span>, <span style="color: #E6DB74;">'Small'</span>),
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   (<span style="color: #E6DB74;">'M'</span>, <span style="color: #E6DB74;">'Medium'</span>),
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   (<span style="color: #E6DB74;">'L'</span>, <span style="color: #E6DB74;">'Large'</span>),
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   )
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">name</span> = models.CharField(max_length=60)
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">shirt_size</span> = models.CharField(max_length=1, choices=SHIRT_SIZES)
+
+<span style="color: #FD971F;">p</span> = Person(name=<span style="color: #E6DB74;">"Fred Flintstone"</span>, shirt_size=<span style="color: #E6DB74;">"L"</span>)
+</pre>
+</div>
+</li>
+<li>max_length: 对于CharFiled这是必须的
+</li>
+<li>unique: 如果你需要这一列每一个值都唯一，那么你就指定为true
+</li>
+<li>related_name: 这个只在 ForeignKey,ManyToManyField中有用，比如上面model，如果一个Author对象a要获得自己
+的所有书，那么它需要这么干a.book_set.all(), 如果你在Book model的authors指定了related_name, 那么
+book_set就换成你指定的值
+</li>
+<li>auto_now_add:对DateField, DateTimeField有效，如果记录第一次创建，那么自动添加当前时间，比如博客的创建
+时间，会自动继承editable属性，所以admin不会显示
+</li>
+<li>auto_now: 同上，但是每一次调用save方法时都会更新时间为当前时间，所以比较适合像last_update这样的条目
+</li>
+<li>null, blank: 默认django创建数据库时是会指定NOT NULL，那么数据库就不会接受null值，而如果你指定
+null=True，那么django创建数据库就不会指定NOT NULL， 而blank的作用实际是在admin中以及form中对数据进行
+验证，如果指定blank=True，那么admin或者modelForm的form就会允许空值，这里有个表来显示对不同的field如何
+使用二者
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">field name</td>
+<td class="left">null</td>
+<td class="left">blank</td>
+</tr>
+
+<tr>
+<td class="left">CharField, EmailField,SlugFiled, TextField&#x2026;</td>
+<td class="left">不要设置为True，因为默认以空字符串代替null</td>
+<td class="left">ok</td>
+</tr>
+
+<tr>
+<td class="left">BooleanField</td>
+<td class="left">Don't do this, use NullBooleanField instead</td>
+<td class="left">Don't do this</td>
+</tr>
+
+<tr>
+<td class="left">IntegerField, FloatField, DecimalField</td>
+<td class="left">ok</td>
+<td class="left">ok</td>
+</tr>
+
+<tr>
+<td class="left">DateField, TimeField, DateTimeField..etc</td>
+<td class="left">ok</td>
+<td class="left">ok</td>
+</tr>
+
+<tr>
+<td class="left">ForeignKey, ManyToManyField, OneToOneField</td>
+<td class="left">ok</td>
+<td class="left">ok(最好两项都指定为True)</td>
+</tr>
+
+<tr>
+<td class="left">IPAddressField</td>
+<td class="left">ok</td>
+<td class="left">不推荐，主要是postgreSQL有一个类型存储ip</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+</li>
+
+<li>访问修改数据库
+一些基本概念：
+<ol class="org-ol">
+<li>QuerySet是一个类list的结构，支持list的很多操作，比如分片，下标等
+</li>
+<li>all, filter, order_by返回QuerySet,而且它们都是QuerySet对象的method，这样可以构建连锁查询
+</li>
+<li>delete也是QuerySet的方法，如果调用那么就会删除QuerySet中所有记录
+</li>
+<li>get应该返回单个对象，如果有多个符合条件，或者没有符合条件的，都会返回exception
+</li>
+<li>对于主键查询，尽量使用pk,而不是id，原因是id是python的关键字，容易引起混淆，而且pk更灵活的指定条件，比
+如pk__gt=4
+</li>
+<li>在filter,get函数的参数可以指定field应满足的条件，多个条件是and的关系，也就是对应SQL的AND，如果需要更
+复杂的查询(比如需要多个条件之间为OR)可以使用Q来构造，看下面的示例代码
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #75715E;"># </span><span style="color: #75715E;">&#26684;&#24335;&#26159;fieldname__type=value</span>
+<span style="color: #75715E;"># </span><span style="color: #75715E;">&#24120;&#35265;&#30340;type&#26159;exact(&#22914;&#26524;&#30452;&#25509;&#20351;&#29992;field=value,&#37027;&#20040;type&#23601;&#26159;exact)&#65292;iexact(case sensitive),</span>
+Entry.objects.get(id__exact=14)
+Entry.objects.get(<span style="color: #A6E22E;">id</span>=14)<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">&#40664;&#35748;&#26159;exact</span>
+<span style="color: #75715E;"># </span><span style="color: #75715E;">startswith, endswith, istartwith, iendwith</span>
+Entry.objects.<span style="color: #A6E22E;">filter</span>(headline__startswith=<span style="color: #E6DB74;">'Will'</span>)
+<span style="color: #75715E;"># </span><span style="color: #75715E;">contains,icontains(case sensitive)</span>
+Entry.objects.get(headline__contains=<span style="color: #E6DB74;">'Lennon'</span>)
+<span style="color: #75715E;"># </span><span style="color: #75715E;">in</span>
+Entry.objects.<span style="color: #A6E22E;">filter</span>(id__in=[1, 3, 4])
+<span style="color: #75715E;"># </span><span style="color: #75715E;">gt, gte,lt, lte</span>
+Entry.objects.<span style="color: #A6E22E;">filter</span>(id__gt=4)
+<span style="color: #75715E;"># </span><span style="color: #75715E;">year,month,day(&#23545;date&#65292;datetime field&#26377;&#25928;)</span>
+Entry.objects.<span style="color: #A6E22E;">filter</span>(pub_date__year=2005)
+<span style="color: #75715E;"># </span><span style="color: #75715E;">regex&#65292;iregex&#65292;&#65288;&#27491;&#21017;&#34920;&#36798;&#24335;&#21305;&#37197;&#65289;</span>
+Entry.objects.get(title__regex=r<span style="color: #E6DB74;">'^(An?|The) +'</span>)
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">&#23545;&#20110;ManyToManyField&#20197;&#21450;ForeignKey&#21487;&#20197;&#20351;&#29992;__&#26469;&#25628;&#32034;&#20851;&#32852;&#30340;model</span>
+Entry.objects.get(author__name__contain=<span style="color: #E6DB74;">'jim'</span>)
+<span style="color: #75715E;"># </span><span style="color: #75715E;">&#23427;&#20250;&#25628;&#32034;Entry&#30340;&#22806;&#38190;author model&#20013;name&#21253;&#21547;jim&#30340;&#39033;</span>
+</pre>
+</div>
+</li>
+</ol>
+<p>
+下面的完整的models代码示例，包括create, insert, update, delete
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #75715E;"># </span><span style="color: #75715E;">insert a record</span>
+<span style="color: #FD971F;">p</span> = Publisher(name=<span style="color: #E6DB74;">'Apress'</span>,
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   address=<span style="color: #E6DB74;">'2855 Telegraph Ave.'</span>,
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   city=<span style="color: #E6DB74;">'Berkeley'</span>,
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   state_province=<span style="color: #E6DB74;">'CA'</span>,
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   country=<span style="color: #E6DB74;">'U.S.A.'</span>,
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   website=<span style="color: #E6DB74;">'http://www.apress.com/'</span>)
+p.save()
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">just update, do not create record</span>
+<span style="color: #FD971F;">p.name</span> = <span style="color: #E6DB74;">'Apress Publishing'</span>
+p.save()
+<span style="color: #75715E;"># </span><span style="color: #75715E;">django1.5&#21487;&#20197;&#25351;&#23450;update_fields,&#27604;&#22914;&#19968;&#20010;&#26356;&#26032;&#28857;&#20987;&#25968;&#30340;&#20195;&#30721;</span>
+<span style="color: #FD971F;">article.clicks</span> = F(<span style="color: #E6DB74;">'clicks'</span>) + 1 <span style="color: #75715E;"># </span><span style="color: #75715E;">&#20351;&#29992;F&#36991;&#20813;&#31454;&#20105;&#26465;&#20214;</span>
+article.save(update_fields=[<span style="color: #E6DB74;">'clicks'</span>,])
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">&#21482;&#26356;&#26032;name&#23383;&#27573;&#65292;&#32780;&#19981;&#20687;save&#37027;&#26679;&#26356;&#26032;&#25152;&#26377;&#30340;&#23383;&#27573;&#65292;&#21363;&#20415;&#37027;&#20123;&#23383;&#27573;&#27809;&#26377;&#25913;&#21464;</span>
+Publisher.objects.<span style="color: #A6E22E;">filter</span>(<span style="color: #A6E22E;">id</span>=52).update(name=<span style="color: #E6DB74;">'Apress Publishing'</span>)
+<span style="color: #75715E;"># </span><span style="color: #75715E;">&#35775;&#38382;&#25968;&#25454;&#65292;&#36716;&#25442;&#20026;select&#35821;&#21477;</span>
+Publisher.objects.<span style="color: #A6E22E;">all</span>()
+<span style="color: #75715E;"># </span><span style="color: #75715E;">filter&#36820;&#22238;&#19968;&#20010;QuerySet&#32467;&#26500;&#65292; &#35813;&#32467;&#26500;&#21644;list&#31867;&#20284;,&#22312;QuerySet&#32467;&#26500;&#19978;</span>
+<span style="color: #75715E;"># </span><span style="color: #75715E;">&#21487;&#20197;&#35843;&#29992;order_by, delete, update&#31561;&#26041;&#27861;&#65292;&#25152;&#20197;&#21487;&#20197;&#26500;&#24314;&#19979;&#25991;&#30340;&#36830;&#38145;&#26597;&#35810;</span>
+Publisher.objects.<span style="color: #A6E22E;">filter</span>(country=<span style="color: #E6DB74;">"U.S.A."</span>, state_province=<span style="color: #E6DB74;">"CA"</span>)
+<span style="color: #75715E;"># </span><span style="color: #75715E;">&#35201;&#33719;&#24471;&#21333;&#20010;&#23545;&#20687;&#65292;&#24212;&#20351;&#29992;get&#26041;&#27861;,&#22914;&#26524;&#19981;&#23384;&#22312;&#20250;&#36820;&#22238;Publisher.DoesNotExist&#24322;&#24120;</span>
+Publisher.objects.get(country=<span style="color: #E6DB74;">"U.S.A."</span>, state_province=<span style="color: #E6DB74;">"CA"</span>)
+<span style="color: #75715E;"># </span><span style="color: #75715E;">select ... order by ...</span>
+Publisher.objects.order_by(<span style="color: #E6DB74;">"name"</span>)
+<span style="color: #75715E;">#</span><span style="color: #75715E;">&#36870;&#24207;</span>
+Publisher.objects.order_by(<span style="color: #E6DB74;">"-name"</span>)
+<span style="color: #75715E;">#</span><span style="color: #75715E;">&#36830;&#38145;&#26597;&#35810;&#65292;&#21516;&#26102;&#25351;&#23450;where&#19982;order by&#23376;&#21477;</span>
+Publisher.objects.<span style="color: #A6E22E;">filter</span>(country=<span style="color: #E6DB74;">"U.S.A."</span>).order_by(<span style="color: #E6DB74;">"-name"</span>)
+<span style="color: #75715E;"># </span><span style="color: #75715E;">select ... order by ... limit ...</span>
+Publisher.objects.order_by(<span style="color: #E6DB74;">'name'</span>)[0]
+Publisher.objects.order_by(<span style="color: #E6DB74;">'name'</span>)[0:2]
+
+<span style="color: #75715E;">#</span><span style="color: #75715E;">delete record</span>
+Publisher.objects.<span style="color: #A6E22E;">filter</span>(country=<span style="color: #E6DB74;">'USA'</span>).delete()
+Publisher.objects.<span style="color: #A6E22E;">all</span>().delete()
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">&#22806;&#38190;&#65292;&#20197;&#21450;ManyToMany field</span>
+<span style="color: #75715E;"># </span><span style="color: #75715E;">&#33719;&#21462;&#20986;&#29256;&#21830;&#30340;&#25152;&#26377;&#20070;&#31821;</span>
+<span style="color: #FD971F;">p</span> = Publisher.objects.get(name=<span style="color: #E6DB74;">'Apress Publishing'</span>)
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">&#40664;&#35748;&#27169;&#22411;(Book)&#30340;&#23567;&#20889;&#21517;&#21152;&#19978;set,&#36820;&#22238;QuerySet,&#22914;&#26524;&#20320;&#22312;&#23450;&#20041;&#22806;&#38190;&#25110;&#32773;</span>
+<span style="color: #75715E;"># </span><span style="color: #75715E;">ManyToMany field&#26102;&#25351;&#23450;&#20102;related_name&#65292;&#37027;&#20040;&#36825;&#37324;&#23601;&#20351;&#29992;&#25351;&#23450;&#30340;</span>
+<span style="color: #75715E;"># </span><span style="color: #75715E;">related_name</span>
+p.book_set.<span style="color: #A6E22E;">all</span>()
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3-3" class="outline-4">
+<h4 id="sec-1-3-3">manager</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<p>
+每一个model都有至少有一个manager，默认的manager叫objects，也可以自定义多个manager,我们就是使用这些manager
+与django model进行交互，如查询，插入，更新等。下面是一个自定义manager的例子
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django.db <span style="color: #F92672; font-weight: bold;">import</span> models
+<span style="color: #F92672; font-weight: bold;">from</span> django.utils <span style="color: #F92672; font-weight: bold;">import</span> timezone
+
+<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">PublishedManager</span>(models.Manager):
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">published</span>(<span style="color: #F92672; font-weight: bold;">self</span>, *args, **kwargs):
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">qs</span> = <span style="color: #F92672; font-weight: bold;">self</span>.get_query_set().<span style="color: #A6E22E;">filter</span>(*args, **kwargs)
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F92672; font-weight: bold;">return</span> qs.<span style="color: #A6E22E;">filter</span>(pub_date__lte=timezone.now())
+
+
+<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">FlavorReview</span>(models.Model):
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">review</span> = models.CharField(max_length=255)
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">pub_date</span> = models.DateTimeField()
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">add our custom model manager</span>
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">objects</span> = PublishedManager()
+</pre>
+</div>
+<p>
+这样默认的objects 管理器就被替换为PublishedManager，如果你想保持默认的objects，又要PubloishedManager，那么
+你可以用如下代码：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #FD971F;">objects</span> = models.Manager()
+<span style="color: #FD971F;">publishmanager</span> = PublishedManager()
+</pre>
+</div>
+<p>
+这样就有两个manager，记住objects的那一行必须放在所有的自定义的manager的前面
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3-4" class="outline-4">
+<h4 id="sec-1-3-4">related manager</h4>
+<div class="outline-text-4" id="text-1-3-4">
+<p>
+在ManyToManyField, ForeignKey中返回的都是related manager,比如下面的代码:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Topping</span>(models.Model):
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">...</span>
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F92672; font-weight: bold;">pass</span>
+
+<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Pizza</span>(models.Model):
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">toppings</span> = models.ManyToManyField(Topping)
+
+
+
+<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Reporter</span>(models.Model):
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">...</span>
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F92672; font-weight: bold;">pass</span>
+
+<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Article</span>(models.Model):
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">reporter</span> = models.ForeignKey(Reporter)
+</pre>
+</div>
+<p>
+上例上Topping的pizza_set, Pizza的toppings, 以及Reporter的article_set都返回的是related manager, related
+manager在默认的方法外,他还有以下方法:
+</p>
+
+<ol class="org-ol">
+<li>add: 可以使用对象,也可以直接使用对象的pk, 因为效率更高, 参见<a href="http://stackoverflow.com/questions/6996176/how-to-create-an-object-for-a-django-model-with-a-many-to-many-field">stackoverflow</a>
+</li>
+<li>remove: 如果要移除的对象不在relate manager中,不会有异常
+</li>
+<li>create
+</li>
+<li>clear
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3-5" class="outline-4">
+<h4 id="sec-1-3-5">杂七杂八</h4>
+<div class="outline-text-4" id="text-1-3-5">
+<ul class="org-ul">
+<li>get_FOO_display() : 当model中有choices属性的field时,那么这个方法可以获得display name,这是<a href="https://docs.djangoproject.com/en/dev/ref/models/instances/#django.db.models.Model.get_FOO_display">文档</a>
+</li>
+<li>get_next_by_FOO(): 当model中DateField,DatetimeField时可以通过该方法根据时间顺序获得当前记录的下一条记录
+</li>
+<li>get_previous_by_FOO() : 根据时间顺序获得当前记录的前一条记录
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3-6" class="outline-4">
+<h4 id="sec-1-3-6">几个特殊的field</h4>
+<div class="outline-text-4" id="text-1-3-6">
+<ol class="org-ol">
+<li>FileField：有几个重要的属性
+<ul class="org-ul">
+<li>path: 该文件在文件系统中的绝对路径
+</li>
+<li>name： 在upload_to的相对路径
+</li>
+<li>size: 文件的大小，单位是bytes
+</li>
+<li>url: 该文件的url
+</li>
+<li>save方法： 当你要把一个已存在的文件与model的FileField关联起来的时候，非常有用，示例代码
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django.core.files <span style="color: #F92672; font-weight: bold;">import</span> File
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Open an existing file using Python's built-in open()</span>
+<span style="color: #FD971F;">f</span> = <span style="color: #A6E22E;">open</span>(<span style="color: #E6DB74;">'/tmp/hello.world'</span>)
+<span style="color: #FD971F;">myfile</span> = File(f)
+my_model_instance.<span style="color: #A6E22E;">file</span>.save(name=<span style="color: #E6DB74;">'new_path'</span>, content=myfile)
+my_model_instance.save()
+</pre>
+</div>
+<p>
+这是<a href="https://docs.djangoproject.com/en/dev/ref/models/fields/#django.db.models.fields.files.FieldFile">文档</a> ，与form合用时，在bound form的时候需要传入request.POST, request.FILES
+</p>
+</li>
+</ul>
+</li>
+<li>ImageField： 和FileField类似
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">表单</h3>
+<div class="outline-text-3" id="text-1-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">request.path</td>
+<td class="left">除域名以外的请求路径，以正斜杠开头</td>
+<td class="left">"<i>hello</i>"</td>
+</tr>
+
+<tr>
+<td class="left">request.get_host()</td>
+<td class="left">主机名（比如，通常所说的域名）</td>
+<td class="left">"127.0.0.1:8000" or "www.example.</td>
+</tr>
+
+<tr>
+<td class="left">request.get_full_path()</td>
+<td class="left">请求路径，可能包含查询字符串</td>
+<td class="left">"<i>hello</i>?print=true"</td>
+</tr>
+
+<tr>
+<td class="left">request.is_secure()</td>
+<td class="left">如果通过HTTPS访问，则此方法返回True，否则返回False True 或者 False</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">request.META</td>
+<td class="left">一个字典，包含很多客户端信息(key: HTTP_REFERER, HTTP_USER_AGENT)</td>
+<td class="left">request.META.get('HTTP_USER_AGENT', 'unknown')</td>
+</tr>
+
+<tr>
+<td class="left">request.GET</td>
+<td class="left">表单的get方法传递的数据(是一个类字典结构)</td>
+<td class="left">request.GET['q']就是查询字符串</td>
+</tr>
+
+<tr>
+<td class="left">request.POST</td>
+<td class="left">表单的post方法传递的数据（是一个类字典结构）</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+<p>
+基本代码结构:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #FD971F;">f</span> = MyForm(request.POST)
+<span style="color: #F92672; font-weight: bold;">if</span> f.is_valid():
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">first_field</span> = f.cleaned_data[<span style="color: #E6DB74;">'first_field'</span>]
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">second_field</span> = f.cleaned_data[<span style="color: #E6DB74;">'second_field'</span>]
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F92672; font-weight: bold;">return</span> HttpResponse(<span style="color: #E6DB74;">'/succesa'</span>)
+<span style="color: #F92672; font-weight: bold;">else</span>:
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F92672; font-weight: bold;">return</span> HttpResponse(<span style="color: #E6DB74;">"template.html"</span>, {<span style="color: #E6DB74;">'form'</span>: f})
+</pre>
+</div>
+<p>
+注意forms.Form的原型：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">BaseForm</span>(Object):
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__init__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, data=<span style="color: #AE81FF;">None</span>, files=<span style="color: #AE81FF;">None</span>, auto_id=<span style="color: #E6DB74;">'id_%s'</span>, prefix=<span style="color: #AE81FF;">None</span>,
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>    initial=<span style="color: #AE81FF;">None</span>, error_class=ErrorList, label_suffix=<span style="color: #E6DB74;">':'</span>,
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>    empty_permitted=<span style="color: #AE81FF;">False</span>):
+</pre>
+</div>
+<p>
+有几个比较重要的参数：
+</p>
+<ol class="org-ol">
+<li>data: 传给form的数据，这样调用 MyForm(request.POST) 等价于 MyForm(data=request.POST)，只有指定该参数创建的
+form对象才是绑定的
+</li>
+<li>initial: 这个是初始化的数据，格式是{'field1_name': val1, 'field2_name'; val2, &#x2026;},只有data为None时才有效，
+也就是只对没有绑定的form有效， <b>注意每一个field也有个initial参数，这个参数只是指定该项的初始值</b>
+</li>
+<li>instance： ModelForm有效，这个是和form绑定的model对象，如果指定了，调用save()时会更新而不是创建新record
+</li>
+</ol>
+</div>
+<div id="outline-container-sec-1-4-1" class="outline-4">
+<h4 id="sec-1-4-1">表单的验证步骤</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<p>
+调用form.is_valid()会触发以下动作:
+</p>
+<ol class="org-ol">
+<li>调用form.full_clean()方法
+</li>
+<li>form.full_clean()会触发以下动作
+<ul class="org-ul">
+<li>使用to_python将form提交的数据转换为python 对象
+</li>
+<li>使用validator包括form上的自定义的validators来验证数据合法性
+</li>
+<li>调用clean_&lt;fieldname&gt;方法(如果存在这种方法的情况下才调用)
+</li>
+</ul>
+</li>
+<li>form.full_clean()执行form.clean()方法
+</li>
+<li>如果是ModelForm对象,那么会调用form._post_clean(),form._post_clean()会触发以下动作
+<ul class="org-ul">
+<li>将数据设置到一个model对象(不管form.is_valid()是否为真)
+</li>
+<li>调用model的clean方法,注意当使用ORM save一个对象到数据库中时是不会调用model的clean方法的
+</li>
+</ul>
+</li>
+</ol>
+
+<p>
+最后需要明白的一点是：不管is_valid是否返回true，只要它调用完成，那么form对象中就有cleaned_data字典，所有验
+证成功的field都是其中的元素，注意对于foreignKey，ManyToManyField而言，如果验证通过，那么对应的cleaned_data
+中元素的value会变成相应的对象(注意POST中的数据实际只是id)，所以当is_valid返回False，需要重新显示表单时，你
+可以在template中通过{{ form.cleaned_data.field_name}}来获得相应的field的值。
+</p>
+
+<p>
+form对象还有一个data字典属性，它的值实际就是POST字典，比如 f = MyForm(request.POST) ,在内部实际就是
+self.data = data(也就是request.POST), data属性可以看做是裸数据，而cleaned_data是处理后的数据
+</p>
+</div>
+<div id="outline-container-sec-1-4-1-1" class="outline-5">
+<h5 id="sec-1-4-1-1">设置validator以及clean_&lt;filedname&gt;的一般方法</h5>
+<div class="outline-text-5" id="text-1-4-1-1">
+<ol class="org-ol">
+<li>validate函数的调用保证数据的合法性，validate函数可以在model或者form中指定，下面是一段示例代码
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django.core.exceptions <span style="color: #F92672; font-weight: bold;">import</span> ValidationError
+<span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">validate_delicious</span>(value):
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #E6DB74;">""" Raise a ValidationError if the value doesn't start</span>
+<span style="color: #E6DB74;">    with the word 'delicious'</span>
+<span style="color: #E6DB74;">    """</span>
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F92672; font-weight: bold;">if</span> <span style="color: #F92672; font-weight: bold;">not</span> value.lower().startswith(u<span style="color: #E6DB74;">'delicious'</span>):
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">msg</span> = u<span style="color: #E6DB74;">"Enter a value starting with 'Delicious'"</span>
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F92672; font-weight: bold;">raise</span> ValidationError(msg)
+
+
+<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Flavor</span>(models.Model):
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">title</span> = models.CharField(max_length=255,
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>    validators=[validate_delicious])
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">slug</span> = models.SlugField()
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">scoops_remaining</span> = models.IntegerField(default=0)
+
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #66D9EF;">@models.permalink</span>
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">get_absolute_url</span>(<span style="color: #F92672; font-weight: bold;">self</span>):
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F92672; font-weight: bold;">return</span> (<span style="color: #E6DB74;">'flavor_detail'</span>, (), {<span style="color: #E6DB74;">"slug"</span>: <span style="color: #F92672; font-weight: bold;">self</span>.slug})
+
+<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">FlavorForm</span>(forms.ModelForm):
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__init__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, *args, **kwargs):
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #A6E22E;">super</span>(FlavorForm, <span style="color: #F92672; font-weight: bold;">self</span>).__init__(*args, **kwargs)
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F92672; font-weight: bold;">self</span>.fields[<span style="color: #E6DB74;">'title'</span>]<span style="color: #FD971F;">.validators</span> = [validate_delicious]
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F92672; font-weight: bold;">self</span>.fields[<span style="color: #E6DB74;">'slug'</span>]<span style="color: #FD971F;">.validators</span> = [validate_delicious]
+
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Meta</span>:
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">model</span> = Flavor
+</pre>
+</div>
+</li>
+<li>clean的调用保证去除无效的数据，并得到clean_data字典,clean主要是为了验证form的多个项，比如一个注册表单中
+有password1与password2,那么就可以在clean_password1或者clean_password2中来验证两个密码是否一样，注意每一
+个field的clean方法的名字是clean_&lt;field_name&gt;，并且该方法要返回该field在cleaned_data中的值, <b>一定要返回
+合法的值</b>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">clean_flavor</span>(<span style="color: #F92672; font-weight: bold;">self</span>):
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">flavor</span> = <span style="color: #F92672; font-weight: bold;">self</span>.cleaned_data[<span style="color: #E6DB74;">'flavor'</span>]
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F92672; font-weight: bold;">if</span> Flavor.objects.get(slug=flavor). scoops_remaining &lt;= 0:
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #FD971F;">msg</span> = u<span style="color: #E6DB74;">"Sorry, we are out of that flavor"</span>
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F92672; font-weight: bold;">raise</span> forms.ValidationError(msg)
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F92672; font-weight: bold;">return</span> flavor
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-2" class="outline-4">
+<h4 id="sec-1-4-2">ModelForm</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<p>
+根据model来创建form，有几点注意事项
+</p>
+<ol class="org-ol">
+<li>如果一个field在不包含在form中，但是model中没有提供默认值(没有指定default)而且也不允许为空(没有设置blank，
+null)，那么你直接调用form.save()会返回错误，在这种情况下，你可以先调用form.save(commit=False)得到model
+instance，然后指定缺失的field的值，然后在save
+</li>
+<li>如果model中指定了blank=True，那么在form中对应的field就是required=False，也就是可以接受empty value
+</li>
+<li>默认save会创建一条新纪录，所以如果你要更新记录，那么你必须在初始化是传入被更新的model instance，就像下
+面这样：
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #FD971F;">a</span> = Article.objects.get(pk=1)
+<span style="color: #FD971F;">f</span> = ArticleForm(request.POST, instance=a)
+f.save()
+</pre>
+</div>
+<p>
+那么就会更新a，而不是创建一条新记录
+</p>
+</li>
+<li>在template要得到某一个field的值,可以使用: {{ form.field_name.value|default_if_none:"" }},该方法对于那种
+没有绑定的form也就是没有传入data,但是传入了instance的ModelForm非常有用, 因为这种情况下,form的data与
+cleaned_data都是无效的
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5">ContentType</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+ContentType也是一个model, 所以在数据库中它也有一张表, 只是这张表每一行存储的信息都是用来描述一个已安装的
+model的, 举个例子,如果有一个名叫profiles的app, 这个app的models.py中一个名叫User的model, 为了描述这个model,
+那么就有一个ContentType对象, 这个对象有三个属性: app_label='profiles', model='user', name='user'(准确的说是
+verbose_name), 而且这个对象还有许多method, 用来完成各种操作, 现在将ContentType的比较常用属性列在下面:
+</p>
+
+<p>
+<b>属性</b>
+</p>
+<ol class="org-ol">
+<li>app_label
+</li>
+<li>model
+</li>
+<li>name
+</li>
+</ol>
+
+<p>
+<b>method</b>
+</p>
+<ol class="org-ol">
+<li>ContentType.get_object_for_this_type(**kwargs)
+得到描述的model的实例对象
+</li>
+<li>ContentType.model_class()
+返回描述的model的class
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django.contrib.contenttypes.models <span style="color: #F92672; font-weight: bold;">import</span> ContentType
+
+<span style="color: #FD971F;">user_type</span> = ContentType.objects.get(app_label=<span style="color: #E6DB74;">'profiles'</span>, model=<span style="color: #E6DB74;">'user'</span>)
+<span style="color: #75715E;"># </span><span style="color: #75715E;">user_type is ContentType Instance</span>
+user_type.model_class()
+
+<span style="color: #FD971F;">u</span> = user_type.get_object_for_this_type(pk=1)
+<span style="color: #75715E;"># </span><span style="color: #75715E;">u is profiles.models.User Instance whose pk is 1</span>
+</pre>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-sec-1-5-1" class="outline-4">
+<h4 id="sec-1-5-1">Generic relations</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<p>
+它的最大的作用, 它可以创建一个外键指向多个model,也就是多张表, 而如果用 models.ForeignKey只能关联一个model,
+具体的用法还是直接看<a href="https://docs.djangoproject.com/en/dev/ref/contrib/contenttypes/#id1">文档</a>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6">signal</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+signal是同步阻塞的，要异步则要与celery配合，由于signal的receiver代码与发送signal的代码分开在两处，所以代码
+可读性不好，因此尽量不要滥用signal
+</p>
+
+<p>
+不要用signal的场合：
+</p>
+<ol class="org-ol">
+<li>signal如果只与一个model相关，那么尽量将逻辑放入model的method中处理，特别是model的save method
+</li>
+<li>signal只与一个view相关，那么尽量将逻辑放入view中处理
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7">generic views</h3>
+<div class="outline-text-3" id="text-1-7">
+</div><div id="outline-container-sec-1-7-1" class="outline-4">
+<h4 id="sec-1-7-1">几个有用Mixin</h4>
+<div class="outline-text-4" id="text-1-7-1">
+</div><div id="outline-container-sec-1-7-1-1" class="outline-5">
+<h5 id="sec-1-7-1-1">TemplateResponseMixin</h5>
+<div class="outline-text-5" id="text-1-7-1-1">
+<p>
+用于render template
+</p>
+<ul class="org-ul">
+<li>render_to_response(self, context, **response_kwargs):这个函数用于显示页面
+</li>
+<li>get_template_names: 这是一个占位符，子类如果不指定template_name属性那么就需要实现这个函数
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7-1-2" class="outline-5">
+<h5 id="sec-1-7-1-2">SingleObjectMixin</h5>
+<div class="outline-text-5" id="text-1-7-1-2">
+<p>
+提供了一些用来获得单个model对象的方法
+</p>
+<ul class="org-ul">
+<li>get_object: 默认会根据url提供的pk或者slug来获得单个对象
+</li>
+<li>get_context_object_name: 返回在template中使用的单个对象的名字，默认是类名的小写
+</li>
+<li>get_context_data: 会将一个model实例放入context中
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7-1-3" class="outline-5">
+<h5 id="sec-1-7-1-3">SingleObjectTemplateResponseMixin(继承自TemplateResponseMixin)</h5>
+<div class="outline-text-5" id="text-1-7-1-3">
+<p>
+提供获得template name的函数，DetailView就是继承的这个Mixin
+</p>
+<ol class="org-ol">
+<li>属性
+<ul class="org-ul">
+<li>template_name_field
+</li>
+<li>template_name_suffix :
+</li>
+</ul>
+</li>
+</ol>
+<p>
+get_template_names() : 会返回一个包含template名字的列表，其中包括指定的template_name,以及默认的名字，默认
+的名字格式如下：app_label/object_name + template_name_suffix + '.html'
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8" class="outline-3">
+<h3 id="sec-1-8">第三方app的使用</h3>
+<div class="outline-text-3" id="text-1-8">
+</div><div id="outline-container-sec-1-8-1" class="outline-4">
+<h4 id="sec-1-8-1">south</h4>
+<div class="outline-text-4" id="text-1-8-1">
+<p>
+south基本已经是django开发必不可少的app了，它可以自动同步model的改变，这是<a href="http://south.readthedocs.org/en/latest/index.html">文档</a>, 我这里说一下基本用法:
+</p>
+<ol class="org-ol">
+<li>installation
+使用pip安装south，然后将south添加到settings的installed_apps的最后
+</li>
+<li>基本使用
+schemamigration会生成本次修改的py文件（在your_app/migrations/下）,而migrate则会应用这次修改，也就是会对
+数据库做出修改
+<ul class="org-ul">
+<li>生成表的初始版本
+<pre class="example">
+./manage.py schemamigration your_app --initial
+</pre>
+</li>
+<li>生成表结构
+数据库存在表结构，也就是对该app已经运行了syncdb,以下二者都可以
+<pre class="example">
+./manage.py convert_to_south your_app
+# 或
+./manage.py migrate your_app --fake
+</pre>
+
+<p>
+数据库不存在表结构，也就是对该app没有运行syncdb
+</p>
+<pre class="example">
+./manage.py migrate your_app
+</pre>
+</li>
+<li>修改表结构后
+<pre class="example">
+./manage.py schemamigration your_app --auto
+./manage.py migrate your_app
+</pre>
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8-2" class="outline-4">
+<h4 id="sec-1-8-2">mptt</h4>
+<div class="outline-text-4" id="text-1-8-2">
+<p>
+可以用来存储结构化的数据，在实现评论系统时比较有用
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8-3" class="outline-4">
+<h4 id="sec-1-8-3">django-braces</h4>
+<div class="outline-text-4" id="text-1-8-3">
+<p>
+有一系列的Minix，在使用CBV时非常方便，而且还可以实现简单的REST api，它自带了几个json response
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-9" class="outline-3">
+<h3 id="sec-1-9">我遇到的令人费解的error</h3>
+<div class="outline-text-3" id="text-1-9">
+<ol class="org-ol">
+<li>url tag: "'str' object has no attribute 'regex'"
+在模板中使用url标签遇到上述问题,原因是定义URLConf时忘记了patterns
+代码：
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #75715E;"># </span><span style="color: #75715E;">wrong</span>
+<span style="color: #FD971F;">urlpatterns</span>= (<span style="color: #E6DB74;">''</span>,
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>     ....)
+<span style="color: #75715E;"># </span><span style="color: #75715E;">correct</span>
+<span style="color: #FD971F;">urlpatterns</span>= patterns(<span style="color: #E6DB74;">''</span>,
+<span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>   <span style="color: #F8F8F2; background-color: #272822;"> </span>     ...)
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div id="disqus_comment">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var url = window.location.pathname;
+        var disqus_identifier = url.substring(url.lastIndexOf('/')+1);
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'yuyang'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+<!-- begin footer -->
+<div id="footer">
+  <hr />
+  <ul class="links">
+    <li>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</li>
+    <li><a href="/sitemap.xml">Sitemap</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    <li><a href="/about.html">About Me</a></li>
+    <li><a href="#">Back to Top</a></li>
+  </ul>
+</div>
+<!-- end footer -->
+</div>
+</body>
+</html>

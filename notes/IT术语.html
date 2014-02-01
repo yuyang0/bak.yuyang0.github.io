@@ -3,8 +3,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Sitemap</title>
-<!-- 2014-02-01 Sat 11:09 -->
+<title>IT术语</title>
+<!-- 2014-02-01 Sat 10:57 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -154,77 +154,84 @@ for the JavaScript code in this tag.
     </div>
 </div>
 <div id="content">
-<h1 class="title">Sitemap</h1>
-<ul class="org-ul">
-<li>articles
-<ul class="org-ul">
-<li><a href="articles/linux-c-garbled-characters.html">Linux平台C语言乱码</a>
-</li>
-<li><a href="articles/gevent.html">gevent源码分析</a>
-</li>
-<li><a href="articles/python-descriptor.html">python Descriptor</a>
-</li>
-<li><a href="articles/web-py-source-code.html">webpy源代码分析</a>
-</li>
-<li><a href="articles/wsgi.html">wsgi</a>
-</li>
-<li><a href="articles/org-mode-dropbox-blog.html">使用org-mode与dropbox搭建静态博客</a>
-</li>
+<h1 class="title">IT术语</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">IT术语</a>
+<ul>
+<li><a href="#sec-1-1">透明的（transparent）</a></li>
+<li><a href="#sec-1-2">Expression</a></li>
+<li><a href="#sec-1-3">Statement</a></li>
 </ul>
 </li>
-<li>notes
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">IT术语</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">透明的（transparent）</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+透而不见，比如玻璃，所以说什么东西是透明的就是说其内部不可见，可以无视其实现，
+而生活中一般的意思是对内部一目了然，如透明度
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">Expression</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+表达式一般会返回值, 但是不会有副作用(<a href="https://en.wikipedia.org/wiki/Side_effect_%2528computer_science%2529">side effect</a>), 表达式一般也会包含变量,常
+量,操作符,函数
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">Statement</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+语句一般是不返回值的,他只会产生副作用(<a href="https://en.wikipedia.org/wiki/Side_effect_%2528computer_science%2529">side effect</a>), 常见的语句有
+Simple statements
+</p>
 <ul class="org-ul">
-<li><a href="notes/clojure.html">Clojure笔记</a>
+<li>assignment: A:= A + 5
 </li>
-<li><a href="notes/django.html">DJANGO笔记</a>
+<li>call: CLEARSCREEN()
 </li>
-<li><a href="notes/emacs.html">Emacs/elisp笔记</a>
+<li>return: return 5;
 </li>
-<li><a href="notes/IT术语.html">IT术语</a>
+<li>goto: goto 5
 </li>
-<li><a href="notes/php.html">PHP笔记</a>
-</li>
-<li><a href="notes/set-theory.html">SET THEORY(30%)</a>
-</li>
-<li><a href="notes/sicp.html">SICP笔记</a>
-</li>
-<li><a href="notes/EOPL.html">The Essential of Programming language</a>
-</li>
-<li><a href="notes/Theory-Computation.html">Theory-Computation</a>
-</li>
-<li><a href="notes/css.html">css笔记</a>
-</li>
-<li><a href="notes/git.html">git/github学习笔记</a>
-</li>
-<li><a href="notes/how-to-study.html">how to study</a>
-</li>
-<li><a href="notes/how-to-read-a-book.html">how-to-read-a-book</a>
-</li>
-<li><a href="notes/javascript.html">javascript笔记</a>
-</li>
-<li><a href="notes/python-source-code.html">python源代码解析</a>
-</li>
-<li><a href="notes/python-note.html">python笔记</a>
-</li>
-<li><a href="notes/ruby.html">ruby notes</a>
-</li>
-<li><a href="notes/scheme.html">scheme笔记</a>
-</li>
-<li><a href="notes/乌合之众.html">乌合之众(古斯塔夫.勒庞 )</a>
-</li>
-<li><a href="notes/information-theory.html">信息论</a>
-</li>
-<li><a href="notes/investment.html">投资笔记</a>
-</li>
-<li><a href="notes/second-treatise-civil-government.html">政府论读书笔记</a>
-</li>
-<li><a href="notes/Probability.html">概率论与数理统计笔记</a>
+<li>assertion: assert(ptr != NULL);
 </li>
 </ul>
+
+<p>
+Compound statements
+</p>
+<ul class="org-ul">
+<li><b>block</b> : begin integer NUMBER; WRITE('Number? '); READLN(NUMBER); A:= A*NUMBER end
 </li>
-<li><a href="index.html">Index Page</a>
+<li><b>if-statement</b> : if A &gt; 3 then WRITELN(A) else WRITELN("NOT YET"); end
+</li>
+<li><b>switch-statement</b> : switch (c) { case 'a': alert(); break; case 'q': quit(); break; }
+</li>
+<li><b>while-loop</b> : while NOT EOF DO begin READLN end
+</li>
+<li><b>do-loop</b> : do { computation(&amp;i); } while (i &lt; 10);
+</li>
+<li><b>for-loop</b> : for A:=1 to 10 do WRITELN(A) end
 </li>
 </ul>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div id="disqus_comment">
