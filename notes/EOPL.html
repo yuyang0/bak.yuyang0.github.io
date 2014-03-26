@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Essential of Programming language</title>
-<!-- 2014-02-01 Sat 10:57 -->
+<!-- 2014-03-23 Sun 22:40 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -202,7 +202,7 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">Forward</a></li>
+<li><a href="#sec-1">Preface</a></li>
 <li><a href="#sec-2">1. Inductive Sets and Data</a>
 <ul>
 <li><a href="#sec-2-1">1.1</a>
@@ -226,14 +226,12 @@ for the JavaScript code in this tag.
 <li><a href="#sec-2-2-3">Follow the Grammar!</a></li>
 </ul>
 </li>
-<li><a href="#sec-2-3">Exercise</a></li>
 </ul>
 </li>
 <li><a href="#sec-3">2 Data Abstraction</a>
 <ul>
 <li><a href="#sec-3-1">2.3 Interfaces for Recursive Data Types</a></li>
 <li><a href="#sec-3-2">2.4 A Tool for Defining Recursive Data Types</a></li>
-<li><a href="#sec-3-3">Exercise</a></li>
 </ul>
 </li>
 <li><a href="#sec-4">3 Expressions</a>
@@ -244,31 +242,65 @@ for the JavaScript code in this tag.
 <li><a href="#sec-5">4 State</a>
 <ul>
 <li><a href="#sec-5-1">返回值与副作用的区别</a></li>
-<li><a href="#sec-5-2">4.1 Computational Effects</a></li>
+<li><a href="#sec-5-2">difference between binding and assignments</a></li>
+<li><a href="#sec-5-3">4.1 Computational Effects</a></li>
+<li><a href="#sec-5-4">4.5 Parameter Passing Variations</a>
+<ul>
+<li><a href="#sec-5-4-1">Natural Parameter Passing</a></li>
+<li><a href="#sec-5-4-2">Call By Reference</a></li>
+<li><a href="#sec-5-4-3">Call By Value(CBV)</a></li>
+<li><a href="#sec-5-4-4">Call By Name(CBN)</a></li>
+<li><a href="#sec-5-4-5">Call By Need</a></li>
 </ul>
 </li>
-<li><a href="#sec-6">Continuation-Passing Interpreter</a>
+</ul>
+</li>
+<li><a href="#sec-6">5 Continuation-Passing Interpreter</a>
 <ul>
 <li><a href="#sec-6-1">Serveral Concepts</a></li>
 </ul>
 </li>
-<li><a href="#sec-7">lambda calculus</a>
+<li><a href="#lambda-calculus">lambda calculus</a>
 <ul>
-<li><a href="#sec-7-1">Church Encode</a></li>
-<li><a href="#sec-7-2">Y Combinator</a></li>
+<li><a href="#sec-7-1">Terms</a></li>
+<li><a href="#sec-7-2">Relations</a></li>
+<li><a href="#sec-7-3">Normal Form</a></li>
+<li><a href="#sec-7-4">Evaluation Strategy</a></li>
+<li><a href="#sec-7-5">Church Encode</a></li>
+<li><a href="#sec-7-6">Y Combinator</a></li>
+<li><a href="#sec-7-7">Theorems</a>
+<ul>
+<li><a href="#sec-7-7-1">Church-Rosser for =<sub>n</sub></a></li>
+<li><a href="#sec-7-7-2">Diamond Property for →→<sub>n</sub></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-8">ISWIM</a>
+<ul>
+<li><a href="#sec-8-1">terms</a></li>
+<li><a href="#sec-8-2">Values</a></li>
+</ul>
+</li>
+<li><a href="#sec-9">Standard reduction</a></li>
+<li><a href="#sec-10">Machines</a>
+<ul>
+<li><a href="#sec-10-1">CC Machine</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Forward</h2>
+<h2 id="sec-1">Preface</h2>
 <div class="outline-text-2" id="text-1">
+<blockquote>
 <p>
   Perhaps the whole distinction between program and programming language is a
 misleading idea, and future programmers will see themselves not as writing
 programs in particular, but as creating new languages for each new application.
 </p>
+</blockquote>
 </div>
 </div>
 
@@ -430,201 +462,6 @@ nonterminal.
 </div>
 </div>
 </div>
-
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3">Exercise</h3>
-<div class="outline-text-3" id="text-2-3">
-<ul class="org-ul">
-<li>1.1
-{3n + 2 | n ∈ N }
-<ol class="org-ol">
-<li>top-down: A natural number <code>n</code> is in S if and only if
-<ol class="org-ol">
-<li>n=2 or
-</li>
-<li>n-3 \(\in\) S
-</li>
-</ol>
-</li>
-
-<li>buttom-up: Define S is the smallest set contained in N and satisfying
-the following two property:
-<ol class="org-ol">
-<li>2 \(\in\) S
-</li>
-<li>if n \(\in\) S then n+3 \(\in\) S
-</li>
-</ol>
-</li>
-<li>rules of inference
-
-\begin{align}
-  2 \in S \\
-  \frac {n \in S} {n+3 \in S}
-\end{align}
-</li>
-</ol>
-</li>
-
-<li>1.2
-<ol class="org-ol">
-<li>(i, 7i+1) (0, 1), (1, 8), (2, 15) &#x2026;
-</li>
-<li>(i, 2^i)  (0, 1), (1, 2), (2, 4)
-</li>
-</ol>
-</li>
-<li>1.6
-当n&gt;=length(lst)时,会导致(cdr lst)出错
-</li>
-<li>1.7
-<div class="org-src-container">
-
-<pre class="src src-scheme"></pre>
-</div>
-</li>
-<li>1.8
-使用 <code>(remove-first s (cdr los))</code> 替换 <code>remove-first</code> 的最后一行会导致los中第一
-个s之前的元素都丢失
-</li>
-<li>1.9
-<pre class="example">
-remove: Sym * Listof(Sym) --&gt; Listof(Sym)
-Usage: (remove s los) return a list with the same element arranged in the
-same order as los, except that all the occurrence of symbol s is removed
-</pre>
-
-<div class="org-src-container">
-
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">remove</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (s los)
-    (<span style="color: #F92672; font-weight: bold;">if</span> (null? los)
-        '()
-        (<span style="color: #F92672; font-weight: bold;">if</span> (eqv? s (car los))
-            (remove s (cdr los))
-            (cons (car los) (remove s (cdr los)))))))
-</pre>
-</div>
-</li>
-<li>1.15
-<div class="org-src-container">
-
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">duple</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (n lst)
-    (<span style="color: #F92672; font-weight: bold;">if</span> (eq? n 1)
-        (cons  lst '())
-        (cons lst (duple (- n 1) lst)))))
-</pre>
-</div>
-</li>
-<li>1.16
-<div class="org-src-container">
-
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">invert</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (lst)
-    (<span style="color: #F92672; font-weight: bold;">if</span> (null? lst)
-        '()
-        (cons (invert-2-elt-lst (car lst))
-              (invert (cdr lst)))
-        )))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">invert-2-elt-lst</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (lst)
-    (cons (cadr lst)
-          (cons (car lst) '()))))
-</pre>
-</div>
-</li>
-<li>1.17
-<div class="org-src-container">
-
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">down</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (lst)
-    (<span style="color: #F92672; font-weight: bold;">if</span> (null? lst)
-        '()
-        (cons (cons (car lst) '())
-              (down (cdr lst))))))
-</pre>
-</div>
-</li>
-<li>1.18
-<div class="org-src-container">
-
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">swapper</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (s1 s2 lst)
-    (<span style="color: #F92672; font-weight: bold;">if</span> (null? lst)
-        '()
-        (<span style="color: #F92672; font-weight: bold;">let</span> ((1st-elt (car lst)))
-          (<span style="color: #F92672; font-weight: bold;">cond</span>
-           ((eq? 1st-elt s1) (cons s2 (swapper s1 s2 (cdr lst))))
-           ((eq? 1st-elt s2) (cons s1 (swapper s1 s2 (cdr lst))))
-           ((list? 1st-elt) (cons (swapper s1 s2 1st-elt) (swapper s1 s2 (cdr ls<span style="color: #F92672; background-color: #272822;">t))))</span>
-           (<span style="color: #F92672; font-weight: bold;">else</span> (cons 1st-elt (swapper s1 s2 (cdr lst))))
-           )))))
-</pre>
-</div>
-</li>
-<li>1.19
-<div class="org-src-container">
-
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">list-set</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (lst n x)
-    (<span style="color: #F92672; font-weight: bold;">cond</span>
-     ((null? lst) (message <span style="color: #E6DB74;">"the list is too short"</span>))
-     ((zero? n) (cons x (cdr lst)))
-     (<span style="color: #F92672; font-weight: bold;">else</span> (cons (car lst)
-                 (list-set (cdr lst) (- n 1) x))))))
-</pre>
-</div>
-</li>
-<li>1.20
-</li>
-<li>1.34
-打印二叉树搜索路径
-<div class="org-src-container">
-
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">path</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (elt bst)
-    (<span style="color: #F92672; font-weight: bold;">cond</span>
-     ((null? bst) '())
-     ((eq? elt (car bst)) '())
-     ((&lt; elt (car bst)) (cons 'left (path elt (cadr bst))))
-     ((&gt; elt (car bst)) (cons 'right (path elt (caddr bst))))
-     )))
-</pre>
-</div>
-</li>
-<li>1.35
-<div class="org-src-container">
-
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">number-leaves</span>)
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">interior-node</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (root left right)
-    ))
-</pre>
-</div>
-</li>
-<li>1.36
-<div class="org-src-container">
-
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">g</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (car-elt cdr-elt)
-    (<span style="color: #F92672; font-weight: bold;">define</span> (<span style="color: #A6E22E;">add1-elt-number</span> lst)
-      (<span style="color: #F92672; font-weight: bold;">if</span> (null? lst) '()
-          (cons (cons (+ 1 (caar lst))
-                      (cdar lst))
-                (add1-elt-number (cdr lst)))))
-    (add1-elt-number (cons car-elt cdr-elt))))
-
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">number-elements</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (lst)
-    (<span style="color: #F92672; font-weight: bold;">if</span> (null? lst) '()
-        (g (list 0 (car lst)) (number-elements (cdr lst))))))
-</pre>
-</div>
-</li>
-</ul>
-</div>
-</div>
 </div>
 
 <div id="outline-container-sec-3" class="outline-2">
@@ -706,8 +543,8 @@ the data type.
 <h3 id="sec-3-2">2.4 A Tool for Defining Recursive Data Types</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
-使用define-datatype来自动的定义一个递归数据类型(<b>接口</b>),以lambda calculus的语法定义
-为例子
+使用define-datatype来自动的定义一个递归数据类型(<b>接口</b>),以lambda calculus的
+语法定义为例子
 </p>
 <div class="org-src-container">
 
@@ -748,296 +585,6 @@ predicate:Lc-exp?.然后可以使用cases来使用上述定义:
 </p>
 </div>
 </div>
-
-<div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3">Exercise</h3>
-<div class="outline-text-3" id="text-3-3">
-<ul class="org-ul">
-<li>2.1
-</li>
-</ul>
-\begin{equation}
-  ⌈n⌉ = \left\{\begin{array}{ll}
-      () & \textrm{n = 0} \\
-      (r . \lceil q \rceil ) & \textrm{n = qN + r, 0 ≤ r < N}
-      \end{array} \right.
-\end{equation}
-
-<div class="org-src-container">
-
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">N</span> 16)
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">zero</span> (<span style="color: #F92672; font-weight: bold;">lambda</span> () '()))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">is-zero?</span> (<span style="color: #F92672; font-weight: bold;">lambda</span> (n) (null? n)))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">successor</span> (<span style="color: #F92672; font-weight: bold;">lambda</span> (n)
-                    (<span style="color: #F92672; font-weight: bold;">cond</span>
-                     [(null? n) '(1)]
-                     [(eq? (car n) (- N 1))
-                      (cons 0
-                            (successor (cdr n)))]
-                     [else (cons (+ 1 (car n)) (cdr n))])))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">predecessor</span> (<span style="color: #F92672; font-weight: bold;">lambda</span> (n)
-                      (<span style="color: #F92672; font-weight: bold;">cond</span>
-                       [(equal? n '(1)) '()]
-                       [(zero? (car n))
-                        (cons (- N 1)
-                              (predecessor (cdr n)))]
-                       [else (cons (- (car n) 1) (cdr n))])))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">one</span> (<span style="color: #F92672; font-weight: bold;">lambda</span> () (successor (zero))))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">factorial</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (n)
-    (<span style="color: #F92672; font-weight: bold;">if</span> (is-zero? n) (one)
-        (multiple n (factorial (predecessor n))))))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">multiple</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (a b)
-    (<span style="color: #F92672; font-weight: bold;">if</span> (is-zero? (predecessor a)) b
-        (plus b (multiple (predecessor a) b)))))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">plus</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (a b)
-    (<span style="color: #F92672; font-weight: bold;">if</span> (is-zero? a) b
-        (plus (predecessor a) (successor b)))))
-</pre>
-</div>
-<ul class="org-ul">
-<li>2.3
-</li>
-</ul>
-<p>
-Diff-tree ::= (one) | (diff Diff-tree Diff-tree)
-</p>
-
-<div class="org-src-container">
-
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">zero</span> (<span style="color: #F92672; font-weight: bold;">lambda</span> () '(diff (one) (one))))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">negative-one</span> (<span style="color: #F92672; font-weight: bold;">lambda</span> () (list 'diff (zero) '(one))))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">is-zero?</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (n)
-    (equal? n (zero))))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">successor</span>
-  <span style="color: #E6DB74;">"n+1 = n - (-1)"</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (n)
-    (list 'diff n (negative-one))))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">predecessor</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (n)
-    (list 'diff n '(one))))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">diff-tree-plus</span>
-  <span style="color: #E6DB74;">"a+b = a - (-b)"</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (a b)
-    (list 'diff a (list 'diff (zero) b))))
-
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">left</span> cadr)
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">right</span> caddr)
-<span style="color: #75715E;">;;; </span><span style="color: #75715E;">the number a diff-tree represented is identical to the number of left leaves</span>
-<span style="color: #75715E;">;;; </span><span style="color: #75715E;">minus the number of the right leaves</span>
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">left-minus-right-leaves</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (n)
-    (<span style="color: #F92672; font-weight: bold;">cond</span>
-     [(<span style="color: #F92672; font-weight: bold;">and</span> (equal? (left n) '(one))
-           (equal? (right n) '(one)))
-      0]
-     [(equal? (left n) '(one))
-      (+ 1 (left-minus-right-leaves (right n)))]
-     [(equal? (left n) '(one))
-      (- (left-minus-right-leaves (left n)) 1)]
-     [else (+ (left-minus-right-leaves (left n))
-              (left-minus-right-leaves (right n)))])))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">is-zero?</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (n)
-    (zero? (left-minus-right-leaves n))))
-</pre>
-</div>
-<ul class="org-ul">
-<li>2.4
-</li>
-</ul>
-
-
-\begin{align}
-  (empty-stack) &= \lceil \Phi \rceil  \\
-  (push \lceil f \rceil var) &= \lceil g \rceil  \\
-  (pop ⌈ f ⌉) &= cc  \\
-  (top ⌈ f ⌉) &= f(top)  \\
-  (empty-stack? ⌈ f ⌉) &= dd
-\end{align}
-
-<ul class="org-ul">
-<li>2.5
-</li>
-</ul>
-<div class="org-src-container">
-
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">empty-env</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> () '()))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">extend-env</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (var val env)
-    (cons (cons var val)
-          env)))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">apply-env</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (var env)
-    (<span style="color: #F92672; font-weight: bold;">cond</span> [(equal? env (empty-env))
-           (report-no-binding-found var)]
-          [(<span style="color: #F92672; font-weight: bold;">and</span> (list? env)
-                (pair? (car env))
-                (list? (cdr env)))
-           (<span style="color: #F92672; font-weight: bold;">let</span> ([saved-var (caar env)]
-                 [saved-val (cdar env)]
-                 [saved-env (cdr env)])
-             (<span style="color: #F92672; font-weight: bold;">if</span> (eq? var saved-var)
-                 saved-val
-                 (apply-env var saved-env)))]
-          [else (report-invalid-env env)])))
-
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">report-no-binding-found</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (search-var)
-    (eopl:error 'apply-env <span style="color: #E6DB74;">"No binding for ~s"</span> search-var)))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">report-invalid-env</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (env)
-    (eopl:error 'apply-env <span style="color: #E6DB74;">"Bad environment: ~s"</span> env)))
-</pre>
-</div>
-<ul class="org-ul">
-<li>2.8
-</li>
-</ul>
-<div class="org-src-container">
-
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">empty-env?</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (env)
-    (eqv? env (empty-env))))
-</pre>
-</div>
-<ul class="org-ul">
-<li>2.9
-</li>
-</ul>
-<div class="org-src-container">
-
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">apply-env</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (var env)
-    (<span style="color: #F92672; font-weight: bold;">cond</span> [(equal? env (empty-env)) #f]
-          [(<span style="color: #F92672; font-weight: bold;">and</span> (list? env)
-                (pair? (car env))
-                (list? (cdr env)))
-           (<span style="color: #F92672; font-weight: bold;">let</span> ([saved-var (caar env)]
-                 [saved-val (cdar env)]
-                 [saved-env (cdr env)])
-             (<span style="color: #F92672; font-weight: bold;">if</span> (eq? var saved-var)
-                 #t
-                 (apply-env var saved-env)))]
-          [else (report-invalid-env env)])))
-</pre>
-</div>
-<ul class="org-ul">
-<li>2.10
-</li>
-</ul>
-<div class="org-src-container">
-
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">extend-env*</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (var-lst val-lst env)
-    (<span style="color: #F92672; font-weight: bold;">if</span> (<span style="color: #F92672; font-weight: bold;">or</span> (null? var-lst)
-            (null? val-lst))
-        env
-        (extend-env* (cdr var-lst) (cdr val-lst)
-                     (extend-env (car var-lst) (car val-lst) env)))))
-</pre>
-</div>
-<ul class="org-ul">
-<li>2.11
-</li>
-</ul>
-<p>
-ribcage representation of environment
-</p>
-<div class="org-src-container">
-
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">empty-env</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> () '()))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">extend-env</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (var val env)
-    (cons (cons (list var) (list val)) env)))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">extend-env*</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (var-lst val-lst env)
-    (cons (cons var-lst val-lst) env)))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">apply-env</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (var env)
-    (<span style="color: #F92672; font-weight: bold;">cond</span>
-     [(equal? env (empty-env))
-      (report-no-binding-found var)]
-     [else (<span style="color: #F92672; font-weight: bold;">let*</span> ([var-lst (caar env)]
-                  [val-lst (cdar env)]
-                  [saved-env (cdr env)]
-                  [ret (search-lst var var-lst val-lst)])
-             (<span style="color: #F92672; font-weight: bold;">if</span> ret ret
-                 (apply-env var saved-env)))])))
-
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">search-lst</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (var var-lst val-lst)
-    (<span style="color: #F92672; font-weight: bold;">cond</span>
-     [(<span style="color: #F92672; font-weight: bold;">or</span> (null? var-lst)
-          (null? val-lst))
-      #f]
-     [(eqv? var (car var-lst)) (car val-lst)]
-     [else (search-lst var (cdr var-lst) (cdr val-lst))])))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">report-no-binding-found</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (search-var)
-    (eopl:error 'apply-env <span style="color: #E6DB74;">"No binding for ~s"</span> search-var)))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">report-invalid-env</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (env)
-    (eopl:error 'apply-env <span style="color: #E6DB74;">"Bad environment: ~s"</span> env)))
-</pre>
-</div>
-<ul class="org-ul">
-<li>2.15
-</li>
-</ul>
-<div class="org-src-container">
-
-<pre class="src src-scheme"><span style="color: #75715E;">;;; </span><span style="color: #75715E;">constructor</span>
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">var-exp</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (var) var))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">lambda-exp</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (var lc-exp)
-    (list 'lambda (list var) lc-exp)))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">app-exp</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (lc-exp1 lc-exp2)
-    (list lc-exp1 lc-exp2)))
-<span style="color: #75715E;">;;; </span><span style="color: #75715E;">predicates</span>
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">var-exp?</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (lc-exp)
-    (symbol? lc-exp)))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">lambda-exp?</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (lc-exp)
-    (eqv? (car lc-exp) 'lambda)))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">app-exp?</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (exp)
-    (<span style="color: #F92672; font-weight: bold;">and</span> (lc-exp? (car exp))
-         (lc-exp? (cadr exp)))))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">lc-exp?</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (exp)
-    (<span style="color: #F92672; font-weight: bold;">or</span> (var-exp? exp)
-        (lambda-exp? exp)
-        (app-exp? exp))))
-<span style="color: #75715E;">;;; </span><span style="color: #75715E;">extractors</span>
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">var-exp-&gt;var</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (lc-exp)
-    lc-exp))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">lambda-exp-&gt;bound-var</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (lc-exp)
-    (caadr lc-exp)))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">lambda-exp-&gt;body</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (lc-exp)
-    (cddr lc-exp)))
-
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">app-exp-&gt;rator</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (lc-exp)
-    (car lc-exp)))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">app-exp-rand</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (lc-exp)
-    (cadr lc-exp)))
-</pre>
-</div>
-</div>
-</div>
 </div>
 
 <div id="outline-container-sec-4" class="outline-2">
@@ -1073,11 +620,16 @@ syntax tree像对应,AST不包含一些细节, 比如一个if表达式,在 AST�
 <li>lexical depth: 词法深度,用来表示一个变量的引用与该变量声明之间的作用域的
 个数,以0为开始
 </li>
+<li>identifiers: a identifier is a string of characters,typically letters or
+digits,that refer to an entity,all identifiers are names,but not all
+names are identifiers.
+</li>
+<li>name:
+</li>
 </ol>
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">4 State</h2>
 <div class="outline-text-2" id="text-5">
@@ -1085,32 +637,100 @@ syntax tree像对应,AST不包含一些细节, 比如一个if表达式,在 AST�
 <h3 id="sec-5-1">返回值与副作用的区别</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
-   What’s the difference between producing a value and producing an effect?
-An effect is <b>global</b>: it is seen by the entire computation. An effect affects the
+   What’s the difference between producing a value and producing an effect?  An
+effect is <b>global</b>: it is seen by the entire computation. An effect affects the
 entire computation (pun intended).
 </p>
 </div>
 </div>
 
 <div id="outline-container-sec-5-2" class="outline-3">
-<h3 id="sec-5-2">4.1 Computational Effects</h3>
+<h3 id="sec-5-2">difference between binding and assignments</h3>
 <div class="outline-text-3" id="text-5-2">
+<p>
+binding is local, but variable assignment is potentially global.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3">4.1 Computational Effects</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+计算机内存可以抽象为一个 Map: locations ⟶ storable values
+</p>
 <ol class="org-ol">
-<li>reference: 引用,(left value)
+<li>reference: 引用,(left value) A data structure represent location
 </li>
 <li>location: 包含reference指向的数据
+</li>
+<li>variable: One can think variable is same as location.
 </li>
 </ol>
 <p>
 二者的可以这样类比:reference可以看作是url,而location可以看作是文件,文件包含
 数据,而url指向该文件
 </p>
+
+<div class="figure">
+<p><img src="static/img/env-store.png" alt="env-store.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5-4" class="outline-3">
+<h3 id="sec-5-4">4.5 Parameter Passing Variations</h3>
+<div class="outline-text-3" id="text-5-4">
+</div><div id="outline-container-sec-5-4-1" class="outline-4">
+<h4 id="sec-5-4-1">Natural Parameter Passing</h4>
+<div class="outline-text-4" id="text-5-4-1">
+<p>
+The denoted value is same as the expressed value of the actual
+parameter.like the LET language
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-4-2" class="outline-4">
+<h4 id="sec-5-4-2">Call By Reference</h4>
+<div class="outline-text-4" id="text-5-4-2">
+<p>
+The Formal Parameter is associated with the same reference of the Actual
+Parameter. so if you change the value of formal parameter, the value of
+actual parameter also changes.
+</p>
+
+<div class="figure">
+<p><img src="static/img/call-by-reference.png" alt="call-by-reference.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5-4-3" class="outline-4">
+<h4 id="sec-5-4-3">Call By Value(CBV)</h4>
+<div class="outline-text-4" id="text-5-4-3">
+<p>
+The denoted value is a reference to a location containning the expressed
+value of the actual parameter.
+</p>
+
+<div class="figure">
+<p><img src="static/img/call-by-value.png" alt="call-by-value.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5-4-4" class="outline-4">
+<h4 id="sec-5-4-4">Call By Name(CBN)</h4>
+</div>
+<div id="outline-container-sec-5-4-5" class="outline-4">
+<h4 id="sec-5-4-5">Call By Need</h4>
 </div>
 </div>
 </div>
 
 <div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6">Continuation-Passing Interpreter</h2>
+<h2 id="sec-6">5 Continuation-Passing Interpreter</h2>
 <div class="outline-text-2" id="text-6">
 </div><div id="outline-container-sec-6-1" class="outline-3">
 <h3 id="sec-6-1">Serveral Concepts</h3>
@@ -1121,40 +741,184 @@ data used by this task at the point it has been interrupted
 </li>
 <li>Data Context: Environment is the abstraction of Data Context
 </li>
-<li>Control Context: Continuation is the abstraction of Control Context
+<li>Control Context: Continuation is the abstraction of Control Contextp
 </li>
 </ol>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7">lambda calculus</h2>
-<div class="outline-text-2" id="text-7">
-</div><div id="outline-container-sec-7-1" class="outline-3">
-<h3 id="sec-7-1">Church Encode</h3>
+<div id="outline-container-lambda-calculus" class="outline-2">
+<h2 id="lambda-calculus"><a id="sec-7" name="sec-7"></a>lambda calculus</h2>
+<div class="outline-text-2" id="text-lambda-calculus">
+</div>
+<div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1">Terms</h3>
 <div class="outline-text-3" id="text-7-1">
+<p>
+The set of lambda-calculus expressions can be defined with following
+grammar:
+</p>
 <pre class="example">
-true = λt.λf.t
-false = λt.λf.f
-if = λv.λt.λf. v t f
-
-0 = λf.λx.x
-1 = λf.λx.f x
-2 = λf.λx.f (f x)
-3 = λf.λx.f (f (f x))
-...
-add1 = λn.λf.λx. f (n f x )
-add  = λn.λm.λf.λx. m f (n f x) = λn.λm.λf.λx. m add1 n
-iszero = λn. n (λx. false) true
-mul = λn.λm.λf.λx. n (add m) zero
+M,N,L   = X
+        | (λX.M)
+        | (M M)
+X       = a variable x,y ...
 </pre>
 </div>
 </div>
 
 <div id="outline-container-sec-7-2" class="outline-3">
-<h3 id="sec-7-2">Y Combinator</h3>
+<h3 id="sec-7-2">Relations</h3>
 <div class="outline-text-3" id="text-7-2">
+<ol class="org-ol">
+<li>FV: a relation(function) that maps a lambda calculus expression to a set
+free variables.
+<pre class="example">
+FV(X) = {X}
+FV( (λX.M) ) = FV(M) / {X}
+FV( (M1 M2) ) = FV(M1) ∪ FV(M2)
+</pre>
+</li>
+<li>_[<sub>⟵</sub> _]: a relation that maps a source expression, a variable, and an
+argument expression to a target expression. The target expression is the
+same as the source expression, except that free instances of the variable
+are replaced by the argument expression:
+<pre class="example">
+x1[X1 ⟵ M]       = M
+X2[X1 ⟵ M]       = X2
+(λX1.M1)[X1 ⟵ M2]    = (λX1.M1)
+(λX1.M1)[X2 ⟵ M2]    = (λX3.M1[X2 ⟵ M2])  where X3 ∉ FV(M1) /{X1}
+                                                   X3 ∉ FV(M2)
+                                                   X1 != X2
+(M1 M2)[X ⟵ M3]      = (M1[X ⟵ M3] M2[X ⟵ M3])
+</pre>
+</li>
+<li>α conversion: a relation that maps a expression to another expression
+with formal argument changed.
+</li>
+<li>β reduction: the main reduction relation, encoding function application
+</li>
+
+<li>η equivalence
+<pre class="example">
+(λX. M)       α   (λY.M[X ⟵ Y])   where Y ∉ FV(M)
+((λX.M1) M2)  β   M1[X ⟵ M2]
+(λX.(M X))    η   M                 where X ∉ FV(M)
+</pre>
+</li>
+<li>n = α ∪ β ∪ η
+</li>
+<li>⟶<sub>n</sub><sup>α</sup> ,⟶<sub>n</sub><sup>β</sup>, ⟶<sub>n</sub><sup>η</sup> is the compatiable closure of α, β, η.
+</li>
+<li>→→<sub>n</sub><sup>α</sup>, →→<sub>n</sub><sup>β</sup>, →→<sub>n</sub><sup>η</sup> is the flexive-transitive closure of ⟶<sub>n</sub><sup>α</sup> ,⟶<sub>n</sub><sup>β</sup>,
+⟶<sub>n</sub><sup>η</sup>.
+</li>
+<li>=<sub>n</sub><sup>α</sup> ,=<sub>n</sub><sup>β</sup>, =<sub>n</sub><sup>η</sup> is the symmetric closure of →→<sub>n</sub><sup>α</sup>, →→<sub>n</sub><sup>β</sup>, →→<sub>n</sub><sup>η</sup>,
+and the equivalence closure ⟶<sub>n</sub><sup>α</sup> ,⟶<sub>n</sub><sup>β</sup>, ⟶<sub>n</sub><sup>η</sup>.
+</li>
+<li>⟶<sub>n</sub>: the compatiable closure of <b>n</b>.
+</li>
+<li>→→<sub>n</sub>: the reflexive-transitive closure of ⟶<sub>n</sub>.
+</li>
+<li>=<sub>n</sub>: the symmetric closure of →→<sub>n</sub>, equivalence closure of →<sub>n</sub>.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-7-3" class="outline-3">
+<h3 id="sec-7-3">Normal Form</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+An expression is in normal form if it cann't be reduced by ⟶<sub>n</sub><sup>β</sup> or ⟶<sub>n</sub><sup>η</sup>.
+</p>
+
+<p>
+not every lambda calculus expression has a normal form. for example:
+</p>
+<pre class="example">
+Ω = ((λx.x x) (λx.x x))
+</pre>
+<p>
+don't have normal form.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7-4" class="outline-3">
+<h3 id="sec-7-4">Evaluation Strategy</h3>
+<div class="outline-text-3" id="text-7-4">
+<ol class="org-ol">
+<li>full beta reduction: Any redex may be reduced at any time.
+</li>
+<li>Normal Order Strategy: The leftmoast outermost is always reduced
+first.This Strategy can reduce the redex in the body of a function.
+</li>
+<li>Call By Name Strategy: Like Normal Order, but allows no reduction in the
+body of function. <b>Call by Need</b> is optimizing version of Call by Name.
+</li>
+<li>Call by Value Strategy: Only Outermost redexs are reduced and where a
+redex is reduced only when its right hand side has already been reduced
+to a value.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-7-5" class="outline-3">
+<h3 id="sec-7-5">Church Encode</h3>
+<div class="outline-text-3" id="text-7-5">
+<pre class="example">
+;;boolean
+true = λt.λf.t
+false = λt.λf.f
+if = λv.λt.λf. v t f       ;;if bool M N, because lambda calculus is
+                           ;;call by name, so if can be implemented as a function
+and = λm.λn. m n false
+or = λm.λn. m m n
+not = λm. m false true
+
+;;pair
+pair = λf.λs.λb. b f s    ;;(f means first, s means second.b is boolean value)
+first = λp. p true        ;; aka ``car''
+second = λp. p false      ;; aka ``cdr''
+
+;;number
+0 = λs.λz.z                ;; s means successor, z means zero.(same with false)
+1 = λs.λz. s z
+2 = λs.λz. s (s z)
+3 = λs.λz. s (s (s z))
+...
+add1 = λn.λs.λz. s (n s z )
+add  = λn.λm.λs.λz. m s (n s z) = λn.λm.λs.λz. m add1 n
+iszero = λn. n (λx. false) true
+mul = λn.λm.λf.λx. n (add m) zero
+
+;;subtraction
+zz = pair 0 0                 ;;(0 is λs.λz.z)
+ss = λp. pair (second p) (add1 (second p))
+sub1 = λn. first (n ss zz)
+sub = λm.λn.λs.λz. n sub1 m
+
+;;list
+[x, y, z] = λc.λn. (c x (c y (c z n)))
+nil = λc.λn. n                      ;;same as zero
+cons = λe.λl.λc.λn. (c e (l c n))
+isnil = λl. l (λx. false) true      ;;same as iszero
+head = λl. l true true
+
+ss = λp. pair (second p) (λc.λn. (second p) false n)
+cc = λe.λp. ss p
+
+tail = λl. head (first (l cc (pair l l)))
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-7-6" class="outline-3">
+<h3 id="sec-7-6">Y Combinator</h3>
+<div class="outline-text-3" id="text-7-6">
 <p>
 假设要在lambda calculus中构造递归函数mul,那么最直观的想法就是:
 </p>
@@ -1234,6 +998,121 @@ title="Reinventing the Y combinator" target="_blank">Reinventing the Y
 combinator</a> </strong> from <strong><a
 href="http://www.slideshare.net/yinwang0" target="_blank">Ian
 Wang</a></strong> </div>
+</div>
+</div>
+
+<div id="outline-container-sec-7-7" class="outline-3">
+<h3 id="sec-7-7">Theorems</h3>
+<div class="outline-text-3" id="text-7-7">
+</div><div id="outline-container-sec-7-7-1" class="outline-4">
+<h4 id="sec-7-7-1">Church-Rosser for =<sub>n</sub></h4>
+<div class="outline-text-4" id="text-7-7-1">
+<p>
+if M =<sub>n</sub> N, then there exists an L such that M →→<sub>n</sub> L and N →→<sub>n</sub> L.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7-7-2" class="outline-4">
+<h4 id="sec-7-7-2">Diamond Property for →→<sub>n</sub></h4>
+<div class="outline-text-4" id="text-7-7-2">
+<p>
+if L →→<sub>n</sub> M and L →→<sub>n</sub> N then there exists an expression L1 such that M
+→→<sub>n</sub> L1 and N →→<sub>n</sub> L1
+</p>
+
+<div class="figure">
+<p><img src="static/img/diamond-property.png" alt="diamond-property.png" />
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8">ISWIM</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+The difference between ISWIM and lambda calculus is that ISWIM uses Call By
+Value evaluation strategy and it also contains some constants and primitive
+operations.
+</p>
+</div>
+<div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1">terms</h3>
+<div class="outline-text-3" id="text-8-1">
+<pre class="example">
+M, N, L, K  = X
+            | (λX.M )
+            | (M M)
+            | b
+            | (o^n M M ... M)
+X           = a variable x, y, z ...
+b           = a basic constant
+o^n         = a n-ary primitive operation
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-8-2" class="outline-3">
+<h3 id="sec-8-2">Values</h3>
+<div class="outline-text-3" id="text-8-2">
+<pre class="example">
+V,U,W   = b                     ;constant
+        | X                     ;variable
+        | (λX.M)                ;function
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9">Standard reduction</h2>
+<div class="outline-text-2" id="text-9">
+<ol class="org-ol">
+<li>If the expression is an application and all components are values, then,
+if the expression is a redex, it is the next redex to be reduced; if not,
+the program cannot have a value.
+</li>
+<li>If the program is an application such that at least one of its
+sub-expressions is not a value, pick the leftmost non-value and search for
+a redex in there.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10">Machines</h2>
+<div class="outline-text-2" id="text-10">
+</div><div id="outline-container-sec-10-1" class="outline-3">
+<h3 id="sec-10-1">CC Machine</h3>
+<div class="outline-text-3" id="text-10-1">
+\begin{eqnarray*}
+  \left\langle \left( M N \right), E \right\rangle \nocomma &
+  \mapsto_{\tmop{cc}} & \left\langle M, E \left[ \left( \left[  \right] N
+  \right) \right] \right\rangle\\
+  \left\langle \left( V_1 N \right), E \right\rangle & \mapsto_{\tmop{cc}} &
+  \left\langle N, E \left[ \left( V_1  \left[  \right] \right) \right]
+  \right\rangle\\
+  \left\langle \left( o^n V_1 \ldots V_i M N \ldots \right) \nocomma, E
+  \right\rangle & \mapsto_{\tmop{cc}} & \left\langle M, E \left[ \left( o^n
+  V_1 \ldots V_i  \left[  \right] N \ldots \right) \right] \right\rangle\\
+  \left\langle \left( \left( \lambda X.M \right) V \right), E \right\rangle &
+  \mapsto_{\tmop{cc}} & \left\langle M \left[ X \leftarrow V \right], E
+  \right\rangle\\
+  \left\langle \left( o^m b_1 \ldots b_m \right), E \right\rangle &
+  \mapsto_{\tmop{cc}} & \left\langle V, E \right\rangle\\
+  \left\langle V, E \left[ \left( \left[  \right] N \right) \right]
+  \right\rangle & \mapsto_{\tmop{cc}} & \left\langle \left( V N \right), E
+  \right\rangle\\
+  \left\langle V, E \left[ \left( U \left[  \right] \right) \right]
+  \right\rangle & \mapsto_{\tmop{cc}} & \left\langle \left( U V \right), E
+  \right\rangle\\
+  \left\langle V, E \left[ \left( o^n V_1 \ldots V_i  \left[  \right] N \ldots
+  \right) \right] \right\rangle & \mapsto_{\tmop{cc}} & \left\langle \left(
+  o^n V_1 \ldots V_i V N \ldots \right) \nocomma, E \right\rangle
+\end{eqnarray*}
 </div>
 </div>
 </div>

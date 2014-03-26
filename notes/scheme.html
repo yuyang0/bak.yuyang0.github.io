@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>scheme笔记</title>
-<!-- 2014-02-01 Sat 10:57 -->
+<!-- 2014-03-23 Sun 22:40 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -169,18 +169,6 @@ for the JavaScript code in this tag.
 <li><a href="#sec-1-1-3">atom</a></li>
 <li><a href="#sec-1-1-4">list</a></li>
 <li><a href="#sec-1-1-5">S-expression</a></li>
-<li><a href="#sec-1-1-6">Number</a></li>
-<li><a href="#sec-1-1-7">arithmetic expression</a></li>
-<li><a href="#sec-1-1-8">logcal expression</a></li>
-<li><a href="#sec-1-1-9">condition expression</a></li>
-<li><a href="#sec-1-1-10">多条表达式</a></li>
-<li><a href="#sec-1-1-11">The Law of Car</a></li>
-<li><a href="#sec-1-1-12">The Law of Cdr</a></li>
-<li><a href="#sec-1-1-13">The Law of Cons</a></li>
-<li><a href="#sec-1-1-14">The Law of Null?</a></li>
-<li><a href="#sec-1-1-15">The Law of Eq?</a></li>
-<li><a href="#sec-1-1-16">The primitive fuctions</a></li>
-<li><a href="#sec-1-1-17">quote，引用</a></li>
 </ul>
 </li>
 <li><a href="#sec-1-2">Naming Conventions</a></li>
@@ -216,8 +204,8 @@ for the JavaScript code in this tag.
 <li><a href="#sec-1-7-1">define-syntax</a></li>
 <li><a href="#sec-1-7-2">let-syntax与letrec-syntax</a></li>
 <li><a href="#sec-1-7-3">syntax-rules</a></li>
-<li><a href="#sec-1-7-4">syntax-case</a></li>
-<li><a href="#sec-1-7-5">syntax</a></li>
+<li><a href="#sec-1-7-4">syntax object</a></li>
+<li><a href="#sec-1-7-5">syntax-case</a></li>
 <li><a href="#sec-1-7-6">with-syntax</a></li>
 </ul>
 </li>
@@ -225,37 +213,42 @@ for the JavaScript code in this tag.
 <li><a href="#sec-1-9">递归思想</a></li>
 <li><a href="#sec-1-10">continuation&#xa0;&#xa0;&#xa0;<span class="tag"><span class="continuation">continuation</span></span></a>
 <ul>
-<li><a href="#sec-1-10-1">call/cc</a></li>
+<li><a href="#sec-1-10-1">call/cc and let/cc</a></li>
 <li><a href="#sec-1-10-2">应用</a></li>
 <li><a href="#sec-1-10-3">CPS</a></li>
 </ul>
 </li>
 <li><a href="#sec-1-11">停机问题</a></li>
 <li><a href="#sec-1-12">some example code(the little schemer)</a></li>
-<li><a href="#sec-1-13">racket&#xa0;&#xa0;&#xa0;<span class="tag"><span class="racket">racket</span></span></a>
-<ul>
-<li><a href="#sec-1-13-1">struct(新的数据类型)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="struct">struct</span></span></a>
-<ul>
-<li><a href="#sec-1-13-1-1">复制更新</a></li>
-<li><a href="#sec-1-13-1-2">subtypes(类似于继承)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="subtypes">subtypes</span></span></a></li>
 </ul>
 </li>
-<li><a href="#sec-1-13-2">match(模式匹配)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="match">match</span></span></a></li>
-<li><a href="#sec-1-13-3">module</a>
+<li><a href="#sec-2">racket&#xa0;&#xa0;&#xa0;<span class="tag"><span class="racket">racket</span></span></a>
 <ul>
-<li><a href="#sec-1-13-3-1">submodule</a>
+<li><a href="#sec-2-1">struct(新的数据类型)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="struct">struct</span></span></a>
 <ul>
-<li><a href="#sec-1-13-3-1-1">module*                                                                   :module*:</a></li>
-<li><a href="#sec-1-13-3-1-2">module+                                                                   :module+:</a></li>
+<li><a href="#sec-2-1-1">复制更新</a></li>
+<li><a href="#sec-2-1-2">subtypes(类似于继承)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="subtypes">subtypes</span></span></a></li>
 </ul>
 </li>
-<li><a href="#sec-1-13-3-2">lang</a></li>
-<li><a href="#sec-1-13-3-3">require</a></li>
-<li><a href="#sec-1-13-3-4">provide</a></li>
+<li><a href="#sec-2-2">match(模式匹配)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="match">match</span></span></a></li>
+<li><a href="#sec-2-3">module</a>
+<ul>
+<li><a href="#sec-2-3-1">submodule</a>
+<ul>
+<li><a href="#sec-2-3-1-1">module*                                                                   :module*:</a></li>
+<li><a href="#sec-2-3-1-2">module+                                                                   :module+:</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-3-2">lang</a></li>
+<li><a href="#sec-2-3-3">require</a></li>
+<li><a href="#sec-2-3-4">provide</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li><a href="#sec-3">typed racket</a>
+<ul>
+<li><a href="#sec-3-1">sample program</a></li>
 </ul>
 </li>
 </ul>
@@ -288,209 +281,59 @@ for the JavaScript code in this tag.
 <div id="outline-container-sec-1-1-3" class="outline-4">
 <h4 id="sec-1-1-3">atom</h4>
 <div class="outline-text-4" id="text-1-1-3">
-<p class="verse">
-a string of characters<br  />
-a string of digits<br  />
-<br  />
-(quote atom) or 'atom<br  />
-</p>
+<ul class="org-ul">
+<li>a string of characters
+</li>
+<li>a string of digits
+</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">atom?</span>
+  (<span style="color: #F92672; font-weight: bold;">lambda</span> (s)
+    (<span style="color: #F92672; font-weight: bold;">and</span> (not (pair? s))
+         (not (null? s)))))
+</pre>
+</div>
 </div>
 </div>
 
 <div id="outline-container-sec-1-1-4" class="outline-4">
 <h4 id="sec-1-1-4">list</h4>
 <div class="outline-text-4" id="text-1-1-4">
-<p class="verse">
-a collection of atoms enclosed by parentheses.<br  />
-example:<br  />
-'()<br  />
-'(a)<br  />
-'(a b c)<br  />
-'((a b) c d)<br  />
+<p>
+a collection of atoms enclosed by parentheses. example:
 </p>
+
+<pre class="example">
+'()
+'(a)
+'(a b c)
+'((a b) c d)
+</pre>
+<p>
+语法描述:
+</p>
+<pre class="example">
+list -&gt; '()
+      | (sexp . list)
+</pre>
 </div>
 </div>
 
 <div id="outline-container-sec-1-1-5" class="outline-4">
 <h4 id="sec-1-1-5">S-expression</h4>
 <div class="outline-text-4" id="text-1-1-5">
-<p class="verse">
-all lists<br  />
-all atoms<br  />
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-1-6" class="outline-4">
-<h4 id="sec-1-1-6">Number</h4>
-<div class="outline-text-4" id="text-1-1-6">
-<p>
-we only use whole number
-we only use nonegative integers
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-1-7" class="outline-4">
-<h4 id="sec-1-1-7">arithmetic expression</h4>
-<div class="outline-text-4" id="text-1-1-7">
-<div class="org-src-container">
-
-<pre class="src src-scheme"><span class="linenr">1: </span>(+ 1 2 3 4 5) <span style="color: #75715E;">;;</span><span style="color: #75715E;">return 15</span>
-<span class="linenr">2: </span>(- 10 2 3)      <span style="color: #75715E;">;; </span><span style="color: #75715E;">return 5</span>
-<span class="linenr">3: </span>(* 2 3 4)     <span style="color: #75715E;">;; </span><span style="color: #75715E;">return 24</span>
-<span class="linenr">4: </span>(/ 10 5 5)    <span style="color: #75715E;">;;</span><span style="color: #75715E;">return 1</span>
+<ul class="org-ul">
+<li>all lists
+</li>
+<li>all atoms
+</li>
+</ul>
+<pre class="example">
+sexp -&gt; list
+      | atom
 </pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-1-1-8" class="outline-4">
-<h4 id="sec-1-1-8">logcal expression</h4>
-<div class="outline-text-4" id="text-1-1-8">
-<p class="verse">
-and: (and &lt;p1&gt; &lt;p2&gt; &#x2026; &lt;pn&gt;)<br  />
-or:  (or &lt;p1&gt; &lt;p2&gt; &#x2026;.&lt;pn&gt;)<br  />
-not: (not &lt;p&gt;)<br  />
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-1-9" class="outline-4">
-<h4 id="sec-1-1-9">condition expression</h4>
-<div class="outline-text-4" id="text-1-1-9">
-<div class="org-src-container">
-
-<pre class="src src-scheme"><span class="linenr"> 1: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">var</span> 2)
-<span class="linenr"> 2: </span>(<span style="color: #F92672; font-weight: bold;">define</span> (<span style="color: #A6E22E;">add</span> x y) (+ x y)
-<span class="linenr"> 3: </span>  (<span style="color: #F92672; font-weight: bold;">cond</span>
-<span class="linenr"> 4: </span>   (<span style="color: #66D9EF;">&lt;p1&gt;</span> <span style="color: #66D9EF;">&lt;e1&gt;</span>)
-<span class="linenr"> 5: </span>   (<span style="color: #66D9EF;">&lt;p2&gt;</span> <span style="color: #66D9EF;">&lt;e2&gt;</span>)
-<span class="linenr"> 6: </span>   (<span style="color: #66D9EF;">&lt;p3&gt;</span> <span style="color: #66D9EF;">&lt;e3&gt;</span>)
-<span class="linenr"> 7: </span>   (<span style="color: #F92672; font-weight: bold;">else</span> (else-clause))))
-<span class="linenr"> 8: </span>(<span style="color: #F92672; font-weight: bold;">define</span> (<span style="color: #A6E22E;">abs</span> x)
-<span class="linenr"> 9: </span>  (<span style="color: #F92672; font-weight: bold;">cond</span>
-<span class="linenr">10: </span>   (&lt; x 0) (- x)
-<span class="linenr">11: </span>   (<span style="color: #F92672; font-weight: bold;">else</span> x)))
-<span class="linenr">12: </span>(<span style="color: #F92672; font-weight: bold;">define</span> (<span style="color: #A6E22E;">abs</span> x)
-<span class="linenr">13: </span>  (<span style="color: #F92672; font-weight: bold;">if</span> (&lt; x 0)
-<span class="linenr">14: </span>      (- x)
-<span class="linenr">15: </span>      x))
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-1-1-10" class="outline-4">
-<h4 id="sec-1-1-10">多条表达式</h4>
-<div class="outline-text-4" id="text-1-1-10">
-<p>
-(begin &#x2026;.)
-cond的body中有一个隐含的begin，所以cond中可以放多条表达式，而对于if则
-必须使用begin明确的将多条表达式包含起来
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-1-11" class="outline-4">
-<h4 id="sec-1-1-11">The Law of Car</h4>
-<div class="outline-text-4" id="text-1-1-11">
-<p>
-The primitive Car is defined only for non­empty lists.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-1-12" class="outline-4">
-<h4 id="sec-1-1-12">The Law of Cdr</h4>
-<div class="outline-text-4" id="text-1-1-12">
-<ul class="org-ul">
-<li>The primitive cdr is defined only for non­empty lists.
-</li>
-<li>The cdr of any non-empty list is always another list.
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-1-1-13" class="outline-4">
-<h4 id="sec-1-1-13">The Law of Cons</h4>
-<div class="outline-text-4" id="text-1-1-13">
-<ul class="org-ul">
-<li>The primitive Cons takes two arguments.
-</li>
-<li>The second argument to cons must be a list.
-</li>
-<li>The result is a list.
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-1-1-14" class="outline-4">
-<h4 id="sec-1-1-14">The Law of Null?</h4>
-<div class="outline-text-4" id="text-1-1-14">
-<p>
-The primitive null? is defined only for lists.(only (null? '()) return #t)
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-1-15" class="outline-4">
-<h4 id="sec-1-1-15">The Law of Eq?</h4>
-<div class="outline-text-4" id="text-1-1-15">
-<ul class="org-ul">
-<li>The primitive eq? takes two arguments.
-</li>
-<li>Each must be a non-numeric atom.
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-1-1-16" class="outline-4">
-<h4 id="sec-1-1-16">The primitive fuctions</h4>
-<div class="outline-text-4" id="text-1-1-16">
-<ul class="org-ul">
-<li>number?
-</li>
-<li>eq?
-</li>
-<li>null?
-</li>
-<li>zero?
-</li>
-<li>car
-</li>
-<li>cdr
-</li>
-<li>cons
-</li>
-</ul>
-<p>
-<b>(the three fuction below is defined by the book)</b>
-</p>
-<ul class="org-ul">
-<li>atom?
-</li>
-<li>add1
-</li>
-<li>sub1
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-1-1-17" class="outline-4">
-<h4 id="sec-1-1-17">quote，引用</h4>
-<div class="outline-text-4" id="text-1-1-17">
-<p>
-first&#x2013;&#x2014;&gt; symbol(or a variable)
-'first-&#x2014;&gt; an atom
-'1 or 1&#x2014;&gt; a number
-当调用函数时，先会对各个参数求值，所以每一个参数要么是atom，list或者一
-个已经绑定的symbol
-</p>
 </div>
 </div>
 </div>
@@ -520,6 +363,7 @@ first&#x2013;&#x2014;&gt; symbol(or a variable)
 <li>top-level <code>define</code> forms
 实际就是创建新的绑定,可以绑定 <code>list</code>, <code>lambda procedure</code> 这是几个示例代
 码:
+
 <div class="org-src-container">
 
 <pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">double-any</span>
@@ -534,21 +378,29 @@ first&#x2013;&#x2014;&gt; symbol(or a variable)
 </div>
 </li>
 <li>constants
-&lt;constant&gt; -&#x2014;&gt; &lt;boolean&gt; | &lt;number&gt; | &lt;character&gt; | &lt;string&gt;
+BNF:
+<pre class="example">
+&lt;constant&gt; -&gt; &lt;boolean&gt;
+            | &lt;number&gt;
+            | &lt;character&gt;
+            | &lt;string&gt;
+</pre>
 </li>
+
 <li>variables
 </li>
-<li>procedure applications <code>(procedure arg_1 ... arg_n)</code>
-<ul class="org-ul">
+<li>procedure applications <code>(procedure arg1 ... argn)</code>
+求值规则:
+<ol class="org-ol">
 <li>Find the value of <code>procedure</code>.
 </li>
-<li>Find the value of <code>arg_1</code>.
+<li>Find the value of <code>arg1</code>.
 </li>
-<li>Find the value of <code>arg_n</code>.
+<li>Find the value of <code>argn</code>.
 </li>
-<li>Apply the value of <code>procedure</code> to the values of <code>arg_1</code> &#x2026; <code>arg_n</code>.
+<li>Apply the value of <code>procedure</code> to the values of <code>arg1</code> &#x2026; <code>argn</code>.
 </li>
-</ul>
+</ol>
 </li>
 <li><code>quote</code> expressions (')
 <ol class="org-ol">
@@ -608,9 +460,9 @@ variable)
 </pre>
 </div>
 <p>
-实际上define-syntax实际就是进行模式匹配,像cond,如果匹配那么就进行替换,比如
-(and 1)就匹配((_ e) e)所以就被替换为1, _就是and的占位符, 而 <code>pat ...</code> 代表0个
-或者多个表达式, 比如 <code>(x v)</code> 代表有0个或多个 <code>(x v)</code> 这样的表达式
+   实际上define-syntax实际就是进行模式匹配,像cond,如果匹配那么就进行替换,比
+如(and 1)就匹配((_ e) e)所以就被替换为1, _就是and的占位符, 而 <code>pat ...</code> 代表
+0个或者多个表达式, 比如 <code>(x v) ...</code> 代表有0个或多个 <code>(x v)</code> 这样的表达式
 </p>
 </div>
 </div>
@@ -696,7 +548,7 @@ form2主要是为了递归, 它使得在函数体中可以引用函数名, 比�
 </div>
 <p>
 但这种方法不够自然,而且比较丑陋,不符合scheme中定义递归函数的一般模式,所以
-就引入了 <code>letec</code>.
+就引入了 <code>letrec</code>.
 </p>
 <div class="org-src-container">
 
@@ -765,16 +617,18 @@ syntax:
 </pre>
 </div>
 <p>
-所以如果你在 <code>true-exp</code> 的位置放入多条表达式,那么这些表达式的第二条会被当
-作 <code>false-exp</code> ,而且因为 <code>if</code> 后的表达式的条数超出 <code>2</code> 条而报错, 所以你需
-要把多条表达式括起来,但是你不能直接加一个括号,比如
+    所以如果你在 <code>true-exp</code> 的位置放入多条表达式,那么这些表达式的第二条会
+被当作 <code>false-exp</code> ,而且因为 <code>if</code> 后的表达式的条数超出 <code>2</code> 条而报错, 所以
+你需要把多条表达式括起来,但是你不能直接加一个括号,比如
 </p>
+
 <pre class="example">
 ((true-exp1)(true-exp2))
 </pre>
 <p>
-这样之所以不行是因为scheme会将 (true-exp1) 当作procedure求
-值,这显然不对, 所以scheme使用begin, 也就变成了:
+   这样之所以不行是因为scheme会将 (true-exp1) 当作procedure求值,这显然不
+对, 所以scheme使用begin(更准确的说begin是为了引入side effect), 也就变成
+了:
 </p>
 <pre class="example">
 (begin
@@ -782,8 +636,8 @@ syntax:
   (true-exp2))
 </pre>
 <p>
-这就是if使用begin的原因了, 注意在 <b>let, lambda, define,cond的body中都不需
-要begin,因为它们都没有if这种特殊的状况</b>
+这就是if使用begin的原因了, 注意在 let, lambda, define,cond的body中都不需
+要begin,因为它们都没有if这种特殊的状况.
 </p>
 </div>
 </div>
@@ -796,9 +650,8 @@ syntax:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">cond</span>
- ((test-exp) (exp1) (exp2))
- (<span style="color: #F92672; font-weight: bold;">else</span> expression3))
+<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">cond</span> [(test-exp) (exp1) (exp2)]
+      [else expression3])
 </pre>
 </div>
 <p>
@@ -964,6 +817,7 @@ syntax:
 <li>#t, #f, 两个identifier的值如果都是#t或者#f,那么它们相等
 </li>
 <li>相同的符号(symbol), 比如
+
 <div class="org-src-container">
 
 <pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">sym1</span> 'hello)
@@ -982,7 +836,7 @@ syntax:
 </li>
 <li>boolean? : 等价于 <code>(lambda (x) (or (eq? x #t) (eq? x #f)))</code>
 </li>
-<li>null? : 只作用于list
+<li>null? : 只作用于list, only <code>(null? '())</code> return <code>#t</code>.
 </li>
 <li>pair? :
 </li>
@@ -1029,9 +883,9 @@ List ::= '()
 </li>
 <li>cons* : (cons* 'a 'b 'c) ==&gt; (a b . c)    (cons* 'a 'b '(c)) ==&gt; (a b c)
 </li>
-<li>car: the firsts element of pair
+<li>car: the firsts element of pair (<b>only for non-empty list</b> )
 </li>
-<li>cdr:
+<li>cdr: Only for non-empty list, the cdr of any non-empty list is also a list.
 </li>
 <li>set-car! :有副作用, 会原地改变pair的值
 </li>
@@ -1096,6 +950,34 @@ procedure returns true
        <code>call-with-values</code> 来调用其它函数
 </li>
 <li>(find procedure list) : 返回第一个使procedure为#t的元素
+</li>
+<li>(map f list1 list2 &#x2026;)
+</li>
+<li>(foldl f init list1 list2 &#x2026;): <b>racket 的内置版本有bug</b>
+</li>
+<li>(foldr f init list1 list2 &#x2026;):
+<div class="org-src-container">
+
+<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">foldl</span>
+  (<span style="color: #F92672; font-weight: bold;">lambda</span> (f x ls)
+    (<span style="color: #F92672; font-weight: bold;">cond</span>
+     [(null? ls) x]
+     [else
+      (foldl f (f x (car ls)) (cdr ls))])))
+<span style="color: #75715E;">;; </span><span style="color: #75715E;">(foldl op init '(1 2 3 4))</span>
+<span style="color: #75715E;">;; </span><span style="color: #75715E;">we can think foldl's behavior like this: (init op 1 op 2 op 3 op 4)</span>
+<span style="color: #75715E;">;; </span><span style="color: #75715E;">op has left associativity</span>
+(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">foldr</span>
+  (<span style="color: #F92672; font-weight: bold;">lambda</span> (f x ls)
+    (<span style="color: #F92672; font-weight: bold;">cond</span>
+     [(null? ls) x]
+     [else
+      (f (car ls) (foldr f x (cdr ls)))])))
+<span style="color: #75715E;">;; </span><span style="color: #75715E;">(foldr op init '(1 2 3 4 5))</span>
+<span style="color: #75715E;">;; </span><span style="color: #75715E;">we can think foldl's behavior like this: (1 op 2 op 3 op 4 op init)</span>
+<span style="color: #75715E;">;; </span><span style="color: #75715E;">op has right associativity</span>
+</pre>
+</div>
 </li>
 </ol>
 </div>
@@ -1285,7 +1167,9 @@ list访问时需要遍历,不够高效, vector可以像数组一样O(1)时间内
 <h3 id="sec-1-7">macros</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
-定义一个宏实际上就是把一个keyword与一系列的transformers绑定
+定义一个宏实际上就是把一个keyword与一个 <code>macro transformer</code> 绑定,
+<code>syntax-rules</code> 返回的就是一个 macro transform, 而macro transformer的输入和输
+出都是syntax object.
 </p>
 </div>
 <div id="outline-container-sec-1-7-1" class="outline-4">
@@ -1334,16 +1218,19 @@ list访问时需要遍历,不够高效, vector可以像数组一样O(1)时间内
 <h4 id="sec-1-7-3">syntax-rules</h4>
 <div class="outline-text-4" id="text-1-7-3">
 <p>
-返回一个transformer, 基本语法:
-<code>(syntax-rules (literal ...) (pattern template) ...)</code>
+基本语法: <code>(syntax-rules (literal ...) (pattern template) ...)</code>
 </p>
 
+<p>
+返回一个transformer, 实际就是一个 <code>procedure</code>, 这个 <code>procedure</code> 接受一个
+syntax object,然后返回一个syntax object.
+</p>
 <ul class="org-ul">
 <li>literal: 一些关键字, 出现在pattern会原样匹配
 </li>
 <li>pattern: 用于匹配输入的表达式的模式
 </li>
-<li>template: 输出
+<li>template: 输出,记住template是原样输出,这是和syntax-case的最大区别.
 </li>
 <li>下划线'<sub>'</sub>: 可以匹配任何结构,一般用来代表宏名
 </li>
@@ -1369,8 +1256,29 @@ list访问时需要遍历,不够高效, vector可以像数组一样O(1)时间内
 </div>
 
 <div id="outline-container-sec-1-7-4" class="outline-4">
-<h4 id="sec-1-7-4">syntax-case</h4>
+<h4 id="sec-1-7-4">syntax object</h4>
 <div class="outline-text-4" id="text-1-7-4">
+<p>
+<code>(syntax template)</code> 的缩写为 <code>#'template</code>, syntax和quote很类似,只是它会将
+template中的pattern variable替换掉, 并且会绑定上下文信息
+</p>
+<ol class="org-ol">
+<li>syntax: 创建一个字面的 syntax object,比如 <code>(syntax '(+ 1 x))</code>, 简写
+       <code>#'(+ 1 x)</code>.
+</li>
+<li>syntax-&gt;datum: 将一个syntax object转换为它原来的内容.
+</li>
+<li>identifier? : 测试一个syntax object 是不是标识符
+</li>
+<li>syntax-e : 只解包一层.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7-5" class="outline-4">
+<h4 id="sec-1-7-5">syntax-case</h4>
+<div class="outline-text-4" id="text-1-7-5">
 <p>
 比 <code>syntax-rules</code> 更具一般性,而且更通用, 使用syntax-case的一般形式是:
 </p>
@@ -1416,16 +1324,6 @@ list访问时需要遍历,不够高效, vector可以像数组一样O(1)时间内
              [(_ . pattern) #'template] ...))])))
 </pre>
 </div>
-</div>
-</div>
-
-<div id="outline-container-sec-1-7-5" class="outline-4">
-<h4 id="sec-1-7-5">syntax</h4>
-<div class="outline-text-4" id="text-1-7-5">
-<p>
-<code>(syntax template)</code> 的缩写为 <code>#'template</code>, syntax和quote很类似,只是它会将
-template中的pattern variable替换掉, 并且会绑定上下文信息
-</p>
 </div>
 </div>
 
@@ -1505,10 +1403,10 @@ output和input很相似
 <h3 id="sec-1-9">递归思想</h3>
 <div class="outline-text-3" id="text-1-9">
 <p>
-递归的思想要从逻辑上理解，在设计一个递归函数时，一开始就要明确该函数在逻辑上的作用(不要一开始就陷入编码细节
-中)，然后分清该函数在逻辑上与
-子问题的联系，并以此为 依据来进行函数体的设计, 特别需要注意检查结束条件,比如加法(0), 乘法(1), list('())就是
-一些结束条件.
+递归的思想要从逻辑上理解，在设计一个递归函数时，一开始就要明确该函数在逻辑上
+的作用(不要一开始就陷入编码细节中)，然后分清该函数在逻辑上与子问题的联系，并
+以此为 依据来进行函数体的设计, 特别需要注意检查结束条件,比如加法(0), 乘法
+(1), list('())就是一些结束条件.
 </p>
 
 <p>
@@ -1522,6 +1420,7 @@ output和input很相似
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-1-10" class="outline-3">
 <h3 id="sec-1-10">continuation&#xa0;&#xa0;&#xa0;<span class="tag"><span class="continuation">continuation</span></span></h3>
 <div class="outline-text-3" id="text-1-10">
@@ -1533,7 +1432,7 @@ output和input很相似
 <li>escape procedure: 它和普通的procedure是一样的,而且也有相同的行为,会返回相
 同的值,唯一的不同的是这个函数它返回后就会替换调用栈,也就是说它会返回解释器
 的最顶层或者解释器的REPL循环, 一个普通的procedure对应的escape procedure通
-过在符号后添加<sup>来表示</sup>,比如 <code>k</code> 是一个普通的procedure, 那么它对应的escape
+过在符号后添加^ 来表示,比如 <code>k</code> 是一个普通的procedure, 那么它对应的escape
 procedure就是 <code>k^</code> , 还有 <code>lambda</code> 是用来构建普通的procedure, 那么
 <code>lambda^</code> 就是用来构建 <code>escape procedure</code>.(注意 <code>lambda^</code> 不是scheme的一
 部分)下面举个例子:
@@ -1594,7 +1493,7 @@ ret-of-call/cc),也就是加2
 </ol>
 </div>
 <div id="outline-container-sec-1-10-1" class="outline-4">
-<h4 id="sec-1-10-1">call/cc</h4>
+<h4 id="sec-1-10-1">call/cc and let/cc</h4>
 <div class="outline-text-4" id="text-1-10-1">
 <p>
 <code>call/cc</code> <sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>是 <code>call-with-current-continuation</code> 的缩写. 它的基本形式是这样的:
@@ -1602,9 +1501,21 @@ ret-of-call/cc),也就是加2
 <div class="org-src-container">
 
 <pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">call/cc</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (k)
+  (<span style="color: #F92672; font-weight: bold;">lambda</span> (k)                           <span style="color: #75715E;">;</span><span style="color: #75715E;">k is the continuation</span>
     (* 5 (k 4))))
 <span style="color: #75715E;">;;; </span><span style="color: #75715E;">the result is 4</span>
+</pre>
+</div>
+<p>
+<code>let/cc</code> 可以看做是 <code>call/cc</code> 的一种简写:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-scheme">(let/cc k                               <span style="color: #75715E;">;</span><span style="color: #75715E;">k is the continuation</span>
+        body)
+<span style="color: #75715E;">;;; </span><span style="color: #75715E;">identical</span>
+(<span style="color: #F92672; font-weight: bold;">call/cc</span> (<span style="color: #F92672; font-weight: bold;">lambda</span> (k)                    <span style="color: #75715E;">;</span><span style="color: #75715E;">k is the continuation</span>
+           body))
 </pre>
 </div>
 <p>
@@ -1644,8 +1555,20 @@ ret-of-call/cc),也就是加2
 </div>
 <p>
 <code>(call/cc (lambda(k) k))</code> 返回当前的 <code>continuation</code>, 我假设该continuation为
-<code>ct</code>, 那么 <code>(ct (lambda(x) x))</code> 就会返回 <code>(lambda(x) x)</code>, 然后 <code>((lambda(x)
-    x) "HEY!")</code>, 自然就返回 "HEY!"
+<code>cont</code>, 那么 <code>cont</code> 必然是一个escape procedure,而且可以看做是如下定义的:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">lambda</span> (val)
+  ((val
+    (<span style="color: #F92672; font-weight: bold;">lambda</span> (x) x)) <span style="color: #E6DB74;">"HEY!"</span>))
+</pre>
+</div>
+<p>
+所以原来的表达式也就等价于 <code>((cont (lambda(x) x)) "HEY!")</code>,又因为cont是一个
+escape procedure,所以上面的表达式又等价于 <code>(cont (lambda(x) x))</code>,而该式很显
+然返回 "HEY!".
 </p>
 </div>
 </div>
@@ -1674,9 +1597,9 @@ ret-of-call/cc),也就是加2
 <div class="outline-text-4" id="text-1-10-3">
 <p>
 <a href="http://en.wikipedia.org/wiki/Continuation-passing_style">CPS</a>(continuation passing style). 核心就是每一个函数都会带一个额外的参数
-(continuation),前面说了continuation代表的是the rest of computation, 因此这个
-参数(continuation)代表了调用者需要对该函数的返回值进行的处理, 因此一个CPS方
-式编写的函数最后都会使用函数的计算结果来调用你传递的那个continuation.
+(continuation),前面说了continuation代表的是the rest of computation, 因此这
+个参数(continuation)代表了调用者需要对该函数的返回值进行的处理, 因此一个CPS
+方式编写的函数最后都会使用函数的计算结果来调用你传递的那个continuation.
 </p>
 </div>
 </div>
@@ -1730,155 +1653,149 @@ ret-of-call/cc),也就是加2
 <span class="linenr">  3: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (x)
 <span class="linenr">  4: </span>    (<span style="color: #F92672; font-weight: bold;">and</span> (not (pair? x))
 <span class="linenr">  5: </span>         (not (null? x)))))
-<span class="linenr">  6: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">add1</span>
-<span class="linenr">  7: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span>(x)
-<span class="linenr">  8: </span>    (+ x 1)))
-<span class="linenr">  9: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">sub1</span>
-<span class="linenr"> 10: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (x)
-<span class="linenr"> 11: </span>    (- x 1)))
-<span class="linenr"> 12: </span>
-<span class="linenr"> 13: </span>
-<span class="linenr"> 14: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">test if x is the member of lat(list)</span>
-<span class="linenr"> 15: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">member?</span>
-<span class="linenr"> 16: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (x l)
+<span class="linenr">  6: </span>
+<span class="linenr">  7: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">test if x is the member of lat(list)</span>
+<span class="linenr">  8: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">member?</span>
+<span class="linenr">  9: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (x l)
+<span class="linenr"> 10: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
+<span class="linenr"> 11: </span>      ((null? l) #f)
+<span class="linenr"> 12: </span>      (<span style="color: #F92672; font-weight: bold;">else</span> (<span style="color: #F92672; font-weight: bold;">or</span> (eq? x (car l))
+<span class="linenr"> 13: </span>                (member? x (cdr l)))))))
+<span class="linenr"> 14: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">test if the list is composed only of atom</span>
+<span class="linenr"> 15: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">lat?</span>
+<span class="linenr"> 16: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (l)
 <span class="linenr"> 17: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
-<span class="linenr"> 18: </span>      ((null? l) #f)
-<span class="linenr"> 19: </span>      (<span style="color: #F92672; font-weight: bold;">else</span> (<span style="color: #F92672; font-weight: bold;">or</span> (eq? x (car l))
-<span class="linenr"> 20: </span>                (member? x (cdr l)))))))
-<span class="linenr"> 21: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">test if the list is composed only of atom</span>
-<span class="linenr"> 22: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">lat?</span>
-<span class="linenr"> 23: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (l)
-<span class="linenr"> 24: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
-<span class="linenr"> 25: </span>     ((null? l) #t)
-<span class="linenr"> 26: </span>     ((atom? (car l)) (lat? (cdr l)))
-<span class="linenr"> 27: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> #f))))
-<span class="linenr"> 28: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">(firsts '((1 2 3) (a b c) (e f g)))</span>
-<span class="linenr"> 29: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">return (1 a e)</span>
-<span class="linenr"> 30: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">firsts</span>
-<span class="linenr"> 31: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (l)
+<span class="linenr"> 18: </span>     ((null? l) #t)
+<span class="linenr"> 19: </span>     ((atom? (car l)) (lat? (cdr l)))
+<span class="linenr"> 20: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> #f))))
+<span class="linenr"> 21: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">(firsts '((1 2 3) (a b c) (e f g)))</span>
+<span class="linenr"> 22: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">return (1 a e)</span>
+<span class="linenr"> 23: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">firsts</span>
+<span class="linenr"> 24: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (l)
+<span class="linenr"> 25: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
+<span class="linenr"> 26: </span>     ((null? l) '())
+<span class="linenr"> 27: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (cons (car (car l))
+<span class="linenr"> 28: </span>                (firsts (cdr l)))))))
+<span class="linenr"> 29: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">&#23558;new&#25554;&#20837;lat&#20013;&#31532;&#19968;&#20010;old&#30340;&#21518;&#38754;</span>
+<span class="linenr"> 30: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">insertR</span>
+<span class="linenr"> 31: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (new old lat)
 <span class="linenr"> 32: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
-<span class="linenr"> 33: </span>     ((null? l) '())
-<span class="linenr"> 34: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (cons (car (car l))
-<span class="linenr"> 35: </span>                (firsts (cdr l)))))))
-<span class="linenr"> 36: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">&#23558;new&#25554;&#20837;lat&#20013;&#31532;&#19968;&#20010;old&#30340;&#21518;&#38754;</span>
-<span class="linenr"> 37: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">insertR</span>
-<span class="linenr"> 38: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (new old lat)
-<span class="linenr"> 39: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
-<span class="linenr"> 40: </span>     ((null? lat) '())
-<span class="linenr"> 41: </span>     ((eq? old (car lat))
-<span class="linenr"> 42: </span>      (cons old
-<span class="linenr"> 43: </span>            (cons new
-<span class="linenr"> 44: </span>                  (cdr lat))))
-<span class="linenr"> 45: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (cons (car lat) (insertR new old (cdr lat)))))))
-<span class="linenr"> 46: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">&#23558;new&#25554;&#20837;lat&#20013;&#31532;&#19968;&#20010;lat&#30340;&#21069;&#38754;</span>
-<span class="linenr"> 47: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">insertL</span>
+<span class="linenr"> 33: </span>     ((null? lat) '())
+<span class="linenr"> 34: </span>     ((eq? old (car lat))
+<span class="linenr"> 35: </span>      (cons old
+<span class="linenr"> 36: </span>            (cons new
+<span class="linenr"> 37: </span>                  (cdr lat))))
+<span class="linenr"> 38: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (cons (car lat) (insertR new old (cdr lat)))))))
+<span class="linenr"> 39: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">&#23558;new&#25554;&#20837;lat&#20013;&#31532;&#19968;&#20010;lat&#30340;&#21069;&#38754;</span>
+<span class="linenr"> 40: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">insertL</span>
+<span class="linenr"> 41: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (new old lat)
+<span class="linenr"> 42: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
+<span class="linenr"> 43: </span>     ((null? lat) '())
+<span class="linenr"> 44: </span>     ((eq? old (car lat)) (cons new lat))
+<span class="linenr"> 45: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (cons (car lat) (insertL new old (cdr lat)))))))
+<span class="linenr"> 46: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">&#23558;new&#25554;&#20837;lat&#20013;&#31532;&#25152;&#26377;old&#30340;&#21518;&#38754;</span>
+<span class="linenr"> 47: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">multiinsertR</span>
 <span class="linenr"> 48: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (new old lat)
 <span class="linenr"> 49: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
 <span class="linenr"> 50: </span>     ((null? lat) '())
-<span class="linenr"> 51: </span>     ((eq? old (car lat)) (cons new lat))
-<span class="linenr"> 52: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (cons (car lat) (insertL new old (cdr lat)))))))
-<span class="linenr"> 53: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">&#23558;new&#25554;&#20837;lat&#20013;&#31532;&#25152;&#26377;old&#30340;&#21518;&#38754;</span>
-<span class="linenr"> 54: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">multiinsertR</span>
-<span class="linenr"> 55: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (new old lat)
-<span class="linenr"> 56: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
-<span class="linenr"> 57: </span>     ((null? lat) '())
-<span class="linenr"> 58: </span>     ((eq? old (car lat))
-<span class="linenr"> 59: </span>      (cons old
-<span class="linenr"> 60: </span>            (cons new (multiinsertR new old (cdr lat)))))
-<span class="linenr"> 61: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (cons (car lat) (multiinsertR new old (cdr lat)))))))
-<span class="linenr"> 62: </span>
-<span class="linenr"> 63: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">&#20197;*&#32467;&#23614;&#24847;&#21619;&#30528;&#23545;&#27599;&#19968;&#20010;&#20803;&#32032;&#36882;&#24402;</span>
-<span class="linenr"> 64: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">(rember* 'aa '(aa (aa bb) (aa bb cc)))</span>
-<span class="linenr"> 65: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">return ((bb) (bb cc))</span>
-<span class="linenr"> 66: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">rember*</span>
-<span class="linenr"> 67: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (a l)
-<span class="linenr"> 68: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
-<span class="linenr"> 69: </span>     ((null? l) '())
-<span class="linenr"> 70: </span>     ((atom? (car l))
-<span class="linenr"> 71: </span>      (<span style="color: #F92672; font-weight: bold;">cond</span>
-<span class="linenr"> 72: </span>       ((eq? a (car l)) (rember* a (cdr l)))
-<span class="linenr"> 73: </span>       (<span style="color: #F92672; font-weight: bold;">else</span> (cons (car l) (rember* a (cdr l))))))
-<span class="linenr"> 74: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (cons (rember* a (car l))
-<span class="linenr"> 75: </span>                 (rember* a (cdr l)))))))
-<span class="linenr"> 76: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">insertR*</span>
-<span class="linenr"> 77: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (new old lat)
-<span class="linenr"> 78: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
-<span class="linenr"> 79: </span>     ((null? lat) '())
-<span class="linenr"> 80: </span>     ((atom? (car lat))
-<span class="linenr"> 81: </span>      (<span style="color: #F92672; font-weight: bold;">if</span> (eq? old (car lat))
-<span class="linenr"> 82: </span>          (cons old (cons new
-<span class="linenr"> 83: </span>                          (insertR* new old (cdr lat))))
-<span class="linenr"> 84: </span>          (cons (car lat) (insertR*  new old (cdr lat)))))
-<span class="linenr"> 85: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (cons (insertR* new old (car lat))
-<span class="linenr"> 86: </span>                 (insertR* new old (cdr lat)))))))
-<span class="linenr"> 87: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">insertL*</span>
-<span class="linenr"> 88: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (new old lat)
-<span class="linenr"> 89: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
-<span class="linenr"> 90: </span>     ((null? lat) '())
-<span class="linenr"> 91: </span>     ((atom? (car lat)) (<span style="color: #F92672; font-weight: bold;">if</span> (eq? old (car lat))
-<span class="linenr"> 92: </span>                            (cons new (cons old
-<span class="linenr"> 93: </span>                                            (insertL* new old (cdr
-<span class="linenr"> 94: </span>                                                               lat))))
-<span class="linenr"> 95: </span>                            (cons (car lat) (insertL* new old (cdr
-<span class="linenr"> 96: </span>                                                               lat)))))
-<span class="linenr"> 97: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (cons (insertL* new old (car lat))
-<span class="linenr"> 98: </span>                 (insertL* new old (cdr lat)))))))
-<span class="linenr"> 99: </span>
-<span class="linenr">100: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">lat&#20013;a&#20986;&#29616;&#30340;&#27425;&#25968;&#65292;&#22914;&#26524;lat&#30340;&#20803;&#32032;&#26102;list&#21017;&#36882;&#24402;</span>
-<span class="linenr">101: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">occur*</span>
-<span class="linenr">102: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (a lat)
-<span class="linenr">103: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
-<span class="linenr">104: </span>     ((null? lat) 0)
-<span class="linenr">105: </span>     ((atom? (car lat)) (<span style="color: #F92672; font-weight: bold;">if</span> (eq? a (car lat))
-<span class="linenr">106: </span>                            (add1 (occur* a (cdr lat)))
-<span class="linenr">107: </span>                            (occur* a (cdr lat))))
-<span class="linenr">108: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (+ (occur* a (car lat))
-<span class="linenr">109: </span>              (occur* a  (cdr lat)))))))
-<span class="linenr">110: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">eqlist</span>
-<span class="linenr">111: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (l1 l2)
-<span class="linenr">112: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
-<span class="linenr">113: </span>     ((<span style="color: #F92672; font-weight: bold;">and</span> (null? l1)
-<span class="linenr">114: </span>           (null? l2)) #t)
-<span class="linenr">115: </span>     ((<span style="color: #F92672; font-weight: bold;">or</span> (null? l1)
-<span class="linenr">116: </span>          (null? l2)) #f)
-<span class="linenr">117: </span>     ((<span style="color: #F92672; font-weight: bold;">and</span> (atom? (car l1))
-<span class="linenr">118: </span>           (atom? (car l2)))
-<span class="linenr">119: </span>           (<span style="color: #F92672; font-weight: bold;">if</span> (eq? (car l1)
-<span class="linenr">120: </span>                    (car l2))
-<span class="linenr">121: </span>               (eqlist (cdr l1) (cdr l2))
-<span class="linenr">122: </span>               #f))
-<span class="linenr">123: </span>     ((<span style="color: #F92672; font-weight: bold;">or</span> (atom? (car l1))
-<span class="linenr">124: </span>          (atom? (car l2))) #f)
-<span class="linenr">125: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (<span style="color: #F92672; font-weight: bold;">and</span> (eqlist (car l1) (car l2))
-<span class="linenr">126: </span>                (eqlist (cdr l1) (cdr l2)))))))
-<span class="linenr">127: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">&#38598;&#21512;&#25805;&#20316;</span>
-<span class="linenr">128: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">intersect</span>
-<span class="linenr">129: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (set1 set2)
-<span class="linenr">130: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
-<span class="linenr">131: </span>     ((null? set1) '())
-<span class="linenr">132: </span>     ((member? (car set1) set2)
-<span class="linenr">133: </span>      (cons (car set1)
-<span class="linenr">134: </span>            (intersect (cdr set1) set2)))
-<span class="linenr">135: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (intersect (cdr set1) set2)))))
-<span class="linenr">136: </span>
-<span class="linenr">137: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">union</span>
-<span class="linenr">138: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (set1 set2)
-<span class="linenr">139: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
-<span class="linenr">140: </span>     ((null? set1) set2)
-<span class="linenr">141: </span>     ((member? (car set1) set2)
-<span class="linenr">142: </span>      (union (cdr set1) set2))
-<span class="linenr">143: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (cons (car set1)
-<span class="linenr">144: </span>     (union (cdr set1) set2))))))
+<span class="linenr"> 51: </span>     ((eq? old (car lat))
+<span class="linenr"> 52: </span>      (cons old
+<span class="linenr"> 53: </span>            (cons new (multiinsertR new old (cdr lat)))))
+<span class="linenr"> 54: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (cons (car lat) (multiinsertR new old (cdr lat)))))))
+<span class="linenr"> 55: </span>
+<span class="linenr"> 56: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">&#20197;*&#32467;&#23614;&#24847;&#21619;&#30528;&#23545;&#27599;&#19968;&#20010;&#20803;&#32032;&#36882;&#24402;</span>
+<span class="linenr"> 57: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">(rember* 'aa '(aa (aa bb) (aa bb cc)))</span>
+<span class="linenr"> 58: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">return ((bb) (bb cc))</span>
+<span class="linenr"> 59: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">rember*</span>
+<span class="linenr"> 60: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (a l)
+<span class="linenr"> 61: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
+<span class="linenr"> 62: </span>     ((null? l) '())
+<span class="linenr"> 63: </span>     ((atom? (car l))
+<span class="linenr"> 64: </span>      (<span style="color: #F92672; font-weight: bold;">cond</span>
+<span class="linenr"> 65: </span>       ((eq? a (car l)) (rember* a (cdr l)))
+<span class="linenr"> 66: </span>       (<span style="color: #F92672; font-weight: bold;">else</span> (cons (car l) (rember* a (cdr l))))))
+<span class="linenr"> 67: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (cons (rember* a (car l))
+<span class="linenr"> 68: </span>                 (rember* a (cdr l)))))))
+<span class="linenr"> 69: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">insertR*</span>
+<span class="linenr"> 70: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (new old lat)
+<span class="linenr"> 71: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
+<span class="linenr"> 72: </span>     ((null? lat) '())
+<span class="linenr"> 73: </span>     ((atom? (car lat))
+<span class="linenr"> 74: </span>      (<span style="color: #F92672; font-weight: bold;">if</span> (eq? old (car lat))
+<span class="linenr"> 75: </span>          (cons old (cons new
+<span class="linenr"> 76: </span>                          (insertR* new old (cdr lat))))
+<span class="linenr"> 77: </span>          (cons (car lat) (insertR*  new old (cdr lat)))))
+<span class="linenr"> 78: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (cons (insertR* new old (car lat))
+<span class="linenr"> 79: </span>                 (insertR* new old (cdr lat)))))))
+<span class="linenr"> 80: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">insertL*</span>
+<span class="linenr"> 81: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (new old lat)
+<span class="linenr"> 82: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
+<span class="linenr"> 83: </span>     ((null? lat) '())
+<span class="linenr"> 84: </span>     ((atom? (car lat)) (<span style="color: #F92672; font-weight: bold;">if</span> (eq? old (car lat))
+<span class="linenr"> 85: </span>                            (cons new (cons old
+<span class="linenr"> 86: </span>                                            (insertL* new old (cdr
+<span class="linenr"> 87: </span>                                                               lat))))
+<span class="linenr"> 88: </span>                            (cons (car lat) (insertL* new old (cdr
+<span class="linenr"> 89: </span>                                                               lat)))))
+<span class="linenr"> 90: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (cons (insertL* new old (car lat))
+<span class="linenr"> 91: </span>                 (insertL* new old (cdr lat)))))))
+<span class="linenr"> 92: </span>
+<span class="linenr"> 93: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">lat&#20013;a&#20986;&#29616;&#30340;&#27425;&#25968;&#65292;&#22914;&#26524;lat&#30340;&#20803;&#32032;&#26102;list&#21017;&#36882;&#24402;</span>
+<span class="linenr"> 94: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">occur*</span>
+<span class="linenr"> 95: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (a lat)
+<span class="linenr"> 96: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
+<span class="linenr"> 97: </span>     ((null? lat) 0)
+<span class="linenr"> 98: </span>     ((atom? (car lat)) (<span style="color: #F92672; font-weight: bold;">if</span> (eq? a (car lat))
+<span class="linenr"> 99: </span>                            (add1 (occur* a (cdr lat)))
+<span class="linenr">100: </span>                            (occur* a (cdr lat))))
+<span class="linenr">101: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (+ (occur* a (car lat))
+<span class="linenr">102: </span>              (occur* a  (cdr lat)))))))
+<span class="linenr">103: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">eqlist</span>
+<span class="linenr">104: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (l1 l2)
+<span class="linenr">105: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
+<span class="linenr">106: </span>     ((<span style="color: #F92672; font-weight: bold;">and</span> (null? l1)
+<span class="linenr">107: </span>           (null? l2)) #t)
+<span class="linenr">108: </span>     ((<span style="color: #F92672; font-weight: bold;">or</span> (null? l1)
+<span class="linenr">109: </span>          (null? l2)) #f)
+<span class="linenr">110: </span>     ((<span style="color: #F92672; font-weight: bold;">and</span> (atom? (car l1))
+<span class="linenr">111: </span>           (atom? (car l2)))
+<span class="linenr">112: </span>           (<span style="color: #F92672; font-weight: bold;">if</span> (eq? (car l1)
+<span class="linenr">113: </span>                    (car l2))
+<span class="linenr">114: </span>               (eqlist (cdr l1) (cdr l2))
+<span class="linenr">115: </span>               #f))
+<span class="linenr">116: </span>     ((<span style="color: #F92672; font-weight: bold;">or</span> (atom? (car l1))
+<span class="linenr">117: </span>          (atom? (car l2))) #f)
+<span class="linenr">118: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (<span style="color: #F92672; font-weight: bold;">and</span> (eqlist (car l1) (car l2))
+<span class="linenr">119: </span>                (eqlist (cdr l1) (cdr l2)))))))
+<span class="linenr">120: </span><span style="color: #75715E;">;;</span><span style="color: #75715E;">set operations</span>
+<span class="linenr">121: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">intersect</span>
+<span class="linenr">122: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (set1 set2)
+<span class="linenr">123: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
+<span class="linenr">124: </span>     ((null? set1) '())
+<span class="linenr">125: </span>     ((member? (car set1) set2)
+<span class="linenr">126: </span>      (cons (car set1)
+<span class="linenr">127: </span>            (intersect (cdr set1) set2)))
+<span class="linenr">128: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (intersect (cdr set1) set2)))))
+<span class="linenr">129: </span>
+<span class="linenr">130: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">union</span>
+<span class="linenr">131: </span>  (<span style="color: #F92672; font-weight: bold;">lambda</span> (set1 set2)
+<span class="linenr">132: </span>    (<span style="color: #F92672; font-weight: bold;">cond</span>
+<span class="linenr">133: </span>     ((null? set1) set2)
+<span class="linenr">134: </span>     ((member? (car set1) set2)
+<span class="linenr">135: </span>      (union (cdr set1) set2))
+<span class="linenr">136: </span>     (<span style="color: #F92672; font-weight: bold;">else</span> (cons (car set1)
+<span class="linenr">137: </span>     (union (cdr set1) set2))))))
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-1-13" class="outline-3">
-<h3 id="sec-1-13">racket&#xa0;&#xa0;&#xa0;<span class="tag"><span class="racket">racket</span></span></h3>
-<div class="outline-text-3" id="text-1-13">
-</div><div id="outline-container-sec-1-13-1" class="outline-4">
-<h4 id="sec-1-13-1">struct(新的数据类型)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="struct">struct</span></span></h4>
-<div class="outline-text-4" id="text-1-13-1">
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">racket&#xa0;&#xa0;&#xa0;<span class="tag"><span class="racket">racket</span></span></h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">struct(新的数据类型)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="struct">struct</span></span></h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 语法形式: <code>(struct struct-id (field-id ...))</code>
 </p>
@@ -1903,9 +1820,9 @@ ret-of-call/cc),也就是加2
 </div>
 </div>
 
-<div id="outline-container-sec-1-13-1-1" class="outline-5">
-<h5 id="sec-1-13-1-1">复制更新</h5>
-<div class="outline-text-5" id="text-1-13-1-1">
+<div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1">复制更新</h4>
+<div class="outline-text-4" id="text-2-1-1">
 <p>
 根据已有对象更新其中的特定域然后返回新对象
 </p>
@@ -1936,9 +1853,9 @@ Examples:
 </div>
 </div>
 
-<div id="outline-container-sec-1-13-1-2" class="outline-5">
-<h5 id="sec-1-13-1-2">subtypes(类似于继承)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="subtypes">subtypes</span></span></h5>
-<div class="outline-text-5" id="text-1-13-1-2">
+<div id="outline-container-sec-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2">subtypes(类似于继承)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="subtypes">subtypes</span></span></h4>
+<div class="outline-text-4" id="text-2-1-2">
 <p>
 语法形式: <code>(struct struct-id super-id (field-id ...))</code>
 </p>
@@ -1955,9 +1872,9 @@ Examples:
 </div>
 </div>
 
-<div id="outline-container-sec-1-13-2" class="outline-4">
-<h4 id="sec-1-13-2">match(模式匹配)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="match">match</span></span></h4>
-<div class="outline-text-4" id="text-1-13-2">
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">match(模式匹配)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="match">match</span></span></h3>
+<div class="outline-text-3" id="text-2-2">
 <p>
 正则表达式只能用来匹配字符串,而 <code>match</code> 可以用来匹配任何的 <code>scheme value</code>,
 它的语法形式如下:
@@ -2071,9 +1988,9 @@ a b都是unquote指定的部分,所以绑定为变量, 其它部分比如 +就�
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-13-3" class="outline-4">
-<h4 id="sec-1-13-3">module</h4>
-<div class="outline-text-4" id="text-1-13-3">
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">module</h3>
+<div class="outline-text-3" id="text-2-3">
 <p>
 module的基本语法是:
 </p>
@@ -2115,9 +2032,9 @@ module的基本语法是:
 入该模块时才会求值
 </p>
 </div>
-<div id="outline-container-sec-1-13-3-1" class="outline-5">
-<h5 id="sec-1-13-3-1">submodule</h5>
-<div class="outline-text-5" id="text-1-13-3-1">
+<div id="outline-container-sec-2-3-1" class="outline-4">
+<h4 id="sec-2-3-1">submodule</h4>
+<div class="outline-text-4" id="text-2-3-1">
 <p>
 一个文件只能包含一个顶层模块,这个模块可以通过 <code>module</code> 指定,也可以通
 过 <code>lang lang-name</code> 来间接的指定, 那么在这个顶层模块中又可以定义子模块,比
@@ -2143,9 +2060,9 @@ tiger
 入子模块了
 </p>
 </div>
-<div id="outline-container-sec-1-13-3-1-1" class="outline-6">
-<h6 id="sec-1-13-3-1-1">module*                                                                   :module*:</h6>
-<div class="outline-text-6" id="text-1-13-3-1-1">
+<div id="outline-container-sec-2-3-1-1" class="outline-5">
+<h5 id="sec-2-3-1-1">module*                                                                   :module*:</h5>
+<div class="outline-text-5" id="text-2-3-1-1">
 <pre class="example">
 (module* name-id initial-module-path-or-#f
 decl ...)
@@ -2184,9 +2101,9 @@ submodule的名字为main时,有一个特殊的地方,也就是说当前的文�
 </div>
 </div>
 
-<div id="outline-container-sec-1-13-3-1-2" class="outline-6">
-<h6 id="sec-1-13-3-1-2">module+                                                                   :module+:</h6>
-<div class="outline-text-6" id="text-1-13-3-1-2">
+<div id="outline-container-sec-2-3-1-2" class="outline-5">
+<h5 id="sec-2-3-1-2">module+                                                                   :module+:</h5>
+<div class="outline-text-5" id="text-2-3-1-2">
 <pre class="example">
 (module+ name-id
 decl ...)
@@ -2206,9 +2123,9 @@ test filename.rkt来运行测试代码
 </div>
 </div>
 
-<div id="outline-container-sec-1-13-3-2" class="outline-5">
-<h5 id="sec-1-13-3-2">lang</h5>
-<div class="outline-text-5" id="text-1-13-3-2">
+<div id="outline-container-sec-2-3-2" class="outline-4">
+<h4 id="sec-2-3-2">lang</h4>
+<div class="outline-text-4" id="text-2-3-2">
 <p>
 racket的源文件一般需要使用 <code>#lang lang-name</code> 这样的方式来指定语言,这个实际是一
 个module的简写方式,比如 <code>#lang racket</code> 等价于:
@@ -2224,9 +2141,9 @@ racket的源文件一般需要使用 <code>#lang lang-name</code> 这样的方�
 </div>
 </div>
 
-<div id="outline-container-sec-1-13-3-3" class="outline-5">
-<h5 id="sec-1-13-3-3">require</h5>
-<div class="outline-text-5" id="text-1-13-3-3">
+<div id="outline-container-sec-2-3-3" class="outline-4">
+<h4 id="sec-2-3-3">require</h4>
+<div class="outline-text-4" id="text-2-3-3">
 <ol class="org-ol">
 <li>如果是文件那么应该使用这样的语法:
 <div class="org-src-container">
@@ -2251,9 +2168,9 @@ racket的源文件一般需要使用 <code>#lang lang-name</code> 这样的方�
 </div>
 </div>
 
-<div id="outline-container-sec-1-13-3-4" class="outline-5">
-<h5 id="sec-1-13-3-4">provide</h5>
-<div class="outline-text-5" id="text-1-13-3-4">
+<div id="outline-container-sec-2-3-4" class="outline-4">
+<h4 id="sec-2-3-4">provide</h4>
+<div class="outline-text-4" id="text-2-3-4">
 <ul class="org-ul">
 <li>导出所有: <code>(provide (all-defined-out))</code>
 </li>
@@ -2264,7 +2181,37 @@ racket的源文件一般需要使用 <code>#lang lang-name</code> 这样的方�
 <li>重命名: <code>(provide (rename-out [orgn-id export-id]))</code>
 </li>
 </ul>
+
+<p>
+some example:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-scheme">(provide run run-all)
+(provide (all-defined-out))
+</pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">typed racket</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">sample program</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+
+<pre class="src src-scheme">#lang typed/racket
+(struct: pt ([x : Real] [y : Real]))
+
+(: distance (pt pt -&gt; Real))
+(<span style="color: #F92672; font-weight: bold;">define</span> (<span style="color: #A6E22E;">distance</span> p1 p2)
+  (sqrt (+ (sqr (- (pt-x p2) (pt-x p1)))
+           (sqr (- (pt-y p2) (pt-y p1))))))
+</pre>
 </div>
 </div>
 </div>

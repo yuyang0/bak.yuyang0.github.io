@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>javascript笔记</title>
-<!-- 2014-02-01 Sat 10:57 -->
+<!-- 2014-03-26 Wed 13:44 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -180,14 +180,10 @@ for the JavaScript code in this tag.
 <li><a href="#sec-1-1-6">object：</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-2">数组与对象</a>
-<ul>
-<li><a href="#sec-1-2-1">Array</a></li>
-<li><a href="#sec-1-2-2">objects(对象，有点类似于关联数组)</a></li>
-</ul>
-</li>
-<li><a href="#sec-1-3">control flow</a></li>
-<li><a href="#sec-1-4">function</a></li>
+<li><a href="#sec-1-2">Array</a></li>
+<li><a href="#sec-1-3">objects(对象)</a></li>
+<li><a href="#sec-1-4">control flow</a></li>
+<li><a href="#sec-1-5">function</a></li>
 </ul>
 </li>
 <li><a href="#sec-2">client-side javascript</a>
@@ -204,15 +200,16 @@ for the JavaScript code in this tag.
 </li>
 </ul>
 </li>
-<li><a href="#sec-3">jquery</a>
+<li><a href="#sec-3">一些js技巧</a></li>
+<li><a href="#sec-4">jquery</a>
 <ul>
-<li><a href="#sec-3-1">一些惯例以及基本常识</a></li>
-<li><a href="#sec-3-2">jquery selector</a></li>
-<li><a href="#sec-3-3">DOM操作</a></li>
-<li><a href="#sec-3-4">jquery事件</a></li>
-<li><a href="#sec-3-5">jquery动画</a></li>
-<li><a href="#sec-3-6">ajax</a></li>
-<li><a href="#sec-3-7">jquery常用插件</a></li>
+<li><a href="#sec-4-1">一些惯例以及基本常识</a></li>
+<li><a href="#sec-4-2">jquery selector</a></li>
+<li><a href="#sec-4-3">DOM操作</a></li>
+<li><a href="#sec-4-4">jquery事件</a></li>
+<li><a href="#sec-4-5">jquery动画</a></li>
+<li><a href="#sec-4-6">ajax</a></li>
+<li><a href="#sec-4-7">jquery常用插件</a></li>
 </ul>
 </li>
 </ul>
@@ -237,6 +234,10 @@ for the JavaScript code in this tag.
 后这个临时对象会被丢弃，对于数字（Number），bool（Boolean）都是同样的原理
 </li>
 <li>数字，字符串，bool都是不可变对象，而object是可变对象
+</li>
+<li>类型转换： 2 + '2a' = '22a'(操作符是+，则自动将数字转换为字符串，如果是
+其它操作符则尝试将字符串转为整数，'22'转换为22, 但'2a'无法转换，这一点和
+parseInt不同)
 </li>
 </ol>
 </div>
@@ -404,17 +405,8 @@ s.toUpperCase()       <span style="color: #75715E;">// </span><span style="color
 </div>
 
 <div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">数组与对象</h3>
+<h3 id="sec-1-2">Array</h3>
 <div class="outline-text-3" id="text-1-2">
-<ul class="org-ul">
-<li>类型转换： 2 + '2a' = '22a'(操作符是+，则自动将数字转换为字符串，如果是其它操作符则尝试将字符串转为整
-数，'22'转换为22, 但'2a'无法转换，这一点和parseInt不同)
-</li>
-</ul>
-</div>
-<div id="outline-container-sec-1-2-1" class="outline-4">
-<h4 id="sec-1-2-1">Array</h4>
-<div class="outline-text-4" id="text-1-2-1">
 <ul class="org-ul">
 <li>定义:
 定义数组可以使用两种方法，Array与[],但是推荐[],因为像 new Array(3)这样的代码，它会返回一个空数组，可是
@@ -453,16 +445,17 @@ s.toUpperCase()       <span style="color: #75715E;">// </span><span style="color
 </div>
 </div>
 
-<div id="outline-container-sec-1-2-2" class="outline-4">
-<h4 id="sec-1-2-2">objects(对象，有点类似于关联数组)</h4>
-<div class="outline-text-4" id="text-1-2-2">
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">objects(对象)</h3>
+<div class="outline-text-3" id="text-1-3">
 <p>
-基本上js中除了数字，字符串，bool，null，undefined之外都是对象，数组，函数等等都是
-对象，对象有属性名，与属性值，数组的属性名是一些整数，这也是适合用数组的场景，其它
-的地方都应该用对象，对象对属性名的搜索有一定的规则，一般情况下通过字面值构建的对象
-都会与object.prototype链接，所以如果一个属性在对象中没有找到，那么她会自动到
-object.prototype中找，这样我们就可以给对象进行扩充，比如给object.prototype中添加一
-个方法，那么每一个对象都可以调用
+object有点类似于关联数组, 基本上js中除了数字，字符串，bool，null，undefined
+之外都是对象，数组，函数等等都是对象，对象有属性名，与属性值，数组的属性名是
+一些整数，这也是适合用数组的场景，其它的地方都应该用对象，对象对属性名的搜索
+有一定的规则，一般情况下通过字面值构建的对象都会与object.prototype链接，所以
+如果一个属性在对象中没有找到，那么她会自动到object.prototype中找，这样我们就
+可以给对象进行扩充，比如给object.prototype中添加一个方法，那么每一个对象都可
+以调用
 </p>
 <div class="org-src-container">
 
@@ -478,15 +471,16 @@ foo[<span style="color: #E6DB74;">'1234'</span>]; <span style="color: #75715E;">
 </pre>
 </div>
 <p>
-两种访问方法foo.name与foo['name']， 推荐前者(前提是name必须是合法的js标识符)，和
-python的dict不同，{}中的name不要加引号，因为这里严格的说是object的属性，而不是key
+两种访问方法foo.name与foo['name']， 推荐前者(前提是name必须是合法的js标识
+符)，和python的dict不同，{}中的name不要加引号，因为这里严格的说是object的
+属性，而不是key
 </p>
 </div>
 </div>
-</div>
-<div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3">control flow</h3>
-<div class="outline-text-3" id="text-1-3">
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">control flow</h3>
+<div class="outline-text-3" id="text-1-4">
 <p>
 基本和C语言类似，while，for，do&#x2026;while，if&#x2026;else if&#x2026;else,switch&#x2026;case, break, continue都和C语言差不多，
 break,continue和C语言有个区别就是后面可以跟一个label，break后面跟label那么它就不是终止最内层循环，而是终止
@@ -528,9 +522,9 @@ break labelCancelLoops会终止最外层那个循环，continue后面跟label也
 </div>
 </div>
 
-<div id="outline-container-sec-1-4" class="outline-3">
-<h3 id="sec-1-4">function</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5">function</h3>
+<div class="outline-text-3" id="text-1-5">
 <ul class="org-ul">
 <li>definition
 <div class="org-src-container">
@@ -715,11 +709,22 @@ window.location指向一个Location object,这个object有一系列的属性,以
 </div>
 
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">jquery</h2>
+<h2 id="sec-3">一些js技巧</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">一些惯例以及基本常识</h3>
-<div class="outline-text-3" id="text-3-1">
+<ol class="org-ol">
+<li>在每个应用中仅创建一个全局的对象,然后将所有的函数都变成这个全局对象的属性,
+减少与其它应用程序或者类库产生相互影响的可能性.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">jquery</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1">一些惯例以及基本常识</h3>
+<div class="outline-text-3" id="text-4-1">
 <ol class="org-ol">
 <li>在jquery中 $ 就是jQuery的简写,故$.trim 就是jQuery.trim的等价表示
 </li>
@@ -742,9 +747,9 @@ jquery===&gt; DOM  : DOMObj = $jqueryObj<sup><a id="fnr.1" name="fnr.1" class="f
 </div>
 </div>
 
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2">jquery selector</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2">jquery selector</h3>
+<div class="outline-text-3" id="text-4-2">
 <p>
 jQuery的基本语法是：$(selector).action(), 常用的选择器有：
 </p>
@@ -813,9 +818,9 @@ div元素并不被该模式识别)
 </div>
 </div>
 
-<div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3">DOM操作</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3">DOM操作</h3>
+<div class="outline-text-3" id="text-4-3">
 <ol class="org-ol">
 <li>插入节点 $(A).xxx(B) 其中xxx代替下面的函数，注意当A是元素集合时，那么B插入A时会将B插入每个A元素，反之
 亦然
@@ -916,9 +921,9 @@ div元素并不被该模式识别)
 </div>
 </div>
 
-<div id="outline-container-sec-3-4" class="outline-3">
-<h3 id="sec-3-4">jquery事件</h3>
-<div class="outline-text-3" id="text-3-4">
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4">jquery事件</h3>
+<div class="outline-text-3" id="text-4-4">
 <ol class="org-ol">
 <li>.bind : 可以通过该方法将特定函数绑定到特定的事件上eg:
 <div class="org-src-container">
@@ -984,9 +989,9 @@ click不会触发sub的父元素的click事件，
 </div>
 </div>
 
-<div id="outline-container-sec-3-5" class="outline-3">
-<h3 id="sec-3-5">jquery动画</h3>
-<div class="outline-text-3" id="text-3-5">
+<div id="outline-container-sec-4-5" class="outline-3">
+<h3 id="sec-4-5">jquery动画</h3>
+<div class="outline-text-3" id="text-4-5">
 <ol class="org-ol">
 <li>.hide([speed]), .show([speed]), .taggle([speed]) : 显示，隐藏，如果指定speed，那么会渐变的改变元素的高
 度
@@ -1000,9 +1005,9 @@ click不会触发sub的父元素的click事件，
 </div>
 </div>
 
-<div id="outline-container-sec-3-6" class="outline-3">
-<h3 id="sec-3-6">ajax</h3>
-<div class="outline-text-3" id="text-3-6">
+<div id="outline-container-sec-4-6" class="outline-3">
+<h3 id="sec-4-6">ajax</h3>
+<div class="outline-text-3" id="text-4-6">
 <p>
 jquery ajax的回调函数的原型：
 </p>
@@ -1038,9 +1043,9 @@ jquery ajax的回调函数的原型：
 </div>
 </div>
 
-<div id="outline-container-sec-3-7" class="outline-3">
-<h3 id="sec-3-7">jquery常用插件</h3>
-<div class="outline-text-3" id="text-3-7">
+<div id="outline-container-sec-4-7" class="outline-3">
+<h3 id="sec-4-7">jquery常用插件</h3>
+<div class="outline-text-3" id="text-4-7">
 <ol class="org-ol">
 <li>jquery.form
 可以很方便的将你的form变成ajax版

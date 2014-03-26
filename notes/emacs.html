@@ -4,11 +4,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Emacs/elisp笔记</title>
-<!-- 2014-02-01 Sat 11:09 -->
+<!-- 2014-02-05 Wed 15:12 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="emacs emacs-lisp" />
+<meta  name="keywords" content="emacs lisp" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center; }
@@ -213,8 +213,8 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#sec-1-2">auto-complete&#xa0;&#xa0;&#xa0;<span class="tag"><span class="complete">complete</span></span></a></li>
 <li><a href="#sec-1-3">grep&#xa0;&#xa0;&#xa0;<span class="tag"><span class="grep">grep</span></span></a></li>
-<li><a href="#sec-1-4">isearch的相关技巧&#xa0;&#xa0;&#xa0;<span class="tag"><span class="isearch">isearch</span></span></a></li>
-<li><a href="#sec-1-5">dired的快捷键&#xa0;&#xa0;&#xa0;<span class="tag"><span class="dired">dired</span></span></a>
+<li><a href="#sec-1-4">isearch&#xa0;&#xa0;&#xa0;<span class="tag"><span class="isearch">isearch</span></span></a></li>
+<li><a href="#sec-1-5">dired&#xa0;&#xa0;&#xa0;<span class="tag"><span class="dired">dired</span></span></a>
 <ul>
 <li><a href="#sec-1-5-1">wdired(批量改名)</a></li>
 </ul>
@@ -423,7 +423,8 @@ add Control = Control_R
 <h3 id="sec-1-3">grep&#xa0;&#xa0;&#xa0;<span class="tag"><span class="grep">grep</span></span></h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
-如果是想搜索当前buffer，那么你可以是occur，如果你想搜索多个文件，那么可以使用grep，推荐两个命令
+如果是想搜索当前buffer，那么你可以是occur，如果你想搜索多个文件，那么可以使
+用grep，推荐两个命令
 </p>
 <ul class="org-ul">
 <li>lgrep：只会搜索当前目录(不搜索子目录)
@@ -446,24 +447,26 @@ wgrep包可以是emacs在grep buffer中直接修改文件内容
 </div>
 
 <div id="outline-container-sec-1-4" class="outline-3">
-<h3 id="sec-1-4">isearch的相关技巧&#xa0;&#xa0;&#xa0;<span class="tag"><span class="isearch">isearch</span></span></h3>
+<h3 id="sec-1-4">isearch&#xa0;&#xa0;&#xa0;<span class="tag"><span class="isearch">isearch</span></span></h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
+Increment Search.当你搜索时,你每输入一个字符,它会实时的向你展示基于目前的输
+入所得到的所有匹配项,并自动将光标跳到第一个匹配项
 C-x C-x:可以在isearch之后回到原来的位置
 </p>
 </div>
 </div>
 
 <div id="outline-container-sec-1-5" class="outline-3">
-<h3 id="sec-1-5">dired的快捷键&#xa0;&#xa0;&#xa0;<span class="tag"><span class="dired">dired</span></span></h3>
+<h3 id="sec-1-5">dired&#xa0;&#xa0;&#xa0;<span class="tag"><span class="dired">dired</span></span></h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
-dired的标记方式有很多种，如标记删除（D标记，用于删除）， 如标记为*（m所做的
-标记就是*标记），默认如果有被*标记的文件，那么所有的文件操作就是在这些标记的
-文件上进行的，否则就在当前行代表的文件上进行操作，当然还可以有其他类型的标记
-如t标记，k标记，只是这些标记没有快捷键，一般D标记和*标记用的多，其他标记一般
-用于临时的转换一下。*c命令可以修改标记，eg：*c D t将D标记修改为t标记，*c t
-*将t标记修改为*标记
+dired是一个强大的文件管理器,dired的标记方式有很多种，如标记删除（D标记，用于
+删除）， 如标记为*（m所做的标记就是*标记），默认如果有被*标记的文件，那么所
+有的文件操作就是在这些标记的文件上进行的，否则就在当前行代表的文件上进行操作，
+当然还可以有其他类型的标记如t标记，k标记，只是这些标记没有快捷键，一般D标记
+和*标记用的多，其他标记一般用于临时的转换一下。*c命令可以修改标记，eg：*c D
+t将D标记修改为t标记，*c t *将t标记修改为*标记
 </p>
 
 <ul class="org-ul">
@@ -867,9 +870,9 @@ w3m 是一个文本浏览器，它不支持CSS与js，非常适合浏览文本�
 </li>
 <li>RET: Display the page pointed by the link under point (w3m-view-this-url)
 </li>
-<li>[: move point to previous form
+<li>\[: move point to previous form
 </li>
-<li>]: move point to next form
+<li>\]: move point to next form
 </li>
 <li>TAB: move point to next link
 </li>
@@ -951,6 +954,9 @@ w3m 是一个文本浏览器，它不支持CSS与js，非常适合浏览文本�
 <div id="outline-container-sec-1-15" class="outline-3">
 <h3 id="sec-1-15">ansi-term&#xa0;&#xa0;&#xa0;<span class="tag"><span class="shell">shell</span>&#xa0;<span class="term">term</span></span></h3>
 <div class="outline-text-3" id="text-1-15">
+<p>
+终端模拟器,基本上terminal的所有功能.
+</p>
 <ul class="org-ul">
 <li>C-c C-j: 进入line mode， 可以复制
 </li>
@@ -1687,10 +1693,10 @@ dot语言可以用来画流程图，和Babel结合起来非常方便，这是一
 <li><code>if</code>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #F92672; font-weight: bold;">if</span> test
+<pre class="src src-lisp">(if test
 a
 b)
-<span style="color: #75715E;">;;</span><span style="color: #75715E;">test is the condition</span>
+;;test is the condition
 </pre>
 </div>
 </li>

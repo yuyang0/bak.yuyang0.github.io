@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>SICP笔记</title>
-<!-- 2014-02-01 Sat 10:57 -->
+<!-- 2014-03-20 Thu 23:31 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -160,28 +160,41 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1"><b>SICP笔记</b></a>
+<li><a href="#sec-1">Chp 1</a>
 <ul>
-<li><a href="#sec-1-1">第一章</a></li>
-<li><a href="#sec-1-2">primitive element</a></li>
-<li><a href="#sec-1-3">some example in the book</a>
-<ul>
-<li><a href="#sec-1-3-1">GCD (greatest common divisors)</a></li>
-<li><a href="#sec-1-3-2">素数检查</a></li>
+<li><a href="#sec-1-1">Some Concepts</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-4">一些个人体会</a></li>
+<li><a href="#sec-2">Chp2 (Data Abstraction)</a>
+<ul>
+<li><a href="#sec-2-1">Multiple Representation(2.4)</a></li>
+<li><a href="#sec-2-2">primitive element</a></li>
+<li><a href="#sec-2-3">some example in the book</a>
+<ul>
+<li><a href="#sec-2-3-1">GCD (greatest common divisors)</a></li>
+<li><a href="#sec-2-3-2">素数检查</a></li>
 </ul>
 </li>
+<li><a href="#sec-2-4">一些个人体会</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">Chp3 (Modularity, Objects, and State)</a>
+<ul>
+<li><a href="#sec-3-1">object vs stream</a>
+<ul>
+<li><a href="#sec-3-1-1">object</a></li>
+<li><a href="#sec-3-1-2">stream</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-4">Chp4</a></li>
 </ul>
 </div>
 </div>
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><b>SICP笔记</b></h2>
+<h2 id="sec-1">Chp 1</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">第一章</h3>
-<div class="outline-text-3" id="text-1-1">
 <ol class="org-ol">
 <li>a programming language must have some primitive procedures and primitive
 data, for example mathmatics operations(+ - * / and so on),and the
@@ -189,43 +202,101 @@ numbers(primitive data).
 </li>
 <li>Nesting of combinations provides a means of combining operations.
 </li>
-<li>Definitions that associate names with values provide a limited means of abstraction
+<li>Definitions that associate names with values provide a limited means of
+abstraction
 </li>
 </ol>
 <p>
 提供基本的数据与函数，然后通过嵌套来构建组合式以及复合函数，同时为复合
 函数或者组合式命名也给抽象带来了方便。
 </p>
-
+</div>
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">Some Concepts</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>正则序(CBN)：在计算过程中先代换，完全代换后在一次求值
+</li>
+<li>应用序(CBV)：在计算过程中先求值在代换
+</li>
+<li>二者的比较：正则序相对与应用序一般会有较多的重复运算，因为过程体中可以多
+次引用形参，那么正则序代换后就会多次求值，而应用序则是先求值在代换所以没
+有这个问题，对于应用序，每个过程的形式参数都会先求值在进入过程计算
+</li>
+<li>recursive procedure:语法上的递归
+</li>
+<li>recursive process:计算过程的递归
+</li>
+</ul>
 <p>
-正则序：在计算过程中先代换，完全代换后在一次求值
-应用序：在计算过程中先求值在代换
-二者的比较：正则序相对与应用序一般会有较多的重复运算，因为过程体中可以
-            多次引用形参，那么正则序代换后就会多次求值，而应用序则是先
-            求值在代换所以没有这个问题，对于应用序，每个过程的形式参数
-            都会先求值在进入过程计算
-recursive procedure:语法上的递归
-recursive process:计算过程的递归
-语法上递归的函数可能表示的是一个递归计算过程，如果程序设计语言支持尾递
-归，那么可以获得和循环相同的效率，本质上说，循环结构都只是语法糖衣，
-scheme支持尾递归，C不支持尾递归。
+语法上递归的函数可能表示的是一个递归计算过程，如果程序设计语言支持尾递归优
+化，那么可以获得和循环相同的效率，本质上说，循环结构都只是语法糖衣，scheme
+支持尾递归优化，C不支持尾递归优化。
 </p>
+<ul class="org-ul">
+<li>高阶函数： 函数可以作为参数传递，可以作为结果返回。
+</li>
+</ul>
+</div>
+</div>
+</div>
 
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Chp2 (Data Abstraction)</h2>
+<div class="outline-text-2" id="text-2">
 <p>
-一个程序设计语言必须提供的功能：primitive procedure and primitive data，
-if结构，构造复合过程的方法（自定义函数）。
+当要构建一个抽象数据类型时,先应该想明白,数据类型应该提供哪些接口,这一般就是一
+些procedure,这些procedure根据作用不同可以分为三类:
 </p>
-
+<ol class="org-ol">
+<li>Constructor: 用来构建该数据类型
+</li>
+<li>extractor: 用来从该数据类型中抽取信息
+</li>
+<li>predictor: 用来判断该数据类型的变种,比如说你要构建lambda calculus 表达式的
+数据抽象,那么该数据类型要么是一个identifier,要么是一个 (lambda(x) body) 表
+达式,那么你就需要提供两个predictor(identifer?, lambda-exp?)来判断到底属于
+哪一种变种.
+</li>
+</ol>
 <p>
-高阶函数：
-  函数可以作为参数传递，可以作为结果返回。
+对于有理数而言:
 </p>
+<ul class="org-ul">
+<li>make-rat : constructor 因为它是通过两个数来构建一个有理数
+</li>
+<li>numer: extractor 它是从一个有理数中抽取出分子这个信息
+</li>
+<li>denum: 而extractor 它是从一个有理数中抽取出分母这个信息
+</li>
+</ul>
+<p>
+因为只有一个变种,所以没有predictor
+</p>
+</div>
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">Multiple Representation(2.4)</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+when multiple representations of a data type needs to coexist in a
+system. there are three ways to do this.
+</p>
+<ol class="org-ol">
+<li>Tagged Data : Every representation use a unique tag
+</li>
+<li>Data-Directed: Use a two dimensions(operations X type) table to dispatch
+the operation
+</li>
+<li>Message-Passing: Use the high order procedure to represent the data
+type.
+</li>
+</ol>
 </div>
 </div>
 
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">primitive element</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">primitive element</h3>
+<div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>Numbers and arithmetic operations are primitive data and procedures.
 </li>
@@ -236,12 +307,12 @@ if结构，构造复合过程的方法（自定义函数）。
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3">some example in the book</h3>
-<div class="outline-text-3" id="text-1-3">
-</div><div id="outline-container-sec-1-3-1" class="outline-4">
-<h4 id="sec-1-3-1">GCD (greatest common divisors)</h4>
-<div class="outline-text-4" id="text-1-3-1">
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">some example in the book</h3>
+<div class="outline-text-3" id="text-2-3">
+</div><div id="outline-container-sec-2-3-1" class="outline-4">
+<h4 id="sec-2-3-1">GCD (greatest common divisors)</h4>
+<div class="outline-text-4" id="text-2-3-1">
 <p>
 gcd(a, b) = gcd (b, r)        (r = a % b)
 </p>
@@ -254,9 +325,9 @@ gcd(a, b) = gcd (b, r)        (r = a % b)
 </div>
 </div>
 
-<div id="outline-container-sec-1-3-2" class="outline-4">
-<h4 id="sec-1-3-2">素数检查</h4>
-<div class="outline-text-4" id="text-1-3-2">
+<div id="outline-container-sec-2-3-2" class="outline-4">
+<h4 id="sec-2-3-2">素数检查</h4>
+<div class="outline-text-4" id="text-2-3-2">
 <ol class="org-ol">
 <li>在2～sqrt(x)之间遍历，如果找到一个因子则意味着x不是素数
 </li>
@@ -273,9 +344,9 @@ gcd(a, b) = gcd (b, r)        (r = a % b)
 </div>
 </div>
 
-<div id="outline-container-sec-1-4" class="outline-3">
-<h3 id="sec-1-4">一些个人体会</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4">一些个人体会</h3>
+<div class="outline-text-3" id="text-2-4">
 <p class="verse">
 church数:<br  />
 &#xa0;&#xa0;数实际上没有具体的实际意义，本质上数只是表示一个个孤立的状态的符号，<br  />
@@ -290,6 +361,65 @@ lambda演算:<br  />
 &#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;调用(add 1) 返回 (lambda(y) (+ 1 y))<br  />
 </p>
 </div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Chp3 (Modularity, Objects, and State)</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+A object is said to ``have state'' if its behavior is influenced by its
+history. We can characterize an object's state by one or more <code>state
+  variables</code>, Since the states of objects in the system being modeled change
+over time, the state variables of the corresponding computational objects
+must also change.  If we choose to model the flow of time in the system by
+the elapsed time in the computer, then we must have a way to construct
+computational objects whose behavior change as our program run.
+</p>
+</div>
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">object vs stream</h3>
+<div class="outline-text-3" id="text-3-1">
+</div><div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1">object</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+计算机程序在某种程度上都是为了模拟外部的物理世界,为了使程序模块化,我们可以为
+外部世界的每一个对象都构造一个计算对象,因为外部世界的对象有状态(state),所以我
+们的计算对象也就需要状态(state variable),因为外部对象的状态会随着时间的流逝而
+改变,所以我们的计算对象的状态也就需要改变,为此我们引入赋值表达式(assignment),
+但是赋值的引入会产生令人困扰的复杂性,比如它使得替换模型失效.从而需要引入环境
+模型,它使得程序必须非常注重语句的顺序,因为对象是可变的,在不同的地方你必须提供
+该对象的正确版本,这就使得顺序变得很重要
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-1-2" class="outline-4">
+<h4 id="sec-3-1-2">stream</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<p>
+object中通过赋值来改变对象的状态,如果我们从整体上看就会发现,每一次赋值不过是
+产生了流中的一个元素,但是流作为一个整体却是不变的,这样我们就可以去掉赋值
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Chp4</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+任何一个程序都可以看做是一台抽象机器的描述,而解释器是一台特殊的机器,它能够模
+拟其它机器的行为,因此解释器可以看作是一台 <b>通用机器</b>. 现在假设用lisp实现了一
+个lisp 解释器, 那么这个解释器就可以模拟任何用lisp程序描述的机器,假设我现在给
+该解释器送入一个lisp程序,而这个lisp程序实际是一个C语言的解释器,那么原来的lisp
+解释器就可以模拟所有的用C语言描述的机器. 这里的深刻思想是: <b>任一解释器都可以
+模拟其它的解释器</b>, 因此原则上什么可以计算的概念就 <b>与语言或者计算机无关</b>.
+通用图灵机实际就是一个解释器,它可以模拟图灵机的程序, 任何一个"有效过程" 都可
+以描述为图灵机堵塞一个程序.
+</p>
 </div>
 </div>
 </div>

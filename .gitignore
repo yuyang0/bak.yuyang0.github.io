@@ -7,3 +7,7 @@
 /.dropbox
 *~
 \#*
+mathjax
+ltxpng
+/*.pdf
+/notes/*.pdf

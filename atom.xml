@@ -2,332 +2,372 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title></title>
-  <link href="https://yuyango.github.io/"/>
+  <link href="https://yuyang0.github.io/"/>
   <link type="application/atom+xml" rel="self" href="/atom.xml"/>
-  <updated>2013-06-01T20:28:51-07:00</updated>
-  <id>https://yuyango.github.io/</id>
+  <updated>Wed Mar 26 14:14:23 2014</updated>
+  <id>https://yuyang0.github.io/</id>
   <author>
     <name>Yu Yang</name>
     <email>yy2012cn@gmail.com</email>
   </author>
 <entry>
     <id>sitemap.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/sitemap.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/sitemap.html"/>
     <title>Sitemap</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2014-03-26</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>linux-c-garbled-characters.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/articles/linux-c-garbled-characters.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/articles/linux-c-garbled-characters.html"/>
     <title>Linux平台C语言乱码</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2013-06-12</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>gevent.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/articles/gevent.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/articles/gevent.html"/>
     <title>gevent源码分析</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2014-02-13</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>python-descriptor.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/articles/python-descriptor.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/articles/python-descriptor.html"/>
     <title>python Descriptor</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2013-11-08</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>web-py-source-code.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/articles/web-py-source-code.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/articles/web-py-source-code.html"/>
     <title>webpy源代码分析</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2013-10-30</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>wsgi.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/articles/wsgi.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/articles/wsgi.html"/>
     <title>wsgi</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2014-01-29</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>org-mode-dropbox-blog.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/articles/org-mode-dropbox-blog.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/articles/org-mode-dropbox-blog.html"/>
     <title>使用org-mode与dropbox搭建静态博客</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2013-06-15</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>clojure.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/clojure.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/clojure.html"/>
     <title>Clojure笔记</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2014-03-12</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>django.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/django.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/django.html"/>
     <title>DJANGO笔记</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2013-11-06</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>emacs.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/emacs.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/emacs.html"/>
     <title>Emacs/elisp笔记</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2014-02-01</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
+    </author>
+    <content type="html"> </content>
+  </entry><entry>
+    <id>haskell.org</id>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/haskell.html"/>
+    <title>Haskell note</title>
+    <updated> 2014-03-01</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>IT术语.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/IT术语.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/IT术语.html"/>
     <title>IT术语</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2013-11-26</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
+    </author>
+    <content type="html"> </content>
+  </entry><entry>
+    <id>linux-kernel.org</id>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/linux-kernel.html"/>
+    <title>Linux Kernel</title>
+    <updated> 2014-03-23</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>php.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/php.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/php.html"/>
     <title>PHP笔记</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2014-03-15</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>set-theory.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/set-theory.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/set-theory.html"/>
     <title>SET THEORY(30%)</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2014-03-23</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>sicp.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/sicp.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/sicp.html"/>
     <title>SICP笔记</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2013-07-04</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>EOPL.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/EOPL.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/EOPL.html"/>
     <title>The Essential of Programming language</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2014-03-23</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
-    <id>Theory-Computation.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/Theory-Computation.html"/>
-    <title>Theory-Computation</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <id>type-system.org</id>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/type-system.html"/>
+    <title>Type System</title>
+    <updated> 2014-03-26</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>css.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/css.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/css.html"/>
     <title>css笔记</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2013-06-14</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>git.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/git.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/git.html"/>
     <title>git/github学习笔记</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2013-11-06</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>how-to-study.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/how-to-study.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/how-to-study.html"/>
     <title>how to study</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2013-07-04</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>how-to-read-a-book.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/how-to-read-a-book.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/how-to-read-a-book.html"/>
     <title>how-to-read-a-book</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2013-02-07</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>javascript.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/javascript.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/javascript.html"/>
     <title>javascript笔记</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2014-03-24</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>python-source-code.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/python-source-code.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/python-source-code.html"/>
     <title>python源代码解析</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2013-10-30</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>python-note.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/python-note.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/python-note.html"/>
     <title>python笔记</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2013-06-28</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>ruby.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/ruby.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/ruby.html"/>
     <title>ruby notes</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2013-12-23</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>scheme.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/scheme.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/scheme.html"/>
     <title>scheme笔记</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2014-03-23</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>乌合之众.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/乌合之众.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/乌合之众.html"/>
     <title>乌合之众(古斯塔夫.勒庞 )</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2014-03-13</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>information-theory.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/information-theory.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/information-theory.html"/>
     <title>信息论</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2013-11-01</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>investment.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/investment.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/investment.html"/>
     <title>投资笔记</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2013-06-13</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>second-treatise-civil-government.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/second-treatise-civil-government.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/second-treatise-civil-government.html"/>
     <title>政府论读书笔记</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2014-03-13</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>Probability.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/notes/Probability.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/Probability.html"/>
     <title>概率论与数理统计笔记</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2013-11-14</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
+    </author>
+    <content type="html"> </content>
+  </entry><entry>
+    <id>Theory-Computation.org</id>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/Theory-Computation.html"/>
+    <title>计算理论导引</title>
+    <updated> 2014-03-22</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>index.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/index.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/index.html"/>
     <title>Index Page</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2014-03-26</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry><entry>
     <id>sitemap.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyango.github.io/sitemap.html"/>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/sitemap.html"/>
     <title>Sitemap</title>
-    <updated>Sat Feb  1 11:09:39 2014</updated>
+    <updated> 2014-03-26</updated>
     <author>
       <name>Yu Yang</name>
-      <uri>https://yuyango.github.io/</uri>
+      <uri>https://yuyang0.github.io/</uri>
+    </author>
+    <content type="html"> </content>
+  </entry><entry>
+    <id>tags.org</id>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/tags.html"/>
+    <title>tags</title>
+    <updated> 2014-03-26</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>https://yuyang0.github.io/</uri>
     </author>
     <content type="html"> </content>
   </entry></feed>
