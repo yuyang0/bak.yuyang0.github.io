@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>git/github学习笔记</title>
-<!-- 2014-02-01 Sat 19:29 -->
+<!-- 2014-05-16 Fri 13:57 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -89,7 +89,9 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="static/css/main.css"/> <link rel="shortcut icon" href="static/img/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="static/css/main.css"/>
+<link rel="shortcut icon" href="static/img/favicon.ico" />
+<script type="text/javascript" src="static/js/custom.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -141,16 +143,25 @@ for the JavaScript code in this tag.
 <div id="preamble" class="status">
 <div id="header">
       <div class="inner">
-        <h1 id="blog-title"><a href="/"> Yu Yang's Blog</a></h1>
-        <ul class="nav">
-          <li> <a href="/">Home</a></li>
-          <li> <a href="/about.html">About</a></li>
-          <li> <a href="/rss.xml">RSS</a></li>
-        </ul>
-        <form method="get" action="https://google.com/search" id="search">
-          <input type="hidden" name="q" value="site:yuyang.farbox.com" />
-          <input type="text" name="q" placeholder="Search..." />
-        </form>
+        <h1 id="site-title"><a href="/"> Yu Yang's Blog</a></h1>
+        <div>
+          <a href="###" id="site-nav-btn">菜单</a>
+          <ul id="site-nav" class="vertical-nav mobi-hid">
+            <li> <a href="/">Home</a></li>
+            <li> <a href="/about.html">About</a></li>
+
+            <li> <a href="/tags.html">Tags</a></li>
+
+            <li> <a href="/rss.xml">RSS</a></li>
+          </ul>
+
+          <form id="site-search" method="get" action="https://google.com/search">
+            <input type="hidden" name="q" value="site:yuyang.farbox.com" />
+            <input type="text" name="q" placeholder="Search..." />
+            <button class="btn-search" type="submit">Search</button>
+          </form>
+          <div style="clear:both;"> </div>
+        </div>
       </div>
     </div>
 </div>
@@ -160,52 +171,41 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">git学习笔记</a>
+<li><a href="#sec-1">基本使用</a>
 <ul>
-<li><a href="#sec-1-1">基本使用</a>
-<ul>
-<li><a href="#sec-1-1-1">git的基本命令</a></li>
-<li><a href="#sec-1-1-2">git一般的工作过程是：</a></li>
+<li><a href="#sec-1-1">git的基本命令</a></li>
+<li><a href="#sec-1-2">git一般的工作过程是：</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-2">git的原理</a>
+<li><a href="#sec-2">git的原理</a>
 <ul>
-<li><a href="#sec-1-2-1">工作区(work tree)</a></li>
-<li><a href="#sec-1-2-2">git的暂存区(index)</a></li>
-<li><a href="#sec-1-2-3">版本库</a></li>
-<li><a href="#sec-1-2-4">git diff</a></li>
-<li><a href="#sec-1-2-5">HEAD, master</a></li>
-<li><a href="#sec-1-2-6">git reset</a></li>
-<li><a href="#sec-1-2-7">git checkout</a></li>
-<li><a href="#sec-1-2-8">git分支</a>
+<li><a href="#sec-2-1">工作区(work tree)</a></li>
+<li><a href="#sec-2-2">git的暂存区(index)</a></li>
+<li><a href="#sec-2-3">版本库</a></li>
+<li><a href="#sec-2-4">git diff</a></li>
+<li><a href="#sec-2-5">HEAD, master</a></li>
+<li><a href="#sec-2-6">git reset</a></li>
+<li><a href="#sec-2-7">git checkout</a></li>
+<li><a href="#sec-2-8">git分支</a>
 <ul>
-<li><a href="#sec-1-2-8-1">创建分支</a></li>
-<li><a href="#sec-1-2-8-2">切换分支</a></li>
-<li><a href="#sec-1-2-8-3">合并分支</a></li>
+<li><a href="#sec-2-8-1">创建分支</a></li>
+<li><a href="#sec-2-8-2">切换分支</a></li>
+<li><a href="#sec-2-8-3">合并分支</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sec-1-3">git github</a></li>
-<li><a href="#sec-1-4">gitignore syntax</a></li>
-</ul>
-</li>
+<li><a href="#sec-3">git github</a></li>
+<li><a href="#sec-4">gitignore syntax</a></li>
 </ul>
 </div>
 </div>
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">git学习笔记</h2>
+<h2 id="sec-1">基本使用</h2>
 <div class="outline-text-2" id="text-1">
-<p>
-git是一个分布式版本管理系统
-</p>
-</div>
-<div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">基本使用</h3>
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">git的基本命令</h3>
 <div class="outline-text-3" id="text-1-1">
-</div><div id="outline-container-sec-1-1-1" class="outline-4">
-<h4 id="sec-1-1-1">git的基本命令</h4>
-<div class="outline-text-4" id="text-1-1-1">
 <ul class="org-ul">
 <li>安装：sudo apt-get install git git-uid
 </li>
@@ -242,9 +242,9 @@ git branch -d TmpBranch 删除分支
 </div>
 </div>
 
-<div id="outline-container-sec-1-1-2" class="outline-4">
-<h4 id="sec-1-1-2">git一般的工作过程是：</h4>
-<div class="outline-text-4" id="text-1-1-2">
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">git一般的工作过程是：</h3>
+<div class="outline-text-3" id="text-1-2">
 <ol class="org-ol">
 <li>git pull(将远程分支与本地分支合并)
 </li>
@@ -271,12 +271,12 @@ git branch -d TmpBranch 删除分支
 </div>
 </div>
 
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">git的原理</h3>
-<div class="outline-text-3" id="text-1-2">
-</div><div id="outline-container-sec-1-2-1" class="outline-4">
-<h4 id="sec-1-2-1">工作区(work tree)</h4>
-<div class="outline-text-4" id="text-1-2-1">
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">git的原理</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">工作区(work tree)</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 就是你本地的工作目录树
 </p>
@@ -287,9 +287,9 @@ git branch -d TmpBranch 删除分支
 </div>
 </div>
 
-<div id="outline-container-sec-1-2-2" class="outline-4">
-<h4 id="sec-1-2-2">git的暂存区(index)</h4>
-<div class="outline-text-4" id="text-1-2-2">
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">git的暂存区(index)</h3>
+<div class="outline-text-3" id="text-2-2">
 <p>
 暂存区可以看作一个目录树，暂存区的目录树和版本库的目录树是不同的，.git目录有一个index文件，这个文件包含了
 git所管理的目录中所有文件的大小以及修改时间，每一次你调用git status或者git diff这类命令时，git都会比较工作
@@ -317,18 +317,18 @@ git所管理的目录中所有文件的大小以及修改时间，每一次你�
 </div>
 </div>
 
-<div id="outline-container-sec-1-2-3" class="outline-4">
-<h4 id="sec-1-2-3">版本库</h4>
-<div class="outline-text-4" id="text-1-2-3">
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">版本库</h3>
+<div class="outline-text-3" id="text-2-3">
 <p>
 由git管理的分支代码的目录树，比如master分支，以及其它你自己创建的分支,当然操作时一般都只是当前分支的目录树
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-1-2-4" class="outline-4">
-<h4 id="sec-1-2-4">git diff</h4>
-<div class="outline-text-4" id="text-1-2-4">
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4">git diff</h3>
+<div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>git diff : 工作区与暂存区比较
 </li>
@@ -340,9 +340,9 @@ git所管理的目录中所有文件的大小以及修改时间，每一次你�
 </div>
 </div>
 
-<div id="outline-container-sec-1-2-5" class="outline-4">
-<h4 id="sec-1-2-5">HEAD, master</h4>
-<div class="outline-text-4" id="text-1-2-5">
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5">HEAD, master</h3>
+<div class="outline-text-3" id="text-2-5">
 <p>
 HEAD(.git/HEAD)实际是一个指针,指向的是.git/refs/heads/branch-name文件, branch-name可以是master或者你自己创
 建的分支名,该文件实际指向的是该分支的最新的一次commit, 如果当前是master分支,那么这几个文件的内容应该是这
@@ -359,9 +359,9 @@ git reset &#x2013;[hard|soft|mixed]可以重置该文件到指定的commit id,�
 </div>
 </div>
 
-<div id="outline-container-sec-1-2-6" class="outline-4">
-<h4 id="sec-1-2-6">git reset</h4>
-<div class="outline-text-4" id="text-1-2-6">
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6">git reset</h3>
+<div class="outline-text-3" id="text-2-6">
 <ol class="org-ol">
 <li>git reset [commit-id] &lt;path&gt; : 不影响工作区与版本库,只会用commit-id对应的版本库工作树替换暂存区的工作树,实
 际上相当于撤销先前的git add, 举几个例子:
@@ -390,21 +390,21 @@ commit-id对应的目录树, 所以commit-id之后所有的工作区,暂存区�
 </div>
 </div>
 
-<div id="outline-container-sec-1-2-7" class="outline-4">
-<h4 id="sec-1-2-7">git checkout</h4>
-<div class="outline-text-4" id="text-1-2-7">
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7">git checkout</h3>
+<div class="outline-text-3" id="text-2-7">
 <p>
 该命令会影响工作区
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-1-2-8" class="outline-4">
-<h4 id="sec-1-2-8">git分支</h4>
-<div class="outline-text-4" id="text-1-2-8">
-</div><div id="outline-container-sec-1-2-8-1" class="outline-5">
-<h5 id="sec-1-2-8-1">创建分支</h5>
-<div class="outline-text-5" id="text-1-2-8-1">
+<div id="outline-container-sec-2-8" class="outline-3">
+<h3 id="sec-2-8">git分支</h3>
+<div class="outline-text-3" id="text-2-8">
+</div><div id="outline-container-sec-2-8-1" class="outline-4">
+<h4 id="sec-2-8-1">创建分支</h4>
+<div class="outline-text-4" id="text-2-8-1">
 <ul class="org-ul">
 <li>git branch : 显示所有分支,当前分支前会加*
 </li>
@@ -425,18 +425,18 @@ commit-id对应的目录树, 所以commit-id之后所有的工作区,暂存区�
 </div>
 </div>
 
-<div id="outline-container-sec-1-2-8-2" class="outline-5">
-<h5 id="sec-1-2-8-2">切换分支</h5>
-<div class="outline-text-5" id="text-1-2-8-2">
+<div id="outline-container-sec-2-8-2" class="outline-4">
+<h4 id="sec-2-8-2">切换分支</h4>
+<div class="outline-text-4" id="text-2-8-2">
 <p>
 git checkout new-br
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-1-2-8-3" class="outline-5">
-<h5 id="sec-1-2-8-3">合并分支</h5>
-<div class="outline-text-5" id="text-1-2-8-3">
+<div id="outline-container-sec-2-8-3" class="outline-4">
+<h4 id="sec-2-8-3">合并分支</h4>
+<div class="outline-text-4" id="text-2-8-3">
 <p>
 git merge br-name: 将名为br-name的分支与但前分支合并
 </p>
@@ -445,9 +445,9 @@ git merge br-name: 将名为br-name的分支与但前分支合并
 </div>
 </div>
 
-<div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3">git github</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">git github</h2>
+<div class="outline-text-2" id="text-3">
 <ol class="org-ol">
 <li>git remote add remoteName remoteUrl
 eg: git remote add origin git@github.com:youName/github-example.git
@@ -478,9 +478,9 @@ next: git push origin master
 </div>
 </div>
 
-<div id="outline-container-sec-1-4" class="outline-3">
-<h3 id="sec-1-4">gitignore syntax</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">gitignore syntax</h2>
+<div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>"#" ： 注释
 </li>
@@ -501,7 +501,6 @@ next: git push origin master
 </p>
 </li>
 </ul>
-</div>
 </div>
 </div>
 </div>
@@ -526,14 +525,14 @@ next: git push origin master
 </div>
 <!-- begin footer -->
 <div id="footer">
-  <hr />
-  <ul class="links">
-    <li>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</li>
+  <ul class="links vertical-nav">
     <li><a href="/sitemap.xml">Sitemap</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     <li><a href="/about.html">About Me</a></li>
-    <li><a href="#">Back to Top</a></li>
+    <li><a class="back-to-top" href="#">Back to Top</a></li>
   </ul>
+  <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
+  <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
 <!-- end footer -->
 </div>

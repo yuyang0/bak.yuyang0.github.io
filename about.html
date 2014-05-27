@@ -9,63 +9,205 @@
     <meta name="author" content="Yu Yang"/>
 
     <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
-    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="Atom feed">
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="Atom feed" />
+    <script type="text/javascript" src="static/js/custom.js"></script>
+    <style type="text/css" media="screen">
+      .sns-icon {
+      position: relative;
+      border-radius: 13px;
+      margin: 0 30px 60px;
+      width: 70px;
+      height: 70px;
+      float: left;
 
-    </head>
-    <body>
-      <div id="header">
-        <div class="inner">
-          <h1 id="blog-title"><a href="/"> Yu Yang's Blog</a></h1>
-          <ul class="nav">
+      -webkit-box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.35), inset 0 -1px 0 rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .6);
+      -moz-box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.35), inset 0 -1px 0 rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .6);
+      box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.35), inset 0 -1px 0 rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .6);
+
+      -webkit-transition: 1s;
+      -moz-transition: 1s;
+      transition: 1s;
+
+      -webkit-border-radius: 12px;
+      -moz-border-radius: 12px;
+      border-radius: 12px;
+
+      -webkit-filter: blur(0) grayscale(0.2);
+      -webkit-transform: translateZ(0);
+      }
+
+      .sns-icon:hover {
+      -webkit-filter: none;
+      -webkit-animation: sns-icon-hover 100ms linear .8s infinite alternate;
+      -moz-animation: sns-icon-hover 100ms linear .8s infinite alternate;
+      animation: sns-icon-hover 100ms linear .8s infinite alternate;
+      }
+
+      .sns-icon:before {
+      position: absolute;
+      content: ' ';
+      width: 100%;
+      height: 50%;
+      top: 0;
+      left: 0;
+
+      -webkit-border-radius: 13px;
+      -moz-border-radius: 13px;
+      border-radius: 13px;
+
+      -webkit-transition: 1s;
+      -moz-transition: 1s;
+      transition: 1s;
+
+      background: -moz-linear-gradient(top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,.1) 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.7)), color-stop(100%,rgba(255,255,255,.1)));
+      background: linear-gradient(top, rgba(255,255,255,0.7) 0%,rgba(255,255,255,.1) 100%);
+      }
+      .sns-icon:hover:before {
+      height: 0;
+
+      -webkit-transition: 1s;
+      -moz-transition: 1s;
+      transition: 1s;
+
+      background: -moz-linear-gradient(top, rgba(255,255,255,0.3) 0%, rgba(255,255,255,.1) 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.3)), color-stop(100%,rgba(255,255,255,.1)));
+      background: linear-gradient(top, rgba(255,255,255,0.3) 0%,rgba(255,255,255,.1) 100%);}
+
+      .sns-icon:after {
+      position: absolute;
+      content: ' ';
+      width: 100%;
+      height: 30px;
+      bottom: -31px;
+      left: 0;
+
+      -webkit-border-top-left-radius: 13px;
+      -webkit-border-top-right-radius: 13px;
+      -moz-border-radius-topleft: 13px;
+      -moz-border-radius-topright: 13px;
+      border-top-left-radius: 13px;
+      border-top-right-radius: 13px;
+
+background: -moz-linear-gradient(top, rgba(230,230,230,.3) 0%, rgba(230,230,230,0) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(230,230,230,.3)), color-stop(100%,rgba(230,230,230,0)));
+background: linear-gradient(top, rgba(230,230,230,.3) 0%,rgba(230,230,230,0) 100%);
+      }
+      .sns-icon img {
+      width: 70px;
+      height: 70px;
+      -webkit-box-reflect: below 5px -webkit-gradient(linear, left top, left bottom, color-stop(30%,rgba(255, 255, 255, 0.0)), color-stop(80%,rgba(255, 255, 255, 0.1)), color-stop(100%,rgba(255, 255, 255, .3)));
+      }
+
+@keyframes sns-icon-hover {
+	0% {
+		-webkit-transform: scale(1.1) rotate(3deg) translateX(-2px);
+		transform: scale(1.1) rotate(3deg) translateX(-2px);
+	}
+	100% {
+		-webkit-transform: scale(1.1) rotate(-3deg) translateX(2px);
+		transform: scale(1.1) rotate(-3deg) translateX(2px);
+	}
+}
+    </style>
+
+  </head>
+  <body>
+    <div id="header">
+      <div class="inner">
+        <h1 id="site-title"><a href="/"> Yu Yang's Blog</a></h1>
+        <div>
+          <a href="###" id="site-nav-btn">菜单</a>
+          <ul id="site-nav" class="vertical-nav mobi-hid">
             <li> <a href="/">Home</a></li>
-            <li> <a href="/about.html">About</a></li>
-            <li> <a href="/rss">RSS</a></li>
+            <li class="current-page"> <a href="/about.html">About</a></li>
+            <li> <a href="/tags.html">Tags</a></li>
+            <li> <a href="/rss.xml">RSS</a></li>
           </ul>
-          <form method="get" action="https://google.com/search" id="search">
+
+          <form id="site-search" method="get" action="https://google.com/search">
             <input type="hidden" name="q" value="site:yuyang.farbox.com" />
             <input type="text" name="q" placeholder="Search..." />
+            <button class="btn-search" type="submit">Search</button>
           </form>
+          <div style="clear:both;"> </div>
         </div>
       </div>
-      <div id="content">
-        <p>一个最不愿做俗人的俗人,程序员一枚,emacs脑残粉</p>
-        <p>喜欢Linux,喜欢python,喜欢简洁,一致的东东,讨厌各种dirty与不一致,讨厌php </p>
-        <h4>我的联系方式</h4>
-        <ul>
-          <li>email: yy2012cn#gmail.com</li>
-          <li>github: <a href="https://github.com/yuyang0">https://github.com/yuyang0</a> </li>
-          <li>google+: <a href="https://plus.google.com/114136548624647258032/posts">https://plus.google.com/114136548624647258032/posts</a></li>
+    </div>
+    <!-- end header -->
+
+    <div id="content">
+      <p>一个最不愿做俗人的俗人,程序员一枚,emacs脑残粉.</p>
+      <p>喜欢Linux,喜欢python, scheme,喜欢简洁,一致的东东,讨厌各种dirty与不一致,讨厌php.</p>
+      <h3>我的联系方式</h3>
+      <div id="contact">
+        <ul class="vertical-nav sns">
+          <li>
+            <a href="mailto: yy2012cn@gmail.com">
+              <div class="sns-icon">
+                <img src="static/img/qq.png" />
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/yuyang0" target="_blank">
+              <div class="sns-icon">
+                <img src="static/img/github.png" />
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="https://plus.google.com/114136548624647258032/posts" target="blank">
+              <div class="sns-icon">
+                google+
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="" target="_blank">
+              <div class="sns-icon">
+                <img src="static/img/facebook.png" />
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="http://www.douban.com/" target="_blank">
+              <div class="sns-icon">
+                豆瓣
+              </div>
+            </a>
+          </li>
         </ul>
       </div>
-      <div id="disqus_thread"></div>
-      <script type="text/javascript">
-        var url = window.location.pathname;
-        var disqus_identifier = url.substring(url.lastIndexOf('/')+1);
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'yuyang'; // required: replace example with your forum shortname
+    </div>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var url = window.location.pathname;
+      var disqus_identifier = url.substring(url.lastIndexOf('/')+1);
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'yuyang'; // required: replace example with your forum shortname
 
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-      </script>
-      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
-      <!-- begin footer -->
-      <div id="footer">
-        <hr />
-        <ul class="links">
-          <li>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</li>
-          <li><a href="/sitemap.xml">Sitemap</a></li>
-          <li><a href="/atom.xml">RSS</a></li>
-          <li><a href="/about.html">About Me</a></li>
-          <li><a href="#">Back to Top</a></li>
-        </ul>
-      </div>
-      <!-- end footer -->
-
-    </body>
-  </html>
+<!-- begin footer -->
+<div id="footer">
+  <ul class="links vertical-nav">
+    <li><a href="/sitemap.xml">Sitemap</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    <li><a href="/about.html">About Me</a></li>
+    <li><a class="back-to-top" href="#">Back to Top</a></li>
+  </ul>
+  <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
+  <a id="fixed-back-to-top" class="back-to-top" href="#"></a>
+</div>
+<!-- end footer -->
+  </body>
+</html>

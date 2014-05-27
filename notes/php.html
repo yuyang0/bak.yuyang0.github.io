@@ -4,11 +4,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>PHP笔记</title>
-<!-- 2014-03-15 Sat 12:12 -->
+<!-- 2014-05-17 Sat 23:36 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="php" />
+<meta  name="keywords" content="php web" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center; }
@@ -89,7 +89,9 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="static/css/main.css"/> <link rel="shortcut icon" href="static/img/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="static/css/main.css"/>
+<link rel="shortcut icon" href="static/img/favicon.ico" />
+<script type="text/javascript" src="static/js/custom.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -141,16 +143,25 @@ for the JavaScript code in this tag.
 <div id="preamble" class="status">
 <div id="header">
       <div class="inner">
-        <h1 id="blog-title"><a href="/"> Yu Yang's Blog</a></h1>
-        <ul class="nav">
-          <li> <a href="/">Home</a></li>
-          <li> <a href="/about.html">About</a></li>
-          <li> <a href="/rss.xml">RSS</a></li>
-        </ul>
-        <form method="get" action="https://google.com/search" id="search">
-          <input type="hidden" name="q" value="site:yuyang.farbox.com" />
-          <input type="text" name="q" placeholder="Search..." />
-        </form>
+        <h1 id="site-title"><a href="/"> Yu Yang's Blog</a></h1>
+        <div>
+          <a href="###" id="site-nav-btn">菜单</a>
+          <ul id="site-nav" class="vertical-nav mobi-hid">
+            <li> <a href="/">Home</a></li>
+            <li> <a href="/about.html">About</a></li>
+
+            <li> <a href="/tags.html">Tags</a></li>
+
+            <li> <a href="/rss.xml">RSS</a></li>
+          </ul>
+
+          <form id="site-search" method="get" action="https://google.com/search">
+            <input type="hidden" name="q" value="site:yuyang.farbox.com" />
+            <input type="text" name="q" placeholder="Search..." />
+            <button class="btn-search" type="submit">Search</button>
+          </form>
+          <div style="clear:both;"> </div>
+        </div>
       </div>
     </div>
 </div>
@@ -160,105 +171,97 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">php 笔记</a>
+<li><a href="#sec-1">php标记</a></li>
+<li><a href="#sec-2">变量</a>
 <ul>
-<li><a href="#sec-1-1">变量</a>
-<ul>
-<li><a href="#sec-1-1-1">变量的命名与注意事项&#xa0;&#xa0;&#xa0;<span class="tag"><span class="variable">variable</span></span></a></li>
-<li><a href="#sec-1-1-2">作用域</a></li>
+<li><a href="#sec-2-1">变量</a></li>
+<li><a href="#sec-2-2">常量</a></li>
+<li><a href="#sec-2-3">作用域</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-2">操作符与控制结构</a>
+<li><a href="#sec-3">操作符与控制结构</a>
 <ul>
-<li><a href="#sec-1-2-1">操作符&#xa0;&#xa0;&#xa0;<span class="tag"><span class="operator">operator</span></span></a></li>
-<li><a href="#sec-1-2-2">控制结构</a></li>
+<li><a href="#sec-3-1">操作符&#xa0;&#xa0;&#xa0;<span class="tag"><span class="operator">operator</span></span></a></li>
+<li><a href="#sec-3-2">控制结构</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-3">php数组&#xa0;&#xa0;&#xa0;<span class="tag"><span class="array">array</span></span></a>
+<li><a href="#sec-4">php数组</a>
 <ul>
-<li><a href="#sec-1-3-1">数组定义</a></li>
-<li><a href="#sec-1-3-2">数组的key</a></li>
-<li><a href="#sec-1-3-3">访问或者修改</a></li>
-<li><a href="#sec-1-3-4">循环访问</a></li>
-<li><a href="#sec-1-3-5">数组排序（原地改变数组）</a></li>
-<li><a href="#sec-1-3-6">其它数组函数</a></li>
+<li><a href="#sec-4-1">数组定义</a></li>
+<li><a href="#sec-4-2">数组的key</a></li>
+<li><a href="#sec-4-3">访问或者修改</a></li>
+<li><a href="#sec-4-4">循环访问</a></li>
+<li><a href="#sec-4-5">数组排序（原地改变数组）</a></li>
+<li><a href="#sec-4-6">其它数组函数</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-4">字符串处理函数</a>
+<li><a href="#sec-5">字符串处理函数</a>
 <ul>
-<li><a href="#sec-1-4-1">常规字符串处理函数</a></li>
-<li><a href="#sec-1-4-2">正则表达式函数</a></li>
+<li><a href="#sec-5-1">常规字符串处理函数</a></li>
+<li><a href="#sec-5-2">正则表达式函数</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-5">文件</a></li>
-<li><a href="#sec-1-6">function</a>
+<li><a href="#sec-6">文件</a></li>
+<li><a href="#sec-7">function</a>
 <ul>
-<li><a href="#sec-1-6-1">定义</a></li>
-<li><a href="#sec-1-6-2">可变参数</a></li>
-<li><a href="#sec-1-6-3">注意事项</a></li>
+<li><a href="#sec-7-1">定义</a></li>
+<li><a href="#sec-7-2">可变参数</a></li>
+<li><a href="#sec-7-3">引用</a></li>
+<li><a href="#sec-7-4">注意事项</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-7">OOP</a></li>
-<li><a href="#sec-1-8">php与数据库（mysql）</a>
+<li><a href="#sec-8">OOP</a></li>
+<li><a href="#sec-9">php与数据库（mysql）</a>
 <ul>
-<li><a href="#sec-1-8-1">示例代码</a></li>
+<li><a href="#sec-9-1">示例代码</a></li>
+<li><a href="#sec-9-2">解释</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-9">MySQL</a>
-<ul>
-<li><a href="#sec-1-9-1">数据库设计的三大范式：</a></li>
-<li><a href="#sec-1-9-2">数据库的常用模式</a>
-<ul>
-<li><a href="#sec-1-9-2-1">主扩展模式</a></li>
-<li><a href="#sec-1-9-2-2">主从模式</a></li>
-<li><a href="#sec-1-9-2-3">名值模式</a></li>
-<li><a href="#sec-1-9-2-4">多对多模式</a></li>
-</ul>
-</li>
-<li><a href="#sec-1-9-3">SQL基本知识与常用代码&#xa0;&#xa0;&#xa0;<span class="tag"><span class="sql">sql</span></span></a>
-<ul>
-<li><a href="#sec-1-9-3-1">登录</a></li>
-<li><a href="#sec-1-9-3-2">增加新用户</a></li>
-<li><a href="#sec-1-9-3-3">Select</a></li>
-<li><a href="#sec-1-9-3-4">insert</a></li>
-<li><a href="#sec-1-9-3-5">update</a></li>
-<li><a href="#sec-1-9-3-6">delete（删除行）</a></li>
-<li><a href="#sec-1-9-3-7">create database</a></li>
-<li><a href="#sec-1-9-3-8">create  table</a></li>
-<li><a href="#sec-1-9-3-9">Index</a></li>
-<li><a href="#sec-1-9-3-10">Drop</a></li>
-<li><a href="#sec-1-9-3-11">Alert</a></li>
-<li><a href="#sec-1-9-3-12">存储过程</a></li>
-<li><a href="#sec-1-9-3-13">事务&#xa0;&#xa0;&#xa0;<span class="tag"><span class="transaction">transaction</span></span></a></li>
-<li><a href="#sec-1-9-3-14">从文件创建数据表</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#sec-1-10">其它技巧</a></li>
-</ul>
-</li>
+<li><a href="#sec-10">其它技巧</a></li>
 </ul>
 </div>
 </div>
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">php 笔记</h2>
+<h2 id="sec-1">php标记</h2>
 <div class="outline-text-2" id="text-1">
-<p>
-php是一门流行的web开发语言,以上手简单著称
-</p>
+<ol class="org-ol">
+<li>&lt;?php ?&gt; 是推荐的写法, 如果是纯php代码文件,那么建议省略 ?&gt;标记, 这是为了
+防止php输出文件末尾空格
+</li>
+<li>在php文件中如果要输出大段的 HTML 文本, 那么应该跳出 &lt;?php ?&gt;, 这样比用
+echo 效率高, 但是当使用 if, foreach, for, while 这样的结构时应该用这样的语法:
+<div class="org-src-container">
+
+<pre class="src src-php"><span style="color: #F92672;">&lt;?php</span> <span style="color: #F92672; font-weight: bold;">if</span> ($<span style="color: #FD971F;">expression</span> == <span style="color: #AE81FF;">true</span>): <span style="color: #F92672;">?&gt;</span>
+  <span style="color: #968B26; font-weight: bold;">This</span> <span style="color: #968B26; font-weight: bold;">will</span> <span style="color: #968B26; font-weight: bold;">show</span> <span style="color: #F92672; font-weight: bold;">if</span> <span style="color: #968B26; font-weight: bold;">the</span> <span style="color: #968B26; font-weight: bold;">expression</span> <span style="color: #968B26; font-weight: bold;">is</span> <span style="color: #AE81FF;">true</span>.
+<span style="color: #F92672;">&lt;?php</span> <span style="color: #F92672; font-weight: bold;">else</span>: <span style="color: #F92672;">?&gt;</span>
+  <span style="color: #968B26; font-weight: bold;">Otherwise</span> <span style="color: #968B26; font-weight: bold;">this</span> <span style="color: #968B26; font-weight: bold;">will</span> <span style="color: #968B26; font-weight: bold;">show</span>.
+<span style="color: #F92672;">&lt;?php</span> <span style="color: #F92672; font-weight: bold;">endif</span>; <span style="color: #F92672;">?&gt;</span>
+
+<span style="color: #75715E;">/* </span><span style="color: #75715E;">foreach </span><span style="color: #75715E;">*/</span>
+<span style="color: #F92672;">&lt;?php</span> <span style="color: #F92672; font-weight: bold;">foreach</span> ($<span style="color: #FD971F;">news</span> <span style="color: #F92672; font-weight: bold;">as</span> $<span style="color: #FD971F;">news_item</span>): <span style="color: #F92672;">?&gt;</span>
+    <span style="color: #AE81FF;">&lt;h</span>2<span style="color: #AE81FF;">&gt;</span><span style="color: #F92672;">&lt;?php</span> <span style="color: #F92672; font-weight: bold;">echo</span> $<span style="color: #FD971F;">news_item</span>[<span style="color: #E6DB74;">'title'</span>] <span style="color: #F92672;">?&gt;</span><span style="color: #AE81FF;">&lt;/h</span>2<span style="color: #AE81FF;">&gt;</span>
+    <span style="color: #AE81FF;">&lt;div</span> <span style="color: #AE81FF;">id=</span><span style="color: #E6DB74;">"main"</span><span style="color: #AE81FF;">&gt;</span>
+        <span style="color: #F92672;">&lt;?php</span> <span style="color: #F92672; font-weight: bold;">echo</span> $<span style="color: #FD971F;">news_item</span>[<span style="color: #E6DB74;">'text'</span>] <span style="color: #F92672;">?&gt;</span>
+    <span style="color: #AE81FF;">&lt;/div&gt;</span>
+    <span style="color: #AE81FF;">&lt;p&gt;&lt;a</span> <span style="color: #AE81FF;">href=</span><span style="color: #E6DB74;">"news/&lt;?php echo $news_item['slug'] ?&gt;"</span>&gt;<span style="color: #968B26; font-weight: bold;">View</span> <span style="color: #968B26; font-weight: bold;">article</span><span style="color: #AE81FF;">&lt;/a&gt;&lt;/p&gt;</span>
+
+<span style="color: #F92672;">&lt;?php</span> <span style="color: #F92672; font-weight: bold;">endforeach</span> <span style="color: #F92672;">?&gt;</span>
+</pre>
 </div>
-<div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">变量</h3>
-<div class="outline-text-3" id="text-1-1">
-</div><div id="outline-container-sec-1-1-1" class="outline-4">
-<h4 id="sec-1-1-1">变量的命名与注意事项&#xa0;&#xa0;&#xa0;<span class="tag"><span class="variable">variable</span></span></h4>
-<div class="outline-text-4" id="text-1-1-1">
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">变量</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">变量</h3>
+<div class="outline-text-3" id="text-2-1">
 <ol class="org-ol">
 <li>变量必须要$符号，和perl类似.
-</li>
-<li>常量用define定义，常量使用时不需要$符号，eg: define(“const_var”, 100),使
-用时直接用const_var不需要引号与$。
 </li>
 <li>大小写：php的变量与常量区分大小写，而函数名，类名，方法名不区分大小写。
 </li>
@@ -266,9 +269,30 @@ php是一门流行的web开发语言,以上手简单著称
 </div>
 </div>
 
-<div id="outline-container-sec-1-1-2" class="outline-4">
-<h4 id="sec-1-1-2">作用域</h4>
-<div class="outline-text-4" id="text-1-1-2">
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">常量</h3>
+<div class="outline-text-3" id="text-2-2">
+<ol class="org-ol">
+<li>常量用define定义，常量使用时不需要$符号，eg: define(“const_var”, 100),使
+用时直接用const_var不需要引号与$。
+</li>
+<li>魔术常量
+<ul class="org-ul">
+<li><span class="underline"><span class="underline">LINE</span></span> : 当前的行数
+</li>
+<li><span class="underline"><span class="underline">FILE</span></span> : 当前脚本文件名的绝对路径
+</li>
+<li><span class="underline"><span class="underline">DIR</span></span>  : 当前脚本所在目录的绝对路径
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">作用域</h3>
+<div class="outline-text-3" id="text-2-3">
 <ol class="org-ol">
 <li>超全局变量
 </li>
@@ -276,7 +300,19 @@ php是一门流行的web开发语言,以上手简单著称
 </li>
 <li>全局变量，脚本内全局可用，但是函数内不可用，可用global关键词
 </li>
-<li>函数内静态变量，和C语言相似
+<li>函数内静态变量，和C语言相似, 这其实就是一个closure,类似于下面的scheme代
+码:
+<div class="org-src-container">
+
+<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">test</span>
+  (<span style="color: #F92672; font-weight: bold;">let</span> ([i 0])
+    (<span style="color: #F92672; font-weight: bold;">lambda</span> (x)
+      ...)))
+</pre>
+</div>
+<p>
+<code>i</code> 就可以看做是函数体的一个静态变量, 只可惜php设计的太糟糕.
+</p>
 </li>
 <li>函数局部变量和C语言相似
 </li>
@@ -285,12 +321,12 @@ php是一门流行的web开发语言,以上手简单著称
 </div>
 </div>
 
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">操作符与控制结构</h3>
-<div class="outline-text-3" id="text-1-2">
-</div><div id="outline-container-sec-1-2-1" class="outline-4">
-<h4 id="sec-1-2-1">操作符&#xa0;&#xa0;&#xa0;<span class="tag"><span class="operator">operator</span></span></h4>
-<div class="outline-text-4" id="text-1-2-1">
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">操作符与控制结构</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">操作符&#xa0;&#xa0;&#xa0;<span class="tag"><span class="operator">operator</span></span></h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
 php的运算符基本和c语言类似。有一个===与==这个和js类似，一个类型与值都比较，
 一个只比较值。
@@ -298,9 +334,9 @@ php的运算符基本和c语言类似。有一个===与==这个和js类似，一
 </div>
 </div>
 
-<div id="outline-container-sec-1-2-2" class="outline-4">
-<h4 id="sec-1-2-2">控制结构</h4>
-<div class="outline-text-4" id="text-1-2-2">
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">控制结构</h3>
+<div class="outline-text-3" id="text-3-2">
 <p>
 php的控制结构与C语言类似，if，switch，while，do…..while循环，for循环，多了
 一个foreach，foreach是专门用于数组的，break和continue的作用于C类似，还有一
@@ -310,16 +346,16 @@ php的控制结构与C语言类似，if，switch，while，do…..while循环，
 </div>
 </div>
 
-<div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3">php数组&#xa0;&#xa0;&#xa0;<span class="tag"><span class="array">array</span></span></h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">php数组</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 php数组是一个强大的数据结构
 </p>
 </div>
-<div id="outline-container-sec-1-3-1" class="outline-4">
-<h4 id="sec-1-3-1">数组定义</h4>
-<div class="outline-text-4" id="text-1-3-1">
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1">数组定义</h3>
+<div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>$arr = array（'a', 'b', 'c'）
 </li>
@@ -333,9 +369,9 @@ php数组是一个强大的数据结构
 </div>
 </div>
 
-<div id="outline-container-sec-1-3-2" class="outline-4">
-<h4 id="sec-1-3-2">数组的key</h4>
-<div class="outline-text-4" id="text-1-3-2">
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2">数组的key</h3>
+<div class="outline-text-3" id="text-4-2">
 <ol class="org-ol">
 <li>key只能为整数或者字符串
 </li>
@@ -350,9 +386,9 @@ php数组是一个强大的数据结构
 </div>
 </div>
 
-<div id="outline-container-sec-1-3-3" class="outline-4">
-<h4 id="sec-1-3-3">访问或者修改</h4>
-<div class="outline-text-4" id="text-1-3-3">
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3">访问或者修改</h3>
+<div class="outline-text-3" id="text-4-3">
 <ul class="org-ul">
 <li>$arr[key] : 访问键为key的元素,如果不存在则返回错误
 </li>
@@ -362,9 +398,9 @@ php数组是一个强大的数据结构
 </div>
 </div>
 
-<div id="outline-container-sec-1-3-4" class="outline-4">
-<h4 id="sec-1-3-4">循环访问</h4>
-<div class="outline-text-4" id="text-1-3-4">
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4">循环访问</h3>
+<div class="outline-text-3" id="text-4-4">
 <ol class="org-ol">
 <li>foreach循环
 <ul class="org-ul">
@@ -415,9 +451,9 @@ $<span style="color: #FD971F;">second_item</span> = <span style="color: #F8F8F2;
 </div>
 </div>
 
-<div id="outline-container-sec-1-3-5" class="outline-4">
-<h4 id="sec-1-3-5">数组排序（原地改变数组）</h4>
-<div class="outline-text-4" id="text-1-3-5">
+<div id="outline-container-sec-4-5" class="outline-3">
+<h3 id="sec-4-5">数组排序（原地改变数组）</h3>
+<div class="outline-text-3" id="text-4-5">
 <ul class="org-ul">
 <li>sort（对普通数组排序 ，不要应用于字典数组，因为它返回的排序数组会抹掉原字典数组的key，而将它的key变为0,1,2……）
 </li>
@@ -431,9 +467,9 @@ $<span style="color: #FD971F;">second_item</span> = <span style="color: #F8F8F2;
 </p>
 </div>
 </div>
-<div id="outline-container-sec-1-3-6" class="outline-4">
-<h4 id="sec-1-3-6">其它数组函数</h4>
-<div class="outline-text-4" id="text-1-3-6">
+<div id="outline-container-sec-4-6" class="outline-3">
+<h3 id="sec-4-6">其它数组函数</h3>
+<div class="outline-text-3" id="text-4-6">
 <ul class="org-ul">
 <li>current（当前数组内部指针指向的元素，pos是current的别名）
 </li>
@@ -445,29 +481,46 @@ $<span style="color: #FD971F;">second_item</span> = <span style="color: #F8F8F2;
 </li>
 <li>reset（内部指针重置到开头，并返回开头元素的值
 </li>
-<li>array_walk（对数组的每个元素应用一个自定义函数，如果要改变数组本身，则自定义函数，必须传引用）
-</li>
+
 <li>count，sizeof（都返回数组的元素个数）
 </li>
 <li>array_count_values（返回数组元素中各个值出现的频率）
 </li>
 <li>extract（创建一系列以数组的key为名称的变量，而且这些变量的值是对应的value）。
 </li>
+<li>array_slice: 取出数组的一部分.
+</li>
+<li>array_keys : 将数组的所有键作为一个数组返回.
+</li>
+<li>array_values: 将数组的所有值作为一个数组返回.
+</li>
+<li>in_array    : 一个值是否在数组中
+</li>
+<li>array_key_exists: 一个key是否在数组中.
+</li>
+
+<li>array_walk : 对数组的每个元素(<b>只是value,不包括key</b>)应用一个自定义函数, 和
+     <code>scheme</code> 的 <code>for-each</code> 类似.
+</li>
+<li>array_filter : 和 <code>scheme</code> 中 <code>filter</code> 函数相似.
+</li>
+<li>array_map    : 和 <code>map</code> 相似.
+</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-1-4" class="outline-3">
-<h3 id="sec-1-4">字符串处理函数</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">字符串处理函数</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 不原地改变，而是返回一个新的结果字符串
 </p>
 </div>
-<div id="outline-container-sec-1-4-1" class="outline-4">
-<h4 id="sec-1-4-1">常规字符串处理函数</h4>
-<div class="outline-text-4" id="text-1-4-1">
+<div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1">常规字符串处理函数</h3>
+<div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li>trim(ltrim,rtrim(别名chop)：删除字符串的首尾两端的空格。ltrim只删除开头的空格，rtrim只删除结尾的空格。
 </li>
@@ -499,9 +552,9 @@ $<span style="color: #FD971F;">second_item</span> = <span style="color: #F8F8F2;
 </div>
 </div>
 
-<div id="outline-container-sec-1-4-2" class="outline-4">
-<h4 id="sec-1-4-2">正则表达式函数</h4>
-<div class="outline-text-4" id="text-1-4-2">
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2">正则表达式函数</h3>
+<div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li>ereg（eregi不区分大小写）：搜索一个匹配，可以使用子模式。
 </li>
@@ -528,9 +581,9 @@ Perl正则表达式和POSISX表达式的区别：perl正则表达式的模式需
 </div>
 </div>
 </div>
-<div id="outline-container-sec-1-5" class="outline-3">
-<h3 id="sec-1-5">文件</h3>
-<div class="outline-text-3" id="text-1-5">
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">文件</h2>
+<div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>fopen：打开文件，为了移植性模式应该加上b。可以打开网络上的远程文件。
 </li>
@@ -562,12 +615,12 @@ Perl正则表达式和POSISX表达式的区别：perl正则表达式的模式需
 </div>
 </div>
 
-<div id="outline-container-sec-1-6" class="outline-3">
-<h3 id="sec-1-6">function</h3>
-<div class="outline-text-3" id="text-1-6">
-</div><div id="outline-container-sec-1-6-1" class="outline-4">
-<h4 id="sec-1-6-1">定义</h4>
-<div class="outline-text-4" id="text-1-6-1">
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">function</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1">定义</h3>
+<div class="outline-text-3" id="text-7-1">
 <pre class="example">
 function  func_name($a, $b….)
 {
@@ -592,14 +645,31 @@ function  func_name($a, $b….)
 </div>
 </div>
 
-<div id="outline-container-sec-1-6-2" class="outline-4">
-<h4 id="sec-1-6-2">可变参数</h4>
-<div class="outline-text-4" id="text-1-6-2">
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2">可变参数</h3>
+<div class="outline-text-3" id="text-7-2">
 <ol class="org-ol">
-<li>func_num_args : 返回当前调用的参数个数
+<li>func_num_args() : 返回当前调用的参数个数
 </li>
-<li>func_get_arg : 返回单个参数, eg: func_get_arg(0) 返回当前调用地第一个参
-数.
+<li>func_get_arg(int $arg_num) : 返回单个参数, eg: func_get_arg(0) 返回当前
+调用地第一个参数.
+<div class="org-src-container">
+
+<pre class="src src-php"><span style="color: #F92672;">&lt;?php</span>
+<span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">foo</span>()
+{
+    $<span style="color: #FD971F;">numargs</span> = <span style="color: #F8F8F2; background-color: #272822;">func_num_args</span>();
+    <span style="color: #F92672; font-weight: bold;">if</span>($<span style="color: #FD971F;">numargs</span> <span style="color: #AE81FF;">&gt;</span>= <span style="color: #F8F8F2; background-color: #272822;">2</span>){
+        <span style="color: #F92672; font-weight: bold;">echo</span> <span style="color: #E6DB74;">"the second argument is: "</span> . <span style="color: #F8F8F2; background-color: #272822;">func_get_arg</span>(<span style="color: #F8F8F2; background-color: #272822;">1</span>);
+        <span style="color: #F92672; font-weight: bold;">echo</span> <span style="color: #E6DB74;">'&lt;br /&gt;'</span>;
+    }
+    <span style="color: #F92672; font-weight: bold;">echo</span> <span style="color: #E6DB74;">"the argument list is: "</span>;
+    <span style="color: #F8F8F2; background-color: #272822;">var_dump</span>(<span style="color: #F8F8F2; background-color: #272822;">func_get_args </span>());
+}
+<span style="color: #F8F8F2; background-color: #272822;">foo</span>(<span style="color: #E6DB74;">'first arg'</span>, <span style="color: #E6DB74;">'second arg'</span>);
+<span style="color: #F92672;">?&gt;</span>
+</pre>
+</div>
 </li>
 <li>func_get_args : 以一个数组的形式返回当前调用的参数列表.
 </li>
@@ -607,11 +677,50 @@ function  func_name($a, $b….)
 </div>
 </div>
 
-<div id="outline-container-sec-1-6-3" class="outline-4">
-<h4 id="sec-1-6-3">注意事项</h4>
-<div class="outline-text-4" id="text-1-6-3">
+<div id="outline-container-sec-7-3" class="outline-3">
+<h3 id="sec-7-3">引用</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+函数可以传递引用也可以返回引用,函数返回引用时必须在定义与调用的时候都加上&amp;，
+但是return语句不用加&amp;
+</p>
+<div class="org-src-container">
+
+<pre class="src src-php"><span style="color: #F92672;">&lt;?php</span>
+<span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">add_some_extra</span>(&amp;$<span style="color: #FD971F;">string</span>)
+{
+    $<span style="color: #FD971F;">string</span> .= <span style="color: #E6DB74;">'and something extra.'</span>;
+}
+$<span style="color: #FD971F;">str</span> = <span style="color: #E6DB74;">'This is a string,'</span>;
+<span style="color: #F8F8F2; background-color: #272822;">add_some_extra</span>($<span style="color: #FD971F;">str</span>);        <span style="color: #75715E;">/* </span><span style="color: #75715E;">don't use add_some_extra(&amp;$str) </span><span style="color: #75715E;">*/</span>
+<span style="color: #F92672; font-weight: bold;">echo</span> $<span style="color: #FD971F;">str</span>;    <span style="color: #75715E;">//</span><span style="color: #75715E;">outputs 'This is a string, and something extra.'</span>
+<span style="color: #F92672;">?&gt;</span>
+
+<span style="color: #F92672;">&lt;?php</span>
+<span style="color: #F92672; font-weight: bold;">function</span> &amp;<span style="color: #A6E22E;">returns_reference</span>()
+{
+    <span style="color: #F92672; font-weight: bold;">return</span> $<span style="color: #FD971F;">someref</span>;
+}
+
+$<span style="color: #FD971F;">newref</span> =&amp; <span style="color: #F8F8F2; background-color: #272822;">returns_reference</span>();
+<span style="color: #F92672;">?&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7-4" class="outline-3">
+<h3 id="sec-7-4">注意事项</h3>
+<div class="outline-text-3" id="text-7-4">
 <ol class="org-ol">
-<li><b>php中的函数与类都是全局作用域,可以一个函数内定义,而在外部调用,bad
+<li>php 的函数中要引用全局变量, 必须使用 global $varname; 来申明,否则php它会
+自动创建一个初始值为0的新变量 <b>bad design</b>.
+</li>
+<li>php的函数可以看做是残缺的high order function. 可以将函数赋给一个变量,然
+后直接通过变量来调用.但是函数返回以及匿名函数就实现的比较糟糕,这也是
+<b>bad design</b>.
+</li>
+<li>php中的函数与类都是全局作用域,可以一个函数内定义,而在外部调用, <b>bad
 design</b>
 </li>
 <li>php不支持函数重载,也不可能取消或者重定义已声明的函数
@@ -621,9 +730,12 @@ design</b>
 </div>
 </div>
 
-<div id="outline-container-sec-1-7" class="outline-3">
-<h3 id="sec-1-7">OOP</h3>
-<div class="outline-text-3" id="text-1-7">
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8">OOP</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+示例代码:
+</p>
 <div class="org-src-container">
 
 <pre class="src src-php"><span style="color: #F92672;">&lt;?php</span>
@@ -635,29 +747,42 @@ design</b>
    <span style="color: #F92672; font-weight: bold;">private</span> $<span style="color: #FD971F;">attribute3</span> = <span style="color: #F8F8F2; background-color: #272822;">2</span>;<span style="color: #75715E;">//</span><span style="color: #75715E;">&#21487;&#20197;&#30452;&#25509;&#36171;&#20540;&#65292;&#19981;&#19968;&#23450;&#35201;&#22312;&#26500;&#36896;&#20989;&#25968;&#20013;</span>
    <span style="color: #F92672; font-weight: bold;">protected</span> $<span style="color: #FD971F;">attribute4</span>;
 
-   <span style="color: #F92672; font-weight: bold;">public</span> <span style="color: #F92672; font-weight: bold;">static</span> <span style="color: #968B26; font-weight: bold;">my_static</span> = <span style="color: #F8F8F2; background-color: #272822;">5</span>; <span style="color: #75715E;">//</span><span style="color: #75715E;">&#38745;&#24577;&#21464;&#37327;&#20063;&#26159;&#31867;&#21464;&#37327;&#65292;&#31867;&#22806;&#37096;&#35775;&#38382;</span>
+   <span style="color: #F92672; font-weight: bold;">public</span> <span style="color: #F92672; font-weight: bold;">static</span> $<span style="color: #FD971F;">my_static</span> = <span style="color: #F8F8F2; background-color: #272822;">5</span>; <span style="color: #75715E;">//</span><span style="color: #75715E;">&#38745;&#24577;&#21464;&#37327;&#20063;&#26159;&#31867;&#21464;&#37327;&#65292;&#31867;&#22806;&#37096;&#35775;&#38382;</span>
    <span style="color: #75715E;">//</span><span style="color: #75715E;">A::my_static; &#31867;&#20869;&#37096;&#35775;&#38382;&#65306;parent::my_static,self::my_static</span>
 
-   <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">__construct</span>($<span style="color: #FD971F;">param</span>)
-   {<span style="color: #75715E;">//</span><span style="color: #75715E;">&#26500;&#36896;&#20989;&#25968;</span>
-   $<span style="color: #AE81FF;">this</span> -<span style="color: #AE81FF;">&gt;</span> <span style="color: #968B26; font-weight: bold;">attribute1</span> = $<span style="color: #FD971F;">param</span>;
+   <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">__construct</span>($<span style="color: #FD971F;">param</span>)  <span style="color: #75715E;">//</span><span style="color: #75715E;">&#26500;&#36896;&#20989;&#25968;</span>
+   {
+       <span style="color: #75715E;">/*</span>
+<span style="color: #75715E;">        * &#19981;&#26159; $this-&gt;$attribute1, &#22240;&#20026; $this-&gt;$attribute1 &#20250;&#20808;&#23558;</span>
+<span style="color: #75715E;">        * $attribute1 &#27714;&#20540;, &#24471;&#21040;&#30340;&#20540;&#20877;&#20316;&#20026;&#23646;&#24615;&#21517;&#21435;&#26597;&#25214;, &#25152;&#20197;&#22914;&#26524;</span>
+<span style="color: #75715E;">        * $attribute1 &#30340;&#27714;&#20540;&#32467;&#26524;&#20026; 'aa', &#37027;&#20040; $this-&gt;$attribute1 &#23601;&#31561;&#20215;&#20110;</span>
+<span style="color: #75715E;">        * $this-&gt;aa .</span>
+<span style="color: #75715E;">        </span><span style="color: #75715E;">*/</span>
+       $<span style="color: #AE81FF;">this</span>-&gt;<span style="color: #FD971F;">attribute1</span> = $<span style="color: #FD971F;">param</span>;
    }
-   <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">__destruct</span>()
-   {<span style="color: #75715E;">//</span><span style="color: #75715E;">&#26512;&#26500;&#20989;&#25968;</span>
+   <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">__destruct</span>()  <span style="color: #75715E;">//</span><span style="color: #75715E;">&#26512;&#26500;&#20989;&#25968;</span>
+   {
    }
    <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">__get</span>($<span style="color: #FD971F;">name</span>)
-   {<span style="color: #75715E;">//</span><span style="color: #75715E;">&#21487;&#20197;&#25318;&#25130;$obj-&gt;$name&#36825;&#31181;&#23545;&#31867;&#23454;&#20363;&#30340;&#23646;&#24615;&#30452;&#25509;&#35775;&#38382;&#30340;&#35821;&#21477;&#12290;</span>
-   <span style="color: #75715E;">//</span><span style="color: #75715E;">&#21482;&#26377;&#22312;$name&#23646;&#24615;&#27809;&#26377;&#23450;&#20041;&#26102;&#25165;&#20250;&#35302;&#21457;,&#36825;&#24847;&#21619;&#30528;&#24403;&#23646;&#24615;&#26159;</span>
-    <span style="color: #75715E;">//</span><span style="color: #75715E;">&#31169;&#26377;&#25110;&#32773;&#20445;&#25252;&#26102;&#20063;&#20250;&#35302;&#21457;</span>
-   <span style="color: #F92672; font-weight: bold;">return</span> $<span style="color: #AE81FF;">this</span>-&gt;<span style="color: #FD971F;">name</span>;
+   {
+       <span style="color: #75715E;">/*</span>
+<span style="color: #75715E;">        *&#21487;&#20197;&#25318;&#25130;$obj-&gt;$name&#36825;&#31181;&#23545;&#31867;&#23454;&#20363;&#30340;&#23646;&#24615;&#30452;&#25509;&#35775;&#38382;&#30340;&#35821;&#21477;&#12290;</span>
+<span style="color: #75715E;">        *&#21482;&#26377;&#22312;$name&#23646;&#24615;&#27809;&#26377;&#23450;&#20041;&#26102;&#25165;&#20250;&#35302;&#21457;,&#36825;&#24847;&#21619;&#30528;&#24403;&#23646;&#24615;&#26159;&#31169;&#26377;&#25110;&#32773;&#20445;&#25252;&#26102;&#20063;&#20250;&#35302;&#21457;</span>
+<span style="color: #75715E;">        </span><span style="color: #75715E;">*/</span>
+       <span style="color: #F92672; font-weight: bold;">return</span> $<span style="color: #AE81FF;">this</span>-&gt;<span style="color: #FD971F;">$name</span>;
    }
    <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">__set</span>($<span style="color: #FD971F;">name</span>, $<span style="color: #FD971F;">value</span>)
-   {<span style="color: #75715E;">//</span><span style="color: #75715E;">&#21487;&#20197;&#25318;&#25130;$obj-&gt;$name&#36825;&#31181;&#23545;&#31867;&#23454;&#20363;&#30340;&#23646;&#24615;&#30340;&#20540;&#30452;&#25509;&#36171;&#20540;&#30340;&#35821;&#21477;&#12290;</span>
-   <span style="color: #75715E;">//</span><span style="color: #75715E;">&#21482;&#26377;&#22312;$name&#23646;&#24615;&#27809;&#26377;&#23450;&#20041;&#26102;&#25165;&#20250;&#35302;&#21457;,&#36825;&#24847;&#21619;&#30528;&#24403;&#23646;&#24615;&#26159;</span>
-    <span style="color: #75715E;">//</span><span style="color: #75715E;">&#31169;&#26377;&#25110;&#32773;&#20445;&#25252;&#26102;&#20063;&#20250;&#35302;&#21457;</span>
-   $<span style="color: #AE81FF;">this</span>-&gt;<span style="color: #FD971F;">name</span> = $<span style="color: #FD971F;">value</span>;
+   {
+       <span style="color: #75715E;">/* </span><span style="color: #75715E;">&#21487;&#20197;&#25318;&#25130;$obj-&gt;$name=$value&#36825;&#31181;&#23545;&#31867;&#23454;&#20363;&#30340;&#23646;&#24615;&#30340;&#20540;&#30452;&#25509;&#36171;&#20540;&#30340;&#35821;&#21477;&#12290;</span>
+<span style="color: #75715E;">        * &#21482;&#26377;&#22312;$name&#23646;&#24615;&#27809;&#26377;&#23450;&#20041;&#26102;&#25165;&#20250;&#35302;&#21457;,&#36825;&#24847;&#21619;&#30528;&#24403;&#23646;&#24615;&#26159;&#31169;&#26377;&#25110;&#32773;&#20445;&#25252;&#26102;&#20063;&#20250;&#35302;&#21457;</span>
+<span style="color: #75715E;">        * Example:</span>
+<span style="color: #75715E;">        *         $obj-&gt;aa = 2</span>
+<span style="color: #75715E;">        * &#31561;&#20215;&#20110;:</span>
+<span style="color: #75715E;">        *         __set('aa', 2)</span>
+<span style="color: #75715E;">        </span><span style="color: #75715E;">*/</span>
+       $<span style="color: #AE81FF;">this</span>-&gt;<span style="color: #FD971F;">$name</span> = $<span style="color: #FD971F;">value</span>;
    }
-   <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">operation1</span>()
+   <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">operation1</span>() <span style="color: #75715E;">//</span><span style="color: #75715E;">&#40664;&#35748;&#20844;&#26377;</span>
    {
    }
 }
@@ -666,11 +791,11 @@ design</b>
  <span style="color: #75715E;">//</span><span style="color: #75715E;">&#21487;&#20197;&#37325;&#36733;&#23376;&#31867;&#30340;&#23646;&#24615;&#19982;&#25104;&#21592;&#26041;&#27861;</span>
    <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">__construct</span>()
    {
-   <span style="color: #AE81FF;">parent</span>::<span style="color: #F8F8F2; background-color: #272822;">__construct</span>();<span style="color: #75715E;">//</span><span style="color: #75715E;">&#25191;&#34892;&#29238;&#31867;&#30340;&#26500;&#36896;&#20989;&#25968;</span>
+       <span style="color: #AE81FF;">parent</span>::<span style="color: #F8F8F2; background-color: #272822;">__construct</span>();<span style="color: #75715E;">//</span><span style="color: #75715E;">&#25191;&#34892;&#29238;&#31867;&#30340;&#26500;&#36896;&#20989;&#25968;</span>
    }
 }
 
-<span style="color: #F92672; font-weight: bold;">Interface</span> (<span style="color: #968B26; font-weight: bold;">&#25509;&#21475;</span>)
+<span style="color: #75715E;">// </span><span style="color: #75715E;">interface (&#25509;&#21475;)</span>
 <span style="color: #F92672; font-weight: bold;">interface</span> <span style="color: #66D9EF;">iTemplate</span>
 {
    <span style="color: #F92672; font-weight: bold;">public</span> <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">setVariable</span>($<span style="color: #FD971F;">name</span>, $<span style="color: #FD971F;">var</span>);
@@ -703,12 +828,12 @@ $<span style="color: #FD971F;">object</span> = <span style="color: #F92672; font
 </div>
 </div>
 
-<div id="outline-container-sec-1-8" class="outline-3">
-<h3 id="sec-1-8">php与数据库（mysql）</h3>
-<div class="outline-text-3" id="text-1-8">
-</div><div id="outline-container-sec-1-8-1" class="outline-4">
-<h4 id="sec-1-8-1">示例代码</h4>
-<div class="outline-text-4" id="text-1-8-1">
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9">php与数据库（mysql）</h2>
+<div class="outline-text-2" id="text-9">
+</div><div id="outline-container-sec-9-1" class="outline-3">
+<h3 id="sec-9-1">示例代码</h3>
+<div class="outline-text-3" id="text-9-1">
 <div class="org-src-container">
 
 <pre class="src src-php"><span style="color: #F92672;">&lt;?php</span>
@@ -749,276 +874,69 @@ $<span style="color: #FD971F;">db</span>-&gt;<span style="color: #F8F8F2; backgr
 </p>
 </div>
 </div>
-</div>
 
-<div id="outline-container-sec-1-9" class="outline-3">
-<h3 id="sec-1-9">MySQL</h3>
-<div class="outline-text-3" id="text-1-9">
-</div><div id="outline-container-sec-1-9-1" class="outline-4">
-<h4 id="sec-1-9-1">数据库设计的三大范式：</h4>
-<div class="outline-text-4" id="text-1-9-1">
-<ul class="org-ul">
-<li>第一范式：字段不可分，
-</li>
-<li>第二范式：有主键，非主键字段要依赖主键字段
-只要数据列里面的内容出现重复，就意味着应该将表拆分，拆分形成的表必须用外键关联起来。
-</li>
-<li>第三范式：非主键字段不能相互依赖，也就是说表中的每一列必须与主键直接相关而不能间接相关。
-与主键没有直接关系的数据列必须清除（创建一个表来存放他们）。
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-1-9-2" class="outline-4">
-<h4 id="sec-1-9-2">数据库的常用模式</h4>
-<div class="outline-text-4" id="text-1-9-2">
-</div><div id="outline-container-sec-1-9-2-1" class="outline-5">
-<h5 id="sec-1-9-2-1">主扩展模式</h5>
-<div class="outline-text-5" id="text-1-9-2-1">
+<div id="outline-container-sec-9-2" class="outline-3">
+<h3 id="sec-9-2">解释</h3>
+<div class="outline-text-3" id="text-9-2">
 <p>
-比如说公司有不同类型的员工，如设计师，程序员，PM等，那么可以先建一个员
-工表，这个表存放所有类型的员工都有的属性，如姓名，性别，入职时间等等等，
-然后在设计师一个表，程序员一个表，PM一个表，但是这些表都与员工表关联
+php执行一次query时,如果是select 查询,那么会返回一个mysqli_result对象.如果是
+其它查询,那么成功就返回 True.
 </p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-9-2-2" class="outline-5">
-<h5 id="sec-1-9-2-2">主从模式</h5>
-<div class="outline-text-5" id="text-1-9-2-2">
-<p>
-一张表的一条记录对应另一张表的多条记录。也就是一对多
-eg：论坛的板块表与帖子表就是这种关系，而帖子表与回复表也是这种关系
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-9-2-3" class="outline-5">
-<h5 id="sec-1-9-2-3">名值模式</h5>
-</div>
-<div id="outline-container-sec-1-9-2-4" class="outline-5">
-<h5 id="sec-1-9-2-4">多对多模式</h5>
-<div class="outline-text-5" id="text-1-9-2-4">
-<p>
-一本书可以有多个作者，一个作者也可以写多本书，所以书目信息表与作者信息
-表就是多对多关系，那么设计时通常是在加入一个关联表，也就是通过3个表来
-表示这种关系
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-1-9-3" class="outline-4">
-<h4 id="sec-1-9-3">SQL基本知识与常用代码&#xa0;&#xa0;&#xa0;<span class="tag"><span class="sql">sql</span></span></h4>
-<div class="outline-text-4" id="text-1-9-3">
-</div><div id="outline-container-sec-1-9-3-1" class="outline-5">
-<h5 id="sec-1-9-3-1">登录</h5>
-<div class="outline-text-5" id="text-1-9-3-1">
+<ol class="org-ol">
+<li>mysqli_result:
 <ul class="org-ul">
-<li>mysql –h hostname –u username –p password.
+<li>$num_rows(属性): 结果集的记录条数
 </li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-1-9-3-2" class="outline-5">
-<h5 id="sec-1-9-3-2">增加新用户</h5>
-<div class="outline-text-5" id="text-1-9-3-2">
-<ul class="org-ul">
-<li>grant 权限 on 数据库.* to 用户名称@登陆主机  identified 密码
+<li>fetch_assoc(方法): 将一条记录作为一个关联数组返回, 数组的key是数据表的
+field name, 同时将记录指针移到下一条记录.可以用while了来循环读取.
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #F92672; font-weight: bold;">grant</span> <span style="color: #F92672; font-weight: bold;">select</span>, <span style="color: #F92672; font-weight: bold;">insert</span>, <span style="color: #F92672; font-weight: bold;">update</span>, <span style="color: #F92672; font-weight: bold;">delete</span>
-<span style="color: #F92672; font-weight: bold;">on</span> books.*
-<span style="color: #F92672; font-weight: bold;">to</span> <span style="color: #A6E22E;">user</span> identified <span style="color: #F92672; font-weight: bold;">by</span> <span style="color: #E6DB74;">'1234'</span>
+<pre class="src src-php"><span style="color: #F92672; font-weight: bold;">while</span> ($<span style="color: #FD971F;">row</span> = $<span style="color: #FD971F;">result</span>-&gt;<span style="color: #F8F8F2; background-color: #272822;">fetch_assoc</span>()) {
+    <span style="color: #F8F8F2; background-color: #272822;">printf </span>(<span style="color: #E6DB74;">"%s (%s)\n"</span>, $<span style="color: #FD971F;">row</span>[<span style="color: #E6DB74;">"Name"</span>], $<span style="color: #FD971F;">row</span>[<span style="color: #E6DB74;">"CountryCode"</span>]);
+}
 </pre>
 </div>
 </li>
 </ul>
-</div>
-</div>
-
-<div id="outline-container-sec-1-9-3-3" class="outline-5">
-<h5 id="sec-1-9-3-3">Select</h5>
-<div class="outline-text-5" id="text-1-9-3-3">
-<ul class="org-ul">
-<li>select  列1,列2  from  表名
 </li>
-<li>Select  表1.列1，表2. 列2  from  表1， 表2（多张表中选取）
-</li>
-<li>select  *  from  表名
-</li>
-<li>select  distinct  列2   from  表名
-</li>
-<li>select  列1,列2  from  表名  order by  列 （后可加ASC，DESC（逆序））
-</li>
-<li>select  列  from 表名称  limit  数值  （限制返回的结果集的行数）
-</li>
-<li>select  列  from  表名称  where  列  in （value1，value2…….）
-</li>
-<li>select  列   into   表1   from   表名  where子句（从一个表选取插入另一个表，可用于备份）
-</li>
-<li>select  *   into   表1   from   表名  where子句
-</li>
-
-<li>select  列名称  from 表名 where 列名 运算符 值 （可以加and与
-（运算符：&gt;,&gt;=,&lt;,&lt;=,=,&lt;&gt;,between
-    （类似between value1 and value2）,like.其中like支持通配符，通配符如下：
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-1-9-3-4" class="outline-5">
-<h5 id="sec-1-9-3-4">insert</h5>
-<div class="outline-text-5" id="text-1-9-3-4">
-<ul class="org-ul">
-<li>insert  表名  values（值1，值2，值3………….）
-</li>
-<li>insert  表名 (列1，列2……….)  values （值1，值2………….）
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-1-9-3-5" class="outline-5">
-<h5 id="sec-1-9-3-5">update</h5>
-<div class="outline-text-5" id="text-1-9-3-5">
-<ul class="org-ul">
-<li>update 表名称set 列名称=新值  where 列名称=某值
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-1-9-3-6" class="outline-5">
-<h5 id="sec-1-9-3-6">delete（删除行）</h5>
-<div class="outline-text-5" id="text-1-9-3-6">
-<ul class="org-ul">
-<li>delete  from 表名称 where  列名称=值
-</li>
-<li>delete from  表名称    (删除所有行，但是保留表)
-</li>
-<li>delete * from 表名称   (删除所有行，但是保留表)
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-1-9-3-7" class="outline-5">
-<h5 id="sec-1-9-3-7">create database</h5>
-<div class="outline-text-5" id="text-1-9-3-7">
-<p>
-create database 数据库名;
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-9-3-8" class="outline-5">
-<h5 id="sec-1-9-3-8">create  table</h5>
-<div class="outline-text-5" id="text-1-9-3-8">
-<p class="verse">
-create  table  表名<br  />
-(<br  />
-列名称1   数据类型，<br  />
-列名称2   数据类型，<br  />
-…………<br  />
-)<br  />
-约束：NOT  NULL<br  />
-&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;Primary key：主键，不用在指定unique。<br  />
-&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;Unique：字段必须唯一。<br  />
-&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;Foreign key:外键<br  />
-&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;Check：值范围，eg：check（Id&gt;0）.<br  />
-&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;Default: 默认值，default ‘yangyu’。<br  />
-&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;Auto_increment：通常对主键。<br  />
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-9-3-9" class="outline-5">
-<h5 id="sec-1-9-3-9">Index</h5>
-<div class="outline-text-5" id="text-1-9-3-9">
-<ul class="org-ul">
-<li>Create  index：create  index  索引名 on  表名 （列名）
-</li>
-<li>Drop   index ： drop index  索引名  on 表名
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-1-9-3-10" class="outline-5">
-<h5 id="sec-1-9-3-10">Drop</h5>
-<div class="outline-text-5" id="text-1-9-3-10">
-<ul class="org-ul">
-<li>Drop  table  ： drop table 表名
-</li>
-<li>Drop  database ：drop database 数据库名
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-1-9-3-11" class="outline-5">
-<h5 id="sec-1-9-3-11">Alert</h5>
-<div class="outline-text-5" id="text-1-9-3-11">
-<ul class="org-ul">
-<li>Alert  table ：alert  table  表名  add  列名  数据类型
-</li>
-<li>alert  table 表名  drop  column 列名
-</li>
-<li>alert  table  表名  alert  column 列名 数据类型
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-1-9-3-12" class="outline-5">
-<h5 id="sec-1-9-3-12">存储过程</h5>
-</div>
-<div id="outline-container-sec-1-9-3-13" class="outline-5">
-<h5 id="sec-1-9-3-13">事务&#xa0;&#xa0;&#xa0;<span class="tag"><span class="transaction">transaction</span></span></h5>
-<div class="outline-text-5" id="text-1-9-3-13">
-<p>
-为了保证数据库数据在逻辑上的一致性,有一些操作应该打包执行,也就是说这些SQL语
-句要么全部执行成功,要么一条都不执行,不能出现一部分执行成功,而另外一部分执行
-失败的情况.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-9-3-14" class="outline-5">
-<h5 id="sec-1-9-3-14">从文件创建数据表</h5>
-<div class="outline-text-5" id="text-1-9-3-14">
-<ul class="org-ul">
-<li>mysql –u root &lt;file.sql
-</li>
-</ul>
-</div>
+</ol>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-1-10" class="outline-3">
-<h3 id="sec-1-10">其它技巧</h3>
-<div class="outline-text-3" id="text-1-10">
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10">其它技巧</h2>
+<div class="outline-text-2" id="text-10">
 <ol class="org-ol">
 <li>对字符串可以使用单，双引号的场合尽量使用单引号，因为使用双引号效率不高。
 </li>
-<li>对于一个没有设置的变量直接用if会有错误，因此应该使用isset或者empty检查，
-推荐empty。
+<li>可以在表达式前加 @ 来抑制错误.
 </li>
-<li>Show_source函数可以高亮显示程序代码。
+<li>私有的变量与方法的名字应该以下划线开头.
+</li>
+<li>对于一个没有设置的变量直接用 <code>if</code> 会有错误，因此应该使用isset或者empty检
+查，推荐empty。
+</li>
+<li>show_source函数可以高亮显示程序代码。
 </li>
 <li>密码加密推荐使用crypt函数的blowfish算法，不推荐使用sha1,或者md5.
+<div class="org-src-container">
+
+<pre class="src src-php"><span style="color: #F92672;">&lt;?php</span>
+$<span style="color: #FD971F;">hash</span> = <span style="color: #F8F8F2; background-color: #272822;">crypt</span>($<span style="color: #FD971F;">password</span>);
+<span style="color: #F92672; font-weight: bold;">if</span> (<span style="color: #F8F8F2; background-color: #272822;">crypt</span>($<span style="color: #FD971F;">user_input</span>, $<span style="color: #FD971F;">hash</span>) == $<span style="color: #FD971F;">hash</span>) { <span style="color: #75715E;">/* </span><span style="color: #75715E;">use hash as the salt </span><span style="color: #75715E;">*/</span>
+   <span style="color: #F92672; font-weight: bold;">echo</span> <span style="color: #E6DB74;">"Password verified!"</span>;
+}
+<span style="color: #F92672;">?&gt;</span>
+</pre>
+</div>
 </li>
 <li>生成一个唯一的字符串：uniqid函数。
 </li>
 <li>对于表单，在点击提交按钮之前$_POST中的索引是不存在的，所以这样调用
-$_POST[‘name’]试图获得name输入框的值会报错，因为‘name’索引不存在。这时调
-用isset和empty返回false与true，如果点击了提交按钮，但是用户没有在输入框中
-输入任何数据，那么$_POST[‘name’]的值是空字符串，这时调用isset会返回true，
+$_POST['name']试图获得name输入框的值会报错，因为 'name' 索引不存在。这时
+调用isset和empty返回false与true，如果点击了提交按钮，但是用户没有在输入框
+中输入任何数据，那么$_POST['name']的值是空字符串，这时调用isset会返回true，
 所以最好调用empty函数。
 </li>
 <li>尽量使用字符串处理函数，而不要使用正则表达式，因为前者更快。
@@ -1028,33 +946,7 @@ $_POST[‘name’]试图获得name输入框的值会报错，因为‘name’索
 <li>每一个成功的POST页面都应该重定向，因为如果不重定向，那么刷新该页面会造成
 POST数据重复提交。。
 </li>
-<li>函数返回引用时必须在定义与调用的时候都加上&amp;，但是return语句不用
-加&amp;
-<div class="org-src-container">
-
-<pre class="src src-php"><span class="linenr"> 1: </span><span style="color: #F92672;">&lt;?php</span>
-<span class="linenr"> 2: </span><span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">add_some_extra</span>(&amp;$<span style="color: #FD971F;">string</span>)
-<span class="linenr"> 3: </span>{
-<span class="linenr"> 4: </span>    $<span style="color: #FD971F;">string</span> .= <span style="color: #E6DB74;">'and something extra.'</span>;
-<span class="linenr"> 5: </span>}
-<span class="linenr"> 6: </span>$<span style="color: #FD971F;">str</span> = <span style="color: #E6DB74;">'This is a string,'</span>;
-<span class="linenr"> 7: </span><span style="color: #F8F8F2; background-color: #272822;">add_some_extra</span>($<span style="color: #FD971F;">str</span>);
-<span class="linenr"> 8: </span><span style="color: #F92672; font-weight: bold;">echo</span> $<span style="color: #FD971F;">str</span>;    <span style="color: #75715E;">//</span><span style="color: #75715E;">outputs 'This is a string, and something extra.'</span>
-<span class="linenr"> 9: </span><span style="color: #F92672;">?&gt;</span>
-<span class="linenr">10: </span>
-<span class="linenr">11: </span><span style="color: #F92672;">&lt;?php</span>
-<span class="linenr">12: </span><span style="color: #F92672; font-weight: bold;">function</span> &amp;<span style="color: #A6E22E;">returns_reference</span>()
-<span class="linenr">13: </span>{
-<span class="linenr">14: </span>    <span style="color: #F92672; font-weight: bold;">return</span> $<span style="color: #FD971F;">someref</span>;
-<span class="linenr">15: </span>}
-<span class="linenr">16: </span>
-<span class="linenr">17: </span>$<span style="color: #FD971F;">newref</span> =&amp; <span style="color: #F8F8F2; background-color: #272822;">returns_reference</span>();
-<span class="linenr">18: </span><span style="color: #F92672;">?&gt;</span>
-</pre>
-</div>
-</li>
 </ol>
-</div>
 </div>
 </div>
 </div>
@@ -1079,14 +971,14 @@ POST数据重复提交。。
 </div>
 <!-- begin footer -->
 <div id="footer">
-  <hr />
-  <ul class="links">
-    <li>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</li>
+  <ul class="links vertical-nav">
     <li><a href="/sitemap.xml">Sitemap</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     <li><a href="/about.html">About Me</a></li>
-    <li><a href="#">Back to Top</a></li>
+    <li><a class="back-to-top" href="#">Back to Top</a></li>
   </ul>
+  <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
+  <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
 <!-- end footer -->
 </div>

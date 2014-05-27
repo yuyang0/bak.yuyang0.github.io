@@ -4,10 +4,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>javascript笔记</title>
-<!-- 2014-03-26 Wed 13:44 -->
+<!-- 2014-05-16 Fri 13:57 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
+<meta  name="keywords" content="javascript syntax" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center; }
@@ -88,7 +89,9 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="static/css/main.css"/> <link rel="shortcut icon" href="static/img/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="static/css/main.css"/>
+<link rel="shortcut icon" href="static/img/favicon.ico" />
+<script type="text/javascript" src="static/js/custom.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -140,16 +143,25 @@ for the JavaScript code in this tag.
 <div id="preamble" class="status">
 <div id="header">
       <div class="inner">
-        <h1 id="blog-title"><a href="/"> Yu Yang's Blog</a></h1>
-        <ul class="nav">
-          <li> <a href="/">Home</a></li>
-          <li> <a href="/about.html">About</a></li>
-          <li> <a href="/rss.xml">RSS</a></li>
-        </ul>
-        <form method="get" action="https://google.com/search" id="search">
-          <input type="hidden" name="q" value="site:yuyang.farbox.com" />
-          <input type="text" name="q" placeholder="Search..." />
-        </form>
+        <h1 id="site-title"><a href="/"> Yu Yang's Blog</a></h1>
+        <div>
+          <a href="###" id="site-nav-btn">菜单</a>
+          <ul id="site-nav" class="vertical-nav mobi-hid">
+            <li> <a href="/">Home</a></li>
+            <li> <a href="/about.html">About</a></li>
+
+            <li> <a href="/tags.html">Tags</a></li>
+
+            <li> <a href="/rss.xml">RSS</a></li>
+          </ul>
+
+          <form id="site-search" method="get" action="https://google.com/search">
+            <input type="hidden" name="q" value="site:yuyang.farbox.com" />
+            <input type="text" name="q" placeholder="Search..." />
+            <button class="btn-search" type="submit">Search</button>
+          </form>
+          <div style="clear:both;"> </div>
+        </div>
       </div>
     </div>
 </div>
@@ -159,93 +171,104 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">给c程序员的javascript指南</a>
+<li><a href="#sec-1">javascript文档</a></li>
+<li><a href="#sec-2">基本类型</a>
 <ul>
-<li><a href="#sec-1-1">变量类型</a>
+<li><a href="#sec-2-1">type的基本常识</a></li>
+<li><a href="#sec-2-2">数字</a>
 <ul>
-<li><a href="#sec-1-1-1">type的基本常识</a></li>
-<li><a href="#sec-1-1-2">数字：</a>
-<ul>
-<li><a href="#sec-1-1-2-1">日期</a></li>
+<li><a href="#sec-2-2-1">日期</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-1-3">字符串：</a>
+<li><a href="#sec-2-3">字符串</a>
 <ul>
-<li><a href="#sec-1-1-3-1">常见字符串处理函数</a></li>
-<li><a href="#sec-1-1-3-2">正则表达式&#xa0;&#xa0;&#xa0;<span class="tag"><span class="regrx">regrx</span></span></a></li>
+<li><a href="#sec-2-3-1">常见字符串处理函数</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-1-4">bool：</a></li>
-<li><a href="#sec-1-1-5">undefined与null:</a></li>
-<li><a href="#sec-1-1-6">object：</a></li>
+<li><a href="#sec-2-4">bool</a></li>
+<li><a href="#sec-2-5">undefined与null</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-2">Array</a></li>
-<li><a href="#sec-1-3">objects(对象)</a></li>
-<li><a href="#sec-1-4">control flow</a></li>
-<li><a href="#sec-1-5">function</a></li>
-</ul>
-</li>
-<li><a href="#sec-2">client-side javascript</a>
+<li><a href="#sec-3">正则表达式</a>
 <ul>
-<li><a href="#sec-2-1">js运行方式</a></li>
-<li><a href="#sec-2-2">global window object</a>
+<li><a href="#sec-3-1">Create RegExp Object</a></li>
+<li><a href="#sec-3-2">flags</a></li>
+<li><a href="#sec-3-3">group</a></li>
+<li><a href="#sec-3-4">RegExp method</a></li>
+<li><a href="#sec-3-5">String method</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">Array</a>
 <ul>
-<li><a href="#sec-2-2-1">timers</a></li>
-<li><a href="#sec-2-2-2">window.location</a></li>
-<li><a href="#sec-2-2-3">window.history</a></li>
-<li><a href="#sec-2-2-4">window.navigator</a></li>
-<li><a href="#sec-2-2-5">window.document</a></li>
+<li><a href="#sec-4-1">定义</a></li>
+<li><a href="#sec-4-2">遍历数组</a></li>
+<li><a href="#sec-4-3">数组方法</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#sec-3">一些js技巧</a></li>
-<li><a href="#sec-4">jquery</a>
+<li><a href="#sec-5">objects(对象)</a>
 <ul>
-<li><a href="#sec-4-1">一些惯例以及基本常识</a></li>
-<li><a href="#sec-4-2">jquery selector</a></li>
-<li><a href="#sec-4-3">DOM操作</a></li>
-<li><a href="#sec-4-4">jquery事件</a></li>
-<li><a href="#sec-4-5">jquery动画</a></li>
-<li><a href="#sec-4-6">ajax</a></li>
-<li><a href="#sec-4-7">jquery常用插件</a></li>
+<li><a href="#sec-5-1">基本解释</a></li>
+<li><a href="#sec-5-2">原型</a></li>
+<li><a href="#sec-5-3">json</a></li>
 </ul>
 </li>
+<li><a href="#sec-6">control flow</a></li>
+<li><a href="#sec-7">function</a>
+<ul>
+<li><a href="#sec-7-1">definition</a></li>
+<li><a href="#sec-7-2">四种调用方式</a>
+<ul>
+<li><a href="#sec-7-2-1">method调用模式</a></li>
+<li><a href="#sec-7-2-2">函数调用模式</a></li>
+<li><a href="#sec-7-2-3">构造器调用模式(不推荐)</a></li>
+<li><a href="#sec-7-2-4">apply调用模式</a></li>
+</ul>
+</li>
+<li><a href="#sec-7-3">基本特性</a></li>
+<li><a href="#sec-7-4">作用域</a></li>
+<li><a href="#sec-7-5">给类型增加方法</a></li>
+<li><a href="#sec-7-6">内置的函数</a></li>
+</ul>
+</li>
+<li><a href="#sec-8">一些js技巧</a></li>
 </ul>
 </div>
 </div>
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">给c程序员的javascript指南</h2>
+<h2 id="sec-1">javascript文档</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 几份不错的文档：<a href="http://bonsaiden.github.io/JavaScript-Garden/">JavaScript Garden</a> ,火狐开发者社区的js <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide?redirectlocale%3Den-US&redirectslug%3DJavaScript%252FGuide">tutorial</a>
 </p>
 </div>
-<div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">变量类型</h3>
-<div class="outline-text-3" id="text-1-1">
-</div><div id="outline-container-sec-1-1-1" class="outline-4">
-<h4 id="sec-1-1-1">type的基本常识</h4>
-<div class="outline-text-4" id="text-1-1-1">
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">基本类型</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">type的基本常识</h3>
+<div class="outline-text-3" id="text-2-1">
 <ol class="org-ol">
-<li>数字，字符串。boolean是js的基本类型，它们不是object，但是这三种类型有对应的包装对象（wrapper object），
-当你访问字符串的方法时，实际上会自动的创建一个临时的字符串包装对象，就像调用了new String(s),当调用完成
-后这个临时对象会被丢弃，对于数字（Number），bool（Boolean）都是同样的原理
+<li>数字, 字符串, boolean, null, undefined是js的基本类型，它们不是object, 其
+它所有的值都是object, 数字, 字符串, bookean这三种类型有对应的包装对象
+（wrapper object），当你访问字符串的方法时，实际上会自动的创建一个临时的
+字符串包装对象，就像调用了new String(s),当调用完成后这个临时对象会被丢弃，
+对于数字（Number），bool（Boolean）都是同样的原理
 </li>
-<li>数字，字符串，bool都是不可变对象，而object是可变对象
+<li>数字，字符串，bool都是不可变的，而object是可变的.
 </li>
-<li>类型转换： 2 + '2a' = '22a'(操作符是+，则自动将数字转换为字符串，如果是
-其它操作符则尝试将字符串转为整数，'22'转换为22, 但'2a'无法转换，这一点和
+<li>类型转换： 2 + '2a' = '22a'(操作符是+，则自动将数字转换为字符串，如果是其
+它操作符则尝试将字符串转为整数，'22'转换为22, 但'2a'无法转换，这一点和
 parseInt不同)
 </li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-sec-1-1-2" class="outline-4">
-<h4 id="sec-1-1-2">数字：</h4>
-<div class="outline-text-4" id="text-1-1-2">
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">数字</h3>
+<div class="outline-text-3" id="text-2-2">
 <p>
 不区分整数与浮点数
 </p>
@@ -280,9 +303,9 @@ Math.exp(3)         <span style="color: #75715E;">//</span><span style="color: #
 </pre>
 </div>
 </div>
-<div id="outline-container-sec-1-1-2-1" class="outline-5">
-<h5 id="sec-1-1-2-1">日期</h5>
-<div class="outline-text-5" id="text-1-1-2-1">
+<div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1">日期</h4>
+<div class="outline-text-4" id="text-2-2-1">
 <div class="org-src-container">
 
 <pre class="src src-js"><span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">then</span> = <span style="color: #F92672; font-weight: bold;">new</span> <span style="color: #66D9EF;">Date</span>(2010, 0, 1); <span style="color: #75715E;">// </span><span style="color: #75715E;">The 1st day of the 1st month of 2010</span>
@@ -309,9 +332,9 @@ later.toISOString()   <span style="color: #75715E;">// </span><span style="color
 </div>
 </div>
 
-<div id="outline-container-sec-1-1-3" class="outline-4">
-<h4 id="sec-1-1-3">字符串：</h4>
-<div class="outline-text-4" id="text-1-1-3">
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">字符串</h3>
+<div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
 
 <pre class="src src-js"><span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">x</span> = <span style="color: #E6DB74;">'hello world'</span>; <span style="color: #75715E;">// </span><span style="color: #75715E;">&#23383;&#31526;&#20018;&#21333;&#21452;&#24341;&#21495;&#31561;&#20215;</span>
@@ -324,9 +347,9 @@ point使用utf-16编码后有3个字节，那么使用length时该字符就是2�
 而不是以逻辑上的字符为基础的
 </p>
 </div>
-<div id="outline-container-sec-1-1-3-1" class="outline-5">
-<h5 id="sec-1-1-3-1">常见字符串处理函数</h5>
-<div class="outline-text-5" id="text-1-1-3-1">
+<div id="outline-container-sec-2-3-1" class="outline-4">
+<h4 id="sec-2-3-1">常见字符串处理函数</h4>
+<div class="outline-text-4" id="text-2-3-1">
 <div class="org-src-container">
 
 <pre class="src src-js"><span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">s</span> = <span style="color: #E6DB74;">"hello, world"</span>     <span style="color: #75715E;">// </span><span style="color: #75715E;">=&gt; 3: position of first "l" at or after 3</span>
@@ -348,18 +371,17 @@ s.toUpperCase()       <span style="color: #75715E;">// </span><span style="color
 </div>
 </div>
 </div>
+</div>
 
-<div id="outline-container-sec-1-1-3-2" class="outline-5">
-<h5 id="sec-1-1-3-2">正则表达式&#xa0;&#xa0;&#xa0;<span class="tag"><span class="regrx">regrx</span></span></h5>
-</div>
-</div>
-<div id="outline-container-sec-1-1-4" class="outline-4">
-<h4 id="sec-1-1-4">bool：</h4>
-<div class="outline-text-4" id="text-1-1-4">
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4">bool</h3>
+<div class="outline-text-3" id="text-2-4">
 <p>
 只能为true或者false,以下的值会自动转换为false：
 </p>
 <ol class="org-ol">
+<li>false
+</li>
 <li>null
 </li>
 <li>undefined
@@ -372,45 +394,179 @@ s.toUpperCase()       <span style="color: #75715E;">// </span><span style="color
 </li>
 </ol>
 <p>
-除以上的值之外的所有的值，包括所有的对象都会自动转换为true
+除以上的值之外的所有的值，包括所有的对象都会自动转换为true, 可以通过 !! 来明
+确的将一个值转换为bool
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-1-1-5" class="outline-4">
-<h4 id="sec-1-1-5">undefined与null:</h4>
-<div class="outline-text-4" id="text-1-1-5">
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5">undefined与null</h3>
+<div class="outline-text-3" id="text-2-5">
 <p>
 前者表示没有定义，后者表示变量的值为空，eg：var x;(x为undefined)
 </p>
 </div>
 </div>
+</div>
 
-<div id="outline-container-sec-1-1-6" class="outline-4">
-<h4 id="sec-1-1-6">object：</h4>
-<div class="outline-text-4" id="text-1-1-6">
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">正则表达式</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">Create RegExp Object</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
-数组，函数都是特殊的object，普通的object实际就是一些无序的属性的集合，通常这样定义
+正则表示式是对象(RegExp对象), 有两种定义方法:
 </p>
+<ol class="org-ol">
+<li><code>var pattern = /../;</code>, <b>无引号,不是字符串</b>.
+</li>
+<li><code>var pattern = new RegExp(...);</code>
+</li>
+</ol>
+<p>
+<b>正则表达式要写成一行, 因为正则表达式中空格是非常重要的</b>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">flags</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+正则表达式可以指定标志, 比如 <code>/../g</code>, <code>/../i</code>.
+</p>
+<ol class="org-ol">
+<li>g : 全局模式
+</li>
+<li>i : 忽略大小写模式
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3">group</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+正则表达式可以分组. 分组有以下几类:
+</p>
+<ol class="org-ol">
+<li>(..) : 这种分组是捕获型分组, 每一个捕获型分组都会有一个编号, 这种编号是从
+1开始, 如果一个捕获型分组的编号是 <code>2</code>, 且最后的结果是 <code>result</code>, 那么该分
+组匹配的文本就是 <code>result[2]</code>.
+</li>
+<li>(?: ..): 以 <code>?:</code> 开头, 非捕获型分组, 这种分组不会干扰捕获型分组的编号, 它
+匹配的文本也不会出现在最终的结果中.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4">RegExp method</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+这是regexp的方法
+</p>
+<ol class="org-ol">
+<li><code>.exec(str)</code>: 返回一个数组, 数组的第一个元素是匹配的完整字符串,接下来的元素
+是所有的捕获型分组, 注意全局模式对exec不起作用, 它只返回第一个匹配.
+</li>
+<li><code>.test(str)</code>: 如果str中包含能被匹配的字符串, 那么返回true, 否则返回false.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5">String method</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+这是字符串的方法
+</p>
+<ol class="org-ol">
+<li><code>.search(regexp)</code>: 返回匹配字符串的第一个字符在原字符串中的index, 无匹配
+那么返回 -1, 全局模式对search无用.
 <div class="org-src-container">
 
-<pre class="src src-js">obj = {
-  name1: <span style="color: #E6DB74;">"val1"</span>,
-  name2: <span style="color: #E6DB74;">"val2"</span>
+<pre class="src src-js"><span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">s</span> = <span style="color: #E6DB74;">"JavaScript is fun"</span>;
+s.search(<span style="color: #E6DB74;">/script/</span>i) <span style="color: #75715E;">// </span><span style="color: #75715E;">Returns 4</span>
+s.search(<span style="color: #E6DB74;">/a(.)a/</span>)   <span style="color: #75715E;">// </span><span style="color: #75715E;">Returns 1</span>
+</pre>
+</div>
+<p>
+如果 <code>search</code> 的第一个参数不是正则表达式及而是一个字符串, 那么先将它转换
+为正则表达式(将字符串传递给 <code>new RegExp(..)</code>)
+</p>
+</li>
+<li><code>.replace(regexp, new_str)</code>: 返回替换后的新字符串, 如果regexp是全局模式,
+那么会替换所有的匹配的字符串, 否则只替换第一处. 如果regexp中使用了分组,那
+么可以在new_str中通过 $1, $2 &#x2026; $n 来引用第一个, 第二个一直到第n个分组匹
+配的字符串.
+<div class="org-src-container">
+
+<pre class="src src-js">text.replace(<span style="color: #E6DB74;">/javascript/</span>i, <span style="color: #E6DB74;">"JavaScript"</span>);
+<span style="color: #E6DB74;">"Doe, John"</span>.replace(<span style="color: #E6DB74;">/(</span><span style="color: #E6DB74; font-weight: bold;">\w</span><span style="color: #E6DB74;">+)</span><span style="color: #E6DB74; font-weight: bold;">\s</span><span style="color: #E6DB74;">*,</span><span style="color: #E6DB74; font-weight: bold;">\s</span><span style="color: #E6DB74;">*(</span><span style="color: #E6DB74; font-weight: bold;">\w</span><span style="color: #E6DB74;">+)/</span>, <span style="color: #E6DB74;">"$2 $1"</span>); <span style="color: #75715E;">// </span><span style="color: #75715E;">=&gt; "John Doe"</span>
+</pre>
+</div>
+<p>
+如果 <code>replace</code> 的第一个参数不是正则表达式及而是一个字符串, 那么直接使用字
+符串字面值匹配
+</p>
+</li>
+<li><code>.match(regexp)</code>: 返回一个数组, 如果regexp是全局模式, 那么数组元素就是所
+有匹配的字符串, 如果没有使用全局模式, 那么数组的第一个元素是匹配的字符串,
+接下来的元素是所有的捕获型分组, 具体可以看下面的例子.
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #75715E;">// </span><span style="color: #75715E;">regexp has 'g' attribute</span>
+<span style="color: #E6DB74;">"1 plus 2 equals 3"</span>.match(<span style="color: #E6DB74;">/</span><span style="color: #E6DB74; font-weight: bold;">\d</span><span style="color: #E6DB74;">+/</span>g)  <span style="color: #75715E;">// </span><span style="color: #75715E;">=&gt; ["1", "2", "3"]</span>
+
+<span style="color: #75715E;">// </span><span style="color: #75715E;">regexp doesn't have 'g' attribute</span>
+<span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">url</span> = <span style="color: #E6DB74;">/(</span><span style="color: #E6DB74; font-weight: bold;">\w</span><span style="color: #E6DB74;">+):</span><span style="color: #E6DB74; font-weight: bold;">\/\/</span><span style="color: #E6DB74;">([</span><span style="color: #E6DB74; font-weight: bold;">\w</span><span style="color: #E6DB74;">.]+)</span><span style="color: #E6DB74; font-weight: bold;">\/</span><span style="color: #E6DB74;">(</span><span style="color: #E6DB74; font-weight: bold;">\S</span><span style="color: #E6DB74;">*)/</span>;
+<span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">text</span> = <span style="color: #E6DB74;">"Visit my home page at http://www.isp.com/~david"</span>;
+<span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">result</span> = text.match(url);
+<span style="color: #F92672; font-weight: bold;">if</span> (result != <span style="color: #AE81FF;">null</span>) {
+  <span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">fullurl</span> = result[0];   <span style="color: #75715E;">// </span><span style="color: #75715E;">Contains "http://www.isp.com/~david"</span>
+  <span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">protocol</span> = result[1];   <span style="color: #75715E;">// </span><span style="color: #75715E;">Contains "http"</span>
+  <span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">host</span> = result[2];   <span style="color: #75715E;">// </span><span style="color: #75715E;">Contains "www.isp.com"</span>
+  <span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">path</span> = result[3];   <span style="color: #75715E;">// </span><span style="color: #75715E;">Contains "~david"</span>
 }
 </pre>
 </div>
+<p>
+如果 <code>match</code> 的参数不是正则表达式, 那么先转换为正则表达式.
+</p>
+</li>
+<li><code>.split(regexp)</code>:
+</li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #E6DB74;">"123,456,789"</span>.split(<span style="color: #E6DB74;">","</span>);          <span style="color: #75715E;">// </span><span style="color: #75715E;">=&gt; ['123', '456', '789']</span>
+<span style="color: #E6DB74;">"1, 2, 3, 4, 5"</span>.split(<span style="color: #E6DB74;">/</span><span style="color: #E6DB74; font-weight: bold;">\s</span><span style="color: #E6DB74;">*,</span><span style="color: #E6DB74; font-weight: bold;">\s</span><span style="color: #E6DB74;">*/</span>); <span style="color: #75715E;">// </span><span style="color: #75715E;">=&gt; ["1","2","3","4","5"]</span>
+</pre>
+</div>
+<p>
+不会将字符串字面值转换为正则表达式, 和 <code>replace</code> 类似.
+</p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">Array</h3>
-<div class="outline-text-3" id="text-1-2">
-<ul class="org-ul">
-<li>定义:
-定义数组可以使用两种方法，Array与[],但是推荐[],因为像 new Array(3)这样的代码，它会返回一个空数组，可是
-却将这个数组的length设置为3,这是一个令人困惑的特性
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Array</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1">定义</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+定义数组可以使用两种方法: Array与[],但是推荐[],因为像 new Array(3)这样的代
+码，它会返回一个空数组，可是却将这个数组的length设置为3,这是一个令人困惑的
+特性
+</p>
 <div class="org-src-container">
 
 <pre class="src src-js">[1, 2, 3]; <span style="color: #75715E;">// </span><span style="color: #75715E;">&#32467;&#26524;: [1, 2, 3]</span>
@@ -425,10 +581,15 @@ s.toUpperCase()       <span style="color: #75715E;">// </span><span style="color
 <span style="color: #F92672; font-weight: bold;">new</span> <span style="color: #66D9EF;">Array</span>(3) <span style="color: #75715E;">// </span><span style="color: #75715E;">&#32467;&#26524;: []&#65292;&#27492;&#25968;&#32452;&#38271;&#24230;&#20026; 3</span>
 </pre>
 </div>
-</li>
+</div>
+</div>
 
-<li>遍历数组时不要使用for&#x2026;in, 而要使用如下代码:
-
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2">遍历数组</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+不要使用for&#x2026;in, 而要使用如下代码:
+</p>
 <div class="org-src-container">
 
 <pre class="src src-js"><span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">list</span> = [1, 2, 3, 4, 5, ...... 100000000];
@@ -440,26 +601,105 @@ s.toUpperCase()       <span style="color: #75715E;">// </span><span style="color
 <p>
 原因是for &#x2026; in会遍历整个原型链，效率不高
 </p>
-</li>
-</ul>
 </div>
 </div>
 
-<div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3">objects(对象)</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3">数组方法</h3>
+<div class="outline-text-3" id="text-4-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">方法名</th>
+<th scope="col" class="left">作用</th>
+<th scope="col" class="left">返回值</th>
+<th scope="col" class="left">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">concat</td>
+<td class="left">将数组连接起来</td>
+<td class="left">新数组</td>
+<td class="left">[1,2].concat(['a','b']); =&gt;[1,2,'a','b']</td>
+</tr>
+
+<tr>
+<td class="left">join</td>
+<td class="left">构造一个字符串</td>
+<td class="left">字符串</td>
+<td class="left">['a','b','c'].join(','); =&gt;'a,b,c'</td>
+</tr>
+
+<tr>
+<td class="left">pop</td>
+<td class="left">移除最后一个元素(原地改变)</td>
+<td class="left">数组</td>
+<td class="left">['a','b','c'].pop(); =&gt; 'c'</td>
+</tr>
+
+<tr>
+<td class="left">push</td>
+<td class="left">将元素插入数组尾部(原地改变)</td>
+<td class="left">数组</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">reverse</td>
+<td class="left">反转元素顺序(原地改变)</td>
+<td class="left">数组</td>
+<td class="left">[1,2,3].reverse() =&gt;[3,2,1]</td>
+</tr>
+
+<tr>
+<td class="left">sort</td>
+<td class="left">排序数组,默认比较字符串,可以传递比较函数(原地改变)</td>
+<td class="left">数组</td>
+<td class="left">[4,15,28].sort() =&gt;[15,28,4]</td>
+</tr>
+
+<tr>
+<td class="left">slice</td>
+<td class="left">选取数组的一段</td>
+<td class="left">新数组</td>
+<td class="left">['a','b','c'].slice(0,1) =&gt;['a']</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">objects(对象)</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1">基本解释</h3>
+<div class="outline-text-3" id="text-5-1">
 <p>
-object有点类似于关联数组, 基本上js中除了数字，字符串，bool，null，undefined
-之外都是对象，数组，函数等等都是对象，对象有属性名，与属性值，数组的属性名是
-一些整数，这也是适合用数组的场景，其它的地方都应该用对象，对象对属性名的搜索
-有一定的规则，一般情况下通过字面值构建的对象都会与object.prototype链接，所以
-如果一个属性在对象中没有找到，那么她会自动到object.prototype中找，这样我们就
-可以给对象进行扩充，比如给object.prototype中添加一个方法，那么每一个对象都可
-以调用
+object有点类似于关联数组, js中除了数字，字符串，bool，null，undefined之外都
+是对象，数组，函数等等都是对象，对象有属性名，与属性值，数组的属性名是一些小
+的连续的整数，这也是适合用数组的场景，其它的地方都应该用对象. object的定义如
+下:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-js"><span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">foo</span> = {name: <span style="color: #E6DB74;">'Kitten'</span>}
+<pre class="src src-js"><span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">foo</span> = {
+  name: <span style="color: #E6DB74;">'Kitten'</span>,
+  age : 12
+};
+
 foo.name; <span style="color: #75715E;">// </span><span style="color: #75715E;">kitten</span>
 foo[<span style="color: #E6DB74;">'name'</span>]; <span style="color: #75715E;">// </span><span style="color: #75715E;">kitten</span>
 
@@ -478,9 +718,49 @@ foo[<span style="color: #E6DB74;">'1234'</span>]; <span style="color: #75715E;">
 </div>
 </div>
 
-<div id="outline-container-sec-1-4" class="outline-3">
-<h3 id="sec-1-4">control flow</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2">原型</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+对象对属性名的搜索有一定的规则, 一般情况下通过字面值构建的对象都会与
+Object.prototype链接，也就是以Object.prototype为原型,所以如果一个属性在对象
+中没有找到，那么她会自动到 Object.prototype中找，这样我们就可以给对象进行扩
+充，比如给object.prototype中添加一个方法，那么每一个对象都可以调用, 同时也可
+以给指定一个对象的原型,比如下面这个函数:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #F92672; font-weight: bold;">if</span> (<span style="color: #F92672; font-weight: bold;">typeof</span> Object.beget !== <span style="color: #E6DB74;">'function'</span>) {
+  Object.beget = <span style="color: #F92672; font-weight: bold;">function</span>(<span style="color: #FD971F;">o</span>){
+    <span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">F</span> = <span style="color: #F92672; font-weight: bold;">function</span>(){};
+    F.<span style="color: #AE81FF;">prototype</span> = o;
+    <span style="color: #F92672; font-weight: bold;">return</span> <span style="color: #F92672; font-weight: bold;">new</span> <span style="color: #66D9EF;">F</span>();
+  };
+}
+</pre>
+</div>
+<p>
+Object.beget 会返回一个新对象, 这个对象会以调用者指定的 o 为原型.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3">json</h3>
+<div class="outline-text-3" id="text-5-3">
+<ol class="org-ol">
+<li>JSON.stringify: 将一个对象转换为字符串(serialize)
+</li>
+<li>JSON.parse: 将一个字符串转换为对象.
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">control flow</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 基本和C语言类似，while，for，do&#x2026;while，if&#x2026;else if&#x2026;else,switch&#x2026;case, break, continue都和C语言差不多，
 break,continue和C语言有个区别就是后面可以跟一个label，break后面跟label那么它就不是终止最内层循环，而是终止
@@ -522,49 +802,227 @@ break labelCancelLoops会终止最外层那个循环，continue后面跟label也
 </div>
 </div>
 
-<div id="outline-container-sec-1-5" class="outline-3">
-<h3 id="sec-1-5">function</h3>
-<div class="outline-text-3" id="text-1-5">
-<ul class="org-ul">
-<li>definition
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">function</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+函数也是对象, 每一个函数对象都会链接到 Function.prototype对象上, 也就是以
+Function.prototype对象为原型,而Function.prototype又会链接到 Object.prototype
+上. 同时每一个函数对象有一个prototype属性, 每一个通过new创建的对象都会链接到
+这个属性 但是这个属性和函数对象本身没关系.
+</p>
+</div>
+<div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1">definition</h3>
+<div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
 
 <pre class="src src-js"><span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">square</span>(<span style="color: #FD971F;">number</span>) {
   <span style="color: #F92672; font-weight: bold;">return</span> number * number;
 }
+
+<span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">square</span> = <span style="color: #F92672; font-weight: bold;">function</span>(<span style="color: #FD971F;">number</span>){  <span style="color: #75715E;">// </span><span style="color: #75715E;">recommend</span>
+  <span style="color: #F92672; font-weight: bold;">return</span> number * number;
+}
 </pre>
 </div>
-</li>
-<li>基本特性
-js的函数是first class object，所以它可以作为参数传递，也可以作为返回值返回，支持闭包与匿名函数，它的很多
-地方借鉴了lisp的特性，下面是一些示例代码：
+</div>
+</div>
+
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2">四种调用方式</h3>
+<div class="outline-text-3" id="text-7-2">
+</div><div id="outline-container-sec-7-2-1" class="outline-4">
+<h4 id="sec-7-2-1">method调用模式</h4>
+<div class="outline-text-4" id="text-7-2-1">
 <div class="org-src-container">
 
-<pre class="src src-js"><span style="color: #75715E;">// </span><span style="color: #75715E;">define a function if num==0</span>
-<span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">myFunc</span>;
-<span style="color: #F92672; font-weight: bold;">if</span> (num == 0){
-  myFunc = <span style="color: #F92672; font-weight: bold;">function</span>(<span style="color: #FD971F;">theObject</span>) {
-    theObject.make = <span style="color: #E6DB74;">"Toyota"</span>
+<pre class="src src-js"><span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">myObject</span> = {
+  value: 0,
+  <span style="color: #A6E22E;">increment</span>: <span style="color: #F92672; font-weight: bold;">function</span>(<span style="color: #FD971F;">inc</span>){
+    <span style="color: #AE81FF;">this</span>.value += <span style="color: #F92672; font-weight: bold;">typeof</span> inc === <span style="color: #E6DB74;">'number'</span> ? inc : 1;
   }
+};
+myObject.increment();           <span style="color: #75715E;">// </span><span style="color: #75715E;">myObject.value is 1</span>
+myObject.increment(2);           <span style="color: #75715E;">// </span><span style="color: #75715E;">myObject.value is 2</span>
+</pre>
+</div>
+<p>
+这样调用时this会自动绑定到该对象, 在上例中就是 myObject.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7-2-2" class="outline-4">
+<h4 id="sec-7-2-2">函数调用模式</h4>
+<div class="outline-text-4" id="text-7-2-2">
+<p>
+普通的函数调用: 比如 <code>var sum = add(3, 4);</code>, 在这种调用方式中, 在函数内部
+(add) this会被绑定到全局对象也就是 window对象
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7-2-3" class="outline-4">
+<h4 id="sec-7-2-3">构造器调用模式(不推荐)</h4>
+<div class="outline-text-4" id="text-7-2-3">
+<p>
+实际是对OOP的一种不必要且蹩脚的模拟, 很晦涩难懂, 这种调用方式是使用 new 操
+作符来调用. 这样调用时函数会有截然不同的行为.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">Quo</span> = <span style="color: #F92672; font-weight: bold;">function</span>(<span style="color: #FD971F;">string</span>){
+  <span style="color: #AE81FF;">this</span>.status = string;
+};
+
+Quo.<span style="color: #AE81FF;">prototype</span>.get_status = <span style="color: #F92672; font-weight: bold;">function</span>(){
+  <span style="color: #F92672; font-weight: bold;">return</span> <span style="color: #AE81FF;">this</span>.status;
 }
+<span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">myQuo</span> = <span style="color: #F92672; font-weight: bold;">new</span> <span style="color: #66D9EF;">Quo</span>(<span style="color: #E6DB74;">"confused"</span>);
+myQuo.get_status()              <span style="color: #75715E;">// </span><span style="color: #75715E;">the result is "confused"</span>
+</pre>
+</div>
+<p>
+我解释下上面的代码: 首先 Quo 是一个函数对象(构造器), 当对这个对象使用 new
+操作符时会创建一个新的对象也就是myQuo, myQuo会以 Quo.prototype 为原型, 同时
+在 Quo运行时, this会绑定到正在创建的那个对象也就是 myQuo.
+</p>
 
+<p>
+一般来说构造器函数要以大写开头的名字命名, 同时在构造器内部不会明确的使用
+return语句, 但是一旦明确的使用了return, 那么最后的结果就是return后的那个对
+象了. 内置的Number, String, Regex, Date等等实际都是构造器函数.
+</p>
+
+<p>
+在一般的 OOP 语言中是区分类与对象, 所以上述代码实际就是在模拟类, 可是js完全
+不需要类, 所有这种模拟是不必要的
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7-2-4" class="outline-4">
+<h4 id="sec-7-2-4">apply调用模式</h4>
+<div class="outline-text-4" id="text-7-2-4">
+<p>
+每一个函数都有一个apply方法, 该方法接受2个参数, 第一个参数是传递给 this的,
+第二个参数是一个参数数组, 和lisp的apply有点类似
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">arr</span> = [1, 2];
+<span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">sum</span> = add.apply(<span style="color: #AE81FF;">null</span>, arr); <span style="color: #75715E;">// </span><span style="color: #75715E;">sum is 3</span>
+</pre>
+</div>
+<p>
+在上例的这次add函数的apply调用中, 在add函数的内部 this 被绑定到 null.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7-3" class="outline-3">
+<h3 id="sec-7-3">基本特性</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+js的函数是first class object，所以它可以作为参数传递，也可以作为返回值返回，
+支持闭包与匿名函数，使用词法作用域, 它的很多地方借鉴了lisp的特性，下面是一些
+示例代码：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js"> <span style="color: #75715E;">// </span><span style="color: #75715E;">define a function if num==0</span>
+ <span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">myFunc</span>;
+ <span style="color: #F92672; font-weight: bold;">if</span> (num == 0){
+   myFunc = <span style="color: #F92672; font-weight: bold;">function</span>(<span style="color: #FD971F;">theObject</span>) {
+     theObject.make = <span style="color: #E6DB74;">"Toyota"</span>
+   }
+ }
 <span style="color: #75715E;">// </span><span style="color: #75715E;">closure</span>
-<span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">pet</span> = <span style="color: #F92672; font-weight: bold;">function</span>(<span style="color: #FD971F;">name</span>) {          <span style="color: #75715E;">// </span><span style="color: #75715E;">The outer function defines a variable cal</span><span style="color: #F92672; background-color: #272822;">led "name"</span>
-      <span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">getName</span> = <span style="color: #F92672; font-weight: bold;">function</span>() {
-        <span style="color: #F92672; font-weight: bold;">return</span> name;                <span style="color: #75715E;">// </span><span style="color: #75715E;">The inner function has access to the "nam</span><span style="color: #F92672; background-color: #272822;">e" variable of the outer function</span>
-      }
-
-      <span style="color: #F92672; font-weight: bold;">return</span> getName;               <span style="color: #75715E;">// </span><span style="color: #75715E;">Return the inner function, thereby exposi</span><span style="color: #F92672; background-color: #272822;">ng it to outer scopes</span>
-    },
-    myPet = pet(<span style="color: #E6DB74;">"Vivie"</span>);
-
+<span style="color: #75715E;">// </span><span style="color: #75715E;">The outer function defines a variable called "name"</span>
+ <span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">pet</span> = <span style="color: #F92672; font-weight: bold;">function</span>(<span style="color: #FD971F;">name</span>) {
+   <span style="color: #75715E;">// </span><span style="color: #75715E;">The inner function has access to the "name" variable of the outer function</span>
+   <span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">getName</span> = <span style="color: #F92672; font-weight: bold;">function</span>() {
+     <span style="color: #F92672; font-weight: bold;">return</span> name;
+   }
+   <span style="color: #75715E;">// </span><span style="color: #75715E;">Return the inner function, thereby exposing it to outer scopes</span>
+   <span style="color: #F92672; font-weight: bold;">return</span> getName;
+ },
+     myPet = pet(<span style="color: #E6DB74;">"Vivie"</span>);
 myPet();                            <span style="color: #75715E;">// </span><span style="color: #75715E;">Returns "Vivie"</span>
 </pre>
 </div>
-</li>
-<li>内置的函数
+</div>
+</div>
+
+<div id="outline-container-sec-7-4" class="outline-3">
+<h3 id="sec-7-4">作用域</h3>
+<div class="outline-text-3" id="text-7-4">
 <ol class="org-ol">
-<li>eval:运行js代码
+<li><code>var</code> 用来声明变量, 每一个变量都应该先声明, 后使用.
+</li>
+<li>如果省略了 <code>var</code> 那么会创建一个全局变量, 不要省略var是一个好的做法, 而且
+特别要注意打字错误, jslint会提示没有用var声明的变量 <b>特别注意</b>.
+</li>
+<li>其它规则和lisp类似
+</li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-js">scope = <span style="color: #E6DB74;">"global"</span>;         <span style="color: #75715E;">// </span><span style="color: #75715E;">Declare a global variable, even without var.</span>
+<span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">scope2</span> = <span style="color: #E6DB74;">"global"</span>;    <span style="color: #75715E;">// </span><span style="color: #75715E;">Declare another global variable.</span>
+
+<span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">checkscope2</span>() {
+  scope = <span style="color: #E6DB74;">"local"</span>;          <span style="color: #75715E;">// </span><span style="color: #75715E;">Oops! We just changed the global variable.</span>
+  <span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">scope2</span> = <span style="color: #E6DB74;">"local"</span>;     <span style="color: #75715E;">// </span><span style="color: #75715E;">Declare a local varible with the same name.</span>
+
+  myscope = <span style="color: #E6DB74;">"local"</span>;        <span style="color: #75715E;">// </span><span style="color: #75715E;">This implicitly declares a new global variable.</span>
+  <span style="color: #F92672; font-weight: bold;">return</span> [scope, myscope];  <span style="color: #75715E;">// </span><span style="color: #75715E;">Return two values.</span>
+}
+checkscope2()             <span style="color: #75715E;">// </span><span style="color: #75715E;">=&gt; ["local", "local"]: has side effects!</span>
+scope                     <span style="color: #75715E;">// </span><span style="color: #75715E;">=&gt; "local": global variable has changed.</span>
+myscope                   <span style="color: #75715E;">// </span><span style="color: #75715E;">=&gt; "local": global namespace cluttered up.</span>
+</pre>
+</div>
+<p>
+js的作用域设计的比 python好, 因为变量需要声明, 所以就可以将创建绑定与修改变
+量的值区分开, 也就不需要引入 <code>global</code> 这样的关键字, 也就不需要对全局作用域特
+殊对待.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7-5" class="outline-3">
+<h3 id="sec-7-5">给类型增加方法</h3>
+<div class="outline-text-3" id="text-7-5">
+<div class="org-src-container">
+
+<pre class="src src-js">Function.<span style="color: #AE81FF;">prototype</span>.method = <span style="color: #F92672; font-weight: bold;">function</span> (<span style="color: #FD971F;">name</span>, <span style="color: #FD971F;">func</span>){
+  <span style="color: #F92672; font-weight: bold;">if</span> (!<span style="color: #AE81FF;">this</span>.<span style="color: #AE81FF;">prototype</span>[name]) {
+    <span style="color: #AE81FF;">this</span>.<span style="color: #AE81FF;">prototype</span>[name] = func;
+  }
+};
+</pre>
+</div>
+<p>
+给 String 增加 trim方法:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js">String.method(<span style="color: #E6DB74;">'trim'</span>, <span style="color: #F92672; font-weight: bold;">function</span>(){
+  <span style="color: #AE81FF;">this</span>.replace(<span style="color: #E6DB74;">/^</span><span style="color: #E6DB74; font-weight: bold;">\s</span><span style="color: #E6DB74;">+|</span><span style="color: #E6DB74; font-weight: bold;">\s</span><span style="color: #E6DB74;">+$/</span>g, <span style="color: #E6DB74;">''</span>);
+});
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7-6" class="outline-3">
+<h3 id="sec-7-6">内置的函数</h3>
+<div class="outline-text-3" id="text-7-6">
+<ol class="org-ol">
+<li>eval:运行js代码, 不推荐使用.
 </li>
 <li>isFinite: test a number if it is a finite number
 </li>
@@ -573,505 +1031,56 @@ myPet();                            <span style="color: #75715E;">// </span><spa
 <li>parseInt,parseFloat: 将字符串转换为整数或者浮点数
 </li>
 </ol>
-</li>
-</ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">client-side javascript</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">js运行方式</h3>
-<div class="outline-text-3" id="text-2-1">
-<ol class="org-ol">
-<li>&lt;script&gt;&#x2026;..&lt;/script&gt;内嵌
-</li>
-<li>&lt;script src="path-to-js-file"&gt; &lt;/script&gt; 外部js文件
-</li>
-<li>事件处理，比如button的 onclick, onmouseover等等
-</li>
-<li>javascript urls
-<ul class="org-ul">
-<li>任何能使用url的地方，比如 a 标签的href，form的action使用如下代码：
-<div class="org-src-container">
-
-<pre class="src src-html">&lt;<span style="color: #A6E22E;">a</span> <span style="color: #FD971F;">href</span>=<span style="color: #E6DB74;">"javascript: alert('hello world');"</span>&gt;&lt;/<span style="color: #A6E22E;">a</span>&gt;
-</pre>
-</div>
-<p>
-这相当于单行代码，以javascript：开头，告诉浏览器下面的是js代码，当这行js有返回值时，firefox会替换掉当
-前的页面为js的执行结果，所以如果要阻止这种行为，那么可以统一在js代码的前面加上void ，比如
-</p>
-<div class="org-src-container">
-
-<pre class="src src-html">&lt;<span style="color: #A6E22E;">a</span> <span style="color: #FD971F;">href</span>=<span style="color: #E6DB74;">"javascript:void new Date().toLocaleTimeString();"</span>&gt;Check the time without overwriting the document&lt;/<span style="color: #A6E22E;">a</span>&gt;
-</pre>
-</div>
-</li>
-<li>Bookmarklets
-加入书签，那么这段代码就相当于直接插入了当前页面，比如订阅到鲜果的书签：
-<div class="org-src-container">
-
-<pre class="src src-js">javascript:window.open(<span style="color: #E6DB74;">'http://xianguo.com/subscribe?url='</span>+encodeURIComponent(lo<span style="color: #F92672; background-color: #272822;">cation.href),</span><span style="color: #F92672; background-color: #272822;">'xianguo'</span><span style="color: #F92672; background-color: #272822;">);</span><span style="color: #F92672; background-color: #272822; font-weight: bold;">void</span><span style="color: #F92672; background-color: #272822;">(0)</span>
-</pre>
-</div>
-</li>
-</ul>
-</li>
-</ol>
-</div>
-</div>
-
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2">global window object</h3>
-<div class="outline-text-3" id="text-2-2">
-</div><div id="outline-container-sec-2-2-1" class="outline-4">
-<h4 id="sec-2-2-1">timers</h4>
-<div class="outline-text-4" id="text-2-2-1">
-<ol class="org-ol">
-<li>setTimeout(callback, timeout) : 只运行一次callback，返回值可以传递给clearTimeout来清除定时器
-</li>
-<li>clearTimeout()
-</li>
-<li>setInterval(callback, interval) : 每隔interval就运行一次callback,返回值可以传递给clearInterval来清除定
-时器
-</li>
-<li>clearInterval()
-</li>
-</ol>
-</div>
-</div>
-
-<div id="outline-container-sec-2-2-2" class="outline-4">
-<h4 id="sec-2-2-2">window.location</h4>
-<div class="outline-text-4" id="text-2-2-2">
-<p>
-window.location指向一个Location object,这个object有一系列的属性,以
-<a href="http://www.oreilly.com:1234/catalog/search.html?q=JavaScript&m=10#results">http://www.oreilly.com:1234/catalog/search.html?q=JavaScript&m=10#results</a> 为例
-</p>
-<ol class="org-ol">
-<li>href:         整个url,如果对该属性赋值,则可以重定向到新url
-</li>
-<li>protocal:     'http:'
-</li>
-<li>host:         'http://www.oreilly.com:1234'
-</li>
-<li>hostname:     'http://www.oreilly.com'
-</li>
-<li>port:         '1234' 是一个字符串,不是数字
-</li>
-<li>pathname:     '/catalog/search.html'
-</li>
-<li>search:       '?q=JavaScript&amp;m=10'
-</li>
-<li>hash:         '#results'   anchor part of url
-</li>
-</ol>
-</div>
-</div>
-
-<div id="outline-container-sec-2-2-3" class="outline-4">
-<h4 id="sec-2-2-3">window.history</h4>
-<div class="outline-text-4" id="text-2-2-3">
-<ol class="org-ol">
-<li>history.forward(): 前进
-</li>
-<li>history.back(): 后退
-</li>
-<li>history.go(2), history.go(-2) : 前进2个页面,后退两个页面
-</li>
-</ol>
-</div>
-</div>
-
-<div id="outline-container-sec-2-2-4" class="outline-4">
-<h4 id="sec-2-2-4">window.navigator</h4>
-<div class="outline-text-4" id="text-2-2-4">
-<ol class="org-ol">
-<li>appName:
-</li>
-<li>appVersion:
-</li>
-<li>userAgent:
-</li>
-<li>paltForm
-</li>
-</ol>
-</div>
-</div>
-
-<div id="outline-container-sec-2-2-5" class="outline-4">
-<h4 id="sec-2-2-5">window.document</h4>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">一些js技巧</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8">一些js技巧</h2>
+<div class="outline-text-2" id="text-8">
 <ol class="org-ol">
 <li>在每个应用中仅创建一个全局的对象,然后将所有的函数都变成这个全局对象的属性,
 减少与其它应用程序或者类库产生相互影响的可能性.
 </li>
-</ol>
-</div>
-</div>
-
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">jquery</h2>
-<div class="outline-text-2" id="text-4">
-</div><div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1">一些惯例以及基本常识</h3>
-<div class="outline-text-3" id="text-4-1">
-<ol class="org-ol">
-<li>在jquery中 $ 就是jQuery的简写,故$.trim 就是jQuery.trim的等价表示
+<li>每个语句结束要插入分号,不要依赖js解释器的自动插入分号功能.
 </li>
-<li>$(function(&#x2026;){&#x2026;})是$(document).ready(function(&#x2026;){&#x2026;})的简写
+<li>不要使用==, != 而应该一直使用===与!== .
 </li>
-<li>给超链接添加click事件时,应该返回false,因为这样浏览器会认为用户没有点击超链接,从而阻止浏览器跳转
+<li>if, while这样的语句一定要使用 {}, 即便只有一条语句.
 </li>
-<li>DOM元素与jquery元素(this是DOM对象, $(this)是jquery对象)
-前者是html文档的DOM树中的一个节点,可以使用getElementById得到,DOM对象可以使用\javascript的方法,比如
-innerHTML, 后者是jquery包装DOM元素后产生的对象, 只能使用jquery的方法比如.html(), .text()
-
-<p>
-二者之间的相互转换:
-DOM ===&gt; jquery : $jqueryObj = $(DOMObj) 直接用$包裹DOM对象即可转换为jquery对象
-jquery===&gt; DOM  : DOMObj = $jqueryObj<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup> jquery对象是一个数组对象,一个jquery对象可以包含多个DOM对象,所
-以可以通过index或者get(idx)来获得DOM对象
-</p>
+<li>不要使用 <code>++</code> 与 <code>--</code> , 因为这让程序不易理解.
 </li>
-</ol>
-</div>
-</div>
-
-<div id="outline-container-sec-4-2" class="outline-3">
-<h3 id="sec-4-2">jquery selector</h3>
-<div class="outline-text-3" id="text-4-2">
-<p>
-jQuery的基本语法是：$(selector).action(), 常用的选择器有：
-</p>
-<ol class="org-ol">
-<li>tag:   $("p")
+<li>不要依赖 switch 中 case 的贯穿, 也就是说, 每一个case都要一个break.
 </li>
-<li>#id
+<li>尽量不要使用位操作(&amp;, !, ^),因为js没有整数类型, 它只有双精度浮点数
 </li>
-<li>.class
-</li>
-<li>$(tag.class) : 选取tag且class属性为class元素
-</li>
-<li>$(tag#id, tag.class): 有逗号就意味着平等,所以等价于 $(tag#id) + $(tag.class)
-</li>
-</ol>
-<p>
-<b>层次选择器(获取后代元素,子元素,兄弟元素,相邻元素等)</b>
-</p>
-<ol class="org-ol">
-<li>$('body div') : body中的所有div元素
-</li>
-<li>$('body &gt; div') : body的div子元素(注意只包括直接子元素,这是和前者的区别, 并不递归的包含,也就是子元素内
-div元素并不被该模式识别)
-</li>
-<li>$('.one + div') : class为one的元素的下一个div兄弟元素,可以用  $('.one').next('div')代替
-</li>
-<li>$('.one ~ div') : class为one的元素后的所有div兄弟元素, 可以用 $('.one').nextAll('div')代替
-</li>
-</ol>
-
-<p>
-<b>过滤选择器</b>
-</p>
-<ul class="org-ul">
-<li>基本过滤选择器
-<ol class="org-ol">
-<li>:first, :last  :第一个,最后一个
-</li>
-<li>:not(selector): 所有不是指定selector的元素,eg: $(ul li:gt(5):not(:last))会选定ul下li索引大于5且不包含最
-后一个li元素的li元素集合
-</li>
-<li>:even, :odd, :gt(idx), :lt(idx), :eq(idx)  :
-</li>
-<li>:header: 所有标题元素(h1~h6)
-</li>
-</ol>
-</li>
-<li>可见性
-<p>
-:hidden  :隐藏的元素
-</p>
-<p>
-:visible  :可见的元素
-</p>
-</li>
-<li>属性过滤选择器
-[attribute]        : 含有attribute属性的元素
-[attribute=value]  : attribute属性的值等于value的元素
-[attribute^=value] : attribute属性的值以value开头的元素
-[attribute$=value] : attribute属性的值以value结尾的元素
-[attribute!=value] : attribute属性的值不等于value的元素
-[attribute*=value] : attribute属性的值含有value的元素
-[selector1][selector2] : 复合选择器
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-4-3" class="outline-3">
-<h3 id="sec-4-3">DOM操作</h3>
-<div class="outline-text-3" id="text-4-3">
-<ol class="org-ol">
-<li>插入节点 $(A).xxx(B) 其中xxx代替下面的函数，注意当A是元素集合时，那么B插入A时会将B插入每个A元素，反之
-亦然
-<ul class="org-ul">
-<li>append, appendTo : 前者是B作为最后一个子元素插入A中,后者相反,是A作为最后一个子元素插入B中
-</li>
-<li>prepend, prependTo : 前者是B作为第一个子元素插入A中,后者相反,是A作为第一个子元素插入B中
-</li>
-<li>after, insertAfter : 前者是B作为一个兄弟元素插入A之后,后者相反,是A作为一个兄弟元素插入B之后
-</li>
-<li>before, insertBefore : 前者是B作为一个兄弟元素插入A之前,后者相反,是A作为一个兄弟元素插入B之前
-</li>
-</ul>
-</li>
-<li>删除节点
-<ul class="org-ul">
-<li>.remove : 删除节点
-</li>
-<li>.empty  ：清空节点内容
-</li>
-</ul>
-</li>
-<li>复制节点
-<ul class="org-ul">
-<li>.clone : 复制节点，如果.clone(true)会复制绑定的事件
-</li>
-</ul>
-</li>
-<li>替换节点
-<ul class="org-ul">
-<li>.replaceWith:
-</li>
-<li>.replaceAll : 二者作用相同，可是方向相反
-</li>
-</ul>
-</li>
-<li>包裹节点
-<ul class="org-ul">
-<li>wrap
-</li>
-<li>wrapAll
-</li>
-</ul>
-</li>
-<li>属性操作
-<ul class="org-ul">
-<li>.attr ：一个参数是获取，两个参数是设置
-</li>
-<li>.removeAttr: 删除参数指定的属性
-</li>
-</ul>
-</li>
-<li>样式操作： 样式实际就是class属性，所以可以通过.attr('class')来获得并进行操作，注意和css区别，css指定某
-一项css样式比如background-color，而这里指的是样式表中定义的类样式（css文件中以.开头样式规则）可是为了方
-便jquery提供了专门的api
-<ul class="org-ul">
-<li>.addClass: 在class属性中添加一个样式
-</li>
-<li>removeClass：
-</li>
-<li>toggleClass： 在属性来回的切回，如果存在那就删除，如果不存在那就添加
-</li>
-</ul>
-</li>
-<li>获得html，文本，值 （无参数是获取，一个参数是设置）
-<ul class="org-ul">
-<li>html: 注意是innerHTML
-</li>
-<li>text: 会去掉html标签
-</li>
-<li>val: 表单元素的值
-</li>
-</ul>
-</li>
-<li>遍历节点
-<ul class="org-ul">
-<li>children：所有的子节点
-</li>
-<li>next ： 紧挨着的下一个同辈节点
-</li>
-<li>prev : 紧挨着的上一个同辈节点
-</li>
-<li>siblings： 所有的兄弟节点
-</li>
-</ul>
-</li>
-<li>css-DOM
-<ul class="org-ul">
-<li>offset: 离窗口的距离(left,top)
-</li>
-<li>position
-</li>
-<li>offsetTop offsetLeft : 元素的滚动条相对于顶部的距离
-</li>
-</ul>
-</li>
-</ol>
-</div>
-</div>
-
-<div id="outline-container-sec-4-4" class="outline-3">
-<h3 id="sec-4-4">jquery事件</h3>
-<div class="outline-text-3" id="text-4-4">
-<ol class="org-ol">
-<li>.bind : 可以通过该方法将特定函数绑定到特定的事件上eg:
+<li>函数的声明应该用:
 <div class="org-src-container">
 
-<pre class="src src-javascript">$(<span style="color: #E6DB74;">'div.li'</span>).bind(<span style="color: #E6DB74;">'click'</span>, <span style="color: #F92672; font-weight: bold;">function</span>(){
-  alert(<span style="color: #E6DB74;">'clicked'</span>);
-})
+<pre class="src src-js"><span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">foo</span> = <span style="color: #F92672; font-weight: bold;">function</span>(){...};
 </pre>
 </div>
 <p>
-同理可以绑定mouseover,mouseout,focus,blur等等,但因为有些事件很常用,所以jquery提供了简写方法
+而不是
 </p>
-</li>
-<li>.click
-</li>
-<li>.mouseover, .mouseout
-</li>
-<li>合成事件: .hover 与.toggle是jquery的两个自定义事件
-<ul class="org-ul">
-<li>hover(enter, leave) : 鼠标进入时调用enter,鼠标离开时调用leave
-</li>
-<li>toggle(f1, f2, &#x2026; fN) : 模拟鼠标单击,第一次单击调用f1, 第N次单击调用fN,第N+1次调用f1
-</li>
-<li>toggle()  :无参数调用时不是绑定click事件,而是使元素在显示与隐藏状态切换,也就是该元素已显示,那么调用
-toggle()就会隐藏该元素,如果该元素已隐藏,那么调用toggle()就会显示该元素,这和toggleClass类似
-</li>
-</ul>
-</li>
-<li>时间冒泡
-当元素嵌套，而且父元素也绑定了同一事件，那么会同时触发父元素的事件处理函数，为了阻止这种行为可以用一下
-代码：
 <div class="org-src-container">
 
-<pre class="src src-javascript">$(<span style="color: #F92672; font-weight: bold;">function</span>(){
-  $(<span style="color: #E6DB74;">"#sub"</span>).bind(<span style="color: #E6DB74;">"click"</span>,<span style="color: #F92672; font-weight: bold;">function</span>(<span style="color: #FD971F;">event</span>){
-    <span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">username</span> = $(<span style="color: #E6DB74;">"#username"</span>).val();  <span style="color: #75715E;">//</span><span style="color: #75715E;">&#33719;&#21462;&#20803;&#32032;&#30340;&#20540;</span>
-    <span style="color: #F92672; font-weight: bold;">if</span>(username==<span style="color: #E6DB74;">""</span>){     <span style="color: #75715E;">//</span><span style="color: #75715E;">&#21028;&#26029;&#20540;&#26159;&#21542;&#20026;&#31354;</span>
-      $(<span style="color: #E6DB74;">"#msg"</span>).html(<span style="color: #E6DB74;">"&lt;p&gt;&#25991;&#26412;&#26694;&#30340;&#20540;&#19981;&#33021;&#20026;&#31354;.&lt;/p&gt;"</span>);  <span style="color: #75715E;">//</span><span style="color: #75715E;">&#25552;&#31034;&#20449;&#24687;</span>
-
-      event.stopPropagation();  <span style="color: #75715E;">// </span><span style="color: #75715E;">&#38459;&#27490;&#20107;&#20214;&#20882;&#27873;</span>
-      event.preventDefault();  <span style="color: #75715E;">//</span><span style="color: #75715E;">&#38459;&#27490;&#40664;&#35748;&#34892;&#20026; ( &#34920;&#21333;&#25552;&#20132;&#65292;&#38142;&#25509;(a)&#36339;&#36716;&#31561; )</span>
-      <span style="color: #75715E;">// </span><span style="color: #75715E;">&#22914;&#26524;&#26082;&#35201;&#38459;&#27490;&#20107;&#20214;&#20882;&#27873;&#21448;&#35201;&#38459;&#27490;&#40664;&#35748;&#34892;&#20026;&#65292;&#37027;&#20040;&#21487;&#20197;&#30452;&#25509;&#36890;&#36807;</span>
-      <span style="color: #75715E;">// </span><span style="color: #75715E;">return false; &#26469;&#23454;&#29616;</span>
-    }
-  })
-})
+<pre class="src src-js"><span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">foo</span>(){...}
 </pre>
 </div>
 <p>
-给回调函数添加一个event参数，并且调用event.stopPropagation()方法，这样就可以阻止事件冒泡，也就是对sub的
-click不会触发sub的父元素的click事件，
+因为第二种方式会使得不管函数定义在什么地方,它都会被移到被定义时的作用域的
+最开头, 这违背了函数先定义后使用规则(scheme, python都遵循该规则).
 </p>
 </li>
-<li>模拟事件(不是用户触发，而是通过js模拟触发)
-<ul class="org-ul">
-<li>.trigger: $('#btn').trigger('click) 触发click事件， 也可以直接$('#btn').click()
+<li>尽量不要使用 new Object, new Array, 应该使用 {} [] 来代替
 </li>
-<li>传递数据： .trigger(type, [.data])
-</li>
-</ul>
-</li>
-</ol>
-</div>
-</div>
-
-<div id="outline-container-sec-4-5" class="outline-3">
-<h3 id="sec-4-5">jquery动画</h3>
-<div class="outline-text-3" id="text-4-5">
-<ol class="org-ol">
-<li>.hide([speed]), .show([speed]), .taggle([speed]) : 显示，隐藏，如果指定speed，那么会渐变的改变元素的高
-度
-</li>
-<li>.fadeIn([speed]), fadeOut([speed]), .fadeToggle([speed])  :显示，隐藏，如果指定speed，那么会渐变的改变
-元素的透明度，直到元素消失或者显示，也就是动画过程中元素的高度是不变的
-</li>
-<li>slideUp， slideDown，slideToggle：滑动效果
-</li>
-</ol>
-</div>
-</div>
-
-<div id="outline-container-sec-4-6" class="outline-3">
-<h3 id="sec-4-6">ajax</h3>
-<div class="outline-text-3" id="text-4-6">
-<p>
-jquery ajax的回调函数的原型：
-</p>
-<ul class="org-ul">
-<li>.load: function callback(responseText, statusText, XMLHttpRequest)
-</li>
-<li>$.get, $.post, $.ajax: function callback(data, statusText)
-</li>
-</ul>
-<p>
-其中textStatus可以是'success', 'error', 'notmodified', 'timeout'
-</p>
-
-<ul class="org-ul">
-<li>.load(url [, data] [, callback]) :将返回的html插入DOM元素中, callback无论请求成功与否都会调用
-</li>
-<li>$.get(url [, data] [[, callback] [, type]) : type可以是"html"，"xml"，"json", callback只有在请求成功
-(http 200)时才调用
-</li>
-<li>$.post : 和$.get类似，只是通过post传送数据
-</li>
-<li>$.getScript, $.getJSON :前者可以用来加载js文件，后者用来获取json用来给回调函数操作
-</li>
-<li>$.ajax(options) :
-</li>
-<li>.serialize() :在form提交时可以直接序列化form内的数据填入data域，返回字符串
-</li>
-<li>.serializeArray() : 和serialize方法类似，不过不返回字符串，而是返回json数据
-</li>
-<li>$.param() : $.param({a:1, b:2, c:3}) ====&gt; a=1&amp;b=2&amp;c=3, 该方法是.serialize方法的核心
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-4-7" class="outline-3">
-<h3 id="sec-4-7">jquery常用插件</h3>
-<div class="outline-text-3" id="text-4-7">
-<ol class="org-ol">
-<li>jquery.form
-可以很方便的将你的form变成ajax版
-</li>
-<li>jquery blockUI
-代替alert
-</li>
-<li>jquery fancybox
-对于图片，可以弹出显示，效果很不错，而且还可以支持鼠标滚轮
-</li>
-<li>jVectorMap
-可以用来显示地图,并且在地图上标注地点
+<li>不要使用new运算符.
 </li>
 </ol>
 </div>
 </div>
 </div>
-<div id="footnotes">
-<h2 class="footnotes">Footnotes: </h2>
-<div id="text-footnotes">
-
-<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p>DEFINITION NOT FOUND.</p></div>
-
-
-</div>
-</div></div>
 <div id="postamble" class="status">
 <div id="disqus_comment">
   <div id="disqus_thread"></div>
@@ -1093,14 +1102,14 @@ jquery ajax的回调函数的原型：
 </div>
 <!-- begin footer -->
 <div id="footer">
-  <hr />
-  <ul class="links">
-    <li>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</li>
+  <ul class="links vertical-nav">
     <li><a href="/sitemap.xml">Sitemap</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     <li><a href="/about.html">About Me</a></li>
-    <li><a href="#">Back to Top</a></li>
+    <li><a class="back-to-top" href="#">Back to Top</a></li>
   </ul>
+  <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
+  <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
 <!-- end footer -->
 </div>

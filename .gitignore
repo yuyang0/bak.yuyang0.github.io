@@ -1,6 +1,8 @@
 *.org
 *.bak
 *.bakk
+*.tex
+
 /example.txt
 /getting-started.txt
 /domains.config
@@ -11,3 +13,4 @@ mathjax
 ltxpng
 /*.pdf
 /notes/*.pdf
+/articles/*.pdf

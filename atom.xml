@@ -4,7 +4,7 @@
   <title></title>
   <link href="https://yuyang0.github.io/"/>
   <link type="application/atom+xml" rel="self" href="/atom.xml"/>
-  <updated>Wed Mar 26 14:14:23 2014</updated>
+  <updated>Tue May 27 23:05:31 2014</updated>
   <id>https://yuyang0.github.io/</id>
   <author>
     <name>Yu Yang</name>
@@ -14,7 +14,7 @@
     <id>sitemap.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/sitemap.html"/>
     <title>Sitemap</title>
-    <updated> 2014-03-26</updated>
+    <updated> 2014-05-27</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -34,7 +34,7 @@
     <id>gevent.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/articles/gevent.html"/>
     <title>gevent源码分析</title>
-    <updated> 2014-02-13</updated>
+    <updated> 2014-04-25</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -54,7 +54,7 @@
     <id>web-py-source-code.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/articles/web-py-source-code.html"/>
     <title>webpy源代码分析</title>
-    <updated> 2013-10-30</updated>
+    <updated> 2014-04-25</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -64,7 +64,7 @@
     <id>wsgi.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/articles/wsgi.html"/>
     <title>wsgi</title>
-    <updated> 2014-01-29</updated>
+    <updated> 2014-04-25</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -81,10 +81,20 @@
     </author>
     <content type="html"> </content>
   </entry><entry>
+    <id>client-javascript.org</id>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/client-javascript.html"/>
+    <title>Client-Side javascript</title>
+    <updated> 2014-05-15</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>https://yuyang0.github.io/</uri>
+    </author>
+    <content type="html"> </content>
+  </entry><entry>
     <id>clojure.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/clojure.html"/>
     <title>Clojure笔记</title>
-    <updated> 2014-03-12</updated>
+    <updated> 2014-05-17</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -94,7 +104,7 @@
     <id>django.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/django.html"/>
     <title>DJANGO笔记</title>
-    <updated> 2013-11-06</updated>
+    <updated> 2014-05-11</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -104,7 +114,7 @@
     <id>emacs.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/emacs.html"/>
     <title>Emacs/elisp笔记</title>
-    <updated> 2014-02-01</updated>
+    <updated> 2014-05-01</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -141,10 +151,20 @@
     </author>
     <content type="html"> </content>
   </entry><entry>
+    <id>sql.org</id>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/sql.html"/>
+    <title>MySQL笔记</title>
+    <updated> 2014-05-17</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>https://yuyang0.github.io/</uri>
+    </author>
+    <content type="html"> </content>
+  </entry><entry>
     <id>php.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/php.html"/>
     <title>PHP笔记</title>
-    <updated> 2014-03-15</updated>
+    <updated> 2014-05-17</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -153,8 +173,8 @@
   </entry><entry>
     <id>set-theory.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/set-theory.html"/>
-    <title>SET THEORY(30%)</title>
-    <updated> 2014-03-23</updated>
+    <title>SET THEORY</title>
+    <updated> 2014-05-27</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -174,7 +194,7 @@
     <id>EOPL.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/EOPL.html"/>
     <title>The Essential of Programming language</title>
-    <updated> 2014-03-23</updated>
+    <updated> 2014-05-15</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -184,7 +204,7 @@
     <id>type-system.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/type-system.html"/>
     <title>Type System</title>
-    <updated> 2014-03-26</updated>
+    <updated> 2014-04-26</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -204,7 +224,7 @@
     <id>git.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/git.html"/>
     <title>git/github学习笔记</title>
-    <updated> 2013-11-06</updated>
+    <updated> 2014-04-25</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -231,10 +251,20 @@
     </author>
     <content type="html"> </content>
   </entry><entry>
+    <id>jquery.org</id>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/jquery.html"/>
+    <title>jQuery</title>
+    <updated> 2014-05-16</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>https://yuyang0.github.io/</uri>
+    </author>
+    <content type="html"> </content>
+  </entry><entry>
     <id>javascript.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/javascript.html"/>
     <title>javascript笔记</title>
-    <updated> 2014-03-24</updated>
+    <updated> 2014-05-15</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -274,7 +304,7 @@
     <id>scheme.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/scheme.html"/>
     <title>scheme笔记</title>
-    <updated> 2014-03-23</updated>
+    <updated> 2014-05-16</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -321,10 +351,40 @@
     </author>
     <content type="html"> </content>
   </entry><entry>
+    <id>logic.org</id>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/logic.html"/>
+    <title>数理逻辑</title>
+    <updated> 2014-05-27</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>https://yuyang0.github.io/</uri>
+    </author>
+    <content type="html"> </content>
+  </entry><entry>
+    <id>number-theory.org</id>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/number-theory.html"/>
+    <title>数论</title>
+    <updated> 2014-05-19</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>https://yuyang0.github.io/</uri>
+    </author>
+    <content type="html"> </content>
+  </entry><entry>
     <id>Probability.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/Probability.html"/>
     <title>概率论与数理统计笔记</title>
-    <updated> 2013-11-14</updated>
+    <updated> 2014-05-25</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>https://yuyang0.github.io/</uri>
+    </author>
+    <content type="html"> </content>
+  </entry><entry>
+    <id>liner-algebra.org</id>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/liner-algebra.html"/>
+    <title>线性代数</title>
+    <updated> 2014-04-24</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -334,7 +394,7 @@
     <id>Theory-Computation.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/Theory-Computation.html"/>
     <title>计算理论导引</title>
-    <updated> 2014-03-22</updated>
+    <updated> 2014-04-24</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -344,7 +404,7 @@
     <id>index.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/index.html"/>
     <title>Index Page</title>
-    <updated> 2014-03-26</updated>
+    <updated> 2014-05-15</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -354,7 +414,7 @@
     <id>sitemap.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/sitemap.html"/>
     <title>Sitemap</title>
-    <updated> 2014-03-26</updated>
+    <updated> 2014-05-27</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -364,7 +424,7 @@
     <id>tags.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/tags.html"/>
     <title>tags</title>
-    <updated> 2014-03-26</updated>
+    <updated> 2014-05-27</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>

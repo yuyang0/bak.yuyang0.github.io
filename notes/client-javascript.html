@@ -1,0 +1,1258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Client-Side javascript</title>
+<!-- 2014-05-16 Fri 13:57 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Yu Yang" />
+<meta  name="keywords" content="javascript client" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="static/css/main.css"/>
+<link rel="shortcut icon" href="static/img/favicon.ico" />
+<script type="text/javascript" src="static/js/custom.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="header">
+      <div class="inner">
+        <h1 id="site-title"><a href="/"> Yu Yang's Blog</a></h1>
+        <div>
+          <a href="###" id="site-nav-btn">菜单</a>
+          <ul id="site-nav" class="vertical-nav mobi-hid">
+            <li> <a href="/">Home</a></li>
+            <li> <a href="/about.html">About</a></li>
+
+            <li> <a href="/tags.html">Tags</a></li>
+
+            <li> <a href="/rss.xml">RSS</a></li>
+          </ul>
+
+          <form id="site-search" method="get" action="https://google.com/search">
+            <input type="hidden" name="q" value="site:yuyang.farbox.com" />
+            <input type="text" name="q" placeholder="Search..." />
+            <button class="btn-search" type="submit">Search</button>
+          </form>
+          <div style="clear:both;"> </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div id="content">
+<h1 class="title">Client-Side javascript</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">js运行方式</a></li>
+<li><a href="#sec-2">global window object</a>
+<ul>
+<li><a href="#sec-2-1">timers</a></li>
+<li><a href="#sec-2-2">window.location</a></li>
+<li><a href="#sec-2-3">window.history</a></li>
+<li><a href="#sec-2-4">window.navigator</a></li>
+<li><a href="#sec-2-5">window.document</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">DOM</a>
+<ul>
+<li><a href="#sec-3-1">node</a>
+<ul>
+<li><a href="#sec-3-1-1">节点指针以及属性</a></li>
+<li><a href="#sec-3-1-2">node type</a></li>
+<li><a href="#sec-3-1-3">Element node's attribute</a></li>
+<li><a href="#sec-3-1-4">Element node's content</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-2">选择DOM节点</a></li>
+<li><a href="#sec-3-3">创建新DOM节点</a></li>
+<li><a href="#sec-3-4">插入DOM节点</a></li>
+<li><a href="#sec-3-5">删除,替换DOM节点</a></li>
+<li><a href="#sec-3-6">位置,scroll</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">修改css</a>
+<ul>
+<li><a href="#sec-4-1">使用style属性来修改css</a></li>
+<li><a href="#sec-4-2">获取当前的样式</a></li>
+<li><a href="#sec-4-3">className</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">事件</a>
+<ul>
+<li><a href="#sec-5-1">Event Object</a></li>
+<li><a href="#sec-5-2">常用事件类型</a>
+<ul>
+<li><a href="#sec-5-2-1">window的事件</a></li>
+<li><a href="#sec-5-2-2">UI事件</a></li>
+<li><a href="#sec-5-2-3">鼠标事件</a></li>
+<li><a href="#sec-5-2-4">键盘事件</a></li>
+<li><a href="#sec-5-2-5">表单事件</a></li>
+</ul>
+</li>
+<li><a href="#sec-5-3">Register Event Handler</a></li>
+<li><a href="#sec-5-4">Event Cancellation</a>
+<ul>
+<li><a href="#sec-5-4-1">阻止浏览器默认行为</a></li>
+<li><a href="#sec-5-4-2">阻止事件冒泡</a></li>
+</ul>
+</li>
+<li><a href="#sec-5-5">通用函数</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">ajax</a>
+<ul>
+<li><a href="#sec-6-1">Create XMLHttpRequest</a></li>
+<li><a href="#sec-6-2">open</a></li>
+<li><a href="#sec-6-3">send</a></li>
+<li><a href="#sec-6-4">Retrieving the Response</a></li>
+<li><a href="#sec-6-5">jsonp</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">js运行方式</h2>
+<div class="outline-text-2" id="text-1">
+<ol class="org-ol">
+<li>&lt;script&gt;&#x2026;..&lt;/script&gt;内嵌
+</li>
+<li>&lt;script src="path-to-js-file"&gt; &lt;/script&gt; 外部js文件
+</li>
+<li>事件处理，比如button的 onclick, onmouseover等等
+</li>
+<li>javascript urls
+<ul class="org-ul">
+<li>任何能使用url的地方，比如 a 标签的href，form的action使用如下代码：
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #A6E22E;">a</span> <span style="color: #FD971F;">href</span>=<span style="color: #E6DB74;">"javascript: alert('hello world');"</span>&gt;&lt;/<span style="color: #A6E22E;">a</span>&gt;
+</pre>
+</div>
+<p>
+这相当于单行代码，以javascript：开头，告诉浏览器下面的是js代码，当这行js有返回值时，firefox会替换掉当
+前的页面为js的执行结果，所以如果要阻止这种行为，那么可以统一在js代码的前面加上void ，比如
+</p>
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #A6E22E;">a</span> <span style="color: #FD971F;">href</span>=<span style="color: #E6DB74;">"javascript:void new Date().toLocaleTimeString();"</span>&gt;Check the time without overwriting the document&lt;/<span style="color: #A6E22E;">a</span>&gt;
+</pre>
+</div>
+</li>
+<li>Bookmarklets
+加入书签，那么这段代码就相当于直接插入了当前页面，比如订阅到鲜果的书签：
+<div class="org-src-container">
+
+<pre class="src src-js">javascript:window.open(<span style="color: #E6DB74;">'http://xianguo.com/subscribe?url='</span>+encodeURIComponent(lo<span style="color: #F92672; background-color: #272822;">cation.href), </span><span style="color: #F92672; background-color: #272822;">'xianguo'</span><span style="color: #F92672; background-color: #272822;">);</span><span style="color: #F92672; background-color: #272822; font-weight: bold;">void</span><span style="color: #F92672; background-color: #272822;">(0)</span>
+</pre>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">global window object</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">timers</h3>
+<div class="outline-text-3" id="text-2-1">
+<ol class="org-ol">
+<li>setTimeout(callback, timeout) : 只运行一次callback，返回值可以传递给clearTimeout来清除定时器
+</li>
+<li>clearTimeout()
+</li>
+<li>setInterval(callback, interval) : 每隔interval就运行一次callback,返回值可以传递给clearInterval来清除定
+时器
+</li>
+<li>clearInterval()
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">window.location</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+window.location指向一个Location object,这个object有一系列的属性,以
+<a href="http://www.oreilly.com:1234/catalog/search.html?q=JavaScript&m=10#results">http://www.oreilly.com:1234/catalog/search.html?q=JavaScript&m=10#results</a> 为例
+</p>
+<ol class="org-ol">
+<li>href:         整个url,如果对该属性赋值,则可以重定向到新url
+</li>
+<li>protocal:     'http:'
+</li>
+<li>host:         'http://www.oreilly.com:1234'
+</li>
+<li>hostname:     'http://www.oreilly.com'
+</li>
+<li>port:         '1234' 是一个字符串,不是数字
+</li>
+<li>pathname:     '/catalog/search.html'
+</li>
+<li>search:       '?q=JavaScript&amp;m=10'
+</li>
+<li>hash:         '#results'   anchor part of url
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">window.history</h3>
+<div class="outline-text-3" id="text-2-3">
+<ol class="org-ol">
+<li>history.forward(): 前进
+</li>
+<li>history.back(): 后退
+</li>
+<li>history.go(2), history.go(-2) : 前进2个页面,后退两个页面
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4">window.navigator</h3>
+<div class="outline-text-3" id="text-2-4">
+<ol class="org-ol">
+<li>appName:
+</li>
+<li>appVersion:
+</li>
+<li>userAgent:
+</li>
+<li>paltForm
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5">window.document</h3>
+<div class="outline-text-3" id="text-2-5">
+<ol class="org-ol">
+<li>referrer: 一个错误的拼写, 主要用来指示用户是从什么链接跳转到该文档, 可以
+用来防盗链, 和HTTP中referer类似
+</li>
+<li>cookie: 设置cookie
+</li>
+<li>title: text between <code>&lt;title&gt;</code> and <code>&lt;/title&gt;</code>.
+</li>
+<li>domain:
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">DOM</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">node</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+node: DOM树中的一个节点, 以下面这段html为例:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #A6E22E;">html</span>&gt;
+  &lt;<span style="color: #A6E22E;">head</span>&gt;
+    &lt;<span style="color: #A6E22E;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Sample Document</span>&lt;/<span style="color: #A6E22E;">title</span>&gt;
+  &lt;/<span style="color: #A6E22E;">head</span>&gt;
+  &lt;<span style="color: #A6E22E;">body</span>&gt;
+    &lt;<span style="color: #A6E22E;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">An HTML Document</span>&lt;/<span style="color: #A6E22E;">h1</span>&gt;
+    &lt;<span style="color: #A6E22E;">p</span>&gt;This is a &lt;<span style="color: #A6E22E;">i</span>&gt;<span style="font-style: italic;">simple</span>&lt;/<span style="color: #A6E22E;">i</span>&gt; document.
+&lt;/<span style="color: #A6E22E;">html</span>&gt;
+</pre>
+</div>
+<p>
+那么DOM树是这样的:
+<img src="static/img/DOM-tree.png" alt="DOM-tree.png" />
+</p>
+</div>
+<div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1">节点指针以及属性</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+因为是树中的节点所以每个node对象都有以下的指针(以n代表一个node对象):
+</p>
+<ol class="org-ol">
+<li>n.parentNode: n的父节点对象
+</li>
+<li>n.previousSibling: n的前一个兄弟节点对象
+</li>
+<li>n.nextSibling: n的下一个兄弟节点对象
+</li>
+<li>n.firstChild: n的第一个子节点对象
+</li>
+<li>n.lastChild: n的最后一个子节点对象
+</li>
+<li>n.childNodes: 返回一个类数组结构,包含所有的子节点.
+</li>
+<li>n.firstElementChild: 第一个元素节点, 这在排除一些空格导致上的文本节点时
+特别有用
+</li>
+<li>n.lastElementChild:
+</li>
+<li>n.childElementCount: 子节点中元素节点的个数
+</li>
+</ol>
+
+<p>
+除了节点指针外, 节点还有其它一些属性:
+</p>
+<ol class="org-ol">
+<li><b>nodeType</b>: The kind of node this is. Document nodes have the
+value 9. Element nodes have the value 1. Text nodes have the
+value 3. Comments nodes are 8 and Document- Fragment nodes are 11.
+</li>
+<li><b>nodeValue</b>: The textual content of a <b>Text</b> or <b>Comment</b> node.
+</li>
+<li><b>nodeName</b>: The tag name of an Element, converted to uppercase.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-3-1-2" class="outline-4">
+<h4 id="sec-3-1-2">node type</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<p>
+有三种节点类型:
+</p>
+<ul class="org-ul">
+<li>Document Node: 最上方的那个节点, 用来代表整个文档, 这种节点一份文档只有
+一个
+</li>
+<li>Element Node: 用来代表html元素, 比如上图中的head节点就代表html中
+       <code>&lt;head&gt;...&lt;/head&gt;</code>.
+</li>
+<li>Text Node: 代表文本,比如上例中 <code>Sample Document</code> 节点.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-1-3" class="outline-4">
+<h4 id="sec-3-1-3">Element node's attribute</h4>
+<div class="outline-text-4" id="text-3-1-3">
+<p>
+element node代表一个html元素, 他可以直接获得以及设置该html元素的属性,假设f
+是一个form元素, 那么可以使用下面的代码:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js">f.action === <span style="color: #E6DB74;">"http://www.baidu.com"</span> <span style="color: #75715E;">// </span><span style="color: #75715E;">test form's action attribute</span>
+f.method = <span style="color: #E6DB74;">"POST"</span>                   <span style="color: #75715E;">// </span><span style="color: #75715E;">set the form's method attribute to "POST"</span>
+</pre>
+</div>
+<p>
+注意上面的方式返回值都是字符串, 所以要获得整数,可以使用parseInt, 而且只对
+标准的html属性有效, 非标准的属性可以使用这两个函数来获取:
+</p>
+<ol class="org-ol">
+<li>getAttribute
+</li>
+<li>setAttribute
+</li>
+</ol>
+<p>
+比如在html5中可以给一个元素设置以 <code>data-</code> 作为前缀的属性, 比如 <code>data-id</code>,
+支持html5的浏览器会有一个 <code>dataset</code> 属性, 如果n代表元素节点,那么
+<code>n.dataset.id, n.dataset.time</code> 就会分别获得 <code>data-id</code> 以及 <code>data-time</code> 的
+值, 但是在不支持html5的浏览器上这就不是标准属性, 所以就需要
+<code>n.getAttribute('data-id'), n.getAttribute('data-time')</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-1-4" class="outline-4">
+<h4 id="sec-3-1-4">Element node's content</h4>
+<div class="outline-text-4" id="text-3-1-4">
+<ol class="org-ol">
+<li>innerHTML : 元素内的 html文本(不包含该元素本身的标签)
+</li>
+<li>textContent/innerText: 可以看作是innerHTML去掉所有的 HTML标签后得到的文
+本. IE没有定义textContent, firefox没有定义 innerText.
+</li>
+<li>outerHTML: 和innerHTML相同,但是它会包含该元素本身的标签
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">选择DOM节点</h3>
+<div class="outline-text-3" id="text-3-2">
+<ol class="org-ol">
+<li>document.getElementById: 返回单个DOM节点
+</li>
+<li>document.getElementsByName: 根据name属性查找, 返回NodeList, 这是一个类数
+组对象, 只读.
+</li>
+<li>document.getElementsByTagName
+</li>
+<li>document.getElementsByClassName
+</li>
+<li>document.querySelectorAll: 通过css selector来选择元素, 返回一个类数组结
+构
+</li>
+<li>document.querySelector: 和 querySelectorAll 类似,只是它值返回第一个匹配
+的对象, 如果没有匹配的那么返回 null.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3">创建新DOM节点</h3>
+<div class="outline-text-3" id="text-3-3">
+<ol class="org-ol">
+<li>document.createElement: 创建元素节点
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">div</span> = document.createElement(<span style="color: #E6DB74;">'div'</span>);
+</pre>
+</div>
+</li>
+<li>document.createTextNode: 创建文本节点
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4">插入DOM节点</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+可以使用 <code>insertBefore</code> 与 <code>appendChild</code> 这两个节点方法
+</p>
+<pre class="example">
+parentOfBeforeNode.insertBefore(NodeToInsert, beforeNode);
+parentElem.appendChild(nodeToInsert);
+</pre>
+<p>
+有两个方便的函数:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">before</span> = <span style="color: #F92672; font-weight: bold;">function</span>(<span style="color: #FD971F;">parent</span>, <span style="color: #FD971F;">before</span>, <span style="color: #FD971F;">elem</span>){
+  <span style="color: #75715E;">// </span><span style="color: #75715E;">check if passed ``parent''</span>
+  <span style="color: #F92672; font-weight: bold;">if</span> (! !!elem){
+    elem = before;
+    before = parent;
+    parent = before.parentNode;
+  }
+  parent.insertBefore(checkElem(elem), before);
+};
+
+<span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">append</span> = <span style="color: #F92672; font-weight: bold;">function</span>(<span style="color: #FD971F;">parent</span>, <span style="color: #FD971F;">elem</span>){
+  parent.appendChild(checkElem(elem));
+};
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5">删除,替换DOM节点</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+删除节点可以用 <code>removeChild</code> 函数.
+</p>
+<pre class="example">
+NodeParent.removeChild(NodeToRemove);
+</pre>
+<p>
+所以你如果要删除一个DOM节点 <code>n</code>, 应该使用这样的代码:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js">n.parentNode.removeChild(n);
+</pre>
+</div>
+<p>
+替换一个节点使用 replaceChild 方法.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js">n.parentNode.replaceChild(document.createTextNode(<span style="color: #E6DB74;">"[ REDACTED ]"</span>), n);
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-6" class="outline-3">
+<h3 id="sec-3-6">位置,scroll</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+有两种坐标系统, 一种是 viewpoint coordinate, 一种是 document coordinate, 前
+者只考虑可见的窗口部分,也就是说坐标系的原点在窗口的左上角,也就是所谓的
+client area的左上角, 通常这就是浏览器的窗口(不包括菜单栏, 工具栏,任务栏),
+但是如果文档是显示在一个iframe中, 那么就是只包含iframe占用的部分, 后者还要
+考虑滚动条,(坐标系的原点在文档的左上角).一般二者可以这样转换
+</p>
+<pre class="example">
+documentX = viewpointX + scrollX
+documentY = viewpointY + scrollY
+</pre>
+<p>
+scrollX, scrollY 代表滚动条滚动的距离.
+</p>
+<ol class="org-ol">
+<li>获得viewpoint坐标
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">box</span> = e.getBoundingClientRect()
+box.top;
+box.right;
+box.bottom;
+box.left;
+</pre>
+</div>
+<p>
+e是一个DOM节点元素, 返回的那几个属性都可以为负值或者大于屏幕, 这意味着该
+元素目前不在视图之中. <b>根据这四个值我们可以计算元素的精确大小</b>.对隐藏元
+素无效.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">box</span> = e.getBoundingClientRect();
+<span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">w</span> = box.width || (box.right - box.left); <span style="color: #75715E;">// </span><span style="color: #75715E;">width</span>
+<span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">h</span> = box.height || (box.bottom - box.top); <span style="color: #75715E;">// </span><span style="color: #75715E;">height</span>
+</pre>
+</div>
+</li>
+<li>获得滚动条的offset
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">getScrollOffsets</span>(<span style="color: #FD971F;">w</span>) {
+  <span style="color: #75715E;">// </span><span style="color: #75715E;">Use the specified window or the current window if no argument</span>
+  w = w || window;
+  <span style="color: #75715E;">// </span><span style="color: #75715E;">This works for all browsers except IE versions 8 and before</span>
+  <span style="color: #F92672; font-weight: bold;">if</span> (w.pageXOffset != <span style="color: #AE81FF;">null</span>){
+    <span style="color: #F92672; font-weight: bold;">return</span> {scrollX: w.pageXOffset, scrollY: w.pageYOffset};
+  }
+  <span style="color: #75715E;">// </span><span style="color: #75715E;">For IE (or any browser) in Standards mode</span>
+  <span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">d</span> = w.document;
+  <span style="color: #F92672; font-weight: bold;">if</span> (document.compatMode == <span style="color: #E6DB74;">"CSS1Compat"</span>){
+    <span style="color: #F92672; font-weight: bold;">return</span> {
+      scrollX: d.documentElement.scrollLeft,
+      scrollY: d.documentElement.scrollTop
+    };
+  }
+  <span style="color: #75715E;">// </span><span style="color: #75715E;">For browsers in Quirks mode</span>
+  <span style="color: #F92672; font-weight: bold;">return</span> { scrollX: d.body.scrollLeft, scrollY: d.body.scrollTop };
+}
+</pre>
+</div>
+</li>
+<li>scroll
+<ul class="org-ul">
+<li>scrollTo(aka scroll): window对象的方法, 指定x,y坐标, 浏览器就会滚动到
+对应位置
+</li>
+<li>scrollIntoView: 一个Dom 节点的方法, 可以将这个元素滚动到视图中来.
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">修改css</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+注意因为js中标识符中不能使用 - , 所以使用驼峰命名, 比如css的 <code>font-size</code> 在js
+中就用, <code>fontSize</code>.
+</p>
+</div>
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1">使用style属性来修改css</h3>
+<div class="outline-text-3" id="text-4-1">
+<div class="org-src-container">
+
+<pre class="src src-js">e.style.position = <span style="color: #E6DB74;">"absolute"</span>;
+e.style.fontFamily = <span style="color: #E6DB74;">"sans-serif"</span>;
+e.style.backgroundColor = <span style="color: #E6DB74;">"#ffffff"</span>;
+</pre>
+</div>
+<p>
+代码中 e 是一个 Element Node. 注意上面的代码实际是创建行内样式, 因此设置
+样式时很有效, 因为行内样式优先级最高, 但是获取样式就不能用这种方法, 因为
+很可能该元素的样式在外部样式表中, 而不是行内样式中, 那么这种情况你使用这
+样的代码 <code>e.style.position</code> 会返回 "",
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2">获取当前的样式</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+返回当前应用在该元素上的某项css值.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">getStyle</span> = <span style="color: #F92672; font-weight: bold;">function</span> (<span style="color: #FD971F;">elem</span>, <span style="color: #FD971F;">name</span>){
+  <span style="color: #F92672; font-weight: bold;">if</span>(elem.currentStyle){   <span style="color: #75715E;">// </span><span style="color: #75715E;">IE browser</span>
+    <span style="color: #F92672; font-weight: bold;">return</span> elem.currentStyle[name];
+  }<span style="color: #F92672; font-weight: bold;">else</span> <span style="color: #F92672; font-weight: bold;">if</span> (!! window.getComputedStyle){
+    <span style="color: #75715E;">// </span><span style="color: #75715E;">W3C method(window.getComputedStyle)</span>
+    name = name.replace(<span style="color: #E6DB74;">/([A-Z])/</span>g, <span style="color: #E6DB74;">"-$1"</span>);
+    name = name.toLowerCase();
+    <span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">s</span> = window.getComputedStyle(elem, <span style="color: #E6DB74;">""</span>);
+    <span style="color: #F92672; font-weight: bold;">return</span> s &amp;&amp; s.getPropertyValue(name);
+  }<span style="color: #F92672; font-weight: bold;">else</span>{
+    <span style="color: #F92672; font-weight: bold;">return</span> <span style="color: #AE81FF;">null</span>;
+  }
+};
+</pre>
+</div>
+<p>
+上面的函数可以这样使用 <code>getStyle(document.body, 'font-size')</code>, 但是它在获
+取一些值比如 width 时, 可能返回 "%11"这样的值, 而不是计算后的值.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3">className</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+通过className属性来修改HTML元素的 class属性, 之所以不用class这个词是因为它是
+js的关键字.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">事件</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1">Event Object</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+通用属性:
+</p>
+<ol class="org-ol">
+<li>type: 一个字符串,比如 'load', 'click', 'mouseover'等等.
+</li>
+<li>target/srcElement: 触发事件的DOM元素, 后者是IE
+</li>
+<li>stopPropagation()/cancelBubble: 阻止冒泡, 后者是IE
+</li>
+<li>preventDefault()/returnValue=false: 阻止默认行为, 后者是IE
+</li>
+</ol>
+<p>
+还有一些事件有一些特别的属性:
+</p>
+<ol class="org-ol">
+<li>鼠标事件有以下几个比较重要的属性:
+<ul class="org-ul">
+<li>clientX, clientY: 鼠标在窗口中X, Y坐标, viewpoint coordinate.
+</li>
+<li>pageX, pageY : 鼠标相对于文档的x, Y坐标, document coordinate(IE中无效).
+</li>
+</ul>
+</li>
+<li>键盘事件有: ctrlKey, shiftKey, keyCode
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2">常用事件类型</h3>
+<div class="outline-text-3" id="text-5-2">
+</div><div id="outline-container-sec-5-2-1" class="outline-4">
+<h4 id="sec-5-2-1">window的事件</h4>
+<div class="outline-text-4" id="text-5-2-1">
+<ol class="org-ol">
+<li>load
+</li>
+<li>scroll
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2-2" class="outline-4">
+<h4 id="sec-5-2-2">UI事件</h4>
+<div class="outline-text-4" id="text-5-2-2">
+<ol class="org-ol">
+<li>focus: element gains input focus
+</li>
+<li>blur: element loses input focus
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2-3" class="outline-4">
+<h4 id="sec-5-2-3">鼠标事件</h4>
+<div class="outline-text-4" id="text-5-2-3">
+<ol class="org-ol">
+<li>click
+</li>
+<li>dblclick
+</li>
+<li>mouseover
+</li>
+<li>mouseout
+</li>
+<li>mousedown
+</li>
+<li>mouseup
+</li>
+<li>mousemove
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2-4" class="outline-4">
+<h4 id="sec-5-2-4">键盘事件</h4>
+<div class="outline-text-4" id="text-5-2-4">
+<ul class="org-ul">
+<li>keydown/keypress: 二者是同义事件, 但是在阻止按键的默认行为时则只能用
+keypress, 当你按组合快捷键时, 它会触发多个该类事件.
+</li>
+<li>keyup
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2-5" class="outline-4">
+<h4 id="sec-5-2-5">表单事件</h4>
+<div class="outline-text-4" id="text-5-2-5">
+<ol class="org-ol">
+<li>select: 选择了文本时触发
+</li>
+<li>change: &lt;input type="text" /&gt;, &lt;input type="password" /&gt;, &lt;select&gt;,
+<code>&lt;textarea&gt;</code> 等的内容改变且失去焦点时触发. 如果是文本框,当然还有keypress
+事件.
+</li>
+<li>submit: 这是form对象的事件, 它在表单被提交时触发.
+</li>
+<li>reset
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3">Register Event Handler</h3>
+<div class="outline-text-3" id="text-5-3">
+<ol class="org-ol">
+<li>onevent: 实际就是设置元素的html属性.基本代码模式如下:
+<pre class="example">
+window.onload = function(evt){...};
+</pre>
+<p>
+这种方法有一些优缺点:
+</p>
+<ul class="org-ul">
+<li>优点: 事件处理函数中this被正确绑定到当前元素,同时这种方法兼容性很好
+</li>
+<li>缺点: 一个元素对一类事件只能绑定一个事件处理函数, 重复绑定会覆盖以前的
+绑定. 同时事件对象参数只在非IE浏览器有效(IE浏览器使用全局事件对象).
+</li>
+</ul>
+</li>
+
+<li>addEventListener: 代码模式如下:
+<pre class="example">
+window.addEventListener('load', function(){...}, false);
+</pre>
+<ul class="org-ul">
+<li>优点: 可以绑定多个事件处理函数, this被正确绑定, event对象作为第一个参
+数传递给事件处理函数
+</li>
+<li>缺点: IE不支持
+</li>
+</ul>
+</li>
+
+<li>IE(attachEvent)
+在这种模式中, 如果要阻止浏览器的默认行为, 那么事件处理函数应该调用
+</li>
+
+<li>这是一个比较好的版本, 你可以从这里<a href="static/doc/add-event.js">下载</a>.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-5-4" class="outline-3">
+<h3 id="sec-5-4">Event Cancellation</h3>
+<div class="outline-text-3" id="text-5-4">
+</div><div id="outline-container-sec-5-4-1" class="outline-4">
+<h4 id="sec-5-4-1">阻止浏览器默认行为</h4>
+<div class="outline-text-4" id="text-5-4-1">
+<p>
+如果是onevent这种模式注册的事件处理函数, 要阻止浏览器的默认行为, 那么事件处
+理函数应该返回false, 如果是addEventListener注册的事件处理函数, 要阻止浏览器
+的默认行为, 那么事件处理函数应该调用 <code>event.preventDefault()</code>. 如果是
+IE(attachEvent)注册的事件处理函数, 那么事件处理函数应该调用
+<code>event.returnValue=false;</code>. 因此为了使这三中情况都能生效, 一般使用这样的代
+码:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">eventHandler</span> = <span style="color: #F92672; font-weight: bold;">function</span>(<span style="color: #FD971F;">evt</span>){
+  evt = evt || window.event;    <span style="color: #75715E;">// </span><span style="color: #75715E;">for IE</span>
+
+  <span style="color: #F92672; font-weight: bold;">if</span> (evt.preventDefault){      <span style="color: #75715E;">// </span><span style="color: #75715E;">standard technique</span>
+    evt.preventDefault();
+  }
+  <span style="color: #F92672; font-weight: bold;">if</span> (evt.returnValue){         <span style="color: #75715E;">// </span><span style="color: #75715E;">IE</span>
+    evt.returnValue = <span style="color: #AE81FF;">false</span>;
+  }
+
+  <span style="color: #F92672; font-weight: bold;">return</span> <span style="color: #AE81FF;">false</span>;                 <span style="color: #75715E;">// </span><span style="color: #75715E;">onevent</span>
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5-4-2" class="outline-4">
+<h4 id="sec-5-4-2">阻止事件冒泡</h4>
+<div class="outline-text-4" id="text-5-4-2">
+<p>
+阻止事件冒泡, 如果event有stopPropagation, 那么调用该函数, 如果是IE, 设置
+cancelBubble设为true.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">eventHandler</span> = <span style="color: #F92672; font-weight: bold;">function</span>(<span style="color: #FD971F;">evt</span>){
+  <span style="color: #F92672; font-weight: bold;">if</span> (evt &amp;&amp; evt.stopPropagation){ <span style="color: #75715E;">// </span><span style="color: #75715E;">non IE</span>
+    evt.stopPropagation();
+  }<span style="color: #F92672; font-weight: bold;">else</span>{                        <span style="color: #75715E;">// </span><span style="color: #75715E;">IE</span>
+    window.event.cancelBubble = <span style="color: #AE81FF;">true</span>;
+  }
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5-5" class="outline-3">
+<h3 id="sec-5-5">通用函数</h3>
+<div class="outline-text-3" id="text-5-5">
+<ol class="org-ol">
+<li>获得事件处理函数中event对象(IE使用全局的event对象, 而非IE显式的传递event
+对象作为参数给事件处理函数)
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">eventhanlder</span> = <span style="color: #F92672; font-weight: bold;">function</span>(<span style="color: #FD971F;">evt</span>){
+  evt = evt || window.event;
+}
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">ajax</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1">Create XMLHttpRequest</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+IE6没有标准的XMLHttpRequest构造函数, 可以使用以下代码模拟:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #75715E;">// </span><span style="color: #75715E;">Emulate the XMLHttpRequest() constructor in IE5 and IE6</span>
+<span style="color: #F92672; font-weight: bold;">if</span> (window.XMLHttpRequest === <span style="color: #AE81FF;">undefined</span>) {
+  window.XMLHttpRequest = <span style="color: #F92672; font-weight: bold;">function</span>() {
+    <span style="color: #F92672; font-weight: bold;">try</span> {
+      <span style="color: #75715E;">// </span><span style="color: #75715E;">Use the latest version of the ActiveX object if available</span>
+      <span style="color: #F92672; font-weight: bold;">return</span> <span style="color: #F92672; font-weight: bold;">new</span> <span style="color: #66D9EF;">ActiveXObject</span>(<span style="color: #E6DB74;">"Msxml2.XMLHTTP.6.0"</span>);
+    } <span style="color: #F92672; font-weight: bold;">catch</span> (e1) {
+      <span style="color: #F92672; font-weight: bold;">try</span> {
+        <span style="color: #75715E;">// </span><span style="color: #75715E;">Otherwise fall back on an older version</span>
+        <span style="color: #F92672; font-weight: bold;">return</span> <span style="color: #F92672; font-weight: bold;">new</span> <span style="color: #66D9EF;">ActiveXObject</span>(<span style="color: #E6DB74;">"Msxml2.XMLHTTP.3.0"</span>);
+      } <span style="color: #F92672; font-weight: bold;">catch</span>(e2) {
+        <span style="color: #75715E;">// </span><span style="color: #75715E;">Otherwise, throw an error</span>
+        <span style="color: #F92672; font-weight: bold;">throw</span> <span style="color: #F92672; font-weight: bold;">new</span> <span style="color: #66D9EF;">Error</span>(<span style="color: #E6DB74;">"XMLHttpRequest is not supported"</span>);
+      }
+    }
+  };
+}
+</pre>
+</div>
+<p>
+然后使用 <code>var req = new XMLHttpRequest()</code> 来创建
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2">open</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+指定verb('GET', 'POST'), url, async(true为异步, false为同步).
+</p>
+<pre class="example">
+req.open(verb, url [, async]);
+</pre>
+<p>
+接着你可以使用 <code>setRequestHeader</code> 来指定http 头部, 这在使用 POST时特别重要,
+因为你要指定你传递的数据类型(Content-Type).
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js">req.setRequestHeader(<span style="color: #E6DB74;">'Content-Type'</span>, <span style="color: #E6DB74;">"text/plain;charset=UTF-8"</span>);
+</pre>
+</div>
+<p>
+可以使用多个 <code>setRequestHeader</code> 语句.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3">send</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+<code>req.send(msg);</code>, 如果是 GET,那么msg为null, 如果是 POST, msg为你要传递的内
+容.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-4" class="outline-3">
+<h3 id="sec-6-4">Retrieving the Response</h3>
+<div class="outline-text-3" id="text-6-4">
+<p>
+如果请求完成,那么XMLHttpRequest会有以下属性:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">status</td>
+<td class="left">一个数值, 比如200, 404</td>
+</tr>
+
+<tr>
+<td class="left">statusText</td>
+<td class="left">一个字符串,比如"OK", "Not Found"</td>
+</tr>
+
+<tr>
+<td class="left">getResponseHeader()</td>
+<td class="left">获得HTTP头部</td>
+</tr>
+
+<tr>
+<td class="left">getAllResponseHeader()</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">responseText</td>
+<td class="left">文本</td>
+</tr>
+
+<tr>
+<td class="left">responseXML</td>
+<td class="left">XML, 实际就是将文本解码成DOM树</td>
+</tr>
+</tbody>
+</table>
+<p>
+因为http请求一般都是异步发送, 所以必须要有一个事件来通知请求已经完成.这个事
+件就是 <code>readystatechange</code>, 从理论上上说, 当 XMLHttpRequest 的 readyState属
+性变动时都应该触发该事件, 但实际并不是如此, 下面是redayState的值:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 1:</span> XMLHttpRequest readyState values</caption>
+
+<colgroup>
+<col  class="left" />
+
+<col  class="right" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Constant</th>
+<th scope="col" class="right">Value</th>
+<th scope="col" class="left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">UNSENT</td>
+<td class="right">0</td>
+<td class="left">open() has not been called yet</td>
+</tr>
+
+<tr>
+<td class="left">OPENED`</td>
+<td class="right">1</td>
+<td class="left">open() has been called</td>
+</tr>
+
+<tr>
+<td class="left">HEADERS_RECEIVED</td>
+<td class="right">2</td>
+<td class="left">Headers have been received</td>
+</tr>
+
+<tr>
+<td class="left">LOADING</td>
+<td class="right">3</td>
+<td class="left">The response body is being received</td>
+</tr>
+
+<tr>
+<td class="left">DONE</td>
+<td class="right">4</td>
+<td class="left">The response is complete</td>
+</tr>
+</tbody>
+</table>
+<p>
+一般来说从0到1是不会触发事件的, 但是调用send会触发事件,即便这时候
+<code>readyState</code> 的值没有改变,都是1, 在实践中我们也只对特定的 readyState变动感
+兴趣(主要是4, 也就是请求完成), 所以在事件处理函数中我们一般要测试
+readyState的值比如下面这个函数:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">getText</span>(<span style="color: #FD971F;">url</span>, <span style="color: #FD971F;">callback</span>) {
+  <span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">request</span> = <span style="color: #F92672; font-weight: bold;">new</span> <span style="color: #66D9EF;">XMLHttpRequest</span>();
+  <span style="color: #75715E;">// </span><span style="color: #75715E;">Create new request</span>
+  request.open(<span style="color: #E6DB74;">"GET"</span>, url);
+  <span style="color: #75715E;">// </span><span style="color: #75715E;">Specify URL to fetch</span>
+  request.onreadystatechange = <span style="color: #F92672; font-weight: bold;">function</span>() {
+    <span style="color: #75715E;">// </span><span style="color: #75715E;">Define event listener</span>
+    <span style="color: #75715E;">// </span><span style="color: #75715E;">If the request is compete and was successful</span>
+    <span style="color: #F92672; font-weight: bold;">if</span> (request.readyState === 4 &amp;&amp; request.status === 200) {
+      <span style="color: #75715E;">// </span><span style="color: #75715E;">get type</span>
+      <span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">type</span> = request.getResponseHeader(<span style="color: #E6DB74;">"Content-Type"</span>);
+      <span style="color: #F92672; font-weight: bold;">if</span> (type.indexOf(<span style="color: #E6DB74;">'xml'</span>) !== -1 &amp;&amp; request.responseXML){
+        callback(request.responseXML);
+      }<span style="color: #F92672; font-weight: bold;">else</span> <span style="color: #F92672; font-weight: bold;">if</span> (type === <span style="color: #E6DB74;">"application/json"</span>){
+        callback(JSON.parse(request.responseText)) <span style="color: #75715E;">// </span><span style="color: #75715E;">JSON response</span>
+      } <span style="color: #F92672; font-weight: bold;">else</span>{
+        callback(request.responseText);  <span style="color: #75715E;">// </span><span style="color: #75715E;">String response</span>
+      }
+    }
+  };
+  request.send(<span style="color: #AE81FF;">null</span>);
+  <span style="color: #75715E;">// </span><span style="color: #75715E;">Send the request now</span>
+}
+</pre>
+</div>
+<p>
+注意 <code>readyState</code> 为 <code>4</code> 只是说请求已经完成,但并不一定请求成功, 有可能是404
+或其它http错误, 只有测试 <code>status</code> 为 <code>200</code> 时才是成功的http请求.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-5" class="outline-3">
+<h3 id="sec-6-5">jsonp</h3>
+<div class="outline-text-3" id="text-6-5">
+<p>
+实际就是创建一个 <code>&lt;script&gt;...&lt;/script&gt;</code> 节点, 然后将其插入文档, 这样浏览器会
+自动的发送一个http get请求,并且把请求得到的内容当做 js代码来执行. 根据这个原
+理,那么服务器必须生成能执行的js代码,而不仅仅只是返回数据, 也就是说一般要指定
+一个处理函数作为前缀(prefix), 这也是jsonp中p的由来. 为了指定这个处理函数, 一
+般在url中指定, 比如在url的后面添加 ?jsonp=handler 或者 ?callback=handler,这
+样服务器端就知道你指定的处理函数了.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div id="disqus_comment">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var url = window.location.pathname;
+        var disqus_identifier = url.substring(url.lastIndexOf('/')+1);
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'yuyang'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+<!-- begin footer -->
+<div id="footer">
+  <ul class="links vertical-nav">
+    <li><a href="/sitemap.xml">Sitemap</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    <li><a href="/about.html">About Me</a></li>
+    <li><a class="back-to-top" href="#">Back to Top</a></li>
+  </ul>
+  <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
+  <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
+</div>
+<!-- end footer -->
+</div>
+</body>
+</html>

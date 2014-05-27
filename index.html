@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Index Page</title>
-<!-- 2014-03-26 Wed 14:14 -->
+<!-- 2014-05-16 Fri 13:57 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -88,7 +88,9 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="static/css/main.css"/> <link rel="shortcut icon" href="static/img/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="static/css/main.css"/>
+<link rel="shortcut icon" href="static/img/favicon.ico" />
+<script type="text/javascript" src="static/js/custom.js"></script>
 <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="Atom feed">
 <script type="text/javascript">
 /*
@@ -141,21 +143,31 @@ for the JavaScript code in this tag.
 <div id="preamble" class="status">
 <div id="header">
       <div class="inner">
-        <h1 id="blog-title"><a href="/"> Yu Yang's Blog</a></h1>
-        <ul class="nav">
-          <li> <a href="/">Home</a></li>
-          <li> <a href="/about.html">About</a></li>
-          <li> <a href="/rss.xml">RSS</a></li>
-        </ul>
-        <form method="get" action="https://google.com/search" id="search">
-          <input type="hidden" name="q" value="site:yuyang.farbox.com" />
-          <input type="text" name="q" placeholder="Search..." />
-        </form>
+        <h1 id="site-title"><a href="/"> Yu Yang's Blog</a></h1>
+        <div>
+          <a href="###" id="site-nav-btn">菜单</a>
+          <ul id="site-nav" class="vertical-nav mobi-hid">
+            <li> <a href="/">Home</a></li>
+            <li> <a href="/about.html">About</a></li>
+
+            <li> <a href="/tags.html">Tags</a></li>
+
+            <li> <a href="/rss.xml">RSS</a></li>
+          </ul>
+
+          <form id="site-search" method="get" action="https://google.com/search">
+            <input type="hidden" name="q" value="site:yuyang.farbox.com" />
+            <input type="text" name="q" placeholder="Search..." />
+            <button class="btn-search" type="submit">Search</button>
+          </form>
+          <div style="clear:both;"> </div>
+        </div>
       </div>
     </div>
 </div>
 <div id="content">
 <h1 class="title">Index Page</h1>
+
 <div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1">Articles</h2>
 <div class="outline-text-2" id="text-1">
@@ -193,11 +205,7 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="notes/clojure.html">Clojure笔记</a>
 </li>
-<li><a href="notes/php.html">php笔记</a>
-</li>
 <li><a href="notes/python-note.html">python笔记</a>
-</li>
-<li><a href="notes/javascript.html">javascript笔记</a>
 </li>
 </ul>
 </div>
@@ -207,7 +215,17 @@ for the JavaScript code in this tag.
 <h3 id="sec-2-3">web</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
+<li><a href="notes/php.html">php笔记</a>
+</li>
+<li><a href="notes/sql.html">MySQL笔记</a>
+</li>
 <li><a href="notes/css.html">css笔记</a>
+</li>
+<li><a href="notes/javascript.html">javascript笔记</a>
+</li>
+<li><a href="notes/client-javascript.html">Client-Side javascript</a>
+</li>
+<li><a href="notes/jquery.html">jQuery</a>
 </li>
 <li><a href="notes/django.html">django笔记</a>
 </li>
@@ -229,9 +247,13 @@ for the JavaScript code in this tag.
 <h3 id="sec-2-5">math</h3>
 <div class="outline-text-3" id="text-2-5">
 <ul class="org-ul">
-<li><a href="notes/set-theory.html">SET THEORY(30%)</a>
+<li><a href="notes/set-theory.html">SET THEORY</a>
+</li>
+<li><a href="notes/logic.html">数理逻辑</a>
 </li>
 <li><a href="notes/Probability.html">概率论与数理统计</a>
+</li>
+<li><a href="notes/liner-algebra.html">Liner Algebra</a>
 </li>
 </ul>
 </div>
@@ -249,7 +271,7 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="notes/%E4%B9%8C%E5%90%88%E4%B9%8B%E4%BC%97.html">乌合之众</a>
 </li>
-<li><a href="notes/EOPL.html">Essentials of Programming Languages(Daniel P. Friedman)</a>
+<li><a href="notes/EOPL.html">EOPL(Daniel P. Friedman)</a>
 </li>
 <li><a href="notes/Theory-Computation.html">计算理论导引</a>
 </li>
@@ -267,78 +289,6 @@ for the JavaScript code in this tag.
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div id="outline-container-tags" class="outline-2">
-<h2 id="tags"><a id="sec-3" name="sec-3"></a>Tags</h2>
-<div class="outline-text-2" id="text-tags">
-
-<ul class="org-ul">
-<li><a href="tags.html#computation">computation</a>
-</li>
-<li><a href="tags.html#统计">统计</a>
-</li>
-<li><a href="tags.html#概率论">概率论</a>
-</li>
-<li><a href="tags.html#Probability">Probability</a>
-</li>
-<li><a href="tags.html#investment">investment</a>
-</li>
-<li><a href="tags.html#theory">theory</a>
-</li>
-<li><a href="tags.html#information">information</a>
-</li>
-<li><a href="tags.html#lisp">lisp</a>
-</li>
-<li><a href="tags.html#scheme">scheme</a>
-</li>
-<li><a href="tags.html#python">python</a>
-</li>
-<li><a href="tags.html#method">method</a>
-</li>
-<li><a href="tags.html#study">study</a>
-</li>
-<li><a href="tags.html#github">github</a>
-</li>
-<li><a href="tags.html#git">git</a>
-</li>
-<li><a href="tags.html#web">web</a>
-</li>
-<li><a href="tags.html#css">css</a>
-</li>
-<li><a href="tags.html#language">language</a>
-</li>
-<li><a href="tags.html#programming">programming</a>
-</li>
-<li><a href="tags.html#EOPL">EOPL</a>
-</li>
-<li><a href="tags.html#SICP">SICP</a>
-</li>
-<li><a href="tags.html#set">set</a>
-</li>
-<li><a href="tags.html#mathmatics">mathmatics</a>
-</li>
-<li><a href="tags.html#php">php</a>
-</li>
-<li><a href="tags.html#emacs">emacs</a>
-</li>
-<li><a href="tags.html#django">django</a>
-</li>
-<li><a href="tags.html#源码分析">源码分析</a>
-</li>
-<li><a href="tags.html#webpy">webpy</a>
-</li>
-<li><a href="tags.html#coroutine">coroutine</a>
-</li>
-<li><a href="tags.html#gevent">gevent</a>
-</li>
-<li><a href="tags.html#mess">mess</a>
-</li>
-<li><a href="tags.html#c">c</a>
-</li>
-<li><a href="tags.html#linux">linux</a>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -363,14 +313,14 @@ for the JavaScript code in this tag.
 </div>
 <!-- begin footer -->
 <div id="footer">
-  <hr />
-  <ul class="links">
-    <li>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</li>
+  <ul class="links vertical-nav">
     <li><a href="/sitemap.xml">Sitemap</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     <li><a href="/about.html">About Me</a></li>
-    <li><a href="#">Back to Top</a></li>
+    <li><a class="back-to-top" href="#">Back to Top</a></li>
   </ul>
+  <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
+  <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
 <!-- end footer -->
 </div>

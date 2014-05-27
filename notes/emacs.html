@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Emacs/elisp笔记</title>
-<!-- 2014-02-05 Wed 15:12 -->
+<!-- 2014-05-16 Fri 13:57 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -89,8 +89,10 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="static/css/main.css"/> <link rel="shortcut icon" href="static/img/favicon.ico" />
-<script defer="defer" src="static/js/emacs_tooltip.js"></script>
+<link rel="stylesheet" type="text/css" href="static/css/main.css"/>
+<link rel="shortcut icon" href="static/img/favicon.ico" />
+<script type="text/javascript" src="static/js/custom.js"></script>
+<script type="text/javascript" src="static/js/emacs-tooltip.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -138,7 +140,10 @@ for the JavaScript code in this tag.
 /*]]>*///-->
 </script>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript">window.MathJax || document.write('<script src="static/js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" ><\/script>')</script>
 <script type="text/javascript">
+
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
@@ -184,16 +189,25 @@ for the JavaScript code in this tag.
 <div id="preamble" class="status">
 <div id="header">
       <div class="inner">
-        <h1 id="blog-title"><a href="/"> Yu Yang's Blog</a></h1>
-        <ul class="nav">
-          <li> <a href="/">Home</a></li>
-          <li> <a href="/about.html">About</a></li>
-          <li> <a href="/rss.xml">RSS</a></li>
-        </ul>
-        <form method="get" action="https://google.com/search" id="search">
-          <input type="hidden" name="q" value="site:yuyang.farbox.com" />
-          <input type="text" name="q" placeholder="Search..." />
-        </form>
+        <h1 id="site-title"><a href="/"> Yu Yang's Blog</a></h1>
+        <div>
+          <a href="###" id="site-nav-btn">菜单</a>
+          <ul id="site-nav" class="vertical-nav mobi-hid">
+            <li> <a href="/">Home</a></li>
+            <li> <a href="/about.html">About</a></li>
+
+            <li> <a href="/tags.html">Tags</a></li>
+
+            <li> <a href="/rss.xml">RSS</a></li>
+          </ul>
+
+          <form id="site-search" method="get" action="https://google.com/search">
+            <input type="hidden" name="q" value="site:yuyang.farbox.com" />
+            <input type="text" name="q" placeholder="Search..." />
+            <button class="btn-search" type="submit">Search</button>
+          </form>
+          <div style="clear:both;"> </div>
+        </div>
       </div>
     </div>
 </div>
@@ -1367,36 +1381,36 @@ S-tab可以在表格中正向或者反向的移动，在表格的空白项中输
 
 
 <colgroup>
-<col  class="right" />
+<col  class="center" />
 
-<col  class="right" />
+<col  class="center" />
 
-<col  class="right" />
+<col  class="center" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="right">单价</th>
-<th scope="col" class="right">数量</th>
-<th scope="col" class="right">总价</th>
+<th scope="col" class="center">单价</th>
+<th scope="col" class="center">数量</th>
+<th scope="col" class="center">总价</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="right">2</td>
-<td class="right">2.5</td>
-<td class="right">5.</td>
+<td class="center">2</td>
+<td class="center">2.5</td>
+<td class="center">5.</td>
 </tr>
 
 <tr>
-<td class="right">3</td>
-<td class="right">3.5</td>
-<td class="right">10.5</td>
+<td class="center">3</td>
+<td class="center">3.5</td>
+<td class="center">10.5</td>
 </tr>
 
 <tr>
-<td class="right">4</td>
-<td class="right">4.5</td>
-<td class="right">18.</td>
+<td class="center">4</td>
+<td class="center">4.5</td>
+<td class="center">18.</td>
 </tr>
 </tbody>
 </table>
@@ -2206,9 +2220,9 @@ nil, 后面不能跟提示字符串,因为参数来自C-u而不是minibuffer
 </li>
 </ul>
 </li>
-<li>(interactive (lisp-expression-return-list-argument)) : arg-descriptor是
-一个elisp表达式,这个表达式应该产生传递给命令的参数,一般会调用read-string
-这样的函数从minibuffer中读入字符串
+<li><code>(interactive (lisp-expression-return-list-argument))</code> : arg-descriptor是
+一个elisp表达式,这个表达式应该产生传递给命令的参数,一般会调用
+<code>read-string</code> 这样的函数从minibuffer中读入字符串
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(interactive (list
@@ -2221,7 +2235,7 @@ nil, 后面不能跟提示字符串,因为参数来自C-u而不是minibuffer
 </pre>
 </div>
 <p>
-这是read-string的原型:
+这是 <code>read-string</code> 的原型:
 </p>
 <pre class="example">
 read-string prompt &amp;optional initial history default inherit-input-method
@@ -2403,14 +2417,14 @@ define-globalized-minor-mode 来把minor mode设为global,可以参考这里的<
 </div>
 <!-- begin footer -->
 <div id="footer">
-  <hr />
-  <ul class="links">
-    <li>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</li>
+  <ul class="links vertical-nav">
     <li><a href="/sitemap.xml">Sitemap</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     <li><a href="/about.html">About Me</a></li>
-    <li><a href="#">Back to Top</a></li>
+    <li><a class="back-to-top" href="#">Back to Top</a></li>
   </ul>
+  <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
+  <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
 <!-- end footer -->
 </div>

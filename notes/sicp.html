@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>SICP笔记</title>
-<!-- 2014-03-20 Thu 23:31 -->
+<!-- 2014-05-20 Tue 23:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -89,7 +89,9 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="static/css/main.css"/> <link rel="shortcut icon" href="static/img/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="static/css/main.css"/>
+<link rel="shortcut icon" href="static/img/favicon.ico" />
+<script type="text/javascript" src="static/js/custom.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -141,16 +143,25 @@ for the JavaScript code in this tag.
 <div id="preamble" class="status">
 <div id="header">
       <div class="inner">
-        <h1 id="blog-title"><a href="/"> Yu Yang's Blog</a></h1>
-        <ul class="nav">
-          <li> <a href="/">Home</a></li>
-          <li> <a href="/about.html">About</a></li>
-          <li> <a href="/rss.xml">RSS</a></li>
-        </ul>
-        <form method="get" action="https://google.com/search" id="search">
-          <input type="hidden" name="q" value="site:yuyang.farbox.com" />
-          <input type="text" name="q" placeholder="Search..." />
-        </form>
+        <h1 id="site-title"><a href="/"> Yu Yang's Blog</a></h1>
+        <div>
+          <a href="###" id="site-nav-btn">菜单</a>
+          <ul id="site-nav" class="vertical-nav mobi-hid">
+            <li> <a href="/">Home</a></li>
+            <li> <a href="/about.html">About</a></li>
+
+            <li> <a href="/tags.html">Tags</a></li>
+
+            <li> <a href="/rss.xml">RSS</a></li>
+          </ul>
+
+          <form id="site-search" method="get" action="https://google.com/search">
+            <input type="hidden" name="q" value="site:yuyang.farbox.com" />
+            <input type="text" name="q" placeholder="Search..." />
+            <button class="btn-search" type="submit">Search</button>
+          </form>
+          <div style="clear:both;"> </div>
+        </div>
       </div>
     </div>
 </div>
@@ -175,7 +186,6 @@ for the JavaScript code in this tag.
 <li><a href="#sec-2-3-2">素数检查</a></li>
 </ul>
 </li>
-<li><a href="#sec-2-4">一些个人体会</a></li>
 </ul>
 </li>
 <li><a href="#sec-3">Chp3 (Modularity, Objects, and State)</a>
@@ -343,27 +353,7 @@ gcd(a, b) = gcd (b, r)        (r = a % b)
 </div>
 </div>
 </div>
-
-<div id="outline-container-sec-2-4" class="outline-3">
-<h3 id="sec-2-4">一些个人体会</h3>
-<div class="outline-text-3" id="text-2-4">
-<p class="verse">
-church数:<br  />
-&#xa0;&#xa0;数实际上没有具体的实际意义，本质上数只是表示一个个孤立的状态的符号，<br  />
-&#xa0;&#xa0;它唯一的意义就是能表示出这一个个状态之间是不同的，如1表示的状态和2表<br  />
-&#xa0;&#xa0;示的状态时不同的，而在这些状态上定义+ - * / 这样的的运算，在执行这些<br  />
-&#xa0;&#xa0;运算时可以从一个状态跳到另外一个状态<br  />
-lambda演算:<br  />
-&#xa0;&#xa0;1. 函数与形参无关，也就是说只要将形参名与函数体对该形参名的引用同时<br  />
-&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;替换则函数是等价的<br  />
-&#xa0;&#xa0;2. 如果函数有多个参数，调用时没有给出所有参数那么该调用返回一个函数<br  />
-&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;eg：(define (add x y) (+ x y))<br  />
-&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;调用(add 1) 返回 (lambda(y) (+ 1 y))<br  />
-</p>
 </div>
-</div>
-</div>
-
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">Chp3 (Modularity, Objects, and State)</h2>
 <div class="outline-text-2" id="text-3">
@@ -416,9 +406,9 @@ object中通过赋值来改变对象的状态,如果我们从整体上看就会�
 个lisp 解释器, 那么这个解释器就可以模拟任何用lisp程序描述的机器,假设我现在给
 该解释器送入一个lisp程序,而这个lisp程序实际是一个C语言的解释器,那么原来的lisp
 解释器就可以模拟所有的用C语言描述的机器. 这里的深刻思想是: <b>任一解释器都可以
-模拟其它的解释器</b>, 因此原则上什么可以计算的概念就 <b>与语言或者计算机无关</b>.
-通用图灵机实际就是一个解释器,它可以模拟图灵机的程序, 任何一个"有效过程" 都可
-以描述为图灵机堵塞一个程序.
+模拟其它的解释器</b>, 因此原则上什么可以计算的概念就 <b>与语言或者计算机无关</b>. 通
+用图灵机(元图灵机)实际就是一个解释器,它可以模拟图灵机的程序, 也就是说以一个图
+灵机程序作为输入, 任何一个"有效过程" 都可以描述为图灵机的一个程序.
 </p>
 </div>
 </div>
@@ -444,14 +434,14 @@ object中通过赋值来改变对象的状态,如果我们从整体上看就会�
 </div>
 <!-- begin footer -->
 <div id="footer">
-  <hr />
-  <ul class="links">
-    <li>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</li>
+  <ul class="links vertical-nav">
     <li><a href="/sitemap.xml">Sitemap</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     <li><a href="/about.html">About Me</a></li>
-    <li><a href="#">Back to Top</a></li>
+    <li><a class="back-to-top" href="#">Back to Top</a></li>
   </ul>
+  <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
+  <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
 <!-- end footer -->
 </div>

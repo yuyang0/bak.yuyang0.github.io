@@ -1,0 +1,1844 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>数理逻辑</title>
+<!-- 2014-05-27 Tue 23:05 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Yu Yang" />
+<meta  name="keywords" content="logic mathematics" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="static/css/main.css"/>
+<link rel="shortcut icon" href="static/img/favicon.ico" />
+<script type="text/javascript" src="static/js/custom.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript">window.MathJax || document.write('<script src="static/js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" ><\/script>')</script>
+<script type="text/javascript">
+
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+            config: ["MMLorHTML.js"], jax: ["input/TeX"],
+        //  jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="header">
+      <div class="inner">
+        <h1 id="site-title"><a href="/"> Yu Yang's Blog</a></h1>
+        <div>
+          <a href="###" id="site-nav-btn">菜单</a>
+          <ul id="site-nav" class="vertical-nav mobi-hid">
+            <li> <a href="/">Home</a></li>
+            <li> <a href="/about.html">About</a></li>
+
+            <li> <a href="/tags.html">Tags</a></li>
+
+            <li> <a href="/rss.xml">RSS</a></li>
+          </ul>
+
+          <form id="site-search" method="get" action="https://google.com/search">
+            <input type="hidden" name="q" value="site:yuyang.farbox.com" />
+            <input type="text" name="q" placeholder="Search..." />
+            <button class="btn-search" type="submit">Search</button>
+          </form>
+          <div style="clear:both;"> </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div id="content">
+<h1 class="title">数理逻辑</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">形式系统</a>
+<ul>
+<li><a href="#sec-1-1">concepts</a>
+<ul>
+<li><a href="#sec-1-1-1">Consistency</a></li>
+<li><a href="#sec-1-1-2">Completeness</a></li>
+<li><a href="#sec-1-1-3">判定</a></li>
+<li><a href="#sec-1-1-4">Decision procedure</a></li>
+<li><a href="#sec-1-1-5">同构</a></li>
+<li><a href="#sec-1-1-6">递归, 递归可枚举</a></li>
+<li><a href="#sec-1-1-7">logic system</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2">Definition</a></li>
+<li><a href="#sec-1-3">examples</a>
+<ul>
+<li><a href="#sec-1-3-1">pq形式系统</a></li>
+<li><a href="#sec-1-3-2">Propositon logic</a></li>
+<li><a href="#sec-1-3-3">数论系统</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-4">哥德尔不完全性定理</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">Propositon logic</a>
+<ul>
+<li><a href="#sec-2-1">concepts</a></li>
+<li><a href="#sec-2-2">形式语言</a>
+<ul>
+<li><a href="#sec-2-2-1">符号集</a></li>
+<li><a href="#sec-2-2-2">语法规则(wff)</a></li>
+<li><a href="#sec-2-2-3">解释</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-3">真值指派</a></li>
+<li><a href="#sec-2-4">重言蕴含</a>
+<ul>
+<li><a href="#sec-2-4-1">典型的重言式</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-5">归纳与递归</a>
+<ul>
+<li><a href="#sec-2-5-1">concepts</a></li>
+<li><a href="#sec-2-5-2">归纳</a></li>
+<li><a href="#sec-2-5-3">递归定理</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-6">命题联结词</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">一阶逻辑</a>
+<ul>
+<li><a href="#sec-3-1">concepts</a></li>
+<li><a href="#sec-3-2">形式语言</a>
+<ul>
+<li><a href="#sec-3-2-1">符号集</a></li>
+<li><a href="#sec-3-2-2">语法规则</a></li>
+<li><a href="#sec-3-2-3">解释</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-3">真值</a>
+<ul>
+<li><a href="#sec-3-3-1">满足</a>
+<ul>
+<li><a href="#sec-3-3-1-1">项(term)</a></li>
+<li><a href="#sec-3-3-1-2">原子公式</a></li>
+<li><a href="#sec-3-3-1-3">其它合式公式</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-3-2">缩写</a></li>
+<li><a href="#sec-3-3-3">一阶语言的例子</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-4">逻辑蕴含</a>
+<ul>
+<li><a href="#sec-3-4-1">examples</a></li>
+<li><a href="#sec-3-4-2">几个结论</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-5">同态(homomorphism)</a></li>
+<li><a href="#sec-3-6">演绎计算</a>
+<ul>
+<li><a href="#sec-3-6-1">逻辑公理集</a></li>
+<li><a href="#sec-3-6-2">原理,定理</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-7">一致性与完备性</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">形式系统</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">concepts</h3>
+<div class="outline-text-3" id="text-1-1">
+</div><div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1">Consistency</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+形式系统的一致性就是说系统没有矛盾, 从语法上说, P 与 &not; P 不能在系统中都
+可证, 从语义上说存在一种解释满足所有的定理, 也就是说使定理为真(也就是真陈
+述), 如果至少有一个经解释后的定理是假陈述,那么形式系统就出现了不一致性. 上
+述的一致性实际是形式系统(带上解释)同外部世界的一致性, 但是还有一种内部一致
+性说的是系统中的定理解释之后应该是相容的, 这种情况下并不是说一定要定理是真
+陈述, 只要这些陈述能相容就可以了.
+</p>
+
+<p>
+一致性不单是形式系统的性质,它还依赖于对形式系统提出的解释, 有可能一种解释下
+形式系统是不一致的, 而另一种解释下形式系统就是一致的, 同理,不一致性也不是任
+何形式系统的固有性质,有可能只是没有为形式系统找到好的解释.
+</p>
+
+<p>
+假设集合A是形式系统的定理集, 集合B是外部系统中真陈述翻译成形式系统的wff后组
+成的集合, 那么一致性会确保A是B的子集. 而完全性则确保B是A的子集, 所以如果一
+个形式系统既是一致的又时完全的,那么集合A与集合B是相等的.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2">Completeness</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+<b>完全性</b>: 所有真的(在某个想象的世界里)且可表示成系统的 wff 的陈述都是该形式
+系统的定理.
+</p>
+
+<p>
+<b>不完全性</b>:形式系统的定理集之外有真陈述, 也就是说非定理集中存在至少一个 wff
+被解释之后是真陈述
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3">判定</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<p>
+如果 P 与 &not; P 都不是形式系统的定理, 那么 P 就在该形式系统内是不可判定的
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-4" class="outline-4">
+<h4 id="sec-1-1-4">Decision procedure</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<p>
+形式系统判定过程用来确定一个 wff 是否是一个定理. 形式系统的公理必须拥有判定
+过程, 也就是说你必须保证开始时是正确的. 一个形式系统可以没有判定过程. 一般
+来说如果形式系统的推导规则只有加长规则, 那么该形式系统拥有判定过程.
+</p>
+
+<p>
+集合的判定过程是用来确定一个元素是否属于一个集合, 如果一个集合拥有一个能行
+的判定过程,那么该集合是可判定集合(decidable set)
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-5" class="outline-4">
+<h4 id="sec-1-1-5">同构</h4>
+<div class="outline-text-4" id="text-1-1-5">
+<p>
+两个复杂结构之间不同部分可以相互映射, 那么这就是一种同构. 对于形式系统来说,
+一般是给系统某种 <b>解释</b>, 这种情况下形式系统中的每一个符号都与一个词对应, 而
+且从上层来说形式系统中的定理解释之后应该是真陈述. 比如pq系统, 可以这样解释:
+</p>
+<pre class="example">
+q     &lt;=&gt;    等于
+p     &lt;=&gt;    加
+-     &lt;=&gt;    1
+--    &lt;=&gt;    2
+---   &lt;=&gt;    3
+      ...
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-6" class="outline-4">
+<h4 id="sec-1-1-6">递归, 递归可枚举</h4>
+<div class="outline-text-4" id="text-1-1-6">
+<p>
+二者的关系就像图形(正空间)和它的衬底(负空间).
+</p>
+<ul class="org-ul">
+<li>递归可枚举(r.e.): 又称为部分递归集, 任何形式系统的定理集都是递归可枚举集,
+更一般的说, 该集合的元素都可以通过推理规则从起点(公理)生成出来.( 正空间是
+图形).
+</li>
+<li>递归: 如果一个集合与它的补集都是递归可枚举的, 那么该集合是递归的(一幅画的
+正空间与负空间都是图形 ).
+</li>
+</ul>
+
+<p>
+存在非递归的递归可枚举集
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-7" class="outline-4">
+<h4 id="sec-1-1-7">logic system</h4>
+<div class="outline-text-4" id="text-1-1-7">
+<p>
+一个形式系统外加一个语义, 也就是给形式系统中形式语言的句子赋予真值
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">Definition</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Formal systems in mathmatics consist of the following elements:
+</p>
+<ol class="org-ol">
+<li>A finite set of <b>symbols</b> (ie. the alphabet), that can be used to
+construct formulas
+</li>
+<li>A <b>grammar</b> which tells well-formed formulas(abbreviated <b>wff</b>) are
+constructed out of the symbols in the alphabet, it is usually required
+that there is a decision procedure for deciding whether a formula is well
+formmed or not
+</li>
+<li>A set of <b>axioms</b> or axiom schemate each axiom will be a wff.
+</li>
+<li>A set of <b>inference rules</b>.
+</li>
+</ol>
+<p>
+规则2用来生成合式公式(良构公式), 规则3是公理,规则4用来推导系统中的定理. 要注
+意这里说的定理和通常意义的定理不同.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">examples</h3>
+<div class="outline-text-3" id="text-1-3">
+</div><div id="outline-container-sec-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1">pq形式系统</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<ol class="org-ol">
+<li>symbols: p, q, -
+</li>
+<li>grammar: 一组短杠开头紧接着一个q, 又是一组短杠, 在接着是p, 最后以一组短杠
+结尾, 该语法生成的字符串叫 <b>合式公式</b> 也叫 <b>良构串</b>.
+<pre class="example">
+str ::= SqSpS
+S   ::= --*
+</pre>
+</li>
+<li>axiom schemate: 如果x仅由一组短杠组成,那么x-qxp- 是一个公理
+</li>
+<li>inference rules: 如果x,y与z是只包含短杠的特定字符串,并且假设 xqypz 是一个
+定理, 那么 x-qypz- 也是一个定理.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3-2" class="outline-4">
+<h4 id="sec-1-3-2">Propositon logic</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<ol class="org-ol">
+<li>symbols: (, ), &not;, &and;, &or;, &rarr;, &harr;, A<sub>1</sub>,
+A<sub>2</sub>,&#x2026; A<sub>n</sub>.
+</li>
+<li>grammar:
+<p class="verse">
+str  ::= A<sub>1</sub><br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;|= A<sub>2</sub><br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#x2026;<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;|= A<sub>n</sub><br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;|= (str &and; str)<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;|= (str &or; str)<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;|= (&not; str)<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;|= (str &rarr; str)<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;|= (str &harr; str)<br  />
+</p>
+</li>
+<li>axiom: 没有公理
+</li>
+<li>inference rules:
+<ul class="org-ul">
+<li>如果 x 是定理的前提下可以推出 y 是定理, 那么 \(x \rightarrow y\) 是定
+理.(<b>演绎定理</b>). 这条规则不像其它规则一样, 它不需要依赖定理, 所以它没
+有使用``如果xxx是定理,那么XXX是定理''的句式, 所以它可以"凭空"造出定理,
+这也是为什么它可以不需要公理. 比如: \(P \rightarrow \neg\neg P\) 根据上
+述规则就是一个定理, 因为P为定理的前提下可以推出 &not;&not; P 是定理. 但
+是要注意即便P不是定理的情况下, \(P \rightarrow \neg\neg P\) 仍然是定理.
+</li>
+<li><b>分离规则</b>: 如果 x 与 x &rarr; y 都是定理, 那么 y 是定理.
+</li>
+<li><b>联接规则</b>: 如果x, y都是定理, 那么 \(x \land y\) 也是定理
+</li>
+<li><b>分割规则</b>: 如果 \(x \land y\) 是定理, 那么x, y都是定理.
+</li>
+<li><b>双重否定规则</b>: &not;&not; 可以被删除 (负负得正)
+</li>
+<li><b>易位规则</b>: \(x \rightarrow y\) 与 \(\neg y \rightarrow \neg x\) 是可互换的.
+</li>
+<li><b>德.摩根规则</b>: \(\neg x \land \neg y\) 与 \(\neg(x \lor y)\) 是可互换的.
+</li>
+<li><b>思维陀螺规则</b>: \(x \lor y\) 与 \(\neg x \rightarrow y\) 是可互换的
+</li>
+</ul>
+<p>
+可互换意味着二者重言等价.
+</p>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3-3" class="outline-4">
+<h4 id="sec-1-3-3">数论系统</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<ol class="org-ol">
+<li>symbols: 0, S, =, +, &times;, &not;, &and;, &or;, &forall;, &exist;, a, a',
+a'' &#x2026;
+</li>
+<li>grammar:
+<p class="verse">
+<b>number</b>   ::= 0<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;= S <b>number</b><br  />
+<b>variable</b> ::= a, a', a'', &#x2026;<br  />
+<b>term</b>     ::= <b>variable</b><br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;= <b>number</b><br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;= S <b>term</b><br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;= <b>term</b> + <b>term</b><br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;= <b>term</b> &times; <b>term</b><br  />
+<b>atom</b>     ::= <b>term</b> = <b>term</b><br  />
+<b>formula</b>  ::= <b>atom</b><br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;= &not; <b>formula</b><br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;= <b>formula</b> &and; Formula<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;= <b>formula</b> &or; <b>formula</b><br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;= &forall; u: <b>formula</b>    (u is a free variable of formula)<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;= &exist; u: <b>formula</b>    (u is a free variable of formula)<br  />
+</p>
+</li>
+<li>axioms:
+<ol class="org-ol">
+<li>&forall; a: &not; Sa = 0
+</li>
+<li>&forall; a: (a + 0) = a
+</li>
+<li>&forall; a: &forall; b: (a + Sb) = S(a + b)
+</li>
+<li>&forall; a: (a &times; 0) = 0
+</li>
+<li>&forall; a: &forall; b:(a &times; Sb) = ((a &times; b) + a)
+</li>
+</ol>
+</li>
+<li>inference rules:
+命题演算中推理规则都是数论形式系统的规则, 除此之外,还有如下规则:
+<ol class="org-ol">
+<li>特称规则: 如果 &forall; u: x 是一个定理, 那么x也是一个定理, 并且对x中
+的u进行的任何替换都是定理(u是x中自由变量, 替换u的项不能包括已在x中量
+化的变量, 这样会产生变量捕捉)
+</li>
+<li>概括规则: 和特称规则相反
+</li>
+<li>存在规则
+</li>
+<li>等号规则
+<ul class="org-ul">
+<li>如果 s=r 是定理, 那么 r=s 也是定理
+</li>
+<li>如果 r=s 与 s=t 都是定理, 那么 r=t 是定理
+</li>
+</ul>
+</li>
+<li>后继规则
+<ul class="org-ul">
+<li>如果 r=t 是定理, 那么 Sr=St 是定理
+</li>
+<li>如果 Sr=St是定理, 那么 r=t 是定理
+</li>
+</ul>
+</li>
+<li>归纳规则
+如果 &forall; u:&lt;X{u} &rarr; X{Su/u}&gt; 以及 X{u/0} 都是定理, 那么
+&forall; u: X{u}是定理.
+</li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">哥德尔不完全性定理</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+哥德尔的不完全性定理的证明实际就是构造一个类似说谎者悖论的公式
+</p>
+\begin{displaymath}
+       \neg \ \exists a: \exists a': \textrm{TNT-PROOF-PAIR}
+\{a, a'\} \land \textrm{ARITHMOQUINE}\{a'', a'\}
+     \end{displaymath}
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Propositon logic</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">concepts</h3>
+<div class="outline-text-3" id="text-2-1">
+<ol class="org-ol">
+<li>命题符号: A<sub>1</sub> A<sub>2</sub> A<sub>n</sub> are propositon symbols
+</li>
+<li>逻辑联接符: 命题逻辑中为 \(\lnot, \lor, \land, \rightarrow, \leftrightarrow\)
+</li>
+<li>参数(非逻辑符号): 命题逻辑中,所有命题符号是参数, 参数的翻译是可变的
+</li>
+<li>逻辑符号: 命题逻辑中, 命题联接符以及括号是逻辑符号, 它们的翻译是不变的.
+</li>
+<li>well-formed formula(合式公式): 根据形式语言的语法规则生成的符号串
+</li>
+<li>满足(satisfy): 一个真值指派 v 满足 \(\varphi\) 当且仅当
+     \(\overset{-}{v}(\varphi)=T\), 也就是使得合式公式为真.
+</li>
+<li><b>紧致性定理</b>: 如果 &Sigma; 是合式公式的无限集合, 如果对于 &Sigma; 的任意子集
+\(\Sigma_0\) 都存在一个真值指派满足 \(\Sigma_0\) 的每一个公式, 那么存在一个真
+值指派满足 &Sigma; 中的所有公式.
+</li>
+<li>形式语言: (1) 符号集. (2) 语法规则,用来生成wff. (3) 一种解释或翻译
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">形式语言</h3>
+<div class="outline-text-3" id="text-2-2">
+</div><div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1">符号集</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+命题符号(A<sub>1</sub>, A<sub>2</sub>, &#x2026;, A<sub>n</sub>), 左右括号, 逻辑联接符(&not;, &and;, &or;,
+&rarr;, &harr;)
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2">语法规则(wff)</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+语法规则是递归的定义合式公式集的.
+</p>
+<ol class="org-ol">
+<li>every propositon symbol is well-formed formula
+</li>
+<li>if &alpha; and &beta; are well-formed formula, then \((\lnot \alpha),
+       (\alpha \land \beta), (\alpha \lor \beta), (\alpha \rightarrow \beta),
+       (\alpha \leftrightarrow \beta)\) are also well-formed formula.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2-3" class="outline-4">
+<h4 id="sec-2-2-3">解释</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+逻辑符号的解释是固定的:
+</p>
+<ul class="org-ul">
+<li>&not;(非),
+</li>
+<li>&and;(且)
+</li>
+<li>&or;(或)
+</li>
+<li>&rarr;(如果&#x2026;那么)
+</li>
+<li>&harr;(等价)
+</li>
+</ul>
+<p>
+参数也就是命题符号的解释是可变的,实际上可以说是任意的.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">真值指派</h3>
+<div class="outline-text-3" id="text-2-3">
+<ol class="org-ol">
+<li>S 是一个命题符号集合,比如 {A<sub>1</sub>, A<sub>2</sub> &#x2026;}
+</li>
+<li>v 是一个真值指派,也就是说为 S 中的每一个命题符号指定一个真值.
+</li>
+<li>\(\overset{-}{S}\) 是由 S 中命题符号所组成的合式公式所组成的集合
+</li>
+<li>\(\overset{-}{v}\) 为 \(\overset{-}{S}\) 中每一个合式公式指定一个真值.
+</li>
+</ol>
+
+\begin{eqnarray*}
+  v : S \rightarrow \{T, F\}   \\
+  \overset{-}{v} :\overset{-}{S} \rightarrow \{T, F\}    \\
+\end{eqnarray*}
+
+<p>
+\(\overset{-}v\) 的存在性可以由递归定理来证明, 因为5个逻辑联接符函数是自由生成
+的, 所以必然可以将 v 由 S 扩展到 \(\overset{-}S\)
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">&alpha;</th>
+<th scope="col" class="left">&beta;</th>
+<th scope="col" class="left">(\(\lnot\) &alpha;)</th>
+<th scope="col" class="left">(&alpha; &and; &beta;)</th>
+<th scope="col" class="left">(&alpha; &or; &beta;)</th>
+<th scope="col" class="left">(&alpha; &rarr; &beta;)</th>
+<th scope="col" class="left">(&alpha; &harr; &beta;)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">T</td>
+</tr>
+
+<tr>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">F</td>
+</tr>
+
+<tr>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">F</td>
+</tr>
+
+<tr>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">T</td>
+</tr>
+</tbody>
+</table>
+<ol class="org-ol">
+<li>&or;, &and;, \(\lnot\) 或且非
+</li>
+<li>&rarr;(imply, if..then&#x2026;) 代表一个承诺, 以 A &rarr; B 为例 只
+有A 为 T 且 B 为 F时A &rarr; B 才为F, 其它情况 A &rarr; B 都为
+T.
+</li>
+<li>&harr; 可以认为是等价关系, 要 A &harr; B 为 T, 那么只有
+A 与 B有相同的真值.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4">重言蕴含</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+<b>definition</b>: \(\Sigma \vDash \tau\) 当且仅当满足 &Sigma; 中每个合式公式的指派
+也满足 &tau; .
+</p>
+
+<p>
+重言蕴含实际反应了一种直觉: 一个结论可以有一些假设条件推出, 只有这些假设条件
+都为真时, 结论才为真.
+</p>
+
+<p>
+如果 &Sigma; 是 &empty; 那么 \(\vDash \tau\) 意味着任意真值指派都满足 &tau; 也
+就是说 &tau; 恒为真.此时 &tau; 也叫 <b>重言式</b>.
+</p>
+
+<p>
+如果 &Sigma; 是包含一个元素&sigma; 那么 \(\{\sigma \}\vDash \tau\) 可以写作
+\(\sigma \vDash \tau\), 如果 \(\sigma \vDash \tau\) 且 \(\tau \vDash \sigma\) ,那
+么意味着&tau; 与 &sigma;  <b>重言等价</b> 记作: \(\sigma \vDash \Dashv \tau\). 这也意
+味着 \(\sigma \leftrightarrow \tau\) 是重言式.一般在进行合式公式化简时,就是将
+一个公式转化为它的一个较简单的重言等价形式(因为重言等价意味这二者可以相互替
+换).
+</p>
+
+<p>
+<b>几个结论</b>:
+</p>
+<ol class="org-ol">
+<li>重言蕴含的基本意义
+
+\begin{displaymath}
+  \Sigma;\alpha \vDash \beta \quad \textrm{iff} \quad \Sigma \vDash (\alpha \rightarrow \beta)
+\end{displaymath}
+</li>
+
+<li>&alpha;, &beta; 是重言等价的, 那么:
+
+\begin{displaymath}
+  \vDash (\alpha \leftrightarrow \beta)
+\end{displaymath}
+</li>
+
+<li>对于任意的合式公式B
+
+\begin{displaymath}
+  \{A, \neg B\} \vDash B
+\end{displaymath}
+
+<p>
+上式实际就是 \(A \rightarrow (\neg A) \rightarrow B\), 很显然是重言式.
+</p>
+</li>
+</ol>
+</div>
+<div id="outline-container-sec-2-4-1" class="outline-4">
+<h4 id="sec-2-4-1">典型的重言式</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<ol class="org-ol">
+<li>分配律
+
+\begin{eqnarray*}
+  (A \land (B \lor C))  \leftrightarrow (A \land B) \lor (A \land C) \\
+  (A \lor (B \land C))  \leftrightarrow (A \lor B) \land (A \lor C)
+\end{eqnarray*}
+</li>
+
+<li>否定
+
+\begin{eqnarray*}
+  &(\neg \neg A) \leftrightarrow A  \\
+  &\neg (A \rightarrow B) \leftrightarrow (A \land (\neg B)) \\
+  &\neg (A \leftrightarrow B) \leftrightarrow (A \land (\neg B)) \lor (\neg A \land B)
+\end{eqnarray*}
+</li>
+
+<li>德.摩根
+
+\begin{eqnarray*}
+  (\neg (A \land B)) \leftrightarrow (\neg A) \lor (\neg B)  \\
+  (\neg (A \lor B)) \leftrightarrow (\neg A) \land (\neg B)
+\end{eqnarray*}
+</li>
+
+<li>其它
+
+\begin{eqnarray*}
+  &(A \lor (\neg A))  \\
+  &\neg(A \land (\neg A))  \\
+  &(P \rightarrow Q) \leftrightarrow (\neg Q \rightarrow \neg P)   \\
+  &((A \land B) \rightarrow C)  \leftrightarrow (A \rightarrow (B \rightarrow C))
+\end{eqnarray*}
+
+<p>
+最后一个可以这样理解:
+</p>
+<pre class="example">
+if A {
+    if B{
+        C
+    }
+}
+</pre>
+<p>
+等价于
+</p>
+<pre class="example">
+if A and B{
+    C
+}
+</pre>
+<p>
+也就是说A,B是条件, C是结论.
+</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5">归纳与递归</h3>
+<div class="outline-text-3" id="text-2-5">
+</div><div id="outline-container-sec-2-5-1" class="outline-4">
+<h4 id="sec-2-5-1">concepts</h4>
+<div class="outline-text-4" id="text-2-5-1">
+<ol class="org-ol">
+<li><b>自由生成</b>: 称 C 是 B 在 f 与 g作用下自由生成的,当且仅当除满足生成条件外,
+f 和 g 在 C上的限制 f<sub>C</sub> g<sub>C</sub> 必须满足以下条件:
+<ol class="org-ol">
+<li>f<sub>C</sub> 与 g<sub>C</sub> 是一对一的
+</li>
+<li>f<sub>C</sub> 的值域, g<sub>C</sub> 的值域与 B 两两不相交
+</li>
+</ol>
+</li>
+<li><b>封闭的</b>: 集合 S 在f与g的作用下是是封闭的当且仅当如果 x, y 是 S的元素,那
+么f(x,y) 与 g(x) 也是 S的元素.
+</li>
+<li><b>归纳的</b>: 如果 S 是归纳的, 那么S满足下面两条性质(B是包含一些基本元素的集合)
+<ul class="org-ul">
+<li>\(B \subseteq S\)
+</li>
+<li>S 在 f与g作用下封闭
+</li>
+</ul>
+<p>
+但是要注意 <b>一个归纳的集合包含的基本元素是可以比B中元素多的</b>.这也是为什
+么在inductive definition要加入"最小"一词的原因.  举个例子B={0},
+f(x)=x+3, 很显然{0, 3, 6, &#x2026;..} 是归纳的, 但是{0, 1, 3, 4, 6, 7, &#x2026;}也
+是归纳的, 这个集合你可以看出它的基本元素集合是{0, 1}, 这并不违反定义.
+</p>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-5-2" class="outline-4">
+<h4 id="sec-2-5-2">归纳</h4>
+<div class="outline-text-4" id="text-2-5-2">
+<p>
+归纳实际就是通过集合U的某些初始元素, 重复的运用几种运算, 可以构造U一个子集,
+该子集是包含初始元素并且对运算闭合的最小集合.
+</p>
+<ol class="org-ol">
+<li><b>自上而下定义</b>: \(C^*\) 是U的所有归纳子集的交集
+</li>
+<li><b>自下而上定义</b>: 设 \(C_*\) 是 B 中的元素经过有限次的使用 f 和 g 得到的所有
+元素的集合, 临时定义一个构造序列是 U 中元素组成的有限序列 &lt;x<sub>1</sub>, x<sub>2</sub>,&#x2026;,
+x<sub>n</sub>&gt;, 那么对任意\(i \leq n\) 它至少满足以下三个条件之一:
+
+\begin{eqnarray*}
+  &x_i& \in B          \\
+  &x_i& =  f(x_j, x_k) \quad \textrm{j < i and k < i} \\
+  &x_i& =  g(x_j)      \qquad \textrm{j < i}
+\end{eqnarray*}
+
+<p>
+C<sub>n</sub> 是所有长度为 n 的构造序列的最后一个元素组成的集合, 那么 C<sub>1</sub>=B,
+</p>
+
+\begin{displaymath}
+  C_1 \subseteq C_2 \subseteq C_3 \subseteq ...
+\end{displaymath}
+
+<p>
+\(C_* = \bigcup_n C_n\)
+</p>
+
+<p>
+该定义实际说明了一个重要性质: <b>归纳集合的每一个元素都可以由该元素之前的
+一些元素来构造一个生成序列</b>
+</p>
+
+<p>
+以自然数为例, U 是实数集, B={0}, S(x) = x + 1
+</p>
+
+<ul class="org-ul">
+<li>长度为1的序列: &lt;0&gt;                              (C<sub>1</sub> ={0})
+</li>
+<li>长度为2的序列: &lt;0, 0&gt;, &lt;0, 1&gt;                   (C<sub>2</sub> = {0 1})
+</li>
+<li>长度为3的序列: &lt;0, 0, 0&gt;, &lt;0, 0, 1&gt;, &lt;0, 1, 1&gt;, &lt;0, 1, 2&gt;  (C<sub>3</sub> = {0 1 2})
+</li>
+</ul>
+</li>
+</ol>
+<p>
+\(C^* = C_*\) 也就是说两种定义等价, 一般用 C 来代替二者.
+</p>
+
+<p>
+<b>归纳法则</b>:假设C是由B中的元素通过 \(\mathcal{F}\) 中的函数生成的, 若 S 是 C的
+子集, S包含B且在 \(\mathcal{F}\) 中函数的作用下是封闭的, 那么 C=S.
+</p>
+
+<p>
+<b>归纳法</b>: 归纳法一般用来证明一个归纳定义的集合的每个元素都具有某个性质, 一
+ 般的证明步骤是这样的:
+</p>
+<ul class="org-ul">
+<li>证明对于基本元素是满足该性质的
+</li>
+<li>对于任意的元素a<sub>n</sub>, 那么必有一个构造序列&lt;a<sub>1</sub>, a<sub>2</sub>,&#x2026;, a<sub>n</sub>&gt;, 假设对于i&lt;n,
+都有a<sub>i</sub> 满足该性质, 那么在这个前提下来证明 a<sub>n</sub> 也是满足该性质的.
+</li>
+</ul>
+
+<p>
+举个例子, C是由B中的元素通过f,g生成的, 证明 C 满足某种性质:
+</p>
+<ol class="org-ol">
+<li>证明 B 中的元素有该性质
+</li>
+<li>对于任意的元素a<sub>n</sub>, 存在 a<sub>i</sub>, a<sub>j</sub>, 且 a<sub>n</sub> = f(a<sub>i</sub>, a<sub>j</sub>), 由归纳假设a<sub>i</sub>,
+a<sub>j</sub> 满足该性质, 那么证明 a<sub>n</sub> 也满足该性质
+</li>
+<li>对于任意的元素a<sub>n</sub>, a<sub>n</sub> = g(a<sub>i</sub>), 由归纳假设 a<sub>i</sub> 满足该性质, 那么证明 a<sub>n</sub>
+也满足该性质.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-5-3" class="outline-4">
+<h4 id="sec-2-5-3">递归定理</h4>
+<div class="outline-text-4" id="text-2-5-3">
+<p>
+U 的子集 C 是由 B 在 f 与 g上 <b>自由生成</b> 的, 其中:
+</p>
+
+\begin{eqnarray*}
+  f: &U \times U& \rightarrow U   \\
+  g: &U& \rightarrow U
+\end{eqnarray*}
+
+<p>
+V 是集合,函数 F, G 与 f 满足:
+</p>
+
+\begin{eqnarray*}
+  f: &B& \rightarrow V   \\
+  F: &V \times V& \rightarrow V \\
+  G: &V& \rightarrow V
+\end{eqnarray*}
+
+<p>
+那么存在唯一的函数
+</p>
+
+\begin{eqnarray*}
+  \overset{-}{h}: C \rightarrow V
+\end{eqnarray*}
+
+<p>
+使得:
+</p>
+<ol class="org-ol">
+<li>对 B 中的 x, \(\overset{-}{h}(x) = h(x)\)
+</li>
+<li>对 C 中 x 与 y:
+
+\begin{eqnarray*}
+  &\overset{-}{h}(f(x,y)) = F(\overset{-}{h}(x), \overset{-}{h}(y))   \\
+  &\overset{-}{h}(g(x)) = G(\overset{-}{h}(x))
+\end{eqnarray*}
+</li>
+</ol>
+
+<p>
+递归定理说明了, 如果 C 是自由生成的, 那么 B上的函数 \(h\), 必定可以扩展到 C上的
+函数 \(\overset{-}h\)
+</p>
+
+<p>
+直观的理解: 递归在本质上就是为了计算一个 <b>大问题</b> 的答案, 我可以先计算一个
+<b>小问题</b> 的答案, 然后把小问题的答案组合成大问题的答案.
+</p>
+<ol class="org-ol">
+<li>为了计算 \(\overset{-}{h}(f(x, y))\), 我们先计算 \(\overset{-}{h}(x)\) 与
+\(\overset{-}{h}(y)\) 的答案, 然后通过 F 将这两个小问题的答案组合成大问题
+的答案.
+</li>
+<li>为了计算 \(\overset{-}{h}(g(x))\), 我们先计算 \(\overset{-}{h}(x)\), 然后通
+过 G 将它组合成 大问题的答案.
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6">命题联结词</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+每一个合式公式都可以看做是一个bool 函数, 比如合式公式 &alpha; 它有 n 个命题
+符号, 那么就有一个 n 元 bool 函数与这个合式公式对应.
+</p>
+<ol class="org-ol">
+<li>\(\lnot, \land\) 是完备的
+
+\begin{eqnarray*}
+  A \lor B            &=& \lnot (\lnot A \land \lnot B)    \\
+  A \rightarrow B     &=& \lnot(A \land \lnot B) = \lnot A \lor B  \\
+  A \leftrightarrow B &=& (A \land B) \lor (\lnot A \land \lnot B)
+\end{eqnarray*}
+</li>
+
+<li>\(\lnot, \lor\) 是完备的
+</li>
+<li>\(\lnot, \rightarrow\) 是完备的
+
+\begin{eqnarray*}
+  A \land B &=& \lnot(A \rightarrow \lnot B)\\
+  A \lor B  &=& \lnot A \rightarrow B        \\
+  A \leftrightarrow B &=& (A \rightarrow B) \land (B \rightarrow A)
+\end{eqnarray*}
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">一阶逻辑</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">concepts</h3>
+<div class="outline-text-3" id="text-3-1">
+<ol class="org-ol">
+<li>项: 常数符号与变量通过0次或者多次运算 \(\mathcal{F}_f\) (由函数符号确定的构
+造运算) 得到的集合.项是指语言中的名词和代词, 一般作为翻译后句子的主语, 如
+果语言中没有函数符号,那么项就是所有常数和变量的集合.
+
+<p>
+数论形式系统中一般有后继函数(S), 加法(+), 乘法(&times;), 同时有常量零(0),
+以及变量a', a'',a'''&#x2026;, 所以项就具有如下形式:
+</p>
+<p class="verse">
+term ::= 0<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;= a', a'', a''' &#x2026;<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;= S term<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;= term + term<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;= term &times; term<br  />
+</p>
+</li>
+<li>原子公式: 没有使用逻辑联接符以及量词符号的合式公式, 原子公式相当于命题逻
+辑中命题符号的作用.
+
+\begin{displaymath}
+  Pt_1 t_2...t_n
+\end{displaymath}
+
+<p>
+其中P是 n元谓词符号, t<sub>n</sub> 是项
+</p>
+
+<p>
+在数论系统一般只有一个谓词等于(=), 所以原子公式有如下形式:
+</p>
+<p class="verse">
+atom  ::= term = term<br  />
+</p>
+</li>
+<li>合式公式(wff): 原子公式通过0次或者多次使用 \(\xi_\lnot, \xi_\rightarrow,
+      \mathcal{Q}_i\) 运算得到的表达式集合. 合式公式也包含原子公式.
+</li>
+<li>自由变量: 和 lambda calculus的 free variable 类似, 量词(&forall;, &exist;,
+etc) 就相当于lambda calculus中的 &lambda; abstraction.
+
+\begin{eqnarray*}
+  \overset{-}{h}(\xi_\lnot(\alpha)) &=& \overset{-}{h}(\alpha)  \\
+  \overset{-}{h}(\xi_\land(\alpha)) &=& \overset{-}{h}(\alpha)  \\
+  \overset{-}{h}(\forall v_i \alpha) &=& \overset{-}{h}(\alpha) / \{ v_i \}
+\end{eqnarray*}
+</li>
+
+<li>句子: 如果合式公式没有自由变量出现,那么该合式公式就是句子. 之所以叫做句子
+是因为它解释后是一个完整的句子(包含主语). 句子是一个断言,所以它要么为真,
+要么为假
+</li>
+
+<li>谓词: 如果一个合式公式中包含至少一个自由变量,那么该合式公式解释后就是一个
+谓词,也就是说是一个不带主语的句子, 或者它的主语是一个脱离了上下文的代词.就
+像下面的句子:
+<p class="verse">
+"是一个不带主语的句子"<br  />
+"会是一个反常现象"<br  />
+"他是中国人"<br  />
+</p>
+<p>
+第三个句子中"他"是一个代词, 但是这个代词脱离上下文, 所以你也无法弄清楚这
+个代词指代的是什么, 这和没有主语是等效的.谓词表达的是一种性质. 所以谓词不
+同于句子, 谓词是既不为真, 也不为假, 只有但当你实例化自由变量后, 才能确定
+真假,对具体的事物,它可以具有该性质,也可以不具有.
+</p>
+</li>
+<li>模型(model): 如果 \(\vDash_\mathfrak{A} \varphi\), 那么也就是说
+\(\mathfrak{A}\) 是 <b>句子</b> \(\varphi\) 的模型. 注意只是句子, 也就说不能出现自
+由变量, 如果\(\mathfrak{A}\) 是句子集 &Sigma; 的每一个句子的模型, 那么它也是
+&Sigma; 的模型
+</li>
+<li>形式证明(演绎):
+</li>
+<li>假言推理: 从公式 \(\alpha, \alpha \rightarrow \beta\) 可以推出 &beta;.
+
+\begin{displaymath}
+  \frac{\alpha, \alpha \rightarrow \beta}{\beta}
+\end{displaymath}
+</li>
+
+<li>理论(theory): 逻辑蕴含意义下封闭的 <b>句子</b> 集合.
+
+\begin{displaymath}
+  T \vDash \sigma \rightarrow \sigma \in T
+\end{displaymath}
+
+<p>
+注意仅仅指句子
+</p>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">形式语言</h3>
+<div class="outline-text-3" id="text-3-2">
+</div><div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1">符号集</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+<b>一阶语言的符号</b>:
+</p>
+<ul class="org-ul">
+<li>逻辑符号
+<ol class="org-ol">
+<li>括号: (, )
+</li>
+<li>命题联结符(\(\lnot, \rightarrow\))
+</li>
+<li>变量
+</li>
+<li>等于符号(可选)
+</li>
+</ol>
+</li>
+<li>参数(随语言的不同而不同)
+<ol class="org-ol">
+<li>量词符号 \(\forall\)
+</li>
+<li>谓词符号:对于每一个正整数n,有一个n元谓词符号集(可以为空集)
+</li>
+<li>常数符号
+</li>
+<li>函数符号
+</li>
+</ol>
+</li>
+</ul>
+<p>
+在定义一个一阶语言时, 首先就要指定符号集, 也就是该一阶语言有哪些谓词符号,
+常数符号以及函数符号, 对任何一阶语言, 逻辑符号都是一样的.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2-2" class="outline-4">
+<h4 id="sec-3-2-2">语法规则</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<ol class="org-ol">
+<li>项
+<p class="verse">
+<b>term</b>     ::= <b>variable</b><br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;= <b>constant</b><br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;= F <b>term</b>   (F 是一个函数符号)<br  />
+</p>
+<p>
+包含变量, 常量, 以及函数符号应用于项得到的符号串
+</p>
+</li>
+<li>原子公式
+<p class="verse">
+<b>atom</b>    ::= P term      (P 是一个谓词符号)<br  />
+</p>
+</li>
+<li>合式公式
+<p class="verse">
+<b>formula</b>  ::= <b>atom</b><br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;= &not; <b>formula</b><br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;= <b>formula</b> &and; <b>formula</b><br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;= <b>formula</b> &or; <b>formula</b><br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;= &forall; u: <b>formula</b>    (u is a free variable of formula)<br  />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;= &exist; u: <b>formula</b>    (u is a free variable of formula)<br  />
+</p>
+<p>
+包含原子公式, 以及命题联接符和量词符号组合得到的符号串.
+</p>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2-3" class="outline-4">
+<h4 id="sec-3-2-3">解释</h4>
+<div class="outline-text-4" id="text-3-2-3">
+<p>
+一阶语言使用结构(structure)来给语言指定意义, 实际上一个一阶语言的结构就是该
+语言的一种解释, 所以结构必须为 &forall;, 函数, 谓词, 常量符号指定意义. 形式
+上一个一阶语言的结构 \(\mathfrak{A}\) 是一个函数,其定义域为参数的集合:
+</p>
+<ol class="org-ol">
+<li>\(\mathfrak{A}\) 为全称量词 &forall; 指派一个非空集合 \(|\mathfrak{A}|\), 称
+为\(\mathfrak{A}\) 的论域(universe)或者是定义域(domain)
+</li>
+<li>\(\mathfrak{A}\) 给每一个n元谓词符号指定一个n元关系 \(P^\mathfrak{A}
+       \subseteq |\mathfrak{A}|^n\)
+</li>
+<li>\(\mathfrak{A}\) 为每一个常数符号指定论域 \(|\mathfrak{A}|\) 中的一个元素
+       \(c^\mathfrak{A}\)
+</li>
+<li>\(\mathfrak{A}\) 为每一个n元函数符号 f 指派一个 \(|\mathfrak{A}|\) 上的运算:
+       \(f^\mathfrak{A}: |\mathfrak{A}|^n \rightarrow |\mathfrak{A}|\)
+</li>
+</ol>
+<p>
+结构有时候可以写成一行,比如下面:
+</p>
+
+\begin{displaymath}
+  \mathfrak{A} = (\mathbb{N}; \le, S, 0)
+\end{displaymath}
+
+<p>
+依次指定了论域, 谓词, 函数, 常数
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3">真值</h3>
+<div class="outline-text-3" id="text-3-3">
+</div><div id="outline-container-sec-3-3-1" class="outline-4">
+<h4 id="sec-3-3-1">满足</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<ol class="org-ol">
+<li>\(\varphi\) 是语言中的合式公式
+</li>
+<li>\(\mathfrak{A}\) 是语言的结构
+</li>
+<li>\(s: V \rightarrow |\mathfrak{A}|\) 是从集合到论域的函数,实际就是给合式公
+式中的变量指定一个论域中的元素,实际上该函数的主要作用是用来给自由变量指
+定一个论域中元素,非自由变量不受该函数的影响.
+</li>
+</ol>
+<p>
+那么定义对于 \(\mathfrak{A}\), s 满足 \(\varphi\) 的含义(也就是使 \(\varphi\) 为
+真)是:
+</p>
+
+\begin{displaymath}
+  \vDash_\mathfrak{A} \varphi[s]
+\end{displaymath}
+
+<p>
+还有一种表示方法:
+</p>
+
+\begin{displaymath}
+  \vDash_\mathfrak{A} \varphi \lVert a_1, ..., a_k\rVert
+\end{displaymath}
+
+<p>
+上面的意思是说 \(\varphi\) 中自由出现的变量为 \(v_1, ..., v_k\), 那么为这些自由
+变量依次指定论域中的元素为 \(a_1, ..., a_k\).
+</p>
+</div>
+<div id="outline-container-sec-3-3-1-1" class="outline-5">
+<h5 id="sec-3-3-1-1">项(term)</h5>
+<div class="outline-text-5" id="text-3-3-1-1">
+<p>
+项一般代表代词或者名词,所以它应该映射到论域中的一个元素
+</p>
+
+<p>
+<code>s</code> 是一个变量到论域的函数(V 是变量的集合):
+</p>
+
+\begin{displaymath}
+  s: V \rightarrow |\mathfrak{A}|
+\end{displaymath}
+
+<p>
+项可以如下定义:
+</p>
+
+\begin{displaymath}
+  \overset{-}{s} : T \rightarrow |\mathfrak{A}|
+\end{displaymath}
+
+<p>
+\(\overset{-}{s}\) 的递归定义如下:
+</p>
+<ol class="org-ol">
+<li>x 是变量,那么: \(\overset{-}{s}(x) = s(x)\)
+</li>
+<li>x 是常数符号, 那么: \(\overset{-}{s} = c^\mathfrak{A}\)
+</li>
+<li>如果 t<sub>1</sub>, t<sub>2</sub>&#x2026; t<sub>n</sub> 是项, f是一个n元函数符号,那么:
+
+\begin{displaymath}
+  \overset{-}{s}(f t_1t_2...t_n) = f^\mathfrak{A}(\overset{-}{s}(t_1), \overset{-}{s}(t_2)...\overset{-}{s}(t_n))
+\end{displaymath}
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-3-3-1-2" class="outline-5">
+<h5 id="sec-3-3-1-2">原子公式</h5>
+<div class="outline-text-5" id="text-3-3-1-2">
+<p>
+原子公式是合式公式,所以它应该映射到 {T, F}
+</p>
+
+<ol class="org-ol">
+<li>对等于符号而言:
+
+\begin{displaymath}
+  \vDash_\mathfrak{A} \ = t_1t_2[s] \quad \textrm{iff} \quad \overset{-}{s}(t_1)=\overset{-}{s}(t_2)
+\end{displaymath}
+</li>
+
+<li>对n元谓词符号 P:
+
+\begin{displaymath}
+  \vDash_\mathfrak{A} Pt_1 ... t_n[s]  \quad \textrm{iff} \quad \langle \overset{-}{s}(t_1) ... \overset{-}{s}(t_n) \rangle \in P^\mathfrak{A}
+\end{displaymath}
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-3-3-1-3" class="outline-5">
+<h5 id="sec-3-3-1-3">其它合式公式</h5>
+<div class="outline-text-5" id="text-3-3-1-3">
+<ol class="org-ol">
+<li>原子公式同上
+</li>
+<li>对 \(\lnot\) 逻辑符号
+
+\begin{displaymath}
+  \vDash_\mathfrak{A} \lnot \varphi[s] \quad \textrm{iff} \quad \nvDash_\mathfrak{A} \varphi[s]
+\end{displaymath}
+</li>
+
+<li>对 &rarr; 逻辑符号而言:
+
+\begin{displaymath}
+  \vDash_\mathfrak{A} (\varphi \rightarrow \psi)[s] \quad \textrm{iff} \quad \vDash_\mathfrak{A} \varphi[s] \ \rightarrow \ \vDash_\mathfrak{A}\psi[s]
+\end{displaymath}
+
+<p>
+也就是说, \(\nvDash_\mathfrak{A} \varphi[s]\) 或者 \(\vDash_\mathfrak{A}
+        \varphi[s] \ \land \ \vDash_\mathfrak{A} \psi[s]\)
+</p>
+</li>
+<li>对 &forall; 量词符号而言:
+
+\begin{displaymath}
+  \vDash_\mathfrak{A} \forall x \varphi[s] \quad \textrm{iff} \quad \forall d \in |\mathfrak{A}|(\vDash_\mathfrak{A} \varphi[s(x|d)])
+\end{displaymath}
+
+<p>
+s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其定义如下:
+</p>
+
+\begin{displaymath}
+  s (x|d)(y) = \left\{ \begin{array}{ll}
+      d    & \textrm{if $y=x$} \\
+      s(y) & \textrm{if $y \ne x$}
+      \end{array} \right.
+\end{displaymath}
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-3-2" class="outline-4">
+<h4 id="sec-3-3-2">缩写</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<ol class="org-ol">
+<li>\(\forall x \in X. P(x)\) 等价于 \(\forall x(x \in X \rightarrow P(x))\)
+</li>
+<li>\(\exists x \in X. P(x)\) 等价于 \(\exists x(x \in X \land P(x))\)
+</li>
+<li>\(\neg \alpha \land \beta\) 等价于 \(((\neg \alpha) \land \beta)\)
+</li>
+<li>\(\forall x \alpha \rightarrow \beta\) 等价于 \(((\forall x \alpha)
+      \rightarrow \beta)\)
+</li>
+<li>\(\neg \alpha \land \beta \rightarrow \gamma\) 等价于 \(((\neg \alpha) \land
+      \beta) \rightarrow \gamma\)
+</li>
+<li>\(\alpha \rightarrow \beta \rightarrow \gamma\) 等价于 \((\alpha \rightarrow
+      (\beta \rightarrow \gamma))\)
+</li>
+</ol>
+<p>
+去掉括号时要记住: &forall;, &not; 的优先级是最高的, 相同的联接符是右结合的.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3-3" class="outline-4">
+<h4 id="sec-3-3-3">一阶语言的例子</h4>
+<div class="outline-text-4" id="text-3-3-3">
+<ul class="org-ul">
+<li>某个类中每个对象都有某种属性:
+
+\begin{displaymath}
+  \forall v(\_ \rightarrow \_)
+\end{displaymath}
+</li>
+
+<li>某个类中某些对象有某个属性:
+
+\begin{displaymath}
+  \exists v(\_ \land \_)
+\end{displaymath}
+
+<p>
+假设A代表是"是苹果", B代表"是烂的", 那么:
+</p>
+<ul class="org-ul">
+<li>\(\forall x(Ax \rightarrow Bx)\): 所有的苹果都是烂的
+</li>
+<li>\(\exists x(Ax \land Bx\) : 有一些苹果是烂的
+</li>
+<li>\(\forall x(Ax \land By\) : 任何东西都是苹果并且是烂的(任何东西都是烂苹果).
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4">逻辑蕴含</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+<b>Definition</b>: 设 &Gamma; 是合式公式的集合, \(\varphi\) 是一个合式公式,那么
+&Gamma; 逻辑蕴含 \(\varphi\), 记作 \(\Gamma \vDash \varphi\), 当且仅当对于语言每
+一个结构\(\mathfrak{A}\) 和每个函数 \(s: V \rightarrow |\mathfrak{A}|\), 使得
+\(\mathfrak{A}\) 以 s 满足 &Gamma; 的每一个元素, \(\mathfrak{A}\) 也以 s 满足
+\(\varphi\).
+</p>
+</div>
+<div id="outline-container-sec-3-4-1" class="outline-4">
+<h4 id="sec-3-4-1">examples</h4>
+<div class="outline-text-4" id="text-3-4-1">
+\begin{eqnarray*}
+  \forall v_1 Q v_1 \vDash Q v_2  \\
+  Qv_1 \nvDash \forall v_2 Q v_2   \\
+  \forall v_1 Q v_1 \vDash \exists v_2 Q v_2  \\
+  \exists x \forall y Pxy \vDash \forall y \exists x Pxy   \\
+  \forall y \exists x Pxy \nvDash \exists x \forall y Pxy
+\end{eqnarray*}
+</div>
+</div>
+<div id="outline-container-sec-3-4-2" class="outline-4">
+<h4 id="sec-3-4-2">几个结论</h4>
+<div class="outline-text-4" id="text-3-4-2">
+<p>
+逻辑蕴含(\(\Gamma \vDash \varphi\))实际上还是可以看做这种直觉: &Gamma; 中的公
+式是前提, 而 \(\varphi\) 是结果, 只有满足了所有的前提条件, 结果才是可满足的
+</p>
+<ol class="org-ol">
+<li>一个重要的结论:
+
+\begin{displaymath}
+\Gamma;\alpha \vDash \varphi \quad \textrm{iff} \quad \Gamma \vDash (\alpha \rightarrow \varphi)
+\end{displaymath}
+
+<p>
+这个结论也有这样的形式:
+</p>
+
+\begin{displaymath}
+  \{a_1, a_2, ..., a_n\} \vDash \varphi \quad \textrm{iff} \quad \vDash (a_1 \rightarrow a_2 \rightarrow ... \rightarrow a_n)
+\end{displaymath}
+
+<p>
+上述转换从直观角度不言而喻.
+</p>
+</li>
+<li>根据紧致性定理, 必存在
+
+\begin{displaymath}
+  \{\gamma_1, \gamma_2, ..., \gamma_n\} \subseteq \Gamma
+\end{displaymath}
+
+<p>
+使得如果 \(\Gamma \vDash \varphi\), 那么:
+</p>
+
+\begin{displaymath}
+  \vDash \gamma_1 \rightarrow \gamma_2 \rightarrow ... \rightarrow \gamma_n \rightarrow \varphi
+\end{displaymath}
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5">同态(homomorphism)</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+从 \(\mathfrak{A}\) 到 \(\mathfrak{B}\) 的同态意味着两个结构间存在一个函数:
+\(h: |\mathfrak{A}| \rightarrow |\mathfrak{B}|\), 具有下列性质:
+</p>
+<ol class="org-ol">
+<li>对谓词
+
+\begin{displaymath}
+  \langle a_1, ..., a_k\rangle \in P^\mathfrak{A} \quad \textrm{iff} \quad
+  \langle h(a_1), ..., h(a_k)\rangle \in P^\mathfrak{B}
+\end{displaymath}
+</li>
+
+<li>对函数
+
+\begin{displaymath}
+  h(f^\mathfrak{A}(a_1, ..., a_k)) = f^\mathfrak{B}(h(a_1), ..., h(a_k)))
+\end{displaymath}
+</li>
+</ol>
+
+<p>
+也就是说,两个结构会保持相同的谓词以及函数关系, 如果 h 是一对一的, 那么二者是
+<b>同构</b> 的.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-6" class="outline-3">
+<h3 id="sec-3-6">演绎计算</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+有限集合 &Lambda; 是公理集, 通过选定推理规则, 我们可以生成新的公式, 对于公式
+集&Gamma;, &Gamma; 的 <b>定理</b> 是指 \(\Gamma \cup \Lambda\) 中的公式通过有限次的推
+理得到的公式. 如果 \(\varphi\) 是 &Gamma; 的定理(记作\(\Gamma \vdash \varphi\))
+</p>
+
+<p>
+<b>Definition</b>: 从 &Gamma; 到 \(\varphi\) 的一个 <b>演绎</b> 是一个有限的公式序列
+ \(\langle a_0, ..., a_n \rangle\), 使得 \(a_n = \varphi\), 且对每个 \(k \le n\),
+ 那么\(a_k\) 二者必居其一:
+</p>
+<ol class="org-ol">
+<li>\(a_k\) 在 \(\Gamma \cup \Lambda\) 中.
+</li>
+<li>\(i < k\) 并且 \(j < k\), \(a_j = a_i \rightarrow a_k\)
+</li>
+</ol>
+<p>
+那么 \(\varphi\) 是 &Gamma; 的一个定理, 记作 \(\Gamma \vdash \varphi\).
+</p>
+
+<p>
+从上面的定义可以很容易看出, \(\Gamma \cup \Lambda\) 中的每一个公式都是 &Gamma;
+的定理.
+</p>
+
+<p>
+&Gamma; 的定理集是归纳定义的:
+</p>
+<ul class="org-ul">
+<li>&Gamma; 的定理集包含 \(\Gamma \cup \Lambda\) 的所有合式公式
+</li>
+<li>&Gamma; 的定理集在假言推理上闭合
+</li>
+</ul>
+<p>
+所以在证明&Gamma; 的定理集满足某个性质时, 可以使用归纳法:
+</p>
+<ul class="org-ul">
+<li>如果 \(\varphi \in \Gamma \cup \Lambda\) 时, 满足该性质(有时候也可以拆成两
+步, 对 &Gamma;, &Lambda; 分别考虑)
+</li>
+<li>如果 \(\varphi\) 是由 \(\psi, \psi \rightarrow \varphi\) 假言推理得到, 那么假
+设 \(\psi, \psi \rightarrow \varphi\) 满足该性质, 那么证明 \(\varphi\) 也满足
+该性质.
+</li>
+</ul>
+</div>
+<div id="outline-container-sec-3-6-1" class="outline-4">
+<h4 id="sec-3-6-1">逻辑公理集</h4>
+<div class="outline-text-4" id="text-3-6-1">
+<ol class="org-ol">
+<li>重言式
+</li>
+<li>\(\forall x \alpha \rightarrow \alpha_t^x\) (t替换x, 要避免变量捕捉, 也就
+是说 <code>t</code> 不能包含 &alpha; 中已量化的变量)
+</li>
+<li>\(\forall x(\alpha \rightarrow \beta) \rightarrow (\forall x \alpha
+       \rightarrow \forall x \beta)\)
+</li>
+<li>\(\alpha \rightarrow \forall x \alpha\) (x 不是&alpha; 的自由变量)
+</li>
+<li>\(x = x\)
+</li>
+<li>\((x = y) \rightarrow (\alpha \rightarrow \alpha')\) (a'是将a中x替换为y得
+来的)
+</li>
+</ol>
+<p>
+从上面可以看出, 公理集是恒为真的.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-6-2" class="outline-4">
+<h4 id="sec-3-6-2">原理,定理</h4>
+<div class="outline-text-4" id="text-3-6-2">
+<ol class="org-ol">
+<li>\(\vDash, \vdash\) 的关系
+
+\begin{displaymath}
+  \Gamma \vdash \varphi \quad \textrm{iff} \quad \Gamma \cup \Lambda \vDash \varphi
+\end{displaymath}
+
+<p>
+<b>proof</b>: 正向: 归纳法, 反向: 紧致性定理
+</p>
+</li>
+<li><b>概化定理</b>:如果 \(\Gamma \vdash \varphi\) 且x不在 &Gamma; 中任何公式中自由
+出现, 那么 \(\Gamma \vdash \forall x \varphi\)
+</li>
+<li><b>演绎定理</b>: 如果 \(\Gamma;\gamma \vdash \varphi\) 那么 \(\Gamma \vdash (\gamma \rightarrow \varphi)\)
+(逆定理也成立, 逆定理本质就是假言推理).
+</li>
+<li><b>归纳原理</b>: 如果 S 是包含 \(\Gamma \cup \Lambda\) 的集合, 并且在假言推理下
+封闭, 那么 S 包含 &Lambda; 的所有定理.
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-7" class="outline-3">
+<h3 id="sec-3-7">一致性与完备性</h3>
+<div class="outline-text-3" id="text-3-7">
+<ol class="org-ol">
+<li>逻辑公理是恒为真的.
+</li>
+<li>一致性: 如果 \(\Gamma \vdash \varphi\) 那么 \(\Gamma \vDash \varphi\) (一致性
+要表明的是演绎计算会得到正确的结论)
+</li>
+<li>完备性: 如果 \(\Gamma \vDash \varphi\) 那么 \(\Gamma \vdash \varphi\)
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div id="disqus_comment">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var url = window.location.pathname;
+        var disqus_identifier = url.substring(url.lastIndexOf('/')+1);
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'yuyang'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+<!-- begin footer -->
+<div id="footer">
+  <ul class="links vertical-nav">
+    <li><a href="/sitemap.xml">Sitemap</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    <li><a href="/about.html">About Me</a></li>
+    <li><a class="back-to-top" href="#">Back to Top</a></li>
+  </ul>
+  <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
+  <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
+</div>
+<!-- end footer -->
+</div>
+</body>
+</html>

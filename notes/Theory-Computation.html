@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>计算理论导引</title>
-<!-- 2014-03-23 Sun 22:40 -->
+<!-- 2014-05-16 Fri 13:57 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -89,7 +89,9 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="static/css/main.css"/> <link rel="shortcut icon" href="static/img/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="static/css/main.css"/>
+<link rel="shortcut icon" href="static/img/favicon.ico" />
+<script type="text/javascript" src="static/js/custom.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -137,7 +139,10 @@ for the JavaScript code in this tag.
 /*]]>*///-->
 </script>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript">window.MathJax || document.write('<script src="static/js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" ><\/script>')</script>
 <script type="text/javascript">
+
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
@@ -183,16 +188,25 @@ for the JavaScript code in this tag.
 <div id="preamble" class="status">
 <div id="header">
       <div class="inner">
-        <h1 id="blog-title"><a href="/"> Yu Yang's Blog</a></h1>
-        <ul class="nav">
-          <li> <a href="/">Home</a></li>
-          <li> <a href="/about.html">About</a></li>
-          <li> <a href="/rss.xml">RSS</a></li>
-        </ul>
-        <form method="get" action="https://google.com/search" id="search">
-          <input type="hidden" name="q" value="site:yuyang.farbox.com" />
-          <input type="text" name="q" placeholder="Search..." />
-        </form>
+        <h1 id="site-title"><a href="/"> Yu Yang's Blog</a></h1>
+        <div>
+          <a href="###" id="site-nav-btn">菜单</a>
+          <ul id="site-nav" class="vertical-nav mobi-hid">
+            <li> <a href="/">Home</a></li>
+            <li> <a href="/about.html">About</a></li>
+
+            <li> <a href="/tags.html">Tags</a></li>
+
+            <li> <a href="/rss.xml">RSS</a></li>
+          </ul>
+
+          <form id="site-search" method="get" action="https://google.com/search">
+            <input type="hidden" name="q" value="site:yuyang.farbox.com" />
+            <input type="text" name="q" placeholder="Search..." />
+            <button class="btn-search" type="submit">Search</button>
+          </form>
+          <div style="clear:both;"> </div>
+        </div>
       </div>
     </div>
 </div>
@@ -202,73 +216,53 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">数学基础</a></li>
-<li><a href="#sec-2">自动机理论</a>
+<li><a href="#sec-1">自动机理论</a>
 <ul>
-<li><a href="#sec-2-1">正则语言</a>
+<li><a href="#sec-1-1">正则语言</a>
 <ul>
-<li><a href="#sec-2-1-1">Concepts</a></li>
-<li><a href="#sec-2-1-2">DFA</a>
+<li><a href="#sec-1-1-1">Concepts</a></li>
+<li><a href="#sec-1-1-2">DFA</a>
 <ul>
-<li><a href="#sec-2-1-2-1">Definition</a></li>
-<li><a href="#sec-2-1-2-2">example</a></li>
-<li><a href="#sec-2-1-2-3">正则运算</a></li>
-<li><a href="#sec-2-1-2-4">property</a></li>
+<li><a href="#sec-1-1-2-1">Definition</a></li>
+<li><a href="#sec-1-1-2-2">example</a></li>
+<li><a href="#sec-1-1-2-3">正则运算</a></li>
+<li><a href="#sec-1-1-2-4">property</a></li>
 </ul>
 </li>
-<li><a href="#sec-2-1-3">正则表达式</a></li>
-<li><a href="#sec-2-1-4">NFA</a>
+<li><a href="#sec-1-1-3">正则表达式</a></li>
+<li><a href="#sec-1-1-4">NFA</a>
 <ul>
-<li><a href="#sec-2-1-4-1">DFA VS NFA</a></li>
-<li><a href="#sec-2-1-4-2">definition</a></li>
-<li><a href="#sec-2-1-4-3">DFN的直观理解</a></li>
-<li><a href="#sec-2-1-4-4">property</a></li>
+<li><a href="#sec-1-1-4-1">DFA VS NFA</a></li>
+<li><a href="#sec-1-1-4-2">definition</a></li>
+<li><a href="#sec-1-1-4-3">DFN的直观理解</a></li>
+<li><a href="#sec-1-1-4-4">property</a></li>
 </ul>
 </li>
-<li><a href="#sec-2-1-5">非正则语言</a></li>
+<li><a href="#sec-1-1-5">非正则语言</a></li>
 </ul>
 </li>
-<li><a href="#sec-2-2">上下文无关语言</a>
+<li><a href="#sec-1-2">上下文无关语言</a>
 <ul>
-<li><a href="#sec-2-2-1">definition</a></li>
-<li><a href="#sec-2-2-2">乔姆斯基范式</a></li>
+<li><a href="#sec-1-2-1">definition</a></li>
+<li><a href="#sec-1-2-2">乔姆斯基范式</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sec-3">可计算理论</a></li>
-<li><a href="#sec-4">计算复杂度理论</a></li>
+<li><a href="#sec-2">可计算理论</a></li>
+<li><a href="#sec-3">计算复杂度理论</a></li>
 </ul>
 </div>
 </div>
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">数学基础</h2>
+<h2 id="sec-1">自动机理论</h2>
 <div class="outline-text-2" id="text-1">
-<ol class="org-ol">
-<li>谓词是一个函数，他的结果只能是true或者false，也就是值域是{true, false}
-</li>
-<li>关系（k元关系）：有k个自变量的谓词，通常的&gt;, &lt;, =都是二元关系，a&lt;b,实际可
-以写成(&lt; a b)
-</li>
-<li>关系是一个谓词（也是一个函数），所以一般应该用前缀表达式，可是实际运用时，
-因为惯例，可能用中缀表达式，&lt;,&gt;,=都是中缀表达式
-</li>
-<li>关系的3个性质：自反性(对每一个x =&gt; xRx)，对称性(xRy &lt;=&gt; yRx)，传递性(xRy且
-yRz =&gt; xRz) 满足这3个性质那么就是等价关系。
-</li>
-</ol>
-</div>
-</div>
-
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">自动机理论</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">正则语言</h3>
-<div class="outline-text-3" id="text-2-1">
-</div><div id="outline-container-sec-2-1-1" class="outline-4">
-<h4 id="sec-2-1-1">Concepts</h4>
-<div class="outline-text-4" id="text-2-1-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">正则语言</h3>
+<div class="outline-text-3" id="text-1-1">
+</div><div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1">Concepts</h4>
+<div class="outline-text-4" id="text-1-1-1">
 <ul class="org-ul">
 <li>DFA: 确定型有穷自动机
 </li>
@@ -283,12 +277,12 @@ yRz =&gt; xRz) 满足这3个性质那么就是等价关系。
 </div>
 </div>
 
-<div id="outline-container-sec-2-1-2" class="outline-4">
-<h4 id="sec-2-1-2">DFA</h4>
-<div class="outline-text-4" id="text-2-1-2">
-</div><div id="outline-container-sec-2-1-2-1" class="outline-5">
-<h5 id="sec-2-1-2-1">Definition</h5>
-<div class="outline-text-5" id="text-2-1-2-1">
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2">DFA</h4>
+<div class="outline-text-4" id="text-1-1-2">
+</div><div id="outline-container-sec-1-1-2-1" class="outline-5">
+<h5 id="sec-1-1-2-1">Definition</h5>
+<div class="outline-text-5" id="text-1-1-2-1">
 <p>
 有穷自动机是一个五元组 \((Q, \Sigma, \delta, q_0, F)\):
 </p>
@@ -297,7 +291,7 @@ yRz =&gt; xRz) 满足这3个性质那么就是等价关系。
 </li>
 <li>\(\Sigma\) 是一个有穷集合,叫 <b>字母表</b>.
 </li>
-<li>\(\delta: Q * \Sigma \rightarrow Q\) 是 <b>转移函数</b>.
+<li>\(\delta: Q \times \Sigma \rightarrow Q\) 是 <b>转移函数</b>.
 </li>
 <li>\(q_0 \in Q\) 是 <b>起始状态</b>.
 </li>
@@ -307,9 +301,9 @@ yRz =&gt; xRz) 满足这3个性质那么就是等价关系。
 </div>
 </div>
 
-<div id="outline-container-sec-2-1-2-2" class="outline-5">
-<h5 id="sec-2-1-2-2">example</h5>
-<div class="outline-text-5" id="text-2-1-2-2">
+<div id="outline-container-sec-1-1-2-2" class="outline-5">
+<h5 id="sec-1-1-2-2">example</h5>
+<div class="outline-text-5" id="text-1-1-2-2">
 <p>
 下面是一个叫 M<sub>1</sub> 的有穷自动机
 </p>
@@ -329,38 +323,39 @@ yRz =&gt; xRz) 满足这3个性质那么就是等价关系。
 </li>
 <li>转移函数 \(\delta\) 由下表给出:
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
+<caption class="t-above"><span class="table-number">Table 1:</span> transformation rules</caption>
 
 <colgroup>
-<col  class="left" />
+<col  class="center" />
 
-<col  class="left" />
+<col  class="center" />
 
-<col  class="left" />
+<col  class="center" />
 </colgroup>
+<thead>
+<tr>
+<th scope="col" class="center">&#xa0;</th>
+<th scope="col" class="center">0</th>
+<th scope="col" class="center">1</th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td class="left">&#xa0;</td>
-<td class="left">0</td>
-<td class="left">1</td>
+<td class="center">q<sub>1</sub></td>
+<td class="center">q<sub>1</sub></td>
+<td class="center">q<sub>2</sub></td>
 </tr>
 
 <tr>
-<td class="left">q<sub>1</sub></td>
-<td class="left">q<sub>1</sub></td>
-<td class="left">q<sub>2</sub></td>
+<td class="center">q<sub>2</sub></td>
+<td class="center">q<sub>3</sub></td>
+<td class="center">q<sub>2</sub></td>
 </tr>
 
 <tr>
-<td class="left">q<sub>2</sub></td>
-<td class="left">q<sub>3</sub></td>
-<td class="left">q<sub>2</sub></td>
-</tr>
-
-<tr>
-<td class="left">q<sub>3</sub></td>
-<td class="left">q<sub>2</sub></td>
-<td class="left">q<sub>2</sub></td>
+<td class="center">q<sub>3</sub></td>
+<td class="center">q<sub>2</sub></td>
+<td class="center">q<sub>2</sub></td>
 </tr>
 </tbody>
 </table>
@@ -402,8 +397,8 @@ yRz =&gt; xRz) 满足这3个性质那么就是等价关系。
 </div>
 
 <p>
-设M = \((Q, \Sigma, \delta, q_0, F)\) 是一台有穷自动机, \(F\omega=\omega_1
-  \omega_2 ... \omega_n\) 是字母表 $&Sigma;% 上的字符串,如果存在 Q 中的状态序列:
+设M = \((Q, \Sigma, \delta, q_0, F)\) 是一台有穷自动机, \(\omega=\omega_1
+  \omega_2 ... \omega_n\) 是字母表 \(\Sigma\) 上的字符串,如果存在 Q 中的状态序列:
 r<sub>0</sub>, r<sub>1</sub>, &#x2026;, r<sub>n</sub> 满足下述条件:
 </p>
 <ol class="org-ol">
@@ -420,9 +415,9 @@ r<sub>0</sub>, r<sub>1</sub>, &#x2026;, r<sub>n</sub> 满足下述条件:
 </div>
 </div>
 
-<div id="outline-container-sec-2-1-2-3" class="outline-5">
-<h5 id="sec-2-1-2-3">正则运算</h5>
-<div class="outline-text-5" id="text-2-1-2-3">
+<div id="outline-container-sec-1-1-2-3" class="outline-5">
+<h5 id="sec-1-1-2-3">正则运算</h5>
+<div class="outline-text-5" id="text-1-1-2-3">
 <p>
 设 A 与 B 是两个语言, 定义正则运算 <b>并</b> <b>连接</b> <b>星号</b>:
 </p>
@@ -437,9 +432,9 @@ r<sub>0</sub>, r<sub>1</sub>, &#x2026;, r<sub>n</sub> 满足下述条件:
 </div>
 </div>
 
-<div id="outline-container-sec-2-1-2-4" class="outline-5">
-<h5 id="sec-2-1-2-4">property</h5>
-<div class="outline-text-5" id="text-2-1-2-4">
+<div id="outline-container-sec-1-1-2-4" class="outline-5">
+<h5 id="sec-1-1-2-4">property</h5>
+<div class="outline-text-5" id="text-1-1-2-4">
 <p>
 正则语言类是所有正则语言组成的集合
 </p>
@@ -453,9 +448,9 @@ r<sub>0</sub>, r<sub>1</sub>, &#x2026;, r<sub>n</sub> 满足下述条件:
 </div>
 </div>
 
-<div id="outline-container-sec-2-1-3" class="outline-4">
-<h4 id="sec-2-1-3">正则表达式</h4>
-<div class="outline-text-4" id="text-2-1-3">
+<div id="outline-container-sec-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3">正则表达式</h4>
+<div class="outline-text-4" id="text-1-1-3">
 <ol class="org-ol">
 <li>(r)|(s) is a regular expression denoting the language L(r) U L(s)
 </li>
@@ -480,12 +475,12 @@ some extensions:
 </div>
 </div>
 
-<div id="outline-container-sec-2-1-4" class="outline-4">
-<h4 id="sec-2-1-4">NFA</h4>
-<div class="outline-text-4" id="text-2-1-4">
-</div><div id="outline-container-sec-2-1-4-1" class="outline-5">
-<h5 id="sec-2-1-4-1">DFA VS NFA</h5>
-<div class="outline-text-5" id="text-2-1-4-1">
+<div id="outline-container-sec-1-1-4" class="outline-4">
+<h4 id="sec-1-1-4">NFA</h4>
+<div class="outline-text-4" id="text-1-1-4">
+</div><div id="outline-container-sec-1-1-4-1" class="outline-5">
+<h5 id="sec-1-1-4-1">DFA VS NFA</h5>
+<div class="outline-text-5" id="text-1-1-4-1">
 <ul class="org-ul">
 <li>DFA的每一个状态对于字母表中的每一个符号总是恰好有一个转移箭头射出,而NFA对
 于每一个状态对于字母表字母表的每一个符号可能有0,1 或者多个箭头射出.
@@ -500,9 +495,9 @@ some extensions:
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2-1-4-2" class="outline-5">
-<h5 id="sec-2-1-4-2">definition</h5>
-<div class="outline-text-5" id="text-2-1-4-2">
+<div id="outline-container-sec-1-1-4-2" class="outline-5">
+<h5 id="sec-1-1-4-2">definition</h5>
+<div class="outline-text-5" id="text-1-1-4-2">
 <p>
 非确定型有穷自动机是一个五元组 \((Q, \Sigma, \delta, q_0, F)\):
 </p>
@@ -511,7 +506,7 @@ some extensions:
 </li>
 <li>\(\Sigma\) 是一个有穷集合,叫 <b>字母表</b>.
 </li>
-<li>\(\delta: Q * \Sigma_\varepsilon \rightarrow \mathcal{P}(Q)\) 是 <b>转移函数</b>.
+<li>\(\delta: Q \times \Sigma_\varepsilon \rightarrow \mathcal{P}(Q)\) 是 <b>转移函数</b>.
 </li>
 <li>\(q_0 \in Q\) 是 <b>起始状态</b>.
 </li>
@@ -521,9 +516,9 @@ some extensions:
 </div>
 </div>
 
-<div id="outline-container-sec-2-1-4-3" class="outline-5">
-<h5 id="sec-2-1-4-3">DFN的直观理解</h5>
-<div class="outline-text-5" id="text-2-1-4-3">
+<div id="outline-container-sec-1-1-4-3" class="outline-5">
+<h5 id="sec-1-1-4-3">DFN的直观理解</h5>
+<div class="outline-text-5" id="text-1-1-4-3">
 <ol class="org-ol">
 <li>非确定性可以看做若干"过程"能同时运行的一类并行计算.当NFA分头跟踪若干选择
 时,这对应于一个过程分叉成若干个子过程,各子过程分别进行.如果这些子过程中
@@ -547,9 +542,9 @@ some extensions:
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2-1-4-4" class="outline-5">
-<h5 id="sec-2-1-4-4">property</h5>
-<div class="outline-text-5" id="text-2-1-4-4">
+<div id="outline-container-sec-1-1-4-4" class="outline-5">
+<h5 id="sec-1-1-4-4">property</h5>
+<div class="outline-text-5" id="text-1-1-4-4">
 <ol class="org-ol">
 <li>每一台 NFA 都有一台等价的 DFA与之对应
 </li>
@@ -580,9 +575,9 @@ Proof: 假设有正则语言 A1 A2, 它们对应的 NFA为 N1 N2, 现在构造�
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2-1-5" class="outline-4">
-<h4 id="sec-2-1-5">非正则语言</h4>
-<div class="outline-text-4" id="text-2-1-5">
+<div id="outline-container-sec-1-1-5" class="outline-4">
+<h4 id="sec-1-1-5">非正则语言</h4>
+<div class="outline-text-4" id="text-1-1-5">
 <p>
 泵引理: 设A是一个正则语言,则存在一个数 p(泵长度)使得, 如果s是A中任一长度不小
 于p的字符串, 那么s可以被分为3段, s=xyz,满足下述条件:
@@ -599,12 +594,12 @@ Proof: 假设有正则语言 A1 A2, 它们对应的 NFA为 N1 N2, 现在构造�
 </div>
 </div>
 
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2">上下文无关语言</h3>
-<div class="outline-text-3" id="text-2-2">
-</div><div id="outline-container-sec-2-2-1" class="outline-4">
-<h4 id="sec-2-2-1">definition</h4>
-<div class="outline-text-4" id="text-2-2-1">
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">上下文无关语言</h3>
+<div class="outline-text-3" id="text-1-2">
+</div><div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1">definition</h4>
+<div class="outline-text-4" id="text-1-2-1">
 <p>
 上下文无关文法是一个四元组 \((V, \Sigma, R, S)\), 这里:
 </p>
@@ -622,9 +617,9 @@ Proof: 假设有正则语言 A1 A2, 它们对应的 NFA为 N1 N2, 现在构造�
 </div>
 </div>
 
-<div id="outline-container-sec-2-2-2" class="outline-4">
-<h4 id="sec-2-2-2">乔姆斯基范式</h4>
-<div class="outline-text-4" id="text-2-2-2">
+<div id="outline-container-sec-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2">乔姆斯基范式</h4>
+<div class="outline-text-4" id="text-1-2-2">
 <p>
 一个上下文无关文法为乔姆斯基范式,如果它的每一条规则具有如下的形式:
 </p>
@@ -639,11 +634,11 @@ a是任意的终结符, A,B,c使任意的变元,但是B,C不能是起始变元.
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">可计算理论</h2>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">可计算理论</h2>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">计算复杂度理论</h2>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">计算复杂度理论</h2>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -667,14 +662,14 @@ a是任意的终结符, A,B,c使任意的变元,但是B,C不能是起始变元.
 </div>
 <!-- begin footer -->
 <div id="footer">
-  <hr />
-  <ul class="links">
-    <li>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</li>
+  <ul class="links vertical-nav">
     <li><a href="/sitemap.xml">Sitemap</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     <li><a href="/about.html">About Me</a></li>
-    <li><a href="#">Back to Top</a></li>
+    <li><a class="back-to-top" href="#">Back to Top</a></li>
   </ul>
+  <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
+  <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
 <!-- end footer -->
 </div>

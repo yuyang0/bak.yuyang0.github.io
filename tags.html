@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>tags</title>
-<!-- 2014-03-26 Wed 14:14 -->
+<!-- 2014-05-27 Tue 23:05 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -88,7 +88,12 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="static/css/main.css"/> <link rel="shortcut icon" href="static/img/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="static/css/main.css"/>
+<link rel="shortcut icon" href="static/img/favicon.ico" />
+<script type="text/javascript" src="static/js/custom.js"></script>
+<script type="text/javascript" src="static/js/jquery-1.7.2.min.js"> </script>
+<script type="text/javascript" src="static/js/jquery.tagcloud.js"> </script>
+<script type="text/javascript" src="static/js/tags.js"> </script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -140,22 +145,30 @@ for the JavaScript code in this tag.
 <div id="preamble" class="status">
 <div id="header">
       <div class="inner">
-        <h1 id="blog-title"><a href="/"> Yu Yang's Blog</a></h1>
-        <ul class="nav">
-          <li> <a href="/">Home</a></li>
-          <li> <a href="/about.html">About</a></li>
-          <li> <a href="/rss.xml">RSS</a></li>
-        </ul>
-        <form method="get" action="https://google.com/search" id="search">
-          <input type="hidden" name="q" value="site:yuyang.farbox.com" />
-          <input type="text" name="q" placeholder="Search..." />
-        </form>
+        <h1 id="site-title"><a href="/"> Yu Yang's Blog</a></h1>
+        <div>
+          <a href="###" id="site-nav-btn">菜单</a>
+          <ul id="site-nav" class="vertical-nav mobi-hid">
+            <li> <a href="/">Home</a></li>
+            <li> <a href="/about.html">About</a></li>
+
+            <li> <a href="/tags.html">Tags</a></li>
+
+            <li> <a href="/rss.xml">RSS</a></li>
+          </ul>
+
+          <form id="site-search" method="get" action="https://google.com/search">
+            <input type="hidden" name="q" value="site:yuyang.farbox.com" />
+            <input type="text" name="q" placeholder="Search..." />
+            <button class="btn-search" type="submit">Search</button>
+          </form>
+          <div style="clear:both;"> </div>
+        </div>
       </div>
     </div>
 </div>
 <div id="content">
 <h1 class="title">tags</h1>
-
 <div id="outline-container-computation" class="outline-2">
 <h2 id="computation"><a id="sec-1" name="sec-1"></a>computation</h2>
 <div class="outline-text-2" id="text-computation">
@@ -167,8 +180,25 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
+<div id="outline-container-mathematics" class="outline-2">
+<h2 id="mathematics"><a id="sec-2" name="sec-2"></a>mathematics</h2>
+<div class="outline-text-2" id="text-mathematics">
+
+<ul class="org-ul">
+<li><a href="notes/Probability.html">概率论与数理统计笔记</a>
+</li>
+<li><a href="notes/number-theory.html">数论</a>
+</li>
+<li><a href="notes/logic.html">数理逻辑</a>
+</li>
+<li><a href="notes/set-theory.html">SET THEORY</a>
+</li>
+</ul>
+</div>
+</div>
+
 <div id="outline-container-统计" class="outline-2">
-<h2 id="统计"><a id="sec-2" name="sec-2"></a>统计</h2>
+<h2 id="统计"><a id="sec-3" name="sec-3"></a>统计</h2>
 <div class="outline-text-2" id="text-统计">
 
 <ul class="org-ul">
@@ -179,7 +209,7 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-概率论" class="outline-2">
-<h2 id="概率论"><a id="sec-3" name="sec-3"></a>概率论</h2>
+<h2 id="概率论"><a id="sec-4" name="sec-4"></a>概率论</h2>
 <div class="outline-text-2" id="text-概率论">
 
 <ul class="org-ul">
@@ -190,22 +220,11 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-Probability" class="outline-2">
-<h2 id="Probability"><a id="sec-4" name="sec-4"></a>Probability</h2>
+<h2 id="Probability"><a id="sec-5" name="sec-5"></a>Probability</h2>
 <div class="outline-text-2" id="text-Probability">
 
 <ul class="org-ul">
 <li><a href="notes/Probability.html">概率论与数理统计笔记</a>
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-investment" class="outline-2">
-<h2 id="investment"><a id="sec-5" name="sec-5"></a>investment</h2>
-<div class="outline-text-2" id="text-investment">
-
-<ul class="org-ul">
-<li><a href="notes/investment.html">投资笔记</a>
 </li>
 </ul>
 </div>
@@ -216,14 +235,51 @@ for the JavaScript code in this tag.
 <div class="outline-text-2" id="text-theory">
 
 <ul class="org-ul">
+<li><a href="notes/number-theory.html">数论</a>
+</li>
 <li><a href="notes/information-theory.html">信息论</a>
+</li>
+<li><a href="notes/type-system.html">Type System</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-number" class="outline-2">
+<h2 id="number"><a id="sec-7" name="sec-7"></a>number</h2>
+<div class="outline-text-2" id="text-number">
+
+<ul class="org-ul">
+<li><a href="notes/number-theory.html">数论</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-logic" class="outline-2">
+<h2 id="logic"><a id="sec-8" name="sec-8"></a>logic</h2>
+<div class="outline-text-2" id="text-logic">
+
+<ul class="org-ul">
+<li><a href="notes/logic.html">数理逻辑</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-investment" class="outline-2">
+<h2 id="investment"><a id="sec-9" name="sec-9"></a>investment</h2>
+<div class="outline-text-2" id="text-investment">
+
+<ul class="org-ul">
+<li><a href="notes/investment.html">投资笔记</a>
 </li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-information" class="outline-2">
-<h2 id="information"><a id="sec-7" name="sec-7"></a>information</h2>
+<h2 id="information"><a id="sec-10" name="sec-10"></a>information</h2>
 <div class="outline-text-2" id="text-information">
 
 <ul class="org-ul">
@@ -234,7 +290,7 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-lisp" class="outline-2">
-<h2 id="lisp"><a id="sec-8" name="sec-8"></a>lisp</h2>
+<h2 id="lisp"><a id="sec-11" name="sec-11"></a>lisp</h2>
 <div class="outline-text-2" id="text-lisp">
 
 <ul class="org-ul">
@@ -242,12 +298,14 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="notes/emacs.html">Emacs/elisp笔记</a>
 </li>
+<li><a href="notes/clojure.html">Clojure笔记</a>
+</li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-scheme" class="outline-2">
-<h2 id="scheme"><a id="sec-9" name="sec-9"></a>scheme</h2>
+<h2 id="scheme"><a id="sec-12" name="sec-12"></a>scheme</h2>
 <div class="outline-text-2" id="text-scheme">
 
 <ul class="org-ul">
@@ -262,7 +320,7 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-python" class="outline-2">
-<h2 id="python"><a id="sec-10" name="sec-10"></a>python</h2>
+<h2 id="python"><a id="sec-13" name="sec-13"></a>python</h2>
 <div class="outline-text-2" id="text-python">
 
 <ul class="org-ul">
@@ -276,8 +334,45 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
+<div id="outline-container-syntax" class="outline-2">
+<h2 id="syntax"><a id="sec-14" name="sec-14"></a>syntax</h2>
+<div class="outline-text-2" id="text-syntax">
+
+<ul class="org-ul">
+<li><a href="notes/javascript.html">javascript笔记</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-javascript" class="outline-2">
+<h2 id="javascript"><a id="sec-15" name="sec-15"></a>javascript</h2>
+<div class="outline-text-2" id="text-javascript">
+
+<ul class="org-ul">
+<li><a href="notes/javascript.html">javascript笔记</a>
+</li>
+<li><a href="notes/jquery.html">jQuery</a>
+</li>
+<li><a href="notes/client-javascript.html">Client-Side javascript</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-jquery" class="outline-2">
+<h2 id="jquery"><a id="sec-16" name="sec-16"></a>jquery</h2>
+<div class="outline-text-2" id="text-jquery">
+
+<ul class="org-ul">
+<li><a href="notes/jquery.html">jQuery</a>
+</li>
+</ul>
+</div>
+</div>
+
 <div id="outline-container-method" class="outline-2">
-<h2 id="method"><a id="sec-11" name="sec-11"></a>method</h2>
+<h2 id="method"><a id="sec-17" name="sec-17"></a>method</h2>
 <div class="outline-text-2" id="text-method">
 
 <ul class="org-ul">
@@ -288,7 +383,7 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-study" class="outline-2">
-<h2 id="study"><a id="sec-12" name="sec-12"></a>study</h2>
+<h2 id="study"><a id="sec-18" name="sec-18"></a>study</h2>
 <div class="outline-text-2" id="text-study">
 
 <ul class="org-ul">
@@ -299,7 +394,7 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-github" class="outline-2">
-<h2 id="github"><a id="sec-13" name="sec-13"></a>github</h2>
+<h2 id="github"><a id="sec-19" name="sec-19"></a>github</h2>
 <div class="outline-text-2" id="text-github">
 
 <ul class="org-ul">
@@ -310,7 +405,7 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-git" class="outline-2">
-<h2 id="git"><a id="sec-14" name="sec-14"></a>git</h2>
+<h2 id="git"><a id="sec-20" name="sec-20"></a>git</h2>
 <div class="outline-text-2" id="text-git">
 
 <ul class="org-ul">
@@ -321,11 +416,13 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-web" class="outline-2">
-<h2 id="web"><a id="sec-15" name="sec-15"></a>web</h2>
+<h2 id="web"><a id="sec-21" name="sec-21"></a>web</h2>
 <div class="outline-text-2" id="text-web">
 
 <ul class="org-ul">
 <li><a href="notes/css.html">css笔记</a>
+</li>
+<li><a href="notes/php.html">PHP笔记</a>
 </li>
 <li><a href="notes/django.html">DJANGO笔记</a>
 </li>
@@ -334,7 +431,7 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-css" class="outline-2">
-<h2 id="css"><a id="sec-16" name="sec-16"></a>css</h2>
+<h2 id="css"><a id="sec-22" name="sec-22"></a>css</h2>
 <div class="outline-text-2" id="text-css">
 
 <ul class="org-ul">
@@ -344,8 +441,30 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
+<div id="outline-container-type" class="outline-2">
+<h2 id="type"><a id="sec-23" name="sec-23"></a>type</h2>
+<div class="outline-text-2" id="text-type">
+
+<ul class="org-ul">
+<li><a href="notes/type-system.html">Type System</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-intepreter" class="outline-2">
+<h2 id="intepreter"><a id="sec-24" name="sec-24"></a>intepreter</h2>
+<div class="outline-text-2" id="text-intepreter">
+
+<ul class="org-ul">
+<li><a href="notes/EOPL.html">The Essential of Programming language</a>
+</li>
+</ul>
+</div>
+</div>
+
 <div id="outline-container-language" class="outline-2">
-<h2 id="language"><a id="sec-17" name="sec-17"></a>language</h2>
+<h2 id="language"><a id="sec-25" name="sec-25"></a>language</h2>
 <div class="outline-text-2" id="text-language">
 
 <ul class="org-ul">
@@ -356,7 +475,7 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-programming" class="outline-2">
-<h2 id="programming"><a id="sec-18" name="sec-18"></a>programming</h2>
+<h2 id="programming"><a id="sec-26" name="sec-26"></a>programming</h2>
 <div class="outline-text-2" id="text-programming">
 
 <ul class="org-ul">
@@ -367,7 +486,7 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-EOPL" class="outline-2">
-<h2 id="EOPL"><a id="sec-19" name="sec-19"></a>EOPL</h2>
+<h2 id="EOPL"><a id="sec-27" name="sec-27"></a>EOPL</h2>
 <div class="outline-text-2" id="text-EOPL">
 
 <ul class="org-ul">
@@ -378,7 +497,7 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-SICP" class="outline-2">
-<h2 id="SICP"><a id="sec-20" name="sec-20"></a>SICP</h2>
+<h2 id="SICP"><a id="sec-28" name="sec-28"></a>SICP</h2>
 <div class="outline-text-2" id="text-SICP">
 
 <ul class="org-ul">
@@ -389,29 +508,18 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-set" class="outline-2">
-<h2 id="set"><a id="sec-21" name="sec-21"></a>set</h2>
+<h2 id="set"><a id="sec-29" name="sec-29"></a>set</h2>
 <div class="outline-text-2" id="text-set">
 
 <ul class="org-ul">
-<li><a href="notes/set-theory.html">SET THEORY(30%)</a>
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-mathmatics" class="outline-2">
-<h2 id="mathmatics"><a id="sec-22" name="sec-22"></a>mathmatics</h2>
-<div class="outline-text-2" id="text-mathmatics">
-
-<ul class="org-ul">
-<li><a href="notes/set-theory.html">SET THEORY(30%)</a>
+<li><a href="notes/set-theory.html">SET THEORY</a>
 </li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-php" class="outline-2">
-<h2 id="php"><a id="sec-23" name="sec-23"></a>php</h2>
+<h2 id="php"><a id="sec-30" name="sec-30"></a>php</h2>
 <div class="outline-text-2" id="text-php">
 
 <ul class="org-ul">
@@ -421,8 +529,30 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
+<div id="outline-container-mysql" class="outline-2">
+<h2 id="mysql"><a id="sec-31" name="sec-31"></a>mysql</h2>
+<div class="outline-text-2" id="text-mysql">
+
+<ul class="org-ul">
+<li><a href="notes/sql.html">MySQL笔记</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-SQL" class="outline-2">
+<h2 id="SQL"><a id="sec-32" name="sec-32"></a>SQL</h2>
+<div class="outline-text-2" id="text-SQL">
+
+<ul class="org-ul">
+<li><a href="notes/sql.html">MySQL笔记</a>
+</li>
+</ul>
+</div>
+</div>
+
 <div id="outline-container-emacs" class="outline-2">
-<h2 id="emacs"><a id="sec-24" name="sec-24"></a>emacs</h2>
+<h2 id="emacs"><a id="sec-33" name="sec-33"></a>emacs</h2>
 <div class="outline-text-2" id="text-emacs">
 
 <ul class="org-ul">
@@ -433,7 +563,7 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-django" class="outline-2">
-<h2 id="django"><a id="sec-25" name="sec-25"></a>django</h2>
+<h2 id="django"><a id="sec-34" name="sec-34"></a>django</h2>
 <div class="outline-text-2" id="text-django">
 
 <ul class="org-ul">
@@ -443,8 +573,41 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
+<div id="outline-container-java" class="outline-2">
+<h2 id="java"><a id="sec-35" name="sec-35"></a>java</h2>
+<div class="outline-text-2" id="text-java">
+
+<ul class="org-ul">
+<li><a href="notes/clojure.html">Clojure笔记</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-clojure" class="outline-2">
+<h2 id="clojure"><a id="sec-36" name="sec-36"></a>clojure</h2>
+<div class="outline-text-2" id="text-clojure">
+
+<ul class="org-ul">
+<li><a href="notes/clojure.html">Clojure笔记</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-client" class="outline-2">
+<h2 id="client"><a id="sec-37" name="sec-37"></a>client</h2>
+<div class="outline-text-2" id="text-client">
+
+<ul class="org-ul">
+<li><a href="notes/client-javascript.html">Client-Side javascript</a>
+</li>
+</ul>
+</div>
+</div>
+
 <div id="outline-container-源码分析" class="outline-2">
-<h2 id="源码分析"><a id="sec-26" name="sec-26"></a>源码分析</h2>
+<h2 id="源码分析"><a id="sec-38" name="sec-38"></a>源码分析</h2>
 <div class="outline-text-2" id="text-源码分析">
 
 <ul class="org-ul">
@@ -455,7 +618,7 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-webpy" class="outline-2">
-<h2 id="webpy"><a id="sec-27" name="sec-27"></a>webpy</h2>
+<h2 id="webpy"><a id="sec-39" name="sec-39"></a>webpy</h2>
 <div class="outline-text-2" id="text-webpy">
 
 <ul class="org-ul">
@@ -466,7 +629,7 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-coroutine" class="outline-2">
-<h2 id="coroutine"><a id="sec-28" name="sec-28"></a>coroutine</h2>
+<h2 id="coroutine"><a id="sec-40" name="sec-40"></a>coroutine</h2>
 <div class="outline-text-2" id="text-coroutine">
 
 <ul class="org-ul">
@@ -477,7 +640,7 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-gevent" class="outline-2">
-<h2 id="gevent"><a id="sec-29" name="sec-29"></a>gevent</h2>
+<h2 id="gevent"><a id="sec-41" name="sec-41"></a>gevent</h2>
 <div class="outline-text-2" id="text-gevent">
 
 <ul class="org-ul">
@@ -488,7 +651,7 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-mess" class="outline-2">
-<h2 id="mess"><a id="sec-30" name="sec-30"></a>mess</h2>
+<h2 id="mess"><a id="sec-42" name="sec-42"></a>mess</h2>
 <div class="outline-text-2" id="text-mess">
 
 <ul class="org-ul">
@@ -499,7 +662,7 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-c" class="outline-2">
-<h2 id="c"><a id="sec-31" name="sec-31"></a>c</h2>
+<h2 id="c"><a id="sec-43" name="sec-43"></a>c</h2>
 <div class="outline-text-2" id="text-c">
 
 <ul class="org-ul">
@@ -510,7 +673,7 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-linux" class="outline-2">
-<h2 id="linux"><a id="sec-32" name="sec-32"></a>linux</h2>
+<h2 id="linux"><a id="sec-44" name="sec-44"></a>linux</h2>
 <div class="outline-text-2" id="text-linux">
 
 <ul class="org-ul">
@@ -541,14 +704,14 @@ for the JavaScript code in this tag.
 </div>
 <!-- begin footer -->
 <div id="footer">
-  <hr />
-  <ul class="links">
-    <li>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</li>
+  <ul class="links vertical-nav">
     <li><a href="/sitemap.xml">Sitemap</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     <li><a href="/about.html">About Me</a></li>
-    <li><a href="#">Back to Top</a></li>
+    <li><a class="back-to-top" href="#">Back to Top</a></li>
   </ul>
+  <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
+  <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
 <!-- end footer -->
 </div>
