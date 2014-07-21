@@ -3,7 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
       <loc>https://yuyang0.github.io/sitemap.html</loc>
-      <lastmod>2014-05-27</lastmod>
+      <lastmod>2014-07-06</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+<url>
+      <loc>https://yuyang0.github.io/articles/continuation.html</loc>
+      <lastmod>2014-07-02</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -15,7 +21,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/articles/gevent.html</loc>
-      <lastmod>2014-04-25</lastmod>
+      <lastmod>2014-06-25</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -56,14 +62,26 @@
       <priority>0.5</priority>
    </url>
 <url>
+      <loc>https://yuyang0.github.io/notes/compiler.html</loc>
+      <lastmod>2014-07-06</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+<url>
       <loc>https://yuyang0.github.io/notes/django.html</loc>
       <lastmod>2014-05-11</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
 <url>
+      <loc>https://yuyang0.github.io/notes/emacs-lisp.html</loc>
+      <lastmod>2014-06-10</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+<url>
       <loc>https://yuyang0.github.io/notes/emacs.html</loc>
-      <lastmod>2014-05-01</lastmod>
+      <lastmod>2014-06-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -153,7 +171,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/javascript.html</loc>
-      <lastmod>2014-05-15</lastmod>
+      <lastmod>2014-07-06</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -177,7 +195,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/scheme.html</loc>
-      <lastmod>2014-05-16</lastmod>
+      <lastmod>2014-07-06</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -207,7 +225,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/logic.html</loc>
-      <lastmod>2014-05-27</lastmod>
+      <lastmod>2014-06-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -219,7 +237,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/Probability.html</loc>
-      <lastmod>2014-05-25</lastmod>
+      <lastmod>2014-05-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -237,19 +255,19 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/index.html</loc>
-      <lastmod>2014-05-15</lastmod>
+      <lastmod>2014-06-25</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
 <url>
       <loc>https://yuyang0.github.io/sitemap.html</loc>
-      <lastmod>2014-05-27</lastmod>
+      <lastmod>2014-07-06</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
 <url>
       <loc>https://yuyang0.github.io/tags.html</loc>
-      <lastmod>2014-05-27</lastmod>
+      <lastmod>2014-07-04</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>

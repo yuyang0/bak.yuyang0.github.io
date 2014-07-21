@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>数理逻辑</title>
-<!-- 2014-05-27 Tue 23:05 -->
+<!-- 2014-06-10 Tue 11:53 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -675,7 +675,7 @@ a'' &#x2026;
 <h4 id="sec-2-2-2">语法规则(wff)</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
-语法规则是递归的定义合式公式集的.
+语法规则是归纳定义的合式公式集的.
 </p>
 <ol class="org-ol">
 <li>every propositon symbol is well-formed formula
@@ -859,13 +859,8 @@ A 与 B有相同的真值.
 \end{displaymath}
 </li>
 
-<li>&alpha;, &beta; 是重言等价的, 那么:
-
-\begin{displaymath}
-  \vDash (\alpha \leftrightarrow \beta)
-\end{displaymath}
+<li>&alpha;, &beta; 是重言等价的  <b>iff</b>  \(\vDash (\alpha \leftrightarrow \beta)\)
 </li>
-
 <li>对于任意的合式公式B
 
 \begin{displaymath}
@@ -971,9 +966,9 @@ f 和 g 在 C上的限制 f<sub>C</sub> g<sub>C</sub> 必须满足以下条件:
 </ul>
 <p>
 但是要注意 <b>一个归纳的集合包含的基本元素是可以比B中元素多的</b>.这也是为什
-么在inductive definition要加入"最小"一词的原因.  举个例子B={0},
-f(x)=x+3, 很显然{0, 3, 6, &#x2026;..} 是归纳的, 但是{0, 1, 3, 4, 6, 7, &#x2026;}也
-是归纳的, 这个集合你可以看出它的基本元素集合是{0, 1}, 这并不违反定义.
+么在 <b>归纳定义</b> 中要加入"最小"一词的原因.  举个例子B={0}, f(x)=x+3, 很显
+然{0, 3, 6, &#x2026;..} 是归纳的, 但是{0, 1, 3, 4, 6, 7, &#x2026;}也是归纳的, 这个
+集合你可以看出它的基本元素集合是{0, 1}, 这并不违反定义.
 </p>
 </li>
 </ol>
@@ -1036,7 +1031,7 @@ C<sub>n</sub> 是所有长度为 n 的构造序列的最后一个元素组成的
 </p>
 
 <p>
-<b>归纳法则</b>:假设C是由B中的元素通过 \(\mathcal{F}\) 中的函数生成的, 若 S 是 C的
+<b>归纳法则</b>: 假设C是由B中的元素通过 \(\mathcal{F}\) 中的函数生成的, 若 S 是 C的
 子集, S包含B且在 \(\mathcal{F}\) 中函数的作用下是封闭的, 那么 C=S.
 </p>
 
@@ -1174,7 +1169,8 @@ V 是集合,函数 F, G 与 f 满足:
 <ol class="org-ol">
 <li>项: 常数符号与变量通过0次或者多次运算 \(\mathcal{F}_f\) (由函数符号确定的构
 造运算) 得到的集合.项是指语言中的名词和代词, 一般作为翻译后句子的主语, 如
-果语言中没有函数符号,那么项就是所有常数和变量的集合.
+果语言中没有函数符号,那么项就是所有常数和变量的集合.实际上项一般指代论域
+中的一个元素.
 
 <p>
 数论形式系统中一般有后继函数(S), 加法(+), 乘法(&times;), 同时有常量零(0),
@@ -1244,7 +1240,11 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 由变量, 如果\(\mathfrak{A}\) 是句子集 &Sigma; 的每一个句子的模型, 那么它也是
 &Sigma; 的模型
 </li>
-<li>形式证明(演绎):
+<li>初等类(EC): K 是初等类当且仅当对某个句子 &tau;, K = Mod &tau;
+</li>
+<li>广义初等类(\(EC_\vartriangle\)):  K 是广义初等类当且仅当对某个句子集 &Sigma;, K = Mod &Sigma;
+</li>
+<li>形式证明(演绎): 从 &Sigma; 到 &varphi; 的一个 <b>演绎</b>,
 </li>
 <li>假言推理: 从公式 \(\alpha, \alpha \rightarrow \beta\) 可以推出 &beta;.
 
@@ -1274,7 +1274,7 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 <h4 id="sec-3-2-1">符号集</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
-<b>一阶语言的符号</b>:
+一阶语言的符号包括以下两类:
 </p>
 <ul class="org-ul">
 <li>逻辑符号
@@ -1368,7 +1368,22 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 </li>
 </ol>
 <p>
-结构有时候可以写成一行,比如下面:
+有了结构之后,那么我们就可以把一个句子翻译成外部系统的陈述(比如集合论的陈述),
+然后在外部系统中检查该句子的真假, 比如定义一个一阶语言,该语言包含:
+</p>
+<ul class="org-ul">
+<li>等号
+</li>
+<li>&isin;(二元谓词符号)
+</li>
+</ul>
+<p>
+定义一个结构,论域是所有集合, &isin; 是子集关系, 那么任何该语言的公式都可以通过
+该结构翻译成集合论系统中的陈述, 我们可以在集合论中来判断该句子是不是正确的.
+</p>
+
+<p>
+结构有时候可以非形式的写成一行,比如下面:
 </p>
 
 \begin{displaymath}
@@ -1575,14 +1590,12 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 <p>
 假设A代表是"是苹果", B代表"是烂的", 那么:
 </p>
-<ul class="org-ul">
+</li>
 <li>\(\forall x(Ax \rightarrow Bx)\): 所有的苹果都是烂的
 </li>
-<li>\(\exists x(Ax \land Bx\) : 有一些苹果是烂的
+<li>\(\exists x(Ax \land Bx)\) : 有一些苹果是烂的
 </li>
-<li>\(\forall x(Ax \land By\) : 任何东西都是苹果并且是烂的(任何东西都是烂苹果).
-</li>
-</ul>
+<li>\(\forall x(Ax \land By)\) : 任何东西都是苹果并且是烂的(任何东西都是烂苹果).
 </li>
 </ul>
 </div>
@@ -1761,9 +1774,24 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 <p>
 从上面可以看出, 公理集是恒为真的.
 </p>
-</div>
-</div>
 
+<p>
+注意这里的公理是逻辑推理的公理, 它对任何一阶语言都是一样的, 但是对于一个公
+理化的数学理论, 该理论自身会有一些公理, 比如数论的公理化系统中就会有数个公
+理:
+</p>
+
+\begin{eqnarray*}
+  &\forall x & Sx \ne 0   \\
+  &\forall x & x + 0 = x   \\
+  &\forall x \forall y & x + Sy = S(x + y)
+\end{eqnarray*}
+
+<p>
+当然数论系统的公理不只上面3个, 这些理论自身的公理就放在 &Gamma; 中.
+</p>
+</div>
+</div>
 <div id="outline-container-sec-3-6-2" class="outline-4">
 <h4 id="sec-3-6-2">原理,定理</h4>
 <div class="outline-text-4" id="text-3-6-2">

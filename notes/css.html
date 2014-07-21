@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>css笔记</title>
-<!-- 2014-05-16 Fri 13:57 -->
+<!-- 2014-07-04 Fri 11:44 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -324,7 +324,7 @@ for the JavaScript code in this tag.
 <h2 id="sec-2">优先级</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-很多时候可能有多个css规则来指定一个元素的属性,这是需要从中选出一个优先级最
+很多时候可能有多个css规则来指定一个元素的属性,这时需要从中选出一个优先级最
 高的规则(<b>不是后面的规则覆盖前面的规则</b>).
 </p>
 <ol class="org-ol">
@@ -523,28 +523,32 @@ css的盒子模型：
 </li>
 <li>基准线：margin移动的基准线，
 <ol class="org-ol">
-<li>top与left是以外元素(也就是紧邻的元素或者是父元素)为基准线，这两个值是用来确定本元素相对于外元素的位
-置的，以top为例，大体可以认为 <b>margin-top=本元素border-top的位置 - 外元素的下边界</b> ，比如margin-top=10px，那么本
-元素的border-top的外置就会与外元素相隔10px，如果margin-top=-10px，那么本元素的border-top的位置就会
-和外元素相距-10px，也就是说本元素的boerder-top在外元素边界的上方，那么就意味着本元素和外元素发生了
-重叠
+<li>top与left是以外元素(也就是紧邻的元素或者是父元素)为基准线，这两个值是
+用来确定本元素相对于外元素的位置的，以top为例，大体可以认为
+<b>margin-top=本元素border-top的位置 - 外元素的下边界</b> ，比如
+margin-top=10px，那么本元素的border-top的位置就会与外元素相隔10px，如
+果margin-top=-10px，那么本元素的border-top的位置就会和外元素相距-10px，
+也就是说本元素的boerder-top在外元素下边界的上方，那么就意味着本元素和
+外元素发生了重叠
 </li>
-<li>right与bottom是以本元素作为基准线的，这两个值不会改变本元素的位置，但它会改变紧邻的右边或者是下边的
-元素的位置，以right为例，可以认为 <b>margin-right = 右边紧邻元素的左边界 - 本元素的border-right的位置</b> ，因
-此如果magin-right=10px，那么右边元素就与本元素的border-right的位置相距10px，视觉上就是右边的紧邻元素
-与本元素相距10px（不考虑右边元素的margin），如果margin-right = -10px，那么右边元素的边界就在本元素的
+<li>right与bottom是以本元素作为基准线的，这两个值不会改变本元素的位置，但
+它会改变紧邻的右边或者是下边的元素的位置，以right为例，可以认为
+<b>margin-right = 右边紧邻元素的左边界 - 本元素的border-right的位置</b> ，
+因此如果magin-right=10px，那么右边元素就与本元素的border-right的位置
+相距10px，视觉上就是右边的紧邻元素与本元素相距10px（不考虑右边元素的
+margin），如果margin-right = -10px，那么右边元素的边界就在本元素的
 border-right的位置的左边，也就是说，右边元素与本元素发生了重叠
 </li>
-<li>box 的实际大小 = box 的物理大小 + 正的 margin， 也就是说负的margin值是不改变box的大小的，因为负的
-margin会让本元素与紧邻的元素发生重叠
+<li>box 的实际大小 = box 的物理大小 + 正的 margin， 也就是说负的margin值
+是不改变box的大小的，因为负的margin会让本元素与紧邻的元素发生重叠
 </li>
-<li>用更通俗的话来解释margin：如果margin为正值的时候，那么行为就和看到的图片中的一样，这里只讨论为负值
-的情况：
+<li>用更通俗的话来解释margin：如果margin为正值的时候，那么行为就和看到的
+图片中的一样，这里只讨论为负值的情况：
 <ul class="org-ul">
 <li>margin-top为负值，那么把本元素向上移动
 </li>
-<li>margin-left为负值，那么把本元素向左移动，比如在实现选项卡时，使用margin-left：-1px，可以避免显示
-两条边界
+<li>margin-left为负值，那么把本元素向左移动，比如在实现选项卡时，使用
+margin-left：-1px，可以避免显示两条边界
 </li>
 <li>margin-right为负值，那么将紧邻的右边元素向左移动
 </li>
@@ -618,7 +622,7 @@ inline-block 元素不会另起一行.
 <p>
 关键点是: 如果两个 margin 上下紧挨着, 那么最终的margin 不是二者的和, 而是二
 者中较大的一个, 也就是上下margin发生叠加, <b>注意只在普通文档流有效,如果其中
-任何一个元素使用了浮动, 绝对定位, 那么上下 margin不会叠加.</b>.
+任何一个元素使用了浮动, 绝对定位, 那么上下 margin不会叠加.</b>
 </p>
 
 <ol class="org-ol">
