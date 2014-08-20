@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>python笔记</title>
-<!-- 2014-07-06 Sun 18:32 -->
+<!-- 2014-07-21 Mon 09:15 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -227,42 +227,47 @@ for the JavaScript code in this tag.
 </ul>
 </li>
 <li><a href="#sec-10">python中文处理</a></li>
-<li><a href="#sec-11">一些标准库的使用说明</a>
+<li><a href="#sec-11">一些很诡异的问题</a>
 <ul>
-<li><a href="#sec-11-1">python 正则表达式</a></li>
-<li><a href="#sec-11-2">多线程</a>
-<ul>
-<li><a href="#sec-11-2-1">Thread</a></li>
-<li><a href="#sec-11-2-2">threading</a></li>
+<li><a href="#sec-11-1">传引用</a></li>
 </ul>
 </li>
-<li><a href="#sec-11-3">collections</a>
+<li><a href="#sec-12">一些标准库的使用说明</a>
 <ul>
-<li><a href="#sec-11-3-1">Counter</a></li>
-<li><a href="#sec-11-3-2">deque 双端队列</a></li>
-<li><a href="#sec-11-3-3">defaultdict</a></li>
-<li><a href="#sec-11-3-4">namedtuple</a></li>
-<li><a href="#sec-11-3-5">OrderedDict</a></li>
+<li><a href="#sec-12-1">python 正则表达式</a></li>
+<li><a href="#sec-12-2">多线程</a>
+<ul>
+<li><a href="#sec-12-2-1">Thread</a></li>
+<li><a href="#sec-12-2-2">threading</a></li>
 </ul>
 </li>
-<li><a href="#sec-11-4">pickle</a></li>
-<li><a href="#sec-11-5">json</a></li>
-<li><a href="#sec-11-6">HTMLParser</a></li>
+<li><a href="#sec-12-3">collections</a>
+<ul>
+<li><a href="#sec-12-3-1">Counter</a></li>
+<li><a href="#sec-12-3-2">deque 双端队列</a></li>
+<li><a href="#sec-12-3-3">defaultdict</a></li>
+<li><a href="#sec-12-3-4">namedtuple</a></li>
+<li><a href="#sec-12-3-5">OrderedDict</a></li>
 </ul>
 </li>
-<li><a href="#sec-12">一些第三方库的使用方法</a>
-<ul>
-<li><a href="#sec-12-1">requests</a></li>
-<li><a href="#sec-12-2">pip</a></li>
-<li><a href="#sec-12-3">pyquery</a></li>
-<li><a href="#sec-12-4">watchdog</a></li>
-<li><a href="#sec-12-5">rauth</a></li>
+<li><a href="#sec-12-4">pickle</a></li>
+<li><a href="#sec-12-5">json</a></li>
+<li><a href="#sec-12-6">HTMLParser</a></li>
 </ul>
 </li>
-<li><a href="#sec-13">常用工具的使用方法</a>
+<li><a href="#sec-13">一些第三方库的使用方法</a>
 <ul>
-<li><a href="#sec-13-1">virtualenv</a></li>
-<li><a href="#sec-13-2">ipython</a></li>
+<li><a href="#sec-13-1">requests</a></li>
+<li><a href="#sec-13-2">pip</a></li>
+<li><a href="#sec-13-3">pyquery</a></li>
+<li><a href="#sec-13-4">watchdog</a></li>
+<li><a href="#sec-13-5">rauth</a></li>
+</ul>
+</li>
+<li><a href="#sec-14">常用工具的使用方法</a>
+<ul>
+<li><a href="#sec-14-1">virtualenv</a></li>
+<li><a href="#sec-14-2">ipython</a></li>
 </ul>
 </li>
 </ul>
@@ -1165,11 +1170,38 @@ python3不允许二者混合.
 </div>
 
 <div id="outline-container-sec-11" class="outline-2">
-<h2 id="sec-11">一些标准库的使用说明</h2>
+<h2 id="sec-11">一些很诡异的问题</h2>
 <div class="outline-text-2" id="text-11">
 </div><div id="outline-container-sec-11-1" class="outline-3">
-<h3 id="sec-11-1">python 正则表达式</h3>
+<h3 id="sec-11-1">传引用</h3>
 <div class="outline-text-3" id="text-11-1">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #FD971F;">gg</span> = <span style="color: #AE81FF;">None</span>
+<span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">test</span>(aa={}):
+    <span style="color: #F92672; font-weight: bold;">print</span> aa
+    <span style="color: #F92672; font-weight: bold;">global</span> gg
+    <span style="color: #FD971F;">gg</span> = aa
+
+test()
+<span style="color: #FD971F;">gg</span>[<span style="color: #E6DB74;">"hello"</span>] = <span style="color: #E6DB74;">"world"</span>
+test()
+</pre>
+</div>
+<p>
+第一次调用test, aa是{}, 第二次调用就是{"hello": "world"}了, 所以默认参数可是
+可变对象时,要特别注意, 一定要确定是否需要使用copy.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-12" class="outline-2">
+<h2 id="sec-12">一些标准库的使用说明</h2>
+<div class="outline-text-2" id="text-12">
+</div><div id="outline-container-sec-12-1" class="outline-3">
+<h3 id="sec-12-1">python 正则表达式</h3>
+<div class="outline-text-3" id="text-12-1">
 <p>
 python的正则表达式是通过re这个标准库支持的,这是一篇写的不错的<a href="https://www.evernote.com/shard/s89/sh/8d66ae55-5f2e-4a68-b11d-c8ae8ad3de56/00bfb7913d34061da0083d8286ff1592">文章</a>, 我可耻的用evernote保存下来
 了,上面有原文章的连接.
@@ -1177,15 +1209,15 @@ python的正则表达式是通过re这个标准库支持的,这是一篇写的�
 </div>
 </div>
 
-<div id="outline-container-sec-11-2" class="outline-3">
-<h3 id="sec-11-2">多线程</h3>
-<div class="outline-text-3" id="text-11-2">
-</div><div id="outline-container-sec-11-2-1" class="outline-4">
-<h4 id="sec-11-2-1">Thread</h4>
+<div id="outline-container-sec-12-2" class="outline-3">
+<h3 id="sec-12-2">多线程</h3>
+<div class="outline-text-3" id="text-12-2">
+</div><div id="outline-container-sec-12-2-1" class="outline-4">
+<h4 id="sec-12-2-1">Thread</h4>
 </div>
-<div id="outline-container-sec-11-2-2" class="outline-4">
-<h4 id="sec-11-2-2">threading</h4>
-<div class="outline-text-4" id="text-11-2-2">
+<div id="outline-container-sec-12-2-2" class="outline-4">
+<h4 id="sec-12-2-2">threading</h4>
+<div class="outline-text-4" id="text-12-2-2">
 <p>
 threading是一个更高层的模块，它使用更加方便，所以一般情况都是使用该模块
 </p>
@@ -1220,12 +1252,12 @@ q.join()
 </div>
 </div>
 
-<div id="outline-container-sec-11-3" class="outline-3">
-<h3 id="sec-11-3">collections</h3>
-<div class="outline-text-3" id="text-11-3">
-</div><div id="outline-container-sec-11-3-1" class="outline-4">
-<h4 id="sec-11-3-1">Counter</h4>
-<div class="outline-text-4" id="text-11-3-1">
+<div id="outline-container-sec-12-3" class="outline-3">
+<h3 id="sec-12-3">collections</h3>
+<div class="outline-text-3" id="text-12-3">
+</div><div id="outline-container-sec-12-3-1" class="outline-4">
+<h4 id="sec-12-3-1">Counter</h4>
+<div class="outline-text-4" id="text-12-3-1">
 <p>
 字典的子类，可以用于统计可迭代对象中重复元素出现的次数,这是<a href="http://docs.python.org/2/library/collections.html#counter-objects">文档</a>
 </p>
@@ -1261,18 +1293,18 @@ Counter除了有dict的方法外，还有几个特有的方法
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-11-3-2" class="outline-4">
-<h4 id="sec-11-3-2">deque 双端队列</h4>
-<div class="outline-text-4" id="text-11-3-2">
+<div id="outline-container-sec-12-3-2" class="outline-4">
+<h4 id="sec-12-3-2">deque 双端队列</h4>
+<div class="outline-text-4" id="text-12-3-2">
 <p>
 可以从左边或者右边添加或者删除元素,这是<a href="http://docs.python.org/2/library/collections.html#deque-objects">文档</a> ,主要有append,appendleft(单个元素),extend,extendleft(可迭代对
 象),pop, popleft等等
 </p>
 </div>
 </div>
-<div id="outline-container-sec-11-3-3" class="outline-4">
-<h4 id="sec-11-3-3">defaultdict</h4>
-<div class="outline-text-4" id="text-11-3-3">
+<div id="outline-container-sec-12-3-3" class="outline-4">
+<h4 id="sec-12-3-3">defaultdict</h4>
+<div class="outline-text-4" id="text-12-3-3">
 <p>
 提供了一个default_factory属性,通过初始化defaultdict实例时对该属性赋值,那么以后如果出现key不存在的情况,不
 会出现KeyError,而是调用这个默认工厂函数,然后返回该工厂函数的返回值,这是<a href="http://docs.python.org/2/library/collections.html#defaultdict-objects">文档</a> ,这是几段代码示例:
@@ -1299,9 +1331,9 @@ Counter除了有dict的方法外，还有几个特有的方法
 </div>
 </div>
 
-<div id="outline-container-sec-11-3-4" class="outline-4">
-<h4 id="sec-11-3-4">namedtuple</h4>
-<div class="outline-text-4" id="text-11-3-4">
+<div id="outline-container-sec-12-3-4" class="outline-4">
+<h4 id="sec-12-3-4">namedtuple</h4>
+<div class="outline-text-4" id="text-12-3-4">
 <p>
 一个tuple的子类,可以给tuple的每一项添加一个名字,以后就可以通过 X.y这样的方式来访问了,看代码:
 </p>
@@ -1330,9 +1362,9 @@ Counter除了有dict的方法外，还有几个特有的方法
 </div>
 </div>
 
-<div id="outline-container-sec-11-3-5" class="outline-4">
-<h4 id="sec-11-3-5">OrderedDict</h4>
-<div class="outline-text-4" id="text-11-3-5">
+<div id="outline-container-sec-12-3-5" class="outline-4">
+<h4 id="sec-12-3-5">OrderedDict</h4>
+<div class="outline-text-4" id="text-12-3-5">
 <p>
 OrderedDict是dict的子类,它会记住key插入的顺序,默认的dict是会排序的, 比如下面的代码
 </p>
@@ -1358,9 +1390,9 @@ OrderedDict([('b', 3), ('f', 2), ('a', 1)])
 </div>
 </div>
 
-<div id="outline-container-sec-11-4" class="outline-3">
-<h3 id="sec-11-4">pickle</h3>
-<div class="outline-text-3" id="text-11-4">
+<div id="outline-container-sec-12-4" class="outline-3">
+<h3 id="sec-12-4">pickle</h3>
+<div class="outline-text-3" id="text-12-4">
 <ul class="org-ul">
 <li>dump(self, obj, file) 将对象序列化到文件
 </li>
@@ -1385,9 +1417,9 @@ OrderedDict([('b', 3), ('f', 2), ('a', 1)])
 </div>
 </div>
 
-<div id="outline-container-sec-11-5" class="outline-3">
-<h3 id="sec-11-5">json</h3>
-<div class="outline-text-3" id="text-11-5">
+<div id="outline-container-sec-12-5" class="outline-3">
+<h3 id="sec-12-5">json</h3>
+<div class="outline-text-3" id="text-12-5">
 <p>
 和pickle类似,也是dump,dumps,load,loads这几个接口(以s结尾的就是字符串,否则就
 是文件),json模块默认只能encode与decode python的内置类型，比如数字，字符串，
@@ -1415,9 +1447,9 @@ cls参数指定用来encode的class，后面的user参数用来向自定义的en
 </div>
 </div>
 
-<div id="outline-container-sec-11-6" class="outline-3">
-<h3 id="sec-11-6">HTMLParser</h3>
-<div class="outline-text-3" id="text-11-6">
+<div id="outline-container-sec-12-6" class="outline-3">
+<h3 id="sec-12-6">HTMLParser</h3>
+<div class="outline-text-3" id="text-12-6">
 <p>
 文档中的示例代码:
 </p>
@@ -1447,12 +1479,12 @@ parser.feed(<span style="color: #E6DB74;">'&lt;html&gt;&lt;head&gt;&lt;title&gt;
 </div>
 </div>
 </div>
-<div id="outline-container-sec-12" class="outline-2">
-<h2 id="sec-12">一些第三方库的使用方法</h2>
-<div class="outline-text-2" id="text-12">
-</div><div id="outline-container-sec-12-1" class="outline-3">
-<h3 id="sec-12-1">requests</h3>
-<div class="outline-text-3" id="text-12-1">
+<div id="outline-container-sec-13" class="outline-2">
+<h2 id="sec-13">一些第三方库的使用方法</h2>
+<div class="outline-text-2" id="text-13">
+</div><div id="outline-container-sec-13-1" class="outline-3">
+<h3 id="sec-13-1">requests</h3>
+<div class="outline-text-3" id="text-13-1">
 <p>
 python的标准库中的urllib,urllib2的接口并不好用,requests的接口更简洁一致,这是官方<a href="http://docs.python-requests.org/en/latest/">文档</a>
 </p>
@@ -1510,9 +1542,9 @@ requests.put(url, **kwargs)
 </div>
 </div>
 
-<div id="outline-container-sec-12-2" class="outline-3">
-<h3 id="sec-12-2">pip</h3>
-<div class="outline-text-3" id="text-12-2">
+<div id="outline-container-sec-13-2" class="outline-3">
+<h3 id="sec-13-2">pip</h3>
+<div class="outline-text-3" id="text-13-2">
 <p>
 从github安装包
 pip install git+git://github.com/yourname/package.git
@@ -1521,9 +1553,9 @@ pip install git+git://github.com/yourname/package.git
 </div>
 </div>
 
-<div id="outline-container-sec-12-3" class="outline-3">
-<h3 id="sec-12-3">pyquery</h3>
-<div class="outline-text-3" id="text-12-3">
+<div id="outline-container-sec-13-3" class="outline-3">
+<h3 id="sec-13-3">pyquery</h3>
+<div class="outline-text-3" id="text-13-3">
 <p>
 一个使用jquery语法的html解析器,非常方便,比BeautifulSoup好用,这是它的<a href="http://pythonhosted.org/pyquery/index.html">文档</a>
 </p>
@@ -1556,9 +1588,9 @@ d(<span style="color: #E6DB74;">'meta[name=keywords]'</span>) <span style="color
 </div>
 </div>
 
-<div id="outline-container-sec-12-4" class="outline-3">
-<h3 id="sec-12-4">watchdog</h3>
-<div class="outline-text-3" id="text-12-4">
+<div id="outline-container-sec-13-4" class="outline-3">
+<h3 id="sec-13-4">watchdog</h3>
+<div class="outline-text-3" id="text-13-4">
 <p>
 看门狗,用来监控文件系统改变,这是<a href="http://pythonhosted.org/watchdog/">文档</a>, 基本使用:
 </p>
@@ -1593,9 +1625,9 @@ d(<span style="color: #E6DB74;">'meta[name=keywords]'</span>) <span style="color
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-12-5" class="outline-3">
-<h3 id="sec-12-5">rauth</h3>
-<div class="outline-text-3" id="text-12-5">
+<div id="outline-container-sec-13-5" class="outline-3">
+<h3 id="sec-13-5">rauth</h3>
+<div class="outline-text-3" id="text-13-5">
 <p>
 一个Oauth库,这是<a href="https://rauth.readthedocs.org/en/latest/">文档</a>, 这是一份示例
 <a href="https://gist.github.com/yuyang0/5949932">代码</a>, 基本上照着流程走就OK了
@@ -1603,12 +1635,12 @@ d(<span style="color: #E6DB74;">'meta[name=keywords]'</span>) <span style="color
 </div>
 </div>
 </div>
-<div id="outline-container-sec-13" class="outline-2">
-<h2 id="sec-13">常用工具的使用方法</h2>
-<div class="outline-text-2" id="text-13">
-</div><div id="outline-container-sec-13-1" class="outline-3">
-<h3 id="sec-13-1">virtualenv</h3>
-<div class="outline-text-3" id="text-13-1">
+<div id="outline-container-sec-14" class="outline-2">
+<h2 id="sec-14">常用工具的使用方法</h2>
+<div class="outline-text-2" id="text-14">
+</div><div id="outline-container-sec-14-1" class="outline-3">
+<h3 id="sec-14-1">virtualenv</h3>
+<div class="outline-text-3" id="text-14-1">
 <p>
 这是一份不错的<a href="http://docs.python-guide.org/en/latest/dev/virtualenvs.html">tutorial</a>
 </p>
@@ -1649,9 +1681,9 @@ source /usr/local/bin/virtualenvwrapper.sh
 </div>
 </div>
 
-<div id="outline-container-sec-13-2" class="outline-3">
-<h3 id="sec-13-2">ipython</h3>
-<div class="outline-text-3" id="text-13-2">
+<div id="outline-container-sec-14-2" class="outline-3">
+<h3 id="sec-14-2">ipython</h3>
+<div class="outline-text-3" id="text-14-2">
 <p>
 ipython是一个增强的python interpreter,有许多有趣的功能
 </p>

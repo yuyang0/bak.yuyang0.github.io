@@ -10,7 +10,10 @@ html{
 body{
     margin:0
 }
-
+#disqus-comment{
+    width: 70%;
+    margin: 0 auto;
+}
 a:focus,
 a:active,
 a:hover{
