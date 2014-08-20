@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>scheme笔记</title>
-<!-- 2014-07-06 Sun 18:32 -->
+<!-- 2014-08-20 Wed 18:30 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -156,7 +156,7 @@ for the JavaScript code in this tag.
           </ul>
 
           <form id="site-search" method="get" action="https://google.com/search">
-            <input type="hidden" name="q" value="site:yuyang.farbox.com" />
+            <input type="hidden" name="q" value="site:yuyang0.github.io" />
             <input type="text" name="q" placeholder="Search..." />
             <button class="btn-search" type="submit">Search</button>
           </form>
@@ -293,7 +293,6 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-1-1-2" class="outline-4">
 <h4 id="sec-1-1-2">variable</h4>
 <div class="outline-text-4" id="text-1-1-2">
@@ -302,7 +301,6 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-1-1-3" class="outline-4">
 <h4 id="sec-1-1-3">atom</h4>
 <div class="outline-text-4" id="text-1-1-3">
@@ -322,7 +320,6 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-1-1-4" class="outline-4">
 <h4 id="sec-1-1-4">list</h4>
 <div class="outline-text-4" id="text-1-1-4">
@@ -345,7 +342,6 @@ list -&gt; '()
 </pre>
 </div>
 </div>
-
 <div id="outline-container-sec-1-1-5" class="outline-4">
 <h4 id="sec-1-1-5">S-expression</h4>
 <div class="outline-text-4" id="text-1-1-5">
@@ -362,7 +358,6 @@ sexp -&gt; list
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-1-2" class="outline-3">
 <h3 id="sec-1-2">Naming Conventions</h3>
 <div class="outline-text-3" id="text-1-2">
@@ -380,7 +375,6 @@ sexp -&gt; list
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-1-3" class="outline-3">
 <h3 id="sec-1-3">core syntactic forms&#xa0;&#xa0;&#xa0;<span class="tag"><span class="core">core</span>&#xa0;<span class="syntactic">syntactic</span>&#xa0;<span class="form">form</span></span></h3>
 <div class="outline-text-3" id="text-1-3">
@@ -415,7 +409,7 @@ BNF:
 <li>variables
 </li>
 <li>procedure applications <code>(procedure arg1 ... argn)</code>
-求值规则:
+      求值规则:
 <ol class="org-ol">
 <li>Find the value of <code>procedure</code>.
 </li>
@@ -439,7 +433,7 @@ as a procedure application
 </ol>
 </li>
 <li><code>lambda</code> expressions
-      <code>(lambda (x) (+ x x)) ==&gt; #&lt;procedure&gt;</code>
+<code>(lambda (x) (+ x x)) ==&gt; #&lt;procedure&gt;</code>
 
 <p>
 一般形式有这三种:
@@ -491,7 +485,6 @@ variable)
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-1-4" class="outline-3">
 <h3 id="sec-1-4">let&#xa0;&#xa0;&#xa0;<span class="tag"><span class="let">let</span></span></h3>
 <div class="outline-text-3" id="text-1-4">
@@ -537,7 +530,7 @@ form2主要是为了递归, 它使得在函数体中可以引用函数名, 比�
 用a
 </li>
 <li>let*: exp2中可以引用a, 也就是a可以用来定义b, 可以用嵌套的 <code>let</code> 来定义
-     <code>let*</code>
+<code>let*</code>
 <div class="org-src-container">
 
 <pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define-syntax</span> <span style="color: #FD971F;">let*</span>
@@ -609,7 +602,6 @@ syntax:
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-1-5" class="outline-3">
 <h3 id="sec-1-5">control flow</h3>
 <div class="outline-text-3" id="text-1-5">
@@ -666,7 +658,6 @@ syntax:
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-1-5-2" class="outline-4">
 <h4 id="sec-1-5-2">cond&#xa0;&#xa0;&#xa0;<span class="tag"><span class="cond">cond</span></span></h4>
 <div class="outline-text-4" id="text-1-5-2">
@@ -694,7 +685,6 @@ syntax:
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-1-5-3" class="outline-4">
 <h4 id="sec-1-5-3">when unless&#xa0;&#xa0;&#xa0;<span class="tag"><span class="when">when</span>&#xa0;<span class="unless">unless</span></span></h4>
 <div class="outline-text-4" id="text-1-5-3">
@@ -714,7 +704,6 @@ syntax:
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-1-5-4" class="outline-4">
 <h4 id="sec-1-5-4">case&#xa0;&#xa0;&#xa0;<span class="tag"><span class="case">case</span></span></h4>
 <div class="outline-text-4" id="text-1-5-4">
@@ -732,7 +721,6 @@ syntax:
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-1-5-5" class="outline-4">
 <h4 id="sec-1-5-5">do&#xa0;&#xa0;&#xa0;<span class="tag"><span class="do">do</span></span></h4>
 <div class="outline-text-4" id="text-1-5-5">
@@ -758,7 +746,6 @@ syntax:
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-1-5-6" class="outline-4">
 <h4 id="sec-1-5-6">map</h4>
 <div class="outline-text-4" id="text-1-5-6">
@@ -777,7 +764,6 @@ syntax:
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-1-5-7" class="outline-4">
 <h4 id="sec-1-5-7">for-each</h4>
 <div class="outline-text-4" id="text-1-5-7">
@@ -787,7 +773,6 @@ effect.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-1-5-8" class="outline-4">
 <h4 id="sec-1-5-8">apply</h4>
 <div class="outline-text-4" id="text-1-5-8">
@@ -802,7 +787,6 @@ effect.
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-1-5-9" class="outline-4">
 <h4 id="sec-1-5-9">multiple values</h4>
 <div class="outline-text-4" id="text-1-5-9">
@@ -829,7 +813,6 @@ effect.
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-1-6" class="outline-3">
 <h3 id="sec-1-6">内置的函数</h3>
 <div class="outline-text-3" id="text-1-6">
@@ -896,7 +879,6 @@ effect.
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-1-6-2" class="outline-4">
 <h4 id="sec-1-6-2">list procedure</h4>
 <div class="outline-text-4" id="text-1-6-2">
@@ -974,9 +956,9 @@ list, <code>(memq 'a '(b c a d e)) --&gt; (a d e)</code>
 procedure returns true
 </li>
 <li>(partition procedure list): 返回两个list,第一个list包含所以使
-       <code>procedure</code> 为#f的元素,第二个包含所有使 <code>procedure</code> 为 <code>#f</code> 的元素,
-       <code>partition</code> 的返回值可以使用 <code>let-values</code> 来绑定或者使用
-       <code>call-with-values</code> 来调用其它函数
+<code>procedure</code> 为#f的元素,第二个包含所有使 <code>procedure</code> 为 <code>#f</code> 的元素,
+<code>partition</code> 的返回值可以使用 <code>let-values</code> 来绑定或者使用
+<code>call-with-values</code> 来调用其它函数
 </li>
 <li>(find procedure list) : 返回第一个使procedure为#t的元素
 </li>
@@ -1011,6 +993,7 @@ procedure returns true
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-1-6-3" class="outline-4">
 <h4 id="sec-1-6-3">number procedure</h4>
 <div class="outline-text-4" id="text-1-6-3">
@@ -1031,7 +1014,6 @@ abs,gcd,expt(指数),三角系列函数(san,cos&#x2026;.)
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-1-6-4" class="outline-4">
 <h4 id="sec-1-6-4">char</h4>
 <div class="outline-text-4" id="text-1-6-4">
@@ -1069,7 +1051,6 @@ abs,gcd,expt(指数),三角系列函数(san,cos&#x2026;.)
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-1-6-5" class="outline-4">
 <h4 id="sec-1-6-5">string</h4>
 <div class="outline-text-4" id="text-1-6-5">
@@ -1114,6 +1095,7 @@ abs,gcd,expt(指数),三角系列函数(san,cos&#x2026;.)
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-1-6-6" class="outline-4">
 <h4 id="sec-1-6-6">vector procedure</h4>
 <div class="outline-text-4" id="text-1-6-6">
@@ -1140,7 +1122,6 @@ list访问时需要遍历,不够高效, vector可以像数组一样O(1)时间内
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-1-6-7" class="outline-4">
 <h4 id="sec-1-6-7">symbol procedure</h4>
 <div class="outline-text-4" id="text-1-6-7">
@@ -1158,7 +1139,6 @@ list访问时需要遍历,不够高效, vector可以像数组一样O(1)时间内
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-1-6-8" class="outline-4">
 <h4 id="sec-1-6-8">Hash Table</h4>
 <div class="outline-text-4" id="text-1-6-8">
@@ -1191,7 +1171,6 @@ list访问时需要遍历,不够高效, vector可以像数组一样O(1)时间内
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-1-7" class="outline-3">
 <h3 id="sec-1-7">macros</h3>
 <div class="outline-text-3" id="text-1-7">
@@ -1229,7 +1208,6 @@ object. <code>syntax-rules</code> 返回的就是一个macro transform.所以你
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-1-7-2" class="outline-4">
 <h4 id="sec-1-7-2">let-syntax与letrec-syntax</h4>
 <div class="outline-text-4" id="text-1-7-2">
@@ -1252,7 +1230,6 @@ object. <code>syntax-rules</code> 返回的就是一个macro transform.所以你
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-1-7-3" class="outline-4">
 <h4 id="sec-1-7-3">syntax-rules</h4>
 <div class="outline-text-4" id="text-1-7-3">
@@ -1293,7 +1270,6 @@ syntax object,然后返回一个syntax object.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-1-7-4" class="outline-4">
 <h4 id="sec-1-7-4">syntax object</h4>
 <div class="outline-text-4" id="text-1-7-4">
@@ -1303,7 +1279,7 @@ template中的pattern variable替换掉, 并且会绑定上下文信息
 </p>
 <ol class="org-ol">
 <li>syntax: 创建一个字面的 syntax object,比如 <code>(syntax '(+ 1 x))</code>, 简写
-       <code>#'(+ 1 x)</code>.
+<code>#'(+ 1 x)</code>.
 </li>
 <li>syntax-&gt;datum: 将一个syntax object转换为它原来的内容.
 </li>
@@ -1314,7 +1290,6 @@ template中的pattern variable替换掉, 并且会绑定上下文信息
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-1-7-5" class="outline-4">
 <h4 id="sec-1-7-5">syntax-case</h4>
 <div class="outline-text-4" id="text-1-7-5">
@@ -1368,7 +1343,6 @@ x 实际就是一个包含了原始代码的syntax object. 通过syntax-case 来
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-1-7-6" class="outline-4">
 <h4 id="sec-1-7-6">with-syntax</h4>
 <div class="outline-text-4" id="text-1-7-6">
@@ -1385,7 +1359,6 @@ x 实际就是一个包含了原始代码的syntax object. 通过syntax-case 来
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-1-8" class="outline-3">
 <h3 id="sec-1-8">input and output</h3>
 <div class="outline-text-3" id="text-1-8">
@@ -1470,7 +1443,6 @@ scheme的输入输出用到一个叫做port的对象,port也是first class objec
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-1-8-2" class="outline-4">
 <h4 id="sec-1-8-2">输入输出</h4>
 <div class="outline-text-4" id="text-1-8-2">
@@ -1501,6 +1473,7 @@ scheme的输入输出用到一个叫做port的对象,port也是first class objec
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-1-8-3" class="outline-4">
 <h4 id="sec-1-8-3">code example</h4>
 <div class="outline-text-4" id="text-1-8-3">
@@ -1529,7 +1502,6 @@ scheme的输入输出用到一个叫做port的对象,port也是first class objec
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-1-9" class="outline-3">
 <h3 id="sec-1-9">递归思想</h3>
 <div class="outline-text-3" id="text-1-9">
@@ -1551,7 +1523,6 @@ scheme的输入输出用到一个叫做port的对象,port也是first class objec
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-1-10" class="outline-3">
 <h3 id="sec-1-10">continuation</h3>
 <div class="outline-text-3" id="text-1-10">
@@ -1569,7 +1540,6 @@ scheme中获得当前continuation的构造是call/cc, let/cc
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-1-11" class="outline-3">
 <h3 id="sec-1-11">停机问题</h3>
 <div class="outline-text-3" id="text-1-11">
@@ -1596,7 +1566,7 @@ scheme中获得当前continuation的构造是call/cc, let/cc
 </p>
 <ol class="org-ol">
 <li>假设 <code>last-try</code> 会停机, 那么 <code>(will-stop? last-try)</code> 返回 #t, 因此也就会运行
-   <code>(eternity x)</code>, 前面说了, eternity会永远运行, 所以 <code>last-try</code> 不会停机.
+<code>(eternity x)</code>, 前面说了, eternity会永远运行, 所以 <code>last-try</code> 不会停机.
 </li>
 <li>假设 <code>last-try</code> 不停机, 那么 <code>(will-stop? last-try)</code> 返回 #f, 因此也就不会运
 行 <code>(eternity x)</code>, 那么 <code>last-try</code> 很显然就会返回. 所以 <code>last-try</code> 会停机
@@ -1607,12 +1577,10 @@ scheme中获得当前continuation的构造是call/cc, let/cc
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-1-12" class="outline-3">
 <h3 id="sec-1-12">some example code(the little schemer)</h3>
 </div>
 </div>
-
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">racket</h2>
 <div class="outline-text-2" id="text-2">
@@ -1667,7 +1635,6 @@ Examples:
 </pre>
 </div>
 </div>
-
 <div id="outline-container-sec-2-1-2" class="outline-4">
 <h4 id="sec-2-1-2">subtypes(类似于继承)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="subtypes">subtypes</span></span></h4>
 <div class="outline-text-4" id="text-2-1-2">
@@ -1686,7 +1653,6 @@ Examples:
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-2-2" class="outline-3">
 <h3 id="sec-2-2">match(模式匹配)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="match">match</span></span></h3>
 <div class="outline-text-3" id="text-2-2">
@@ -1840,6 +1806,7 @@ a b都是unquote指定的部分,所以绑定为变量, 其它部分比如 + 就�
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-2-3" class="outline-3">
 <h3 id="sec-2-3">module</h3>
 <div class="outline-text-3" id="text-2-3">
@@ -1952,7 +1919,6 @@ submodule的名字为main时,有一个特殊的地方,也就是说当前的文�
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-2-3-1-2" class="outline-5">
 <h5 id="sec-2-3-1-2">module+                                                                   :module+:</h5>
 <div class="outline-text-5" id="text-2-3-1-2">
@@ -1974,7 +1940,6 @@ test filename.rkt来运行测试代码
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-2-3-2" class="outline-4">
 <h4 id="sec-2-3-2">lang</h4>
 <div class="outline-text-4" id="text-2-3-2">
@@ -1992,7 +1957,6 @@ racket的源文件一般需要使用 <code>#lang lang-name</code> 这样的方�
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-2-3-3" class="outline-4">
 <h4 id="sec-2-3-3">require</h4>
 <div class="outline-text-4" id="text-2-3-3">
@@ -2019,7 +1983,6 @@ racket的源文件一般需要使用 <code>#lang lang-name</code> 这样的方�
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-2-3-4" class="outline-4">
 <h4 id="sec-2-3-4">provide</h4>
 <div class="outline-text-4" id="text-2-3-4">
@@ -2047,7 +2010,6 @@ some example:
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">typed racket</h2>
 <div class="outline-text-2" id="text-3">
@@ -2067,7 +2029,6 @@ some example:
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-3-2" class="outline-3">
 <h3 id="sec-3-2">Types</h3>
 <div class="outline-text-3" id="text-3-2">
@@ -2086,7 +2047,6 @@ some example:
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-3-2-2" class="outline-4">
 <h4 id="sec-3-2-2">Function Type</h4>
 <div class="outline-text-4" id="text-3-2-2">
@@ -2096,7 +2056,6 @@ some example:
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-3-2-3" class="outline-4">
 <h4 id="sec-3-2-3">Union Type</h4>
 <div class="outline-text-4" id="text-3-2-3">
@@ -2122,7 +2081,6 @@ some example:
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-3-2-4" class="outline-4">
 <h4 id="sec-3-2-4">Recursive Type</h4>
 <div class="outline-text-4" id="text-3-2-4">
@@ -2133,7 +2091,6 @@ some example:
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-3-2-5" class="outline-4">
 <h4 id="sec-3-2-5">Subtyping</h4>
 <div class="outline-text-4" id="text-3-2-5">
@@ -2142,7 +2099,6 @@ some example:
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-3-2-6" class="outline-4">
 <h4 id="sec-3-2-6">Polymorphism</h4>
 <div class="outline-text-4" id="text-3-2-6">

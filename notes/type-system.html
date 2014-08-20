@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Type System</title>
-<!-- 2014-05-16 Fri 13:57 -->
+<!-- 2014-08-20 Wed 18:30 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -201,7 +201,7 @@ for the JavaScript code in this tag.
           </ul>
 
           <form id="site-search" method="get" action="https://google.com/search">
-            <input type="hidden" name="q" value="site:yuyang.farbox.com" />
+            <input type="hidden" name="q" value="site:yuyang0.github.io" />
             <input type="text" name="q" placeholder="Search..." />
             <button class="btn-search" type="submit">Search</button>
           </form>
@@ -333,7 +333,6 @@ and a reduction relation, it is a untyped language.
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">Safety = Progress + Preservation</h2>
 <div class="outline-text-2" id="text-2">
@@ -347,7 +346,6 @@ resulting term is also well typed.
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">Simple Typed Lambda Calculus</h2>
 <div class="outline-text-2" id="text-3">
@@ -358,7 +356,6 @@ resulting term is also well typed.
 The type of a function should describe the type of the argument and the
 type of the function body.
 </p>
-
 \begin{displaymath}
   \frac{\Gamma , x:T_1 \vdash t:T_2}{\Gamma \vdash \lambda x . t :T_1 \rightarrow T_2}
 \end{displaymath}
@@ -369,7 +366,6 @@ produces a function type.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-3-2" class="outline-3">
 <h3 id="sec-3-2">terms</h3>
 <div class="outline-text-3" id="text-3-2">
@@ -402,7 +398,6 @@ type.
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-3-3" class="outline-3">
 <h3 id="sec-3-3">evaluation relation</h3>
 <div class="outline-text-3" id="text-3-3">
@@ -413,6 +408,7 @@ type.
 \end{eqnarray*}
 </div>
 </div>
+
 <div id="outline-container-sec-3-4" class="outline-3">
 <h3 id="sec-3-4">type relations</h3>
 <div class="outline-text-3" id="text-3-4">
@@ -424,6 +420,7 @@ type.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">Type extensions</h2>
 <div class="outline-text-2" id="text-4">
@@ -442,7 +439,6 @@ int, char, etc
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-4-2" class="outline-3">
 <h3 id="sec-4-2">Unit</h3>
 <div class="outline-text-3" id="text-4-2">
@@ -457,6 +453,7 @@ type.
 \end{eqnarray*}
 </div>
 </div>
+
 <div id="outline-container-sec-4-3" class="outline-3">
 <h3 id="sec-4-3">pairs T<sub>1</sub> &times; T<sub>2</sub></h3>
 <div class="outline-text-3" id="text-4-3">
@@ -464,7 +461,6 @@ type.
 One can think pair as a special case of tuple which only has two
 elements. The type rule of pair is as follows:
 </p>
-
 \begin{eqnarray*}
   t ::= &...                &\textrm{terms}\\
         & \{t, t\}          &\textrm{pair}\\
@@ -479,7 +475,6 @@ elements. The type rule of pair is as follows:
 <p>
 evaluation rules:
 </p>
-
 \begin{eqnarray*}
   & \{v_1, v_2\}.1 \rightarrow v_1 \\
   & \{v_1, v_2\}.2 \rightarrow v_2 \\
@@ -499,6 +494,7 @@ type rules
 \end{eqnarray*}
 </div>
 </div>
+
 <div id="outline-container-sec-4-4" class="outline-3">
 <h3 id="sec-4-4">tuples {T<sub>1</sub> T<sub>2</sub> &#x2026;}</h3>
 <div class="outline-text-3" id="text-4-4">
@@ -519,6 +515,7 @@ type rules:
 \end{eqnarray*}
 </div>
 </div>
+
 <div id="outline-container-sec-4-5" class="outline-3">
 <h3 id="sec-4-5">records {l<sub>i</sub> = T<sub>i</sub> &#x2026;}</h3>
 <div class="outline-text-3" id="text-4-5">
@@ -534,7 +531,6 @@ the index to fetch the field, record uses the name to fetch the field
 <p>
 terms,values,types:
 </p>
-
 \begin{eqnarray*}
   t ::= & ...                      &\textrm{terms} \\
         & \{l_i={t_i}^{i \in 1..n} \}     &\textrm{record} \\
@@ -564,6 +560,7 @@ type rules:
 \end{eqnarray*}
 </div>
 </div>
+
 <div id="outline-container-sec-4-6" class="outline-3">
 <h3 id="sec-4-6">sums T<sub>1</sub> + T<sub>2</sub></h3>
 <div class="outline-text-3" id="text-4-6">
@@ -587,6 +584,7 @@ type rules:
 \end{eqnarray*}
 </div>
 </div>
+
 <div id="outline-container-sec-4-7" class="outline-3">
 <h3 id="sec-4-7">variants &lt;l<sub>i</sub>:T<sub>i</sub> &#x2026;&gt;</h3>
 <div class="outline-text-3" id="text-4-7">
@@ -617,6 +615,7 @@ type rules:
 \end{eqnarray*}
 </div>
 </div>
+
 <div id="outline-container-sec-4-8" class="outline-3">
 <h3 id="sec-4-8">recursive function</h3>
 <div class="outline-text-3" id="text-4-8">
@@ -628,6 +627,7 @@ add <code>fix</code> to the language.
 \end{equation}
 </div>
 </div>
+
 <div id="outline-container-sec-4-9" class="outline-3">
 <h3 id="sec-4-9">Lists (List T)</h3>
 <div class="outline-text-3" id="text-4-9">
@@ -637,7 +637,6 @@ e1:T, e2:T, e3:T &#x2026; ==&gt; (e1 e2 e3 &#x2026;) : List T
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">Reference</h2>
 <div class="outline-text-2" id="text-5">
@@ -651,7 +650,6 @@ type. the reason why we need &Sigma; is that without the help of
 type of the content pointed by this location.
 </li>
 </ol>
-
 \begin{eqnarray*}
   t ::= &                &\textrm{terms}\\
         & x              &\textrm{variable}\\
@@ -698,6 +696,7 @@ type of the content pointed by this location.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6">Subtype</h2>
 <div class="outline-text-2" id="text-6">
@@ -717,7 +716,6 @@ S &lt;: T means S is the subtype of T, One can think S is a subset of T.
 <p>
 The subtype rule of function type is as follows:
 </p>
-
 \begin{displaymath}
   \frac{T_1 <: S_1 \qquad S_2 <: T_2}{S_1 \rightarrow S_2 <: T_1 \rightarrow T_2}
 \end{displaymath}
@@ -725,12 +723,12 @@ The subtype rule of function type is as follows:
 <p>
 the inverse Lemma:
 </p>
-
 \begin{displaymath}
   \frac{S_1 \rightarrow S_2 <: T_1 \rightarrow T_2}{T_1 <: S_1 \qquad S_2 <: T_2}
 \end{displaymath}
 </div>
 </div>
+
 <div id="outline-container-sec-6-2" class="outline-3">
 <h3 id="sec-6-2">record</h3>
 </div>
@@ -750,6 +748,7 @@ be equivalent in substype relation.
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-6-5" class="outline-3">
 <h3 id="sec-6-5">The Top and Bottom types</h3>
 <div class="outline-text-3" id="text-6-5">
@@ -761,6 +760,7 @@ be equivalent in substype relation.
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-6-6" class="outline-3">
 <h3 id="sec-6-6">STLC</h3>
 <div class="outline-text-3" id="text-6-6">
@@ -771,7 +771,6 @@ be equivalent in substype relation.
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-6-7" class="outline-3">
 <h3 id="sec-6-7">OOP</h3>
 <div class="outline-text-3" id="text-6-7">
@@ -788,7 +787,6 @@ superclasses implements t<sub>2</sub>.
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-7" class="outline-2">
 <h2 id="sec-7">Polymorphism</h2>
 <div class="outline-text-2" id="text-7">
@@ -804,7 +802,6 @@ the term <b>generics(泛型)</b> is used to denote parameter polymorphism.
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-7-2" class="outline-3">
 <h3 id="sec-7-2">Parameter Polymorphism</h3>
 <div class="outline-text-3" id="text-7-2">
@@ -821,7 +818,6 @@ value作出反应, 对type我们也可以采用类似的方法.用&Lambda; 来�
 definition可以对多个type作出反应,以swap函数为例,它会交换一个pair中first与
 second位置的元素, swap的定义如下:
 </p>
-
 \begin{displaymath}
   swap = \Lambda \alpha . \Lambda \beta . \lambda p : (\alpha \times \beta) . \langle snd \  p , fst \  p \rangle
 \end{displaymath}
@@ -829,7 +825,6 @@ second位置的元素, swap的定义如下:
 <p>
 该函数的type如下:
 </p>
-
 \begin{displaymath}
   \vdash swap : (\forall \alpha . (\forall \beta . ((\alpha \times \beta) \rightarrow (\beta \times \alpha))))
 \end{displaymath}
@@ -842,7 +837,6 @@ swap上,也就是 \(swap[bool][int]\) 这样就可以得到类型正确的swap�
 <p>
 在比如说 identity 函数
 </p>
-
 \begin{displaymath}
   id = \Lambda \alpha . \lambda x: \alpha . x
 \end{displaymath}
@@ -871,7 +865,6 @@ pair,list,不能定义递归函数等等,当我们引入了 &Lambda; 抽象后, 
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-7-3" class="outline-3">
 <h3 id="sec-7-3">ad-hoc polymorphism</h3>
 <div class="outline-text-3" id="text-7-3">
@@ -885,7 +878,6 @@ pair,list,不能定义递归函数等等,当我们引入了 &Lambda; 抽象后, 
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-7-4" class="outline-3">
 <h3 id="sec-7-4">subtype Polymorphism</h3>
 <div class="outline-text-3" id="text-7-4">
@@ -895,7 +887,6 @@ Mostly used in Object-oriented language.
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-8" class="outline-2">
 <h2 id="sec-8">Recursive Type</h2>
 <div class="outline-text-2" id="text-8">
@@ -915,7 +906,6 @@ An number list is either
 what is the type of the number list? The \(List_{num}\) must obey the
 following equation:
 </p>
-
 \begin{displaymath}
   List_{num} = (bool + (num \times List_{num}))
 \end{displaymath}
@@ -927,7 +917,6 @@ equation. but we can use the same skill like we define the recusive
 function: we can define tfix(the type fix combinator), so the \(List_{num}\)
 can define like this:
 </p>
-
 \begin{displaymath}
   List_{num} \dot{=}_{} tfix(\forall \alpha .(bool + (num \times \alpha)))
 \end{displaymath}
@@ -937,7 +926,6 @@ by convention a <code>tfix</code> an its following &forall; are collapsed togeth
 single &mu;, &mu; is a explicit recursive operator for types. one can
 think &mu; is like letrec.
 </p>
-
 \begin{displaymath}
   List_{num} \dot{=}_{} \mu \alpha(bool + (num \times \alpha))
 \end{displaymath}
@@ -947,7 +935,6 @@ a type constructed by &mu; is a <b>recursive type</b>.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-8-2" class="outline-3">
 <h3 id="sec-8-2">fix combinator</h3>
 <div class="outline-text-3" id="text-8-2">
@@ -956,6 +943,7 @@ a type constructed by &mu; is a <b>recursive type</b>.
 \end{displaymath}
 </div>
 </div>
+
 <div id="outline-container-sec-8-3" class="outline-3">
 <h3 id="sec-8-3">fold and unfold</h3>
 <div class="outline-text-3" id="text-8-3">
@@ -978,6 +966,7 @@ of a constructor in a pattern match implies <code>unfold</code>. The type rules 
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-9" class="outline-2">
 <h2 id="sec-9">Type Inference</h2>
 <div class="outline-text-2" id="text-9">

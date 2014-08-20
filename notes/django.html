@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>DJANGO笔记</title>
-<!-- 2014-05-16 Fri 13:57 -->
+<!-- 2014-08-20 Wed 18:30 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -203,7 +203,7 @@ for the JavaScript code in this tag.
           </ul>
 
           <form id="site-search" method="get" action="https://google.com/search">
-            <input type="hidden" name="q" value="site:yuyang.farbox.com" />
+            <input type="hidden" name="q" value="site:yuyang0.github.io" />
             <input type="text" name="q" placeholder="Search..." />
             <button class="btn-search" type="submit">Search</button>
           </form>
@@ -329,7 +329,7 @@ for the JavaScript code in this tag.
 </p>
 </li>
 <li>命名参数，'^mydata/(?P&lt;month&gt;\d{1, 2})/(?P&lt;day&gt;\d\d)/$' ,那么其中的month, day就是关键字参数，如果用户访问
-      <i>mydate/11/22</i> 那么就会调用my_view(month='11', day='22')
+<i>mydate/11/22</i> 那么就会调用my_view(month='11', day='22')
 </li>
 <li>urlCONF不会区分是get， post，put，delete，只要url相同它就会将请求导向同一个视图处理函数，所以必要的情况
 下区分get请求，post请求是视图函数的责任，还有urlConf不会理会url中的查询字符串，比如
@@ -342,7 +342,6 @@ URLConf中进行匹配
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">模板</h2>
 <div class="outline-text-2" id="text-2">
@@ -357,14 +356,13 @@ URLConf中进行匹配
 <li>通过url标签生成网址，而不要硬编码，对静态文件也是如此，尽量使用static标签
 </li>
 <li>尽量使用好记的名字来代表对象，而不要用object,object_list之类的名字（CBV编码时特别注意，因为object，
-object_list是默认名字）
+       object_list是默认名字）
 </li>
 <li>自定义的模板tag与filter只有在没有其它选择时在使用，不能滥用
 </li>
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-2-2" class="outline-3">
 <h3 id="sec-2-2">模板的基本语法</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -406,7 +404,6 @@ object_list是默认名字）
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-2-2-2" class="outline-4">
 <h4 id="sec-2-2-2">模板的'.'的用法:</h4>
 <div class="outline-text-4" id="text-2-2-2">
@@ -453,7 +450,6 @@ t.render(c)
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-2-2-3" class="outline-4">
 <h4 id="sec-2-2-3">过滤器</h4>
 <div class="outline-text-4" id="text-2-2-3">
@@ -478,7 +474,6 @@ t.render(c)
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-2-3" class="outline-3">
 <h3 id="sec-2-3">使用模板的方法：</h3>
 <div class="outline-text-3" id="text-2-3">
@@ -518,7 +513,6 @@ render_to_response只需要提供模板文件，与一个字典，它会渲染�
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-2-4" class="outline-3">
 <h3 id="sec-2-4">模板的包含与继承</h3>
 <div class="outline-text-3" id="text-2-4">
@@ -576,7 +570,6 @@ base.html:
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-2-5" class="outline-3">
 <h3 id="sec-2-5">xss安全问题</h3>
 <div class="outline-text-3" id="text-2-5">
@@ -616,7 +609,7 @@ view中操作html字符串还有几个比较有用的函数：
 <li>strip_tags(value): 删除所有的html标签，注意不是转义，它会将&lt;div&gt;,&lt;h1&gt;这样的标签整个删掉，只保留text
 </li>
 <li>remove_tags(value, tags)：和strip_tags类似，不过它只删掉tags指定的tag，tags是一个以空格分割的字符串，
-比如： "div h1 a"
+          比如： "div h1 a"
 </li>
 </ol>
 </li>
@@ -624,7 +617,6 @@ view中操作html字符串还有几个比较有用的函数：
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">Model</h2>
 <div class="outline-text-2" id="text-3">
@@ -633,9 +625,9 @@ view中操作html字符串还有几个比较有用的函数：
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>每一个app都有一个app_label属性，这个属性的值默认是app的导入路径的最后一部分，比
-如'django.contrib.contenttypes', 那么这个app的app_label就是contenttypes，在model中ForiegnKey，
-ManyToManyField中指定target model时都是使用app_label.model_name的格式，还有当自定义USER_AUTH_MODEL时也是
-如此
+     如'django.contrib.contenttypes', 那么这个app的app_label就是contenttypes，在model中ForiegnKey，
+     ManyToManyField中指定target model时都是使用app_label.model_name的格式，还有当自定义USER_AUTH_MODEL时也是
+     如此
 </li>
 <li>在一个app最好不要超过5个model， 如果model过多，那么要考虑将其拆分为更小的app
 </li>
@@ -646,7 +638,6 @@ ManyToManyField中指定target model时都是使用app_label.model_name的格式
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-3-2" class="outline-3">
 <h3 id="sec-3-2">model的基本使用：</h3>
 <div class="outline-text-3" id="text-3-2">
@@ -899,7 +890,6 @@ p.book_set.<span style="color: #A6E22E;">all</span>()
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-3-3" class="outline-3">
 <h3 id="sec-3-3">manager</h3>
 <div class="outline-text-3" id="text-3-3">
@@ -940,7 +930,6 @@ p.book_set.<span style="color: #A6E22E;">all</span>()
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-3-4" class="outline-3">
 <h3 id="sec-3-4">related manager</h3>
 <div class="outline-text-3" id="text-3-4">
@@ -983,7 +972,6 @@ manager在默认的方法外,他还有以下方法:
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-3-5" class="outline-3">
 <h3 id="sec-3-5">杂七杂八</h3>
 <div class="outline-text-3" id="text-3-5">
@@ -997,7 +985,6 @@ manager在默认的方法外,他还有以下方法:
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-3-6" class="outline-3">
 <h3 id="sec-3-6">几个特殊的field</h3>
 <div class="outline-text-3" id="text-3-6">
@@ -1035,7 +1022,6 @@ my_model_instance.save()
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">表单</h2>
 <div class="outline-text-2" id="text-4">
@@ -1232,7 +1218,6 @@ self.data = data(也就是request.POST), data属性可以看做是裸数据，�
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-4-2" class="outline-3">
 <h3 id="sec-4-2">ModelForm</h3>
 <div class="outline-text-3" id="text-4-2">
@@ -1267,7 +1252,6 @@ cleaned_data都是无效的
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">ContentType</h2>
 <div class="outline-text-2" id="text-5">
@@ -1324,7 +1308,6 @@ user_type.model_class()
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6">signal</h2>
 <div class="outline-text-2" id="text-6">
@@ -1344,7 +1327,6 @@ signal是同步阻塞的，要异步则要与celery配合，由于signal的recei
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-7" class="outline-2">
 <h2 id="sec-7">generic views</h2>
 <div class="outline-text-2" id="text-7">
@@ -1365,7 +1347,6 @@ signal是同步阻塞的，要异步则要与celery配合，由于signal的recei
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-7-1-2" class="outline-4">
 <h4 id="sec-7-1-2">SingleObjectMixin</h4>
 <div class="outline-text-4" id="text-7-1-2">
@@ -1382,7 +1363,6 @@ signal是同步阻塞的，要异步则要与celery配合，由于signal的recei
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-7-1-3" class="outline-4">
 <h4 id="sec-7-1-3">SingleObjectTemplateResponseMixin(继承自TemplateResponseMixin)</h4>
 <div class="outline-text-4" id="text-7-1-3">
@@ -1407,7 +1387,6 @@ get_template_names() : 会返回一个包含template名字的列表，其中包�
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-8" class="outline-2">
 <h2 id="sec-8">第三方app的使用</h2>
 <div class="outline-text-2" id="text-8">
@@ -1456,7 +1435,6 @@ schemamigration会生成本次修改的py文件（在your_app/migrations/下）,
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-8-2" class="outline-3">
 <h3 id="sec-8-2">mptt</h3>
 <div class="outline-text-3" id="text-8-2">
@@ -1465,7 +1443,6 @@ schemamigration会生成本次修改的py文件（在your_app/migrations/下）,
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-8-3" class="outline-3">
 <h3 id="sec-8-3">django-braces</h3>
 <div class="outline-text-3" id="text-8-3">
@@ -1475,7 +1452,6 @@ schemamigration会生成本次修改的py文件（在your_app/migrations/下）,
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-9" class="outline-2">
 <h2 id="sec-9">我遇到的令人费解的error</h2>
 <div class="outline-text-2" id="text-9">

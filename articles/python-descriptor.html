@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>python Descriptor</title>
-<!-- 2014-05-16 Fri 13:57 -->
+<!-- 2014-08-20 Wed 18:31 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -155,7 +155,7 @@ for the JavaScript code in this tag.
           </ul>
 
           <form id="site-search" method="get" action="https://google.com/search">
-            <input type="hidden" name="q" value="site:yuyang.farbox.com" />
+            <input type="hidden" name="q" value="site:yuyang0.github.io" />
             <input type="text" name="q" placeholder="Search..." />
             <button class="btn-search" type="submit">Search</button>
           </form>
@@ -207,6 +207,7 @@ of how Python works and an appreciation for the elegance of its design.
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">Definition and Introduction</h2>
 <div class="outline-text-2" id="text-2">
@@ -234,6 +235,7 @@ flexible set of new tools for everyday Python programs.
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">Descriptor Protocol</h2>
 <div class="outline-text-2" id="text-3">
@@ -273,6 +275,7 @@ make it a data descriptor.
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">Invoking Descriptors</h2>
 <div class="outline-text-2" id="text-4">
@@ -343,7 +346,7 @@ reverts to a search using object._<sub>getattribute</sub>__.
 <p>
 Note, in Python 2.2, super(B, obj).m() would only invoke <span class="underline"><span class="underline">get</span></span> if m was a data scriptor. In Python 2.3,
 non-data descriptors also get invoked unless an old-style class is involved. The plementation details are in
-super<sub>getattro</sub>() in Objects/typeobject.c and a pure Python equivalent can be found in <a href="http://www.python.org/2.2.3/descrintro.  tml#cooperation">Guido's</a> <a href="http://www.python.org/2.2.3/descrintro.html#cooperation">Tutorial</a>.
+super<sub>getattro</sub>() in Objects/typeobject.c and a pure Python equivalent can be found in <a href="http://www.python.org/2.2.3/descrintro.%20%20tml#cooperation">Guido's</a> <a href="http://www.python.org/2.2.3/descrintro.html#cooperation">Tutorial</a>.
 </p>
 
 <p>
@@ -354,6 +357,7 @@ _<sub>getattribute</sub>_<sub>()</sub>.
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">Descriptor Example</h2>
 <div class="outline-text-2" id="text-5">
@@ -406,6 +410,7 @@ methods are all based on the descriptor protocol.
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6">Properties</h2>
 <div class="outline-text-2" id="text-6">
@@ -486,7 +491,6 @@ the value attribute in a property() data descriptor:
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-7" class="outline-2">
 <h2 id="sec-7">Functions and Methods</h2>
 <div class="outline-text-2" id="text-7">
@@ -548,6 +552,7 @@ implementation of instancemethod<sub>call</sub>() is only slightly more complex 
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-8" class="outline-2">
 <h2 id="sec-8">Static Methods and Class Methods</h2>
 <div class="outline-text-2" id="text-8">
