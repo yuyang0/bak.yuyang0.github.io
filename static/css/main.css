@@ -10,8 +10,8 @@ html{
 body{
     margin:0
 }
-#disqus-comment{
-    width: 70%;
+#disqus_comment{
+    width: 60%;
     margin: 0 auto;
 }
 a:focus,
