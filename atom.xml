@@ -4,7 +4,7 @@
   <title></title>
   <link href="https://yuyang0.github.io/"/>
   <link type="application/atom+xml" rel="self" href="/atom.xml"/>
-  <updated>Sun Nov 30 20:22:08 2014</updated>
+  <updated>Sun Nov 30 21:25:25 2014</updated>
   <id>https://yuyang0.github.io/</id>
   <author>
     <name>Yu Yang</name>
@@ -74,7 +74,7 @@
     <id>defects-of-python.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/articles/defects-of-python.html"/>
     <title>python的“缺点”</title>
-    <updated> 2014-11-27</updated>
+    <updated> 2014-11-30</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -494,7 +494,7 @@
     <id>index.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/index.html"/>
     <title>Index Page</title>
-    <updated> 2014-06-25</updated>
+    <updated> 2014-11-30</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -514,7 +514,7 @@
     <id>tags.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/tags.html"/>
     <title>tags</title>
-    <updated> 2014-08-20</updated>
+    <updated> 2014-11-30</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
