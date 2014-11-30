@@ -4,7 +4,7 @@
   <title></title>
   <link href="https://yuyang0.github.io/"/>
   <link type="application/atom+xml" rel="self" href="/atom.xml"/>
-  <updated>Wed Aug 20 18:29:52 2014</updated>
+  <updated>Sun Nov 30 20:22:08 2014</updated>
   <id>https://yuyang0.github.io/</id>
   <author>
     <name>Yu Yang</name>
@@ -14,7 +14,7 @@
     <id>sitemap.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/sitemap.html"/>
     <title>Sitemap</title>
-    <updated> 2014-08-20</updated>
+    <updated> 2014-11-30</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -41,6 +41,16 @@
     </author>
     <content type="html"> </content>
   </entry><entry>
+    <id>introduction-to-opencl.org</id>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/articles/introduction-to-opencl.html"/>
+    <title>OpenCL介绍</title>
+    <updated> 2014-09-26</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>https://yuyang0.github.io/</uri>
+    </author>
+    <content type="html"> </content>
+  </entry><entry>
     <id>gevent.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/articles/gevent.html"/>
     <title>gevent源码分析</title>
@@ -55,6 +65,16 @@
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/articles/python-descriptor.html"/>
     <title>python Descriptor</title>
     <updated> 2013-11-08</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>https://yuyang0.github.io/</uri>
+    </author>
+    <content type="html"> </content>
+  </entry><entry>
+    <id>defects-of-python.org</id>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/articles/defects-of-python.html"/>
+    <title>python的“缺点”</title>
+    <updated> 2014-11-27</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -104,7 +124,7 @@
     <id>clojure.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/clojure.html"/>
     <title>Clojure笔记</title>
-    <updated> 2014-05-17</updated>
+    <updated> 2014-11-15</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -115,6 +135,16 @@
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/compiler.html"/>
     <title>Compiler</title>
     <updated> 2014-07-06</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>https://yuyang0.github.io/</uri>
+    </author>
+    <content type="html"> </content>
+  </entry><entry>
+    <id>c-dev-skills.org</id>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/c-dev-skills.html"/>
+    <title>C开发技巧</title>
+    <updated> 2014-09-30</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -184,7 +214,17 @@
     <id>sql.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/sql.html"/>
     <title>MySQL笔记</title>
-    <updated> 2014-05-17</updated>
+    <updated> 2014-08-24</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>https://yuyang0.github.io/</uri>
+    </author>
+    <content type="html"> </content>
+  </entry><entry>
+    <id>opencl.org</id>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/opencl.html"/>
+    <title>OpenCL笔记</title>
+    <updated> 2014-09-27</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -291,10 +331,30 @@
     </author>
     <content type="html"> </content>
   </entry><entry>
+    <id>java.org</id>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/java.html"/>
+    <title>java syntax note</title>
+    <updated> 2014-11-13</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>https://yuyang0.github.io/</uri>
+    </author>
+    <content type="html"> </content>
+  </entry><entry>
     <id>javascript.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/javascript.html"/>
     <title>javascript笔记</title>
     <updated> 2014-07-06</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>https://yuyang0.github.io/</uri>
+    </author>
+    <content type="html"> </content>
+  </entry><entry>
+    <id>linux-note.org</id>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/linux-note.html"/>
+    <title>linux笔记</title>
+    <updated> 2014-11-16</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -444,7 +504,7 @@
     <id>sitemap.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/sitemap.html"/>
     <title>Sitemap</title>
-    <updated> 2014-08-20</updated>
+    <updated> 2014-11-30</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -454,7 +514,7 @@
     <id>tags.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/tags.html"/>
     <title>tags</title>
-    <updated> 2014-07-21</updated>
+    <updated> 2014-08-20</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>

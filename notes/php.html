@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>PHP笔记</title>
-<!-- 2014-08-20 Wed 18:30 -->
+<!-- 2014-11-30 Sun 20:23 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -56,8 +56,6 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -91,7 +89,6 @@
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
 <link rel="shortcut icon" href="static/img/favicon.ico" />
-<script type="text/javascript" src="static/js/custom.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -152,7 +149,7 @@ for the JavaScript code in this tag.
 
             <li> <a href="/tags.html">Tags</a></li>
 
-            <li> <a href="/rss.xml">RSS</a></li>
+            <li> <a href="/atom.xml">RSS</a></li>
           </ul>
 
           <form id="site-search" method="get" action="https://google.com/search">
@@ -232,27 +229,28 @@ for the JavaScript code in this tag.
 echo 效率高, 但是当使用 if, foreach, for, while 这样的结构时应该用这样的语法:
 <div class="org-src-container">
 
-<pre class="src src-php"><span style="color: #F92672;">&lt;?php</span> <span style="color: #F92672; font-weight: bold;">if</span> ($<span style="color: #FD971F;">expression</span> == <span style="color: #AE81FF;">true</span>): <span style="color: #F92672;">?&gt;</span>
-  <span style="color: #968B26; font-weight: bold;">This</span> <span style="color: #968B26; font-weight: bold;">will</span> <span style="color: #968B26; font-weight: bold;">show</span> <span style="color: #F92672; font-weight: bold;">if</span> <span style="color: #968B26; font-weight: bold;">the</span> <span style="color: #968B26; font-weight: bold;">expression</span> <span style="color: #968B26; font-weight: bold;">is</span> <span style="color: #AE81FF;">true</span>.
-<span style="color: #F92672;">&lt;?php</span> <span style="color: #F92672; font-weight: bold;">else</span>: <span style="color: #F92672;">?&gt;</span>
-  <span style="color: #968B26; font-weight: bold;">Otherwise</span> <span style="color: #968B26; font-weight: bold;">this</span> <span style="color: #968B26; font-weight: bold;">will</span> <span style="color: #968B26; font-weight: bold;">show</span>.
-<span style="color: #F92672;">&lt;?php</span> <span style="color: #F92672; font-weight: bold;">endif</span>; <span style="color: #F92672;">?&gt;</span>
+<pre class="src src-php"><span style="color: #d33682;">&lt;?php</span> <span style="color: #859900;">if</span> (<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">expression</span> == <span style="color: #268bd2;">true</span>): <span style="color: #d33682;">?&gt;</span>
+  This will show <span style="color: #859900;">if</span> the expression is <span style="color: #268bd2;">true</span>.
+<span style="color: #d33682;">&lt;?php</span> <span style="color: #859900;">else</span>: <span style="color: #d33682;">?&gt;</span>
+  Otherwise <span style="color: #859900;">this</span> will show.
+<span style="color: #d33682;">&lt;?php</span> <span style="color: #859900;">endif</span>; <span style="color: #d33682;">?&gt;</span>
 
-<span style="color: #75715E;">/* </span><span style="color: #75715E;">foreach </span><span style="color: #75715E;">*/</span>
-<span style="color: #F92672;">&lt;?php</span> <span style="color: #F92672; font-weight: bold;">foreach</span> ($<span style="color: #FD971F;">news</span> <span style="color: #F92672; font-weight: bold;">as</span> $<span style="color: #FD971F;">news_item</span>): <span style="color: #F92672;">?&gt;</span>
-    <span style="color: #AE81FF;">&lt;h</span>2<span style="color: #AE81FF;">&gt;</span><span style="color: #F92672;">&lt;?php</span> <span style="color: #F92672; font-weight: bold;">echo</span> $<span style="color: #FD971F;">news_item</span>[<span style="color: #E6DB74;">'title'</span>] <span style="color: #F92672;">?&gt;</span><span style="color: #AE81FF;">&lt;/h</span>2<span style="color: #AE81FF;">&gt;</span>
-    <span style="color: #AE81FF;">&lt;div</span> <span style="color: #AE81FF;">id=</span><span style="color: #E6DB74;">"main"</span><span style="color: #AE81FF;">&gt;</span>
-        <span style="color: #F92672;">&lt;?php</span> <span style="color: #F92672; font-weight: bold;">echo</span> $<span style="color: #FD971F;">news_item</span>[<span style="color: #E6DB74;">'text'</span>] <span style="color: #F92672;">?&gt;</span>
-    <span style="color: #AE81FF;">&lt;/div&gt;</span>
-    <span style="color: #AE81FF;">&lt;p&gt;&lt;a</span> <span style="color: #AE81FF;">href=</span><span style="color: #E6DB74;">"news/&lt;?php echo $news_item['slug'] ?&gt;"</span>&gt;<span style="color: #968B26; font-weight: bold;">View</span> <span style="color: #968B26; font-weight: bold;">article</span><span style="color: #AE81FF;">&lt;/a&gt;&lt;/p&gt;</span>
+<span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">foreach */</span>
+<span style="color: #d33682;">&lt;?php</span> <span style="color: #859900;">foreach</span> (<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">news</span> <span style="color: #859900;">as</span> <span style="color: #268bd2;">$news_item</span>): <span style="color: #d33682;">?&gt;</span>
+    &lt;h2&gt;<span style="color: #d33682;">&lt;?</span>php <span style="color: #859900;">echo</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">news_item</span>[<span style="color: #2aa198;">'title'</span>] <span style="color: #d33682;">?&gt;</span>&lt;/h2&gt;
+    &lt;div id=<span style="color: #2aa198;">"main"</span>&gt;
+<span style="color: #d33682;">        &lt;?php</span> <span style="color: #859900;">echo</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">news_item</span>[<span style="color: #2aa198;">'text'</span>] <span style="color: #d33682;">?&gt;</span>
+    &lt;/div&gt;
+    &lt;p&gt;&lt;a href=<span style="color: #2aa198;">"news/&lt;?php echo </span><span style="color: #6c71c4;">$news_item</span><span style="color: #2aa198;">['slug'] ?&gt;"</span>&gt;View article&lt;/a&gt;&lt;/p&gt;
 
-<span style="color: #F92672;">&lt;?php</span> <span style="color: #F92672; font-weight: bold;">endforeach</span> <span style="color: #F92672;">?&gt;</span>
+<span style="color: #d33682;">&lt;?php</span> <span style="color: #859900;">endforeach</span> <span style="color: #d33682;">?&gt;</span>
 </pre>
 </div>
 </li>
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">变量</h2>
 <div class="outline-text-2" id="text-2">
@@ -267,6 +265,7 @@ echo 效率高, 但是当使用 if, foreach, for, while 这样的结构时应该
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-2-2" class="outline-3">
 <h3 id="sec-2-2">常量</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -287,6 +286,7 @@ echo 效率高, 但是当使用 if, foreach, for, while 这样的结构时应该
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-2-3" class="outline-3">
 <h3 id="sec-2-3">作用域</h3>
 <div class="outline-text-3" id="text-2-3">
@@ -301,9 +301,9 @@ echo 效率高, 但是当使用 if, foreach, for, while 这样的结构时应该
 码:
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">test</span>
-  (<span style="color: #F92672; font-weight: bold;">let</span> ([i 0])
-    (<span style="color: #F92672; font-weight: bold;">lambda</span> (x)
+<pre class="src src-scheme">(<span style="color: #859900;">define</span> <span style="color: #b58900;">test</span>
+  (<span style="color: #859900;">let</span> ([i 0])
+    (<span style="color: #859900;">lambda</span> (x)
       ...)))
 </pre>
 </div>
@@ -317,6 +317,7 @@ echo 效率高, 但是当使用 if, foreach, for, while 这样的结构时应该
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">操作符与控制结构</h2>
 <div class="outline-text-2" id="text-3">
@@ -329,6 +330,7 @@ php的运算符基本和c语言类似。有一个===与==这个和js类似，一
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-3-2" class="outline-3">
 <h3 id="sec-3-2">控制结构</h3>
 <div class="outline-text-3" id="text-3-2">
@@ -340,6 +342,7 @@ php的控制结构与C语言类似，if，switch，while，do…..while循环，
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">php数组</h2>
 <div class="outline-text-2" id="text-4">
@@ -362,6 +365,7 @@ php数组是一个强大的数据结构
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-4-2" class="outline-3">
 <h3 id="sec-4-2">数组的key</h3>
 <div class="outline-text-3" id="text-4-2">
@@ -378,6 +382,7 @@ php数组是一个强大的数据结构
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-4-3" class="outline-3">
 <h3 id="sec-4-3">访问或者修改</h3>
 <div class="outline-text-3" id="text-4-3">
@@ -389,6 +394,7 @@ php数组是一个强大的数据结构
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-4-4" class="outline-3">
 <h3 id="sec-4-4">循环访问</h3>
 <div class="outline-text-3" id="text-4-4">
@@ -412,14 +418,14 @@ while(list($key, $value) = each($arr))
 是一个数组
 <div class="org-src-container">
 
-<pre class="src src-php">$<span style="color: #FD971F;">arr</span> = <span style="color: #F92672; font-weight: bold;">array</span>(
-    <span style="color: #E6DB74;">"aa"</span> =&gt; <span style="color: #E6DB74;">"one"</span>,
-    <span style="color: #E6DB74;">"bb"</span> =&gt; <span style="color: #E6DB74;">"two"</span>,
-    <span style="color: #E6DB74;">"cc"</span> =&gt; <span style="color: #E6DB74;">"three"</span>);
-$<span style="color: #FD971F;">first_item</span> = <span style="color: #F8F8F2; background-color: #272822;">each</span>($<span style="color: #FD971F;">arr</span>);
-<span style="color: #75715E;">/* </span><span style="color: #75715E;">$first_item = array(0 =&gt; "aa", 1 =&gt; "one", "key" =&gt; "aa", "value" =&gt; "one") </span><span style="color: #75715E;">*</span><span style="color: #F92672; background-color: #272822;">/</span>
-$<span style="color: #FD971F;">second_item</span> = <span style="color: #F8F8F2; background-color: #272822;">each</span>($<span style="color: #FD971F;">arr</span>);
-<span style="color: #75715E;">/* </span><span style="color: #75715E;">$second_item = array(0 =&gt; "bb", 1 =&gt; "two", "key" =&gt; "bb", "value" =&gt; "two") </span><span style="color: #F92672; background-color: #272822;">*/</span>
+<pre class="src src-php"><span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">arr</span> = <span style="color: #859900;">array</span>(
+    <span style="color: #2aa198;">"aa"</span> =&gt; <span style="color: #2aa198;">"one"</span>,
+    <span style="color: #2aa198;">"bb"</span> =&gt; <span style="color: #2aa198;">"two"</span>,
+    <span style="color: #2aa198;">"cc"</span> =&gt; <span style="color: #2aa198;">"three"</span>);
+<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">first_item</span> = each(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">arr</span>);
+<span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">$first_item = array(0 =&gt; "aa", 1 =&gt; "one", "key" =&gt; "aa", "value" =&gt; "one") *</span><span style="color: #ee82ee; background-color: #333333; font-style: italic;">/</span>
+<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">second_item</span> = each(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">arr</span>);
+<span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">$second_item = array(0 =&gt; "bb", 1 =&gt; "two", "key" =&gt; "bb", "value" =&gt; "two") </span><span style="color: #ee82ee; background-color: #333333; font-style: italic;">*/</span>
 </pre>
 </div>
 </li>
@@ -430,9 +436,9 @@ $<span style="color: #FD971F;">second_item</span> = <span style="color: #F8F8F2;
 环中有用,当函数使用数组返回多个值时也很有用.
 <div class="org-src-container">
 
-<pre class="src src-php">$<span style="color: #FD971F;">arr</span> = <span style="color: #F92672; font-weight: bold;">array</span>(<span style="color: #E6DB74;">"aa"</span>, <span style="color: #E6DB74;">"bb"</span>, <span style="color: #E6DB74;">"cc"</span>, <span style="color: #E6DB74;">"hello"</span> =&gt; <span style="color: #E6DB74;">"dd"</span>);
-<span style="color: #F92672; font-weight: bold;">list</span>($<span style="color: #FD971F;">a</span>, $<span style="color: #FD971F;">b</span>, $<span style="color: #FD971F;">c</span>) = $<span style="color: #FD971F;">arr</span>; <span style="color: #75715E;">/* </span><span style="color: #75715E;">$a="aa", $b="bb", $c="cc"</span><span style="color: #75715E;">*/</span>
-<span style="color: #F92672; font-weight: bold;">list</span>($<span style="color: #FD971F;">a</span>, , $<span style="color: #FD971F;">c</span>) = $<span style="color: #FD971F;">arr</span>;   <span style="color: #75715E;">/* </span><span style="color: #75715E;">$a="aa", $c="cc" </span><span style="color: #75715E;">*/</span>
+<pre class="src src-php"><span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">arr</span> = <span style="color: #859900;">array</span>(<span style="color: #2aa198;">"aa"</span>, <span style="color: #2aa198;">"bb"</span>, <span style="color: #2aa198;">"cc"</span>, <span style="color: #2aa198;">"hello"</span> =&gt; <span style="color: #2aa198;">"dd"</span>);
+<span style="color: #859900;">list</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">a</span>, <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">b</span>, <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">c</span>) = <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">arr</span>; <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">$a="aa", $b="bb", $c="cc"*/</span>
+<span style="color: #859900;">list</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">a</span>, , <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">c</span>) = <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">arr</span>;   <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">$a="aa", $c="cc" */</span>
 </pre>
 </div>
 </li>
@@ -441,6 +447,7 @@ $<span style="color: #FD971F;">second_item</span> = <span style="color: #F8F8F2;
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-4-5" class="outline-3">
 <h3 id="sec-4-5">数组排序（原地改变数组）</h3>
 <div class="outline-text-3" id="text-4-5">
@@ -457,7 +464,6 @@ $<span style="color: #FD971F;">second_item</span> = <span style="color: #F8F8F2;
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-4-6" class="outline-3">
 <h3 id="sec-4-6">其它数组函数</h3>
 <div class="outline-text-3" id="text-4-6">
@@ -491,7 +497,7 @@ $<span style="color: #FD971F;">second_item</span> = <span style="color: #F8F8F2;
 </li>
 
 <li>array_walk : 对数组的每个元素(<b>只是value,不包括key</b>)应用一个自定义函数, 和
-<code>scheme</code> 的 <code>for-each</code> 类似.
+     <code>scheme</code> 的 <code>for-each</code> 类似.
 </li>
 <li>array_filter : 和 <code>scheme</code> 中 <code>filter</code> 函数相似.
 </li>
@@ -501,6 +507,7 @@ $<span style="color: #FD971F;">second_item</span> = <span style="color: #F8F8F2;
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">字符串处理函数</h2>
 <div class="outline-text-2" id="text-5">
@@ -541,6 +548,7 @@ $<span style="color: #FD971F;">second_item</span> = <span style="color: #F8F8F2;
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-5-2" class="outline-3">
 <h3 id="sec-5-2">正则表达式函数</h3>
 <div class="outline-text-3" id="text-5-2">
@@ -570,7 +578,6 @@ Perl正则表达式和POSISX表达式的区别：perl正则表达式的模式需
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6">文件</h2>
 <div class="outline-text-2" id="text-6">
@@ -604,6 +611,7 @@ Perl正则表达式和POSISX表达式的区别：perl正则表达式的模式需
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-7" class="outline-2">
 <h2 id="sec-7">function</h2>
 <div class="outline-text-2" id="text-7">
@@ -622,17 +630,18 @@ function  func_name($a, $b….)
 </p>
 <div class="org-src-container">
 
-<pre class="src src-php"><span style="color: #F92672;">&lt;?php</span>
-<span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">foo</span>($<span style="color: #FD971F;">arg_1</span>, $<span style="color: #FD971F;">arg_2</span>, <span style="color: #75715E;">/* </span><span style="color: #75715E;">..., </span><span style="color: #75715E;">*/</span> $<span style="color: #FD971F;">arg_n</span>)
+<pre class="src src-php"><span style="color: #d33682;">&lt;?php</span>
+<span style="color: #859900;">function</span> <span style="color: #b58900;">foo</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">arg_1</span>, <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">arg_2</span>, <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">..., */</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">arg_n</span>)
 {
-    <span style="color: #F92672; font-weight: bold;">echo</span> <span style="color: #E6DB74;">"Example function.\n"</span>;
-    <span style="color: #F92672; font-weight: bold;">return</span> $<span style="color: #FD971F;">retval</span>;
+    <span style="color: #859900;">echo</span> <span style="color: #2aa198;">"Example function.\n"</span>;
+    <span style="color: #859900;">return</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">retval</span>;
 }
-<span style="color: #F92672;">?&gt;</span>
+<span style="color: #d33682;">?&gt;</span>
 </pre>
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-7-2" class="outline-3">
 <h3 id="sec-7-2">可变参数</h3>
 <div class="outline-text-3" id="text-7-2">
@@ -643,19 +652,19 @@ function  func_name($a, $b….)
 调用地第一个参数.
 <div class="org-src-container">
 
-<pre class="src src-php"><span style="color: #F92672;">&lt;?php</span>
-<span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">foo</span>()
+<pre class="src src-php"><span style="color: #d33682;">&lt;?php</span>
+<span style="color: #859900;">function</span> <span style="color: #b58900;">foo</span>()
 {
-    $<span style="color: #FD971F;">numargs</span> = <span style="color: #F8F8F2; background-color: #272822;">func_num_args</span>();
-    <span style="color: #F92672; font-weight: bold;">if</span>($<span style="color: #FD971F;">numargs</span> <span style="color: #AE81FF;">&gt;</span>= <span style="color: #F8F8F2; background-color: #272822;">2</span>){
-        <span style="color: #F92672; font-weight: bold;">echo</span> <span style="color: #E6DB74;">"the second argument is: "</span> . <span style="color: #F8F8F2; background-color: #272822;">func_get_arg</span>(<span style="color: #F8F8F2; background-color: #272822;">1</span>);
-        <span style="color: #F92672; font-weight: bold;">echo</span> <span style="color: #E6DB74;">'&lt;br /&gt;'</span>;
+    <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">numargs</span> = func_num_args();
+    <span style="color: #859900;">if</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">numargs</span> &gt;= 2){
+        <span style="color: #859900;">echo</span> <span style="color: #2aa198;">"the second argument is: "</span> . func_get_arg(1);
+        <span style="color: #859900;">echo</span> <span style="color: #2aa198;">'&lt;br /&gt;'</span>;
     }
-    <span style="color: #F92672; font-weight: bold;">echo</span> <span style="color: #E6DB74;">"the argument list is: "</span>;
-    <span style="color: #F8F8F2; background-color: #272822;">var_dump</span>(<span style="color: #F8F8F2; background-color: #272822;">func_get_args </span>());
+    <span style="color: #859900;">echo</span> <span style="color: #2aa198;">"the argument list is: "</span>;
+    var_dump(func_get_args ());
 }
-<span style="color: #F8F8F2; background-color: #272822;">foo</span>(<span style="color: #E6DB74;">'first arg'</span>, <span style="color: #E6DB74;">'second arg'</span>);
-<span style="color: #F92672;">?&gt;</span>
+foo(<span style="color: #2aa198;">'first arg'</span>, <span style="color: #2aa198;">'second arg'</span>);
+<span style="color: #d33682;">?&gt;</span>
 </pre>
 </div>
 </li>
@@ -664,6 +673,7 @@ function  func_name($a, $b….)
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-7-3" class="outline-3">
 <h3 id="sec-7-3">引用</h3>
 <div class="outline-text-3" id="text-7-3">
@@ -673,28 +683,29 @@ function  func_name($a, $b….)
 </p>
 <div class="org-src-container">
 
-<pre class="src src-php"><span style="color: #F92672;">&lt;?php</span>
-<span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">add_some_extra</span>(&amp;$<span style="color: #FD971F;">string</span>)
+<pre class="src src-php"><span style="color: #d33682;">&lt;?php</span>
+<span style="color: #859900;">function</span> <span style="color: #b58900;">add_some_extra</span>(&amp;<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">string</span>)
 {
-    $<span style="color: #FD971F;">string</span> .= <span style="color: #E6DB74;">'and something extra.'</span>;
+    <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">string</span> .= <span style="color: #2aa198;">'and something extra.'</span>;
 }
-$<span style="color: #FD971F;">str</span> = <span style="color: #E6DB74;">'This is a string,'</span>;
-<span style="color: #F8F8F2; background-color: #272822;">add_some_extra</span>($<span style="color: #FD971F;">str</span>);        <span style="color: #75715E;">/* </span><span style="color: #75715E;">don't use add_some_extra(&amp;$str) </span><span style="color: #75715E;">*/</span>
-<span style="color: #F92672; font-weight: bold;">echo</span> $<span style="color: #FD971F;">str</span>;    <span style="color: #75715E;">//</span><span style="color: #75715E;">outputs 'This is a string, and something extra.'</span>
-<span style="color: #F92672;">?&gt;</span>
+<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">str</span> = <span style="color: #2aa198;">'This is a string,'</span>;
+add_some_extra(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">str</span>);        <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">don't use add_some_extra(&amp;$str) */</span>
+<span style="color: #859900;">echo</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">str</span>;    <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">outputs 'This is a string, and something extra.'</span>
+<span style="color: #d33682;">?&gt;</span>
 
-<span style="color: #F92672;">&lt;?php</span>
-<span style="color: #F92672; font-weight: bold;">function</span> &amp;<span style="color: #A6E22E;">returns_reference</span>()
+<span style="color: #d33682;">&lt;?php</span>
+<span style="color: #859900;">function</span> &amp;<span style="color: #b58900;">returns_reference</span>()
 {
-    <span style="color: #F92672; font-weight: bold;">return</span> $<span style="color: #FD971F;">someref</span>;
+    <span style="color: #859900;">return</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">someref</span>;
 }
 
-$<span style="color: #FD971F;">newref</span> =&amp; <span style="color: #F8F8F2; background-color: #272822;">returns_reference</span>();
-<span style="color: #F92672;">?&gt;</span>
+<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">newref</span> =&amp; returns_reference();
+<span style="color: #d33682;">?&gt;</span>
 </pre>
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-7-4" class="outline-3">
 <h3 id="sec-7-4">注意事项</h3>
 <div class="outline-text-3" id="text-7-4">
@@ -715,6 +726,7 @@ design</b>
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-8" class="outline-2">
 <h2 id="sec-8">OOP</h2>
 <div class="outline-text-2" id="text-8">
@@ -723,95 +735,96 @@ design</b>
 </p>
 <div class="org-src-container">
 
-<pre class="src src-php"><span style="color: #F92672;">&lt;?php</span>
+<pre class="src src-php"><span style="color: #d33682;">&lt;?php</span>
 
-<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">A</span>
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">A</span>
 {
-   <span style="color: #F92672; font-weight: bold;">var</span> $<span style="color: #FD971F;">attribute1</span>; <span style="color: #75715E;">//</span><span style="color: #75715E;">&#36825;&#20010;&#31867;&#23454;&#20363;&#30340;&#23646;&#24615;&#65292;&#19981;&#26159;&#31867;&#26412;&#36523;&#30340;&#23646;&#24615;&#65292;&#19981;&#35201;&#21644;python&#24324;&#28151;&#20102;&#12290;&#40664;&#35748;&#20844;&#26377;</span>
-   <span style="color: #F92672; font-weight: bold;">public</span> $<span style="color: #FD971F;">attribute2</span>;<span style="color: #75715E;">//</span><span style="color: #75715E;">&#25351;&#23450;public&#65292;private&#21518;&#26368;&#22909;&#30465;&#25481;var</span>
-   <span style="color: #F92672; font-weight: bold;">private</span> $<span style="color: #FD971F;">attribute3</span> = <span style="color: #F8F8F2; background-color: #272822;">2</span>;<span style="color: #75715E;">//</span><span style="color: #75715E;">&#21487;&#20197;&#30452;&#25509;&#36171;&#20540;&#65292;&#19981;&#19968;&#23450;&#35201;&#22312;&#26500;&#36896;&#20989;&#25968;&#20013;</span>
-   <span style="color: #F92672; font-weight: bold;">protected</span> $<span style="color: #FD971F;">attribute4</span>;
+   <span style="color: #859900;">var</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">attribute1</span>; <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#36825;&#20010;&#31867;&#23454;&#20363;&#30340;&#23646;&#24615;&#65292;&#19981;&#26159;&#31867;&#26412;&#36523;&#30340;&#23646;&#24615;&#65292;&#19981;&#35201;&#21644;python&#24324;&#28151;&#20102;&#12290;&#40664;&#35748;&#20844;&#26377;</span>
+   <span style="color: #859900;">public</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">attribute2</span>;<span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#25351;&#23450;public&#65292;private&#21518;&#26368;&#22909;&#30465;&#25481;var</span>
+   <span style="color: #859900;">private</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">attribute3</span> = 2;<span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#21487;&#20197;&#30452;&#25509;&#36171;&#20540;&#65292;&#19981;&#19968;&#23450;&#35201;&#22312;&#26500;&#36896;&#20989;&#25968;&#20013;</span>
+   <span style="color: #859900;">protected</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">attribute4</span>;
 
-   <span style="color: #F92672; font-weight: bold;">public</span> <span style="color: #F92672; font-weight: bold;">static</span> $<span style="color: #FD971F;">my_static</span> = <span style="color: #F8F8F2; background-color: #272822;">5</span>; <span style="color: #75715E;">//</span><span style="color: #75715E;">&#38745;&#24577;&#21464;&#37327;&#20063;&#26159;&#31867;&#21464;&#37327;&#65292;&#31867;&#22806;&#37096;&#35775;&#38382;</span>
-   <span style="color: #75715E;">//</span><span style="color: #75715E;">A::my_static; &#31867;&#20869;&#37096;&#35775;&#38382;&#65306;parent::my_static,self::my_static</span>
+   <span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">my_static</span> = 5; <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#38745;&#24577;&#21464;&#37327;&#20063;&#26159;&#31867;&#21464;&#37327;&#65292;&#31867;&#22806;&#37096;&#35775;&#38382;</span>
+   <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">A::my_static; &#31867;&#20869;&#37096;&#35775;&#38382;&#65306;parent::my_static,self::my_static</span>
 
-   <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">__construct</span>($<span style="color: #FD971F;">param</span>)  <span style="color: #75715E;">//</span><span style="color: #75715E;">&#26500;&#36896;&#20989;&#25968;</span>
+   <span style="color: #859900;">function</span> <span style="color: #b58900;">__construct</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">param</span>)  <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#26500;&#36896;&#20989;&#25968;</span>
    {
-       <span style="color: #75715E;">/*</span>
-<span style="color: #75715E;">        * &#19981;&#26159; $this-&gt;$attribute1, &#22240;&#20026; $this-&gt;$attribute1 &#20250;&#20808;&#23558;</span>
-<span style="color: #75715E;">        * $attribute1 &#27714;&#20540;, &#24471;&#21040;&#30340;&#20540;&#20877;&#20316;&#20026;&#23646;&#24615;&#21517;&#21435;&#26597;&#25214;, &#25152;&#20197;&#22914;&#26524;</span>
-<span style="color: #75715E;">        * $attribute1 &#30340;&#27714;&#20540;&#32467;&#26524;&#20026; 'aa', &#37027;&#20040; $this-&gt;$attribute1 &#23601;&#31561;&#20215;&#20110;</span>
-<span style="color: #75715E;">        * $this-&gt;aa .</span>
-<span style="color: #75715E;">        </span><span style="color: #75715E;">*/</span>
-       $<span style="color: #AE81FF;">this</span>-&gt;<span style="color: #FD971F;">attribute1</span> = $<span style="color: #FD971F;">param</span>;
+       <span style="color: #586e75; font-style: italic;">/*</span>
+<span style="color: #586e75; font-style: italic;">        * &#19981;&#26159; $this-&gt;$attribute1, &#22240;&#20026; $this-&gt;$attribute1 &#20250;&#20808;&#23558;</span>
+<span style="color: #586e75; font-style: italic;">        * $attribute1 &#27714;&#20540;, &#24471;&#21040;&#30340;&#20540;&#20877;&#20316;&#20026;&#23646;&#24615;&#21517;&#21435;&#26597;&#25214;, &#25152;&#20197;&#22914;&#26524;</span>
+<span style="color: #586e75; font-style: italic;">        * $attribute1 &#30340;&#27714;&#20540;&#32467;&#26524;&#20026; 'aa', &#37027;&#20040; $this-&gt;$attribute1 &#23601;&#31561;&#20215;&#20110;</span>
+<span style="color: #586e75; font-style: italic;">        * $this-&gt;aa .</span>
+<span style="color: #586e75; font-style: italic;">        */</span>
+       <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">this</span>-&gt;<span style="color: #6c71c4;">attribute1</span> = <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">param</span>;
    }
-   <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">__destruct</span>()  <span style="color: #75715E;">//</span><span style="color: #75715E;">&#26512;&#26500;&#20989;&#25968;</span>
+   <span style="color: #859900;">function</span> <span style="color: #b58900;">__destruct</span>()  <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#26512;&#26500;&#20989;&#25968;</span>
    {
    }
-   <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">__get</span>($<span style="color: #FD971F;">name</span>)
+   <span style="color: #859900;">function</span> <span style="color: #b58900;">__get</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">name</span>)
    {
-       <span style="color: #75715E;">/*</span>
-<span style="color: #75715E;">        *&#21487;&#20197;&#25318;&#25130;$obj-&gt;$name&#36825;&#31181;&#23545;&#31867;&#23454;&#20363;&#30340;&#23646;&#24615;&#30452;&#25509;&#35775;&#38382;&#30340;&#35821;&#21477;&#12290;</span>
-<span style="color: #75715E;">        *&#21482;&#26377;&#22312;$name&#23646;&#24615;&#27809;&#26377;&#23450;&#20041;&#26102;&#25165;&#20250;&#35302;&#21457;,&#36825;&#24847;&#21619;&#30528;&#24403;&#23646;&#24615;&#26159;&#31169;&#26377;&#25110;&#32773;&#20445;&#25252;&#26102;&#20063;&#20250;&#35302;&#21457;</span>
-<span style="color: #75715E;">        </span><span style="color: #75715E;">*/</span>
-       <span style="color: #F92672; font-weight: bold;">return</span> $<span style="color: #AE81FF;">this</span>-&gt;<span style="color: #FD971F;">$name</span>;
+       <span style="color: #586e75; font-style: italic;">/*</span>
+<span style="color: #586e75; font-style: italic;">        *&#21487;&#20197;&#25318;&#25130;$obj-&gt;$name&#36825;&#31181;&#23545;&#31867;&#23454;&#20363;&#30340;&#23646;&#24615;&#30452;&#25509;&#35775;&#38382;&#30340;&#35821;&#21477;&#12290;</span>
+<span style="color: #586e75; font-style: italic;">        *&#21482;&#26377;&#22312;$name&#23646;&#24615;&#27809;&#26377;&#23450;&#20041;&#26102;&#25165;&#20250;&#35302;&#21457;,&#36825;&#24847;&#21619;&#30528;&#24403;&#23646;&#24615;&#26159;&#31169;&#26377;&#25110;&#32773;&#20445;&#25252;&#26102;&#20063;&#20250;&#35302;&#21457;</span>
+<span style="color: #586e75; font-style: italic;">        */</span>
+       <span style="color: #859900;">return</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">this</span>-&gt;<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">name</span>;
    }
-   <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">__set</span>($<span style="color: #FD971F;">name</span>, $<span style="color: #FD971F;">value</span>)
+   <span style="color: #859900;">function</span> <span style="color: #b58900;">__set</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">name</span>, <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">value</span>)
    {
-       <span style="color: #75715E;">/* </span><span style="color: #75715E;">&#21487;&#20197;&#25318;&#25130;$obj-&gt;$name=$value&#36825;&#31181;&#23545;&#31867;&#23454;&#20363;&#30340;&#23646;&#24615;&#30340;&#20540;&#30452;&#25509;&#36171;&#20540;&#30340;&#35821;&#21477;&#12290;</span>
-<span style="color: #75715E;">        * &#21482;&#26377;&#22312;$name&#23646;&#24615;&#27809;&#26377;&#23450;&#20041;&#26102;&#25165;&#20250;&#35302;&#21457;,&#36825;&#24847;&#21619;&#30528;&#24403;&#23646;&#24615;&#26159;&#31169;&#26377;&#25110;&#32773;&#20445;&#25252;&#26102;&#20063;&#20250;&#35302;&#21457;</span>
-<span style="color: #75715E;">        * Example:</span>
-<span style="color: #75715E;">        *         $obj-&gt;aa = 2</span>
-<span style="color: #75715E;">        * &#31561;&#20215;&#20110;:</span>
-<span style="color: #75715E;">        *         __set('aa', 2)</span>
-<span style="color: #75715E;">        </span><span style="color: #75715E;">*/</span>
-       $<span style="color: #AE81FF;">this</span>-&gt;<span style="color: #FD971F;">$name</span> = $<span style="color: #FD971F;">value</span>;
+       <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">&#21487;&#20197;&#25318;&#25130;$obj-&gt;$name=$value&#36825;&#31181;&#23545;&#31867;&#23454;&#20363;&#30340;&#23646;&#24615;&#30340;&#20540;&#30452;&#25509;&#36171;&#20540;&#30340;&#35821;&#21477;&#12290;</span>
+<span style="color: #586e75; font-style: italic;">        * &#21482;&#26377;&#22312;$name&#23646;&#24615;&#27809;&#26377;&#23450;&#20041;&#26102;&#25165;&#20250;&#35302;&#21457;,&#36825;&#24847;&#21619;&#30528;&#24403;&#23646;&#24615;&#26159;&#31169;&#26377;&#25110;&#32773;&#20445;&#25252;&#26102;&#20063;&#20250;&#35302;&#21457;</span>
+<span style="color: #586e75; font-style: italic;">        * Example:</span>
+<span style="color: #586e75; font-style: italic;">        *         $obj-&gt;aa = 2</span>
+<span style="color: #586e75; font-style: italic;">        * &#31561;&#20215;&#20110;:</span>
+<span style="color: #586e75; font-style: italic;">        *         __set('aa', 2)</span>
+<span style="color: #586e75; font-style: italic;">        */</span>
+       <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">this</span>-&gt;<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">name</span> = <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">value</span>;
    }
-   <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">operation1</span>() <span style="color: #75715E;">//</span><span style="color: #75715E;">&#40664;&#35748;&#20844;&#26377;</span>
+   <span style="color: #859900;">function</span> <span style="color: #b58900;">operation1</span>() <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#40664;&#35748;&#20844;&#26377;</span>
    {
    }
 }
-<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">B</span> <span style="color: #F92672; font-weight: bold;">extends</span> <span style="color: #66D9EF;">A</span>
-{<span style="color: #75715E;">//</span><span style="color: #75715E;">&#32487;&#25215;&#37117;&#26159;&#31867;&#20284;&#20110;C++&#30340;&#20844;&#26377;&#32487;&#25215;</span>
- <span style="color: #75715E;">//</span><span style="color: #75715E;">&#21487;&#20197;&#37325;&#36733;&#23376;&#31867;&#30340;&#23646;&#24615;&#19982;&#25104;&#21592;&#26041;&#27861;</span>
-   <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">__construct</span>()
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">B</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">A</span>
+{<span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#32487;&#25215;&#37117;&#26159;&#31867;&#20284;&#20110;C++&#30340;&#20844;&#26377;&#32487;&#25215;</span>
+ <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#21487;&#20197;&#37325;&#36733;&#23376;&#31867;&#30340;&#23646;&#24615;&#19982;&#25104;&#21592;&#26041;&#27861;</span>
+   <span style="color: #859900;">function</span> <span style="color: #b58900;">__construct</span>()
    {
-       <span style="color: #AE81FF;">parent</span>::<span style="color: #F8F8F2; background-color: #272822;">__construct</span>();<span style="color: #75715E;">//</span><span style="color: #75715E;">&#25191;&#34892;&#29238;&#31867;&#30340;&#26500;&#36896;&#20989;&#25968;</span>
+       <span style="color: #268bd2;">parent</span>::__construct();<span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#25191;&#34892;&#29238;&#31867;&#30340;&#26500;&#36896;&#20989;&#25968;</span>
    }
 }
 
-<span style="color: #75715E;">// </span><span style="color: #75715E;">interface (&#25509;&#21475;)</span>
-<span style="color: #F92672; font-weight: bold;">interface</span> <span style="color: #66D9EF;">iTemplate</span>
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">interface (&#25509;&#21475;)</span>
+<span style="color: #859900;">interface</span> <span style="color: #268bd2;">iTemplate</span>
 {
-   <span style="color: #F92672; font-weight: bold;">public</span> <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">setVariable</span>($<span style="color: #FD971F;">name</span>, $<span style="color: #FD971F;">var</span>);
-   <span style="color: #F92672; font-weight: bold;">public</span> <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">getHtml</span>($<span style="color: #FD971F;">template</span>);
+   <span style="color: #859900;">public</span> <span style="color: #859900;">function</span> <span style="color: #b58900;">setVariable</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">name</span>, <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">var</span>);
+   <span style="color: #859900;">public</span> <span style="color: #859900;">function</span> <span style="color: #b58900;">getHtml</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">template</span>);
 }
 
-<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Template</span> <span style="color: #F92672; font-weight: bold;">implements</span> <span style="color: #66D9EF;">iTemplate</span>
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">Template</span> <span style="color: #859900;">implements</span> <span style="color: #268bd2;">iTemplate</span>
 {
-   <span style="color: #F92672; font-weight: bold;">private</span> $<span style="color: #FD971F;">vars</span> = <span style="color: #F92672; font-weight: bold;">array</span>();
+   <span style="color: #859900;">private</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">vars</span> = <span style="color: #859900;">array</span>();
 
-   <span style="color: #F92672; font-weight: bold;">public</span> <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">setVariable</span>($<span style="color: #FD971F;">name</span>, $<span style="color: #FD971F;">var</span>)
+   <span style="color: #859900;">public</span> <span style="color: #859900;">function</span> <span style="color: #b58900;">setVariable</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">name</span>, <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">var</span>)
    {
-       $<span style="color: #AE81FF;">this</span>-&gt;<span style="color: #FD971F;">vars</span>[$<span style="color: #FD971F;">name</span>] = $<span style="color: #FD971F;">var</span>;
+       <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">this</span>-&gt;<span style="color: #6c71c4;">vars</span>[<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">name</span>] = <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">var</span>;
    }
 
-   <span style="color: #F92672; font-weight: bold;">public</span> <span style="color: #F92672; font-weight: bold;">function</span> <span style="color: #A6E22E;">getHtml</span>($<span style="color: #FD971F;">template</span>)
+   <span style="color: #859900;">public</span> <span style="color: #859900;">function</span> <span style="color: #b58900;">getHtml</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">template</span>)
    {
-       <span style="color: #F92672; font-weight: bold;">foreach</span>($<span style="color: #AE81FF;">this</span>-&gt;<span style="color: #FD971F;">vars</span> <span style="color: #F92672; font-weight: bold;">as</span> $<span style="color: #FD971F;">name</span> =&gt; $<span style="color: #FD971F;">value</span>) {
-           $<span style="color: #FD971F;">template</span> = <span style="color: #F8F8F2; background-color: #272822;">str_replace</span>(<span style="color: #E6DB74;">'{'</span> . $<span style="color: #FD971F;">name</span> . <span style="color: #E6DB74;">'}'</span>, $<span style="color: #FD971F;">value</span>, $<span style="color: #FD971F;">template</span>);
+       <span style="color: #859900;">foreach</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">this</span>-&gt;<span style="color: #6c71c4;">vars</span> <span style="color: #859900;">as</span> <span style="color: #268bd2;">$name</span> =&gt; <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">value</span>) {
+           <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">template</span> = str_replace(<span style="color: #2aa198;">'{'</span> . <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">name</span> . <span style="color: #2aa198;">'}'</span>, <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">value</span>, <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">template</span>);
        }
 
-       <span style="color: #F92672; font-weight: bold;">return</span> $<span style="color: #FD971F;">template</span>;
+       <span style="color: #859900;">return</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">template</span>;
    }
 }
 
-$<span style="color: #FD971F;">object</span> = <span style="color: #F92672; font-weight: bold;">new</span> <span style="color: #66D9EF;">A</span>() <span style="color: #75715E;">//</span><span style="color: #75715E;">&#23454;&#20363;&#21270;&#31867;</span>
-<span style="color: #F92672;">?&gt;</span>
+<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">object</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">A</span>() <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#23454;&#20363;&#21270;&#31867;</span>
+<span style="color: #d33682;">?&gt;</span>
 </pre>
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-9" class="outline-2">
 <h2 id="sec-9">php与数据库（mysql）</h2>
 <div class="outline-text-2" id="text-9">
@@ -820,36 +833,36 @@ $<span style="color: #FD971F;">object</span> = <span style="color: #F92672; font
 <div class="outline-text-3" id="text-9-1">
 <div class="org-src-container">
 
-<pre class="src src-php"><span style="color: #F92672;">&lt;?php</span>
+<pre class="src src-php"><span style="color: #d33682;">&lt;?php</span>
 
-<span style="color: #75715E;">//</span><span style="color: #75715E;">&#38754;&#21521;&#36807;&#31243;&#30340;&#20195;&#30721;</span>
-$<span style="color: #FD971F;">db</span> = <span style="color: #F8F8F2; background-color: #272822;">mysqli_connect</span>(<span style="color: #E6DB74;">"example.com"</span>, <span style="color: #E6DB74;">"user"</span>, <span style="color: #E6DB74;">"password"</span>, <span style="color: #E6DB74;">"database"</span>);
-<span style="color: #F92672; font-weight: bold;">if</span> (<span style="color: #F8F8F2; background-color: #272822;">mysqli_connect_errno</span>($<span style="color: #FD971F;">db</span>)) {
-    <span style="color: #F92672; font-weight: bold;">echo</span> <span style="color: #E6DB74;">"Failed to connect to MySQL: "</span> . <span style="color: #F8F8F2; background-color: #272822;">mysqli_connect_error</span>();
+<span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#38754;&#21521;&#36807;&#31243;&#30340;&#20195;&#30721;</span>
+<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">db</span> = mysqli_connect(<span style="color: #2aa198;">"example.com"</span>, <span style="color: #2aa198;">"user"</span>, <span style="color: #2aa198;">"password"</span>, <span style="color: #2aa198;">"database"</span>);
+<span style="color: #859900;">if</span> (mysqli_connect_errno(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">db</span>)) {
+    <span style="color: #859900;">echo</span> <span style="color: #2aa198;">"Failed to connect to MySQL: "</span> . mysqli_connect_error();
 }
 
-$<span style="color: #FD971F;">res</span> = <span style="color: #F8F8F2; background-color: #272822;">mysqli_query</span>($<span style="color: #FD971F;">db</span>, <span style="color: #E6DB74;">"SELECT 'A world full of ' AS _msg FROM DUAL"</span>);
-$<span style="color: #FD971F;">row</span> = <span style="color: #F8F8F2; background-color: #272822;">mysqli_fetch_assoc</span>($<span style="color: #FD971F;">res</span>);
-<span style="color: #F92672; font-weight: bold;">echo</span> $<span style="color: #FD971F;">row</span>[<span style="color: #E6DB74;">'_msg'</span>];
+<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">res</span> = mysqli_query(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">db</span>, <span style="color: #2aa198;">"SELECT 'A world full of ' AS _msg FROM DUAL"</span>);
+<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">row</span> = mysqli_fetch_assoc(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">res</span>);
+<span style="color: #859900;">echo</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">row</span>[<span style="color: #2aa198;">'_msg'</span>];
 
 
-<span style="color: #75715E;">//</span><span style="color: #75715E;">&#38754;&#21521;&#23545;&#35937;&#30340;&#20195;&#30721;</span>
-$<span style="color: #FD971F;">db</span> = <span style="color: #F92672; font-weight: bold;">new</span> <span style="color: #66D9EF;">mysqli</span>(<span style="color: #E6DB74;">"example.com"</span>, <span style="color: #E6DB74;">"user"</span>, <span style="color: #E6DB74;">"password"</span>, <span style="color: #E6DB74;">"database"</span>);
-<span style="color: #F92672; font-weight: bold;">if</span> ($<span style="color: #FD971F;">db</span>-<span style="color: #AE81FF;">&gt;</span><span style="color: #FD971F;">connect_errno</span>) {
-    <span style="color: #F92672; font-weight: bold;">echo</span> <span style="color: #E6DB74;">"Failed to connect to MySQL: "</span> . $<span style="color: #FD971F;">db</span>-&gt;<span style="color: #FD971F;">connect_error</span>;
+<span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#38754;&#21521;&#23545;&#35937;&#30340;&#20195;&#30721;</span>
+<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">db</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">mysqli</span>(<span style="color: #2aa198;">"example.com"</span>, <span style="color: #2aa198;">"user"</span>, <span style="color: #2aa198;">"password"</span>, <span style="color: #2aa198;">"database"</span>);
+<span style="color: #859900;">if</span> (<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">db</span>-&gt;<span style="color: #6c71c4;">connect_errno</span>) {
+    <span style="color: #859900;">echo</span> <span style="color: #2aa198;">"Failed to connect to MySQL: "</span> . <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">db</span>-&gt;<span style="color: #6c71c4;">connect_error</span>;
 }
 
-$<span style="color: #FD971F;">res</span> = $<span style="color: #FD971F;">db</span>-&gt;<span style="color: #F8F8F2; background-color: #272822;">query</span>(<span style="color: #E6DB74;">"SELECT 'choices to please everybody,' AS _msg FROM DUAL"</span>);
-$<span style="color: #FD971F;">num_results</span> = $<span style="color: #FD971F;">res</span>-&gt;<span style="color: #FD971F;">num_rows</span>;
-<span style="color: #F92672; font-weight: bold;">for</span>($<span style="color: #FD971F;">i</span> = <span style="color: #F8F8F2; background-color: #272822;">0</span>;$<span style="color: #FD971F;">i</span> &lt; $<span style="color: #FD971F;">num_result</span>; $<span style="color: #FD971F;">i</span>++)
+<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">res</span> = <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">db</span>-&gt;<span style="color: #839496; background-color: #002b36;">query</span>(<span style="color: #2aa198;">"SELECT 'choices to please everybody,' AS _msg FROM DUAL"</span>);
+<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">num_results</span> = <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">res</span>-&gt;<span style="color: #6c71c4;">num_rows</span>;
+<span style="color: #859900;">for</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">i</span> = 0;<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">i</span> &lt; <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">num_result</span>; <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">i</span>++)
 {
-$<span style="color: #FD971F;">row</span> = $<span style="color: #FD971F;">res</span>-<span style="color: #AE81FF;">&gt;</span><span style="color: #F8F8F2; background-color: #272822;">fetch_assoc</span>();
-<span style="color: #F92672; font-weight: bold;">echo</span> $<span style="color: #FD971F;">row</span>[<span style="color: #E6DB74;">'_msg'</span>];
+<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">row</span> = <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">res</span>-&gt;<span style="color: #839496; background-color: #002b36;">fetch_assoc</span>();
+<span style="color: #859900;">echo</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">row</span>[<span style="color: #2aa198;">'_msg'</span>];
 }
-$<span style="color: #FD971F;">res</span>-&gt;<span style="color: #F8F8F2; background-color: #272822;">free</span>();
-$<span style="color: #FD971F;">db</span>-&gt;<span style="color: #F8F8F2; background-color: #272822;">close</span>();
+<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">res</span>-&gt;<span style="color: #839496; background-color: #002b36;">free</span>();
+<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">db</span>-&gt;<span style="color: #839496; background-color: #002b36;">close</span>();
 
- <span style="color: #F92672;">?&gt;</span>
+ <span style="color: #d33682;">?&gt;</span>
 </pre>
 </div>
 <p>
@@ -858,6 +871,7 @@ $<span style="color: #FD971F;">db</span>-&gt;<span style="color: #F8F8F2; backgr
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-9-2" class="outline-3">
 <h3 id="sec-9-2">解释</h3>
 <div class="outline-text-3" id="text-9-2">
@@ -874,8 +888,8 @@ php执行一次query时,如果是select 查询,那么会返回一个mysqli_resul
 field name, 同时将记录指针移到下一条记录.可以用while了来循环读取.
 <div class="org-src-container">
 
-<pre class="src src-php"><span style="color: #F92672; font-weight: bold;">while</span> ($<span style="color: #FD971F;">row</span> = $<span style="color: #FD971F;">result</span>-&gt;<span style="color: #F8F8F2; background-color: #272822;">fetch_assoc</span>()) {
-    <span style="color: #F8F8F2; background-color: #272822;">printf </span>(<span style="color: #E6DB74;">"%s (%s)\n"</span>, $<span style="color: #FD971F;">row</span>[<span style="color: #E6DB74;">"Name"</span>], $<span style="color: #FD971F;">row</span>[<span style="color: #E6DB74;">"CountryCode"</span>]);
+<pre class="src src-php"><span style="color: #859900;">while</span> (<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">row</span> = <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">result</span>-&gt;<span style="color: #839496; background-color: #002b36;">fetch_assoc</span>()) {
+    printf (<span style="color: #2aa198;">"%s (%s)\n"</span>, <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">row</span>[<span style="color: #2aa198;">"Name"</span>], <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">row</span>[<span style="color: #2aa198;">"CountryCode"</span>]);
 }
 </pre>
 </div>
@@ -886,6 +900,7 @@ field name, 同时将记录指针移到下一条记录.可以用while了来循�
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-10" class="outline-2">
 <h2 id="sec-10">其它技巧</h2>
 <div class="outline-text-2" id="text-10">
@@ -904,12 +919,12 @@ field name, 同时将记录指针移到下一条记录.可以用while了来循�
 <li>密码加密推荐使用crypt函数的blowfish算法，不推荐使用sha1,或者md5.
 <div class="org-src-container">
 
-<pre class="src src-php"><span style="color: #F92672;">&lt;?php</span>
-$<span style="color: #FD971F;">hash</span> = <span style="color: #F8F8F2; background-color: #272822;">crypt</span>($<span style="color: #FD971F;">password</span>);
-<span style="color: #F92672; font-weight: bold;">if</span> (<span style="color: #F8F8F2; background-color: #272822;">crypt</span>($<span style="color: #FD971F;">user_input</span>, $<span style="color: #FD971F;">hash</span>) == $<span style="color: #FD971F;">hash</span>) { <span style="color: #75715E;">/* </span><span style="color: #75715E;">use hash as the salt </span><span style="color: #75715E;">*/</span>
-   <span style="color: #F92672; font-weight: bold;">echo</span> <span style="color: #E6DB74;">"Password verified!"</span>;
+<pre class="src src-php"><span style="color: #d33682;">&lt;?php</span>
+<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">hash</span> = crypt(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">password</span>);
+<span style="color: #859900;">if</span> (crypt(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">user_input</span>, <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">hash</span>) == <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">hash</span>) { <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">use hash as the salt */</span>
+   <span style="color: #859900;">echo</span> <span style="color: #2aa198;">"Password verified!"</span>;
 }
-<span style="color: #F92672;">?&gt;</span>
+<span style="color: #d33682;">?&gt;</span>
 </pre>
 </div>
 </li>
@@ -962,6 +977,8 @@ POST数据重复提交。。
   <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
   <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="static/js/custom.js"></script>
 <!-- end footer -->
 </div>
 </body>

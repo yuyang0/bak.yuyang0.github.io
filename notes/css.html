@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>css笔记</title>
-<!-- 2014-08-20 Wed 18:30 -->
+<!-- 2014-11-30 Sun 20:23 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -56,8 +56,6 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -91,7 +89,6 @@
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
 <link rel="shortcut icon" href="static/img/favicon.ico" />
-<script type="text/javascript" src="static/js/custom.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -138,17 +135,14 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script type="text/javascript">window.MathJax || document.write('<script src="static/js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" ><\/script>')</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
 <script type="text/javascript">
-
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
         // First allows browser-native MathML display, second forces HTML/CSS
-            config: ["MMLorHTML.js"], jax: ["input/TeX"],
-        //  jax: ["input/TeX", "output/HTML-CSS"],
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
         extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
                      "TeX/noUndefined.js"],
         tex2jax: {
@@ -197,7 +191,7 @@ for the JavaScript code in this tag.
 
             <li> <a href="/tags.html">Tags</a></li>
 
-            <li> <a href="/rss.xml">RSS</a></li>
+            <li> <a href="/atom.xml">RSS</a></li>
           </ul>
 
           <form id="site-search" method="get" action="https://google.com/search">
@@ -304,21 +298,22 @@ for the JavaScript code in this tag.
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 
-<pre class="src src-html"><span style="color: #75715E;">&lt;!-- </span><span style="color: #75715E;">&#22806;&#37096;&#26679;&#24335;&#34920; </span><span style="color: #75715E;">--&gt;</span>
-&lt;<span style="color: #A6E22E;">link</span> <span style="color: #FD971F;">rel</span>=<span style="color: #E6DB74;">"stylesheet"</span> <span style="color: #FD971F;">href</span>=<span style="color: #E6DB74;">"/static/css/your.css"</span> <span style="color: #FD971F;">type</span>=<span style="color: #E6DB74;">"text/css"</span> <span style="color: #FD971F;">media</span>=<span style="color: #E6DB74;">"screen"</span> /&gt;
-<span style="color: #75715E;">&lt;!-- </span><span style="color: #75715E;">&#20869;&#37096;&#26679;&#24335;&#34920; </span><span style="color: #75715E;">--&gt;</span>
-&lt;<span style="color: #A6E22E;">style</span> <span style="color: #FD971F;">type</span>=<span style="color: #E6DB74;">"text/css"</span> <span style="color: #FD971F;">media</span>=<span style="color: #E6DB74;">"screen"</span>&gt;
+<pre class="src src-html"><span style="color: #586e75; font-style: italic;">&lt;!-- </span><span style="color: #586e75; font-style: italic;">&#22806;&#37096;&#26679;&#24335;&#34920; </span><span style="color: #586e75; font-style: italic;">--&gt;</span>
+&lt;<span style="color: #b58900;">link</span> <span style="color: #6c71c4;">rel</span>=<span style="color: #2aa198;">"stylesheet"</span> <span style="color: #6c71c4;">href</span>=<span style="color: #2aa198;">"/static/css/your.css"</span> <span style="color: #6c71c4;">type</span>=<span style="color: #2aa198;">"text/css"</span> <span style="color: #6c71c4;">media</span>=<span style="color: #2aa198;">"screen"</span> /&gt;
+<span style="color: #586e75; font-style: italic;">&lt;!-- </span><span style="color: #586e75; font-style: italic;">&#20869;&#37096;&#26679;&#24335;&#34920; </span><span style="color: #586e75; font-style: italic;">--&gt;</span>
+&lt;<span style="color: #b58900;">style</span> <span style="color: #6c71c4;">type</span>=<span style="color: #2aa198;">"text/css"</span> <span style="color: #6c71c4;">media</span>=<span style="color: #2aa198;">"screen"</span>&gt;
   p {
   color:<span style="color: #ffffff; background-color: #FF0000;">red</span>;
   font-size:12px;
   }
-&lt;/<span style="color: #A6E22E;">style</span>&gt;
-<span style="color: #75715E;">&lt;!-- </span><span style="color: #75715E;">&#34892;&#20869;&#26679;&#24335;&#34920; </span><span style="color: #75715E;">--&gt;</span>
-&lt;<span style="color: #A6E22E;">p</span> <span style="color: #FD971F;">style</span>=<span style="color: #E6DB74;">"color: </span><span style="color: #ffffff; background-color: #FF0000;">red</span><span style="color: #E6DB74;">; font-size: 12px;"</span>&gt;&lt;/<span style="color: #A6E22E;">p</span>&gt;
+&lt;/<span style="color: #b58900;">style</span>&gt;
+<span style="color: #586e75; font-style: italic;">&lt;!-- </span><span style="color: #586e75; font-style: italic;">&#34892;&#20869;&#26679;&#24335;&#34920; </span><span style="color: #586e75; font-style: italic;">--&gt;</span>
+&lt;<span style="color: #b58900;">p</span> <span style="color: #6c71c4;">style</span>=<span style="color: #2aa198;">"color: </span><span style="color: #ffffff; background-color: #FF0000;">red</span><span style="color: #2aa198;">; font-size: 12px;"</span>&gt;&lt;/<span style="color: #b58900;">p</span>&gt;
 </pre>
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">优先级</h2>
 <div class="outline-text-2" id="text-2">
@@ -354,31 +349,32 @@ for the JavaScript code in this tag.
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">css selector</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 
-<pre class="src src-css"><span style="color: #A6E22E;">p </span>{<span style="color: #FD971F;">color</span>: <span style="color: #ffffff; background-color: #FF0000;">red</span>;}                 <span style="color: #75715E;">/*</span><span style="color: #75715E;">tag selector</span><span style="color: #75715E;">*/</span>
-<span style="color: #A6E22E;">body, ul, ol </span>{}                 <span style="color: #75715E;">/*</span><span style="color: #75715E;">body,ul,ol&#26631;&#31614;, &#26377;&#36887;&#21495;&#23601;&#24847;&#21619;&#30528;&#24179;&#31561;</span><span style="color: #75715E;">*/</span>
+<pre class="src src-css"><span style="color: #b58900;">p </span>{<span style="color: #6c71c4;">color</span>: <span style="color: #ffffff; background-color: #FF0000;">red</span>;}                 <span style="color: #586e75; font-style: italic;">/*</span><span style="color: #586e75; font-style: italic;">tag selector</span><span style="color: #586e75; font-style: italic;">*/</span>
+<span style="color: #b58900;">body, ul, ol </span>{}                 <span style="color: #586e75; font-style: italic;">/*</span><span style="color: #586e75; font-style: italic;">body,ul,ol&#26631;&#31614;, &#26377;&#36887;&#21495;&#23601;&#24847;&#21619;&#30528;&#24179;&#31561;</span><span style="color: #586e75; font-style: italic;">*/</span>
 
-<span style="color: #A6E22E;">#nav </span>{<span style="color: #FD971F;">font-size</span>: 12px;}         <span style="color: #75715E;">/*</span><span style="color: #75715E;">id selector</span><span style="color: #75715E;">*/</span>
-<span style="color: #A6E22E;">.sidebar </span>{<span style="color: #FD971F;">font-family</span>:Times}    <span style="color: #75715E;">/*</span><span style="color: #75715E;">class selector</span><span style="color: #75715E;">*/</span>
+<span style="color: #b58900;">#nav </span>{<span style="color: #6c71c4;">font-size</span>: 12px;}         <span style="color: #586e75; font-style: italic;">/*</span><span style="color: #586e75; font-style: italic;">id selector</span><span style="color: #586e75; font-style: italic;">*/</span>
+<span style="color: #b58900;">.sidebar </span>{<span style="color: #6c71c4;">font-family</span>:Times}    <span style="color: #586e75; font-style: italic;">/*</span><span style="color: #586e75; font-style: italic;">class selector</span><span style="color: #586e75; font-style: italic;">*/</span>
 
-<span style="color: #A6E22E;">h1#content </span>{}                       <span style="color: #75715E;">/*</span><span style="color: #75715E;">id&#20026;content&#30340;h1&#26631;&#31614;</span><span style="color: #75715E;">*/</span>
-<span style="color: #A6E22E;">h1.</span><span style="color: #ffffff; background-color: #0000FF;">blue</span>{}                           <span style="color: #75715E;">/*</span><span style="color: #75715E;">class&#20026;</span><span style="color: #ffffff; background-color: #0000FF;">blue</span><span style="color: #75715E;">&#30340;h1&#26631;&#31614;</span><span style="color: #75715E;">*/</span>
+<span style="color: #b58900;">h1#content </span>{}                       <span style="color: #586e75; font-style: italic;">/*</span><span style="color: #586e75; font-style: italic;">id&#20026;content&#30340;h1&#26631;&#31614;</span><span style="color: #586e75; font-style: italic;">*/</span>
+<span style="color: #b58900;">h1.</span><span style="color: #ffffff; background-color: #0000FF;">blue</span>{}                           <span style="color: #586e75; font-style: italic;">/*</span><span style="color: #586e75; font-style: italic;">class&#20026;</span><span style="color: #ffffff; background-color: #0000FF;">blue</span><span style="color: #586e75; font-style: italic;">&#30340;h1&#26631;&#31614;</span><span style="color: #586e75; font-style: italic;">*/</span>
 
-<span style="color: #A6E22E;">li a </span>{<span style="color: #FD971F;">text-decoration</span>: none;}   <span style="color: #75715E;">/*</span><span style="color: #75715E;">descendant selector</span><span style="color: #75715E;">*/</span>
-<span style="color: #A6E22E;">li &gt; a</span>{<span style="color: #FD971F;">text-decoration</span>: none;}  <span style="color: #75715E;">/*</span><span style="color: #75715E;">&#21644;li a &#30340;&#21306;&#21035;&#26159;&#36825;&#20010;&#21482;&#36873;&#25321;&#30452;&#25509;&#23376;&#33410;&#28857;(ie6&#19981;&#25903;&#25345;)</span><span style="color: #75715E;">*/</span>
-<span style="color: #A6E22E;">h1 + p</span>{<span style="color: #FD971F;">font-weight</span>: bold;}      <span style="color: #75715E;">/*</span><span style="color: #75715E;">h1&#21518;&#38754;&#30340;&#31532;&#19968;&#20010;p&#33410;&#28857;(h1&#21644;p&#24212;&#35813;&#26159;&#24179;&#32423;&#30340;,&#20063;&#23601;&#26159;&#20108;&#32773;&#26159;&#20804;&#24351;&#33410;&#28857;)</span><span style="color: #75715E;">*/</span>
-<span style="color: #A6E22E;">li #content</span>{}                   <span style="color: #75715E;">/*</span><span style="color: #75715E;">li&#19979;&#25152;&#26377;id&#20026;content&#30340;&#26631;&#31614;</span><span style="color: #75715E;">*/</span>
-<span style="color: #A6E22E;">li .</span><span style="color: #ffffff; background-color: #0000FF;">blue</span>{}
+<span style="color: #b58900;">li a </span>{<span style="color: #6c71c4;">text-decoration</span>: none;}   <span style="color: #586e75; font-style: italic;">/*</span><span style="color: #586e75; font-style: italic;">descendant selector</span><span style="color: #586e75; font-style: italic;">*/</span>
+<span style="color: #b58900;">li &gt; a</span>{<span style="color: #6c71c4;">text-decoration</span>: none;}  <span style="color: #586e75; font-style: italic;">/*</span><span style="color: #586e75; font-style: italic;">&#21644;li a &#30340;&#21306;&#21035;&#26159;&#36825;&#20010;&#21482;&#36873;&#25321;&#30452;&#25509;&#23376;&#33410;&#28857;(ie6&#19981;&#25903;&#25345;)</span><span style="color: #586e75; font-style: italic;">*/</span>
+<span style="color: #b58900;">h1 + p</span>{<span style="color: #6c71c4;">font-weight</span>: bold;}      <span style="color: #586e75; font-style: italic;">/*</span><span style="color: #586e75; font-style: italic;">h1&#21518;&#38754;&#30340;&#31532;&#19968;&#20010;p&#33410;&#28857;(h1&#21644;p&#24212;&#35813;&#26159;&#24179;&#32423;&#30340;,&#20063;&#23601;&#26159;&#20108;&#32773;&#26159;&#20804;&#24351;&#33410;&#28857;)</span><span style="color: #586e75; font-style: italic;">*/</span>
+<span style="color: #b58900;">li #content</span>{}                   <span style="color: #586e75; font-style: italic;">/*</span><span style="color: #586e75; font-style: italic;">li&#19979;&#25152;&#26377;id&#20026;content&#30340;&#26631;&#31614;</span><span style="color: #586e75; font-style: italic;">*/</span>
+<span style="color: #b58900;">li .</span><span style="color: #ffffff; background-color: #0000FF;">blue</span>{}
 
-<span style="color: #FD971F;">a</span>:link {<span style="color: #FD971F;">color</span>: <span style="color: #ffffff; background-color: #FF0000;">red</span>}             <span style="color: #75715E;">/*</span><span style="color: #75715E;">pseudo-class selector</span><span style="color: #75715E;">*/</span>
-<span style="color: #A6E22E;">a[title] </span>{<span style="color: #FD971F;">color</span>: <span style="color: #ffffff; background-color: #FF0000;">red</span>}           <span style="color: #75715E;">/*</span><span style="color: #75715E;">attribute selector &#25152;&#26377;&#26377;title&#23646;&#24615;&#30340;a&#33410;&#28857;,&#19981;&#25903;&#25345;ie6&#21450;&#20197;&#19979;&#27983;&#35272;&#22120;</span><span style="color: #75715E;">*/</span>
-a[href=<span style="color: #E6DB74;">"http://www.baidu.com"</span>] {<span style="color: #FD971F;">color</span>:<span style="color: #ffffff; background-color: #FF0000;">red</span>} <span style="color: #75715E;">/*</span><span style="color: #75715E;">&#25152;&#26377;href&#23646;&#24615;&#31561;&#20110;http://www.baidu.com&#30340;a&#33410;&#28857;</span><span style="color: #75715E;">*/</span>
-a[href^=<span style="color: #E6DB74;">"http://www.baidu.com"</span>]{<span style="color: #FD971F;">color</span>: <span style="color: #ffffff; background-color: #FF0000;">red</span>;} <span style="color: #75715E;">/*</span><span style="color: #75715E;">&#25152;&#26377;href&#23646;&#24615;&#20197;http://www.baidu.com&#24320;&#22836;&#30340;a&#33410;&#28857;</span><span style="color: #75715E;">*/</span>
-<span style="color: #A6E22E;">a[href$=</span><span style="color: #E6DB74;">".pdf"</span><span style="color: #A6E22E;">]</span>{<span style="color: #FD971F;">color</span>: <span style="color: #ffffff; background-color: #FF0000;">red</span>;} <span style="color: #75715E;">/*</span><span style="color: #75715E;">&#25152;&#26377;&#25351;&#21521;pdf&#25991;&#26723;&#30340;a&#33410;&#28857;</span><span style="color: #75715E;">*/</span>
+<span style="color: #6c71c4;">a</span>:link {<span style="color: #6c71c4;">color</span>: <span style="color: #ffffff; background-color: #FF0000;">red</span>}             <span style="color: #586e75; font-style: italic;">/*</span><span style="color: #586e75; font-style: italic;">pseudo-class selector</span><span style="color: #586e75; font-style: italic;">*/</span>
+<span style="color: #b58900;">a[title] </span>{<span style="color: #6c71c4;">color</span>: <span style="color: #ffffff; background-color: #FF0000;">red</span>}           <span style="color: #586e75; font-style: italic;">/*</span><span style="color: #586e75; font-style: italic;">attribute selector &#25152;&#26377;&#26377;title&#23646;&#24615;&#30340;a&#33410;&#28857;,&#19981;&#25903;&#25345;ie6&#21450;&#20197;&#19979;&#27983;&#35272;&#22120;</span><span style="color: #586e75; font-style: italic;">*/</span>
+a[href=<span style="color: #2aa198;">"http://www.baidu.com"</span>] {<span style="color: #6c71c4;">color</span>:<span style="color: #ffffff; background-color: #FF0000;">red</span>} <span style="color: #586e75; font-style: italic;">/*</span><span style="color: #586e75; font-style: italic;">&#25152;&#26377;href&#23646;&#24615;&#31561;&#20110;http://www.baidu.com&#30340;a&#33410;&#28857;</span><span style="color: #586e75; font-style: italic;">*/</span>
+a[href^=<span style="color: #2aa198;">"http://www.baidu.com"</span>]{<span style="color: #6c71c4;">color</span>: <span style="color: #ffffff; background-color: #FF0000;">red</span>;} <span style="color: #586e75; font-style: italic;">/*</span><span style="color: #586e75; font-style: italic;">&#25152;&#26377;href&#23646;&#24615;&#20197;http://www.baidu.com&#24320;&#22836;&#30340;a&#33410;&#28857;</span><span style="color: #586e75; font-style: italic;">*/</span>
+<span style="color: #b58900;">a[href$=</span><span style="color: #2aa198;">".pdf"</span><span style="color: #b58900;">]</span>{<span style="color: #6c71c4;">color</span>: <span style="color: #ffffff; background-color: #FF0000;">red</span>;} <span style="color: #586e75; font-style: italic;">/*</span><span style="color: #586e75; font-style: italic;">&#25152;&#26377;&#25351;&#21521;pdf&#25991;&#26723;&#30340;a&#33410;&#28857;</span><span style="color: #586e75; font-style: italic;">*/</span>
 </pre>
 </div>
 </div>
@@ -460,6 +456,7 @@ a[href^=<span style="color: #E6DB74;">"http://www.baidu.com"</span>]{<span style
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">css box</h2>
 <div class="outline-text-2" id="text-4">
@@ -484,12 +481,12 @@ css的盒子模型：
 </p>
 <div class="org-src-container">
 
-<pre class="src src-css"><span style="color: #FD971F;">margin</span>:25px 50px 75px 100px;
+<pre class="src src-css"><span style="color: #6c71c4;">margin</span>:25px 50px 75px 100px;
 
-<span style="color: #FD971F;">margin-top</span>: 25px;
-<span style="color: #FD971F;">margin-right</span>: 50px;
-<span style="color: #FD971F;">margin-bottom</span>: 75px;
-<span style="color: #FD971F;">margin-left</span>: 100px;
+<span style="color: #6c71c4;">margin-top</span>: 25px;
+<span style="color: #6c71c4;">margin-right</span>: 50px;
+<span style="color: #6c71c4;">margin-bottom</span>: 75px;
+<span style="color: #6c71c4;">margin-left</span>: 100px;
 </pre>
 </div>
 <p>
@@ -498,7 +495,7 @@ css的盒子模型：
 </p>
 <div class="org-src-container">
 
-<pre class="src src-css"><span style="color: #FD971F;">margin</span>: 0px auto;
+<pre class="src src-css"><span style="color: #6c71c4;">margin</span>: 0px auto;
 </pre>
 </div>
 <p>
@@ -506,6 +503,7 @@ css的盒子模型：
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-4-2" class="outline-3">
 <h3 id="sec-4-2">margin的负值</h3>
 <div class="outline-text-3" id="text-4-2">
@@ -557,6 +555,7 @@ margin-left：-1px，可以避免显示两条边界
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-4-3" class="outline-3">
 <h3 id="sec-4-3">框类型</h3>
 <div class="outline-text-3" id="text-4-3">
@@ -610,6 +609,7 @@ inline-block 元素不会另起一行.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-4-4" class="outline-3">
 <h3 id="sec-4-4">上下margin叠加问题</h3>
 <div class="outline-text-3" id="text-4-4">
@@ -656,7 +656,6 @@ margin上无效, <b>修复的主要方法是对外部元素使用 1px的padding�
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-4-5" class="outline-3">
 <h3 id="sec-4-5">IE6 的左右margin加倍</h3>
 <div class="outline-text-3" id="text-4-5">
@@ -668,6 +667,7 @@ margin上无效, <b>修复的主要方法是对外部元素使用 1px的padding�
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">css定位</h2>
 <div class="outline-text-2" id="text-5">
@@ -683,6 +683,7 @@ css有3中主要的定位方式: 普通文档流, 浮动, 绝对定位
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-5-2" class="outline-3">
 <h3 id="sec-5-2">绝对定位</h3>
 <div class="outline-text-3" id="text-5-2">
@@ -703,10 +704,10 @@ float对绝对定位的元素无效果
 
 <div class="org-src-container">
 
-<pre class="src src-css"><span style="color: #A6E22E;">#div-1 </span>{
-    <span style="color: #FD971F;">position</span>:relative;
-    <span style="color: #FD971F;">top</span>:20px;
-    <span style="color: #FD971F;">left</span>:-40px;
+<pre class="src src-css"><span style="color: #b58900;">#div-1 </span>{
+    <span style="color: #6c71c4;">position</span>:relative;
+    <span style="color: #6c71c4;">top</span>:20px;
+    <span style="color: #6c71c4;">left</span>:-40px;
 }
 </pre>
 </div>
@@ -727,6 +728,7 @@ left bottom属性只对设置了position(absolute, relative, fixed)的对象有�
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-5-3" class="outline-3">
 <h3 id="sec-5-3">浮动定位</h3>
 <div class="outline-text-3" id="text-5-3">
@@ -760,6 +762,7 @@ html文档有一个标准文档流，每一个块级元素(如div, p)都要单�
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-5-3-2" class="outline-4">
 <h4 id="sec-5-3-2">clear</h4>
 <div class="outline-text-4" id="text-5-3-2">
@@ -773,6 +776,7 @@ html文档有一个标准文档流，每一个块级元素(如div, p)都要单�
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-5-3-3" class="outline-4">
 <h4 id="sec-5-3-3">浮动的注意事项</h4>
 <div class="outline-text-4" id="text-5-3-3">
@@ -789,10 +793,10 @@ html文档有一个标准文档流，每一个块级元素(如div, p)都要单�
 <li>可以在父元素的最后添加:
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #A6E22E;">div</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #b58900;">div</span>&gt;
   ...
-  &lt;<span style="color: #A6E22E;">div</span>&gt; <span style="color: #FD971F;">style</span>="clear:both;"&lt;/<span style="color: #A6E22E;">div</span>&gt;
-&lt;/<span style="color: #A6E22E;">div</span>&gt;
+  &lt;<span style="color: #b58900;">div</span>&gt; <span style="color: #6c71c4;">style</span>="clear:both;"&lt;/<span style="color: #b58900;">div</span>&gt;
+&lt;/<span style="color: #b58900;">div</span>&gt;
 </pre>
 </div>
 <p>
@@ -802,19 +806,19 @@ html文档有一个标准文档流，每一个块级元素(如div, p)都要单�
 <li>可以使用after 伪对象(ie6不支持):
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #A6E22E;">style</span> <span style="color: #FD971F;">type</span>=<span style="color: #E6DB74;">"text/css"</span> <span style="color: #FD971F;">media</span>=<span style="color: #E6DB74;">"screen"</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #b58900;">style</span> <span style="color: #6c71c4;">type</span>=<span style="color: #2aa198;">"text/css"</span> <span style="color: #6c71c4;">media</span>=<span style="color: #2aa198;">"screen"</span>&gt;
   .clearfix:after{
-    content: <span style="color: #E6DB74;">"."</span>;
+    content: <span style="color: #2aa198;">"."</span>;
     height: 0;
     visibility: hidden;
     display: block;
     clear: both;
 }
-&lt;/<span style="color: #A6E22E;">style</span>&gt;
+&lt;/<span style="color: #b58900;">style</span>&gt;
 
-&lt;<span style="color: #A6E22E;">div</span> <span style="color: #FD971F;">class</span>=<span style="color: #E6DB74;">"clearfix"</span>&gt;
+&lt;<span style="color: #b58900;">div</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"clearfix"</span>&gt;
   ...
-&lt;/<span style="color: #A6E22E;">div</span>&gt;
+&lt;/<span style="color: #b58900;">div</span>&gt;
 </pre>
 </div>
 <p>
@@ -836,6 +840,7 @@ ie6支持不好.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6">css的常用属性</h2>
 <div class="outline-text-2" id="text-6">
@@ -844,16 +849,17 @@ ie6支持不好.
 <div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 
-<pre class="src src-css"><span style="color: #A6E22E;">p </span>{
-    <span style="color: #FD971F;">color</span>:<span style="color: #ffffff; background-color: #FF0000;">red</span>;
+<pre class="src src-css"><span style="color: #b58900;">p </span>{
+    <span style="color: #6c71c4;">color</span>:<span style="color: #ffffff; background-color: #FF0000;">red</span>;
 }
-<span style="color: #A6E22E;">body </span>{
-    <span style="color: #FD971F;">color</span>:<span style="color: #000000; background-color: #32FF00;">rgb(50, 255, 0)</span>;
+<span style="color: #b58900;">body </span>{
+    <span style="color: #6c71c4;">color</span>:<span style="color: #000000; background-color: #32FF00;">rgb(50, 255, 0)</span>;
 }
 </pre>
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-6-2" class="outline-3">
 <h3 id="sec-6-2">background</h3>
 <div class="outline-text-3" id="text-6-2">
@@ -889,15 +895,15 @@ Sprites</b> ):
 
 <div class="org-src-container">
 
-<pre class="src src-css"><span style="color: #A6E22E;">#content </span>{
-    <span style="color: #FD971F;">background-color</span>:<span style="color: #000000; background-color: #DCDCDC;">rgb(220, 220, 220)</span>;
-    <span style="color: #FD971F;">background-image</span>: url(<span style="color: #E6DB74;">'sample.png'</span>);
-    <span style="color: #FD971F;">background-repeat</span>:no-repeat;
-    <span style="color: #FD971F;">background-position</span>: 20% 20px;
+<pre class="src src-css"><span style="color: #b58900;">#content </span>{
+    <span style="color: #6c71c4;">background-color</span>:<span style="color: #000000; background-color: #DCDCDC;">rgb(220, 220, 220)</span>;
+    <span style="color: #6c71c4;">background-image</span>: url(<span style="color: #2aa198;">'sample.png'</span>);
+    <span style="color: #6c71c4;">background-repeat</span>:no-repeat;
+    <span style="color: #6c71c4;">background-position</span>: 20% 20px;
 }
 
-<span style="color: #A6E22E;">#content </span>{
-    <span style="color: #FD971F;">background</span>: <span style="color: #000000; background-color: #DCDCDC;">rgb(220, 220, 220)</span> url(<span style="color: #E6DB74;">'sample.png'</span>) no-repeat 20% 20px;
+<span style="color: #b58900;">#content </span>{
+    <span style="color: #6c71c4;">background</span>: <span style="color: #000000; background-color: #DCDCDC;">rgb(220, 220, 220)</span> url(<span style="color: #2aa198;">'sample.png'</span>) no-repeat 20% 20px;
 }
 </pre>
 </div>
@@ -907,6 +913,7 @@ background: [color] [image] [repeat] [attachment] [position]
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-6-3" class="outline-3">
 <h3 id="sec-6-3">列表相关</h3>
 <div class="outline-text-3" id="text-6-3">
@@ -955,6 +962,7 @@ background: [color] [image] [repeat] [attachment] [position]
 </table>
 </div>
 </div>
+
 <div id="outline-container-sec-6-4" class="outline-3">
 <h3 id="sec-6-4">字体相关</h3>
 <div class="outline-text-3" id="text-6-4">
@@ -1021,6 +1029,7 @@ background: [color] [image] [repeat] [attachment] [position]
 </table>
 </div>
 </div>
+
 <div id="outline-container-sec-6-5" class="outline-3">
 <h3 id="sec-6-5">段落样式</h3>
 <div class="outline-text-3" id="text-6-5">
@@ -1055,6 +1064,7 @@ scroll] <b>如果设置为 hidden 或 auto 那么会自动的清理包含的任�
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-6-6" class="outline-3">
 <h3 id="sec-6-6">链接样式</h3>
 <div class="outline-text-3" id="text-6-6">
@@ -1072,6 +1082,7 @@ scroll] <b>如果设置为 hidden 或 auto 那么会自动的清理包含的任�
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-7" class="outline-2">
 <h2 id="sec-7">表单设计</h2>
 <div class="outline-text-2" id="text-7">
@@ -1099,6 +1110,7 @@ scroll] <b>如果设置为 hidden 或 auto 那么会自动的清理包含的任�
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-8" class="outline-2">
 <h2 id="sec-8">css编写的一些规则</h2>
 <div class="outline-text-2" id="text-8">
@@ -1116,6 +1128,7 @@ scroll] <b>如果设置为 hidden 或 auto 那么会自动的清理包含的任�
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-8-2" class="outline-3">
 <h3 id="sec-8-2">class的使用场景</h3>
 <div class="outline-text-3" id="text-8-2">
@@ -1129,6 +1142,7 @@ scroll] <b>如果设置为 hidden 或 auto 那么会自动的清理包含的任�
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-8-3" class="outline-3">
 <h3 id="sec-8-3">命名</h3>
 <div class="outline-text-3" id="text-8-3">
@@ -1143,6 +1157,7 @@ scroll] <b>如果设置为 hidden 或 auto 那么会自动的清理包含的任�
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-9" class="outline-2">
 <h2 id="sec-9">html5与css3</h2>
 <div class="outline-text-2" id="text-9">
@@ -1157,11 +1172,11 @@ border-radius是四个属性的简写(T-R-B-L),border-top-radius，right，botto
 </p>
 <div class="org-src-container">
 
-<pre class="src src-css"><span style="color: #A6E22E;">div</span>
+<pre class="src src-css"><span style="color: #b58900;">div</span>
 {
-    <span style="color: #FD971F;">border</span>:2px solid;
-    <span style="color: #FD971F;">border-radius</span>:25px;
-    <span style="color: #FD971F; font-style: italic;">-moz-border-radius</span>:25px; <span style="color: #75715E;">/* </span><span style="color: #75715E;">Old Firefox </span><span style="color: #75715E;">*/</span>
+    <span style="color: #6c71c4;">border</span>:2px solid;
+    <span style="color: #6c71c4;">border-radius</span>:25px;
+    <span style="color: #6c71c4; font-style: italic;">-moz-border-radius</span>:25px; <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">Old Firefox </span><span style="color: #586e75; font-style: italic;">*/</span>
 }
 </pre>
 </div>
@@ -1170,13 +1185,14 @@ border-radius是四个属性的简写(T-R-B-L),border-top-radius，right，botto
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-9-1-2" class="outline-4">
 <h4 id="sec-9-1-2">box-shadow =&gt; 添加阴影</h4>
 <div class="outline-text-4" id="text-9-1-2">
 <div class="org-src-container">
 
-<pre class="src src-css"><span style="color: #FD971F;">box-shadow</span>: 10px 10px 5px <span style="color: #000000; background-color: #888888;">#888888</span>;
-<span style="color: #FD971F; font-style: italic;">-moz-box-shadow</span>: 10px 10px 5px <span style="color: #000000; background-color: #888888;">#888888</span>; <span style="color: #75715E;">/* </span><span style="color: #75715E;">&#32769;&#30340; Firefox </span><span style="color: #75715E;">*/</span>
+<pre class="src src-css"><span style="color: #6c71c4;">box-shadow</span>: 10px 10px 5px <span style="color: #000000; background-color: #888888;">#888888</span>;
+<span style="color: #6c71c4; font-style: italic;">-moz-box-shadow</span>: 10px 10px 5px <span style="color: #000000; background-color: #888888;">#888888</span>; <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">&#32769;&#30340; Firefox </span><span style="color: #586e75; font-style: italic;">*/</span>
 </pre>
 </div>
 <p>
@@ -1184,6 +1200,7 @@ border-radius是四个属性的简写(T-R-B-L),border-top-radius，right，botto
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-9-1-3" class="outline-4">
 <h4 id="sec-9-1-3">border-image =&gt; 边框图片</h4>
 <div class="outline-text-4" id="text-9-1-3">
@@ -1192,18 +1209,19 @@ border-image 是border-image-* 的简写
 </p>
 <div class="org-src-container">
 
-<pre class="src src-css"><span style="color: #A6E22E;">div</span>
+<pre class="src src-css"><span style="color: #b58900;">div</span>
 {
-    <span style="color: #FD971F;">border-image</span>:url(border.png) 30 30 round;
-    <span style="color: #FD971F; font-style: italic;">-moz-border-image</span>:url(border.png) 30 30 round; <span style="color: #75715E;">/* </span><span style="color: #75715E;">&#32769;&#30340; Firefox </span><span style="color: #75715E;">*/</span>
-    <span style="color: #FD971F; font-style: italic;">-webkit-border-image</span>:url(border.png) 30 30 round; <span style="color: #75715E;">/* </span><span style="color: #75715E;">Safari &#21644; Chrome </span><span style="color: #75715E;">*/</span>
-    <span style="color: #FD971F; font-style: italic;">-o-border-image</span>:url(border.png) 30 30 round; <span style="color: #75715E;">/* </span><span style="color: #75715E;">Opera </span><span style="color: #75715E;">*/</span>
+    <span style="color: #6c71c4;">border-image</span>:url(border.png) 30 30 round;
+    <span style="color: #6c71c4; font-style: italic;">-moz-border-image</span>:url(border.png) 30 30 round; <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">&#32769;&#30340; Firefox </span><span style="color: #586e75; font-style: italic;">*/</span>
+    <span style="color: #6c71c4; font-style: italic;">-webkit-border-image</span>:url(border.png) 30 30 round; <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">Safari &#21644; Chrome </span><span style="color: #586e75; font-style: italic;">*/</span>
+    <span style="color: #6c71c4; font-style: italic;">-o-border-image</span>:url(border.png) 30 30 round; <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">Opera </span><span style="color: #586e75; font-style: italic;">*/</span>
 }
 </pre>
 </div>
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-9-2" class="outline-3">
 <h3 id="sec-9-2">css3背景</h3>
 </div>
@@ -1218,18 +1236,20 @@ border-image 是border-image-* 的简写
 </p>
 <div class="org-src-container">
 
-<pre class="src src-css"><span style="color: #A6E22E;">h1</span>
+<pre class="src src-css"><span style="color: #b58900;">h1</span>
 {
-    <span style="color: #FD971F;">text-shadow</span>: 5px 5px 5px <span style="color: #ffffff; background-color: #FF0000;">#FF0000</span>;
+    <span style="color: #6c71c4;">text-shadow</span>: 5px 5px 5px <span style="color: #ffffff; background-color: #FF0000;">#FF0000</span>;
 }
 </pre>
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-9-3-2" class="outline-4">
 <h4 id="sec-9-3-2">word-wrap =&gt; 可以对太长的单词进行换行</h4>
 </div>
 </div>
+
 <div id="outline-container-sec-9-4" class="outline-3">
 <h3 id="sec-9-4">transform =&gt; 2D，3D转换</h3>
 <div class="outline-text-3" id="text-9-4">
@@ -1349,12 +1369,12 @@ translate(tx, ty)
 <li>translate：根据坐标从当前位置移动
 <div class="org-src-container">
 
-<pre class="src src-css"><span style="color: #A6E22E;">div</span>{
-    <span style="color: #FD971F;">transform</span>: translate(50px,100px);
-    <span style="color: #FD971F; font-style: italic;">-ms-transform</span>: translate(50px,100px);       <span style="color: #75715E;">/* </span><span style="color: #75715E;">IE 9 </span><span style="color: #75715E;">*/</span>
-    <span style="color: #FD971F; font-style: italic;">-webkit-transform</span>: translate(50px,100px);   <span style="color: #75715E;">/* </span><span style="color: #75715E;">Safari and Chrome </span><span style="color: #75715E;">*/</span>
-    <span style="color: #FD971F; font-style: italic;">-o-transform</span>: translate(50px,100px);        <span style="color: #75715E;">/* </span><span style="color: #75715E;">Opera </span><span style="color: #75715E;">*/</span>
-    <span style="color: #FD971F; font-style: italic;">-moz-transform</span>: translate(50px,100px);      <span style="color: #75715E;">/* </span><span style="color: #75715E;">Firefox </span><span style="color: #75715E;">*/</span>
+<pre class="src src-css"><span style="color: #b58900;">div</span>{
+    <span style="color: #6c71c4;">transform</span>: translate(50px,100px);
+    <span style="color: #6c71c4; font-style: italic;">-ms-transform</span>: translate(50px,100px);       <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">IE 9 </span><span style="color: #586e75; font-style: italic;">*/</span>
+    <span style="color: #6c71c4; font-style: italic;">-webkit-transform</span>: translate(50px,100px);   <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">Safari and Chrome </span><span style="color: #586e75; font-style: italic;">*/</span>
+    <span style="color: #6c71c4; font-style: italic;">-o-transform</span>: translate(50px,100px);        <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">Opera </span><span style="color: #586e75; font-style: italic;">*/</span>
+    <span style="color: #6c71c4; font-style: italic;">-moz-transform</span>: translate(50px,100px);      <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">Firefox </span><span style="color: #586e75; font-style: italic;">*/</span>
 }
 </pre>
 </div>
@@ -1450,6 +1470,7 @@ translate(tx, ty)
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-9-5" class="outline-3">
 <h3 id="sec-9-5">transition (IE9及以下版本无效)</h3>
 <div class="outline-text-3" id="text-9-5">
@@ -1458,11 +1479,11 @@ translate(tx, ty)
 </p>
 <div class="org-src-container">
 
-<pre class="src src-css"><span style="color: #A6E22E;">div</span>{
-    <span style="color: #FD971F;">transition</span>: width 2s;
-    <span style="color: #FD971F; font-style: italic;">-moz-transition</span>: width 2s;  <span style="color: #75715E;">/* </span><span style="color: #75715E;">Firefox 4 </span><span style="color: #75715E;">*/</span>
-    <span style="color: #FD971F; font-style: italic;">-webkit-transition</span>: width 2s;   <span style="color: #75715E;">/* </span><span style="color: #75715E;">Safari &#21644; Chrome </span><span style="color: #75715E;">*/</span>
-    <span style="color: #FD971F; font-style: italic;">-o-transition</span>: width 2s;    <span style="color: #75715E;">/* </span><span style="color: #75715E;">Opera </span><span style="color: #75715E;">*/</span>
+<pre class="src src-css"><span style="color: #b58900;">div</span>{
+    <span style="color: #6c71c4;">transition</span>: width 2s;
+    <span style="color: #6c71c4; font-style: italic;">-moz-transition</span>: width 2s;  <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">Firefox 4 </span><span style="color: #586e75; font-style: italic;">*/</span>
+    <span style="color: #6c71c4; font-style: italic;">-webkit-transition</span>: width 2s;   <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">Safari &#21644; Chrome </span><span style="color: #586e75; font-style: italic;">*/</span>
+    <span style="color: #6c71c4; font-style: italic;">-o-transition</span>: width 2s;    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">Opera </span><span style="color: #586e75; font-style: italic;">*/</span>
 }
 </pre>
 </div>
@@ -1472,6 +1493,7 @@ translate(tx, ty)
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-10" class="outline-2">
 <h2 id="sec-10">sass</h2>
 <div class="outline-text-2" id="text-10">
@@ -1479,33 +1501,33 @@ translate(tx, ty)
 <li>sass中可以嵌套的定义规则
 <div class="org-src-container">
 
-<pre class="src src-css"><span style="color: #75715E;">/* </span><span style="color: #75715E;">style.scss </span><span style="color: #75715E;">*/</span>
-<span style="color: #A6E22E;">#navbar </span>{
-    <span style="color: #FD971F;">width</span>: 80%;
-    <span style="color: #FD971F;">height</span>: 23px;
+<pre class="src src-css"><span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">style.scss </span><span style="color: #586e75; font-style: italic;">*/</span>
+<span style="color: #b58900;">#navbar </span>{
+    <span style="color: #6c71c4;">width</span>: 80%;
+    <span style="color: #6c71c4;">height</span>: 23px;
 
-<span style="color: #A6E22E;">    ul </span>{
-        <span style="color: #FD971F;">list-style-type</span>: none;
+<span style="color: #b58900;">    ul </span>{
+        <span style="color: #6c71c4;">list-style-type</span>: none;
     }
-<span style="color: #A6E22E;">    li </span>{
-        <span style="color: #FD971F;">float</span>: left;
-<span style="color: #A6E22E;">        a </span>{ <span style="color: #FD971F;">font-weight</span>: bold; }
+<span style="color: #b58900;">    li </span>{
+        <span style="color: #6c71c4;">float</span>: left;
+<span style="color: #b58900;">        a </span>{ <span style="color: #6c71c4;">font-weight</span>: bold; }
     }
 }
 
-<span style="color: #75715E;">/* </span><span style="color: #75715E;">style.css </span><span style="color: #75715E;">*/</span>
-<span style="color: #A6E22E;">#navbar </span>{
-    <span style="color: #FD971F;">width</span>: 80%;
-    <span style="color: #FD971F;">height</span>: 23px;
+<span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">style.css </span><span style="color: #586e75; font-style: italic;">*/</span>
+<span style="color: #b58900;">#navbar </span>{
+    <span style="color: #6c71c4;">width</span>: 80%;
+    <span style="color: #6c71c4;">height</span>: 23px;
 }
-<span style="color: #A6E22E;">#navbar ul </span>{
-    <span style="color: #FD971F;">list-style-type</span>: none;
+<span style="color: #b58900;">#navbar ul </span>{
+    <span style="color: #6c71c4;">list-style-type</span>: none;
 }
-<span style="color: #A6E22E;">#navbar li </span>{
-    <span style="color: #FD971F;">float</span>: left;
+<span style="color: #b58900;">#navbar li </span>{
+    <span style="color: #6c71c4;">float</span>: left;
 }
-<span style="color: #A6E22E;">#navbar li a </span>{
-    <span style="color: #FD971F;">font-weight</span>: bold;
+<span style="color: #b58900;">#navbar li a </span>{
+    <span style="color: #6c71c4;">font-weight</span>: bold;
 }
 </pre>
 </div>
@@ -1514,22 +1536,22 @@ translate(tx, ty)
 <li>父引用: 用 &amp; 代替父选择子
 <div class="org-src-container">
 
-<pre class="src src-css"><span style="color: #75715E;">/* </span><span style="color: #75715E;">style.scss </span><span style="color: #75715E;">*/</span>
-<span style="color: #A6E22E;">a </span>{
-    <span style="color: #FD971F;">color</span>: <span style="color: #ffffff; background-color: #ce4dd6;">#ce4dd6</span>;
-<span style="color: #A6E22E;">    &amp;:hover </span>{ <span style="color: #FD971F;">color</span>: <span style="color: #000000; background-color: #ffb3ff;">#ffb3ff</span>; }
-<span style="color: #A6E22E;">    &amp;:visited </span>{ <span style="color: #FD971F;">color</span>: <span style="color: #ffffff; background-color: #c458cb;">#c458cb</span>; }
+<pre class="src src-css"><span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">style.scss </span><span style="color: #586e75; font-style: italic;">*/</span>
+<span style="color: #b58900;">a </span>{
+    <span style="color: #6c71c4;">color</span>: <span style="color: #ffffff; background-color: #ce4dd6;">#ce4dd6</span>;
+<span style="color: #b58900;">    &amp;:hover </span>{ <span style="color: #6c71c4;">color</span>: <span style="color: #000000; background-color: #ffb3ff;">#ffb3ff</span>; }
+<span style="color: #b58900;">    &amp;:visited </span>{ <span style="color: #6c71c4;">color</span>: <span style="color: #ffffff; background-color: #c458cb;">#c458cb</span>; }
 }
 
-<span style="color: #75715E;">/* </span><span style="color: #75715E;">style.css </span><span style="color: #75715E;">*/</span>
-<span style="color: #A6E22E;">a </span>{
-    <span style="color: #FD971F;">color</span>: <span style="color: #ffffff; background-color: #ce4dd6;">#ce4dd6</span>;
+<span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">style.css </span><span style="color: #586e75; font-style: italic;">*/</span>
+<span style="color: #b58900;">a </span>{
+    <span style="color: #6c71c4;">color</span>: <span style="color: #ffffff; background-color: #ce4dd6;">#ce4dd6</span>;
 }
-<span style="color: #FD971F;">a</span>:hover {
-    <span style="color: #FD971F;">color</span>: <span style="color: #000000; background-color: #ffb3ff;">#ffb3ff</span>;
+<span style="color: #6c71c4;">a</span>:hover {
+    <span style="color: #6c71c4;">color</span>: <span style="color: #000000; background-color: #ffb3ff;">#ffb3ff</span>;
 }
-<span style="color: #FD971F;">a</span>:visited {
-    <span style="color: #FD971F;">color</span>: <span style="color: #ffffff; background-color: #c458cb;">#c458cb</span>;
+<span style="color: #6c71c4;">a</span>:visited {
+    <span style="color: #6c71c4;">color</span>: <span style="color: #ffffff; background-color: #c458cb;">#c458cb</span>;
 }
 </pre>
 </div>
@@ -1540,14 +1562,14 @@ translate(tx, ty)
 <li>插值：使用#($var)
 <div class="org-src-container">
 
-<pre class="src src-css"><span style="color: #75715E;">/* </span><span style="color: #75715E;">style.scss </span><span style="color: #75715E;">*/</span>
+<pre class="src src-css"><span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">style.scss </span><span style="color: #586e75; font-style: italic;">*/</span>
 $side: top;
 $radius: 10px;
 
-<span style="color: #A6E22E;">.rounded- </span>{
-<span style="color: #A6E22E;">  border-#</span>{$side}-radius: $radius;
-<span style="color: #A6E22E;">  -moz-border-radius-#</span>{$side}: $radius;
-<span style="color: #A6E22E;">  -webkit-border-#</span>{$side}-radius: $radius;
+<span style="color: #b58900;">.rounded- </span>{
+<span style="color: #b58900;">  border-#</span>{$side}-radius: $radius;
+<span style="color: #b58900;">  -moz-border-radius-#</span>{$side}: $radius;
+<span style="color: #b58900;">  -webkit-border-#</span>{$side}-radius: $radius;
 }
 </pre>
 </div>
@@ -1555,17 +1577,17 @@ $radius: 10px;
 <li>mixin: 可以看作是自定义函数，通过@include并且在函数名后跟上实参来进行调用
 <div class="org-src-container">
 
-<pre class="src src-css"><span style="color: #75715E;">/* </span><span style="color: #75715E;">style.scss </span><span style="color: #75715E;">*/</span>
-<span style="color: #75715E;">/* </span><span style="color: #75715E;">$radius &#25351;&#23450;&#20102;&#40664;&#35748;&#20540;10px </span><span style="color: #75715E;">*/</span>
-<span style="color: #A6E22E;">@mixin</span> rounded($side, $radius: 10px) {
-<span style="color: #A6E22E;">  border-#</span>{$side}-radius: $radius;
-<span style="color: #A6E22E;">  -moz-border-radius-#</span>{$side}: $radius;
-<span style="color: #A6E22E;">  -webkit-border-#</span>{$side}-radius: $radius;
+<pre class="src src-css"><span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">style.scss </span><span style="color: #586e75; font-style: italic;">*/</span>
+<span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">$radius &#25351;&#23450;&#20102;&#40664;&#35748;&#20540;10px </span><span style="color: #586e75; font-style: italic;">*/</span>
+<span style="color: #6c71c4;">@mixin</span> rounded($side, $radius: 10px) {
+<span style="color: #b58900;">  border-#</span>{$side}-radius: $radius;
+<span style="color: #b58900;">  -moz-border-radius-#</span>{$side}: $radius;
+<span style="color: #b58900;">  -webkit-border-#</span>{$side}-radius: $radius;
 }
 
-<span style="color: #A6E22E;">#navbar li </span>{ <span style="color: #A6E22E;">@include</span> rounded(top); }
-<span style="color: #A6E22E;">#footer </span>{ <span style="color: #A6E22E;">@include</span> rounded(top, 5px); }
-<span style="color: #A6E22E;">#sidebar </span>{ <span style="color: #A6E22E;">@include</span> rounded(left, 8px); }
+<span style="color: #b58900;">#navbar li </span>{ <span style="color: #6c71c4;">@include</span> rounded(top); }
+<span style="color: #b58900;">#footer </span>{ <span style="color: #6c71c4;">@include</span> rounded(top, 5px); }
+<span style="color: #b58900;">#sidebar </span>{ <span style="color: #6c71c4;">@include</span> rounded(left, 8px); }
 </pre>
 </div>
 </li>
@@ -1616,6 +1638,8 @@ $radius: 10px;
   <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
   <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="static/js/custom.js"></script>
 <!-- end footer -->
 </div>
 </body>

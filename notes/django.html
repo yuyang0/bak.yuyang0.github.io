@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>DJANGO笔记</title>
-<!-- 2014-08-20 Wed 18:30 -->
+<!-- 2014-11-30 Sun 20:23 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -58,8 +58,6 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -93,7 +91,6 @@
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
 <link rel="shortcut icon" href="static/img/favicon.ico" />
-<script type="text/javascript" src="static/js/custom.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -140,17 +137,14 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script type="text/javascript">window.MathJax || document.write('<script src="static/js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" ><\/script>')</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
 <script type="text/javascript">
-
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
         // First allows browser-native MathML display, second forces HTML/CSS
-            config: ["MMLorHTML.js"], jax: ["input/TeX"],
-        //  jax: ["input/TeX", "output/HTML-CSS"],
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
         extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
                      "TeX/noUndefined.js"],
         tex2jax: {
@@ -199,7 +193,7 @@ for the JavaScript code in this tag.
 
             <li> <a href="/tags.html">Tags</a></li>
 
-            <li> <a href="/rss.xml">RSS</a></li>
+            <li> <a href="/atom.xml">RSS</a></li>
           </ul>
 
           <form id="site-search" method="get" action="https://google.com/search">
@@ -305,23 +299,23 @@ for the JavaScript code in this tag.
 <li>pattern中的view，可以不导入，而直接写字符串, patterns函数的第一个参数是前缀
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #75715E;"># </span><span style="color: #75715E;">mysite.views&#21518;&#20197;&#21450;hello&#19982;hours_ahead&#21069;&#37117;&#27809;&#26377;&#28857;&#22909;&#21495;</span>
-<span style="color: #FD971F;">urlpatterns</span> = patterns(<span style="color: #E6DB74;">'mysite.views'</span>,
-    url(r<span style="color: #E6DB74;">'^hello/$'</span>, <span style="color: #E6DB74;">'hello'</span>, name=<span style="color: #E6DB74;">'hello'</span>),
-    url(r<span style="color: #E6DB74;">'^time/plus/(\d{1,2})/$'</span>, <span style="color: #E6DB74;">'hours_ahead'</span>, name=<span style="color: #E6DB74;">'hours_ahead'</span>),
+<pre class="src src-python"><span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">mysite.views&#21518;&#20197;&#21450;hello&#19982;hours_ahead&#21069;&#37117;&#27809;&#26377;&#28857;&#22909;&#21495;</span>
+<span style="color: #6c71c4;">urlpatterns</span> = patterns(<span style="color: #2aa198;">'mysite.views'</span>,
+    url(r<span style="color: #2aa198;">'^hello/$'</span>, <span style="color: #2aa198;">'hello'</span>, name=<span style="color: #2aa198;">'hello'</span>),
+    url(r<span style="color: #2aa198;">'^time/plus/(\d{1,2})/$'</span>, <span style="color: #2aa198;">'hours_ahead'</span>, name=<span style="color: #2aa198;">'hours_ahead'</span>),
 )
 
-<span style="color: #FD971F;">urlpatterns</span> = patterns(<span style="color: #E6DB74;">''</span>,
-    url(r<span style="color: #E6DB74;">'^hello/$'</span>, <span style="color: #E6DB74;">'mysite.views.hello'</span>),
-    url(r<span style="color: #E6DB74;">'^time/plus/(\d{1,2})/$'</span>, <span style="color: #E6DB74;">'mysite.views.hours_ahead'</span>),
+<span style="color: #6c71c4;">urlpatterns</span> = patterns(<span style="color: #2aa198;">''</span>,
+    url(r<span style="color: #2aa198;">'^hello/$'</span>, <span style="color: #2aa198;">'mysite.views.hello'</span>),
+    url(r<span style="color: #2aa198;">'^time/plus/(\d{1,2})/$'</span>, <span style="color: #2aa198;">'mysite.views.hours_ahead'</span>),
 )
 
-<span style="color: #F92672; font-weight: bold;">from</span> mysite.views <span style="color: #F92672; font-weight: bold;">import</span> hello, hours_ahead
-<span style="color: #FD971F;">urlpatterns</span> = patterns(<span style="color: #E6DB74;">''</span>,
-    url(r<span style="color: #E6DB74;">'^hello/$'</span>, hello),
-    url(r<span style="color: #E6DB74;">'^time/plus/(\d{1,2})/$'</span>, hours_ahead),
+<span style="color: #859900;">from</span> mysite.views <span style="color: #859900;">import</span> hello, hours_ahead
+<span style="color: #6c71c4;">urlpatterns</span> = patterns(<span style="color: #2aa198;">''</span>,
+    url(r<span style="color: #2aa198;">'^hello/$'</span>, hello),
+    url(r<span style="color: #2aa198;">'^time/plus/(\d{1,2})/$'</span>, hours_ahead),
 )
-<span style="color: #75715E;"># </span><span style="color: #75715E;">&#19977;&#32773;&#26159;&#31561;&#20215;&#30340;&#65292;&#25105;&#27604;&#36739;&#21916;&#27426;&#31532;&#20108;&#31181;&#26041;&#24335;</span>
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">&#19977;&#32773;&#26159;&#31561;&#20215;&#30340;&#65292;&#25105;&#27604;&#36739;&#21916;&#27426;&#31532;&#20108;&#31181;&#26041;&#24335;</span>
 </pre>
 </div>
 <p>
@@ -329,7 +323,7 @@ for the JavaScript code in this tag.
 </p>
 </li>
 <li>命名参数，'^mydata/(?P&lt;month&gt;\d{1, 2})/(?P&lt;day&gt;\d\d)/$' ,那么其中的month, day就是关键字参数，如果用户访问
-<i>mydate/11/22</i> 那么就会调用my_view(month='11', day='22')
+      <i>mydate/11/22</i> 那么就会调用my_view(month='11', day='22')
 </li>
 <li>urlCONF不会区分是get， post，put，delete，只要url相同它就会将请求导向同一个视图处理函数，所以必要的情况
 下区分get请求，post请求是视图函数的责任，还有urlConf不会理会url中的查询字符串，比如
@@ -342,6 +336,7 @@ URLConf中进行匹配
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">模板</h2>
 <div class="outline-text-2" id="text-2">
@@ -356,13 +351,14 @@ URLConf中进行匹配
 <li>通过url标签生成网址，而不要硬编码，对静态文件也是如此，尽量使用static标签
 </li>
 <li>尽量使用好记的名字来代表对象，而不要用object,object_list之类的名字（CBV编码时特别注意，因为object，
-       object_list是默认名字）
+object_list是默认名字）
 </li>
 <li>自定义的模板tag与filter只有在没有其它选择时在使用，不能滥用
 </li>
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-2-2" class="outline-3">
 <h3 id="sec-2-2">模板的基本语法</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -371,39 +367,40 @@ URLConf中进行匹配
 <div class="outline-text-4" id="text-2-2-1">
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #A6E22E;">html</span>&gt;
-  &lt;<span style="color: #A6E22E;">head</span>&gt;&lt;<span style="color: #A6E22E;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Ordering notice</span>&lt;/<span style="color: #A6E22E;">title</span>&gt;&lt;/<span style="color: #A6E22E;">head</span>&gt;
-  &lt;<span style="color: #A6E22E;">body</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #b58900;">html</span>&gt;
+  &lt;<span style="color: #b58900;">head</span>&gt;&lt;<span style="color: #b58900;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Ordering notice</span>&lt;/<span style="color: #b58900;">title</span>&gt;&lt;/<span style="color: #b58900;">head</span>&gt;
+  &lt;<span style="color: #b58900;">body</span>&gt;
 
-    &lt;<span style="color: #A6E22E;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Ordering notice</span>&lt;/<span style="color: #A6E22E;">h1</span>&gt;
+    &lt;<span style="color: #b58900;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Ordering notice</span>&lt;/<span style="color: #b58900;">h1</span>&gt;
 
-    &lt;<span style="color: #A6E22E;">p</span>&gt;Dear {{ person_name }},&lt;/<span style="color: #A6E22E;">p</span>&gt;
+    &lt;<span style="color: #b58900;">p</span>&gt;Dear {{ person_name }},&lt;/<span style="color: #b58900;">p</span>&gt;
 
-    &lt;<span style="color: #A6E22E;">p</span>&gt;Thanks for placing an order from {{ company }}. It's scheduled to
-      ship on {{ ship_date|date:<span style="color: #E6DB74;">"F j, Y"</span> }}.&lt;/<span style="color: #A6E22E;">p</span>&gt;
+    &lt;<span style="color: #b58900;">p</span>&gt;Thanks for placing an order from {{ company }}. It's scheduled to
+      ship on {{ ship_date|date:<span style="color: #2aa198;">"F j, Y"</span> }}.&lt;/<span style="color: #b58900;">p</span>&gt;
 
-    &lt;<span style="color: #A6E22E;">p</span>&gt;Here are the items you've ordered:&lt;/<span style="color: #A6E22E;">p</span>&gt;
+    &lt;<span style="color: #b58900;">p</span>&gt;Here are the items you've ordered:&lt;/<span style="color: #b58900;">p</span>&gt;
 
-    &lt;<span style="color: #A6E22E;">ul</span>&gt;
+    &lt;<span style="color: #b58900;">ul</span>&gt;
       {% for item in item_list %}
-      &lt;<span style="color: #A6E22E;">li</span>&gt;{{ item }}&lt;/<span style="color: #A6E22E;">li</span>&gt;
+      &lt;<span style="color: #b58900;">li</span>&gt;{{ item }}&lt;/<span style="color: #b58900;">li</span>&gt;
       {% endfor %}
-    &lt;/<span style="color: #A6E22E;">ul</span>&gt;
+    &lt;/<span style="color: #b58900;">ul</span>&gt;
 
     {% if ordered_warranty %}
-    &lt;<span style="color: #A6E22E;">p</span>&gt;Your warranty information will be included in the packaging.&lt;/<span style="color: #A6E22E;">p</span>&gt;
+    &lt;<span style="color: #b58900;">p</span>&gt;Your warranty information will be included in the packaging.&lt;/<span style="color: #b58900;">p</span>&gt;
     {% else %}
-    &lt;<span style="color: #A6E22E;">p</span>&gt;You didn't order a warranty, so you're on your own when
-      the products inevitably stop working.&lt;/<span style="color: #A6E22E;">p</span>&gt;
+    &lt;<span style="color: #b58900;">p</span>&gt;You didn't order a warranty, so you're on your own when
+      the products inevitably stop working.&lt;/<span style="color: #b58900;">p</span>&gt;
     {% endif %}
 
-    &lt;<span style="color: #A6E22E;">p</span>&gt;Sincerely,&lt;<span style="color: #A6E22E;">br</span> /&gt;{{ company }}&lt;/<span style="color: #A6E22E;">p</span>&gt;
-  &lt;/<span style="color: #A6E22E;">body</span>&gt;
-&lt;/<span style="color: #A6E22E;">html</span>&gt;
+    &lt;<span style="color: #b58900;">p</span>&gt;Sincerely,&lt;<span style="color: #b58900;">br</span> /&gt;{{ company }}&lt;/<span style="color: #b58900;">p</span>&gt;
+  &lt;/<span style="color: #b58900;">body</span>&gt;
+&lt;/<span style="color: #b58900;">html</span>&gt;
 </pre>
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-2-2-2" class="outline-4">
 <h4 id="sec-2-2-2">模板的'.'的用法:</h4>
 <div class="outline-text-4" id="text-2-2-2">
@@ -411,36 +408,36 @@ URLConf中进行匹配
 <li>引用字典
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django.template <span style="color: #F92672; font-weight: bold;">import</span> Template, Context
-<span style="color: #FD971F;">person</span> = {<span style="color: #E6DB74;">'name'</span>: <span style="color: #E6DB74;">'Sally'</span>, <span style="color: #E6DB74;">'age'</span>: <span style="color: #E6DB74;">'43'</span>}
-<span style="color: #FD971F;">t</span> = Template(<span style="color: #E6DB74;">'{{ person.name }} is {{ person.age }} years old.'</span>)
-<span style="color: #FD971F;">c</span> = Context({<span style="color: #E6DB74;">'person'</span>: person})
+<pre class="src src-python"><span style="color: #859900;">from</span> django.template <span style="color: #859900;">import</span> Template, Context
+<span style="color: #6c71c4;">person</span> = {<span style="color: #2aa198;">'name'</span>: <span style="color: #2aa198;">'Sally'</span>, <span style="color: #2aa198;">'age'</span>: <span style="color: #2aa198;">'43'</span>}
+<span style="color: #6c71c4;">t</span> = Template(<span style="color: #2aa198;">'{{ person.name }} is {{ person.age }} years old.'</span>)
+<span style="color: #6c71c4;">c</span> = Context({<span style="color: #2aa198;">'person'</span>: person})
 t.render(c)
-<span style="color: #75715E;">#</span><span style="color: #75715E;">result is: u'Sally is 43 years old.'</span>
+<span style="color: #586e75; font-style: italic;">#</span><span style="color: #586e75; font-style: italic;">result is: u'Sally is 43 years old.'</span>
 </pre>
 </div>
 </li>
 <li>引用list的索引
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django.template <span style="color: #F92672; font-weight: bold;">import</span> Template, Context
-<span style="color: #FD971F;">t</span> = Template(<span style="color: #E6DB74;">'Item 2 is {{ items.2 }}.'</span>)
-<span style="color: #FD971F;">c</span> = Context({<span style="color: #E6DB74;">'items'</span>: [<span style="color: #E6DB74;">'apples'</span>, <span style="color: #E6DB74;">'bananas'</span>, <span style="color: #E6DB74;">'carrots'</span>]})
+<pre class="src src-python"><span style="color: #859900;">from</span> django.template <span style="color: #859900;">import</span> Template, Context
+<span style="color: #6c71c4;">t</span> = Template(<span style="color: #2aa198;">'Item 2 is {{ items.2 }}.'</span>)
+<span style="color: #6c71c4;">c</span> = Context({<span style="color: #2aa198;">'items'</span>: [<span style="color: #2aa198;">'apples'</span>, <span style="color: #2aa198;">'bananas'</span>, <span style="color: #2aa198;">'carrots'</span>]})
 t.render(c)
-<span style="color: #75715E;"># </span><span style="color: #75715E;">result is :u'Item 2 is carrots.'</span>
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">result is :u'Item 2 is carrots.'</span>
 </pre>
 </div>
 </li>
 <li>引用对象的属性
 <div class="org-src-container">
 
-<pre class="src src-python"> <span style="color: #F92672; font-weight: bold;">from</span> django.template <span style="color: #F92672; font-weight: bold;">import</span> Template, Context
- <span style="color: #F92672; font-weight: bold;">import</span> datetime
- <span style="color: #FD971F;">d</span> = datetime.date(1993, 5, 2)
- <span style="color: #FD971F;">t</span> = Template(<span style="color: #E6DB74;">'The month is {{ date.month }} and the year is {{ date.year }}.'</span>)
- <span style="color: #FD971F;">c</span> = Context({<span style="color: #E6DB74;">'date'</span>: d})
+<pre class="src src-python"> <span style="color: #859900;">from</span> django.template <span style="color: #859900;">import</span> Template, Context
+ <span style="color: #859900;">import</span> datetime
+ <span style="color: #6c71c4;">d</span> = datetime.date(1993, 5, 2)
+ <span style="color: #6c71c4;">t</span> = Template(<span style="color: #2aa198;">'The month is {{ date.month }} and the year is {{ date.year }}.'</span>)
+ <span style="color: #6c71c4;">c</span> = Context({<span style="color: #2aa198;">'date'</span>: d})
  t.render(c)
-<span style="color: #75715E;"># </span><span style="color: #75715E;">result is : u'The month is 5 and the year is 1993.'</span>
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">result is : u'The month is 5 and the year is 1993.'</span>
 </pre>
 </div>
 </li>
@@ -450,6 +447,7 @@ t.render(c)
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-2-2-3" class="outline-4">
 <h4 id="sec-2-2-3">过滤器</h4>
 <div class="outline-text-4" id="text-2-2-3">
@@ -474,6 +472,7 @@ t.render(c)
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-2-3" class="outline-3">
 <h3 id="sec-2-3">使用模板的方法：</h3>
 <div class="outline-text-3" id="text-2-3">
@@ -487,9 +486,9 @@ t.render(c)
 </ol>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django <span style="color: #F92672; font-weight: bold;">import</span> template
-<span style="color: #FD971F;">t</span> = template.Template(<span style="color: #E6DB74;">'My name is {{ name }}.'</span>)
-<span style="color: #FD971F;">c</span> = template.Context({<span style="color: #E6DB74;">'name'</span>: <span style="color: #E6DB74;">'Adrian'</span>})
+<pre class="src src-python"><span style="color: #859900;">from</span> django <span style="color: #859900;">import</span> template
+<span style="color: #6c71c4;">t</span> = template.Template(<span style="color: #2aa198;">'My name is {{ name }}.'</span>)
+<span style="color: #6c71c4;">c</span> = template.Context({<span style="color: #2aa198;">'name'</span>: <span style="color: #2aa198;">'Adrian'</span>})
 t.render(c)
 </pre>
 </div>
@@ -499,12 +498,12 @@ TEMPLATE_DIRS
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django.shortcuts <span style="color: #F92672; font-weight: bold;">import</span> render_to_response
-<span style="color: #F92672; font-weight: bold;">import</span> datetime
+<pre class="src src-python"><span style="color: #859900;">from</span> django.shortcuts <span style="color: #859900;">import</span> render_to_response
+<span style="color: #859900;">import</span> datetime
 
-<span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">current_datetime</span>(request):
-    <span style="color: #FD971F;">now</span> = datetime.datetime.now()
-    <span style="color: #F92672; font-weight: bold;">return</span> render_to_response(<span style="color: #E6DB74;">'current_datetime.html'</span>, {<span style="color: #E6DB74;">'current_date'</span>: now})
+<span style="color: #859900;">def</span> <span style="color: #b58900;">current_datetime</span>(request):
+    <span style="color: #6c71c4;">now</span> = datetime.datetime.now()
+    <span style="color: #859900;">return</span> render_to_response(<span style="color: #2aa198;">'current_datetime.html'</span>, {<span style="color: #2aa198;">'current_date'</span>: now})
 </pre>
 </div>
 <p>
@@ -513,6 +512,7 @@ render_to_response只需要提供模板文件，与一个字典，它会渲染�
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-2-4" class="outline-3">
 <h3 id="sec-2-4">模板的包含与继承</h3>
 <div class="outline-text-3" id="text-2-4">
@@ -527,30 +527,30 @@ render_to_response只需要提供模板文件，与一个字典，它会渲染�
 base.html:
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #F92672; font-weight: bold;">!DOCTYPE</span> HTML PUBLIC <span style="color: #E6DB74;">"-//W3C//DTD HTML 4.01//EN"</span>&gt;
-&lt;<span style="color: #A6E22E;">html</span> <span style="color: #FD971F;">lang</span>=<span style="color: #E6DB74;">"en"</span>&gt;
-  &lt;<span style="color: #A6E22E;">head</span>&gt;
-    &lt;<span style="color: #A6E22E;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">{% block title %}{% endblock %}</span>&lt;/<span style="color: #A6E22E;">title</span>&gt;
-  &lt;/<span style="color: #A6E22E;">head</span>&gt;
-  &lt;<span style="color: #A6E22E;">body</span>&gt;
-    &lt;<span style="color: #A6E22E;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">My helpful timestamp site</span>&lt;/<span style="color: #A6E22E;">h1</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #859900;">!DOCTYPE</span> HTML PUBLIC <span style="color: #2aa198;">"-//W3C//DTD HTML 4.01//EN"</span>&gt;
+&lt;<span style="color: #b58900;">html</span> <span style="color: #6c71c4;">lang</span>=<span style="color: #2aa198;">"en"</span>&gt;
+  &lt;<span style="color: #b58900;">head</span>&gt;
+    &lt;<span style="color: #b58900;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">{% block title %}{% endblock %}</span>&lt;/<span style="color: #b58900;">title</span>&gt;
+  &lt;/<span style="color: #b58900;">head</span>&gt;
+  &lt;<span style="color: #b58900;">body</span>&gt;
+    &lt;<span style="color: #b58900;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">My helpful timestamp site</span>&lt;/<span style="color: #b58900;">h1</span>&gt;
     {% block content %}{% endblock %}
     {% block footer %}
-    &lt;<span style="color: #A6E22E;">hr</span>&gt;
-    &lt;<span style="color: #A6E22E;">p</span>&gt;Thanks for visiting my site.&lt;/<span style="color: #A6E22E;">p</span>&gt;
+    &lt;<span style="color: #b58900;">hr</span>&gt;
+    &lt;<span style="color: #b58900;">p</span>&gt;Thanks for visiting my site.&lt;/<span style="color: #b58900;">p</span>&gt;
     {% endblock %}
-  &lt;/<span style="color: #A6E22E;">body</span>&gt;
-&lt;/<span style="color: #A6E22E;">html</span>&gt;
+  &lt;/<span style="color: #b58900;">body</span>&gt;
+&lt;/<span style="color: #b58900;">html</span>&gt;
 </pre>
 </div>
 <div class="org-src-container">
 
-<pre class="src src-html">{% extends <span style="color: #E6DB74;">"base.html"</span> %}
+<pre class="src src-html">{% extends <span style="color: #2aa198;">"base.html"</span> %}
 
 {% block title %}The current time{% endblock %}
 
 {% block content %}
-&lt;<span style="color: #A6E22E;">p</span>&gt;It is now {{ current_date }}.&lt;/<span style="color: #A6E22E;">p</span>&gt;
+&lt;<span style="color: #b58900;">p</span>&gt;It is now {{ current_date }}.&lt;/<span style="color: #b58900;">p</span>&gt;
 {% endblock %}
 </pre>
 </div>
@@ -570,6 +570,7 @@ base.html:
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-2-5" class="outline-3">
 <h3 id="sec-2-5">xss安全问题</h3>
 <div class="outline-text-3" id="text-2-5">
@@ -598,8 +599,8 @@ var仍然会转义
 <li>在view中可以使用如下代码来escape html
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django.utils.html <span style="color: #F92672; font-weight: bold;">import</span> escape
-<span style="color: #F92672; font-weight: bold;">return</span> HttpResponse(escape(some_string))
+<pre class="src src-python"><span style="color: #859900;">from</span> django.utils.html <span style="color: #859900;">import</span> escape
+<span style="color: #859900;">return</span> HttpResponse(escape(some_string))
 </pre>
 </div>
 <p>
@@ -609,7 +610,7 @@ view中操作html字符串还有几个比较有用的函数：
 <li>strip_tags(value): 删除所有的html标签，注意不是转义，它会将&lt;div&gt;,&lt;h1&gt;这样的标签整个删掉，只保留text
 </li>
 <li>remove_tags(value, tags)：和strip_tags类似，不过它只删掉tags指定的tag，tags是一个以空格分割的字符串，
-          比如： "div h1 a"
+比如： "div h1 a"
 </li>
 </ol>
 </li>
@@ -617,6 +618,7 @@ view中操作html字符串还有几个比较有用的函数：
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">Model</h2>
 <div class="outline-text-2" id="text-3">
@@ -625,9 +627,9 @@ view中操作html字符串还有几个比较有用的函数：
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>每一个app都有一个app_label属性，这个属性的值默认是app的导入路径的最后一部分，比
-     如'django.contrib.contenttypes', 那么这个app的app_label就是contenttypes，在model中ForiegnKey，
-     ManyToManyField中指定target model时都是使用app_label.model_name的格式，还有当自定义USER_AUTH_MODEL时也是
-     如此
+如'django.contrib.contenttypes', 那么这个app的app_label就是contenttypes，在model中ForiegnKey，
+ManyToManyField中指定target model时都是使用app_label.model_name的格式，还有当自定义USER_AUTH_MODEL时也是
+如此
 </li>
 <li>在一个app最好不要超过5个model， 如果model过多，那么要考虑将其拆分为更小的app
 </li>
@@ -638,6 +640,7 @@ view中操作html字符串还有几个比较有用的函数：
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-3-2" class="outline-3">
 <h3 id="sec-3-2">model的基本使用：</h3>
 <div class="outline-text-3" id="text-3-2">
@@ -645,10 +648,10 @@ view中操作html字符串还有几个比较有用的函数：
 <li>第一步必须设置settings.py的数据库相关域,用以下代码验证配置是否正确：
 <div class="org-src-container">
 
-<pre class="src src-python">python manage.py shell <span style="color: #75715E;">#</span><span style="color: #75715E;">enter django shell</span>
+<pre class="src src-python">python manage.py shell <span style="color: #586e75; font-style: italic;">#</span><span style="color: #586e75; font-style: italic;">enter django shell</span>
 
-<span style="color: #F92672; font-weight: bold;">from</span> django.db <span style="color: #F92672; font-weight: bold;">import</span> connection
-<span style="color: #FD971F;">cursor</span> = connection.cursor()
+<span style="color: #859900;">from</span> django.db <span style="color: #859900;">import</span> connection
+<span style="color: #6c71c4;">cursor</span> = connection.cursor()
 </pre>
 </div>
 </li>
@@ -658,29 +661,29 @@ python manage.py startapp appname
 然后在module.py添加代码
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django.db <span style="color: #F92672; font-weight: bold;">import</span> models
+<pre class="src src-python"><span style="color: #859900;">from</span> django.db <span style="color: #859900;">import</span> models
 
-<span style="color: #75715E;"># </span><span style="color: #75715E;">Create your models here.</span>
-<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Publisher</span>(models.Model):
-    <span style="color: #E6DB74;">"""</span>
-<span style="color: #E6DB74;">    """</span>
-    <span style="color: #FD971F;">name</span> = models.CharField(max_length = 30)
-    <span style="color: #FD971F;">address</span> = models.CharField(max_length = 50)
-    <span style="color: #FD971F;">city</span> = models.CharField(max_length = 60)
-    <span style="color: #FD971F;">state_province</span> = models.CharField(max_length = 30)
-    <span style="color: #FD971F;">country</span> = models.CharField(max_length = 50)
-    <span style="color: #FD971F;">website</span> = models.URLField()
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">Create your models here.</span>
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">Publisher</span>(models.Model):
+    <span style="color: #2aa198;">"""</span>
+<span style="color: #2aa198;">    """</span>
+    <span style="color: #6c71c4;">name</span> = models.CharField(max_length = 30)
+    <span style="color: #6c71c4;">address</span> = models.CharField(max_length = 50)
+    <span style="color: #6c71c4;">city</span> = models.CharField(max_length = 60)
+    <span style="color: #6c71c4;">state_province</span> = models.CharField(max_length = 30)
+    <span style="color: #6c71c4;">country</span> = models.CharField(max_length = 50)
+    <span style="color: #6c71c4;">website</span> = models.URLField()
 
-<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Author</span>(models.Model):
-    <span style="color: #FD971F;">first_name</span> = models.CharField(max_length=30)
-    <span style="color: #FD971F;">last_name</span> = models.CharField(max_length=40)
-    <span style="color: #FD971F;">email</span> = models.EmailField()
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">Author</span>(models.Model):
+    <span style="color: #6c71c4;">first_name</span> = models.CharField(max_length=30)
+    <span style="color: #6c71c4;">last_name</span> = models.CharField(max_length=40)
+    <span style="color: #6c71c4;">email</span> = models.EmailField()
 
-<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Book</span>(models.Model):
-    <span style="color: #FD971F;">title</span> = models.CharField(max_length=100)
-    <span style="color: #FD971F;">authors</span> = models.ManyToManyField(Author)
-    <span style="color: #FD971F;">publisher</span> = models.ForeignKey(Publisher)
-    <span style="color: #FD971F;">publication_date</span> = models.DateField()
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">Book</span>(models.Model):
+    <span style="color: #6c71c4;">title</span> = models.CharField(max_length=100)
+    <span style="color: #6c71c4;">authors</span> = models.ManyToManyField(Author)
+    <span style="color: #6c71c4;">publisher</span> = models.ForeignKey(Publisher)
+    <span style="color: #6c71c4;">publication_date</span> = models.DateField()
 </pre>
 </div>
 <p>
@@ -699,18 +702,18 @@ python manage.py syncdb会最终执行数据库的创建
 <li>choices：对应的域被限制在一个已定义的范围内
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django.db <span style="color: #F92672; font-weight: bold;">import</span> models
+<pre class="src src-python"><span style="color: #859900;">from</span> django.db <span style="color: #859900;">import</span> models
 
-<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Person</span>(models.Model):
-    <span style="color: #FD971F;">SHIRT_SIZES</span> = (
-        (<span style="color: #E6DB74;">'S'</span>, <span style="color: #E6DB74;">'Small'</span>),
-        (<span style="color: #E6DB74;">'M'</span>, <span style="color: #E6DB74;">'Medium'</span>),
-        (<span style="color: #E6DB74;">'L'</span>, <span style="color: #E6DB74;">'Large'</span>),
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">Person</span>(models.Model):
+    <span style="color: #6c71c4;">SHIRT_SIZES</span> = (
+        (<span style="color: #2aa198;">'S'</span>, <span style="color: #2aa198;">'Small'</span>),
+        (<span style="color: #2aa198;">'M'</span>, <span style="color: #2aa198;">'Medium'</span>),
+        (<span style="color: #2aa198;">'L'</span>, <span style="color: #2aa198;">'Large'</span>),
     )
-    <span style="color: #FD971F;">name</span> = models.CharField(max_length=60)
-    <span style="color: #FD971F;">shirt_size</span> = models.CharField(max_length=1, choices=SHIRT_SIZES)
+    <span style="color: #6c71c4;">name</span> = models.CharField(max_length=60)
+    <span style="color: #6c71c4;">shirt_size</span> = models.CharField(max_length=1, choices=SHIRT_SIZES)
 
-<span style="color: #FD971F;">p</span> = Person(name=<span style="color: #E6DB74;">"Fred Flintstone"</span>, shirt_size=<span style="color: #E6DB74;">"L"</span>)
+<span style="color: #6c71c4;">p</span> = Person(name=<span style="color: #2aa198;">"Fred Flintstone"</span>, shirt_size=<span style="color: #2aa198;">"L"</span>)
 </pre>
 </div>
 </li>
@@ -808,26 +811,26 @@ null=True，那么django创建数据库就不会指定NOT NULL， 而blank的作
 复杂的查询(比如需要多个条件之间为OR)可以使用Q来构造，看下面的示例代码
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #75715E;"># </span><span style="color: #75715E;">&#26684;&#24335;&#26159;fieldname__type=value</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E;">&#24120;&#35265;&#30340;type&#26159;exact(&#22914;&#26524;&#30452;&#25509;&#20351;&#29992;field=value,&#37027;&#20040;type&#23601;&#26159;exact)&#65292;iexact(case sensitive),</span>
+<pre class="src src-python"><span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">&#26684;&#24335;&#26159;fieldname__type=value</span>
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">&#24120;&#35265;&#30340;type&#26159;exact(&#22914;&#26524;&#30452;&#25509;&#20351;&#29992;field=value,&#37027;&#20040;type&#23601;&#26159;exact)&#65292;iexact(case sensitive),</span>
 Entry.objects.get(id__exact=14)
-Entry.objects.get(<span style="color: #A6E22E;">id</span>=14)        <span style="color: #75715E;"># </span><span style="color: #75715E;">&#40664;&#35748;&#26159;exact</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E;">startswith, endswith, istartwith, iendwith</span>
-Entry.objects.<span style="color: #A6E22E;">filter</span>(headline__startswith=<span style="color: #E6DB74;">'Will'</span>)
-<span style="color: #75715E;"># </span><span style="color: #75715E;">contains,icontains(case sensitive)</span>
-Entry.objects.get(headline__contains=<span style="color: #E6DB74;">'Lennon'</span>)
-<span style="color: #75715E;"># </span><span style="color: #75715E;">in</span>
-Entry.objects.<span style="color: #A6E22E;">filter</span>(id__in=[1, 3, 4])
-<span style="color: #75715E;"># </span><span style="color: #75715E;">gt, gte,lt, lte</span>
-Entry.objects.<span style="color: #A6E22E;">filter</span>(id__gt=4)
-<span style="color: #75715E;"># </span><span style="color: #75715E;">year,month,day(&#23545;date&#65292;datetime field&#26377;&#25928;)</span>
-Entry.objects.<span style="color: #A6E22E;">filter</span>(pub_date__year=2005)
-<span style="color: #75715E;"># </span><span style="color: #75715E;">regex&#65292;iregex&#65292;&#65288;&#27491;&#21017;&#34920;&#36798;&#24335;&#21305;&#37197;&#65289;</span>
-Entry.objects.get(title__regex=r<span style="color: #E6DB74;">'^(An?|The) +'</span>)
+Entry.objects.get(<span style="color: #6c71c4;">id</span>=14)        <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">&#40664;&#35748;&#26159;exact</span>
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">startswith, endswith, istartwith, iendwith</span>
+Entry.objects.<span style="color: #6c71c4;">filter</span>(headline__startswith=<span style="color: #2aa198;">'Will'</span>)
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">contains,icontains(case sensitive)</span>
+Entry.objects.get(headline__contains=<span style="color: #2aa198;">'Lennon'</span>)
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">in</span>
+Entry.objects.<span style="color: #6c71c4;">filter</span>(id__in=[1, 3, 4])
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">gt, gte,lt, lte</span>
+Entry.objects.<span style="color: #6c71c4;">filter</span>(id__gt=4)
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">year,month,day(&#23545;date&#65292;datetime field&#26377;&#25928;)</span>
+Entry.objects.<span style="color: #6c71c4;">filter</span>(pub_date__year=2005)
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">regex&#65292;iregex&#65292;&#65288;&#27491;&#21017;&#34920;&#36798;&#24335;&#21305;&#37197;&#65289;</span>
+Entry.objects.get(title__regex=r<span style="color: #2aa198;">'^(An?|The) +'</span>)
 
-<span style="color: #75715E;"># </span><span style="color: #75715E;">&#23545;&#20110;ManyToManyField&#20197;&#21450;ForeignKey&#21487;&#20197;&#20351;&#29992;__&#26469;&#25628;&#32034;&#20851;&#32852;&#30340;model</span>
-Entry.objects.get(author__name__contain=<span style="color: #E6DB74;">'jim'</span>)
-<span style="color: #75715E;"># </span><span style="color: #75715E;">&#23427;&#20250;&#25628;&#32034;Entry&#30340;&#22806;&#38190;author model&#20013;name&#21253;&#21547;jim&#30340;&#39033;</span>
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">&#23545;&#20110;ManyToManyField&#20197;&#21450;ForeignKey&#21487;&#20197;&#20351;&#29992;__&#26469;&#25628;&#32034;&#20851;&#32852;&#30340;model</span>
+Entry.objects.get(author__name__contain=<span style="color: #2aa198;">'jim'</span>)
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">&#23427;&#20250;&#25628;&#32034;Entry&#30340;&#22806;&#38190;author model&#20013;name&#21253;&#21547;jim&#30340;&#39033;</span>
 </pre>
 </div>
 </li>
@@ -837,59 +840,60 @@ Entry.objects.get(author__name__contain=<span style="color: #E6DB74;">'jim'</spa
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #75715E;"># </span><span style="color: #75715E;">insert a record</span>
-<span style="color: #FD971F;">p</span> = Publisher(name=<span style="color: #E6DB74;">'Apress'</span>,
-        address=<span style="color: #E6DB74;">'2855 Telegraph Ave.'</span>,
-        city=<span style="color: #E6DB74;">'Berkeley'</span>,
-        state_province=<span style="color: #E6DB74;">'CA'</span>,
-        country=<span style="color: #E6DB74;">'U.S.A.'</span>,
-        website=<span style="color: #E6DB74;">'http://www.apress.com/'</span>)
+<pre class="src src-python"><span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">insert a record</span>
+<span style="color: #6c71c4;">p</span> = Publisher(name=<span style="color: #2aa198;">'Apress'</span>,
+        address=<span style="color: #2aa198;">'2855 Telegraph Ave.'</span>,
+        city=<span style="color: #2aa198;">'Berkeley'</span>,
+        state_province=<span style="color: #2aa198;">'CA'</span>,
+        country=<span style="color: #2aa198;">'U.S.A.'</span>,
+        website=<span style="color: #2aa198;">'http://www.apress.com/'</span>)
 p.save()
 
-<span style="color: #75715E;"># </span><span style="color: #75715E;">just update, do not create record</span>
-<span style="color: #FD971F;">p.name</span> = <span style="color: #E6DB74;">'Apress Publishing'</span>
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">just update, do not create record</span>
+<span style="color: #6c71c4;">p.name</span> = <span style="color: #2aa198;">'Apress Publishing'</span>
 p.save()
-<span style="color: #75715E;"># </span><span style="color: #75715E;">django1.5&#21487;&#20197;&#25351;&#23450;update_fields,&#27604;&#22914;&#19968;&#20010;&#26356;&#26032;&#28857;&#20987;&#25968;&#30340;&#20195;&#30721;</span>
-<span style="color: #FD971F;">article.clicks</span> = F(<span style="color: #E6DB74;">'clicks'</span>) + 1 <span style="color: #75715E;"># </span><span style="color: #75715E;">&#20351;&#29992;F&#36991;&#20813;&#31454;&#20105;&#26465;&#20214;</span>
-article.save(update_fields=[<span style="color: #E6DB74;">'clicks'</span>,])
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">django1.5&#21487;&#20197;&#25351;&#23450;update_fields,&#27604;&#22914;&#19968;&#20010;&#26356;&#26032;&#28857;&#20987;&#25968;&#30340;&#20195;&#30721;</span>
+<span style="color: #6c71c4;">article.clicks</span> = F(<span style="color: #2aa198;">'clicks'</span>) + 1 <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">&#20351;&#29992;F&#36991;&#20813;&#31454;&#20105;&#26465;&#20214;</span>
+article.save(update_fields=[<span style="color: #2aa198;">'clicks'</span>,])
 
-<span style="color: #75715E;"># </span><span style="color: #75715E;">&#21482;&#26356;&#26032;name&#23383;&#27573;&#65292;&#32780;&#19981;&#20687;save&#37027;&#26679;&#26356;&#26032;&#25152;&#26377;&#30340;&#23383;&#27573;&#65292;&#21363;&#20415;&#37027;&#20123;&#23383;&#27573;&#27809;&#26377;&#25913;&#21464;</span>
-Publisher.objects.<span style="color: #A6E22E;">filter</span>(<span style="color: #A6E22E;">id</span>=52).update(name=<span style="color: #E6DB74;">'Apress Publishing'</span>)
-<span style="color: #75715E;"># </span><span style="color: #75715E;">&#35775;&#38382;&#25968;&#25454;&#65292;&#36716;&#25442;&#20026;select&#35821;&#21477;</span>
-Publisher.objects.<span style="color: #A6E22E;">all</span>()
-<span style="color: #75715E;"># </span><span style="color: #75715E;">filter&#36820;&#22238;&#19968;&#20010;QuerySet&#32467;&#26500;&#65292; &#35813;&#32467;&#26500;&#21644;list&#31867;&#20284;,&#22312;QuerySet&#32467;&#26500;&#19978;</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E;">&#21487;&#20197;&#35843;&#29992;order_by, delete, update&#31561;&#26041;&#27861;&#65292;&#25152;&#20197;&#21487;&#20197;&#26500;&#24314;&#19979;&#25991;&#30340;&#36830;&#38145;&#26597;&#35810;</span>
-Publisher.objects.<span style="color: #A6E22E;">filter</span>(country=<span style="color: #E6DB74;">"U.S.A."</span>, state_province=<span style="color: #E6DB74;">"CA"</span>)
-<span style="color: #75715E;"># </span><span style="color: #75715E;">&#35201;&#33719;&#24471;&#21333;&#20010;&#23545;&#20687;&#65292;&#24212;&#20351;&#29992;get&#26041;&#27861;,&#22914;&#26524;&#19981;&#23384;&#22312;&#20250;&#36820;&#22238;Publisher.DoesNotExist&#24322;&#24120;</span>
-Publisher.objects.get(country=<span style="color: #E6DB74;">"U.S.A."</span>, state_province=<span style="color: #E6DB74;">"CA"</span>)
-<span style="color: #75715E;"># </span><span style="color: #75715E;">select ... order by ...</span>
-Publisher.objects.order_by(<span style="color: #E6DB74;">"name"</span>)
-<span style="color: #75715E;">#</span><span style="color: #75715E;">&#36870;&#24207;</span>
-Publisher.objects.order_by(<span style="color: #E6DB74;">"-name"</span>)
-<span style="color: #75715E;">#</span><span style="color: #75715E;">&#36830;&#38145;&#26597;&#35810;&#65292;&#21516;&#26102;&#25351;&#23450;where&#19982;order by&#23376;&#21477;</span>
-Publisher.objects.<span style="color: #A6E22E;">filter</span>(country=<span style="color: #E6DB74;">"U.S.A."</span>).order_by(<span style="color: #E6DB74;">"-name"</span>)
-<span style="color: #75715E;"># </span><span style="color: #75715E;">select ... order by ... limit ...</span>
-Publisher.objects.order_by(<span style="color: #E6DB74;">'name'</span>)[0]
-Publisher.objects.order_by(<span style="color: #E6DB74;">'name'</span>)[0:2]
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">&#21482;&#26356;&#26032;name&#23383;&#27573;&#65292;&#32780;&#19981;&#20687;save&#37027;&#26679;&#26356;&#26032;&#25152;&#26377;&#30340;&#23383;&#27573;&#65292;&#21363;&#20415;&#37027;&#20123;&#23383;&#27573;&#27809;&#26377;&#25913;&#21464;</span>
+Publisher.objects.<span style="color: #6c71c4;">filter</span>(<span style="color: #6c71c4;">id</span>=52).update(name=<span style="color: #2aa198;">'Apress Publishing'</span>)
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">&#35775;&#38382;&#25968;&#25454;&#65292;&#36716;&#25442;&#20026;select&#35821;&#21477;</span>
+Publisher.objects.<span style="color: #6c71c4;">all</span>()
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">filter&#36820;&#22238;&#19968;&#20010;QuerySet&#32467;&#26500;&#65292; &#35813;&#32467;&#26500;&#21644;list&#31867;&#20284;,&#22312;QuerySet&#32467;&#26500;&#19978;</span>
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">&#21487;&#20197;&#35843;&#29992;order_by, delete, update&#31561;&#26041;&#27861;&#65292;&#25152;&#20197;&#21487;&#20197;&#26500;&#24314;&#19979;&#25991;&#30340;&#36830;&#38145;&#26597;&#35810;</span>
+Publisher.objects.<span style="color: #6c71c4;">filter</span>(country=<span style="color: #2aa198;">"U.S.A."</span>, state_province=<span style="color: #2aa198;">"CA"</span>)
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">&#35201;&#33719;&#24471;&#21333;&#20010;&#23545;&#20687;&#65292;&#24212;&#20351;&#29992;get&#26041;&#27861;,&#22914;&#26524;&#19981;&#23384;&#22312;&#20250;&#36820;&#22238;Publisher.DoesNotExist&#24322;&#24120;</span>
+Publisher.objects.get(country=<span style="color: #2aa198;">"U.S.A."</span>, state_province=<span style="color: #2aa198;">"CA"</span>)
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">select ... order by ...</span>
+Publisher.objects.order_by(<span style="color: #2aa198;">"name"</span>)
+<span style="color: #586e75; font-style: italic;">#</span><span style="color: #586e75; font-style: italic;">&#36870;&#24207;</span>
+Publisher.objects.order_by(<span style="color: #2aa198;">"-name"</span>)
+<span style="color: #586e75; font-style: italic;">#</span><span style="color: #586e75; font-style: italic;">&#36830;&#38145;&#26597;&#35810;&#65292;&#21516;&#26102;&#25351;&#23450;where&#19982;order by&#23376;&#21477;</span>
+Publisher.objects.<span style="color: #6c71c4;">filter</span>(country=<span style="color: #2aa198;">"U.S.A."</span>).order_by(<span style="color: #2aa198;">"-name"</span>)
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">select ... order by ... limit ...</span>
+Publisher.objects.order_by(<span style="color: #2aa198;">'name'</span>)[0]
+Publisher.objects.order_by(<span style="color: #2aa198;">'name'</span>)[0:2]
 
-<span style="color: #75715E;">#</span><span style="color: #75715E;">delete record</span>
-Publisher.objects.<span style="color: #A6E22E;">filter</span>(country=<span style="color: #E6DB74;">'USA'</span>).delete()
-Publisher.objects.<span style="color: #A6E22E;">all</span>().delete()
+<span style="color: #586e75; font-style: italic;">#</span><span style="color: #586e75; font-style: italic;">delete record</span>
+Publisher.objects.<span style="color: #6c71c4;">filter</span>(country=<span style="color: #2aa198;">'USA'</span>).delete()
+Publisher.objects.<span style="color: #6c71c4;">all</span>().delete()
 
-<span style="color: #75715E;"># </span><span style="color: #75715E;">&#22806;&#38190;&#65292;&#20197;&#21450;ManyToMany field</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E;">&#33719;&#21462;&#20986;&#29256;&#21830;&#30340;&#25152;&#26377;&#20070;&#31821;</span>
-<span style="color: #FD971F;">p</span> = Publisher.objects.get(name=<span style="color: #E6DB74;">'Apress Publishing'</span>)
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">&#22806;&#38190;&#65292;&#20197;&#21450;ManyToMany field</span>
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">&#33719;&#21462;&#20986;&#29256;&#21830;&#30340;&#25152;&#26377;&#20070;&#31821;</span>
+<span style="color: #6c71c4;">p</span> = Publisher.objects.get(name=<span style="color: #2aa198;">'Apress Publishing'</span>)
 
-<span style="color: #75715E;"># </span><span style="color: #75715E;">&#40664;&#35748;&#27169;&#22411;(Book)&#30340;&#23567;&#20889;&#21517;&#21152;&#19978;set,&#36820;&#22238;QuerySet,&#22914;&#26524;&#20320;&#22312;&#23450;&#20041;&#22806;&#38190;&#25110;&#32773;</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E;">ManyToMany field&#26102;&#25351;&#23450;&#20102;related_name&#65292;&#37027;&#20040;&#36825;&#37324;&#23601;&#20351;&#29992;&#25351;&#23450;&#30340;</span>
-<span style="color: #75715E;"># </span><span style="color: #75715E;">related_name</span>
-p.book_set.<span style="color: #A6E22E;">all</span>()
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">&#40664;&#35748;&#27169;&#22411;(Book)&#30340;&#23567;&#20889;&#21517;&#21152;&#19978;set,&#36820;&#22238;QuerySet,&#22914;&#26524;&#20320;&#22312;&#23450;&#20041;&#22806;&#38190;&#25110;&#32773;</span>
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">ManyToMany field&#26102;&#25351;&#23450;&#20102;related_name&#65292;&#37027;&#20040;&#36825;&#37324;&#23601;&#20351;&#29992;&#25351;&#23450;&#30340;</span>
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">related_name</span>
+p.book_set.<span style="color: #6c71c4;">all</span>()
 </pre>
 </div>
 </li>
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-3-3" class="outline-3">
 <h3 id="sec-3-3">manager</h3>
 <div class="outline-text-3" id="text-3-3">
@@ -899,20 +903,20 @@ p.book_set.<span style="color: #A6E22E;">all</span>()
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django.db <span style="color: #F92672; font-weight: bold;">import</span> models
-<span style="color: #F92672; font-weight: bold;">from</span> django.utils <span style="color: #F92672; font-weight: bold;">import</span> timezone
+<pre class="src src-python"><span style="color: #859900;">from</span> django.db <span style="color: #859900;">import</span> models
+<span style="color: #859900;">from</span> django.utils <span style="color: #859900;">import</span> timezone
 
-<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">PublishedManager</span>(models.Manager):
-    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">published</span>(<span style="color: #F92672; font-weight: bold;">self</span>, *args, **kwargs):
-        <span style="color: #FD971F;">qs</span> = <span style="color: #F92672; font-weight: bold;">self</span>.get_query_set().<span style="color: #A6E22E;">filter</span>(*args, **kwargs)
-        <span style="color: #F92672; font-weight: bold;">return</span> qs.<span style="color: #A6E22E;">filter</span>(pub_date__lte=timezone.now())
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">PublishedManager</span>(models.Manager):
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">published</span>(<span style="color: #859900;">self</span>, *args, **kwargs):
+        <span style="color: #6c71c4;">qs</span> = <span style="color: #859900;">self</span>.get_query_set().<span style="color: #6c71c4;">filter</span>(*args, **kwargs)
+        <span style="color: #859900;">return</span> qs.<span style="color: #6c71c4;">filter</span>(pub_date__lte=timezone.now())
 
 
-<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">FlavorReview</span>(models.Model):
-    <span style="color: #FD971F;">review</span> = models.CharField(max_length=255)
-    <span style="color: #FD971F;">pub_date</span> = models.DateTimeField()
-    <span style="color: #75715E;"># </span><span style="color: #75715E;">add our custom model manager</span>
-    <span style="color: #FD971F;">objects</span> = PublishedManager()
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">FlavorReview</span>(models.Model):
+    <span style="color: #6c71c4;">review</span> = models.CharField(max_length=255)
+    <span style="color: #6c71c4;">pub_date</span> = models.DateTimeField()
+    <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">add our custom model manager</span>
+    <span style="color: #6c71c4;">objects</span> = PublishedManager()
 </pre>
 </div>
 <p>
@@ -921,8 +925,8 @@ p.book_set.<span style="color: #A6E22E;">all</span>()
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #FD971F;">objects</span> = models.Manager()
-<span style="color: #FD971F;">publishmanager</span> = PublishedManager()
+<pre class="src src-python"><span style="color: #6c71c4;">objects</span> = models.Manager()
+<span style="color: #6c71c4;">publishmanager</span> = PublishedManager()
 </pre>
 </div>
 <p>
@@ -930,6 +934,7 @@ p.book_set.<span style="color: #A6E22E;">all</span>()
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-3-4" class="outline-3">
 <h3 id="sec-3-4">related manager</h3>
 <div class="outline-text-3" id="text-3-4">
@@ -938,21 +943,21 @@ p.book_set.<span style="color: #A6E22E;">all</span>()
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Topping</span>(models.Model):
-    <span style="color: #75715E;"># </span><span style="color: #75715E;">...</span>
-    <span style="color: #F92672; font-weight: bold;">pass</span>
+<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Topping</span>(models.Model):
+    <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">...</span>
+    <span style="color: #859900;">pass</span>
 
-<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Pizza</span>(models.Model):
-    <span style="color: #FD971F;">toppings</span> = models.ManyToManyField(Topping)
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">Pizza</span>(models.Model):
+    <span style="color: #6c71c4;">toppings</span> = models.ManyToManyField(Topping)
 
 
 
-<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Reporter</span>(models.Model):
-    <span style="color: #75715E;"># </span><span style="color: #75715E;">...</span>
-    <span style="color: #F92672; font-weight: bold;">pass</span>
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">Reporter</span>(models.Model):
+    <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">...</span>
+    <span style="color: #859900;">pass</span>
 
-<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Article</span>(models.Model):
-    <span style="color: #FD971F;">reporter</span> = models.ForeignKey(Reporter)
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">Article</span>(models.Model):
+    <span style="color: #6c71c4;">reporter</span> = models.ForeignKey(Reporter)
 </pre>
 </div>
 <p>
@@ -972,6 +977,7 @@ manager在默认的方法外,他还有以下方法:
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-3-5" class="outline-3">
 <h3 id="sec-3-5">杂七杂八</h3>
 <div class="outline-text-3" id="text-3-5">
@@ -985,6 +991,7 @@ manager在默认的方法外,他还有以下方法:
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-3-6" class="outline-3">
 <h3 id="sec-3-6">几个特殊的field</h3>
 <div class="outline-text-3" id="text-3-6">
@@ -1002,11 +1009,11 @@ manager在默认的方法外,他还有以下方法:
 <li>save方法： 当你要把一个已存在的文件与model的FileField关联起来的时候，非常有用，示例代码
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django.core.files <span style="color: #F92672; font-weight: bold;">import</span> File
-<span style="color: #75715E;"># </span><span style="color: #75715E;">Open an existing file using Python's built-in open()</span>
-<span style="color: #FD971F;">f</span> = <span style="color: #A6E22E;">open</span>(<span style="color: #E6DB74;">'/tmp/hello.world'</span>)
-<span style="color: #FD971F;">myfile</span> = File(f)
-my_model_instance.<span style="color: #A6E22E;">file</span>.save(name=<span style="color: #E6DB74;">'new_path'</span>, content=myfile)
+<pre class="src src-python"><span style="color: #859900;">from</span> django.core.files <span style="color: #859900;">import</span> File
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">Open an existing file using Python's built-in open()</span>
+<span style="color: #6c71c4;">f</span> = <span style="color: #6c71c4;">open</span>(<span style="color: #2aa198;">'/tmp/hello.world'</span>)
+<span style="color: #6c71c4;">myfile</span> = File(f)
+my_model_instance.<span style="color: #6c71c4;">file</span>.save(name=<span style="color: #2aa198;">'new_path'</span>, content=myfile)
 my_model_instance.save()
 </pre>
 </div>
@@ -1022,6 +1029,7 @@ my_model_instance.save()
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">表单</h2>
 <div class="outline-text-2" id="text-4">
@@ -1084,13 +1092,13 @@ my_model_instance.save()
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #FD971F;">f</span> = MyForm(request.POST)
-<span style="color: #F92672; font-weight: bold;">if</span> f.is_valid():
-    <span style="color: #FD971F;">first_field</span> = f.cleaned_data[<span style="color: #E6DB74;">'first_field'</span>]
-    <span style="color: #FD971F;">second_field</span> = f.cleaned_data[<span style="color: #E6DB74;">'second_field'</span>]
-    <span style="color: #F92672; font-weight: bold;">return</span> HttpResponse(<span style="color: #E6DB74;">'/succesa'</span>)
-<span style="color: #F92672; font-weight: bold;">else</span>:
-    <span style="color: #F92672; font-weight: bold;">return</span> HttpResponse(<span style="color: #E6DB74;">"template.html"</span>, {<span style="color: #E6DB74;">'form'</span>: f})
+<pre class="src src-python"><span style="color: #6c71c4;">f</span> = MyForm(request.POST)
+<span style="color: #859900;">if</span> f.is_valid():
+    <span style="color: #6c71c4;">first_field</span> = f.cleaned_data[<span style="color: #2aa198;">'first_field'</span>]
+    <span style="color: #6c71c4;">second_field</span> = f.cleaned_data[<span style="color: #2aa198;">'second_field'</span>]
+    <span style="color: #859900;">return</span> HttpResponse(<span style="color: #2aa198;">'/succesa'</span>)
+<span style="color: #859900;">else</span>:
+    <span style="color: #859900;">return</span> HttpResponse(<span style="color: #2aa198;">"template.html"</span>, {<span style="color: #2aa198;">'form'</span>: f})
 </pre>
 </div>
 <p>
@@ -1098,10 +1106,10 @@ my_model_instance.save()
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">BaseForm</span>(Object):
-    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__init__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, data=<span style="color: #AE81FF;">None</span>, files=<span style="color: #AE81FF;">None</span>, auto_id=<span style="color: #E6DB74;">'id_%s'</span>, prefix=<span style="color: #AE81FF;">None</span>,
-                 initial=<span style="color: #AE81FF;">None</span>, error_class=ErrorList, label_suffix=<span style="color: #E6DB74;">':'</span>,
-                 empty_permitted=<span style="color: #AE81FF;">False</span>):
+<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">BaseForm</span>(Object):
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">__init__</span>(<span style="color: #859900;">self</span>, data=<span style="color: #268bd2;">None</span>, files=<span style="color: #268bd2;">None</span>, auto_id=<span style="color: #2aa198;">'id_%s'</span>, prefix=<span style="color: #268bd2;">None</span>,
+                 initial=<span style="color: #268bd2;">None</span>, error_class=ErrorList, label_suffix=<span style="color: #2aa198;">':'</span>,
+                 empty_permitted=<span style="color: #268bd2;">False</span>):
 </pre>
 </div>
 <p>
@@ -1168,34 +1176,34 @@ self.data = data(也就是request.POST), data属性可以看做是裸数据，�
 <li>validate函数的调用保证数据的合法性，validate函数可以在model或者form中指定，下面是一段示例代码
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django.core.exceptions <span style="color: #F92672; font-weight: bold;">import</span> ValidationError
-<span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">validate_delicious</span>(value):
-    <span style="color: #E6DB74;">""" Raise a ValidationError if the value doesn't start</span>
-<span style="color: #E6DB74;">    with the word 'delicious'</span>
-<span style="color: #E6DB74;">    """</span>
-    <span style="color: #F92672; font-weight: bold;">if</span> <span style="color: #F92672; font-weight: bold;">not</span> value.lower().startswith(u<span style="color: #E6DB74;">'delicious'</span>):
-        <span style="color: #FD971F;">msg</span> = u<span style="color: #E6DB74;">"Enter a value starting with 'Delicious'"</span>
-        <span style="color: #F92672; font-weight: bold;">raise</span> ValidationError(msg)
+<pre class="src src-python"><span style="color: #859900;">from</span> django.core.exceptions <span style="color: #859900;">import</span> ValidationError
+<span style="color: #859900;">def</span> <span style="color: #b58900;">validate_delicious</span>(value):
+    <span style="color: #2aa198;">""" Raise a ValidationError if the value doesn't start</span>
+<span style="color: #2aa198;">    with the word 'delicious'</span>
+<span style="color: #2aa198;">    """</span>
+    <span style="color: #859900;">if</span> <span style="color: #859900;">not</span> value.lower().startswith(u<span style="color: #2aa198;">'delicious'</span>):
+        <span style="color: #6c71c4;">msg</span> = u<span style="color: #2aa198;">"Enter a value starting with 'Delicious'"</span>
+        <span style="color: #859900;">raise</span> ValidationError(msg)
 
 
-<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Flavor</span>(models.Model):
-    <span style="color: #FD971F;">title</span> = models.CharField(max_length=255,
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">Flavor</span>(models.Model):
+    <span style="color: #6c71c4;">title</span> = models.CharField(max_length=255,
                              validators=[validate_delicious])
-    <span style="color: #FD971F;">slug</span> = models.SlugField()
-    <span style="color: #FD971F;">scoops_remaining</span> = models.IntegerField(default=0)
+    <span style="color: #6c71c4;">slug</span> = models.SlugField()
+    <span style="color: #6c71c4;">scoops_remaining</span> = models.IntegerField(default=0)
 
-    <span style="color: #66D9EF;">@models.permalink</span>
-    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">get_absolute_url</span>(<span style="color: #F92672; font-weight: bold;">self</span>):
-        <span style="color: #F92672; font-weight: bold;">return</span> (<span style="color: #E6DB74;">'flavor_detail'</span>, (), {<span style="color: #E6DB74;">"slug"</span>: <span style="color: #F92672; font-weight: bold;">self</span>.slug})
+    <span style="color: #268bd2;">@models.permalink</span>
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">get_absolute_url</span>(<span style="color: #859900;">self</span>):
+        <span style="color: #859900;">return</span> (<span style="color: #2aa198;">'flavor_detail'</span>, (), {<span style="color: #2aa198;">"slug"</span>: <span style="color: #859900;">self</span>.slug})
 
-<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">FlavorForm</span>(forms.ModelForm):
-    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__init__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, *args, **kwargs):
-        <span style="color: #A6E22E;">super</span>(FlavorForm, <span style="color: #F92672; font-weight: bold;">self</span>).__init__(*args, **kwargs)
-        <span style="color: #F92672; font-weight: bold;">self</span>.fields[<span style="color: #E6DB74;">'title'</span>]<span style="color: #FD971F;">.validators</span> = [validate_delicious]
-        <span style="color: #F92672; font-weight: bold;">self</span>.fields[<span style="color: #E6DB74;">'slug'</span>]<span style="color: #FD971F;">.validators</span> = [validate_delicious]
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">FlavorForm</span>(forms.ModelForm):
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">__init__</span>(<span style="color: #859900;">self</span>, *args, **kwargs):
+        <span style="color: #6c71c4;">super</span>(FlavorForm, <span style="color: #859900;">self</span>).__init__(*args, **kwargs)
+        <span style="color: #859900;">self</span>.fields[<span style="color: #2aa198;">'title'</span>]<span style="color: #6c71c4;">.validators</span> = [validate_delicious]
+        <span style="color: #859900;">self</span>.fields[<span style="color: #2aa198;">'slug'</span>]<span style="color: #6c71c4;">.validators</span> = [validate_delicious]
 
-    <span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Meta</span>:
-        <span style="color: #FD971F;">model</span> = Flavor
+    <span style="color: #859900;">class</span> <span style="color: #268bd2;">Meta</span>:
+        <span style="color: #6c71c4;">model</span> = Flavor
 </pre>
 </div>
 </li>
@@ -1205,12 +1213,12 @@ self.data = data(也就是request.POST), data属性可以看做是裸数据，�
 合法的值</b>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">clean_flavor</span>(<span style="color: #F92672; font-weight: bold;">self</span>):
-    <span style="color: #FD971F;">flavor</span> = <span style="color: #F92672; font-weight: bold;">self</span>.cleaned_data[<span style="color: #E6DB74;">'flavor'</span>]
-    <span style="color: #F92672; font-weight: bold;">if</span> Flavor.objects.get(slug=flavor). scoops_remaining &lt;= 0:
-        <span style="color: #FD971F;">msg</span> = u<span style="color: #E6DB74;">"Sorry, we are out of that flavor"</span>
-        <span style="color: #F92672; font-weight: bold;">raise</span> forms.ValidationError(msg)
-    <span style="color: #F92672; font-weight: bold;">return</span> flavor
+<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">clean_flavor</span>(<span style="color: #859900;">self</span>):
+    <span style="color: #6c71c4;">flavor</span> = <span style="color: #859900;">self</span>.cleaned_data[<span style="color: #2aa198;">'flavor'</span>]
+    <span style="color: #859900;">if</span> Flavor.objects.get(slug=flavor). scoops_remaining &lt;= 0:
+        <span style="color: #6c71c4;">msg</span> = u<span style="color: #2aa198;">"Sorry, we are out of that flavor"</span>
+        <span style="color: #859900;">raise</span> forms.ValidationError(msg)
+    <span style="color: #859900;">return</span> flavor
 </pre>
 </div>
 </li>
@@ -1218,6 +1226,7 @@ self.data = data(也就是request.POST), data属性可以看做是裸数据，�
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-4-2" class="outline-3">
 <h3 id="sec-4-2">ModelForm</h3>
 <div class="outline-text-3" id="text-4-2">
@@ -1235,8 +1244,8 @@ instance，然后指定缺失的field的值，然后在save
 面这样：
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #FD971F;">a</span> = Article.objects.get(pk=1)
-<span style="color: #FD971F;">f</span> = ArticleForm(request.POST, instance=a)
+<pre class="src src-python"><span style="color: #6c71c4;">a</span> = Article.objects.get(pk=1)
+<span style="color: #6c71c4;">f</span> = ArticleForm(request.POST, instance=a)
 f.save()
 </pre>
 </div>
@@ -1252,6 +1261,7 @@ cleaned_data都是无效的
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">ContentType</h2>
 <div class="outline-text-2" id="text-5">
@@ -1285,14 +1295,14 @@ verbose_name), 而且这个对象还有许多method, 用来完成各种操作, �
 返回描述的model的class
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">from</span> django.contrib.contenttypes.models <span style="color: #F92672; font-weight: bold;">import</span> ContentType
+<pre class="src src-python"><span style="color: #859900;">from</span> django.contrib.contenttypes.models <span style="color: #859900;">import</span> ContentType
 
-<span style="color: #FD971F;">user_type</span> = ContentType.objects.get(app_label=<span style="color: #E6DB74;">'profiles'</span>, model=<span style="color: #E6DB74;">'user'</span>)
-<span style="color: #75715E;"># </span><span style="color: #75715E;">user_type is ContentType Instance</span>
+<span style="color: #6c71c4;">user_type</span> = ContentType.objects.get(app_label=<span style="color: #2aa198;">'profiles'</span>, model=<span style="color: #2aa198;">'user'</span>)
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">user_type is ContentType Instance</span>
 user_type.model_class()
 
-<span style="color: #FD971F;">u</span> = user_type.get_object_for_this_type(pk=1)
-<span style="color: #75715E;"># </span><span style="color: #75715E;">u is profiles.models.User Instance whose pk is 1</span>
+<span style="color: #6c71c4;">u</span> = user_type.get_object_for_this_type(pk=1)
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">u is profiles.models.User Instance whose pk is 1</span>
 </pre>
 </div>
 </li>
@@ -1308,6 +1318,7 @@ user_type.model_class()
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6">signal</h2>
 <div class="outline-text-2" id="text-6">
@@ -1327,6 +1338,7 @@ signal是同步阻塞的，要异步则要与celery配合，由于signal的recei
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-7" class="outline-2">
 <h2 id="sec-7">generic views</h2>
 <div class="outline-text-2" id="text-7">
@@ -1347,6 +1359,7 @@ signal是同步阻塞的，要异步则要与celery配合，由于signal的recei
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-7-1-2" class="outline-4">
 <h4 id="sec-7-1-2">SingleObjectMixin</h4>
 <div class="outline-text-4" id="text-7-1-2">
@@ -1363,6 +1376,7 @@ signal是同步阻塞的，要异步则要与celery配合，由于signal的recei
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-7-1-3" class="outline-4">
 <h4 id="sec-7-1-3">SingleObjectTemplateResponseMixin(继承自TemplateResponseMixin)</h4>
 <div class="outline-text-4" id="text-7-1-3">
@@ -1387,6 +1401,7 @@ get_template_names() : 会返回一个包含template名字的列表，其中包�
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-8" class="outline-2">
 <h2 id="sec-8">第三方app的使用</h2>
 <div class="outline-text-2" id="text-8">
@@ -1435,6 +1450,7 @@ schemamigration会生成本次修改的py文件（在your_app/migrations/下）,
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-8-2" class="outline-3">
 <h3 id="sec-8-2">mptt</h3>
 <div class="outline-text-3" id="text-8-2">
@@ -1443,6 +1459,7 @@ schemamigration会生成本次修改的py文件（在your_app/migrations/下）,
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-8-3" class="outline-3">
 <h3 id="sec-8-3">django-braces</h3>
 <div class="outline-text-3" id="text-8-3">
@@ -1452,6 +1469,7 @@ schemamigration会生成本次修改的py文件（在your_app/migrations/下）,
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-9" class="outline-2">
 <h2 id="sec-9">我遇到的令人费解的error</h2>
 <div class="outline-text-2" id="text-9">
@@ -1461,11 +1479,11 @@ schemamigration会生成本次修改的py文件（在your_app/migrations/下）,
 代码：
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #75715E;"># </span><span style="color: #75715E;">wrong</span>
-<span style="color: #FD971F;">urlpatterns</span>= (<span style="color: #E6DB74;">''</span>,
+<pre class="src src-python"><span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">wrong</span>
+<span style="color: #6c71c4;">urlpatterns</span>= (<span style="color: #2aa198;">''</span>,
               ....)
-<span style="color: #75715E;"># </span><span style="color: #75715E;">correct</span>
-<span style="color: #FD971F;">urlpatterns</span>= patterns(<span style="color: #E6DB74;">''</span>,
+<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">correct</span>
+<span style="color: #6c71c4;">urlpatterns</span>= patterns(<span style="color: #2aa198;">''</span>,
                       ...)
 </pre>
 </div>
@@ -1504,6 +1522,8 @@ schemamigration会生成本次修改的py文件（在your_app/migrations/下）,
   <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
   <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="static/js/custom.js"></script>
 <!-- end footer -->
 </div>
 </body>

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>SET THEORY</title>
-<!-- 2014-08-20 Wed 18:30 -->
+<!-- 2014-11-30 Sun 20:23 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -56,8 +56,6 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -91,7 +89,6 @@
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
 <link rel="shortcut icon" href="static/img/favicon.ico" />
-<script type="text/javascript" src="static/js/custom.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -138,17 +135,14 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script type="text/javascript">window.MathJax || document.write('<script src="static/js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" ><\/script>')</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
 <script type="text/javascript">
-
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
         // First allows browser-native MathML display, second forces HTML/CSS
-            config: ["MMLorHTML.js"], jax: ["input/TeX"],
-        //  jax: ["input/TeX", "output/HTML-CSS"],
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
         extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
                      "TeX/noUndefined.js"],
         tex2jax: {
@@ -197,7 +191,7 @@ for the JavaScript code in this tag.
 
             <li> <a href="/tags.html">Tags</a></li>
 
-            <li> <a href="/rss.xml">RSS</a></li>
+            <li> <a href="/atom.xml">RSS</a></li>
           </ul>
 
           <form id="site-search" method="get" action="https://google.com/search">
@@ -344,7 +338,6 @@ d 的第五位不同于 r(5) 的第五位<br  />
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-1-2" class="outline-3">
 <h3 id="sec-1-2">罗素悖论（理发师悖论）</h3>
 <div class="outline-text-3" id="text-1-2">
@@ -365,7 +358,6 @@ d 的第五位不同于 r(5) 的第五位<br  />
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">公理化集合论</h2>
 <div class="outline-text-2" id="text-2">
@@ -385,7 +377,6 @@ d 的第五位不同于 r(5) 的第五位<br  />
 \end{displaymath}
 </div>
 </div>
-
 <div id="outline-container-sec-2-2" class="outline-3">
 <h3 id="sec-2-2">Empty Set Axiom(空集公理)</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -404,7 +395,6 @@ identical form:
 \end{displaymath}
 </div>
 </div>
-
 <div id="outline-container-sec-2-3" class="outline-3">
 <h3 id="sec-2-3">Pairing Axiom(偶集公理)</h3>
 <div class="outline-text-3" id="text-2-3">
@@ -417,7 +407,6 @@ v.
 \end{displaymath}
 </div>
 </div>
-
 <div id="outline-container-sec-2-4" class="outline-3">
 <h3 id="sec-2-4">Power Set Axiom(幂集公理)</h3>
 <div class="outline-text-3" id="text-2-4">
@@ -437,6 +426,7 @@ some propertyies of Power set:
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-2-5" class="outline-3">
 <h3 id="sec-2-5">Union Axiom(并集公理)</h3>
 <div class="outline-text-3" id="text-2-5">
@@ -466,6 +456,7 @@ extremely: \(\bigcup \emptyset = \emptyset\)
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-2-6" class="outline-3">
 <h3 id="sec-2-6">Subset Axioms(子集公理)</h3>
 <div class="outline-text-3" id="text-2-6">
@@ -545,7 +536,6 @@ identical form:
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-2-7" class="outline-3">
 <h3 id="sec-2-7">Axiom of Choice</h3>
 <div class="outline-text-3" id="text-2-7">
@@ -560,6 +550,7 @@ R.
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-2-8" class="outline-3">
 <h3 id="sec-2-8">Infinity Axiom</h3>
 <div class="outline-text-3" id="text-2-8">
@@ -572,7 +563,6 @@ There exists an inductice set:
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">Algebra of sets</h2>
 <div class="outline-text-2" id="text-3">
@@ -585,7 +575,6 @@ There exists an inductice set:
 \end{eqnarray*}
 </div>
 </div>
-
 <div id="outline-container-sec-3-2" class="outline-3">
 <h3 id="sec-3-2">Associative laws</h3>
 <div class="outline-text-3" id="text-3-2">
@@ -595,7 +584,6 @@ There exists an inductice set:
 \end{eqnarray*}
 </div>
 </div>
-
 <div id="outline-container-sec-3-3" class="outline-3">
 <h3 id="sec-3-3">Distributive laws</h3>
 <div class="outline-text-3" id="text-3-3">
@@ -605,7 +593,6 @@ There exists an inductice set:
 \end{eqnarray*}
 </div>
 </div>
-
 <div id="outline-container-sec-3-4" class="outline-3">
 <h3 id="sec-3-4">De Morgan's laws</h3>
 <div class="outline-text-3" id="text-3-4">
@@ -615,7 +602,6 @@ There exists an inductice set:
 \end{eqnarray*}
 </div>
 </div>
-
 <div id="outline-container-sec-3-5" class="outline-3">
 <h3 id="sec-3-5">Identities involving &empty;</h3>
 <div class="outline-text-3" id="text-3-5">
@@ -626,7 +612,6 @@ There exists an inductice set:
 \end{eqnarray*}
 </div>
 </div>
-
 <div id="outline-container-sec-3-6" class="outline-3">
 <h3 id="sec-3-6">some properties</h3>
 <div class="outline-text-3" id="text-3-6">
@@ -638,7 +623,6 @@ There exists an inductice set:
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">Relations and Functions</h2>
 <div class="outline-text-2" id="text-4">
@@ -666,6 +650,7 @@ if x &isin; A and y &isin; B then &lt;x, y&gt; &isin; \(\mathcal{PP}(A \cup B)\)
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-4-2" class="outline-3">
 <h3 id="sec-4-2">Relation</h3>
 <div class="outline-text-3" id="text-4-2">
@@ -708,6 +693,7 @@ The N-ARY RELATIONS are defined similar to 3-ary and 4-ary relation.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-4-3" class="outline-3">
 <h3 id="sec-4-3">Function</h3>
 <div class="outline-text-3" id="text-4-3">
@@ -750,7 +736,6 @@ is only one x such that xRy.
 \end{eqnarray*}
 </div>
 </div>
-
 <div id="outline-container-sec-4-4" class="outline-3">
 <h3 id="sec-4-4">Equivalence Relations</h3>
 <div class="outline-text-3" id="text-4-4">
@@ -779,7 +764,6 @@ transitive so xRx
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-4-5" class="outline-3">
 <h3 id="sec-4-5">Ordering Relation</h3>
 <div class="outline-text-3" id="text-4-5">
@@ -809,6 +793,7 @@ holds.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">Natural Number</h2>
 <div class="outline-text-2" id="text-5">
@@ -833,7 +818,6 @@ study: the axiomatic approch and the constructive approch.
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-5-2" class="outline-3">
 <h3 id="sec-5-2">Inductive Set</h3>
 <div class="outline-text-3" id="text-5-2">
@@ -878,7 +862,6 @@ successor". ie
 \end{displaymath}
 </div>
 </div>
-
 <div id="outline-container-sec-5-3" class="outline-3">
 <h3 id="sec-5-3">Peano's Postulates(皮亚诺公理)</h3>
 <div class="outline-text-3" id="text-5-3">
@@ -936,7 +919,6 @@ requirement that S be one-to-one rules out the system of Fig
 
 
 
-
 <div id="outline-container-sec-5-4" class="outline-3">
 <h3 id="sec-5-4">RECURSION ON &omega;</h3>
 <div class="outline-text-3" id="text-5-4">
@@ -979,6 +961,7 @@ h(3)=S(S(S(e))) &#x2026;
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6">Cardinal Number and Axiom of Choice</h2>
 <div class="outline-text-2" id="text-6">
@@ -991,6 +974,7 @@ a one-to-one function from A onto B.
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-6-2" class="outline-3">
 <h3 id="sec-6-2">FINITE SET</h3>
 <div class="outline-text-3" id="text-6-2">
@@ -1032,6 +1016,8 @@ nunmber. Otherwise it is infinite.
   <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
   <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="static/js/custom.js"></script>
 <!-- end footer -->
 </div>
 </body>

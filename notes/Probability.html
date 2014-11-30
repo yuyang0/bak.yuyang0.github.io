@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>概率论与数理统计笔记</title>
-<!-- 2014-08-20 Wed 18:30 -->
+<!-- 2014-11-30 Sun 20:22 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -56,8 +56,6 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -91,7 +89,6 @@
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
 <link rel="shortcut icon" href="static/img/favicon.ico" />
-<script type="text/javascript" src="static/js/custom.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -138,17 +135,14 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script type="text/javascript">window.MathJax || document.write('<script src="static/js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" ><\/script>')</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
 <script type="text/javascript">
-
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
         // First allows browser-native MathML display, second forces HTML/CSS
-            config: ["MMLorHTML.js"], jax: ["input/TeX"],
-        //  jax: ["input/TeX", "output/HTML-CSS"],
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
         extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
                      "TeX/noUndefined.js"],
         tex2jax: {
@@ -197,7 +191,7 @@ for the JavaScript code in this tag.
 
             <li> <a href="/tags.html">Tags</a></li>
 
-            <li> <a href="/rss.xml">RSS</a></li>
+            <li> <a href="/atom.xml">RSS</a></li>
           </ul>
 
           <form id="site-search" method="get" action="https://google.com/search">
@@ -280,6 +274,7 @@ C = AB
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-1-2" class="outline-3">
 <h3 id="sec-1-2">古典概率</h3>
 <div class="outline-text-3" id="text-1-2">
@@ -288,6 +283,7 @@ C = AB
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-1-3" class="outline-3">
 <h3 id="sec-1-3">概率的公理化定义</h3>
 <div class="outline-text-3" id="text-1-3">
@@ -308,7 +304,6 @@ C = AB
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-1-4" class="outline-3">
 <h3 id="sec-1-4">事件</h3>
 <div class="outline-text-3" id="text-1-4">
@@ -328,6 +323,7 @@ C = AB
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-1-5" class="outline-3">
 <h3 id="sec-1-5">加法定律</h3>
 <div class="outline-text-3" id="text-1-5">
@@ -337,6 +333,7 @@ P(A1 + A2 + &#x2026; + An) = P(A1) + P(A2) + &#x2026; P(An)
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-1-6" class="outline-3">
 <h3 id="sec-1-6">条件概率(后验概率)</h3>
 <div class="outline-text-3" id="text-1-6">
@@ -351,6 +348,7 @@ P(A|B) = P(AB)/P(B)
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-1-7" class="outline-3">
 <h3 id="sec-1-7">独立事件与乘法定律</h3>
 <div class="outline-text-3" id="text-1-7">
@@ -370,6 +368,7 @@ P(AB) = P(A) P(B)              ==&gt;乘法定律,独立事件积的概率等于
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-1-8" class="outline-3">
 <h3 id="sec-1-8">全概率公式与贝叶斯公式</h3>
 <div class="outline-text-3" id="text-1-8">
@@ -395,7 +394,6 @@ P(B|A)=P(AB)/P(A) 而 P(AB)=P(A|B)P(B)
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">随机变量的概率</h2>
 <div class="outline-text-2" id="text-2">
@@ -410,6 +408,7 @@ P(B|A)=P(AB)/P(A) 而 P(AB)=P(A|B)P(B)
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-2-2" class="outline-3">
 <h3 id="sec-2-2">离散性随机变量</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -421,6 +420,7 @@ f(x) = x这点的概率
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-2-2-2" class="outline-4">
 <h4 id="sec-2-2-2">概率分布函数</h4>
 <div class="outline-text-4" id="text-2-2-2">
@@ -429,6 +429,7 @@ F(x) = 所有小于等于x 的变量的和
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-2-2-3" class="outline-4">
 <h4 id="sec-2-2-3">离散性随机变量的几个分布</h4>
 <div class="outline-text-4" id="text-2-2-3">
@@ -523,6 +524,7 @@ p又很小, 但是 &lambda;=np 适中,于是 p=&lambda;/n ,根据二项分布:
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-2-2-4" class="outline-4">
 <h4 id="sec-2-2-4">连续性随机变量的几个分布</h4>
 <div class="outline-text-4" id="text-2-2-4">
@@ -569,6 +571,8 @@ p又很小, 但是 &lambda;=np 适中,于是 p=&lambda;/n ,根据二项分布:
   <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
   <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="static/js/custom.js"></script>
 <!-- end footer -->
 </div>
 </body>

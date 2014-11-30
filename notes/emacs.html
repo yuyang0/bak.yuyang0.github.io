@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Emacs笔记</title>
-<!-- 2014-08-20 Wed 18:30 -->
+<!-- 2014-11-30 Sun 20:23 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -56,8 +56,6 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -91,7 +89,6 @@
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
 <link rel="shortcut icon" href="static/img/favicon.ico" />
-<script type="text/javascript" src="static/js/custom.js"></script>
 <script type="text/javascript" src="static/js/emacs-tooltip.js"></script>
 <script type="text/javascript">
 /*
@@ -153,7 +150,7 @@ for the JavaScript code in this tag.
 
             <li> <a href="/tags.html">Tags</a></li>
 
-            <li> <a href="/rss.xml">RSS</a></li>
+            <li> <a href="/atom.xml">RSS</a></li>
           </ul>
 
           <form id="site-search" method="get" action="https://google.com/search">
@@ -278,13 +275,14 @@ gedit /usr/bin/emacs
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #75715E;">#</span><span style="color: #75715E;">!/bin/</span><span style="color: #F92672; font-weight: bold;">bash</span>
-<span style="color: #A6E22E;">export</span> <span style="color: #FD971F;">LC_CTYPE</span>=zh_CN.utf-8
-/usr/bin/emacs.raw <span style="color: #E6DB74;">"$@"</span>
+<pre class="src src-sh"><span style="color: #586e75; font-style: italic;">#</span><span style="color: #586e75; font-style: italic;">!/bin/</span><span style="color: #859900;">bash</span>
+<span style="color: #6c71c4;">export</span> <span style="color: #6c71c4;">LC_CTYPE</span>=zh_CN.utf-8
+/usr/bin/emacs.raw <span style="color: #2aa198;">"$@"</span>
 </pre>
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-1-1-2" class="outline-4">
 <h4 id="sec-1-1-2">交换Control_L与Capslocks</h4>
 <div class="outline-text-4" id="text-1-1-2">
@@ -305,7 +303,6 @@ add Control = Control_R
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-1-2" class="outline-3">
 <h3 id="sec-1-2">auto-complete&#xa0;&#xa0;&#xa0;<span class="tag"><span class="complete">complete</span></span></h3>
 <div class="outline-text-3" id="text-1-2">
@@ -347,7 +344,6 @@ add Control = Control_R
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-1-3" class="outline-3">
 <h3 id="sec-1-3">grep&#xa0;&#xa0;&#xa0;<span class="tag"><span class="grep">grep</span></span></h3>
 <div class="outline-text-3" id="text-1-3">
@@ -374,6 +370,7 @@ wgrep包可以是emacs在grep buffer中直接修改文件内容
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-1-4" class="outline-3">
 <h3 id="sec-1-4">isearch&#xa0;&#xa0;&#xa0;<span class="tag"><span class="isearch">isearch</span></span></h3>
 <div class="outline-text-3" id="text-1-4">
@@ -384,6 +381,7 @@ C-x C-x:可以在isearch之后回到原来的位置
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-1-5" class="outline-3">
 <h3 id="sec-1-5">dired&#xa0;&#xa0;&#xa0;<span class="tag"><span class="dired">dired</span></span></h3>
 <div class="outline-text-3" id="text-1-5">
@@ -469,6 +467,7 @@ C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以�
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-1-6" class="outline-3">
 <h3 id="sec-1-6">ibuffer的快捷键&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ibuffer">ibuffer</span></span></h3>
 <div class="outline-text-3" id="text-1-6">
@@ -510,6 +509,7 @@ C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以�
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-1-7" class="outline-3">
 <h3 id="sec-1-7">cua-mode以及矩形操作的快捷键&#xa0;&#xa0;&#xa0;<span class="tag"><span class="cua">cua</span></span></h3>
 <div class="outline-text-3" id="text-1-7">
@@ -523,6 +523,7 @@ C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以�
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-1-8" class="outline-3">
 <h3 id="sec-1-8">mutiple cursors多光标&#xa0;&#xa0;&#xa0;<span class="tag"><span class="multiple">multiple</span>&#xa0;<span class="cursor">cursor</span></span></h3>
 <div class="outline-text-3" id="text-1-8">
@@ -546,30 +547,30 @@ C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span style="color: #F92672; font-weight: bold;">defvar</span> <span style="color: #FD971F;">jc/mc-search--last-term</span> nil)
+<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span><span style="color: #859900;">defvar</span> <span style="color: #6c71c4;">jc/mc-search--last-term</span> nil<span style="color: #839496;">)</span>
 
-(<span style="color: #F92672; font-weight: bold;">defun</span> <span style="color: #A6E22E;">jc/mc-search</span> (search-command)
-  <span style="color: #75715E;">;; </span><span style="color: #75715E;">Read new search term when not repeated command or applying to fake cursors</span>
-  (<span style="color: #F92672; font-weight: bold;">when</span> (and (not mc--executing-command-for-fake-cursor)
-             (not (eq last-command 'jc/mc-search-forward))
-             (not (eq last-command 'jc/mc-search-backward)))
-    (setq jc/mc-search--last-term (read-from-minibuffer <span style="color: #E6DB74;">"Search(regex): "</span>)))
-  (funcall search-command jc/mc-search--last-term))
+<span style="color: #839496;">(</span><span style="color: #859900;">defun</span> <span style="color: #b58900;">jc/mc-search</span> <span style="color: #2aa198;">(</span>search-command<span style="color: #2aa198;">)</span>
+  <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">Read new search term when not repeated command or applying to fake cursors</span>
+  <span style="color: #2aa198;">(</span><span style="color: #859900;">when</span> <span style="color: #b58900;">(</span>and <span style="color: #859900;">(</span>not mc--executing-command-for-fake-cursor<span style="color: #859900;">)</span>
+             <span style="color: #859900;">(</span>not <span style="color: #268bd2;">(</span>eq last-command <span style="color: #859900;">'</span><span style="color: #268bd2;">jc/mc-search-forward</span><span style="color: #268bd2;">)</span><span style="color: #859900;">)</span>
+             <span style="color: #859900;">(</span>not <span style="color: #268bd2;">(</span>eq last-command <span style="color: #859900;">'</span><span style="color: #268bd2;">jc/mc-search-backward</span><span style="color: #268bd2;">)</span><span style="color: #859900;">)</span><span style="color: #b58900;">)</span>
+    <span style="color: #b58900;">(</span>setq jc/mc-search--last-term <span style="color: #859900;">(</span>read-from-minibuffer <span style="color: #2aa198;">"Search(regex): "</span><span style="color: #859900;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+  <span style="color: #2aa198;">(</span>funcall search-command jc/mc-search--last-term<span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
 
-(<span style="color: #F92672; font-weight: bold;">defun</span> <span style="color: #A6E22E;">jc/mc-search-forward</span> ()
-  <span style="color: #75715E;">"Simplified version of forward search that supports multiple cursors"</span>
-  (interactive)
-  (jc/mc-search 'search-forward-regexp))
+<span style="color: #839496;">(</span><span style="color: #859900;">defun</span> <span style="color: #b58900;">jc/mc-search-forward</span> <span style="color: #2aa198;">()</span>
+  <span style="color: #d33682;">"Simplified version of forward search that supports multiple cursors"</span>
+  <span style="color: #2aa198;">(</span>interactive<span style="color: #2aa198;">)</span>
+  <span style="color: #2aa198;">(</span>jc/mc-search <span style="color: #859900;">'</span><span style="color: #268bd2;">search-forward-regexp</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
 
-(<span style="color: #F92672; font-weight: bold;">defun</span> <span style="color: #A6E22E;">jc/mc-search-backward</span> ()
-  <span style="color: #75715E;">"Simplified version of backward search that supports multiple cursors"</span>
-  (interactive)
-  (jc/mc-search 'search-backward-regexp))
+<span style="color: #839496;">(</span><span style="color: #859900;">defun</span> <span style="color: #b58900;">jc/mc-search-backward</span> <span style="color: #2aa198;">()</span>
+  <span style="color: #d33682;">"Simplified version of backward search that supports multiple cursors"</span>
+  <span style="color: #2aa198;">(</span>interactive<span style="color: #2aa198;">)</span>
+  <span style="color: #2aa198;">(</span>jc/mc-search <span style="color: #859900;">'</span><span style="color: #268bd2;">search-backward-regexp</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
 
-(add-hook 'multiple-cursors-mode-enabled-hook
-          (<span style="color: #F92672; font-weight: bold;">lambda</span>()
-            (local-set-key (kbd <span style="color: #E6DB74;">"C-s"</span>) 'jc/mc-search-forward)
-            (local-set-key (kbd <span style="color: #E6DB74;">"C-r"</span>) 'jc/mc-search-backward)))
+<span style="color: #839496;">(</span>add-hook <span style="color: #859900;">'</span><span style="color: #268bd2;">multiple-cursors-mode-enabled-hook</span>
+          <span style="color: #2aa198;">(</span><span style="color: #859900;">lambda</span><span style="color: #b58900;">()</span>
+            <span style="color: #b58900;">(</span>local-set-key <span style="color: #859900;">(</span>kbd <span style="color: #2aa198;">"C-s"</span><span style="color: #859900;">)</span> <span style="color: #859900;">'</span><span style="color: #268bd2;">jc/mc-search-forward</span><span style="color: #b58900;">)</span>
+            <span style="color: #b58900;">(</span>local-set-key <span style="color: #859900;">(</span>kbd <span style="color: #2aa198;">"C-r"</span><span style="color: #859900;">)</span> <span style="color: #859900;">'</span><span style="color: #268bd2;">jc/mc-search-backward</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
 </pre>
 </div>
 <p>
@@ -577,6 +578,7 @@ C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以�
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-1-9" class="outline-3">
 <h3 id="sec-1-9">ace-jump-mode&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ace">ace</span></span></h3>
 <div class="outline-text-3" id="text-1-9">
@@ -591,6 +593,7 @@ C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以�
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-1-10" class="outline-3">
 <h3 id="sec-1-10">expand region&#xa0;&#xa0;&#xa0;<span class="tag"><span class="expand">expand</span>&#xa0;<span class="region">region</span></span></h3>
 <div class="outline-text-3" id="text-1-10">
@@ -604,6 +607,7 @@ C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以�
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-1-11" class="outline-3">
 <h3 id="sec-1-11">paredit&#xa0;&#xa0;&#xa0;<span class="tag"><span class="paredit">paredit</span></span></h3>
 <div class="outline-text-3" id="text-1-11">
@@ -631,6 +635,7 @@ C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以�
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-1-12" class="outline-3">
 <h3 id="sec-1-12">ido(Interactively Do Things)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ido">ido</span></span></h3>
 <div class="outline-text-3" id="text-1-12">
@@ -683,6 +688,7 @@ C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以�
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-1-12-2" class="outline-4">
 <h4 id="sec-1-12-2">smex&#xa0;&#xa0;&#xa0;<span class="tag"><span class="smex">smex</span></span></h4>
 <div class="outline-text-4" id="text-1-12-2">
@@ -692,6 +698,7 @@ C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以�
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-1-13" class="outline-3">
 <h3 id="sec-1-13">helm(a good alternative to ido)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="helm">helm</span></span></h3>
 <div class="outline-text-3" id="text-1-13">
@@ -727,6 +734,7 @@ C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以�
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-1-13-2" class="outline-4">
 <h4 id="sec-1-13-2">ediff&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ediff">ediff</span></span></h4>
 <div class="outline-text-4" id="text-1-13-2">
@@ -736,6 +744,7 @@ C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以�
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-1-13-3" class="outline-4">
 <h4 id="sec-1-13-3">grep(increment grep)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="grep">grep</span></span></h4>
 <div class="outline-text-4" id="text-1-13-3">
@@ -745,6 +754,7 @@ C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以�
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-1-13-4" class="outline-4">
 <h4 id="sec-1-13-4">locate&#xa0;&#xa0;&#xa0;<span class="tag"><span class="locate">locate</span></span></h4>
 <div class="outline-text-4" id="text-1-13-4">
@@ -754,6 +764,7 @@ M-x helm-locate: 使用操作系统的locate所产生的数据库文件来搜索
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-1-14" class="outline-3">
 <h3 id="sec-1-14">w3m&#xa0;&#xa0;&#xa0;<span class="tag"><span class="w3m">w3m</span>&#xa0;<span class="w3c">w3c</span></span></h3>
 <div class="outline-text-3" id="text-1-14">
@@ -864,6 +875,7 @@ w3m 是一个文本浏览器，它不支持CSS与js，非常适合浏览文本�
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-1-15" class="outline-3">
 <h3 id="sec-1-15">ansi-term&#xa0;&#xa0;&#xa0;<span class="tag"><span class="shell">shell</span>&#xa0;<span class="term">term</span></span></h3>
 <div class="outline-text-3" id="text-1-15">
@@ -878,6 +890,7 @@ w3m 是一个文本浏览器，它不支持CSS与js，非常适合浏览文本�
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-1-16" class="outline-3">
 <h3 id="sec-1-16">magit&#xa0;&#xa0;&#xa0;<span class="tag"><span class="magit">magit</span></span></h3>
 <div class="outline-text-3" id="text-1-16">
@@ -907,6 +920,7 @@ w3m 是一个文本浏览器，它不支持CSS与js，非常适合浏览文本�
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-1-17" class="outline-3">
 <h3 id="sec-1-17">我设置的快捷键以及我常用的快捷键，函数&#xa0;&#xa0;&#xa0;<span class="tag"><span class="shortcut">shortcut</span></span></h3>
 <div class="outline-text-3" id="text-1-17">
@@ -995,6 +1009,7 @@ w3m 是一个文本浏览器，它不支持CSS与js，非常适合浏览文本�
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-1-18" class="outline-3">
 <h3 id="sec-1-18">emacs导出pdf的中文支持&#xa0;&#xa0;&#xa0;<span class="tag"><span class="pdf">pdf</span>&#xa0;<span class="chinese">chinese</span></span></h3>
 <div class="outline-text-3" id="text-1-18">
@@ -1015,12 +1030,12 @@ textlive-latex-extra一定要装,不装会有File `wrapfig.sty' not found.的错
 <li>在emacs配置文件中添加
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span style="color: #75715E;">;; </span><span style="color: #75715E;">org-mode &lt; 8.0</span>
-(setq org-latex-to-pdf-process '(<span style="color: #E6DB74;">"xelatex -interaction nonstopmode %f"</span>
-                                 <span style="color: #E6DB74;">"xelatex -interaction nonstopmode %f"</span>))
-<span style="color: #75715E;">;;  </span><span style="color: #75715E;">org-mode 8.0</span>
-(setq org-latex-pdf-process '(<span style="color: #E6DB74;">"xelatex -interaction nonstopmode %f"</span>
-                              <span style="color: #E6DB74;">"xelatex -interaction nonstopmode %f"</span>))
+<pre class="src src-emacs-lisp"><span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">org-mode &lt; 8.0</span>
+<span style="color: #839496;">(</span>setq org-latex-to-pdf-process <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span><span style="color: #2aa198;">"xelatex -interaction nonstopmode %f"</span>
+                                 <span style="color: #2aa198;">"xelatex -interaction nonstopmode %f"</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
+<span style="color: #586e75; font-style: italic;">;;  </span><span style="color: #586e75; font-style: italic;">org-mode 8.0</span>
+<span style="color: #839496;">(</span>setq org-latex-pdf-process <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span><span style="color: #2aa198;">"xelatex -interaction nonstopmode %f"</span>
+                              <span style="color: #2aa198;">"xelatex -interaction nonstopmode %f"</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
 </pre>
 </div>
 </li>
@@ -1033,6 +1048,7 @@ textlive-latex-extra一定要装,不装会有File `wrapfig.sty' not found.的错
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-1-19" class="outline-3">
 <h3 id="sec-1-19">emacs的奇淫技巧&#xa0;&#xa0;&#xa0;<span class="tag"><span class="face">face</span></span></h3>
 <div class="outline-text-3" id="text-1-19">
@@ -1048,6 +1064,7 @@ textlive-latex-extra一定要装,不装会有File `wrapfig.sty' not found.的错
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-1-20" class="outline-3">
 <h3 id="sec-1-20">我写的一些命令</h3>
 <div class="outline-text-3" id="text-1-20">
@@ -1061,29 +1078,29 @@ M-x package-install request安装
 </p>
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span style="color: #F92672; font-weight: bold;">require</span> '<span style="color: #AE81FF;">request</span>)
-(<span style="color: #F92672; font-weight: bold;">require</span> '<span style="color: #AE81FF;">json</span>)
-(<span style="color: #F92672; font-weight: bold;">defun</span> <span style="color: #A6E22E;">dwz-url-shorten</span> (long-url)
-  <span style="color: #75715E;">"shorten url with dwz.cn"</span>
-  (interactive (list
-                (read-string (format <span style="color: #E6DB74;">"long url (%s): "</span> (thing-at-point 'url))
-                             nil nil (thing-at-point 'url))))
-  (request
-   <span style="color: #E6DB74;">"http://dwz.cn/create.php"</span>
-   <span style="color: #A6E22E;">:type</span> <span style="color: #E6DB74;">"POST"</span>
-   <span style="color: #75715E;">;; </span><span style="color: #75715E;">:data '(("url" . long-url))</span>
-   <span style="color: #A6E22E;">:data</span> (format <span style="color: #E6DB74;">"url=%s"</span> long-url)
-   <span style="color: #75715E;">;; </span><span style="color: #75715E;">:data "key=value&amp;key2=value2"  ; this is equivalent</span>
-   <span style="color: #A6E22E;">:parser</span> 'json-read
-   <span style="color: #A6E22E;">:success</span> (function*
-             (<span style="color: #F92672; font-weight: bold;">lambda</span> (<span style="color: #66D9EF;">&amp;key</span> data <span style="color: #66D9EF;">&amp;allow-other-keys</span>)
-               (<span style="color: #F92672; font-weight: bold;">let</span> ((tinyurl (assoc-default 'tinyurl data))
-                     (url-boundaries (bounds-of-thing-at-point 'url)))
-                 (<span style="color: #F92672; font-weight: bold;">progn</span>
-                   (message <span style="color: #E6DB74;">"%S"</span> tinyurl)
-                   (<span style="color: #F92672; font-weight: bold;">if</span> url-boundaries
-                       (goto-char (cdr url-boundaries)))
-                   (insert <span style="color: #E6DB74;">" "</span> tinyurl <span style="color: #E6DB74;">" "</span>)))))))
+<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span><span style="color: #859900;">require</span> <span style="color: #859900;">'</span><span style="color: #268bd2;">request</span><span style="color: #839496;">)</span>
+<span style="color: #839496;">(</span><span style="color: #859900;">require</span> <span style="color: #859900;">'</span><span style="color: #268bd2;">json</span><span style="color: #839496;">)</span>
+<span style="color: #839496;">(</span><span style="color: #859900;">defun</span> <span style="color: #b58900;">dwz-url-shorten</span> <span style="color: #2aa198;">(</span>long-url<span style="color: #2aa198;">)</span>
+  <span style="color: #d33682;">"shorten url with dwz.cn"</span>
+  <span style="color: #2aa198;">(</span>interactive <span style="color: #b58900;">(</span>list
+                <span style="color: #859900;">(</span>read-string <span style="color: #268bd2;">(</span>format <span style="color: #2aa198;">"long url (%s): "</span> <span style="color: #839496;">(</span>thing-at-point <span style="color: #859900;">'</span><span style="color: #268bd2;">url</span><span style="color: #839496;">)</span><span style="color: #268bd2;">)</span>
+                             nil nil <span style="color: #268bd2;">(</span>thing-at-point <span style="color: #859900;">'</span><span style="color: #268bd2;">url</span><span style="color: #268bd2;">)</span><span style="color: #859900;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+  <span style="color: #2aa198;">(</span>request
+   <span style="color: #2aa198;">"http://dwz.cn/create.php"</span>
+   <span style="color: #6c71c4;">:type</span> <span style="color: #2aa198;">"POST"</span>
+   <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">:data '(("url" . long-url))</span>
+   <span style="color: #6c71c4;">:data</span> <span style="color: #b58900;">(</span>format <span style="color: #2aa198;">"url=%s"</span> long-url<span style="color: #b58900;">)</span>
+   <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">:data "key=value&amp;key2=value2"  ; this is equivalent</span>
+   <span style="color: #6c71c4;">:parser</span> <span style="color: #859900;">'</span><span style="color: #268bd2;">json-read</span>
+   <span style="color: #6c71c4;">:success</span> <span style="color: #b58900;">(</span>function*
+             <span style="color: #859900;">(</span><span style="color: #859900;">lambda</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">&amp;key</span> data <span style="color: #268bd2;">&amp;allow-other-keys</span><span style="color: #268bd2;">)</span>
+               <span style="color: #268bd2;">(</span><span style="color: #859900;">let</span> <span style="color: #839496;">(</span><span style="color: #2aa198;">(</span>tinyurl <span style="color: #b58900;">(</span>assoc-default <span style="color: #859900;">'</span><span style="color: #268bd2;">tinyurl</span> data<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+                     <span style="color: #2aa198;">(</span>url-boundaries <span style="color: #b58900;">(</span>bounds-of-thing-at-point <span style="color: #859900;">'</span><span style="color: #268bd2;">url</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
+                 <span style="color: #839496;">(</span><span style="color: #859900;">progn</span>
+                   <span style="color: #2aa198;">(</span>message <span style="color: #2aa198;">"%S"</span> tinyurl<span style="color: #2aa198;">)</span>
+                   <span style="color: #2aa198;">(</span><span style="color: #859900;">if</span> url-boundaries
+                       <span style="color: #b58900;">(</span>goto-char <span style="color: #859900;">(</span>cdr url-boundaries<span style="color: #859900;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+                   <span style="color: #2aa198;">(</span>insert <span style="color: #2aa198;">" "</span> tinyurl <span style="color: #2aa198;">" "</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span><span style="color: #268bd2;">)</span><span style="color: #859900;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
 </pre>
 </div>
 <p>
@@ -1093,6 +1110,7 @@ dwz.cn,126.am,bit.ly,goo.gl.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-1-21" class="outline-3">
 <h3 id="sec-1-21">elpa&#xa0;&#xa0;&#xa0;<span class="tag"><span class="elpa">elpa</span></span></h3>
 <div class="outline-text-3" id="text-1-21">
@@ -1101,13 +1119,14 @@ dwz.cn,126.am,bit.ly,goo.gl.
 <div class="outline-text-4" id="text-1-21-1">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(setq url-proxy-services '((<span style="color: #E6DB74;">"no_proxy"</span> . <span style="color: #E6DB74;">"work\\.com"</span>)
-                           (<span style="color: #E6DB74;">"http"</span> . <span style="color: #E6DB74;">"localhost:8087"</span>)))
+<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span>setq url-proxy-services <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span><span style="color: #b58900;">(</span><span style="color: #2aa198;">"no_proxy"</span> . <span style="color: #2aa198;">"work\\.com"</span><span style="color: #b58900;">)</span>
+                           <span style="color: #b58900;">(</span><span style="color: #2aa198;">"http"</span> . <span style="color: #2aa198;">"localhost:8087"</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-1-22" class="outline-3">
 <h3 id="sec-1-22">emacsclient&#xa0;&#xa0;&#xa0;<span class="tag"><span class="emacsclient">emacsclient</span>&#xa0;<span class="server">server</span></span></h3>
 <div class="outline-text-3" id="text-1-22">
@@ -1138,6 +1157,7 @@ Frame退出
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-1-23" class="outline-3">
 <h3 id="sec-1-23">org-mode&#xa0;&#xa0;&#xa0;<span class="tag"><span class="org">org</span></span></h3>
 <div class="outline-text-3" id="text-1-23">
@@ -1207,7 +1227,6 @@ org-mode是一个神器,有许多强大的功能
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-1-23-2" class="outline-4">
 <h4 id="sec-1-23-2">org-mode的一些格式化语法</h4>
 <div class="outline-text-4" id="text-1-23-2">
@@ -1246,7 +1265,6 @@ C-c C-c可以在注解与正文之间跳转
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-1-23-3" class="outline-4">
 <h4 id="sec-1-23-3">表格</h4>
 <div class="outline-text-4" id="text-1-23-3">
@@ -1261,6 +1279,7 @@ S-tab可以在表格中正向或者反向的移动，在表格的空白项中输
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-1-23-3-2" class="outline-5">
 <h5 id="sec-1-23-3-2">技巧</h5>
 <div class="outline-text-5" id="text-1-23-3-2">
@@ -1316,6 +1335,7 @@ S-tab可以在表格中正向或者反向的移动，在表格的空白项中输
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-1-23-4" class="outline-4">
 <h4 id="sec-1-23-4">org-mode TODO list</h4>
 <div class="outline-text-4" id="text-1-23-4">
@@ -1324,6 +1344,7 @@ S-tab可以在表格中正向或者反向的移动，在表格的空白项中输
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-1-23-5" class="outline-4">
 <h4 id="sec-1-23-5">org-mode 中的latex代码</h4>
 <div class="outline-text-4" id="text-1-23-5">
@@ -1370,7 +1391,6 @@ $\lambda = np$     ==&gt; $与代码之间不要有空格,第二个$后要跟空
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-1-23-6" class="outline-4">
 <h4 id="sec-1-23-6">org-mode中的latex代码的预览</h4>
 <div class="outline-text-4" id="text-1-23-6">
@@ -1395,9 +1415,9 @@ latex代码预览的原理是先创建一个临时的tex文件, 然后调用late
 <li>有两种方法来预览latex代码: dvipng(默认) 和 imagemagick,可以通过如下代码设置
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(setq org-latex-create-formula-image-program 'dvipng)
-<span style="color: #75715E;">;;; </span><span style="color: #75715E;">or</span>
-(setq org-latex-create-formula-image-program 'imagemagick)
+<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span>setq org-latex-create-formula-image-program <span style="color: #859900;">'</span><span style="color: #268bd2;">dvipng</span><span style="color: #839496;">)</span>
+<span style="color: #586e75; font-style: italic;">;;; </span><span style="color: #586e75; font-style: italic;">or</span>
+<span style="color: #839496;">(</span>setq org-latex-create-formula-image-program <span style="color: #859900;">'</span><span style="color: #268bd2;">imagemagick</span><span style="color: #839496;">)</span>
 </pre>
 </div>
 </li>
@@ -1424,6 +1444,7 @@ latex代码预览的原理是先创建一个临时的tex文件, 然后调用late
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-1-23-7" class="outline-4">
 <h4 id="sec-1-23-7">org-mode中latex导出html时的设置</h4>
 <div class="outline-text-4" id="text-1-23-7">
@@ -1439,11 +1460,11 @@ latex代码预览的原理是先创建一个临时的tex文件, 然后调用late
 </p>
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(setq org-html-mathjax-options '((path <span style="color: #E6DB74;">"http://cdn.mathjax.org/mathjax/latest/Ma</span><span style="color: #F92672; background-color: #272822;">thJax.js?config=TeX-AMS-MML_HTMLorMML"</span><span style="color: #F92672; background-color: #272822;">)</span>
-                                 (scale <span style="color: #E6DB74;">"100"</span>)
-                                 (align <span style="color: #E6DB74;">"center"</span>)
-                                 (indent <span style="color: #E6DB74;">"2em"</span>)
-                                 (mathml t)))
+<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span>setq org-html-mathjax-options <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span><span style="color: #b58900;">(</span>path <span style="color: #2aa198;">"http://cdn.mathjax.org/mathjax/latest/Ma</span><span style="color: #ee82ee; background-color: #333333;">thJax.js?config=TeX-AMS-MML_HTMLorMML"</span><span style="color: #b58900; background-color: #333333;">)</span>
+                                 <span style="color: #b58900;">(</span>scale <span style="color: #2aa198;">"100"</span><span style="color: #b58900;">)</span>
+                                 <span style="color: #b58900;">(</span>align <span style="color: #2aa198;">"center"</span><span style="color: #b58900;">)</span>
+                                 <span style="color: #b58900;">(</span>indent <span style="color: #2aa198;">"2em"</span><span style="color: #b58900;">)</span>
+                                 <span style="color: #b58900;">(</span>mathml t<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
 </pre>
 </div>
 <p>
@@ -1463,6 +1484,7 @@ or
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-1-23-8" class="outline-4">
 <h4 id="sec-1-23-8">org-mode导出project以及html的注意事项</h4>
 <div class="outline-text-4" id="text-1-23-8">
@@ -1479,6 +1501,7 @@ property list
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-1-23-9" class="outline-4">
 <h4 id="sec-1-23-9">Babel</h4>
 <div class="outline-text-4" id="text-1-23-9">
@@ -1555,7 +1578,6 @@ echo $PWD
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-1-23-10" class="outline-4">
 <h4 id="sec-1-23-10">dot</h4>
 <div class="outline-text-4" id="text-1-23-10">
@@ -1566,6 +1588,7 @@ dot语言可以用来画流程图，和Babel结合起来非常方便，这是一
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">emacs让人困惑的问题</h2>
 <div class="outline-text-2" id="text-2">
@@ -1577,6 +1600,7 @@ dot语言可以用来画流程图，和Babel结合起来非常方便，这是一
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-2-2" class="outline-3">
 <h3 id="sec-2-2">whitespace-mode</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -1618,6 +1642,8 @@ dot语言可以用来画流程图，和Babel结合起来非常方便，这是一
   <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
   <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="static/js/custom.js"></script>
 <!-- end footer -->
 </div>
 </body>

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>计算理论导引</title>
-<!-- 2014-08-20 Wed 18:30 -->
+<!-- 2014-11-30 Sun 20:22 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -56,8 +56,6 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -91,7 +89,6 @@
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
 <link rel="shortcut icon" href="static/img/favicon.ico" />
-<script type="text/javascript" src="static/js/custom.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -138,17 +135,14 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script type="text/javascript">window.MathJax || document.write('<script src="static/js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" ><\/script>')</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
 <script type="text/javascript">
-
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
         // First allows browser-native MathML display, second forces HTML/CSS
-            config: ["MMLorHTML.js"], jax: ["input/TeX"],
-        //  jax: ["input/TeX", "output/HTML-CSS"],
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
         extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
                      "TeX/noUndefined.js"],
         tex2jax: {
@@ -197,7 +191,7 @@ for the JavaScript code in this tag.
 
             <li> <a href="/tags.html">Tags</a></li>
 
-            <li> <a href="/rss.xml">RSS</a></li>
+            <li> <a href="/atom.xml">RSS</a></li>
           </ul>
 
           <form id="site-search" method="get" action="https://google.com/search">
@@ -276,6 +270,7 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-1-1-2" class="outline-4">
 <h4 id="sec-1-1-2">DFA</h4>
 <div class="outline-text-4" id="text-1-1-2">
@@ -299,6 +294,7 @@ for the JavaScript code in this tag.
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-1-1-2-2" class="outline-5">
 <h5 id="sec-1-1-2-2">example</h5>
 <div class="outline-text-5" id="text-1-1-2-2">
@@ -321,7 +317,7 @@ for the JavaScript code in this tag.
 </li>
 <li>转移函数 \(\delta\) 由下表给出:
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption class="t-above"><span class="table-number">Table 1:</span> transformation rules</caption>
+<caption align="above"><span class="table-number">Table 1:</span> transformation rules</caption>
 
 <colgroup>
 <col  class="center" />
@@ -368,27 +364,27 @@ for the JavaScript code in this tag.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> (<span style="color: #A6E22E;">m1</span> ss)
-  (<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">tbl</span>                     <span style="color: #75715E;">;</span><span style="color: #75715E;">transformation rules</span>
+<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">m1</span> ss)
+  (<span style="color: #859900;">define</span> <span style="color: #b58900;">tbl</span>                     <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">transformation rules</span>
     '(((q1 . #\0) . q1) ((q1 . #\1) . q2)
       ((q2 . #\0) . q3) ((q2 . #\1) . q2)
       ((q3 . #\0) . q2) ((q3 . #\1) . q2)))
-  (<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">accepted-states</span>
+  (<span style="color: #859900;">define</span> <span style="color: #b58900;">accepted-states</span>
     '(q2))
 
-  (<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">m1-inner</span>
-    (<span style="color: #F92672; font-weight: bold;">let</span> ([state 'q1])
-      (<span style="color: #F92672; font-weight: bold;">lambda</span> (input)
-        (<span style="color: #F92672; font-weight: bold;">cond</span> [(assoc `(,state . ,input) tbl) =&gt;
-               (<span style="color: #F92672; font-weight: bold;">lambda</span> (entry)
+  (<span style="color: #859900;">define</span> <span style="color: #b58900;">m1-inner</span>
+    (<span style="color: #859900;">let</span> ([state 'q1])
+      (<span style="color: #859900;">lambda</span> (input)
+        (<span style="color: #859900;">cond</span> [(assoc `(,state . ,input) tbl) =&gt;
+               (<span style="color: #859900;">lambda</span> (entry)
                  (set! state (cdr entry))
                  (cdr entry))]
-              [else (error 'Error <span style="color: #E6DB74;">"unkown state input pair ~a"</span>
+              [else (error 'Error <span style="color: #2aa198;">"unkown state input pair ~a"</span>
                            `(,state ,input))]))))
 
-  (<span style="color: #F92672; font-weight: bold;">let*</span> ([char-lst (string-&gt;list ss)]
-         [ret (last (<span style="color: #F92672; font-weight: bold;">map</span> m1-inner char-lst))])
-    (<span style="color: #F92672; font-weight: bold;">if</span> (memv ret accepted-states)
+  (<span style="color: #859900;">let*</span> ([char-lst (string-&gt;list ss)]
+         [ret (last (<span style="color: #859900;">map</span> m1-inner char-lst))])
+    (<span style="color: #859900;">if</span> (memv ret accepted-states)
         'accept
         'reject)))
 </pre>
@@ -412,6 +408,7 @@ r<sub>0</sub>, r<sub>1</sub>, &#x2026;, r<sub>n</sub> 满足下述条件:
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-1-1-2-3" class="outline-5">
 <h5 id="sec-1-1-2-3">正则运算</h5>
 <div class="outline-text-5" id="text-1-1-2-3">
@@ -428,6 +425,7 @@ r<sub>0</sub>, r<sub>1</sub>, &#x2026;, r<sub>n</sub> 满足下述条件:
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-1-1-2-4" class="outline-5">
 <h5 id="sec-1-1-2-4">property</h5>
 <div class="outline-text-5" id="text-1-1-2-4">
@@ -443,6 +441,7 @@ r<sub>0</sub>, r<sub>1</sub>, &#x2026;, r<sub>n</sub> 满足下述条件:
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-1-1-3" class="outline-4">
 <h4 id="sec-1-1-3">正则表达式</h4>
 <div class="outline-text-4" id="text-1-1-3">
@@ -469,6 +468,7 @@ some extensions:
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-1-1-4" class="outline-4">
 <h4 id="sec-1-1-4">NFA</h4>
 <div class="outline-text-4" id="text-1-1-4">
@@ -489,7 +489,6 @@ some extensions:
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-1-1-4-2" class="outline-5">
 <h5 id="sec-1-1-4-2">definition</h5>
 <div class="outline-text-5" id="text-1-1-4-2">
@@ -510,6 +509,7 @@ some extensions:
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-1-1-4-3" class="outline-5">
 <h5 id="sec-1-1-4-3">DFN的直观理解</h5>
 <div class="outline-text-5" id="text-1-1-4-3">
@@ -536,7 +536,6 @@ some extensions:
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-1-1-4-4" class="outline-5">
 <h5 id="sec-1-1-4-4">property</h5>
 <div class="outline-text-5" id="text-1-1-4-4">
@@ -564,13 +563,12 @@ Proof: 假设有正则语言 A1 A2, 它们对应的 NFA为 N1 N2, 现在构造�
 </li>
 
 <li>正则语言类在星号运算下封闭
-<img src="static/img/nfa-star.png" alt="nfa-star.png" />
+       <img src="static/img/nfa-star.png" alt="nfa-star.png" />
 </li>
 </ol>
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-1-1-5" class="outline-4">
 <h4 id="sec-1-1-5">非正则语言</h4>
 <div class="outline-text-4" id="text-1-1-5">
@@ -589,6 +587,7 @@ Proof: 假设有正则语言 A1 A2, 它们对应的 NFA为 N1 N2, 现在构造�
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-1-2" class="outline-3">
 <h3 id="sec-1-2">上下文无关语言</h3>
 <div class="outline-text-3" id="text-1-2">
@@ -611,6 +610,7 @@ Proof: 假设有正则语言 A1 A2, 它们对应的 NFA为 N1 N2, 现在构造�
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-1-2-2" class="outline-4">
 <h4 id="sec-1-2-2">乔姆斯基范式</h4>
 <div class="outline-text-4" id="text-1-2-2">
@@ -627,6 +627,7 @@ a是任意的终结符, A,B,c使任意的变元,但是B,C不能是起始变元.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">可计算理论</h2>
 </div>
@@ -664,6 +665,8 @@ a是任意的终结符, A,B,c使任意的变元,但是B,C不能是起始变元.
   <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
   <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="static/js/custom.js"></script>
 <!-- end footer -->
 </div>
 </body>

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>python Descriptor</title>
-<!-- 2014-08-20 Wed 18:31 -->
+<!-- 2014-11-30 Sun 20:23 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -55,8 +55,6 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -90,7 +88,6 @@
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
 <link rel="shortcut icon" href="static/img/favicon.ico" />
-<script type="text/javascript" src="static/js/custom.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -151,7 +148,7 @@ for the JavaScript code in this tag.
 
             <li> <a href="/tags.html">Tags</a></li>
 
-            <li> <a href="/rss.xml">RSS</a></li>
+            <li> <a href="/atom.xml">RSS</a></li>
           </ul>
 
           <form id="site-search" method="get" action="https://google.com/search">
@@ -207,7 +204,6 @@ of how Python works and an appreciation for the elegance of its design.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">Definition and Introduction</h2>
 <div class="outline-text-2" id="text-2">
@@ -235,7 +231,6 @@ flexible set of new tools for everyday Python programs.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">Descriptor Protocol</h2>
 <div class="outline-text-2" id="text-3">
@@ -275,7 +270,6 @@ make it a data descriptor.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">Invoking Descriptors</h2>
 <div class="outline-text-2" id="text-4">
@@ -308,12 +302,12 @@ B._<sub>dict</sub>_<sub>['x']</sub>._<sub>get</sub>_<sub>(None, B)</sub>. In pur
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__getattribute__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, key):
-    <span style="color: #E6DB74;">"Emulate type_getattro() in Objects/typeobject.c"</span>
-    <span style="color: #FD971F;">v</span> = <span style="color: #A6E22E;">object</span>.__getattribute__(<span style="color: #F92672; font-weight: bold;">self</span>, key)
-    <span style="color: #F92672; font-weight: bold;">if</span> <span style="color: #A6E22E;">hasattr</span>(v, <span style="color: #E6DB74;">'__get__'</span>):
-       <span style="color: #F92672; font-weight: bold;">return</span> v.__get__(<span style="color: #AE81FF;">None</span>, <span style="color: #F92672; font-weight: bold;">self</span>)
-    <span style="color: #F92672; font-weight: bold;">return</span> v
+<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">__getattribute__</span>(<span style="color: #859900;">self</span>, key):
+    <span style="color: #2aa198;">"Emulate type_getattro() in Objects/typeobject.c"</span>
+    <span style="color: #6c71c4;">v</span> = <span style="color: #6c71c4;">object</span>.__getattribute__(<span style="color: #859900;">self</span>, key)
+    <span style="color: #859900;">if</span> <span style="color: #6c71c4;">hasattr</span>(v, <span style="color: #2aa198;">'__get__'</span>):
+       <span style="color: #859900;">return</span> v.__get__(<span style="color: #268bd2;">None</span>, <span style="color: #859900;">self</span>)
+    <span style="color: #859900;">return</span> v
 </pre>
 </div>
 
@@ -346,7 +340,7 @@ reverts to a search using object._<sub>getattribute</sub>__.
 <p>
 Note, in Python 2.2, super(B, obj).m() would only invoke <span class="underline"><span class="underline">get</span></span> if m was a data scriptor. In Python 2.3,
 non-data descriptors also get invoked unless an old-style class is involved. The plementation details are in
-super<sub>getattro</sub>() in Objects/typeobject.c and a pure Python equivalent can be found in <a href="http://www.python.org/2.2.3/descrintro.%20%20tml#cooperation">Guido's</a> <a href="http://www.python.org/2.2.3/descrintro.html#cooperation">Tutorial</a>.
+super<sub>getattro</sub>() in Objects/typeobject.c and a pure Python equivalent can be found in <a href="http://www.python.org/2.2.3/descrintro.  tml#cooperation">Guido's</a> <a href="http://www.python.org/2.2.3/descrintro.html#cooperation">Tutorial</a>.
 </p>
 
 <p>
@@ -357,7 +351,6 @@ _<sub>getattribute</sub>_<sub>()</sub>.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">Descriptor Example</h2>
 <div class="outline-text-2" id="text-5">
@@ -368,35 +361,35 @@ descriptor is useful for monitoring just a few chosen attributes:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">RevealAccess</span>(<span style="color: #A6E22E;">object</span>):
-    <span style="color: #E6DB74;">"""A data descriptor that sets and returns values</span>
-<span style="color: #E6DB74;">       normally and prints a message logging their access.</span>
-<span style="color: #E6DB74;">    """</span>
+<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">RevealAccess</span>(<span style="color: #6c71c4;">object</span>):
+    <span style="color: #2aa198;">"""A data descriptor that sets and returns values</span>
+<span style="color: #2aa198;">       normally and prints a message logging their access.</span>
+<span style="color: #2aa198;">    """</span>
 
-    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__init__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, initval=<span style="color: #AE81FF;">None</span>, name=<span style="color: #E6DB74;">'var'</span>):
-        <span style="color: #F92672; font-weight: bold;">self</span>.val = initval
-        <span style="color: #F92672; font-weight: bold;">self</span>.name = name
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">__init__</span>(<span style="color: #859900;">self</span>, initval=<span style="color: #268bd2;">None</span>, name=<span style="color: #2aa198;">'var'</span>):
+        <span style="color: #859900;">self</span>.val = initval
+        <span style="color: #859900;">self</span>.name = name
 
-    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__get__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, obj, objtype):
-        <span style="color: #F92672; font-weight: bold;">print</span> <span style="color: #E6DB74;">'Retrieving'</span>, <span style="color: #F92672; font-weight: bold;">self</span>.name
-        <span style="color: #F92672; font-weight: bold;">return</span> <span style="color: #F92672; font-weight: bold;">self</span>.val
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">__get__</span>(<span style="color: #859900;">self</span>, obj, objtype):
+        <span style="color: #859900;">print</span> <span style="color: #2aa198;">'Retrieving'</span>, <span style="color: #859900;">self</span>.name
+        <span style="color: #859900;">return</span> <span style="color: #859900;">self</span>.val
 
-    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__set__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, obj, val):
-        <span style="color: #F92672; font-weight: bold;">print</span> <span style="color: #E6DB74;">'Updating'</span> , <span style="color: #F92672; font-weight: bold;">self</span>.name
-        <span style="color: #F92672; font-weight: bold;">self</span>.val = val
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">__set__</span>(<span style="color: #859900;">self</span>, obj, val):
+        <span style="color: #859900;">print</span> <span style="color: #2aa198;">'Updating'</span> , <span style="color: #859900;">self</span>.name
+        <span style="color: #859900;">self</span>.val = val
 
-<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">MyClass</span>(<span style="color: #A6E22E;">object</span>):
-    <span style="color: #FD971F;">x</span> = RevealAccess(10, <span style="color: #E6DB74;">'var "x"'</span>)
-    <span style="color: #FD971F;">y</span> = 5
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">MyClass</span>(<span style="color: #6c71c4;">object</span>):
+    <span style="color: #6c71c4;">x</span> = RevealAccess(10, <span style="color: #2aa198;">'var "x"'</span>)
+    <span style="color: #6c71c4;">y</span> = 5
 
-&gt;&gt;&gt; <span style="color: #FD971F;">m</span> = MyClass()
+&gt;&gt;&gt; <span style="color: #6c71c4;">m</span> = MyClass()
 &gt;&gt;&gt; m.x
-Retrieving var <span style="color: #E6DB74;">"x"</span>
+Retrieving var <span style="color: #2aa198;">"x"</span>
 10
-&gt;&gt;&gt; <span style="color: #FD971F;">m.x</span> = 20
-Updating var <span style="color: #E6DB74;">"x"</span>
+&gt;&gt;&gt; <span style="color: #6c71c4;">m.x</span> = 20
+Updating var <span style="color: #2aa198;">"x"</span>
 &gt;&gt;&gt; m.x
-Retrieving var <span style="color: #E6DB74;">"x"</span>
+Retrieving var <span style="color: #2aa198;">"x"</span>
 20
 &gt;&gt;&gt; m.y
 5
@@ -410,7 +403,6 @@ methods are all based on the descriptor protocol.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6">Properties</h2>
 <div class="outline-text-2" id="text-6">
@@ -428,11 +420,11 @@ The documentation shows a typical use to define a managed attribute x:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">C</span>(<span style="color: #A6E22E;">object</span>):
-    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">getx</span>(<span style="color: #F92672; font-weight: bold;">self</span>): <span style="color: #F92672; font-weight: bold;">return</span> <span style="color: #F92672; font-weight: bold;">self</span>.__x
-    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">setx</span>(<span style="color: #F92672; font-weight: bold;">self</span>, value): <span style="color: #F92672; font-weight: bold;">self</span>.__x = value
-    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">delx</span>(<span style="color: #F92672; font-weight: bold;">self</span>): <span style="color: #F92672; font-weight: bold;">del</span> <span style="color: #F92672; font-weight: bold;">self</span>.__x
-    <span style="color: #FD971F;">x</span> = <span style="color: #A6E22E;">property</span>(getx, setx, delx, <span style="color: #E6DB74;">"I'm the 'x' property."</span>)
+<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">C</span>(<span style="color: #6c71c4;">object</span>):
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">getx</span>(<span style="color: #859900;">self</span>): <span style="color: #859900;">return</span> <span style="color: #859900;">self</span>.__x
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">setx</span>(<span style="color: #859900;">self</span>, value): <span style="color: #859900;">self</span>.__x = value
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">delx</span>(<span style="color: #859900;">self</span>): <span style="color: #859900;">del</span> <span style="color: #859900;">self</span>.__x
+    <span style="color: #6c71c4;">x</span> = <span style="color: #6c71c4;">property</span>(getx, setx, delx, <span style="color: #2aa198;">"I'm the 'x' property."</span>)
 </pre>
 </div>
 <p>
@@ -440,31 +432,31 @@ To see how property() is implemented in terms of the descriptor protocol, here i
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Property</span>(<span style="color: #A6E22E;">object</span>):
-    <span style="color: #E6DB74;">"Emulate PyProperty_Type() in Objects/descrobject.c"</span>
+<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Property</span>(<span style="color: #6c71c4;">object</span>):
+    <span style="color: #2aa198;">"Emulate PyProperty_Type() in Objects/descrobject.c"</span>
 
-    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__init__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, fget=<span style="color: #AE81FF;">None</span>, fset=<span style="color: #AE81FF;">None</span>, fdel=<span style="color: #AE81FF;">None</span>, doc=<span style="color: #AE81FF;">None</span>):
-        <span style="color: #F92672; font-weight: bold;">self</span>.fget = fget
-        <span style="color: #F92672; font-weight: bold;">self</span>.fset = fset
-        <span style="color: #F92672; font-weight: bold;">self</span>.fdel = fdel
-        <span style="color: #F92672; font-weight: bold;">self</span>.<span style="color: #A6E22E;">__doc__</span> = doc
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">__init__</span>(<span style="color: #859900;">self</span>, fget=<span style="color: #268bd2;">None</span>, fset=<span style="color: #268bd2;">None</span>, fdel=<span style="color: #268bd2;">None</span>, doc=<span style="color: #268bd2;">None</span>):
+        <span style="color: #859900;">self</span>.fget = fget
+        <span style="color: #859900;">self</span>.fset = fset
+        <span style="color: #859900;">self</span>.fdel = fdel
+        <span style="color: #859900;">self</span>.<span style="color: #6c71c4;">__doc__</span> = doc
 
-    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__get__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, obj, objtype=<span style="color: #AE81FF;">None</span>):
-        <span style="color: #F92672; font-weight: bold;">if</span> obj <span style="color: #F92672; font-weight: bold;">is</span> <span style="color: #AE81FF;">None</span>:
-            <span style="color: #F92672; font-weight: bold;">return</span> <span style="color: #F92672; font-weight: bold;">self</span>
-        <span style="color: #F92672; font-weight: bold;">if</span> <span style="color: #F92672; font-weight: bold;">self</span>.fget <span style="color: #F92672; font-weight: bold;">is</span> <span style="color: #AE81FF;">None</span>:
-            <span style="color: #F92672; font-weight: bold;">raise</span> <span style="color: #66D9EF;">AttributeError</span>, <span style="color: #E6DB74;">"unreadable attribute"</span>
-        <span style="color: #F92672; font-weight: bold;">return</span> <span style="color: #F92672; font-weight: bold;">self</span>.fget(obj)
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">__get__</span>(<span style="color: #859900;">self</span>, obj, objtype=<span style="color: #268bd2;">None</span>):
+        <span style="color: #859900;">if</span> obj <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>:
+            <span style="color: #859900;">return</span> <span style="color: #859900;">self</span>
+        <span style="color: #859900;">if</span> <span style="color: #859900;">self</span>.fget <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>:
+            <span style="color: #859900;">raise</span> <span style="color: #268bd2;">AttributeError</span>, <span style="color: #2aa198;">"unreadable attribute"</span>
+        <span style="color: #859900;">return</span> <span style="color: #859900;">self</span>.fget(obj)
 
-    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__set__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, obj, value):
-        <span style="color: #F92672; font-weight: bold;">if</span> <span style="color: #F92672; font-weight: bold;">self</span>.fset <span style="color: #F92672; font-weight: bold;">is</span> <span style="color: #AE81FF;">None</span>:
-            <span style="color: #F92672; font-weight: bold;">raise</span> <span style="color: #66D9EF;">AttributeError</span>, <span style="color: #E6DB74;">"can't set attribute"</span>
-        <span style="color: #F92672; font-weight: bold;">self</span>.fset(obj, value)
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">__set__</span>(<span style="color: #859900;">self</span>, obj, value):
+        <span style="color: #859900;">if</span> <span style="color: #859900;">self</span>.fset <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>:
+            <span style="color: #859900;">raise</span> <span style="color: #268bd2;">AttributeError</span>, <span style="color: #2aa198;">"can't set attribute"</span>
+        <span style="color: #859900;">self</span>.fset(obj, value)
 
-    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__delete__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, obj):
-        <span style="color: #F92672; font-weight: bold;">if</span> <span style="color: #F92672; font-weight: bold;">self</span>.fdel <span style="color: #F92672; font-weight: bold;">is</span> <span style="color: #AE81FF;">None</span>:
-            <span style="color: #F92672; font-weight: bold;">raise</span> <span style="color: #66D9EF;">AttributeError</span>, <span style="color: #E6DB74;">"can't delete attribute"</span>
-        <span style="color: #F92672; font-weight: bold;">self</span>.fdel(obj)
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">__delete__</span>(<span style="color: #859900;">self</span>, obj):
+        <span style="color: #859900;">if</span> <span style="color: #859900;">self</span>.fdel <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>:
+            <span style="color: #859900;">raise</span> <span style="color: #268bd2;">AttributeError</span>, <span style="color: #2aa198;">"can't delete attribute"</span>
+        <span style="color: #859900;">self</span>.fdel(obj)
 </pre>
 </div>
 <p>
@@ -480,17 +472,18 @@ the value attribute in a property() data descriptor:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Cell</span>(<span style="color: #A6E22E;">object</span>):
+<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Cell</span>(<span style="color: #6c71c4;">object</span>):
     . . .
-    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">getvalue</span>(<span style="color: #F92672; font-weight: bold;">self</span>, obj):
-        <span style="color: #E6DB74;">"Recalculate cell before returning value"</span>
-        <span style="color: #F92672; font-weight: bold;">self</span>.recalc()
-        <span style="color: #F92672; font-weight: bold;">return</span> obj._value
-    <span style="color: #FD971F;">value</span> = <span style="color: #A6E22E;">property</span>(getvalue)
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">getvalue</span>(<span style="color: #859900;">self</span>, obj):
+        <span style="color: #2aa198;">"Recalculate cell before returning value"</span>
+        <span style="color: #859900;">self</span>.recalc()
+        <span style="color: #859900;">return</span> obj._value
+    <span style="color: #6c71c4;">value</span> = <span style="color: #6c71c4;">property</span>(getvalue)
 </pre>
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-7" class="outline-2">
 <h2 id="sec-7">Functions and Methods</h2>
 <div class="outline-text-2" id="text-7">
@@ -513,11 +506,11 @@ whether they are invoked from an object or a class. In pure python, it works lik
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Function</span>(<span style="color: #A6E22E;">object</span>):
+<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Function</span>(<span style="color: #6c71c4;">object</span>):
     . . .
-    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__get__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, obj, objtype=<span style="color: #AE81FF;">None</span>):
-        <span style="color: #E6DB74;">"Simulate func_descr_get() in Objects/funcobject.c"</span>
-        <span style="color: #F92672; font-weight: bold;">return</span> types.MethodType(<span style="color: #F92672; font-weight: bold;">self</span>, obj, objtype)
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">__get__</span>(<span style="color: #859900;">self</span>, obj, objtype=<span style="color: #268bd2;">None</span>):
+        <span style="color: #2aa198;">"Simulate func_descr_get() in Objects/funcobject.c"</span>
+        <span style="color: #859900;">return</span> types.MethodType(<span style="color: #859900;">self</span>, obj, objtype)
 </pre>
 </div>
 <p>
@@ -552,7 +545,6 @@ implementation of instancemethod<sub>call</sub>() is only slightly more complex 
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-8" class="outline-2">
 <h2 id="sec-8">Static Methods and Class Methods</h2>
 <div class="outline-text-2" id="text-8">
@@ -614,14 +606,14 @@ Using the non-data descriptor protocol, a pure Python version of staticmethod() 
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">StaticMethod</span>(<span style="color: #A6E22E;">object</span>):
- <span style="color: #E6DB74;">"Emulate PyStaticMethod_Type() in Objects/funcobject.c"</span>
+<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">StaticMethod</span>(<span style="color: #6c71c4;">object</span>):
+ <span style="color: #2aa198;">"Emulate PyStaticMethod_Type() in Objects/funcobject.c"</span>
 
- <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__init__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, f):
-      <span style="color: #F92672; font-weight: bold;">self</span>.f = f
+ <span style="color: #859900;">def</span> <span style="color: #b58900;">__init__</span>(<span style="color: #859900;">self</span>, f):
+      <span style="color: #859900;">self</span>.f = f
 
- <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__get__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, obj, objtype=<span style="color: #AE81FF;">None</span>):
-      <span style="color: #F92672; font-weight: bold;">return</span> <span style="color: #F92672; font-weight: bold;">self</span>.f
+ <span style="color: #859900;">def</span> <span style="color: #b58900;">__get__</span>(<span style="color: #859900;">self</span>, obj, objtype=<span style="color: #268bd2;">None</span>):
+      <span style="color: #859900;">return</span> <span style="color: #859900;">self</span>.f
 </pre>
 </div>
 <p>
@@ -646,15 +638,15 @@ classmethod dict.fromkeys() creates a new dictionary from a li t of keys. The pu
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">Dict</span>:
+<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Dict</span>:
     . . .
-    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">fromkeys</span>(klass, iterable, value=<span style="color: #AE81FF;">None</span>):
-        <span style="color: #E6DB74;">"Emulate dict_fromkeys() in Objects/dictobject.c"</span>
-        <span style="color: #FD971F;">d</span> = klass()
-        <span style="color: #F92672; font-weight: bold;">for</span> key <span style="color: #F92672; font-weight: bold;">in</span> iterable:
-            <span style="color: #FD971F;">d</span>[key] = value
-        <span style="color: #F92672; font-weight: bold;">return</span> d
-    <span style="color: #FD971F;">fromkeys</span> = <span style="color: #A6E22E;">classmethod</span>(fromkeys)
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">fromkeys</span>(klass, iterable, value=<span style="color: #268bd2;">None</span>):
+        <span style="color: #2aa198;">"Emulate dict_fromkeys() in Objects/dictobject.c"</span>
+        <span style="color: #6c71c4;">d</span> = klass()
+        <span style="color: #859900;">for</span> key <span style="color: #859900;">in</span> iterable:
+            <span style="color: #6c71c4;">d</span>[key] = value
+        <span style="color: #859900;">return</span> d
+    <span style="color: #6c71c4;">fromkeys</span> = <span style="color: #6c71c4;">classmethod</span>(fromkeys)
 </pre>
 </div>
 <p>
@@ -669,18 +661,18 @@ Using the non-data descriptor protocol, a pure Python version of classmethod() w
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">ClassMethod</span>(<span style="color: #A6E22E;">object</span>):
-     <span style="color: #E6DB74;">"Emulate PyClassMethod_Type() in Objects/funcobject.c"</span>
+<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">ClassMethod</span>(<span style="color: #6c71c4;">object</span>):
+     <span style="color: #2aa198;">"Emulate PyClassMethod_Type() in Objects/funcobject.c"</span>
 
-     <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__init__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, f):
-          <span style="color: #F92672; font-weight: bold;">self</span>.f = f
+     <span style="color: #859900;">def</span> <span style="color: #b58900;">__init__</span>(<span style="color: #859900;">self</span>, f):
+          <span style="color: #859900;">self</span>.f = f
 
-     <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__get__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, obj, klass=<span style="color: #AE81FF;">None</span>):
-          <span style="color: #F92672; font-weight: bold;">if</span> klass <span style="color: #F92672; font-weight: bold;">is</span> <span style="color: #AE81FF;">None</span>:
-               <span style="color: #FD971F;">klass</span> = <span style="color: #A6E22E;">type</span>(obj)
-          <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">newfunc</span>(*args):
-               <span style="color: #F92672; font-weight: bold;">return</span> <span style="color: #F92672; font-weight: bold;">self</span>.f(klass, *args)
-          <span style="color: #F92672; font-weight: bold;">return</span> newfunc
+     <span style="color: #859900;">def</span> <span style="color: #b58900;">__get__</span>(<span style="color: #859900;">self</span>, obj, klass=<span style="color: #268bd2;">None</span>):
+          <span style="color: #859900;">if</span> klass <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>:
+               <span style="color: #6c71c4;">klass</span> = <span style="color: #6c71c4;">type</span>(obj)
+          <span style="color: #859900;">def</span> <span style="color: #b58900;">newfunc</span>(*args):
+               <span style="color: #859900;">return</span> <span style="color: #859900;">self</span>.f(klass, *args)
+          <span style="color: #859900;">return</span> newfunc
 </pre>
 </div>
 </div>
@@ -716,6 +708,8 @@ Using the non-data descriptor protocol, a pure Python version of classmethod() w
   <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
   <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="static/js/custom.js"></script>
 <!-- end footer -->
 </div>
 </body>

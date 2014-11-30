@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>wsgi</title>
-<!-- 2014-08-20 Wed 18:31 -->
+<!-- 2014-11-30 Sun 20:23 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -55,8 +55,6 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -90,7 +88,6 @@
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
 <link rel="shortcut icon" href="static/img/favicon.ico" />
-<script type="text/javascript" src="static/js/custom.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -151,7 +148,7 @@ for the JavaScript code in this tag.
 
             <li> <a href="/tags.html">Tags</a></li>
 
-            <li> <a href="/rss.xml">RSS</a></li>
+            <li> <a href="/atom.xml">RSS</a></li>
           </ul>
 
           <form id="site-search" method="get" action="https://google.com/search">
@@ -187,24 +184,24 @@ server，该规范在<a href="http://www.python.org/dev/peps/pep-3333/">EPE 3333
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #FD971F;">HELLO_WORLD</span> = b<span style="color: #E6DB74;">"Hello world!\n"</span>
+<pre class="src src-python"><span style="color: #6c71c4;">HELLO_WORLD</span> = b<span style="color: #2aa198;">"Hello world!\n"</span>
 
-<span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">simple_app</span>(environ, start_response):
-    <span style="color: #FD971F;">status</span> = <span style="color: #E6DB74;">'200 OK'</span>
-    <span style="color: #FD971F;">response_headers</span> = [(<span style="color: #E6DB74;">'Content-type'</span>, <span style="color: #E6DB74;">'text/plain'</span>)]
+<span style="color: #859900;">def</span> <span style="color: #b58900;">simple_app</span>(environ, start_response):
+    <span style="color: #6c71c4;">status</span> = <span style="color: #2aa198;">'200 OK'</span>
+    <span style="color: #6c71c4;">response_headers</span> = [(<span style="color: #2aa198;">'Content-type'</span>, <span style="color: #2aa198;">'text/plain'</span>)]
     start_response(status, response_headers)
-    <span style="color: #F92672; font-weight: bold;">return</span> [HELLO_WORLD]
+    <span style="color: #859900;">return</span> [HELLO_WORLD]
 
-<span style="color: #F92672; font-weight: bold;">class</span> <span style="color: #66D9EF;">AppClass</span>:
-    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__init__</span>(<span style="color: #F92672; font-weight: bold;">self</span>, environ, start_response):
-        <span style="color: #F92672; font-weight: bold;">self</span>.environ = environ
-        <span style="color: #F92672; font-weight: bold;">self</span>.start = start_response
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">AppClass</span>:
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">__init__</span>(<span style="color: #859900;">self</span>, environ, start_response):
+        <span style="color: #859900;">self</span>.environ = environ
+        <span style="color: #859900;">self</span>.start = start_response
 
-    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">__iter__</span>(<span style="color: #F92672; font-weight: bold;">self</span>):
-        <span style="color: #FD971F;">status</span> = <span style="color: #E6DB74;">'200 OK'</span>
-        <span style="color: #FD971F;">response_headers</span> = [(<span style="color: #E6DB74;">'Content-type'</span>, <span style="color: #E6DB74;">'text/plain'</span>)]
-        <span style="color: #F92672; font-weight: bold;">self</span>.start(status, response_headers)
-        <span style="color: #F92672; font-weight: bold;">yield</span> HELLO_WORLD
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">__iter__</span>(<span style="color: #859900;">self</span>):
+        <span style="color: #6c71c4;">status</span> = <span style="color: #2aa198;">'200 OK'</span>
+        <span style="color: #6c71c4;">response_headers</span> = [(<span style="color: #2aa198;">'Content-type'</span>, <span style="color: #2aa198;">'text/plain'</span>)]
+        <span style="color: #859900;">self</span>.start(status, response_headers)
+        <span style="color: #859900;">yield</span> HELLO_WORLD
 </pre>
 </div>
 <p>
@@ -218,6 +215,7 @@ server，该规范在<a href="http://www.python.org/dev/peps/pep-3333/">EPE 3333
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-1-2" class="outline-3">
 <h3 id="sec-1-2">The Server/Gateway Side (web server端)</h3>
 <div class="outline-text-3" id="text-1-2">
@@ -227,80 +225,80 @@ start_response的函数传递给在web应用端定义的可调用对象，然后
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #F92672; font-weight: bold;">import</span> os, sys
+<pre class="src src-python"><span style="color: #859900;">import</span> os, sys
 
-<span style="color: #FD971F;">enc</span>, <span style="color: #FD971F;">esc</span> = sys.getfilesystemencoding(), <span style="color: #E6DB74;">'surrogateescape'</span>
+<span style="color: #6c71c4;">enc</span>, <span style="color: #6c71c4;">esc</span> = sys.getfilesystemencoding(), <span style="color: #2aa198;">'surrogateescape'</span>
 
-<span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">unicode_to_wsgi</span>(u):
-    <span style="color: #75715E;"># </span><span style="color: #75715E;">Convert an environment variable to a WSGI "bytes-as-unicode" string</span>
-    <span style="color: #F92672; font-weight: bold;">return</span> u.encode(enc, esc).decode(<span style="color: #E6DB74;">'iso-8859-1'</span>)
+<span style="color: #859900;">def</span> <span style="color: #b58900;">unicode_to_wsgi</span>(u):
+    <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">Convert an environment variable to a WSGI "bytes-as-unicode" string</span>
+    <span style="color: #859900;">return</span> u.encode(enc, esc).decode(<span style="color: #2aa198;">'iso-8859-1'</span>)
 
-<span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">wsgi_to_bytes</span>(s):
-    <span style="color: #F92672; font-weight: bold;">return</span> s.encode(<span style="color: #E6DB74;">'iso-8859-1'</span>)
+<span style="color: #859900;">def</span> <span style="color: #b58900;">wsgi_to_bytes</span>(s):
+    <span style="color: #859900;">return</span> s.encode(<span style="color: #2aa198;">'iso-8859-1'</span>)
 
-<span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">run_with_cgi</span>(application):
-    <span style="color: #FD971F;">environ</span> = {k: unicode_to_wsgi(v) <span style="color: #F92672; font-weight: bold;">for</span> k,v <span style="color: #F92672; font-weight: bold;">in</span> os.environ.items()}
-    <span style="color: #FD971F;">environ</span>[<span style="color: #E6DB74;">'wsgi.input'</span>]        = sys.stdin.<span style="color: #A6E22E;">buffer</span>
-    <span style="color: #FD971F;">environ</span>[<span style="color: #E6DB74;">'wsgi.errors'</span>]       = sys.stderr
-    <span style="color: #FD971F;">environ</span>[<span style="color: #E6DB74;">'wsgi.version'</span>]      = (1, 0)
-    <span style="color: #FD971F;">environ</span>[<span style="color: #E6DB74;">'wsgi.multithread'</span>]  = <span style="color: #AE81FF;">False</span>
-    <span style="color: #FD971F;">environ</span>[<span style="color: #E6DB74;">'wsgi.multiprocess'</span>] = <span style="color: #AE81FF;">True</span>
-    <span style="color: #FD971F;">environ</span>[<span style="color: #E6DB74;">'wsgi.run_once'</span>]     = <span style="color: #AE81FF;">True</span>
+<span style="color: #859900;">def</span> <span style="color: #b58900;">run_with_cgi</span>(application):
+    <span style="color: #6c71c4;">environ</span> = {k: unicode_to_wsgi(v) <span style="color: #859900;">for</span> k,v <span style="color: #859900;">in</span> os.environ.items()}
+    <span style="color: #6c71c4;">environ</span>[<span style="color: #2aa198;">'wsgi.input'</span>]        = sys.stdin.<span style="color: #6c71c4;">buffer</span>
+    <span style="color: #6c71c4;">environ</span>[<span style="color: #2aa198;">'wsgi.errors'</span>]       = sys.stderr
+    <span style="color: #6c71c4;">environ</span>[<span style="color: #2aa198;">'wsgi.version'</span>]      = (1, 0)
+    <span style="color: #6c71c4;">environ</span>[<span style="color: #2aa198;">'wsgi.multithread'</span>]  = <span style="color: #268bd2;">False</span>
+    <span style="color: #6c71c4;">environ</span>[<span style="color: #2aa198;">'wsgi.multiprocess'</span>] = <span style="color: #268bd2;">True</span>
+    <span style="color: #6c71c4;">environ</span>[<span style="color: #2aa198;">'wsgi.run_once'</span>]     = <span style="color: #268bd2;">True</span>
 
-    <span style="color: #F92672; font-weight: bold;">if</span> environ.get(<span style="color: #E6DB74;">'HTTPS'</span>, <span style="color: #E6DB74;">'off'</span>) <span style="color: #F92672; font-weight: bold;">in</span> (<span style="color: #E6DB74;">'on'</span>, <span style="color: #E6DB74;">'1'</span>):
-        <span style="color: #FD971F;">environ</span>[<span style="color: #E6DB74;">'wsgi.url_scheme'</span>] = <span style="color: #E6DB74;">'https'</span>
-    <span style="color: #F92672; font-weight: bold;">else</span>:
-        <span style="color: #FD971F;">environ</span>[<span style="color: #E6DB74;">'wsgi.url_scheme'</span>] = <span style="color: #E6DB74;">'http'</span>
+    <span style="color: #859900;">if</span> environ.get(<span style="color: #2aa198;">'HTTPS'</span>, <span style="color: #2aa198;">'off'</span>) <span style="color: #859900;">in</span> (<span style="color: #2aa198;">'on'</span>, <span style="color: #2aa198;">'1'</span>):
+        <span style="color: #6c71c4;">environ</span>[<span style="color: #2aa198;">'wsgi.url_scheme'</span>] = <span style="color: #2aa198;">'https'</span>
+    <span style="color: #859900;">else</span>:
+        <span style="color: #6c71c4;">environ</span>[<span style="color: #2aa198;">'wsgi.url_scheme'</span>] = <span style="color: #2aa198;">'http'</span>
 
-    <span style="color: #FD971F;">headers_set</span> = []
-    <span style="color: #FD971F;">headers_sent</span> = []
+    <span style="color: #6c71c4;">headers_set</span> = []
+    <span style="color: #6c71c4;">headers_sent</span> = []
 
-    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">write</span>(data):
-        <span style="color: #FD971F;">out</span> = sys.stdout.<span style="color: #A6E22E;">buffer</span>
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">write</span>(data):
+        <span style="color: #6c71c4;">out</span> = sys.stdout.<span style="color: #6c71c4;">buffer</span>
 
-        <span style="color: #F92672; font-weight: bold;">if</span> <span style="color: #F92672; font-weight: bold;">not</span> headers_set:
-            <span style="color: #F92672; font-weight: bold;">raise</span> <span style="color: #66D9EF;">AssertionError</span>(<span style="color: #E6DB74;">"write() before start_response()"</span>)
+        <span style="color: #859900;">if</span> <span style="color: #859900;">not</span> headers_set:
+            <span style="color: #859900;">raise</span> <span style="color: #268bd2;">AssertionError</span>(<span style="color: #2aa198;">"write() before start_response()"</span>)
 
-        <span style="color: #F92672; font-weight: bold;">elif</span> <span style="color: #F92672; font-weight: bold;">not</span> headers_sent:
-            <span style="color: #75715E;"># </span><span style="color: #75715E;">Before the first output, send the stored headers</span>
-            <span style="color: #FD971F;">status</span>, <span style="color: #FD971F;">response_headers</span> = <span style="color: #FD971F;">headers_sent</span>[:] = headers_set
-            out.write(wsgi_to_bytes(<span style="color: #E6DB74;">'Status: %s\r\n'</span> % status))
-            <span style="color: #F92672; font-weight: bold;">for</span> header <span style="color: #F92672; font-weight: bold;">in</span> response_headers:
-                out.write(wsgi_to_bytes(<span style="color: #E6DB74;">'%s: %s\r\n'</span> % header))
-                out.write(wsgi_to_bytes(<span style="color: #E6DB74;">'\r\n'</span>))
+        <span style="color: #859900;">elif</span> <span style="color: #859900;">not</span> headers_sent:
+            <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">Before the first output, send the stored headers</span>
+            <span style="color: #6c71c4;">status</span>, <span style="color: #6c71c4;">response_headers</span> = <span style="color: #6c71c4;">headers_sent</span>[:] = headers_set
+            out.write(wsgi_to_bytes(<span style="color: #2aa198;">'Status: %s\r\n'</span> % status))
+            <span style="color: #859900;">for</span> header <span style="color: #859900;">in</span> response_headers:
+                out.write(wsgi_to_bytes(<span style="color: #2aa198;">'%s: %s\r\n'</span> % header))
+                out.write(wsgi_to_bytes(<span style="color: #2aa198;">'\r\n'</span>))
 
         out.write(data)
         out.flush()
 
-    <span style="color: #F92672; font-weight: bold;">def</span> <span style="color: #A6E22E;">start_response</span>(status, response_headers, exc_info=<span style="color: #AE81FF;">None</span>):
-        <span style="color: #F92672; font-weight: bold;">if</span> exc_info:
-            <span style="color: #F92672; font-weight: bold;">try</span>:
-                <span style="color: #F92672; font-weight: bold;">if</span> headers_sent:
-                    <span style="color: #75715E;"># </span><span style="color: #75715E;">Re-raise original exception if headers sent</span>
-                    <span style="color: #F92672; font-weight: bold;">raise</span> exc_info[1].with_traceback(exc_info[2])
-                <span style="color: #F92672; font-weight: bold;">finally</span>:
-                    <span style="color: #FD971F;">exc_info</span> = <span style="color: #AE81FF;">None</span>     <span style="color: #75715E;"># </span><span style="color: #75715E;">avoid dangling circular ref</span>
-                <span style="color: #F92672; font-weight: bold;">elif</span> headers_set:
-                    <span style="color: #F92672; font-weight: bold;">raise</span> <span style="color: #66D9EF;">AssertionError</span>(<span style="color: #E6DB74;">"Headers already set!"</span>)
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">start_response</span>(status, response_headers, exc_info=<span style="color: #268bd2;">None</span>):
+        <span style="color: #859900;">if</span> exc_info:
+            <span style="color: #859900;">try</span>:
+                <span style="color: #859900;">if</span> headers_sent:
+                    <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">Re-raise original exception if headers sent</span>
+                    <span style="color: #859900;">raise</span> exc_info[1].with_traceback(exc_info[2])
+                <span style="color: #859900;">finally</span>:
+                    <span style="color: #6c71c4;">exc_info</span> = <span style="color: #268bd2;">None</span>     <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">avoid dangling circular ref</span>
+                <span style="color: #859900;">elif</span> headers_set:
+                    <span style="color: #859900;">raise</span> <span style="color: #268bd2;">AssertionError</span>(<span style="color: #2aa198;">"Headers already set!"</span>)
 
-        <span style="color: #FD971F;">headers_set</span>[:] = [status, response_headers]
+        <span style="color: #6c71c4;">headers_set</span>[:] = [status, response_headers]
 
-        <span style="color: #75715E;"># </span><span style="color: #75715E;">Note: error checking on the headers should happen here,</span>
-        <span style="color: #75715E;"># </span><span style="color: #75715E;">*after* the headers are set.  That way, if an error</span>
-        <span style="color: #75715E;"># </span><span style="color: #75715E;">occurs, start_response can only be re-called with</span>
-        <span style="color: #75715E;"># </span><span style="color: #75715E;">exc_info set.</span>
+        <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">Note: error checking on the headers should happen here,</span>
+        <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">*after* the headers are set.  That way, if an error</span>
+        <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">occurs, start_response can only be re-called with</span>
+        <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">exc_info set.</span>
 
-        <span style="color: #F92672; font-weight: bold;">return</span> write
+        <span style="color: #859900;">return</span> write
 
-    <span style="color: #FD971F;">result</span> = application(environ, start_response)
-    <span style="color: #F92672; font-weight: bold;">try</span>:
-        <span style="color: #F92672; font-weight: bold;">for</span> data <span style="color: #F92672; font-weight: bold;">in</span> result:
-            <span style="color: #F92672; font-weight: bold;">if</span> data:    <span style="color: #75715E;"># </span><span style="color: #75715E;">don't send headers until body appears</span>
+    <span style="color: #6c71c4;">result</span> = application(environ, start_response)
+    <span style="color: #859900;">try</span>:
+        <span style="color: #859900;">for</span> data <span style="color: #859900;">in</span> result:
+            <span style="color: #859900;">if</span> data:    <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">don't send headers until body appears</span>
                 write(data)
-        <span style="color: #F92672; font-weight: bold;">if</span> <span style="color: #F92672; font-weight: bold;">not</span> headers_sent:
-            write(<span style="color: #E6DB74;">''</span>)   <span style="color: #75715E;"># </span><span style="color: #75715E;">send headers now if body was empty</span>
-    <span style="color: #F92672; font-weight: bold;">finally</span>:
-        <span style="color: #F92672; font-weight: bold;">if</span> <span style="color: #A6E22E;">hasattr</span>(result, <span style="color: #E6DB74;">'close'</span>):
+        <span style="color: #859900;">if</span> <span style="color: #859900;">not</span> headers_sent:
+            write(<span style="color: #2aa198;">''</span>)   <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">send headers now if body was empty</span>
+    <span style="color: #859900;">finally</span>:
+        <span style="color: #859900;">if</span> <span style="color: #6c71c4;">hasattr</span>(result, <span style="color: #2aa198;">'close'</span>):
             result.close()
 </pre>
 </div>
@@ -357,6 +355,8 @@ web应用端就可以可选的将内容写入客户度,本例的web应用端没�
   <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
   <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="static/js/custom.js"></script>
 <!-- end footer -->
 </div>
 </body>

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Continuation</title>
-<!-- 2014-08-20 Wed 18:31 -->
+<!-- 2014-11-30 Sun 20:23 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -56,8 +56,6 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -91,7 +89,6 @@
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
 <link rel="shortcut icon" href="static/img/favicon.ico" />
-<script type="text/javascript" src="static/js/custom.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -152,7 +149,7 @@ for the JavaScript code in this tag.
 
             <li> <a href="/tags.html">Tags</a></li>
 
-            <li> <a href="/rss.xml">RSS</a></li>
+            <li> <a href="/atom.xml">RSS</a></li>
           </ul>
 
           <form id="site-search" method="get" action="https://google.com/search">
@@ -203,8 +200,8 @@ procedure就是 <code>k^</code> , 还有 <code>lambda</code> 是用来构建普�
 部分)下面举个例子:
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">k</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (x y)
+<pre class="src src-scheme">(<span style="color: #859900;">define</span> <span style="color: #b58900;">k</span>
+  (<span style="color: #859900;">lambda</span> (x y)
     (+ x y)))
 </pre>
 </div>
@@ -223,8 +220,8 @@ procedure就是 <code>k^</code> , 还有 <code>lambda</code> 是用来构建普�
 <li>scheme的 call/cc
 <div class="org-src-container">
 
-<pre class="src src-scheme">(+ 2 (<span style="color: #F92672; font-weight: bold;">call/cc</span>
-      (<span style="color: #F92672; font-weight: bold;">lambda</span> (k^)
+<pre class="src src-scheme">(+ 2 (<span style="color: #859900;">call/cc</span>
+      (<span style="color: #859900;">lambda</span> (k^)
         (* 5 (k^ 4)))))
 </pre>
 </div>
@@ -244,7 +241,7 @@ procedure就是 <code>k^</code> , 还有 <code>lambda</code> 是用来构建普�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">lambda</span> (v)
+<pre class="src src-scheme">(<span style="color: #859900;">lambda</span> (v)
   (+ 2 v))
 </pre>
 </div>
@@ -274,10 +271,10 @@ data context.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">call/cc</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (k)                           <span style="color: #75715E;">;</span><span style="color: #75715E;">k is the continuation</span>
+<pre class="src src-scheme">(<span style="color: #859900;">call/cc</span>
+  (<span style="color: #859900;">lambda</span> (k)                           <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">k is the continuation</span>
     (* 5 (k 4))))
-<span style="color: #75715E;">;;; </span><span style="color: #75715E;">the result is 4</span>
+<span style="color: #586e75; font-style: italic;">;;; </span><span style="color: #586e75; font-style: italic;">the result is 4</span>
 </pre>
 </div>
 <p>
@@ -285,10 +282,10 @@ data context.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(let/cc k                               <span style="color: #75715E;">;</span><span style="color: #75715E;">k is the continuation</span>
+<pre class="src src-scheme">(let/cc k                               <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">k is the continuation</span>
         body)
-<span style="color: #75715E;">;;; </span><span style="color: #75715E;">identical</span>
-(<span style="color: #F92672; font-weight: bold;">call/cc</span> (<span style="color: #F92672; font-weight: bold;">lambda</span> (k)                    <span style="color: #75715E;">;</span><span style="color: #75715E;">k is the continuation</span>
+<span style="color: #586e75; font-style: italic;">;;; </span><span style="color: #586e75; font-style: italic;">identical</span>
+(<span style="color: #859900;">call/cc</span> (<span style="color: #859900;">lambda</span> (k)                    <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">k is the continuation</span>
            body))
 </pre>
 </div>
@@ -301,21 +298,21 @@ data context.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">call/cc</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (k)
-    (* 5 4)))                           <span style="color: #75715E;">;</span><span style="color: #75715E;">return 20</span>
+<pre class="src src-scheme">(<span style="color: #859900;">call/cc</span>
+  (<span style="color: #859900;">lambda</span> (k)
+    (* 5 4)))                           <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">return 20</span>
 
 (+ 2
-   (<span style="color: #F92672; font-weight: bold;">call/cc</span>
-    (<span style="color: #F92672; font-weight: bold;">lambda</span> (k)
-      (* 5 (k 4)))))                    <span style="color: #75715E;">;</span><span style="color: #75715E;">return 6</span>
+   (<span style="color: #859900;">call/cc</span>
+    (<span style="color: #859900;">lambda</span> (k)
+      (* 5 (k 4)))))                    <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">return 6</span>
 
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">return</span> #f)
-(+ 1 (<span style="color: #F92672; font-weight: bold;">call/cc</span>
-      (<span style="color: #F92672; font-weight: bold;">lambda</span> (cont)
+(<span style="color: #859900;">define</span> <span style="color: #b58900;">return</span> #f)
+(+ 1 (<span style="color: #859900;">call/cc</span>
+      (<span style="color: #859900;">lambda</span> (cont)
         (set! return cont)
-        1)))                            <span style="color: #75715E;">;</span><span style="color: #75715E;">return 2</span>
-(return 22)                             <span style="color: #75715E;">;</span><span style="color: #75715E;">return 23</span>
+        1)))                            <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">return 2</span>
+(return 22)                             <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">return 23</span>
 </pre>
 </div>
 <p>
@@ -323,8 +320,8 @@ data context.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(((<span style="color: #F92672; font-weight: bold;">call/cc</span> (<span style="color: #F92672; font-weight: bold;">lambda</span> (k) k))
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (x) x)) <span style="color: #E6DB74;">"HEY!"</span>)
+<pre class="src src-scheme">(((<span style="color: #859900;">call/cc</span> (<span style="color: #859900;">lambda</span> (k) k))
+  (<span style="color: #859900;">lambda</span> (x) x)) <span style="color: #2aa198;">"HEY!"</span>)
 </pre>
 </div>
 <p>
@@ -334,9 +331,9 @@ data context.
 
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">lambda</span> (val)
+<pre class="src src-scheme">(<span style="color: #859900;">lambda</span> (val)
   ((val
-    (<span style="color: #F92672; font-weight: bold;">lambda</span> (x) x)) <span style="color: #E6DB74;">"HEY!"</span>))
+    (<span style="color: #859900;">lambda</span> (x) x)) <span style="color: #2aa198;">"HEY!"</span>))
 </pre>
 </div>
 <p>
@@ -346,6 +343,7 @@ escape procedure,所以上面的表达式又等价于 <code>(cont (lambda(x) x))
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-1-2" class="outline-3">
 <h3 id="sec-1-2">应用</h3>
 <div class="outline-text-3" id="text-1-2">
@@ -353,9 +351,9 @@ escape procedure,所以上面的表达式又等价于 <code>(cont (lambda(x) x))
 <li>BREAK与RESUME, 通过BREAK来暂停, 通过RESUME来从暂停的位置启动.
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">BREAK</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (message)
-    (<span style="color: #F92672; font-weight: bold;">call/cc</span> (<span style="color: #F92672; font-weight: bold;">lambda</span> (k^)
+<pre class="src src-scheme">(<span style="color: #859900;">define</span> <span style="color: #b58900;">BREAK</span>
+  (<span style="color: #859900;">lambda</span> (message)
+    (<span style="color: #859900;">call/cc</span> (<span style="color: #859900;">lambda</span> (k^)
                (set! RESUME K^)
                ((lambda^ (x) x) message)))))
 </pre>
@@ -372,9 +370,9 @@ escape procedure,所以上面的表达式又等价于 <code>(cont (lambda(x) x))
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> (<span style="color: #A6E22E;">always-fail</span> n)
-    (with-handlers ([even? (<span style="color: #F92672; font-weight: bold;">lambda</span> (v) 'even)]
-                    [positive? (<span style="color: #F92672; font-weight: bold;">lambda</span> (v) 'positive)])
+<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">always-fail</span> n)
+    (with-handlers ([even? (<span style="color: #859900;">lambda</span> (v) 'even)]
+                    [positive? (<span style="color: #859900;">lambda</span> (v) 'positive)])
       (raise n)))
 </pre>
 </div>
@@ -384,25 +382,25 @@ let/cc中, 调用raise实际就是调用continuation
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">convert</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (exp)
+<pre class="src src-scheme">(<span style="color: #859900;">define</span> <span style="color: #b58900;">convert</span>
+  (<span style="color: #859900;">lambda</span> (exp)
     (match exp
            [`(with-handlers ([,preds ,handlers] ...)
                             ,body ...)
-            `(<span style="color: #F92672; font-weight: bold;">let</span> ([ret (let/cc k^
-                                ,@(<span style="color: #F92672; font-weight: bold;">map</span> convert body))])
-               (<span style="color: #F92672; font-weight: bold;">cond</span>
-                ,@(<span style="color: #F92672; font-weight: bold;">map</span> (<span style="color: #F92672; font-weight: bold;">lambda</span> (p h) `[(,p ret) (,h ret)]) preds handlers)
+            `(<span style="color: #859900;">let</span> ([ret (let/cc k^
+                                ,@(<span style="color: #859900;">map</span> convert body))])
+               (<span style="color: #859900;">cond</span>
+                ,@(<span style="color: #859900;">map</span> (<span style="color: #859900;">lambda</span> (p h) `[(,p ret) (,h ret)]) preds handlers)
                 ))]
            [`(raise ,val) `(k^ ,val)]
-           [`(<span style="color: #F92672; font-weight: bold;">lambda</span> (,uvar ...) ,body ...)
-            `(<span style="color: #F92672; font-weight: bold;">lambda</span> (,@uvar)
-               ,@(<span style="color: #F92672; font-weight: bold;">map</span> convert body))]
+           [`(<span style="color: #859900;">lambda</span> (,uvar ...) ,body ...)
+            `(<span style="color: #859900;">lambda</span> (,@uvar)
+               ,@(<span style="color: #859900;">map</span> convert body))]
            [`(,f ,v ...)
             `(,(convert f)
-              ,@(<span style="color: #F92672; font-weight: bold;">map</span> convert v))]
-           [`(<span style="color: #F92672; font-weight: bold;">if</span> ,test ,conseq ,alt)
-            `(<span style="color: #F92672; font-weight: bold;">if</span> ,(convert test) ,(convert conseq) ,(convert alt))]
+              ,@(<span style="color: #859900;">map</span> convert v))]
+           [`(<span style="color: #859900;">if</span> ,test ,conseq ,alt)
+            `(<span style="color: #859900;">if</span> ,(convert test) ,(convert conseq) ,(convert alt))]
            [x x])))
 </pre>
 </div>
@@ -412,16 +410,16 @@ let/cc中, 调用raise实际就是调用continuation
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(convert '(with-handlers ([even? (<span style="color: #F92672; font-weight: bold;">lambda</span> (v) 'even)]
-                          [positive? (<span style="color: #F92672; font-weight: bold;">lambda</span> (v) 'positive)])
+<pre class="src src-scheme">(convert '(with-handlers ([even? (<span style="color: #859900;">lambda</span> (v) 'even)]
+                          [positive? (<span style="color: #859900;">lambda</span> (v) 'positive)])
                          1
                          (raise 11)
                          2))
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">=&gt;</span>
-<span style="color: #75715E;">;; </span><span style="color: #75715E;">'(let ((ret (let/cc k^ 1 (k^ 11) 2)))</span>
-<span style="color: #75715E;">;;    </span><span style="color: #75715E;">(cond</span>
-<span style="color: #75715E;">;;     </span><span style="color: #75715E;">((even? ret) ((lambda (v) 'even) ret))</span>
-<span style="color: #75715E;">;;     </span><span style="color: #75715E;">((positive? ret) ((lambda (v) 'positive) ret))))</span>
+<span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">=&gt;</span>
+<span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">'(let ((ret (let/cc k^ 1 (k^ 11) 2)))</span>
+<span style="color: #586e75; font-style: italic;">;;    </span><span style="color: #586e75; font-style: italic;">(cond</span>
+<span style="color: #586e75; font-style: italic;">;;     </span><span style="color: #586e75; font-style: italic;">((even? ret) ((lambda (v) 'even) ret))</span>
+<span style="color: #586e75; font-style: italic;">;;     </span><span style="color: #586e75; font-style: italic;">((positive? ret) ((lambda (v) 'positive) ret))))</span>
 </pre>
 </div>
 <p>
@@ -436,6 +434,7 @@ let/cc中, 调用raise实际就是调用continuation
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">CPS</h2>
 <div class="outline-text-2" id="text-2">
@@ -454,40 +453,40 @@ let/cc中, 调用raise实际就是调用continuation
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define-syntax</span> <span style="color: #FD971F;">CPS</span>
-  (<span style="color: #F92672; font-weight: bold;">syntax-rules</span> ()
-    [(_ (+ e1 e2))          <span style="color: #75715E;">; </span><span style="color: #75715E;">other binary operators(- * / etc) are similar to +</span>
-     (<span style="color: #F92672; font-weight: bold;">lambda</span> (k^)
+<pre class="src src-scheme">(<span style="color: #859900;">define-syntax</span> <span style="color: #6c71c4;">CPS</span>
+  (<span style="color: #859900;">syntax-rules</span> ()
+    [(_ (+ e1 e2))          <span style="color: #586e75; font-style: italic;">; </span><span style="color: #586e75; font-style: italic;">other binary operators(- * / etc) are similar to +</span>
+     (<span style="color: #859900;">lambda</span> (k^)
        ((CPS e1)
-        (<span style="color: #F92672; font-weight: bold;">lambda</span> (v1)
+        (<span style="color: #859900;">lambda</span> (v1)
           ((CPS e2)
-           (<span style="color: #F92672; font-weight: bold;">lambda</span> (v2)
+           (<span style="color: #859900;">lambda</span> (v2)
              (k^ (+ v1 v2)))))))]
-    [(_ (zero? exp))        <span style="color: #75715E;">;</span><span style="color: #75715E;">other unary operators(number?, string? etc) are sim</span><span style="color: #F92672; background-color: #272822;">ilar to zero?</span>
-     (<span style="color: #F92672; font-weight: bold;">lambda</span> (k^)
+    [(_ (zero? exp))        <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">other unary operators(number?, string? etc) are sim</span><span style="color: #ee82ee; background-color: #333333; font-style: italic;">ilar to zero?</span>
+     (<span style="color: #859900;">lambda</span> (k^)
        ((CPS exp)
-        (<span style="color: #F92672; font-weight: bold;">lambda</span> (val)
+        (<span style="color: #859900;">lambda</span> (val)
           (k^ (zero? val)))))]
-    [(_ (<span style="color: #F92672; font-weight: bold;">if</span> test conseq alt))
-     (<span style="color: #F92672; font-weight: bold;">lambda</span> (k^)
+    [(_ (<span style="color: #859900;">if</span> test conseq alt))
+     (<span style="color: #859900;">lambda</span> (k^)
        ((CPS test)
-        (<span style="color: #F92672; font-weight: bold;">lambda</span> (v)
-          (<span style="color: #F92672; font-weight: bold;">if</span> v
+        (<span style="color: #859900;">lambda</span> (v)
+          (<span style="color: #859900;">if</span> v
               ((CPS conseq) k^)
               ((CPS alt) k^)))))]
-    [(_ (<span style="color: #F92672; font-weight: bold;">lambda</span> (x) body))
-     (<span style="color: #F92672; font-weight: bold;">lambda</span> (k^)
-       (k^ (<span style="color: #F92672; font-weight: bold;">lambda</span> (x)
-             (<span style="color: #F92672; font-weight: bold;">lambda</span> (k)
+    [(_ (<span style="color: #859900;">lambda</span> (x) body))
+     (<span style="color: #859900;">lambda</span> (k^)
+       (k^ (<span style="color: #859900;">lambda</span> (x)
+             (<span style="color: #859900;">lambda</span> (k)
                ((CPS body) k)))))]
     [(_ (app arg))
-     (<span style="color: #F92672; font-weight: bold;">lambda</span> (k^)
+     (<span style="color: #859900;">lambda</span> (k^)
        ((CPS app)
-        (<span style="color: #F92672; font-weight: bold;">lambda</span> (f-val)
+        (<span style="color: #859900;">lambda</span> (f-val)
           ((CPS arg)
-           (<span style="color: #F92672; font-weight: bold;">lambda</span> (arg-val)
+           (<span style="color: #859900;">lambda</span> (arg-val)
              ((f-val arg-val) k^))))))]
-    [(_ v) (<span style="color: #F92672; font-weight: bold;">lambda</span> (k^ ) (k^ v))]          <span style="color: #75715E;">; </span><span style="color: #75715E;">basic values(number, string etc) mu</span><span style="color: #F92672; background-color: #272822;">st stay at last</span>
+    [(_ v) (<span style="color: #859900;">lambda</span> (k^ ) (k^ v))]          <span style="color: #586e75; font-style: italic;">; </span><span style="color: #586e75; font-style: italic;">basic values(number, string etc) mu</span><span style="color: #ee82ee; background-color: #333333; font-style: italic;">st stay at last</span>
     ))
 </pre>
 </div>
@@ -504,8 +503,8 @@ continuation
 转换:
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">lambda</span> (k^)
-  (k^ (<span style="color: #F92672; font-weight: bold;">lambda</span> (x) x)))
+<pre class="src src-scheme">(<span style="color: #859900;">lambda</span> (k^)
+  (k^ (<span style="color: #859900;">lambda</span> (x) x)))
 </pre>
 </div>
 <p>
@@ -514,13 +513,13 @@ continuation
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">lambda</span> (k^)
-  (k^ (<span style="color: #F92672; font-weight: bold;">lambda</span> (x dyn-k)
-        ((<span style="color: #F92672; font-weight: bold;">lambda</span> (k) (k x))
+<pre class="src src-scheme">(<span style="color: #859900;">lambda</span> (k^)
+  (k^ (<span style="color: #859900;">lambda</span> (x dyn-k)
+        ((<span style="color: #859900;">lambda</span> (k) (k x))
          dyn-k))))
-<span style="color: #75715E;">;;; </span><span style="color: #75715E;">a simple veraion</span>
-(<span style="color: #F92672; font-weight: bold;">lambda</span> (k^)
-  (k^ (<span style="color: #F92672; font-weight: bold;">lambda</span> (x dyn-k)
+<span style="color: #586e75; font-style: italic;">;;; </span><span style="color: #586e75; font-style: italic;">a simple veraion</span>
+(<span style="color: #859900;">lambda</span> (k^)
+  (k^ (<span style="color: #859900;">lambda</span> (x dyn-k)
         (dyn-k x))))
 </pre>
 </div>
@@ -532,6 +531,7 @@ continuation
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-2-2" class="outline-3">
 <h3 id="sec-2-2">CPS的应用</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -584,6 +584,8 @@ continuation.
   <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
   <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="static/js/custom.js"></script>
 <!-- end footer -->
 </div>
 </body>

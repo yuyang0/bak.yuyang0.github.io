@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>gevent源码分析</title>
-<!-- 2014-08-20 Wed 18:31 -->
+<!-- 2014-11-30 Sun 20:23 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -56,8 +56,6 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -91,7 +89,6 @@
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
 <link rel="shortcut icon" href="static/img/favicon.ico" />
-<script type="text/javascript" src="static/js/custom.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -152,7 +149,7 @@ for the JavaScript code in this tag.
 
             <li> <a href="/tags.html">Tags</a></li>
 
-            <li> <a href="/rss.xml">RSS</a></li>
+            <li> <a href="/atom.xml">RSS</a></li>
           </ul>
 
           <form id="site-search" method="get" action="https://google.com/search">
@@ -184,19 +181,19 @@ for the JavaScript code in this tag.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme"><span class="linenr"> 1: </span>(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">the-continuation</span> #f)
-<span class="linenr"> 2: </span>(<span style="color: #F92672; font-weight: bold;">define</span> (<span style="color: #A6E22E;">test</span>)
-<span class="linenr"> 3: </span>  (<span style="color: #F92672; font-weight: bold;">let</span> ((i 0))
-<span class="linenr"> 4: </span>    <span style="color: #75715E;">;; </span><span style="color: #75715E;">call/cc calls its first function argument, passing</span>
-<span class="linenr"> 5: </span>    <span style="color: #75715E;">;; </span><span style="color: #75715E;">a continuation variable representing this point in</span>
-<span class="linenr"> 6: </span>    <span style="color: #75715E;">;; </span><span style="color: #75715E;">the program as the argument to that function.</span>
-<span class="linenr"> 7: </span>    <span style="color: #75715E;">;;</span>
-<span class="linenr"> 8: </span>    <span style="color: #75715E;">;; </span><span style="color: #75715E;">In this case, the function argument assigns that</span>
-<span class="linenr"> 9: </span>    <span style="color: #75715E;">;; </span><span style="color: #75715E;">continuation to the variable the-continuation.</span>
-<span class="linenr">10: </span>    <span style="color: #75715E;">;;</span>
-<span class="linenr">11: </span>    (<span style="color: #F92672; font-weight: bold;">call/cc</span> (<span style="color: #F92672; font-weight: bold;">lambda</span> (k) (set! the-continuation k)))
-<span class="linenr">12: </span>    <span style="color: #75715E;">;;</span>
-<span class="linenr">13: </span>    <span style="color: #75715E;">;; </span><span style="color: #75715E;">The next time the-continuation is called, we start here.</span>
+<pre class="src src-scheme"><span class="linenr"> 1: </span>(<span style="color: #859900;">define</span> <span style="color: #b58900;">the-continuation</span> #f)
+<span class="linenr"> 2: </span>(<span style="color: #859900;">define</span> (<span style="color: #b58900;">test</span>)
+<span class="linenr"> 3: </span>  (<span style="color: #859900;">let</span> ((i 0))
+<span class="linenr"> 4: </span>    <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">call/cc calls its first function argument, passing</span>
+<span class="linenr"> 5: </span>    <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">a continuation variable representing this point in</span>
+<span class="linenr"> 6: </span>    <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">the program as the argument to that function.</span>
+<span class="linenr"> 7: </span>    <span style="color: #586e75; font-style: italic;">;;</span>
+<span class="linenr"> 8: </span>    <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">In this case, the function argument assigns that</span>
+<span class="linenr"> 9: </span>    <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">continuation to the variable the-continuation.</span>
+<span class="linenr">10: </span>    <span style="color: #586e75; font-style: italic;">;;</span>
+<span class="linenr">11: </span>    (<span style="color: #859900;">call/cc</span> (<span style="color: #859900;">lambda</span> (k) (set! the-continuation k)))
+<span class="linenr">12: </span>    <span style="color: #586e75; font-style: italic;">;;</span>
+<span class="linenr">13: </span>    <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">The next time the-continuation is called, we start here.</span>
 <span class="linenr">14: </span>    (set! i (+ i 1))
 <span class="linenr">15: </span>    i))
 </pre>
@@ -219,6 +216,7 @@ call/cc的作用是将代表当前continuation的一个变量作为参数传递�
 </pre>
 </div>
 </div>
+
 <div id="outline-container-sec-1-2" class="outline-3">
 <h3 id="sec-1-2">coroutine</h3>
 <div class="outline-text-3" id="text-1-2">
@@ -234,10 +232,10 @@ Coroutine 也就是 corporate routine，中文名就是协程，从它的英文�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span class="linenr">1: </span><span style="color: #FD971F;">switch</span> = getcurrent().switch
-<span class="linenr">2: </span><span style="color: #F92672; font-weight: bold;">self</span>.rawlink(switch)
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #6c71c4;">switch</span> = getcurrent().switch
+<span class="linenr">2: </span><span style="color: #859900;">self</span>.rawlink(switch)
 <span class="linenr">3: </span>
-<span class="linenr">4: </span><span style="color: #FD971F;">result</span> = <span style="color: #F92672; font-weight: bold;">self</span>.parent.switch()
+<span class="linenr">4: </span><span style="color: #6c71c4;">result</span> = <span style="color: #859900;">self</span>.parent.switch()
 </pre>
 </div>
 <p>
@@ -278,6 +276,8 @@ rawlink的作用是注册一个函数，这个函数会在这个greenlet运行�
   <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
   <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="static/js/custom.js"></script>
 <!-- end footer -->
 </div>
 </body>

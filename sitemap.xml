@@ -3,7 +3,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
       <loc>https://yuyang0.github.io/sitemap.html</loc>
-      <lastmod>2014-08-20</lastmod>
+      <lastmod>2014-11-30</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -20,6 +20,12 @@
       <priority>0.5</priority>
    </url>
 <url>
+      <loc>https://yuyang0.github.io/articles/introduction-to-opencl.html</loc>
+      <lastmod>2014-09-26</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+<url>
       <loc>https://yuyang0.github.io/articles/gevent.html</loc>
       <lastmod>2014-06-25</lastmod>
       <changefreq>weekly</changefreq>
@@ -28,6 +34,12 @@
 <url>
       <loc>https://yuyang0.github.io/articles/python-descriptor.html</loc>
       <lastmod>2013-11-08</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+<url>
+      <loc>https://yuyang0.github.io/articles/defects-of-python.html</loc>
+      <lastmod>2014-11-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -57,13 +69,19 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/clojure.html</loc>
-      <lastmod>2014-05-17</lastmod>
+      <lastmod>2014-11-15</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/compiler.html</loc>
       <lastmod>2014-07-06</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+<url>
+      <loc>https://yuyang0.github.io/notes/c-dev-skills.html</loc>
+      <lastmod>2014-09-30</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -105,7 +123,13 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/sql.html</loc>
-      <lastmod>2014-05-17</lastmod>
+      <lastmod>2014-08-24</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+<url>
+      <loc>https://yuyang0.github.io/notes/opencl.html</loc>
+      <lastmod>2014-09-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -170,8 +194,20 @@
       <priority>0.5</priority>
    </url>
 <url>
+      <loc>https://yuyang0.github.io/notes/java.html</loc>
+      <lastmod>2014-11-13</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+<url>
       <loc>https://yuyang0.github.io/notes/javascript.html</loc>
       <lastmod>2014-07-06</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+<url>
+      <loc>https://yuyang0.github.io/notes/linux-note.html</loc>
+      <lastmod>2014-11-16</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -261,13 +297,13 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/sitemap.html</loc>
-      <lastmod>2014-08-20</lastmod>
+      <lastmod>2014-11-30</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
 <url>
       <loc>https://yuyang0.github.io/tags.html</loc>
-      <lastmod>2014-07-21</lastmod>
+      <lastmod>2014-08-20</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>

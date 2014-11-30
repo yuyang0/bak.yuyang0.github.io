@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Emacs Lisp</title>
-<!-- 2014-08-20 Wed 18:30 -->
+<!-- 2014-11-30 Sun 20:23 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -56,8 +56,6 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -91,7 +89,6 @@
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
 <link rel="shortcut icon" href="static/img/favicon.ico" />
-<script type="text/javascript" src="static/js/custom.js"></script>
 <script type="text/javascript" src="static/js/emacs-tooltip.js"></script>
 <script type="text/javascript">
 /*
@@ -139,17 +136,14 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script type="text/javascript">window.MathJax || document.write('<script src="static/js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" ><\/script>')</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
 <script type="text/javascript">
-
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
         // First allows browser-native MathML display, second forces HTML/CSS
-            config: ["MMLorHTML.js"], jax: ["input/TeX"],
-        //  jax: ["input/TeX", "output/HTML-CSS"],
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
         extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
                      "TeX/noUndefined.js"],
         tex2jax: {
@@ -198,7 +192,7 @@ for the JavaScript code in this tag.
 
             <li> <a href="/tags.html">Tags</a></li>
 
-            <li> <a href="/rss.xml">RSS</a></li>
+            <li> <a href="/atom.xml">RSS</a></li>
           </ul>
 
           <form id="site-search" method="get" action="https://google.com/search">
@@ -276,6 +270,7 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-1-2" class="outline-3">
 <h3 id="sec-1-2">control flow</h3>
 <div class="outline-text-3" id="text-1-2">
@@ -283,40 +278,40 @@ for the JavaScript code in this tag.
 <li><code>if</code>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #F92672; font-weight: bold;">if</span> test
+<pre class="src src-lisp"><span style="color: #839496;">(</span><span style="color: #859900;">if</span> test
 a
-b)
-<span style="color: #75715E;">;;</span><span style="color: #75715E;">test is the condition</span>
+b<span style="color: #839496;">)</span>
+<span style="color: #586e75; font-style: italic;">;;</span><span style="color: #586e75; font-style: italic;">test is the condition</span>
 </pre>
 </div>
 </li>
 <li><code>when</code>
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span style="color: #F92672; font-weight: bold;">when</span> condition a b c)
-<span style="color: #75715E;">;;; </span><span style="color: #75715E;">equivalent</span>
-(<span style="color: #F92672; font-weight: bold;">if</span> condition (<span style="color: #F92672; font-weight: bold;">progn</span> a b c) nil)
+<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span><span style="color: #859900;">when</span> condition a b c<span style="color: #839496;">)</span>
+<span style="color: #586e75; font-style: italic;">;;; </span><span style="color: #586e75; font-style: italic;">equivalent</span>
+<span style="color: #839496;">(</span><span style="color: #859900;">if</span> condition <span style="color: #2aa198;">(</span><span style="color: #859900;">progn</span> a b c<span style="color: #2aa198;">)</span> nil<span style="color: #839496;">)</span>
 </pre>
 </div>
 </li>
 <li><code>unless</code>
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span style="color: #F92672; font-weight: bold;">unless</span> condition a b c)
-<span style="color: #75715E;">;;;</span><span style="color: #75715E;">equvalent</span>
-(<span style="color: #F92672; font-weight: bold;">if</span> condition nil (<span style="color: #F92672; font-weight: bold;">progn</span> a b c))
+<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span><span style="color: #859900;">unless</span> condition a b c<span style="color: #839496;">)</span>
+<span style="color: #586e75; font-style: italic;">;;;</span><span style="color: #586e75; font-style: italic;">equvalent</span>
+<span style="color: #839496;">(</span><span style="color: #859900;">if</span> condition nil <span style="color: #2aa198;">(</span><span style="color: #859900;">progn</span> a b c<span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
 </pre>
 </div>
 </li>
 <li><code>cond</code>
-       和scheme类似:
+和scheme类似:
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">cond</span> ((numberp x) x)
+<pre class="src src-scheme">(<span style="color: #859900;">cond</span> ((numberp x) x)
       ((stringp x) x)
       ((bufferp x)
-       (setq temporary-hack x) <span style="color: #75715E;">; </span><span style="color: #75715E;">multiple body-forms</span>
-       (buffer-name x))        <span style="color: #75715E;">; </span><span style="color: #75715E;">in one clause</span>
+       (setq temporary-hack x) <span style="color: #586e75; font-style: italic;">; </span><span style="color: #586e75; font-style: italic;">multiple body-forms</span>
+       (buffer-name x))        <span style="color: #586e75; font-style: italic;">; </span><span style="color: #586e75; font-style: italic;">in one clause</span>
       ((symbolp x) (symbol-value x)))
 </pre>
 </div>
@@ -336,24 +331,25 @@ so (if a a b) is identical to (or a b)
        <b>Macro</b>: dolist (var list [result]) body&#x2026;
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span style="color: #F92672; font-weight: bold;">defun</span> <span style="color: #A6E22E;">reverse</span> (list)
-  (<span style="color: #F92672; font-weight: bold;">let</span> (value)
-    (<span style="color: #F92672; font-weight: bold;">dolist</span> (elt list value)
-      (setq value (cons elt value)))))
+<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span><span style="color: #859900;">defun</span> <span style="color: #b58900;">reverse</span> <span style="color: #2aa198;">(</span>list<span style="color: #2aa198;">)</span>
+  <span style="color: #2aa198;">(</span><span style="color: #859900;">let</span> <span style="color: #b58900;">(</span>value<span style="color: #b58900;">)</span>
+    <span style="color: #b58900;">(</span><span style="color: #859900;">dolist</span> <span style="color: #859900;">(</span>elt list value<span style="color: #859900;">)</span>
+      <span style="color: #859900;">(</span>setq value <span style="color: #268bd2;">(</span>cons elt value<span style="color: #268bd2;">)</span><span style="color: #859900;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
 </pre>
 </div>
 </li>
 <li><code>dotimes</code>
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span style="color: #F92672; font-weight: bold;">dotimes</span> (i 100)
-            (insert <span style="color: #E6DB74;">"I will not obey absurd orders\n"</span>))
+<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span><span style="color: #859900;">dotimes</span> <span style="color: #2aa198;">(</span>i 100<span style="color: #2aa198;">)</span>
+            <span style="color: #2aa198;">(</span>insert <span style="color: #2aa198;">"I will not obey absurd orders\n"</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
 </pre>
 </div>
 </li>
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-1-3" class="outline-3">
 <h3 id="sec-1-3">let&#xa0;&#xa0;&#xa0;<span class="tag"><span class="let">let</span></span></h3>
 <div class="outline-text-3" id="text-1-3">
@@ -362,13 +358,14 @@ so (if a a b) is identical to (or a b)
 </p>
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span style="color: #F92672; font-weight: bold;">let</span> ((val1 value1)
-      (val2 value2))
-  body)
+<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span><span style="color: #859900;">let</span> <span style="color: #2aa198;">(</span><span style="color: #b58900;">(</span>val1 value1<span style="color: #b58900;">)</span>
+      <span style="color: #b58900;">(</span>val2 value2<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+  body<span style="color: #839496;">)</span>
 </pre>
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-1-4" class="outline-3">
 <h3 id="sec-1-4">function</h3>
 <div class="outline-text-3" id="text-1-4">
@@ -391,16 +388,15 @@ optional代表参数可选, rest代表可变参数, 如果有那么会是一个�
 参数传递给function
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(setq f 'list)
-(apply f 'a 'b '(1 2))                  <span style="color: #75715E;">; </span><span style="color: #75715E;">(a b 1 2)</span>
-(funcall f 'a 'b '(1 2))                <span style="color: #75715E;">; </span><span style="color: #75715E;">(a b (1 2))</span>
+<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span>setq f <span style="color: #859900;">'</span><span style="color: #268bd2;">list</span><span style="color: #839496;">)</span>
+<span style="color: #839496;">(</span>apply f <span style="color: #859900;">'</span><span style="color: #268bd2;">a</span> <span style="color: #859900;">'</span><span style="color: #268bd2;">b</span> <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span>1 2<span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>                  <span style="color: #586e75; font-style: italic;">; </span><span style="color: #586e75; font-style: italic;">(a b 1 2)</span>
+<span style="color: #839496;">(</span>funcall f <span style="color: #859900;">'</span><span style="color: #268bd2;">a</span> <span style="color: #859900;">'</span><span style="color: #268bd2;">b</span> <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span>1 2<span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>                <span style="color: #586e75; font-style: italic;">; </span><span style="color: #586e75; font-style: italic;">(a b (1 2))</span>
 </pre>
 </div>
 </li>
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-1-5" class="outline-3">
 <h3 id="sec-1-5">lists</h3>
 <div class="outline-text-3" id="text-1-5">
@@ -465,19 +461,21 @@ optional代表参数可选, rest代表可变参数, 如果有那么会是一个�
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-1-5-2" class="outline-4">
 <h4 id="sec-1-5-2">property list</h4>
 <div class="outline-text-4" id="text-1-5-2">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(setq alist '(<span style="color: #A6E22E;">:publish-dir</span> <span style="color: #E6DB74;">"~/Documents"</span> <span style="color: #A6E22E;">:base-dir</span> <span style="color: #E6DB74;">"~/Documents/note"</span>))
-(plist-get alist <span style="color: #A6E22E;">:base-dir</span>)
+<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span>setq alist <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">:publish-dir</span> <span style="color: #2aa198;">"~/Documents"</span> <span style="color: #6c71c4;">:base-dir</span> <span style="color: #2aa198;">"~/Documents/note"</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
+<span style="color: #839496;">(</span>plist-get alist <span style="color: #6c71c4;">:base-dir</span><span style="color: #839496;">)</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">常用的函数</h2>
 <div class="outline-text-2" id="text-2">
@@ -495,19 +493,18 @@ optional代表参数可选, rest代表可变参数, 如果有那么会是一个�
 the regex in str
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(setq mystr <span style="color: #E6DB74;">"The quick fox jumped quickly."</span>)
-(string-match <span style="color: #E6DB74;">"</span><span style="color: #E6DB74; font-weight: bold;">\\</span><span style="color: #E6DB74; font-weight: bold;">(</span><span style="color: #E6DB74;">qu</span><span style="color: #E6DB74; font-weight: bold;">\\</span><span style="color: #E6DB74; font-weight: bold;">)</span><span style="color: #E6DB74; font-weight: bold;">\\</span><span style="color: #E6DB74; font-weight: bold;">(</span><span style="color: #E6DB74;">ick</span><span style="color: #E6DB74; font-weight: bold;">\\</span><span style="color: #E6DB74; font-weight: bold;">)</span><span style="color: #E6DB74;">"</span>
-                   mystr)   <span style="color: #75715E;">;</span><span style="color: #75715E;">=&gt;&#21103;&#20316;&#29992;&#65306;&#23558;&#21305;&#37197;&#32467;&#26524;&#23384;&#20648;&#21040;match-data&#20013;</span>
-(match-string 0 mystr)      <span style="color: #75715E;">;</span><span style="color: #75715E;">=&gt;&#32467;&#26524;&#20026;quick&#65292;&#20063;&#23601;&#26159;&#27169;&#24335;&#21305;&#37197;&#30340;&#32467;&#26524;</span>
-(match-string 1 mystr)      <span style="color: #75715E;">;</span><span style="color: #75715E;">=&gt;&#32467;&#26524;&#20026;qu   &#65292;&#20063;&#23601;&#26159;&#31532;&#19968;&#20010;&#20998;&#32452;&#30340;&#21305;&#37197;&#32467;&#26524;</span>
-(match-string 2 mystr)      <span style="color: #75715E;">;</span><span style="color: #75715E;">=&gt;&#32467;&#26524;&#20026;ick  &#65292;&#20063;&#23601;&#26159;&#31532;&#20108;&#20010;&#20998;&#32452;&#30340;&#21305;&#37197;&#32467;&#26524;</span>
+<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span>setq mystr <span style="color: #2aa198;">"The quick fox jumped quickly."</span><span style="color: #839496;">)</span>
+<span style="color: #839496;">(</span>string-match <span style="color: #2aa198;">"</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">(</span><span style="color: #2aa198;">qu</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">)</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">(</span><span style="color: #2aa198;">ick</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">)</span><span style="color: #2aa198;">"</span>
+                   mystr<span style="color: #839496;">)</span>   <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">=&gt;&#21103;&#20316;&#29992;&#65306;&#23558;&#21305;&#37197;&#32467;&#26524;&#23384;&#20648;&#21040;match-data&#20013;</span>
+<span style="color: #839496;">(</span>match-string 0 mystr<span style="color: #839496;">)</span>      <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">=&gt;&#32467;&#26524;&#20026;quick&#65292;&#20063;&#23601;&#26159;&#27169;&#24335;&#21305;&#37197;&#30340;&#32467;&#26524;</span>
+<span style="color: #839496;">(</span>match-string 1 mystr<span style="color: #839496;">)</span>      <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">=&gt;&#32467;&#26524;&#20026;qu   &#65292;&#20063;&#23601;&#26159;&#31532;&#19968;&#20010;&#20998;&#32452;&#30340;&#21305;&#37197;&#32467;&#26524;</span>
+<span style="color: #839496;">(</span>match-string 2 mystr<span style="color: #839496;">)</span>      <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">=&gt;&#32467;&#26524;&#20026;ick  &#65292;&#20063;&#23601;&#26159;&#31532;&#20108;&#20010;&#20998;&#32452;&#30340;&#21305;&#37197;&#32467;&#26524;</span>
 </pre>
 </div>
 </li>
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-2-2" class="outline-3">
 <h3 id="sec-2-2">Regex</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -516,7 +513,7 @@ the regex in str
 内容时, ^匹配一行的开头, $匹配一行的结尾.
 </li>
 <li>常用的字符串匹配函数是string-match, 常用的buffer 内正则匹配的函数是
-<code>looking-at</code> 它会匹配从当前光标开始的内容.
+      <code>looking-at</code> 它会匹配从当前光标开始的内容.
 </li>
 <li>在通常的语言(比如python)的正则表达式实现中, (, ), [, ], {, }, \ 等都是特
 殊字符, 但是在emacs lisp中都是普通的字符,所以如果你要把它们当作特殊的字符,
@@ -530,6 +527,7 @@ the regex in str
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-2-3" class="outline-3">
 <h3 id="sec-2-3">buffer相关：&#xa0;&#xa0;&#xa0;<span class="tag"><span class="buffer">buffer</span></span></h3>
 <div class="outline-text-3" id="text-2-3">
@@ -569,6 +567,7 @@ BUFFER-ORNAME指定的buffer设为当前buffer, body运行完后会恢复原先�
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-2-3-2" class="outline-4">
 <h4 id="sec-2-3-2">buffer中移动以及光标相关&#xa0;&#xa0;&#xa0;<span class="tag"><span class="point">point</span></span></h4>
 <div class="outline-text-4" id="text-2-3-2">
@@ -637,6 +636,7 @@ body中如何改变point,执行完成后都会回到执行save-excursion之前�
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-2-4" class="outline-3">
 <h3 id="sec-2-4">file相关&#xa0;&#xa0;&#xa0;<span class="tag"><span class="file">file</span></span></h3>
 <div class="outline-text-3" id="text-2-4">
@@ -666,6 +666,7 @@ body中如何改变point,执行完成后都会回到执行save-excursion之前�
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-2-5" class="outline-3">
 <h3 id="sec-2-5">other useful function</h3>
 <div class="outline-text-3" id="text-2-5">
@@ -677,9 +678,9 @@ body中如何改变point,执行完成后都会回到执行save-excursion之前�
 <li><code>thing-at-point</code>:
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(thing-at-point 'word)
-(thing-at-point 'sexp)
-(thing-at-point 'url)
+<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span>thing-at-point <span style="color: #859900;">'</span><span style="color: #268bd2;">word</span><span style="color: #839496;">)</span>
+<span style="color: #839496;">(</span>thing-at-point <span style="color: #859900;">'</span><span style="color: #268bd2;">sexp</span><span style="color: #839496;">)</span>
+<span style="color: #839496;">(</span>thing-at-point <span style="color: #859900;">'</span><span style="color: #268bd2;">url</span><span style="color: #839496;">)</span>
 </pre>
 </div>
 </li>
@@ -697,6 +698,7 @@ pair &#x2013;&gt; (start . end) , 这个pair 的car是左边界,cdr是右边界
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-2-6" class="outline-3">
 <h3 id="sec-2-6"><b>useful variable</b></h3>
 <div class="outline-text-3" id="text-2-6">
@@ -708,6 +710,7 @@ pair &#x2013;&gt; (start . end) , 这个pair 的car是左边界,cdr是右边界
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-2-7" class="outline-3">
 <h3 id="sec-2-7">useful code snippet</h3>
 <div class="outline-text-3" id="text-2-7">
@@ -715,22 +718,22 @@ pair &#x2013;&gt; (start . end) , 这个pair 的car是左边界,cdr是右边界
 <li>test if a mode(major or minor) is on (flymake-mode as an example)
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span style="color: #F92672; font-weight: bold;">if</span> (and (boundp 'flymake-mode) flymake-mode)
-    (message <span style="color: #E6DB74;">"flymake-mode is on"</span>)
-  (message <span style="color: #E6DB74;">"flymake-mode is off"</span>))
+<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span><span style="color: #859900;">if</span> <span style="color: #2aa198;">(</span>and <span style="color: #b58900;">(</span>boundp <span style="color: #859900;">'</span><span style="color: #268bd2;">flymake-mode</span><span style="color: #b58900;">)</span> flymake-mode<span style="color: #2aa198;">)</span>
+    <span style="color: #2aa198;">(</span>message <span style="color: #2aa198;">"flymake-mode is on"</span><span style="color: #2aa198;">)</span>
+  <span style="color: #2aa198;">(</span>message <span style="color: #2aa198;">"flymake-mode is off"</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
 </pre>
 </div>
 </li>
 <li>setting keybinding for specified mode
-<b>there are two way</b>, the first is <b>eval-after-load</b>
+       <b>there are two way</b>, the first is <b>eval-after-load</b>
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(eval-after-load <span style="color: #E6DB74;">"org"</span>
-  '(<span style="color: #F92672; font-weight: bold;">progn</span>
-     (define-key org-mode-map (kbd <span style="color: #E6DB74;">"&lt;C-M-return&gt;"</span>) 'org-insert-heading-respect-c<span style="color: #F92672; background-color: #272822;">ontent)</span>
-     (define-key org-mode-map (kbd <span style="color: #E6DB74;">"&lt;M-right&gt;"</span>) nil) <span style="color: #75715E;">; </span><span style="color: #75715E;">erasing a keybinding.</span>
-     (define-key org-mode-map (kbd <span style="color: #E6DB74;">"&lt;M-left&gt;"</span>) nil) <span style="color: #75715E;">; </span><span style="color: #75715E;">erasing a keybinding.</span>
-     ))
+<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span>eval-after-load <span style="color: #2aa198;">"org"</span>
+  <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span><span style="color: #859900;">progn</span>
+     <span style="color: #b58900;">(</span>define-key org-mode-map <span style="color: #859900;">(</span>kbd <span style="color: #2aa198;">"&lt;C-M-return&gt;"</span><span style="color: #859900;">)</span> <span style="color: #859900;">'</span>org-insert-heading-respect-c<span style="color: #ee82ee; background-color: #333333;">ontent</span><span style="color: #b58900; background-color: #333333;">)</span>
+     <span style="color: #b58900;">(</span>define-key org-mode-map <span style="color: #859900;">(</span>kbd <span style="color: #2aa198;">"&lt;M-right&gt;"</span><span style="color: #859900;">)</span> nil<span style="color: #b58900;">)</span> <span style="color: #586e75; font-style: italic;">; </span><span style="color: #586e75; font-style: italic;">erasing a keybinding.</span>
+     <span style="color: #b58900;">(</span>define-key org-mode-map <span style="color: #859900;">(</span>kbd <span style="color: #2aa198;">"&lt;M-left&gt;"</span><span style="color: #859900;">)</span> nil<span style="color: #b58900;">)</span> <span style="color: #586e75; font-style: italic;">; </span><span style="color: #586e75; font-style: italic;">erasing a keybinding.</span>
+     <span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
 </pre>
 </div>
 <p>
@@ -738,9 +741,9 @@ the second way is <b>add-hook</b>
 </p>
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span style="color: #F92672; font-weight: bold;">defun</span> <span style="color: #A6E22E;">my-org-settngs</span> ()
-    (flyspell-mode 1))
-(add-hook 'org-mode-hook 'my-org-settngs)
+<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span><span style="color: #859900;">defun</span> <span style="color: #b58900;">my-org-settngs</span> <span style="color: #2aa198;">()</span>
+    <span style="color: #2aa198;">(</span>flyspell-mode 1<span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
+<span style="color: #839496;">(</span>add-hook <span style="color: #859900;">'</span><span style="color: #268bd2;">org-mode-hook</span> <span style="color: #859900;">'</span><span style="color: #268bd2;">my-org-settngs</span><span style="color: #839496;">)</span>
 </pre>
 </div>
 <p>
@@ -761,6 +764,7 @@ minor mode 的map
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">interactive&#xa0;&#xa0;&#xa0;<span class="tag"><span class="interactive">interactive</span></span></h2>
 <div class="outline-text-2" id="text-3">
@@ -815,13 +819,13 @@ nil, 后面不能跟提示字符串,因为参数来自C-u而不是minibuffer
 <code>read-string</code> 这样的函数从minibuffer中读入字符串
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(interactive (list
-              (read-string (format <span style="color: #E6DB74;">"word (%s): "</span> (thing-at-point 'word))
-                           nil nil (thing-at-point 'word))))
+<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span>interactive <span style="color: #2aa198;">(</span>list
+              <span style="color: #b58900;">(</span>read-string <span style="color: #859900;">(</span>format <span style="color: #2aa198;">"word (%s): "</span> <span style="color: #268bd2;">(</span>thing-at-point <span style="color: #859900;">'</span><span style="color: #268bd2;">word</span><span style="color: #268bd2;">)</span><span style="color: #859900;">)</span>
+                           nil nil <span style="color: #859900;">(</span>thing-at-point <span style="color: #859900;">'</span><span style="color: #268bd2;">word</span><span style="color: #859900;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
 
-(interactive
- (<span style="color: #F92672; font-weight: bold;">let</span> ((string (read-string <span style="color: #E6DB74;">"Foo: "</span> nil 'my-history)))
-   (list (region-beginning) (region-end) string)))
+<span style="color: #839496;">(</span>interactive
+ <span style="color: #2aa198;">(</span><span style="color: #859900;">let</span> <span style="color: #b58900;">(</span><span style="color: #859900;">(</span>string <span style="color: #268bd2;">(</span>read-string <span style="color: #2aa198;">"Foo: "</span> nil <span style="color: #859900;">'</span><span style="color: #268bd2;">my-history</span><span style="color: #268bd2;">)</span><span style="color: #859900;">)</span><span style="color: #b58900;">)</span>
+   <span style="color: #b58900;">(</span>list <span style="color: #859900;">(</span>region-beginning<span style="color: #859900;">)</span> <span style="color: #859900;">(</span>region-end<span style="color: #859900;">)</span> string<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
 </pre>
 </div>
 <p>
@@ -834,7 +838,6 @@ read-string prompt &amp;optional initial history default inherit-input-method
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">autoload&#xa0;&#xa0;&#xa0;<span class="tag"><span class="autoload">autoload</span></span></h2>
 <div class="outline-text-2" id="text-4">
@@ -866,12 +869,12 @@ read-string prompt &amp;optional initial history default inherit-input-method
 <li>使用魔法注释
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span style="color: #75715E;">;;;</span><span style="color: #75715E;">###</span><span style="color: #968B26; font-weight: bold;">autoload</span>
-(<span style="color: #F92672; font-weight: bold;">defun</span> <span style="color: #A6E22E;">doctor</span> ()
-  <span style="color: #75715E;">"Switch to *doctor* buffer and start giving psychotherapy."</span>
-  (interactive)
-  (switch-to-buffer <span style="color: #E6DB74;">"*doctor*"</span>)
-  (doctor-mode))
+<pre class="src src-emacs-lisp"><span style="color: #586e75; font-style: italic;">;;;</span><span style="color: #586e75; font-style: italic;">###</span><span style="color: #dc322f; font-weight: bold; font-style: italic;">autoload</span>
+<span style="color: #839496;">(</span><span style="color: #859900;">defun</span> <span style="color: #b58900;">doctor</span> <span style="color: #2aa198;">()</span>
+  <span style="color: #d33682;">"Switch to *doctor* buffer and start giving psychotherapy."</span>
+  <span style="color: #2aa198;">(</span>interactive<span style="color: #2aa198;">)</span>
+  <span style="color: #2aa198;">(</span>switch-to-buffer <span style="color: #2aa198;">"*doctor*"</span><span style="color: #2aa198;">)</span>
+  <span style="color: #2aa198;">(</span>doctor-mode<span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
 </pre>
 </div>
 <p>
@@ -890,6 +893,7 @@ yasnippet-autoloads.el(所有的package.el管理的包的 -autoloads.el文件)�
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">define mode(minor mode or major mode)</h2>
 <div class="outline-text-2" id="text-5">
@@ -902,13 +906,13 @@ yasnippet-autoloads.el(所有的package.el管理的包的 -autoloads.el文件)�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span style="color: #F92672; font-weight: bold;">defvar</span> <span style="color: #FD971F;">prelude-mode-map</span>
-  (<span style="color: #F92672; font-weight: bold;">let</span> ((map (make-sparse-keymap)))
-    (define-key map (kbd <span style="color: #E6DB74;">"C-c o"</span>) 'prelude-open-with)
-    (define-key map (kbd <span style="color: #E6DB74;">"C-c g"</span>) 'prelude-google)
-    <span style="color: #75715E;">;; </span><span style="color: #75715E;">... more define-key sexp</span>
-    map)
-  <span style="color: #75715E;">"Keymap for Prelude mode."</span>)
+<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span><span style="color: #859900;">defvar</span> <span style="color: #6c71c4;">prelude-mode-map</span>
+  <span style="color: #2aa198;">(</span><span style="color: #859900;">let</span> <span style="color: #b58900;">(</span><span style="color: #859900;">(</span>map <span style="color: #268bd2;">(</span>make-sparse-keymap<span style="color: #268bd2;">)</span><span style="color: #859900;">)</span><span style="color: #b58900;">)</span>
+    <span style="color: #b58900;">(</span>define-key map <span style="color: #859900;">(</span>kbd <span style="color: #2aa198;">"C-c o"</span><span style="color: #859900;">)</span> <span style="color: #859900;">'</span><span style="color: #268bd2;">prelude-open-with</span><span style="color: #b58900;">)</span>
+    <span style="color: #b58900;">(</span>define-key map <span style="color: #859900;">(</span>kbd <span style="color: #2aa198;">"C-c g"</span><span style="color: #859900;">)</span> <span style="color: #859900;">'</span><span style="color: #268bd2;">prelude-google</span><span style="color: #b58900;">)</span>
+    <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">... more define-key sexp</span>
+    map<span style="color: #2aa198;">)</span>
+  <span style="color: #d33682;">"Keymap for Prelude mode."</span><span style="color: #839496;">)</span>
 </pre>
 </div>
 <p>
@@ -916,6 +920,7 @@ yasnippet-autoloads.el(所有的package.el管理的包的 -autoloads.el文件)�
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-5-2" class="outline-3">
 <h3 id="sec-5-2">minor mode</h3>
 <div class="outline-text-3" id="text-5-2">
@@ -939,17 +944,17 @@ mode
 </p>
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span style="color: #F92672; font-weight: bold;">define-minor-mode</span> <span style="color: #A6E22E;">prelude-mode</span>
-  <span style="color: #75715E;">"Minor mode to consolidate Emacs Prelude extensions.</span>
+<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span><span style="color: #859900;">define-minor-mode</span> <span style="color: #b58900;">prelude-mode</span>
+  <span style="color: #d33682;">"Minor mode to consolidate Emacs Prelude extensions.</span>
 
-<span style="color: #75715E;">\\{prelude-mode-map}"</span>
-  <span style="color: #A6E22E;">:lighter</span> <span style="color: #E6DB74;">" Pre"</span>
-  <span style="color: #A6E22E;">:keymap</span> prelude-mode-map
-  (<span style="color: #F92672; font-weight: bold;">if</span> prelude-mode
-      <span style="color: #75715E;">;; </span><span style="color: #75715E;">on start</span>
-      (prelude-mode-add-menu)
-    <span style="color: #75715E;">;; </span><span style="color: #75715E;">on stop</span>
-    (prelude-mode-remove-menu)))
+<span style="color: #d33682;">\\{prelude-mode-map}"</span>
+  <span style="color: #6c71c4;">:lighter</span> <span style="color: #2aa198;">" Pre"</span>
+  <span style="color: #6c71c4;">:keymap</span> prelude-mode-map
+  <span style="color: #2aa198;">(</span><span style="color: #859900;">if</span> prelude-mode
+      <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">on start</span>
+      <span style="color: #b58900;">(</span>prelude-mode-add-menu<span style="color: #b58900;">)</span>
+    <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">on stop</span>
+    <span style="color: #b58900;">(</span>prelude-mode-remove-menu<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
 </pre>
 </div>
 <p>
@@ -991,6 +996,8 @@ define-globalized-minor-mode 来把minor mode设为global,可以参考这里的<
   <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
   <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="static/js/custom.js"></script>
 <!-- end footer -->
 </div>
 </body>

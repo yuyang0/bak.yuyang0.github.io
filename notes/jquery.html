@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>jQuery</title>
-<!-- 2014-08-20 Wed 18:30 -->
+<!-- 2014-11-30 Sun 20:22 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -56,8 +56,6 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -91,7 +89,6 @@
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
 <link rel="shortcut icon" href="static/img/favicon.ico" />
-<script type="text/javascript" src="static/js/custom.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -152,7 +149,7 @@ for the JavaScript code in this tag.
 
             <li> <a href="/tags.html">Tags</a></li>
 
-            <li> <a href="/rss.xml">RSS</a></li>
+            <li> <a href="/atom.xml">RSS</a></li>
           </ul>
 
           <form id="site-search" method="get" action="https://google.com/search">
@@ -225,6 +222,7 @@ jquery对象可以包含多个DOM对象,所以可以通过index或者get(idx)来
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">jquery selector</h2>
 <div class="outline-text-2" id="text-2">
@@ -235,7 +233,7 @@ jquery对象可以包含多个DOM对象,所以可以通过index或者get(idx)来
 jQuery的基本语法是：$(selector).action(), 常用的选择器有：
 </p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption class="t-above"><span class="table-number">Table 1:</span> 基本选择器</caption>
+<caption align="above"><span class="table-number">Table 1:</span> 基本选择器</caption>
 
 <colgroup>
 <col  class="left" />
@@ -293,7 +291,6 @@ jQuery的基本语法是：$(selector).action(), 常用的选择器有：
 </table>
 </div>
 </div>
-
 <div id="outline-container-sec-2-2" class="outline-3">
 <h3 id="sec-2-2">层次选择器</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -313,7 +310,6 @@ div元素并不被该模式识别)
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-2-3" class="outline-3">
 <h3 id="sec-2-3">过滤选择器</h3>
 <div class="outline-text-3" id="text-2-3">
@@ -321,7 +317,7 @@ div元素并不被该模式识别)
 <h4 id="sec-2-3-1">基本过滤选择器</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption class="t-above"><span class="table-number">Table 2:</span> 基本过滤选择器</caption>
+<caption align="above"><span class="table-number">Table 2:</span> 基本过滤选择器</caption>
 
 <colgroup>
 <col  class="left" />
@@ -407,11 +403,12 @@ div元素并不被该模式识别)
 </table>
 </div>
 </div>
+
 <div id="outline-container-sec-2-3-2" class="outline-4">
 <h4 id="sec-2-3-2">内容过滤选择器</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption class="t-above"><span class="table-number">Table 3:</span> 内容过滤选择器</caption>
+<caption align="above"><span class="table-number">Table 3:</span> 内容过滤选择器</caption>
 
 <colgroup>
 <col  class="left" />
@@ -462,12 +459,11 @@ div元素并不被该模式识别)
 </table>
 </div>
 </div>
-
 <div id="outline-container-sec-2-3-3" class="outline-4">
 <h4 id="sec-2-3-3">可见性</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption class="t-above"><span class="table-number">Table 4:</span> 可见性过滤选择器</caption>
+<caption align="above"><span class="table-number">Table 4:</span> 可见性过滤选择器</caption>
 
 <colgroup>
 <col  class="left" />
@@ -504,11 +500,12 @@ div元素并不被该模式识别)
 </table>
 </div>
 </div>
+
 <div id="outline-container-sec-2-3-4" class="outline-4">
 <h4 id="sec-2-3-4">属性过滤选择器</h4>
 <div class="outline-text-4" id="text-2-3-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption class="t-above"><span class="table-number">Table 5:</span> 属性过滤选择器</caption>
+<caption align="above"><span class="table-number">Table 5:</span> 属性过滤选择器</caption>
 
 <colgroup>
 <col  class="left" />
@@ -582,6 +579,7 @@ div元素并不被该模式识别)
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">DOM操作</h2>
 <div class="outline-text-2" id="text-3">
@@ -698,6 +696,7 @@ div元素并不被该模式识别)
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">jquery事件</h2>
 <div class="outline-text-2" id="text-4">
@@ -705,9 +704,9 @@ div元素并不被该模式识别)
 <li>.bind : 可以通过该方法将特定函数绑定到特定的事件上eg:
 <div class="org-src-container">
 
-<pre class="src src-javascript">$(<span style="color: #E6DB74;">'div.li'</span>).bind(<span style="color: #E6DB74;">'click'</span>, <span style="color: #F92672; font-weight: bold;">function</span>(){
-  alert(<span style="color: #E6DB74;">'clicked'</span>);
-})
+<pre class="src src-javascript">$<span style="color: #839496;">(</span><span style="color: #2aa198;">'div.li'</span><span style="color: #839496;">)</span>.bind<span style="color: #839496;">(</span><span style="color: #2aa198;">'click'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">(){</span>
+  alert<span style="color: #b58900;">(</span><span style="color: #2aa198;">'clicked'</span><span style="color: #b58900;">)</span>;
+<span style="color: #2aa198;">}</span><span style="color: #839496;">)</span>
 </pre>
 </div>
 <p>
@@ -734,19 +733,19 @@ toggle()就会隐藏该元素,如果该元素已隐藏,那么调用toggle()就�
 代码：
 <div class="org-src-container">
 
-<pre class="src src-javascript">$(<span style="color: #F92672; font-weight: bold;">function</span>(){
-  $(<span style="color: #E6DB74;">"#sub"</span>).bind(<span style="color: #E6DB74;">"click"</span>,<span style="color: #F92672; font-weight: bold;">function</span>(<span style="color: #FD971F;">event</span>){
-    <span style="color: #F92672; font-weight: bold;">var</span> <span style="color: #FD971F;">username</span> = $(<span style="color: #E6DB74;">"#username"</span>).val();  <span style="color: #75715E;">//</span><span style="color: #75715E;">&#33719;&#21462;&#20803;&#32032;&#30340;&#20540;</span>
-    <span style="color: #F92672; font-weight: bold;">if</span>(username==<span style="color: #E6DB74;">""</span>){     <span style="color: #75715E;">//</span><span style="color: #75715E;">&#21028;&#26029;&#20540;&#26159;&#21542;&#20026;&#31354;</span>
-      $(<span style="color: #E6DB74;">"#msg"</span>).html(<span style="color: #E6DB74;">"&lt;p&gt;&#25991;&#26412;&#26694;&#30340;&#20540;&#19981;&#33021;&#20026;&#31354;.&lt;/p&gt;"</span>);  <span style="color: #75715E;">//</span><span style="color: #75715E;">&#25552;&#31034;&#20449;&#24687;</span>
+<pre class="src src-javascript">$<span style="color: #839496;">(</span><span style="color: #859900;">function</span><span style="color: #2aa198;">(){</span>
+  $<span style="color: #b58900;">(</span><span style="color: #2aa198;">"#sub"</span><span style="color: #b58900;">)</span>.bind<span style="color: #b58900;">(</span><span style="color: #2aa198;">"click"</span>,<span style="color: #859900;">function</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">event</span><span style="color: #859900;">){</span>
+    <span style="color: #859900;">var</span> <span style="color: #6c71c4;">username</span> = $<span style="color: #268bd2;">(</span><span style="color: #2aa198;">"#username"</span><span style="color: #268bd2;">)</span>.val<span style="color: #268bd2;">()</span>;  <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#33719;&#21462;&#20803;&#32032;&#30340;&#20540;</span>
+    <span style="color: #859900;">if</span><span style="color: #268bd2;">(</span>username==<span style="color: #2aa198;">""</span><span style="color: #268bd2;">){</span>     <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#21028;&#26029;&#20540;&#26159;&#21542;&#20026;&#31354;</span>
+      $<span style="color: #839496;">(</span><span style="color: #2aa198;">"#msg"</span><span style="color: #839496;">)</span>.html<span style="color: #839496;">(</span><span style="color: #2aa198;">"&lt;p&gt;&#25991;&#26412;&#26694;&#30340;&#20540;&#19981;&#33021;&#20026;&#31354;.&lt;/p&gt;"</span><span style="color: #839496;">)</span>;  <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#25552;&#31034;&#20449;&#24687;</span>
 
-      event.stopPropagation();  <span style="color: #75715E;">// </span><span style="color: #75715E;">&#38459;&#27490;&#20107;&#20214;&#20882;&#27873;</span>
-      event.preventDefault();  <span style="color: #75715E;">//</span><span style="color: #75715E;">&#38459;&#27490;&#40664;&#35748;&#34892;&#20026; ( &#34920;&#21333;&#25552;&#20132;&#65292;&#38142;&#25509;(a)&#36339;&#36716;&#31561; )</span>
-      <span style="color: #75715E;">// </span><span style="color: #75715E;">&#22914;&#26524;&#26082;&#35201;&#38459;&#27490;&#20107;&#20214;&#20882;&#27873;&#21448;&#35201;&#38459;&#27490;&#40664;&#35748;&#34892;&#20026;&#65292;&#37027;&#20040;&#21487;&#20197;&#30452;&#25509;&#36890;&#36807;</span>
-      <span style="color: #75715E;">// </span><span style="color: #75715E;">return false; &#26469;&#23454;&#29616;</span>
-    }
-  })
-})
+      event.stopPropagation<span style="color: #839496;">()</span>;  <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">&#38459;&#27490;&#20107;&#20214;&#20882;&#27873;</span>
+      event.preventDefault<span style="color: #839496;">()</span>;  <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#38459;&#27490;&#40664;&#35748;&#34892;&#20026; ( &#34920;&#21333;&#25552;&#20132;&#65292;&#38142;&#25509;(a)&#36339;&#36716;&#31561; )</span>
+      <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">&#22914;&#26524;&#26082;&#35201;&#38459;&#27490;&#20107;&#20214;&#20882;&#27873;&#21448;&#35201;&#38459;&#27490;&#40664;&#35748;&#34892;&#20026;&#65292;&#37027;&#20040;&#21487;&#20197;&#30452;&#25509;&#36890;&#36807;</span>
+      <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">return false; &#26469;&#23454;&#29616;</span>
+    <span style="color: #268bd2;">}</span>
+  <span style="color: #859900;">}</span><span style="color: #b58900;">)</span>
+<span style="color: #2aa198;">}</span><span style="color: #839496;">)</span>
 </pre>
 </div>
 <p>
@@ -765,6 +764,7 @@ click不会触发sub的父元素的click事件，
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">jquery动画</h2>
 <div class="outline-text-2" id="text-5">
@@ -780,6 +780,7 @@ click不会触发sub的父元素的click事件，
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6">ajax</h2>
 <div class="outline-text-2" id="text-6">
@@ -817,6 +818,7 @@ jquery ajax的回调函数的原型：
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-7" class="outline-2">
 <h2 id="sec-7">jquery常用插件</h2>
 <div class="outline-text-2" id="text-7">
@@ -875,6 +877,8 @@ jquery ajax的回调函数的原型：
   <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
   <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="static/js/custom.js"></script>
 <!-- end footer -->
 </div>
 </body>

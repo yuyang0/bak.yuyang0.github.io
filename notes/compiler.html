@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Compiler</title>
-<!-- 2014-08-20 Wed 18:30 -->
+<!-- 2014-11-30 Sun 20:23 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -55,8 +55,6 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -90,7 +88,6 @@
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
 <link rel="shortcut icon" href="static/img/favicon.ico" />
-<script type="text/javascript" src="static/js/custom.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -151,7 +148,7 @@ for the JavaScript code in this tag.
 
             <li> <a href="/tags.html">Tags</a></li>
 
-            <li> <a href="/rss.xml">RSS</a></li>
+            <li> <a href="/atom.xml">RSS</a></li>
           </ul>
 
           <form id="site-search" method="get" action="https://google.com/search">
@@ -183,9 +180,9 @@ for the JavaScript code in this tag.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">add</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (x)
-    (<span style="color: #F92672; font-weight: bold;">lambda</span> (y)
+<pre class="src src-scheme">(<span style="color: #859900;">define</span> <span style="color: #b58900;">add</span>
+  (<span style="color: #859900;">lambda</span> (x)
+    (<span style="color: #859900;">lambda</span> (y)
       (+ x y))))
 (add 10 30)
 </pre>
@@ -195,22 +192,22 @@ for the JavaScript code in this tag.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme"><span style="color: #75715E;">;;</span><span style="color: #75715E;">in order to simplify the code, we represent closure as list, the first</span>
-<span style="color: #75715E;">;;</span><span style="color: #75715E;">element is the function, the rest is the free variables</span>
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">closure-fun</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (clo) (list-ref clo 0)))
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">closure-ref</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (clo n)
+<pre class="src src-scheme"><span style="color: #586e75; font-style: italic;">;;</span><span style="color: #586e75; font-style: italic;">in order to simplify the code, we represent closure as list, the first</span>
+<span style="color: #586e75; font-style: italic;">;;</span><span style="color: #586e75; font-style: italic;">element is the function, the rest is the free variables</span>
+(<span style="color: #859900;">define</span> <span style="color: #b58900;">closure-fun</span>
+  (<span style="color: #859900;">lambda</span> (clo) (list-ref clo 0)))
+(<span style="color: #859900;">define</span> <span style="color: #b58900;">closure-ref</span>
+  (<span style="color: #859900;">lambda</span> (clo n)
     (list-ref clo (+ n 1))))
 
-(<span style="color: #F92672; font-weight: bold;">define</span> <span style="color: #A6E22E;">add</span>
-  (<span style="color: #F92672; font-weight: bold;">lambda</span> (cp x)
-    (<span style="color: #F92672; font-weight: bold;">let</span> ([addn (<span style="color: #F92672; font-weight: bold;">lambda</span> (cp y)
-                  (<span style="color: #F92672; font-weight: bold;">let</span> ([x (closure-ref cp 0)])
+(<span style="color: #859900;">define</span> <span style="color: #b58900;">add</span>
+  (<span style="color: #859900;">lambda</span> (cp x)
+    (<span style="color: #859900;">let</span> ([addn (<span style="color: #859900;">lambda</span> (cp y)
+                  (<span style="color: #859900;">let</span> ([x (closure-ref cp 0)])
                     (+ x y)))])
       `(,addn ,x))))
-(<span style="color: #F92672; font-weight: bold;">let</span> ([add-clo `(,add)])
-  (<span style="color: #F92672; font-weight: bold;">let</span> ([addn-clo ((closure-fun add-clo) add-clo 10)])
+(<span style="color: #859900;">let</span> ([add-clo `(,add)])
+  (<span style="color: #859900;">let</span> ([addn-clo ((closure-fun add-clo) add-clo 10)])
     ((closure-fun addn-clo) addn-clo 30)))
 </pre>
 </div>
@@ -251,6 +248,8 @@ for the JavaScript code in this tag.
   <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
   <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="static/js/custom.js"></script>
 <!-- end footer -->
 </div>
 </body>
