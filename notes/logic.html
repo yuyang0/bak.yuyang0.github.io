@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>数理逻辑</title>
-<!-- 2014-12-01 Mon 21:25 -->
+<!-- 2015-01-21 Wed 10:00 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -56,6 +56,8 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -135,14 +137,17 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript">window.MathJax || document.write('<script src="static/js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" ><\/script>')</script>
 <script type="text/javascript">
+
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
         // First allows browser-native MathML display, second forces HTML/CSS
-        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
-            jax: ["input/TeX", "output/HTML-CSS"],
+            config: ["MMLorHTML.js"], jax: ["input/TeX"],
+        //  jax: ["input/TeX", "output/HTML-CSS"],
         extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
                      "TeX/noUndefined.js"],
         tex2jax: {
@@ -333,7 +338,6 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-1-1-2" class="outline-4">
 <h4 id="sec-1-1-2">Completeness</h4>
 <div class="outline-text-4" id="text-1-1-2">
@@ -348,7 +352,6 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-1-1-3" class="outline-4">
 <h4 id="sec-1-1-3">判定</h4>
 <div class="outline-text-4" id="text-1-1-3">
@@ -357,7 +360,6 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-1-1-4" class="outline-4">
 <h4 id="sec-1-1-4">Decision procedure</h4>
 <div class="outline-text-4" id="text-1-1-4">
@@ -373,7 +375,6 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-1-1-5" class="outline-4">
 <h4 id="sec-1-1-5">同构</h4>
 <div class="outline-text-4" id="text-1-1-5">
@@ -392,7 +393,6 @@ p     &lt;=&gt;    加
 </pre>
 </div>
 </div>
-
 <div id="outline-container-sec-1-1-6" class="outline-4">
 <h4 id="sec-1-1-6">递归, 递归可枚举</h4>
 <div class="outline-text-4" id="text-1-1-6">
@@ -414,7 +414,6 @@ p     &lt;=&gt;    加
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-1-1-7" class="outline-4">
 <h4 id="sec-1-1-7">logic system</h4>
 <div class="outline-text-4" id="text-1-1-7">
@@ -424,7 +423,6 @@ p     &lt;=&gt;    加
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-1-2" class="outline-3">
 <h3 id="sec-1-2">Definition</h3>
 <div class="outline-text-3" id="text-1-2">
@@ -451,7 +449,6 @@ formmed or not
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-1-3" class="outline-3">
 <h3 id="sec-1-3">examples</h3>
 <div class="outline-text-3" id="text-1-3">
@@ -476,7 +473,6 @@ S   ::= --*
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-1-3-2" class="outline-4">
 <h4 id="sec-1-3-2">Propositon logic</h4>
 <div class="outline-text-4" id="text-1-3-2">
@@ -530,7 +526,6 @@ str  ::= A<sub>1</sub><br  />
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-1-3-3" class="outline-4">
 <h4 id="sec-1-3-3">数论系统</h4>
 <div class="outline-text-4" id="text-1-3-3">
@@ -608,7 +603,6 @@ a'' &#x2026;
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-1-4" class="outline-3">
 <h3 id="sec-1-4">哥德尔不完全性定理</h3>
 <div class="outline-text-3" id="text-1-4">
@@ -622,6 +616,7 @@ a'' &#x2026;
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">Propositon logic</h2>
 <div class="outline-text-2" id="text-2">
@@ -640,7 +635,7 @@ a'' &#x2026;
 <li>well-formed formula(合式公式): 根据形式语言的语法规则生成的符号串
 </li>
 <li>满足(satisfy): 一个真值指派 v 满足 \(\varphi\) 当且仅当
-     \(\overset{-}{v}(\varphi)=T\), 也就是使得合式公式为真.
+\(\overset{-}{v}(\varphi)=T\), 也就是使得合式公式为真.
 </li>
 <li><b>紧致性定理</b>: 如果 &Sigma; 是合式公式的无限集合, 如果对于 &Sigma; 的任意子集
 \(\Sigma_0\) 都存在一个真值指派满足 \(\Sigma_0\) 的每一个公式, 那么存在一个真
@@ -651,7 +646,6 @@ a'' &#x2026;
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-2-2" class="outline-3">
 <h3 id="sec-2-2">形式语言</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -664,7 +658,6 @@ a'' &#x2026;
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-2-2-2" class="outline-4">
 <h4 id="sec-2-2-2">语法规则(wff)</h4>
 <div class="outline-text-4" id="text-2-2-2">
@@ -681,7 +674,6 @@ a'' &#x2026;
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-2-2-3" class="outline-4">
 <h4 id="sec-2-2-3">解释</h4>
 <div class="outline-text-4" id="text-2-2-3">
@@ -706,7 +698,6 @@ a'' &#x2026;
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-2-3" class="outline-3">
 <h3 id="sec-2-3">真值指派</h3>
 <div class="outline-text-3" id="text-2-3">
@@ -813,7 +804,6 @@ A 与 B有相同的真值.
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-2-4" class="outline-3">
 <h3 id="sec-2-4">重言蕴含</h3>
 <div class="outline-text-3" id="text-2-4">
@@ -924,7 +914,6 @@ if A and B{
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-2-5" class="outline-3">
 <h3 id="sec-2-5">归纳与递归</h3>
 <div class="outline-text-3" id="text-2-5">
@@ -961,7 +950,6 @@ f 和 g 在 C上的限制 f<sub>C</sub> g<sub>C</sub> 必须满足以下条件:
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-2-5-2" class="outline-4">
 <h4 id="sec-2-5-2">归纳</h4>
 <div class="outline-text-4" id="text-2-5-2">
@@ -1042,12 +1030,11 @@ C<sub>n</sub> 是所有长度为 n 的构造序列的最后一个元素组成的
 a<sub>j</sub> 满足该性质, 那么证明 a<sub>n</sub> 也满足该性质
 </li>
 <li>对于任意的元素a<sub>n</sub>, a<sub>n</sub> = g(a<sub>i</sub>), 由归纳假设 a<sub>i</sub> 满足该性质, 那么证明 a<sub>n</sub>
-也满足该性质.
+       也满足该性质.
 </li>
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-2-5-3" class="outline-4">
 <h4 id="sec-2-5-3">递归定理</h4>
 <div class="outline-text-4" id="text-2-5-3">
@@ -1110,6 +1097,7 @@ V 是集合,函数 F, G 与 f 满足:
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-2-6" class="outline-3">
 <h3 id="sec-2-6">命题联结词</h3>
 <div class="outline-text-3" id="text-2-6">
@@ -1139,6 +1127,7 @@ V 是集合,函数 F, G 与 f 满足:
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">一阶逻辑</h2>
 <div class="outline-text-2" id="text-3">
@@ -1241,7 +1230,6 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-3-2" class="outline-3">
 <h3 id="sec-3-2">形式语言</h3>
 <div class="outline-text-3" id="text-3-2">
@@ -1283,7 +1271,6 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-3-2-2" class="outline-4">
 <h4 id="sec-3-2-2">语法规则</h4>
 <div class="outline-text-4" id="text-3-2-2">
@@ -1319,7 +1306,6 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-3-2-3" class="outline-4">
 <h4 id="sec-3-2-3">解释</h4>
 <div class="outline-text-4" id="text-3-2-3">
@@ -1336,10 +1322,10 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
        \subseteq |\mathfrak{A}|^n\)
 </li>
 <li>\(\mathfrak{A}\) 为每一个常数符号指定论域 \(|\mathfrak{A}|\) 中的一个元素
-       \(c^\mathfrak{A}\)
+\(c^\mathfrak{A}\)
 </li>
 <li>\(\mathfrak{A}\) 为每一个n元函数符号 f 指派一个 \(|\mathfrak{A}|\) 上的运算:
-       \(f^\mathfrak{A}: |\mathfrak{A}|^n \rightarrow |\mathfrak{A}|\)
+\(f^\mathfrak{A}: |\mathfrak{A}|^n \rightarrow |\mathfrak{A}|\)
 </li>
 </ol>
 <p>
@@ -1370,7 +1356,6 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-3-3" class="outline-3">
 <h3 id="sec-3-3">真值</h3>
 <div class="outline-text-3" id="text-3-3">
@@ -1444,6 +1429,7 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-3-3-1-2" class="outline-5">
 <h5 id="sec-3-3-1-2">原子公式</h5>
 <div class="outline-text-5" id="text-3-3-1-2">
@@ -1466,6 +1452,7 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-3-3-1-3" class="outline-5">
 <h5 id="sec-3-3-1-3">其它合式公式</h5>
 <div class="outline-text-5" id="text-3-3-1-3">
@@ -1507,6 +1494,7 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-3-3-2" class="outline-4">
 <h4 id="sec-3-3-2">缩写</h4>
 <div class="outline-text-4" id="text-3-3-2">
@@ -1532,7 +1520,6 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-3-3-3" class="outline-4">
 <h4 id="sec-3-3-3">一阶语言的例子</h4>
 <div class="outline-text-4" id="text-3-3-3">
@@ -1562,7 +1549,6 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-3-4" class="outline-3">
 <h3 id="sec-3-4">逻辑蕴含</h3>
 <div class="outline-text-3" id="text-3-4">
@@ -1586,6 +1572,7 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 \end{eqnarray*}
 </div>
 </div>
+
 <div id="outline-container-sec-3-4-2" class="outline-4">
 <h4 id="sec-3-4-2">几个结论</h4>
 <div class="outline-text-4" id="text-3-4-2">
@@ -1626,6 +1613,7 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-3-5" class="outline-3">
 <h3 id="sec-3-5">同态(homomorphism)</h3>
 <div class="outline-text-3" id="text-3-5">
@@ -1654,7 +1642,6 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-3-6" class="outline-3">
 <h3 id="sec-3-6">演绎计算</h3>
 <div class="outline-text-3" id="text-3-6">
@@ -1746,6 +1733,7 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-3-6-2" class="outline-4">
 <h4 id="sec-3-6-2">原理,定理</h4>
 <div class="outline-text-4" id="text-3-6-2">
@@ -1763,7 +1751,7 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 出现, 那么 \(\Gamma \vdash \forall x \varphi\)
 </li>
 <li><b>演绎定理</b>: 如果 \(\Gamma;\gamma \vdash \varphi\) 那么 \(\Gamma \vdash (\gamma \rightarrow \varphi)\)
-(逆定理也成立, 逆定理本质就是假言推理).
+       (逆定理也成立, 逆定理本质就是假言推理).
 </li>
 <li><b>归纳原理</b>: 如果 S 是包含 \(\Gamma \cup \Lambda\) 的集合, 并且在假言推理下
 封闭, 那么 S 包含 &Lambda; 的所有定理.
@@ -1772,7 +1760,6 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-3-7" class="outline-3">
 <h3 id="sec-3-7">一致性与完备性</h3>
 <div class="outline-text-3" id="text-3-7">

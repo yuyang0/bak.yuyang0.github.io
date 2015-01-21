@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>python笔记</title>
-<!-- 2014-12-01 Mon 21:25 -->
+<!-- 2015-01-21 Wed 10:00 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -56,6 +56,8 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -356,7 +358,6 @@ No:  dict ['key'] = list [index]
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">python 文件处理</h2>
 <div class="outline-text-2" id="text-2">
@@ -404,7 +405,6 @@ string, 所以对于二进制文件,你必须指定b
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">作用域规则</h2>
 <div class="outline-text-2" id="text-3">
@@ -427,7 +427,6 @@ string, 所以对于二进制文件,你必须指定b
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">杂七杂八</h2>
 <div class="outline-text-2" id="text-4">
@@ -442,7 +441,6 @@ string, 所以对于二进制文件,你必须指定b
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-4-2" class="outline-3">
 <h3 id="sec-4-2">一些内置函数的解释</h3>
 </div>
@@ -454,7 +452,6 @@ string, 所以对于二进制文件,你必须指定b
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-4-4" class="outline-3">
 <h3 id="sec-4-4">globals  And lolcals</h3>
 <div class="outline-text-3" id="text-4-4">
@@ -468,7 +465,6 @@ string, 所以对于二进制文件,你必须指定b
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-4-5" class="outline-3">
 <h3 id="sec-4-5">getattr,__getattr__,__getattribute__</h3>
 <div class="outline-text-3" id="text-4-5">
@@ -491,7 +487,6 @@ string, 所以对于二进制文件,你必须指定b
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-4-6" class="outline-3">
 <h3 id="sec-4-6">__import__(接字符串而不是name)</h3>
 <div class="outline-text-3" id="text-4-6">
@@ -526,7 +521,6 @@ attr1,attr2&#x2026; <b>这个参数一般需要指定</b>
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">装饰器</h2>
 <div class="outline-text-2" id="text-5">
@@ -554,6 +548,7 @@ attr1,attr2&#x2026; <b>这个参数一般需要指定</b>
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-5-2" class="outline-3">
 <h3 id="sec-5-2">使用类作为装饰器(推荐的做法)</h3>
 <div class="outline-text-3" id="text-5-2">
@@ -579,7 +574,6 @@ myfunc = deco(myfunc) 所以myfunc就是一个deco类的实例，然后myfunc(*a
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-5-3" class="outline-3">
 <h3 id="sec-5-3">使用类作为装饰器装饰类方法</h3>
 <div class="outline-text-3" id="text-5-3">
@@ -618,7 +612,6 @@ myfunc.__get__(test_obj),该函数返回已将test_obj绑定到myfunc.__call__�
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-5-4" class="outline-3">
 <h3 id="sec-5-4">给装饰器添加参数</h3>
 <div class="outline-text-3" id="text-5-4">
@@ -647,6 +640,7 @@ myfunc()
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-5-5" class="outline-3">
 <h3 id="sec-5-5">functools模块</h3>
 <div class="outline-text-3" id="text-5-5">
@@ -695,7 +689,6 @@ __doc__仍然和原来的函数一致
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6">迭代器</h2>
 <div class="outline-text-2" id="text-6">
@@ -708,7 +701,6 @@ __doc__仍然和原来的函数一致
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-6-2" class="outline-3">
 <h3 id="sec-6-2">生成器generator</h3>
 <div class="outline-text-3" id="text-6-2">
@@ -718,7 +710,6 @@ __doc__仍然和原来的函数一致
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-6-3" class="outline-3">
 <h3 id="sec-6-3">for循环的迭代过程</h3>
 <div class="outline-text-3" id="text-6-3">
@@ -738,7 +729,6 @@ for item in obj语句的执行过程其实是这样
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-7" class="outline-2">
 <h2 id="sec-7">with</h2>
 <div class="outline-text-2" id="text-7">
@@ -756,7 +746,6 @@ with exp as name:
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-8" class="outline-2">
 <h2 id="sec-8">模块</h2>
 <div class="outline-text-2" id="text-8">
@@ -810,7 +799,6 @@ package/
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-9" class="outline-2">
 <h2 id="sec-9">OOP</h2>
 <div class="outline-text-2" id="text-9">
@@ -855,7 +843,6 @@ val1, val2, <span class="underline"><span class="underline">init</span></span>, 
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-9-2" class="outline-3">
 <h3 id="sec-9-2">属性搜索树</h3>
 <div class="outline-text-3" id="text-9-2">
@@ -914,7 +901,6 @@ D2.w， 但是C2是D2的子类，并且重载了w属性，这种情况下应该�
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-9-3" class="outline-3">
 <h3 id="sec-9-3">类的设计</h3>
 <div class="outline-text-3" id="text-9-3">
@@ -926,7 +912,6 @@ D2.w， 但是C2是D2的子类，并且重载了w属性，这种情况下应该�
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-9-3-2" class="outline-4">
 <h4 id="sec-9-3-2">has a</h4>
 <div class="outline-text-4" id="text-9-3-2">
@@ -938,7 +923,6 @@ D2.w， 但是C2是D2的子类，并且重载了w属性，这种情况下应该�
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-9-4" class="outline-3">
 <h3 id="sec-9-4">常见的运算符重载</h3>
 <div class="outline-text-3" id="text-9-4">
@@ -963,7 +947,6 @@ obj.__call__('a','b'),这是一个很常用的方法
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-9-5" class="outline-3">
 <h3 id="sec-9-5">Descriptor</h3>
 <div class="outline-text-3" id="text-9-5">
@@ -1018,7 +1001,6 @@ Retrieving var "x"
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-10" class="outline-2">
 <h2 id="sec-10">python异常</h2>
 <div class="outline-text-2" id="text-10">
@@ -1052,7 +1034,6 @@ python2.5以后版本才可以else,finally混在一起,执行try 中语句块时
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-10-2" class="outline-3">
 <h3 id="sec-10-2">raise</h3>
 <div class="outline-text-3" id="text-10-2">
@@ -1080,7 +1061,6 @@ raise语句的几种形式
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-10-3" class="outline-3">
 <h3 id="sec-10-3">异常</h3>
 <div class="outline-text-3" id="text-10-3">
@@ -1092,7 +1072,6 @@ raise语句的几种形式
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-11" class="outline-2">
 <h2 id="sec-11">python中文处理</h2>
 <div class="outline-text-2" id="text-11">
@@ -1188,7 +1167,6 @@ python3不允许二者混合.
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-12" class="outline-2">
 <h2 id="sec-12">一些很诡异的问题</h2>
 <div class="outline-text-2" id="text-12">
@@ -1215,7 +1193,6 @@ test()
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-13" class="outline-2">
 <h2 id="sec-13">一些标准库的使用说明</h2>
 <div class="outline-text-2" id="text-13">
@@ -1228,7 +1205,6 @@ python的正则表达式是通过re这个标准库支持的,这是一篇写的�
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-13-2" class="outline-3">
 <h3 id="sec-13-2">多线程</h3>
 <div class="outline-text-3" id="text-13-2">
@@ -1271,7 +1247,6 @@ q.join()
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-13-3" class="outline-3">
 <h3 id="sec-13-3">collections</h3>
 <div class="outline-text-3" id="text-13-3">
@@ -1313,6 +1288,7 @@ Counter除了有dict的方法外，还有几个特有的方法
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-13-3-2" class="outline-4">
 <h4 id="sec-13-3-2">deque 双端队列</h4>
 <div class="outline-text-4" id="text-13-3-2">
@@ -1322,6 +1298,7 @@ Counter除了有dict的方法外，还有几个特有的方法
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-13-3-3" class="outline-4">
 <h4 id="sec-13-3-3">defaultdict</h4>
 <div class="outline-text-4" id="text-13-3-3">
@@ -1350,7 +1327,6 @@ Counter除了有dict的方法外，还有几个特有的方法
 </pre>
 </div>
 </div>
-
 <div id="outline-container-sec-13-3-4" class="outline-4">
 <h4 id="sec-13-3-4">namedtuple</h4>
 <div class="outline-text-4" id="text-13-3-4">
@@ -1381,7 +1357,6 @@ Counter除了有dict的方法外，还有几个特有的方法
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-13-3-5" class="outline-4">
 <h4 id="sec-13-3-5">OrderedDict</h4>
 <div class="outline-text-4" id="text-13-3-5">
@@ -1409,7 +1384,6 @@ OrderedDict([('b', 3), ('f', 2), ('a', 1)])
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-13-4" class="outline-3">
 <h3 id="sec-13-4">pickle</h3>
 <div class="outline-text-3" id="text-13-4">
@@ -1436,7 +1410,6 @@ OrderedDict([('b', 3), ('f', 2), ('a', 1)])
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-13-5" class="outline-3">
 <h3 id="sec-13-5">json</h3>
 <div class="outline-text-3" id="text-13-5">
@@ -1466,7 +1439,6 @@ cls参数指定用来encode的class，后面的user参数用来向自定义的en
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-13-6" class="outline-3">
 <h3 id="sec-13-6">HTMLParser</h3>
 <div class="outline-text-3" id="text-13-6">
@@ -1499,6 +1471,7 @@ parser.feed(<span style="color: #2aa198;">'&lt;html&gt;&lt;head&gt;&lt;title&gt;
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-14" class="outline-2">
 <h2 id="sec-14">一些第三方库的使用方法</h2>
 <div class="outline-text-2" id="text-14">
@@ -1561,7 +1534,6 @@ requests.put(url, **kwargs)
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-14-2" class="outline-3">
 <h3 id="sec-14-2">pip</h3>
 <div class="outline-text-3" id="text-14-2">
@@ -1572,7 +1544,6 @@ pip install git+git://github.com/yourname/package.git
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-14-3" class="outline-3">
 <h3 id="sec-14-3">pyquery</h3>
 <div class="outline-text-3" id="text-14-3">
@@ -1607,7 +1578,6 @@ d(<span style="color: #2aa198;">'meta[name=keywords]'</span>) <span style="color
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-14-4" class="outline-3">
 <h3 id="sec-14-4">watchdog</h3>
 <div class="outline-text-3" id="text-14-4">
@@ -1645,6 +1615,7 @@ d(<span style="color: #2aa198;">'meta[name=keywords]'</span>) <span style="color
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-14-5" class="outline-3">
 <h3 id="sec-14-5">rauth</h3>
 <div class="outline-text-3" id="text-14-5">
@@ -1655,6 +1626,7 @@ d(<span style="color: #2aa198;">'meta[name=keywords]'</span>) <span style="color
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-15" class="outline-2">
 <h2 id="sec-15">常用工具的使用方法</h2>
 <div class="outline-text-2" id="text-15">
@@ -1684,10 +1656,10 @@ source /usr/local/bin/virtualenvwrapper.sh
 </pre>
 </li>
 <li>mkvirtualenv my_env
-在WORKON_HOME中创建一个名为my_env虚拟环境
+      在WORKON_HOME中创建一个名为my_env虚拟环境
 </li>
 <li>workon my_env
-切换到my_env环境
+      切换到my_env环境
 </li>
 <li>deactivate
 </li>
@@ -1706,7 +1678,6 @@ source /usr/local/bin/virtualenvwrapper.sh
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-15-2" class="outline-3">
 <h3 id="sec-15-2">ipython</h3>
 <div class="outline-text-3" id="text-15-2">

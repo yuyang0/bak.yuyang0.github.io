@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>python的“缺点”</title>
-<!-- 2014-12-01 Mon 21:25 -->
+<!-- 2015-01-21 Wed 10:00 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -56,6 +56,8 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -168,18 +170,23 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">类型系统</a></li>
-<li><a href="#sec-2">缩进</a>
+<li><a href="#sec-1">类型系统</a>
 <ul>
-<li><a href="#sec-2-1">声明与赋值</a>
+<li><a href="#sec-1-1">我对程序语言的理解过程</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">缩进</a></li>
+<li><a href="#sec-3">高阶函数(high order function)</a>
 <ul>
-<li><a href="#sec-2-1-1">作用域</a></li>
-<li><a href="#sec-2-1-2">python的作用域规则</a></li>
+<li><a href="#sec-3-1">声明与赋值</a>
+<ul>
+<li><a href="#sec-3-1-1">作用域</a></li>
+<li><a href="#sec-3-1-2">python的作用域规则</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sec-3">GIL</a></li>
+<li><a href="#sec-4">GIL</a></li>
 </ul>
 </div>
 </div>
@@ -187,35 +194,88 @@ for the JavaScript code in this tag.
 <h2 id="sec-1">类型系统</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-python是一个动态类型的语言，所谓动态类型，实际就是说，python只有在运行时会进行类型检查,
-比如说这样的代码：
+python是一个动态类型的语言，它只能进行动态类型检查，所谓动态类型检查，实际就
+是说，python只有在运行时会进行类型检查,比如说这样的代码：
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python">1+<span style="color: #2aa198;">'hello'</span>
+<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">add1</span>(x):
+    <span style="color: #859900;">return</span> x + 1
+
+<span style="color: #6c71c4;">a</span> = <span style="color: #2aa198;">"hello"</span>
+add1(a)
 </pre>
 </div>
 <p>
-运行时python会报错，因为integer类型与string类型是不能相加的，但是这
-种类型错误只能在运行时检查出来，事实上还有一种静态类型系统，它可以不
-运行程序就检查出程序的类型错误，最出名的可能就是haskell，ML了，在这
-种语言中，每一次你运行一个程序时，它会先将程序送入一个typechecker中，
-只有程序通过了typechecker的的检查，才能让它运行。所以一些Haskell程序
-员说，只要我的代码通过了类型检查，那么它90%的可能是正确的。静态类型
-系统可以帮程序员检测出绝大多数低级错误，同时类型本身可以作为文档的一
-部分，比如说一个函数如果你知道了它的参数类型以及返回值类型，那么你很
-可能就可以猜出它的功能。除了Haskell，ML之外，实际C/C++，java也是会进
-行静态类型检查，这是在编译源码时完成的。很可惜python中是无法实现这样
-的类型系统，也就是说无法进行完备的静态类型检查，因为它太“灵活”， 实
-际上它的很多灵活性是多余的，因为好的编程风格，是不推荐你使用这部分特
-性的。这部分灵活性也使得python的很多语义都与类型系统是矛盾的。比如说
-列表，类型系统要求列表必须同质，也就说列表的元素必须是同一类型，这是
-符合逻辑的，可是“灵活”的python却允许不同类型的元素放在同一个列表。还
-有很多这样的例子。
+运行时python会报错，因为integer类型与string类型是不能相加的，但是这种类型错误
+只能在运行到这条代码时才能检查出来，事实上还有一种静态类型检查，它可以不运行
+程序就检查出程序的类型错误，这种语言大概可以分为两类：
+</p>
+<ol class="org-ol">
+<li>C/C++，java等，它们的静态检查是在编译源码时完成的，在这种语言中你要对每一
+个变量的类型进行标识，非常的繁琐，这也是为什么很多人觉得python比C/C++这类
+语言用起来更舒服的原因之一。
+</li>
+<li>haskell，ML等，在这种语言中，每一次你运行一个程序时，它会先将程序送入一个
+typechecker中，只有程序通过了typechecker的检查，才能让它运行。这类语言一般
+内部会有一个推导系统，比如说著名的HM类型系统，所以在这种语言中你不需要做特
+别多的类型标识，类型系统本身可以推导出绝大多数类型，所以你可以直接用 <code>x=1</code>,
+而不是 <code>int x=1</code>,因为类型系统可以根据1来推导出x的类型。
+</li>
+</ol>
+<p>
+静态类型系统的优点主要有以下几点：
+</p>
+<ol class="org-ol">
+<li>更好的发现错误：静态类型系统可以帮程序员检测出绝大多数低级错误，所以一些
+Haskell程序员说，只要我的代码通过了类型检查，那么它90%的可能是正确的。
+</li>
+<li>类型本身可以作为文档的一部分，比如说一个函数如果你知道了它的参数类型以及返
+回值类型，那么你很可能就可以猜出它的功能。
+</li>
+<li>IDE更好用，一般来说能够进行静态类型检查的语言，它的IDE都更好用，代码跳转，
+重构等功能都非常准确，而python做不到这一点，即便是pyhon所谓最好的IDE
+pycharm我也可以很轻松的让它出错。
+</li>
+</ol>
+<p>
+静态类型系统配合类型推是个好东西，既能享受静态类型检查带来的好处，又不用做过
+多的类型标注，很可惜python中是无法实现这样的类型系统，也就是说无法进行完备的
+静态类型检查，因为它太“灵活”， 实际上它的很多灵活性是多余的，因为好的编程风格，
+是不推荐你使用这部分特性的。这部分灵活性也使得python的很多语义都与类型系统是
+矛盾的。比如说列表，类型系统要求列表必须同质，也就说列表的元素必须是同一类型，
+这是符合逻辑的，可是“灵活”的python却允许不同类型的元素放在同一个列表。在比如
+说python允许一个变量绑定到不同类型的值，比如下面的代码：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #6c71c4;">aa</span> = 1
+<span style="color: #6c71c4;">aa</span> = <span style="color: #2aa198;">'hello'</span>
+</pre>
+</div>
+<p>
+但是这种做法静态类型系统是不允许的（当然这是所有动态语言的问题 ）。还有很多这
+样的例子。静态类型系统实际上是限制了程序语言的灵活性以及表达力，但这是值得的，
+因为它去掉的基本都是一些不必要的灵活性，而且去掉这些灵活性之后可以让程序更严
+谨，实际上现在已经有e人在着手向python中添加静态类型，各位可以看看这篇<a href="https://quip.com/r69HA9GhGa7J">文章</a> 。
+有意了解更多类型知识的童鞋可以看看types and programming languages这本书。
 </p>
 </div>
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">我对程序语言的理解过程</h3>
+<div class="outline-text-3" id="text-1-1">
+<ol class="org-ol">
+<li>C，我学的第一门语言是C，似乎大多数人都是，没办法学校教的，那时候很菜，没
+有比较，所以没有鉴别，糊里糊涂的在学。
+</li>
+<li>python，
+</li>
+<li>scheme，haskell，ML
+</li>
+</ol>
 </div>
-
+</div>
+</div>
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">缩进</h2>
 <div class="outline-text-2" id="text-2">
@@ -248,10 +308,10 @@ python这类语言的代码的, 这不是因为编辑器不够强大，而是本
 是喜欢运行代码自动格式化的命令，可是每一次都弄得一团糟，幸好可以撤销，否则
 我真的只能撞墙。后来我就直接在配置中把python的格式化命令去掉了
 </li>
-<li><b>无法实现一个完备的匿名函数</b>,python的缩进方式除了导致第三方工具无法
-自动格式化代码这个问题外，还有一个很大的问题，那就是python无法实
-现一个功能完备的匿名函数。如果你有函数式编程经验，应该能体会匿名
-函数的重要性，举一个很简单的例子，比如python的列表解析：
+<li><b>无法实现一个完备的匿名函数</b>,python的缩进方式除了导致第三方工具无法自动格
+式化代码这个问题外，还有一个很大的问题，那就是python无法实现一个功能完备的
+匿名函数。如果你有函数式编程经验，应该能体会匿名函数的重要性，举一个很简单
+的例子，比如python的列表解析：
 <div class="org-src-container">
 
 <pre class="src src-python">[i+1 <span style="color: #859900;">for</span> i <span style="color: #859900;">in</span> <span style="color: #6c71c4;">range</span>(10)]
@@ -259,27 +319,30 @@ python这类语言的代码的, 这不是因为编辑器不够强大，而是本
 </pre>
 </div>
 <p>
-二者实际是等价的，很多人对列表解析推崇有加，可是实际上它不过是个
-可有可无的语法糖，而且还是一个表达能力并不强大的语法糖（我个人并
-不排斥语法糖，但是你要明白语法糖背后隐藏的东西），这应该也是从
-haskell学来的，缩进语法应该也是，我的印象中，python似乎从haskell
-学了很多蹩脚的东西。如果python能把匿名函数做对，和map搭配会比列表
-解析强大的多。很可惜python的匿名函数就是一个“残废”的东西，它内部
-只能有一个表达式，而不能像正常的函数那样包含多个语句，事实上造成
-这一困境的原因就是python的缩进语法，因为匿名函数一般是作为参数传
-递给一个函数，这样匿名函数的内部就不能换行，一旦换行缩进就乱了，
-所以python无法实现一个完全正确的匿名函数。
+二者实际是等价的，很多人对列表解析推崇有加，可是实际上它不过是个可有可无的
+语法糖，而且还是一个表达能力并不强大的语法糖（我个人并不排斥语法糖，但是你
+要明白语法糖背后隐藏的东西），这应该也是从haskell学来的，缩进语法应该也是，
+我的印象中，python似乎从haskell学了很多蹩脚的东西。如果python能把匿名函数
+做对，和map搭配会比列表解析强大的多。很可惜python的匿名函数就是一个“残废”
+的东西，它内部只能有一个表达式，而不能像正常的函数那样包含多个语句，事实上
+造成这一困境的原因就是python的缩进语法，因为匿名函数一般是作为参数传递给一
+个函数，这样匿名函数的内部就不能换行，一旦换行缩进就乱了，所以python无法实
+现一个完全正确的匿名函数。
 </p>
 </li>
 </ol>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">高阶函数(high order function)</h2>
+<div class="outline-text-2" id="text-3">
 <p>
-`* 高阶函数(high order function)
-  高阶函数实际就是说函数可以作为值传递，也可以作为值返回，也就是说函数
-  是语言的第一类对象(first class objecte). 可以这么说，一个语言如果它
-  正确的实现了高阶函数在配合静态作用域，那么它的表达能力就超过了目前几
-  乎所有主流语言。好吧，有些人可能会说这种语言（如scheme，haskell）没
-  有OOP，实际上高阶函数可以很简单的就实现OOP，请看SICP(英文版190页)中
-  的一段代码：
+高阶函数实际就是说函数可以作为值传递，也可以作为值返回，也就是说函数
+是语言的第一类对象(first class objecte). 可以这么说，一个语言如果它
+正确的实现了高阶函数在配合静态作用域，那么它的表达能力就超过了目前几
+乎所有主流语言。好吧，有些人可能会说这种语言（如scheme，haskell）没
+有OOP，实际上高阶函数可以很简单的就实现OOP，请看SICP(英文版190页)中
+的一段代码：
 </p>
 <div class="org-src-container">
 
@@ -334,27 +397,27 @@ haskell学来的，缩进语法应该也是，我的印象中，python似乎从h
 </pre>
 </div>
 <p>
-之所以使用js是怕各位对scheme不熟悉，上面的代码实际就是实现了银行账号
-这个类，你可能会说我根本没有看到OOP的影子啊，请不要急，且听我细细道来
+之所以使用js是怕各位对scheme不熟悉，上面的代码实际就是实现了银行账号这个类，
+你可能会说我根本没有看到OOP的影子啊，请不要急，且听我细细道来
 </p>
 <div class="org-src-container">
 
 <pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">account</span> = make_account<span style="color: #839496;">(</span>100<span style="color: #839496;">)</span>; <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">&#21019;&#24314;&#19968;&#20010;&#26377;100&#22359;&#38065;&#30340;&#36134;&#21495;&#23545;&#35937;</span>
 <span style="color: #839496;">(</span><span style="color: #2aa198;">(</span>account <span style="color: #2aa198;">"withdraw"</span><span style="color: #2aa198;">)</span> 50<span style="color: #839496;">)</span>;       <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">&#21462;50&#22359;&#38065;,&#20320;&#29087;&#24713;&#30340;&#35821;&#27861;&#21487;&#33021;&#26159;:accout.withdraw(50)</span>
-<span style="color: #839496;">(</span><span style="color: #2aa198;">(</span>accept <span style="color: #2aa198;">"deposit) 50);          // &#23384;50&#22359;&#38065;,&#20320;&#29087;&#24713;&#30340;&#35821;&#27861;&#21487;&#33021;&#26159;:account.deposit(50)</span>
+<span style="color: #839496;">(</span><span style="color: #2aa198;">(</span>accept <span style="color: #2aa198;">"deposit"</span><span style="color: #2aa198;">)</span> 50<span style="color: #839496;">)</span>;          <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">&#23384;50&#22359;&#38065;,&#20320;&#29087;&#24713;&#30340;&#35821;&#27861;&#21487;&#33021;&#26159;:account.deposit(50)</span>
 </pre>
 </div>
 <p>
-你们可以对比下，虽然语法不同，可是实际上上面的代码已经把OOP的核心语
-义表达出来了，所以OOP不是什么强大的工具，高阶函数可以轻松的实现它，
-很可惜python没有把高阶函数完全做对。估计只做对了八成。对于高阶函数与
-静态作用域我来说一说python那些地方没做对，开始之前先解释一些概念。
+你们可以对比下，虽然语法不同，可是实际上上面的代码已经把OOP的核心语义表达出来
+了，所以OOP不是什么强大的工具，高阶函数可以轻松的实现它，很可惜python没有把高
+阶函数完全做对。估计只做对了八成。对于高阶函数与静态作用域我来说一说python那
+些地方没做对，开始之前先解释一些概念。
 </p>
 <ol class="org-ol">
-<li>环境（environment）: 如果你写过解释器，那么你一定遇到过这个东西，
-简单的说环境就是用来跟踪在程序的执行过程中，每一个标识符都绑定到
-什么值，所以从逻辑上它就是一个map(identifier &lt;&#x2013;&gt; value)，和
-python的dict类似。环境要和作用域规则结合起来
+<li>环境（environment）: 如果你写过解释器，那么你一定遇到过这个东西，简单的说
+环境就是用来跟踪在程序的执行过程中，每一个标识符都绑定到什么值，所以从逻辑
+上它就是一个map(identifier &lt;&#x2013;&gt; value)，和python的dict类似。环境要和作用域
+规则结合起来
 </li>
 <li>声明：
 </li>
@@ -362,17 +425,17 @@ python的dict类似。环境要和作用域规则结合起来
 </li>
 </ol>
 </div>
-<div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">声明与赋值</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">声明与赋值</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
 python有一个巨大的设计失误就是没有明确的区分变量的声明与赋值，它严重的损伤了
 语言的表达能力，同时也让程序更容易出错，因为变量会自动创建。
 </p>
 </div>
-<div id="outline-container-sec-2-1-1" class="outline-4">
-<h4 id="sec-2-1-1">作用域</h4>
-<div class="outline-text-4" id="text-2-1-1">
+<div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1">作用域</h4>
+<div class="outline-text-4" id="text-3-1-1">
 <p>
 解释器在执行一个程序的过程中，它需要一个数据结构来跟踪每一个变量的值是什么。
 这个数据结构就是环境（environment）, 环境可以简单的看做是一个类似于python的
@@ -380,10 +443,9 @@ dict的结构，也就是key-value对，它的key是变量，它的value是与�
 </p>
 </div>
 </div>
-
-<div id="outline-container-sec-2-1-2" class="outline-4">
-<h4 id="sec-2-1-2">python的作用域规则</h4>
-<div class="outline-text-4" id="text-2-1-2">
+<div id="outline-container-sec-3-1-2" class="outline-4">
+<h4 id="sec-3-1-2">python的作用域规则</h4>
+<div class="outline-text-4" id="text-3-1-2">
 <p>
 python有一个内置作用域，这个作用域的所有绑定是在任何地方都可见的。python的内
 置函数以及内置异常都是在内置作用域中. 可以使用如下代码来查看内置作用域有哪些
@@ -417,13 +479,35 @@ python有一个内置作用域，这个作用域的所有绑定是在任何地�
 <span style="color: #2aa198;">}</span><span style="color: #839496;">)()</span>
 </pre>
 </div>
+<p>
+那我们如何用python来实现呢？你可能会很自然的写出这样的代码：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">temp</span>():
+    <span style="color: #6c71c4;">i</span> = 0
+
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">inner</span>():
+        <span style="color: #859900;">print</span> <span style="color: #2aa198;">'i is :'</span>, i
+        <span style="color: #6c71c4;">i</span> = i + 1
+        <span style="color: #859900;">return</span> i
+    <span style="color: #859900;">return</span> inner
+
+<span style="color: #6c71c4;">succ</span> = temp()
+</pre>
+</div>
+<p>
+这个代码和上面的代码逻辑是一样的，但是却达不到我们预期的效果，如果
+你运行的话就会发现，它会出错(UNBoundError). 这其中有一些很细微的区
+别.
+</p>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">GIL</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">GIL</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 这是python被广为诟病的一个东西，与其说它是语言本身的问题，还不如说它是官方的C
 语言实现的问题，JPython以及pypy都没有这个问题。简单的说GIL是一个全局锁，GIL的

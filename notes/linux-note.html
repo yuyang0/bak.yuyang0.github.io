@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>linux笔记</title>
-<!-- 2014-12-01 Mon 21:25 -->
+<!-- 2015-01-21 Wed 10:00 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -55,6 +55,8 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -178,6 +180,9 @@ for the JavaScript code in this tag.
 <li><a href="#sec-4-4">lsof</a></li>
 </ul>
 </li>
+<li><a href="#sec-5">ssh</a></li>
+<li><a href="#sec-6">给力的工具</a></li>
+<li><a href="#sec-7">常用软件配置</a></li>
 </ul>
 </div>
 </div>
@@ -196,7 +201,6 @@ for the JavaScript code in this tag.
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">wireshark的配置</h2>
 <div class="outline-text-2" id="text-2">
@@ -210,7 +214,6 @@ for the JavaScript code in this tag.
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">ubuntu的terminal配色</h2>
 <div class="outline-text-2" id="text-3">
@@ -222,6 +225,7 @@ for the JavaScript code in this tag.
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">命令行工具</h2>
 <div class="outline-text-2" id="text-4">
@@ -233,7 +237,6 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-4-2" class="outline-3">
 <h3 id="sec-4-2">htop</h3>
 <div class="outline-text-3" id="text-4-2">
@@ -242,7 +245,6 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-4-3" class="outline-3">
 <h3 id="sec-4-3">ifstat</h3>
 <div class="outline-text-3" id="text-4-3">
@@ -251,7 +253,6 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-4-4" class="outline-3">
 <h3 id="sec-4-4">lsof</h3>
 <div class="outline-text-3" id="text-4-4">
@@ -260,6 +261,38 @@ list open files， 显示哪些进程打开了哪些文件。
 </p>
 </div>
 </div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">ssh</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+ssh要认证，必须将本地公钥上传到服务器的authorized_keys文件中，并且该文件必须
+是600或者700权限。（不能用660,664这样的权限，只能是600或者700）
+</p>
+</div>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">给力的工具</h2>
+<div class="outline-text-2" id="text-6">
+<ol class="org-ol">
+<li>zsh： 非常给力的shell，比bash好用
+</li>
+<li>percol： 可以增量式的过滤shell命令的输出结果，可以和zsh结合定制出ppkill，
+ppgrep命令
+</li>
+<li>autojump： 可以非常快速的跳转到你常用的目录，有zsh插件
+</li>
+<li>cheat： 对常用的linux命令的cheatsheet，很多时候比man要好用
+</li>
+<li>cloc: 统计代码行数
+</li>
+<li>tree： 显示树形的目录结构，很直观
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">常用软件配置</h2>
 </div>
 </div>
 <div id="postamble" class="status">

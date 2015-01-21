@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>gevent源码分析</title>
-<!-- 2014-12-01 Mon 21:25 -->
+<!-- 2015-01-21 Wed 10:01 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -56,6 +56,8 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -165,18 +167,19 @@ for the JavaScript code in this tag.
 <div id="content">
 <h1 class="title">gevent源码分析</h1>
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">gevent 笔记</h2>
+<h2 id="sec-1">基本概念</h2>
 <div class="outline-text-2" id="text-1">
 </div><div id="outline-container-sec-1-1" class="outline-3">
 <h3 id="sec-1-1">continuation</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
-    continuation是一个程序设计语言理论上的概念，不怕英文的童鞋可以看这一篇
-<a href="http://en.wikipedia.org/wiki/Continuation">wiki</a>, 你可以将continuation看成是一个数据结构，这个数据结构可以保存程序的执行流
-的状态，而且可以在程序中访问这个数据结构来恢复程序的执行流，这就赋予了程序一
-种能力，也就是说我可以先获得一个continuation，接着挂起一个程序正在执行的部分，
-然后跳到该程序的其他部分执行，以后又可以通过调用continuation来恢复被挂起的执
-行流。这种能力为异常，触发器以及协程的实现提供非常了便利的条件。某种程度上而
+    continuation是一个程序设计语言理论上的概念，不怕英文的童鞋可以
+看这一篇<a href="http://en.wikipedia.org/wiki/Continuation">wiki</a>, 你可以将continuation看成是一个数据结构，这个数据结构
+可以保存程序的执行流的状态，而且可以在程序中访问这个数据结构来恢复
+程序的执行流，这就赋予了程序一种能力，也就是说我可以先获得一个
+continuation，接着挂起一个程序正在执行的部分，然后跳到该程序的其他
+部分执行，以后又可以通过调用continuation来恢复被挂起的执行流。这种
+能力为异常，触发器以及协程的实现提供非常了便利的条件。某种程度上而
 言，continuation是这些实现这些程序语言设施的基础
 </p>
 <div class="org-src-container">
@@ -199,12 +202,13 @@ for the JavaScript code in this tag.
 </pre>
 </div>
 <p>
-上述是一段scheme代码，摘自wikipedia。我大体的解释下这段代码，一开始定义了一
-个变量the-continuation，接着定义一个函数test，在函数体中let定义一个局部变量i，
-接着调用call/cc，该函数的作用可以看注释，call/cc的第一个参数是一个函数，
-call/cc的作用是将代表当前continuation的一个变量作为参数传递给它的第一个参数，
-对本例而言就是将代表当前continuation的变量传递给那个lambda匿名函数，而这个匿
-名函数会将the-continuation设置为当前的continuation，所以运行
+上述是一段scheme代码，摘自wikipedia。我大体的解释下这段代码，一开始
+定义了一个变量the-continuation，接着定义一个函数test，在函数体中let
+定义一个局部变量i，接着调用call/cc，该函数的作用可以看注释，call/cc
+的第一个参数是一个函数，call/cc的作用是将代表当前continuation的一个
+变量作为参数传递给它的第一个参数，对本例而言就是将代表当前
+continuation的变量传递给那个lambda匿名函数，而这个匿名函数会将
+the-continuation设置为当前的continuation，所以运行
 </p>
 <pre class="example">
 (test)
@@ -216,7 +220,6 @@ call/cc的作用是将代表当前continuation的一个变量作为参数传递�
 </pre>
 </div>
 </div>
-
 <div id="outline-container-sec-1-2" class="outline-3">
 <h3 id="sec-1-2">coroutine</h3>
 <div class="outline-text-3" id="text-1-2">
@@ -224,9 +227,52 @@ call/cc的作用是将代表当前continuation的一个变量作为参数传递�
 Coroutine 也就是 corporate routine，中文名就是协程，从它的英文可以看出是协同的例程的意思
 </p>
 </div>
-<div id="outline-container-sec-1-2-1" class="outline-4">
-<h4 id="sec-1-2-1">gevent源码分析</h4>
-<div class="outline-text-4" id="text-1-2-1">
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">gevent源码分析</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">greenlet</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+实际是一个协程库(官方叫micro-thread), 它只提供协程本身,要在协程间切
+换调度必须你在程序中手动来进行,直接上代码:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">test1</span>(x, y):
+    <span style="color: #6c71c4;">z</span> = gr2.switch(x+y)
+    <span style="color: #859900;">print</span> z
+
+<span style="color: #859900;">def</span> <span style="color: #b58900;">test2</span>(u):
+    <span style="color: #859900;">print</span> u
+    gr1.switch(42)
+
+<span style="color: #6c71c4;">gr1</span> = greenlet(test1)
+<span style="color: #6c71c4;">gr2</span> = greenlet(test2)
+gr1.switch(<span style="color: #2aa198;">"hello"</span>, <span style="color: #2aa198;">" world"</span>)
+</pre>
+</div>
+<p>
+gr1, gr2以及运行该代码的解释器本身都是协程, 协程对象的switch方法用
+来切换,比如 <code>gr2.switch</code> 就是切换到gr2.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">libev</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+和libevent类似, libev是一个事件循环库,他可以监听各个file
+descriptor, 一旦发现就绪就调用对应的回调函数, gevent内部就是使用
+libev来监听socket的.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">源码</h3>
+<div class="outline-text-3" id="text-2-3">
 <p>
 在Greenlet类的join函数中有如下代码：
 </p>
@@ -241,7 +287,6 @@ Coroutine 也就是 corporate routine，中文名就是协程，从它的英文�
 <p>
 rawlink的作用是注册一个函数，这个函数会在这个greenlet运行完成后调用
 </p>
-</div>
 </div>
 </div>
 </div>

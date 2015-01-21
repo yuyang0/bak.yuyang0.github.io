@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>PHP笔记</title>
-<!-- 2014-12-01 Mon 21:25 -->
+<!-- 2015-01-21 Wed 10:00 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -56,6 +56,8 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -250,7 +252,6 @@ echo 效率高, 但是当使用 if, foreach, for, while 这样的结构时应该
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">变量</h2>
 <div class="outline-text-2" id="text-2">
@@ -265,7 +266,6 @@ echo 效率高, 但是当使用 if, foreach, for, while 这样的结构时应该
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-2-2" class="outline-3">
 <h3 id="sec-2-2">常量</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -286,7 +286,6 @@ echo 效率高, 但是当使用 if, foreach, for, while 这样的结构时应该
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-2-3" class="outline-3">
 <h3 id="sec-2-3">作用域</h3>
 <div class="outline-text-3" id="text-2-3">
@@ -317,7 +316,6 @@ echo 效率高, 但是当使用 if, foreach, for, while 这样的结构时应该
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">操作符与控制结构</h2>
 <div class="outline-text-2" id="text-3">
@@ -330,7 +328,6 @@ php的运算符基本和c语言类似。有一个===与==这个和js类似，一
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-3-2" class="outline-3">
 <h3 id="sec-3-2">控制结构</h3>
 <div class="outline-text-3" id="text-3-2">
@@ -342,7 +339,6 @@ php的控制结构与C语言类似，if，switch，while，do…..while循环，
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">php数组</h2>
 <div class="outline-text-2" id="text-4">
@@ -365,7 +361,6 @@ php数组是一个强大的数据结构
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-4-2" class="outline-3">
 <h3 id="sec-4-2">数组的key</h3>
 <div class="outline-text-3" id="text-4-2">
@@ -382,7 +377,6 @@ php数组是一个强大的数据结构
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-4-3" class="outline-3">
 <h3 id="sec-4-3">访问或者修改</h3>
 <div class="outline-text-3" id="text-4-3">
@@ -394,7 +388,6 @@ php数组是一个强大的数据结构
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-4-4" class="outline-3">
 <h3 id="sec-4-4">循环访问</h3>
 <div class="outline-text-3" id="text-4-4">
@@ -447,7 +440,6 @@ while(list($key, $value) = each($arr))
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-4-5" class="outline-3">
 <h3 id="sec-4-5">数组排序（原地改变数组）</h3>
 <div class="outline-text-3" id="text-4-5">
@@ -464,6 +456,7 @@ while(list($key, $value) = each($arr))
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-4-6" class="outline-3">
 <h3 id="sec-4-6">其它数组函数</h3>
 <div class="outline-text-3" id="text-4-6">
@@ -497,7 +490,7 @@ while(list($key, $value) = each($arr))
 </li>
 
 <li>array_walk : 对数组的每个元素(<b>只是value,不包括key</b>)应用一个自定义函数, 和
-     <code>scheme</code> 的 <code>for-each</code> 类似.
+<code>scheme</code> 的 <code>for-each</code> 类似.
 </li>
 <li>array_filter : 和 <code>scheme</code> 中 <code>filter</code> 函数相似.
 </li>
@@ -507,7 +500,6 @@ while(list($key, $value) = each($arr))
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">字符串处理函数</h2>
 <div class="outline-text-2" id="text-5">
@@ -548,7 +540,6 @@ while(list($key, $value) = each($arr))
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-5-2" class="outline-3">
 <h3 id="sec-5-2">正则表达式函数</h3>
 <div class="outline-text-3" id="text-5-2">
@@ -578,6 +569,7 @@ Perl正则表达式和POSISX表达式的区别：perl正则表达式的模式需
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6">文件</h2>
 <div class="outline-text-2" id="text-6">
@@ -611,7 +603,6 @@ Perl正则表达式和POSISX表达式的区别：perl正则表达式的模式需
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-7" class="outline-2">
 <h2 id="sec-7">function</h2>
 <div class="outline-text-2" id="text-7">
@@ -641,7 +632,6 @@ function  func_name($a, $b….)
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-7-2" class="outline-3">
 <h3 id="sec-7-2">可变参数</h3>
 <div class="outline-text-3" id="text-7-2">
@@ -673,7 +663,6 @@ foo(<span style="color: #2aa198;">'first arg'</span>, <span style="color: #2aa19
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-7-3" class="outline-3">
 <h3 id="sec-7-3">引用</h3>
 <div class="outline-text-3" id="text-7-3">
@@ -705,7 +694,6 @@ add_some_extra(<span style="color: #839496; background-color: #002b36;">$</span>
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-7-4" class="outline-3">
 <h3 id="sec-7-4">注意事项</h3>
 <div class="outline-text-3" id="text-7-4">
@@ -726,7 +714,6 @@ design</b>
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-8" class="outline-2">
 <h2 id="sec-8">OOP</h2>
 <div class="outline-text-2" id="text-8">
@@ -824,7 +811,6 @@ design</b>
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-9" class="outline-2">
 <h2 id="sec-9">php与数据库（mysql）</h2>
 <div class="outline-text-2" id="text-9">
@@ -871,7 +857,6 @@ design</b>
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-9-2" class="outline-3">
 <h3 id="sec-9-2">解释</h3>
 <div class="outline-text-3" id="text-9-2">
@@ -900,7 +885,6 @@ field name, 同时将记录指针移到下一条记录.可以用while了来循�
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-10" class="outline-2">
 <h2 id="sec-10">其它技巧</h2>
 <div class="outline-text-2" id="text-10">

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Type System</title>
-<!-- 2014-12-01 Mon 21:25 -->
+<!-- 2015-01-21 Wed 10:00 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -56,6 +56,8 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -135,14 +137,17 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript">window.MathJax || document.write('<script src="static/js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" ><\/script>')</script>
 <script type="text/javascript">
+
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
         // First allows browser-native MathML display, second forces HTML/CSS
-        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
-            jax: ["input/TeX", "output/HTML-CSS"],
+            config: ["MMLorHTML.js"], jax: ["input/TeX"],
+        //  jax: ["input/TeX", "output/HTML-CSS"],
         extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
                      "TeX/noUndefined.js"],
         tex2jax: {
@@ -327,7 +332,6 @@ and a reduction relation, it is a untyped language.
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">Safety = Progress + Preservation</h2>
 <div class="outline-text-2" id="text-2">
@@ -341,7 +345,6 @@ resulting term is also well typed.
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">Simple Typed Lambda Calculus</h2>
 <div class="outline-text-2" id="text-3">
@@ -362,7 +365,6 @@ produces a function type.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-3-2" class="outline-3">
 <h3 id="sec-3-2">terms</h3>
 <div class="outline-text-3" id="text-3-2">
@@ -395,7 +397,6 @@ type.
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-3-3" class="outline-3">
 <h3 id="sec-3-3">evaluation relation</h3>
 <div class="outline-text-3" id="text-3-3">
@@ -406,6 +407,7 @@ type.
 \end{eqnarray*}
 </div>
 </div>
+
 <div id="outline-container-sec-3-4" class="outline-3">
 <h3 id="sec-3-4">type relations</h3>
 <div class="outline-text-3" id="text-3-4">
@@ -417,6 +419,7 @@ type.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">Type extensions</h2>
 <div class="outline-text-2" id="text-4">
@@ -435,7 +438,6 @@ int, char, etc
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-4-2" class="outline-3">
 <h3 id="sec-4-2">Unit</h3>
 <div class="outline-text-3" id="text-4-2">
@@ -450,6 +452,7 @@ type.
 \end{eqnarray*}
 </div>
 </div>
+
 <div id="outline-container-sec-4-3" class="outline-3">
 <h3 id="sec-4-3">pairs T<sub>1</sub> &times; T<sub>2</sub></h3>
 <div class="outline-text-3" id="text-4-3">
@@ -490,6 +493,7 @@ type rules
 \end{eqnarray*}
 </div>
 </div>
+
 <div id="outline-container-sec-4-4" class="outline-3">
 <h3 id="sec-4-4">tuples {T<sub>1</sub> T<sub>2</sub> &#x2026;}</h3>
 <div class="outline-text-3" id="text-4-4">
@@ -510,6 +514,7 @@ type rules:
 \end{eqnarray*}
 </div>
 </div>
+
 <div id="outline-container-sec-4-5" class="outline-3">
 <h3 id="sec-4-5">records {l<sub>i</sub> = T<sub>i</sub> &#x2026;}</h3>
 <div class="outline-text-3" id="text-4-5">
@@ -554,6 +559,7 @@ type rules:
 \end{eqnarray*}
 </div>
 </div>
+
 <div id="outline-container-sec-4-6" class="outline-3">
 <h3 id="sec-4-6">sums T<sub>1</sub> + T<sub>2</sub></h3>
 <div class="outline-text-3" id="text-4-6">
@@ -577,6 +583,7 @@ type rules:
 \end{eqnarray*}
 </div>
 </div>
+
 <div id="outline-container-sec-4-7" class="outline-3">
 <h3 id="sec-4-7">variants &lt;l<sub>i</sub>:T<sub>i</sub> &#x2026;&gt;</h3>
 <div class="outline-text-3" id="text-4-7">
@@ -607,6 +614,7 @@ type rules:
 \end{eqnarray*}
 </div>
 </div>
+
 <div id="outline-container-sec-4-8" class="outline-3">
 <h3 id="sec-4-8">recursive function</h3>
 <div class="outline-text-3" id="text-4-8">
@@ -618,6 +626,7 @@ add <code>fix</code> to the language.
 \end{equation}
 </div>
 </div>
+
 <div id="outline-container-sec-4-9" class="outline-3">
 <h3 id="sec-4-9">Lists (List T)</h3>
 <div class="outline-text-3" id="text-4-9">
@@ -627,7 +636,6 @@ e1:T, e2:T, e3:T &#x2026; ==&gt; (e1 e2 e3 &#x2026;) : List T
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">Reference</h2>
 <div class="outline-text-2" id="text-5">
@@ -687,6 +695,7 @@ type of the content pointed by this location.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6">Subtype</h2>
 <div class="outline-text-2" id="text-6">
@@ -718,6 +727,7 @@ the inverse Lemma:
 \end{displaymath}
 </div>
 </div>
+
 <div id="outline-container-sec-6-2" class="outline-3">
 <h3 id="sec-6-2">record</h3>
 </div>
@@ -737,6 +747,7 @@ be equivalent in substype relation.
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-6-5" class="outline-3">
 <h3 id="sec-6-5">The Top and Bottom types</h3>
 <div class="outline-text-3" id="text-6-5">
@@ -748,6 +759,7 @@ be equivalent in substype relation.
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-6-6" class="outline-3">
 <h3 id="sec-6-6">STLC</h3>
 <div class="outline-text-3" id="text-6-6">
@@ -758,7 +770,6 @@ be equivalent in substype relation.
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-6-7" class="outline-3">
 <h3 id="sec-6-7">OOP</h3>
 <div class="outline-text-3" id="text-6-7">
@@ -775,7 +786,6 @@ superclasses implements t<sub>2</sub>.
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-7" class="outline-2">
 <h2 id="sec-7">Polymorphism</h2>
 <div class="outline-text-2" id="text-7">
@@ -791,7 +801,6 @@ the term <b>generics(泛型)</b> is used to denote parameter polymorphism.
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-7-2" class="outline-3">
 <h3 id="sec-7-2">Parameter Polymorphism</h3>
 <div class="outline-text-3" id="text-7-2">
@@ -855,7 +864,6 @@ pair,list,不能定义递归函数等等,当我们引入了 &Lambda; 抽象后, 
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-7-3" class="outline-3">
 <h3 id="sec-7-3">ad-hoc polymorphism</h3>
 <div class="outline-text-3" id="text-7-3">
@@ -869,7 +877,6 @@ pair,list,不能定义递归函数等等,当我们引入了 &Lambda; 抽象后, 
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-7-4" class="outline-3">
 <h3 id="sec-7-4">subtype Polymorphism</h3>
 <div class="outline-text-3" id="text-7-4">
@@ -879,7 +886,6 @@ Mostly used in Object-oriented language.
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-8" class="outline-2">
 <h2 id="sec-8">Recursive Type</h2>
 <div class="outline-text-2" id="text-8">
@@ -928,7 +934,6 @@ a type constructed by &mu; is a <b>recursive type</b>.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-8-2" class="outline-3">
 <h3 id="sec-8-2">fix combinator</h3>
 <div class="outline-text-3" id="text-8-2">
@@ -937,6 +942,7 @@ a type constructed by &mu; is a <b>recursive type</b>.
 \end{displaymath}
 </div>
 </div>
+
 <div id="outline-container-sec-8-3" class="outline-3">
 <h3 id="sec-8-3">fold and unfold</h3>
 <div class="outline-text-3" id="text-8-3">
@@ -959,6 +965,7 @@ of a constructor in a pattern match implies <code>unfold</code>. The type rules 
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-9" class="outline-2">
 <h2 id="sec-9">Type Inference</h2>
 <div class="outline-text-2" id="text-9">

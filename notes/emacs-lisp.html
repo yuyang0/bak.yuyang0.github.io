@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Emacs Lisp</title>
-<!-- 2014-12-01 Mon 21:25 -->
+<!-- 2015-01-21 Wed 10:00 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -56,6 +56,8 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -136,14 +138,17 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript">window.MathJax || document.write('<script src="static/js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" ><\/script>')</script>
 <script type="text/javascript">
+
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
         // First allows browser-native MathML display, second forces HTML/CSS
-        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
-            jax: ["input/TeX", "output/HTML-CSS"],
+            config: ["MMLorHTML.js"], jax: ["input/TeX"],
+        //  jax: ["input/TeX", "output/HTML-CSS"],
         extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
                      "TeX/noUndefined.js"],
         tex2jax: {
@@ -270,7 +275,6 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-1-2" class="outline-3">
 <h3 id="sec-1-2">control flow</h3>
 <div class="outline-text-3" id="text-1-2">
@@ -304,7 +308,7 @@ b<span style="color: #839496;">)</span>
 </div>
 </li>
 <li><code>cond</code>
-和scheme类似:
+       和scheme类似:
 <div class="org-src-container">
 
 <pre class="src src-scheme">(<span style="color: #859900;">cond</span> ((numberp x) x)
@@ -349,7 +353,6 @@ so (if a a b) is identical to (or a b)
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-1-3" class="outline-3">
 <h3 id="sec-1-3">let&#xa0;&#xa0;&#xa0;<span class="tag"><span class="let">let</span></span></h3>
 <div class="outline-text-3" id="text-1-3">
@@ -365,7 +368,6 @@ so (if a a b) is identical to (or a b)
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-1-4" class="outline-3">
 <h3 id="sec-1-4">function</h3>
 <div class="outline-text-3" id="text-1-4">
@@ -397,6 +399,7 @@ optional代表参数可选, rest代表可变参数, 如果有那么会是一个�
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-1-5" class="outline-3">
 <h3 id="sec-1-5">lists</h3>
 <div class="outline-text-3" id="text-1-5">
@@ -461,7 +464,6 @@ optional代表参数可选, rest代表可变参数, 如果有那么会是一个�
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-1-5-2" class="outline-4">
 <h4 id="sec-1-5-2">property list</h4>
 <div class="outline-text-4" id="text-1-5-2">
@@ -475,7 +477,6 @@ optional代表参数可选, rest代表可变参数, 如果有那么会是一个�
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">常用的函数</h2>
 <div class="outline-text-2" id="text-2">
@@ -505,6 +506,7 @@ the regex in str
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-2-2" class="outline-3">
 <h3 id="sec-2-2">Regex</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -513,7 +515,7 @@ the regex in str
 内容时, ^匹配一行的开头, $匹配一行的结尾.
 </li>
 <li>常用的字符串匹配函数是string-match, 常用的buffer 内正则匹配的函数是
-      <code>looking-at</code> 它会匹配从当前光标开始的内容.
+<code>looking-at</code> 它会匹配从当前光标开始的内容.
 </li>
 <li>在通常的语言(比如python)的正则表达式实现中, (, ), [, ], {, }, \ 等都是特
 殊字符, 但是在emacs lisp中都是普通的字符,所以如果你要把它们当作特殊的字符,
@@ -527,7 +529,6 @@ the regex in str
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-2-3" class="outline-3">
 <h3 id="sec-2-3">buffer相关：&#xa0;&#xa0;&#xa0;<span class="tag"><span class="buffer">buffer</span></span></h3>
 <div class="outline-text-3" id="text-2-3">
@@ -567,7 +568,6 @@ BUFFER-ORNAME指定的buffer设为当前buffer, body运行完后会恢复原先�
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-2-3-2" class="outline-4">
 <h4 id="sec-2-3-2">buffer中移动以及光标相关&#xa0;&#xa0;&#xa0;<span class="tag"><span class="point">point</span></span></h4>
 <div class="outline-text-4" id="text-2-3-2">
@@ -636,7 +636,6 @@ body中如何改变point,执行完成后都会回到执行save-excursion之前�
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-2-4" class="outline-3">
 <h3 id="sec-2-4">file相关&#xa0;&#xa0;&#xa0;<span class="tag"><span class="file">file</span></span></h3>
 <div class="outline-text-3" id="text-2-4">
@@ -666,7 +665,6 @@ body中如何改变point,执行完成后都会回到执行save-excursion之前�
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-2-5" class="outline-3">
 <h3 id="sec-2-5">other useful function</h3>
 <div class="outline-text-3" id="text-2-5">
@@ -698,7 +696,6 @@ pair &#x2013;&gt; (start . end) , 这个pair 的car是左边界,cdr是右边界
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-2-6" class="outline-3">
 <h3 id="sec-2-6"><b>useful variable</b></h3>
 <div class="outline-text-3" id="text-2-6">
@@ -710,7 +707,6 @@ pair &#x2013;&gt; (start . end) , 这个pair 的car是左边界,cdr是右边界
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-2-7" class="outline-3">
 <h3 id="sec-2-7">useful code snippet</h3>
 <div class="outline-text-3" id="text-2-7">
@@ -725,7 +721,7 @@ pair &#x2013;&gt; (start . end) , 这个pair 的car是左边界,cdr是右边界
 </div>
 </li>
 <li>setting keybinding for specified mode
-       <b>there are two way</b>, the first is <b>eval-after-load</b>
+<b>there are two way</b>, the first is <b>eval-after-load</b>
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span style="color: #839496;">(</span>eval-after-load <span style="color: #2aa198;">"org"</span>
@@ -764,7 +760,6 @@ minor mode 的map
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">interactive&#xa0;&#xa0;&#xa0;<span class="tag"><span class="interactive">interactive</span></span></h2>
 <div class="outline-text-2" id="text-3">
@@ -838,6 +833,7 @@ read-string prompt &amp;optional initial history default inherit-input-method
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">autoload&#xa0;&#xa0;&#xa0;<span class="tag"><span class="autoload">autoload</span></span></h2>
 <div class="outline-text-2" id="text-4">
@@ -893,7 +889,6 @@ yasnippet-autoloads.el(所有的package.el管理的包的 -autoloads.el文件)�
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">define mode(minor mode or major mode)</h2>
 <div class="outline-text-2" id="text-5">
@@ -920,7 +915,6 @@ yasnippet-autoloads.el(所有的package.el管理的包的 -autoloads.el文件)�
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-5-2" class="outline-3">
 <h3 id="sec-5-2">minor mode</h3>
 <div class="outline-text-3" id="text-5-2">

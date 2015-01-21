@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>java syntax note</title>
-<!-- 2014-12-01 Mon 21:25 -->
+<!-- 2015-01-21 Wed 10:00 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -55,6 +55,8 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -235,7 +237,6 @@ java welcome
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">OOP</h2>
 <div class="outline-text-2" id="text-2">
@@ -256,7 +257,6 @@ com/example/testcode/目录中.使用IDE可以很轻松的做到这一点.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-2-2" class="outline-3">
 <h3 id="sec-2-2">继承</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -342,7 +342,6 @@ e.getSalary();
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-2-2-2" class="outline-4">
 <h4 id="sec-2-2-2">Object</h4>
 <div class="outline-text-4" id="text-2-2-2">
@@ -390,7 +389,6 @@ Object是所有类的超类,该类有有一些方法建议每一个类都重载:
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-2-3" class="outline-3">
 <h3 id="sec-2-3">抽象类</h3>
 <div class="outline-text-3" id="text-2-3">
@@ -417,7 +415,6 @@ Object是所有类的超类,该类有有一些方法建议每一个类都重载:
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-2-4" class="outline-3">
 <h3 id="sec-2-4">反射(Reflection)</h3>
 <div class="outline-text-3" id="text-2-4">
@@ -458,7 +455,6 @@ Class对象.
 </ol>
 </div>
 </div>
-
 <div id="outline-container-sec-2-5" class="outline-3">
 <h3 id="sec-2-5">接口(interface)</h3>
 <div class="outline-text-3" id="text-2-5">
@@ -505,7 +501,6 @@ interface中的方法自动为public.
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">exception(异常)</h2>
 <div class="outline-text-2" id="text-3">
@@ -597,7 +592,6 @@ loadImage有可能抛出两个异常,如果一个方法没有声明 throws语句
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">日志</h2>
 <div class="outline-text-2" id="text-4">
@@ -688,6 +682,7 @@ logger.addHandler(hd);
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">java标准库</h2>
 <div class="outline-text-2" id="text-5">
@@ -732,7 +727,6 @@ logger.addHandler(hd);
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-5-1-2" class="outline-4">
 <h4 id="sec-5-1-2">java.lang.StringBuilder</h4>
 <div class="outline-text-4" id="text-5-1-2">
@@ -749,7 +743,6 @@ builder.append(<span style="color: #2aa198;">' '</span>);
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-5-1-3" class="outline-4">
 <h4 id="sec-5-1-3">java.lang.Math</h4>
 <div class="outline-text-4" id="text-5-1-3">
@@ -766,12 +759,10 @@ builder.append(<span style="color: #2aa198;">' '</span>);
 </ul>
 </div>
 </div>
-
 <div id="outline-container-sec-5-1-4" class="outline-4">
 <h4 id="sec-5-1-4">java.lang.System</h4>
 </div>
 </div>
-
 <div id="outline-container-sec-5-2" class="outline-3">
 <h3 id="sec-5-2">java.util</h3>
 <div class="outline-text-3" id="text-5-2">
