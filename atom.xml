@@ -4,7 +4,7 @@
   <title></title>
   <link href="https://yuyang0.github.io/"/>
   <link type="application/atom+xml" rel="self" href="/atom.xml"/>
-  <updated>Thu Jan 29 10:06:59 2015</updated>
+  <updated>Thu Jan 29 19:29:50 2015</updated>
   <id>https://yuyang0.github.io/</id>
   <author>
     <name>Yu Yang</name>
@@ -384,7 +384,7 @@
     <id>nginx.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/nginx.html"/>
     <title>nginx</title>
-    <updated> 2015-01-28</updated>
+    <updated> 2015-01-29</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -554,7 +554,7 @@
     <id>tags.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/tags.html"/>
     <title>tags</title>
-    <updated> 2015-01-21</updated>
+    <updated> 2015-01-29</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>

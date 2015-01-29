@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>nginx</title>
-<!-- 2015-01-29 Thu 10:07 -->
+<!-- 2015-01-29 Thu 19:29 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -193,6 +193,7 @@ for the JavaScript code in this tag.
 <li><a href="#sec-3">nginx的变量</a>
 <ul>
 <li><a href="#sec-3-1">nginx的内置变量</a></li>
+<li><a href="#sec-3-2">常见的指令</a></li>
 </ul>
 </li>
 <li><a href="#sec-4">nginx的基础知识</a>
@@ -467,8 +468,8 @@ location ~* <span style="color: #2aa198;">\.</span>(gif|jpg|jpeg)$ {} <span styl
 <div class="outline-text-2" id="text-3">
 <p>
 nginx变量是在nginx启动时创建, 而在请求中赋值的,变量在每一次请求中都有一个单独
-的副本, 同时变量的生命周期与请求绑定,与location块无关,不要想当然的认为它和程
-序语言的静态作用域相同.请看如下例子:
+的副本(<b>子请求也会有单独的副本</b>), 同时变量的生命周期与请求绑定,与location块无
+关,不要想当然的认为它和程序语言的静态作用域相同.请看如下例子:
 </p>
 <div class="org-src-container">
 
@@ -507,6 +508,19 @@ Tom.注意返回的值是未解码形式.
 </ol>
 </div>
 </div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">常见的指令</h3>
+<div class="outline-text-3" id="text-3-2">
+<ol class="org-ol">
+<li>set: 创建nginx变量并且赋值(rewrite phase)
+</li>
+<li>set_unescape_uri: 创建nginx变量,但是会将值解码后赋给该变量(rewrite phase)
+</li>
+<li>set_escape_uri: 创建nginx变量,但是会将值编码后赋给该变量(rewrite phase)
+</li>
+</ol>
+</div>
+</div>
 </div>
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">nginx的基础知识</h2>
@@ -519,6 +533,15 @@ Tom.注意返回的值是未解码形式.
 </li>
 <li>downstream(下游): 指浏览器, 或者其它向nginx请求服务的程序.
 </li>
+<li>主请求(main request): 由 HTTP 客户端从 Nginx 外部发起的请求.
+</li>
+<li>子请求(subrequest): 由 Nginx 正在处理的请求在 Nginx 内部发起的一种级联请
+求, 子请求的变量是独立的, 和父请求互不干扰.
+</li>
+<li>内部跳转: 使用rewrite,echo_exec等指令执行的跳转, 它的作用原理是直接修改
+url, 然后调回find config phase, 所以它就会使用修改后的url去匹配location,
+然后接着执行rewrite等一系列phase.
+</li>
 </ol>
 </div>
 </div>
@@ -529,53 +552,74 @@ Tom.注意返回的值是未解码形式.
 一个请求会依次经过如下11个phase:
 </p>
 <ol class="org-ol">
-<li>post read: 接收完请求头之后的第一个阶段，它位于uri重写之前，实际上很少有
-模块会注册在该阶段，默认的情况下，该阶段被跳过；
+<li>post read: 接收完请求头之后的第一个阶段,它位于uri重写之前, 实际上很少有
+模块会注册在该阶段,默认的情况下, 该阶段被跳过.
 </li>
-<li>server rewrite: server级别的uri重写阶段，也就是该阶段执行处于server块内，
-location块外的重写指令，前面的章节已经说明在读取请求头的过程中nginx会根据
-host及端口找到对应的虚拟主机配置；
+<li>server rewrite: server级别的uri重写阶段, 如果set, rewrite等ngx_rewrite模
+      块的指令放在server内,但在location外,那么就运行于该阶段.
 </li>
-<li>find config: 寻找location配置阶段，该阶段使用重写之后的uri
-来查找对应的location，值得注意的是该阶段可能会被执行多次，因为也可能有
-location级别的重写指令；
+<li>find config: 寻找location配置阶段,该阶段使用重写之后的uri来查找对应的
+location,值得注意的是该阶段可能会被执行多次,因为也可能有location级别的重
+写指令, <b>该阶段不允许模块注册</b>.
 </li>
-<li>rewrite: location级别的uri重写阶段，该阶段执行location基本
-的重写指令，也可能会被执行多次；
+<li>rewrite: location级别的uri重写阶段,该阶段执行location基本的重写指令,也
+可能会被执行多次. set, rewrite等指令如果放在location内部,那么就运行于该阶
+段.
 </li>
-<li>post rewrite: location级别重写的后一阶段，用来检查上阶段是
-否有uri重写，并根据结果跳转到合适的阶段；
+<li>post rewrite: location级别重写的后一阶段, 用来检查上阶段是否有使用rewrite
+指令来i进行uri重写, 如果有那么就跳回find configphase, 这就是一个内部跳转,
+<b>该阶段不允许模块注册</b>.
 </li>
 <li>preaccess: 访问权限控制的前一阶段，该阶段在权限控制阶段之前，一般也用于访
 问控制，比如限制访问频率，链接数等；
 </li>
-<li>access: 访问权限控制阶段，比如基于ip黑白名单的权限控制，基
-于用户名密码的权限控制等；
+<li>access: 访问权限控制阶段, 比如基于ip黑白名单的权限控制, 基于用户名密码的
+权限控制等.
 </li>
-<li>post access: 访问权限控制的后一阶段，该阶段根据权限控制阶
-段的执行结果进行相应处理；
+<li>post access: 访问权限控制的后一阶段,该阶段根据权限控制阶段的执行结果进行
+相应处理. <b>该阶段不允许模块注册</b>.
 </li>
 <li>try files: try_files指令的处理阶段，如果没有配置try_files
-      指令，则该阶段被跳过；
+      指令，则该阶段被跳过,  <b>该阶段不允许模块注册</b>.
 </li>
-<li>content: 内容生成阶段，该阶段产生响应，并发送到客户端；
+<li>content: 内容生成阶段, 该阶段产生响应, 并发送到客户端.
 </li>
-<li>log: 日志记录阶段，该阶段记录访问日志。
+<li>log: 日志记录阶段, 该阶段记录访问日志.
 </li>
 </ol>
+<p>
+还有一个特殊的phase: <b>body filter</b>, 严格的说它不是一个phase, 任何时候输出响应
+体时都会运行该阶段的指令.
+</p>
 </div>
 </div>
 <div id="outline-container-sec-4-3" class="outline-3">
 <h3 id="sec-4-3">phases与指令的关系</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
-几乎所有的指令都与某一个phase相关联，靠前的phase的指令必定早于靠后phase指令
-的运行， 有以下几点注意事项
+几乎所有的指令都与某一个phase相关联, 指令的实际执行顺序是这样决定的:
 </p>
 <ol class="org-ol">
-<li>content phase只能注册一个处理器,所以不要同时使用不同模块的content指令,比
-如echo指令就不能与content_by_lua指令共存,而且同一模块的content指令能不多
-次使用也是依模块而定, echo指令可以多次使用, content_by_lua就不行。
+<li>如果两条指令在不同的phase, 那么指令的执行顺序与phase的先后顺序相同, 比如
+set运行于rewrite phase, 而echo运行于content phase, 所以不论配置中set,
+echo的顺序如何, set必定在echo的前面执行. <b>建议书写配置时按照指令实际执行
+顺序来书写</b>.
+</li>
+<li>如果两条指令运行于相同的phase, 那么它们的执行顺序就比较混乱了. 有几种情
+况:
+<ol class="org-ol">
+<li>有些指令是按照书写顺序来执行的, 比如set, set_unescape_uri, set_by_lua
+         等
+</li>
+<li>绝大多数第三方模块只能运行于所属phase的结尾,所以内置模块的指令必定早于
+第三方模块指令的执行, 因此rewrite必定在rewrite_by_lua前面执行.
+set_by_lua之所以能和内置的set指令交叉执行,是因为使用了一些特殊技巧
+</li>
+<li>content phase只能注册一个处理器,所以不要同时使用不同模块的content指令,
+比如echo指令就不能与content_by_lua指令共存,而且同一模块的content指令能
+不能多次使用也是依模块而定, echo指令可以多次使用, content_by_lua就不行。
+</li>
+</ol>
 </li>
 </ol>
 </div>
@@ -584,7 +628,13 @@ location级别的重写指令；
 <div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">nginx与lua</h2>
 <div class="outline-text-2" id="text-5">
-</div><div id="outline-container-sec-5-1" class="outline-3">
+<p>
+将lua解释器嵌入到nginx, 使用lua可以比较轻松的实现一些业务逻辑, 这样就可以将
+nginx从一个单纯的http服务器变成一个web应用服务器,在配合nginx高效的IO模型,性能
+十分强大. 对于逻辑不复杂的业务直接使用lua在nginx这层实现是个不错的选择.
+</p>
+</div>
+<div id="outline-container-sec-5-1" class="outline-3">
 <h3 id="sec-5-1">安装</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
@@ -623,16 +673,19 @@ location级别的重写指令；
 <h3 id="sec-5-2">常用指令(nginx配置中使用)</h3>
 <div class="outline-text-3" id="text-5-2">
 <ol class="org-ol">
-<li>rewrite_by_lua: 作用于nginx的NGX_HTTP_REWRITE_PHASE.
+<li>set_by_lua: 作用于rewrite phase, 和set指令类似, 只是值是由lua脚本产生的,
+该指令可以和set交叉运行
 </li>
-<li>access_by_lua: 作用于nginx的NGX_HTTP_ACCESS_PHASE, 一般来说如果需要在请求
-开始之前做一些处理,比如检查请求合法性,可以使用这条命令
+<li>rewrite_by_lua: 作用于nginx的rewrite phase. 运行于rewrite phase的最后,
+ngx_rewrite模块的指令总是先于该指令.
 </li>
-<li>content_by_lua: 作用于NGX_HTTP_CONTENT_PHASE, 是用来生成发送给客户端的内
-容的
+<li>access_by_lua: 作用于nginx的access phase, 一般来说如果需要在请求开始之前
+做一些处理,比如检查请求合法性,可以使用这条命令
 </li>
-<li>log_by_lua: 作用于NGX_HTTP_LOG_PHASE, 一般用来对请求做一些善后处理,记住在
-该指令之前nginx已经将内容发送到客户端.
+<li>content_by_lua: 作用于content phase, 是用来生成发送给客户端的内容的
+</li>
+<li>log_by_lua: 作用于log phase, 一般用来对请求做一些善后处理,记住在该指令之
+前nginx已经将内容发送到客户端.
 </li>
 </ol>
 </div>
