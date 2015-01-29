@@ -4,7 +4,7 @@
   <title></title>
   <link href="https://yuyang0.github.io/"/>
   <link type="application/atom+xml" rel="self" href="/atom.xml"/>
-  <updated>Wed Jan 21 10:00:04 2015</updated>
+  <updated>Thu Jan 29 10:06:59 2015</updated>
   <id>https://yuyang0.github.io/</id>
   <author>
     <name>Yu Yang</name>
@@ -14,7 +14,7 @@
     <id>sitemap.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/sitemap.html"/>
     <title>Sitemap</title>
-    <updated> 2015-01-21</updated>
+    <updated> 2015-01-29</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -74,7 +74,7 @@
     <id>defects-of-python.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/articles/defects-of-python.html"/>
     <title>python的“缺点”</title>
-    <updated> 2015-01-05</updated>
+    <updated> 2015-01-23</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -105,6 +105,16 @@
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/articles/org-mode-dropbox-blog.html"/>
     <title>使用org-mode与dropbox搭建静态博客</title>
     <updated> 2013-06-15</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>https://yuyang0.github.io/</uri>
+    </author>
+    <content type="html"> </content>
+  </entry><entry>
+    <id>apue.org</id>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/apue.html"/>
+    <title>APUE</title>
+    <updated> 2015-01-24</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -144,7 +154,7 @@
     <id>c-dev-skills.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/c-dev-skills.html"/>
     <title>C开发技巧</title>
-    <updated> 2015-01-20</updated>
+    <updated> 2015-01-26</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -264,7 +274,7 @@
     <id>spark.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/spark.html"/>
     <title>Spark</title>
-    <updated> 2015-01-14</updated>
+    <updated> 2015-01-22</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -374,7 +384,7 @@
     <id>nginx.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/nginx.html"/>
     <title>nginx</title>
-    <updated> 2015-01-20</updated>
+    <updated> 2015-01-28</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -501,10 +511,10 @@
     </author>
     <content type="html"> </content>
   </entry><entry>
-    <id>liner-algebra.org</id>
-    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/liner-algebra.html"/>
+    <id>linear-algebra.org</id>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/linear-algebra.html"/>
     <title>线性代数</title>
-    <updated> 2015-01-05</updated>
+    <updated> 2015-01-24</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -534,7 +544,7 @@
     <id>sitemap.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/sitemap.html"/>
     <title>Sitemap</title>
-    <updated> 2015-01-21</updated>
+    <updated> 2015-01-29</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -544,7 +554,7 @@
     <id>tags.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/tags.html"/>
     <title>tags</title>
-    <updated> 2015-01-05</updated>
+    <updated> 2015-01-21</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>

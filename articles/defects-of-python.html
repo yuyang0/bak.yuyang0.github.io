@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>python的“缺点”</title>
-<!-- 2015-01-21 Wed 10:00 -->
+<!-- 2015-01-29 Thu 10:07 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -404,7 +404,7 @@ python这类语言的代码的, 这不是因为编辑器不够强大，而是本
 
 <pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">account</span> = make_account<span style="color: #839496;">(</span>100<span style="color: #839496;">)</span>; <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">&#21019;&#24314;&#19968;&#20010;&#26377;100&#22359;&#38065;&#30340;&#36134;&#21495;&#23545;&#35937;</span>
 <span style="color: #839496;">(</span><span style="color: #2aa198;">(</span>account <span style="color: #2aa198;">"withdraw"</span><span style="color: #2aa198;">)</span> 50<span style="color: #839496;">)</span>;       <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">&#21462;50&#22359;&#38065;,&#20320;&#29087;&#24713;&#30340;&#35821;&#27861;&#21487;&#33021;&#26159;:accout.withdraw(50)</span>
-<span style="color: #839496;">(</span><span style="color: #2aa198;">(</span>accept <span style="color: #2aa198;">"deposit"</span><span style="color: #2aa198;">)</span> 50<span style="color: #839496;">)</span>;          <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">&#23384;50&#22359;&#38065;,&#20320;&#29087;&#24713;&#30340;&#35821;&#27861;&#21487;&#33021;&#26159;:account.deposit(50)</span>
+<span style="color: #839496;">(</span><span style="color: #2aa198;">(</span>account <span style="color: #2aa198;">"deposit"</span><span style="color: #2aa198;">)</span> 50<span style="color: #839496;">)</span>;          <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">&#23384;50&#22359;&#38065;,&#20320;&#29087;&#24713;&#30340;&#35821;&#27861;&#21487;&#33021;&#26159;:account.deposit(50)</span>
 </pre>
 </div>
 <p>
@@ -418,10 +418,48 @@ python这类语言的代码的, 这不是因为编辑器不够强大，而是本
 环境就是用来跟踪在程序的执行过程中，每一个标识符都绑定到什么值，所以从逻辑
 上它就是一个map(identifier &lt;&#x2013;&gt; value)，和python的dict类似。环境要和作用域
 规则结合起来
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Scope</span>(<span style="color: #6c71c4;">object</span>):
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">__init__</span>(<span style="color: #859900;">self</span>, parent=<span style="color: #268bd2;">None</span>):
+        <span style="color: #859900;">self</span>.table = {}
+        <span style="color: #859900;">self</span>.parent = parent
+
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">bind</span>(<span style="color: #859900;">self</span>, var, val):
+        <span style="color: #859900;">if</span> var <span style="color: #859900;">in</span> <span style="color: #859900;">self</span>.table:
+            error(<span style="color: #2aa198;">"var(%s) have been binded in this environment"</span> % var)
+        <span style="color: #859900;">else</span>:
+            <span style="color: #859900;">self</span>.table[var] = val
+
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">get</span>(<span style="color: #859900;">self</span>, var):
+        <span style="color: #6c71c4;">val</span> = <span style="color: #859900;">self</span>.table.get(var, <span style="color: #268bd2;">None</span>)
+        <span style="color: #859900;">if</span> val <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>:
+            <span style="color: #859900;">if</span> <span style="color: #859900;">self</span>.parent <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>:
+                <span style="color: #859900;">return</span> <span style="color: #268bd2;">None</span>
+            <span style="color: #859900;">else</span>:
+                <span style="color: #859900;">return</span> <span style="color: #859900;">self</span>.parent.get(var)
+        <span style="color: #859900;">else</span>:
+            <span style="color: #859900;">return</span> val
+
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">set</span>(<span style="color: #859900;">self</span>, var, val):
+        <span style="color: #859900;">if</span> var <span style="color: #859900;">in</span> <span style="color: #859900;">self</span>.table:
+            <span style="color: #859900;">self</span>.table[var] = val
+        <span style="color: #859900;">elif</span> <span style="color: #859900;">self</span>.parent <span style="color: #859900;">is</span> <span style="color: #859900;">not</span> <span style="color: #268bd2;">None</span>:
+            <span style="color: #859900;">self</span>.parent.<span style="color: #6c71c4;">set</span>(var, val)
+        <span style="color: #859900;">else</span>:
+            error(<span style="color: #2aa198;">"var(%s) is not binded in this environment"</span> % var)
+</pre>
+</div>
+<p>
+上面的实现可以看出作用域实际上可以看做是一个dict,只是它有一个parent, 这样
+就构成了一个链式的dict,可以从下往上搜索.
+</p>
 </li>
-<li>声明：
+<li>声明：实际就是在当前变量所在作用域创建一个key/value对, 注意实际上是调用
+bind方法. 前提是该变量没有在当前作用域中绑定.
 </li>
-<li>赋值：
+<li>赋值：改变作用域中变量的值,如果当前作用域中没有该变量,那么就父作用域中找,
+如果该变量不存在那么出错.
 </li>
 </ol>
 </div>

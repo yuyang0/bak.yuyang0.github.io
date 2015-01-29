@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Spark</title>
-<!-- 2015-01-21 Wed 10:00 -->
+<!-- 2015-01-29 Thu 10:07 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -191,9 +191,11 @@ for the JavaScript code in this tag.
 </ul>
 </li>
 <li><a href="#sec-4">shuffle</a></li>
-<li><a href="#sec-5">调度系统</a>
+<li><a href="#sec-5">env(env.py)</a></li>
+<li><a href="#sec-6">conf(conf.py)</a></li>
+<li><a href="#sec-7">调度系统</a>
 <ul>
-<li><a href="#sec-5-1">基本概念</a></li>
+<li><a href="#sec-7-1">基本概念</a></li>
 </ul>
 </li>
 </ul>
@@ -410,6 +412,7 @@ set(UniqAggregator), 还可以是其它的容器类型,这个东西主要是用�
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">shuffle</h2>
 <div class="outline-text-2" id="text-4">
@@ -429,7 +432,9 @@ TrackerClient实例，它会和TrackerServer通信,它有两个方法:
 <ul class="org-ul">
 <li>第一个字节:　标志, m 或者p, 指示到底是用marshal还是cPickle序列化数据
 </li>
-<li>2~5个字节:　数据,需要反序列化.
+<li>2~4个字节:　整个长度, 主要是用来校验u数据是否有错误
+</li>
+<li>5~结尾: 数据,需要反序列化.
 </li>
 </ul>
 <p>
@@ -448,11 +453,69 @@ TrackerClient实例，它会和TrackerServer通信,它有两个方法:
 </div>
 </div>
 <div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5">调度系统</h2>
+<h2 id="sec-5">env(env.py)</h2>
 <div class="outline-text-2" id="text-5">
-</div><div id="outline-container-sec-5-1" class="outline-3">
-<h3 id="sec-5-1">基本概念</h3>
-<div class="outline-text-3" id="text-5-1">
+<p>
+实际就是DparkEnv这个类, 内部有一个environ列表:
+</p>
+<ol class="org-ol">
+<li>register:  将一个键值对放入environ列表
+</li>
+<li>get: 获得和一个键绑定的值
+</li>
+<li>start: 进行一些初始化设置
+<ul class="org-ul">
+<li>设置eviron中的属性,如果是master机器会设置如下的属性:
+<ul class="org-ul">
+<li>SERVER_URI: 一个file url,实际上是<a href="file://+WORKDIR[0">file://+WORKDIR[0</a>]
+</li>
+<li>WORKDIR: 一个目录列表,每一个元素是这样的格式, DPARK_WORK_DIR+时间+host+进程id
+</li>
+<li>COMPRESS: 压缩函数
+</li>
+</ul>
+<p>
+如果不是master,那么只设置COMPRESS.
+</p>
+</li>
+<li>创建一个ctx属性, 这是一个zmq的context实例。
+</li>
+<li>如果是master机器,那么会启动一个TrackerServer实例, 所以会有一个
+trackerServer属性.
+</li>
+<li>创建一个trackerClinet属性，它是一个TrackerClient实例
+</li>
+<li>创建一个cacheTracker属性，它是一个CacheTracker实例
+</li>
+<li>创建一个mapOutputTracker属性, 它是一个MapOutTracker实例。
+</li>
+<li>创建一个shuffleFetcher属性, 它是一个ParallelShuffleFetcher实例
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">conf(conf.py)</h2>
+<div class="outline-text-2" id="text-6">
+<ol class="org-ol">
+<li>DPARK_WORK_DIR: 工作目录,shuffle等操作都会使用该目录.可能包含目录,以逗号分
+割
+</li>
+<li>MESOS_MASTER: mesos集群的master地址
+</li>
+<li>MEM_PER_TASK: 这个很重要如果设的太大会使机器启动失败
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">调度系统</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1">基本概念</h3>
+<div class="outline-text-3" id="text-7-1">
 <ol class="org-ol">
 <li>partitioner： 获得分区的个数，以及根据你传进去的key来获得分区的下标
 </li>

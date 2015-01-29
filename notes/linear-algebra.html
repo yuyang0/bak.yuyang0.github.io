@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Sitemap</title>
+<title>线性代数</title>
 <!-- 2015-01-29 Thu 10:07 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
@@ -136,6 +136,51 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript">window.MathJax || document.write('<script src="static/js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" ><\/script>')</script>
+<script type="text/javascript">
+
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+            config: ["MMLorHTML.js"], jax: ["input/TeX"],
+        //  jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -164,123 +209,91 @@ for the JavaScript code in this tag.
     </div>
 </div>
 <div id="content">
-<h1 class="title">Sitemap</h1>
-<ul class="org-ul">
-<li>articles
-<ul class="org-ul">
-<li><a href="articles/continuation.html">Continuation</a>
-</li>
-<li><a href="articles/linux-c-garbled-characters.html">Linux平台C语言乱码</a>
-</li>
-<li><a href="articles/introduction-to-opencl.html">OpenCL介绍</a>
-</li>
-<li><a href="articles/gevent.html">gevent源码分析</a>
-</li>
-<li><a href="articles/python-descriptor.html">python Descriptor</a>
-</li>
-<li><a href="articles/defects-of-python.html">python的“缺点”</a>
-</li>
-<li><a href="articles/web-py-source-code.html">webpy源代码分析</a>
-</li>
-<li><a href="articles/wsgi.html">wsgi</a>
-</li>
-<li><a href="articles/org-mode-dropbox-blog.html">使用org-mode与dropbox搭建静态博客</a>
-</li>
+<h1 class="title">线性代数</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">基本概念</a></li>
+<li><a href="#sec-2">Symbols</a></li>
+<li><a href="#sec-3">Concepts</a></li>
 </ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">基本概念</h2>
+<div class="outline-text-2" id="text-1">
+<ol class="org-ol">
+<li>线性关系(linear relation): 源于一个很朴素的想法,如果x,y是线性关系,那么x增大或者缩小n倍,那么
+y也应该增大或缩小n倍, 如果x1对应于y1, x2对应于y2, 那么x1+x2对应于y1+y2, 用
+数学语言表述就是:
+<pre class="example">
+F(a * x1) = a * F(x1)   a是常数
+F(x1 + x2) = F(x1) + F(x2)
+</pre>
 </li>
-<li>notes
-<ul class="org-ul">
-<li><a href="notes/apue.html">APUE</a>
+<li>线性操作(linear operation): 对 y=F(x) 而言, 我们可以这样看,x是输入, F是操
+作, 将 F 作用与输入 x 上得到输出y, 如果F是线性操作,那么y与x就成线性关系.
+很显然F应该是一个乘以常数的操作, 因为只有y=ax时, y与x才是线性关系.实际上我
+们可以推广到多维的情况y=a1x1+a2x2+a3x3, 那么y与(x1, x2, x3)^T 是线性关系, 那
+么(a1, a2, a3) 就是线性操作
 </li>
-<li><a href="notes/client-javascript.html">Client-Side javascript</a>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Symbols</h2>
+<div class="outline-text-2" id="text-2">
+<ol class="org-ol">
+<li>V : Vector space
 </li>
-<li><a href="notes/clojure.html">Clojure笔记</a>
+<li>F : stands for either <b>R</b> or <b>C</b>.
 </li>
-<li><a href="notes/compiler.html">Compiler</a>
+<li>R : Real numbers
 </li>
-<li><a href="notes/c-dev-skills.html">C开发技巧</a>
+<li>C : Complex numbers
 </li>
-<li><a href="notes/django.html">DJANGO笔记</a>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Concepts</h2>
+<div class="outline-text-2" id="text-3">
+<ol class="org-ol">
+<li>向量空间(\(V\)): 一个在 <b>加法</b> 以及 <b>标量乘法</b> 上 <b>闭合</b> 的集合, 并且该集合
+要满足以下性质:
+<ol class="org-ol">
+<li>交换律: 对所有的 \(u, v \in V\) 都有 \(u+v = v+u\).
 </li>
-<li><a href="notes/emacs-lisp.html">Emacs Lisp</a>
+<li>结合律: 对所有的 \(u, v, w \in V\) 都有 \((u+v) + w = u + (v+w)\)
 </li>
-<li><a href="notes/emacs.html">Emacs笔记</a>
+<li>加法单位元: 存在一个元素 \(0 \in V\), 使得对所有的 \(v \in V\) 都有 \(v+0=v\)
 </li>
-<li><a href="notes/haskell.html">Haskell note</a>
+<li>加法逆: 对所有的 \(v \in V\), 都存在 \(w \in V\) 使得 \(v + w = 0\).
 </li>
-<li><a href="notes/IT术语.html">IT术语</a>
+<li>乘法单位元: 对所有的 \(v \in V\), 都有 \(1v = v\).
 </li>
-<li><a href="notes/linux-kernel.html">Linux Kernel</a>
+<li>分配性质: 对所有的 \(a, b \in F, u,v \in V\) 都有
+\(a(u+v) = au+av, (a+b)u = au + bu\)
 </li>
-<li><a href="notes/sql.html">MySQL笔记</a>
+</ol>
 </li>
-<li><a href="notes/opencl.html">OpenCL笔记</a>
+<li>子空间(\(U\)):
+\(U\) 是 \(V\) 的子空间, 那么意味着: \(U \subseteq V\), 且:
+<ol class="org-ol">
+<li>\(0 \in U\)
 </li>
-<li><a href="notes/php.html">PHP笔记</a>
+<li>if \(u, v \in U\) then \(u+v \in V\)
 </li>
-<li><a href="notes/set-theory.html">SET THEORY</a>
+<li>if \(a \in F, u \in U\) then \(au \in V\)
 </li>
-<li><a href="notes/sicp.html">SICP笔记</a>
+</ol>
 </li>
-<li><a href="notes/spark.html">Spark</a>
-</li>
-<li><a href="notes/EOPL.html">The Essential of Programming language</a>
-</li>
-<li><a href="notes/type-system.html">Type System</a>
-</li>
-<li><a href="notes/css.html">css笔记</a>
-</li>
-<li><a href="notes/git.html">git/github学习笔记</a>
-</li>
-<li><a href="notes/how-to-study.html">how to study</a>
-</li>
-<li><a href="notes/how-to-read-a-book.html">how-to-read-a-book</a>
-</li>
-<li><a href="notes/jquery.html">jQuery</a>
-</li>
-<li><a href="notes/java.html">java syntax note</a>
-</li>
-<li><a href="notes/javascript.html">javascript笔记</a>
-</li>
-<li><a href="notes/linux-note.html">linux笔记</a>
-</li>
-<li><a href="notes/nginx.html">nginx</a>
-</li>
-<li><a href="notes/python-source-code.html">python源代码解析</a>
-</li>
-<li><a href="notes/python-note.html">python笔记</a>
-</li>
-<li><a href="notes/ruby.html">ruby notes</a>
-</li>
-<li><a href="notes/scheme.html">scheme笔记</a>
-</li>
-<li><a href="notes/loader-linker-library.html">《程序员的自我修养》读书笔记</a>
-</li>
-<li><a href="notes/乌合之众.html">乌合之众(古斯塔夫.勒庞 )</a>
-</li>
-<li><a href="notes/information-theory.html">信息论</a>
-</li>
-<li><a href="notes/investment.html">投资笔记</a>
-</li>
-<li><a href="notes/second-treatise-civil-government.html">政府论读书笔记</a>
-</li>
-<li><a href="notes/logic.html">数理逻辑</a>
-</li>
-<li><a href="notes/number-theory.html">数论</a>
-</li>
-<li><a href="notes/Probability.html">概率论与数理统计笔记</a>
-</li>
-<li><a href="notes/linear-algebra.html">线性代数</a>
-</li>
-<li><a href="notes/Theory-Computation.html">计算理论导引</a>
-</li>
-</ul>
-</li>
-<li><a href="index.html">Index Page</a>
-</li>
-<li><a href="tags.html">tags</a>
-</li>
-</ul>
+</ol>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div id="disqus_comment">
