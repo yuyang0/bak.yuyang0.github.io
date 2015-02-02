@@ -10,10 +10,17 @@ html{
 body{
     margin:0
 }
+/* disqus */
 #disqus_comment{
     width: 60%;
     margin: 0 auto;
 }
+/* duoshuo */
+#ds-thread{
+    width: 60%;
+    margin: 0 auto;
+}
+
 a:focus,
 a:active,
 a:hover{
