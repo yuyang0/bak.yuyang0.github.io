@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Sitemap</title>
-<!-- 2015-02-02 Mon 13:34 -->
+<!-- 2015-02-02 Mon 13:42 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -292,6 +292,9 @@ for the JavaScript code in this tag.
 <script type="text/javascript">
    var url = window.location.pathname;
    var duoshuo_identifier = url.substring(url.lastIndexOf('/')+1);
+   if (!!! duoshuo_identifier) {
+     duoshuo_identifier = "index.html";
+   }
    var title = document.title;
    var ele = document.getElementById("duoshuo-id");
    ele.setAttribute("data-thread-key", duoshuo_identifier);
