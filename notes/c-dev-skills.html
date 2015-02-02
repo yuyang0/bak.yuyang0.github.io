@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>C开发技巧</title>
-<!-- 2015-01-29 Thu 10:07 -->
+<!-- 2015-02-02 Mon 10:32 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -173,9 +173,21 @@ for the JavaScript code in this tag.
 <li><a href="#sec-2">systemtap</a>
 <ul>
 <li><a href="#sec-2-1">install</a></li>
+<li><a href="#sec-2-2">脚本语言相关</a>
+<ul>
+<li><a href="#sec-2-2-1">event</a></li>
+<li><a href="#sec-2-2-2">handler</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#sec-3">链接相关</a></li>
+<li><a href="#sec-4">奇淫技巧</a>
+<ul>
+<li><a href="#sec-4-1">0长度数组(GNU C)</a></li>
+<li><a href="#sec-4-2">原子操作</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -202,7 +214,90 @@ linux mint17内核版本是 Ubuntu 3.13.0-24.47-generic 3.13.9, 而且是64位�
 </p>
 </div>
 </div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">脚本语言相关</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+systemtap脚本的基本单元是这样的
+</p>
+<pre class="example">
+probe   event {statements}
+</pre>
+<p>
+基本规则就是一旦触发了event,那么就执行后面的statements, 脚本中可以有多条
+probe, statements又叫handler或者body.
+</p>
 </div>
+<div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1">event</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+event主要有这几类:
+</p>
+<ol class="org-ol">
+<li>syscall.XXX: 监听系统调用, 后面加上return就是监听系统调用返回,可以使用通
+配符.
+<pre class="example">
+probe syscall.open { }
+probe syscall.open.return { }
+probe syscall.* {}
+</pre>
+</li>
+<li>vfs.XXX: 监听文件系统的事件
+</li>
+<li>kernel.function("function"): 监听内核函数, 比如
+<pre class="example">
+probe kernel.function("sys_open") { }
+probe kernel.function("sys_open").return { }
+
+probe kernel.function("*@net/socket.c") { }
+probe kernel.function("*@net/socket.c").return { }
+</pre>
+<p>
+后两行会监听net中socket.c中所有函数的调用与返回.
+</p>
+</li>
+<li>kernel.trace("tracepoint"):
+</li>
+<li>module("module").function("function"):　监听指定模块的指定函数
+<pre class="example">
+probe module("ext3").function("*") { }
+probe module("ext3").function("*").return { }
+</pre>
+</li>
+<li>begin: systemtap启动时会触发, 如:
+<pre class="example">
+probe begin {
+    printf("hello world")
+    exit()
+}
+</pre>
+<p>
+启动时执行一次,打印hello world就退出
+</p>
+</li>
+<li>end: 结束时执行一次
+</li>
+<li>time.xxx(): 定时器, 时间到了就会运行, xxx可以是s, ms, us, ns, hz,
+jiffies
+<pre class="example">
+probe timer.s(4) {
+  printf("hello world\n")
+}
+</pre>
+<p>
+每4秒打印hello world.
+</p>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2">handler</h4>
+</div>
+</div>
+</div>
+
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">链接相关</h2>
 <div class="outline-text-2" id="text-3">
@@ -210,6 +305,72 @@ linux mint17内核版本是 Ubuntu 3.13.0-24.47-generic 3.13.9, 而且是64位�
 <li>ldd可以用来检查运行时的动态链接库错误,它可以提示你哪些库没有找到.
 </li>
 </ol>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">奇淫技巧</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1">0长度数组(GNU C)</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+看代码
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #859900;">struct</span> <span style="color: #268bd2;">str</span>{
+    <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">len</span>;
+    <span style="color: #268bd2;">char</span> <span style="color: #6c71c4;">s</span>[0];  <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">c99&#24212;&#35813;&#36825;&#26679; char s[] </span><span style="color: #586e75; font-style: italic;">*/</span>
+};
+<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">len</span> = 10;
+<span style="color: #859900;">struct</span> <span style="color: #268bd2;">str</span> *<span style="color: #6c71c4;">p</span> = malloc(<span style="color: #859900;">sizeof</span>(<span style="color: #859900;">struct</span> <span style="color: #268bd2;">str</span>) + (len+1) * <span style="color: #859900;">sizeof</span>(<span style="color: #268bd2;">char</span>));
+p-&gt;len = len;
+</pre>
+</div>
+<p>
+s实际上是不占空间的, 它可以h看作是一个占位符, p-&gt;s 会自动指向紧挨着结构体的
+内存地址, 如果使用指针,不仅会多占用4字节的空间, 而且必须手动的给该指针赋值.注
+意该特性是GNU C的扩展,C99可以用可变长度的数组,但是这有一些限制,比如不能对结
+构体调用sizeof(因为长度无法确定).
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2">原子操作</h3>
+<div class="outline-text-3" id="text-4-2">
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #859900;">struct</span> <span style="color: #268bd2;">aa</span> {
+    <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">lock</span>;
+    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">other field </span><span style="color: #586e75; font-style: italic;">*/</span>
+};
+<span style="color: #859900;">struct</span> <span style="color: #268bd2;">aa</span> <span style="color: #6c71c4;">S</span>;
+<span style="color: #859900;">static</span> <span style="color: #859900;">inline</span> <span style="color: #268bd2;">void</span>
+<span style="color: #b58900;">LOCK</span>() {
+    <span style="color: #859900;">while</span> (__sync_lock_test_and_set(&amp;(S.lock),1)) {}
+}
+
+<span style="color: #859900;">static</span> <span style="color: #859900;">inline</span> <span style="color: #268bd2;">void</span>
+<span style="color: #b58900;">UNLOCK</span>() {
+    __sync_lock_release(&amp;(S.lock));
+}
+</pre>
+</div>
+<p>
+上面的代码实现了一个简单的同步机制, 利用GNU C的原子操作.这些原子操作只能对
+int, long, long long以及这些类型的无符号版本使用,
+</p>
+<ol class="org-ol">
+<li>原型: <code>type __sync_lock_test_and_set (type *ptr, type value, ...)</code>, 先获
+得*ptr当前值,然后将ptr指向的值设为value
+</li>
+<li>原型: <code>void __sync_lock_release (type *ptr, ...)</code>, 将*ptr设为0.
+</li>
+</ol>
+<p>
+完整的列表在<a href="https://gcc.gnu.org/onlinedocs/gcc-4.1.2/gcc/Atomic-Builtins.html">这里</a>
+</p>
+</div>
 </div>
 </div>
 </div>
