@@ -1059,6 +1059,29 @@ if (typeof _hmt !== 'undefined')  // support 百度统计
 _hmt.push(['_trackPageview', location.pathname + location.search]);
 if (typeof ga !== 'undefined')  // support google analytics
 ga('send', 'pageview', location.pathname + location.search);
+
+
+   var url = window.location.pathname;
+   var duoshuo_identifier = url.substring(url.lastIndexOf('/')+1);
+   if (!!! duoshuo_identifier) {
+     duoshuo_identifier = "index.html";
+   }
+   var title = document.title;
+   var ele = document.getElementById("duoshuo-id");
+   ele.setAttribute("data-thread-key", duoshuo_identifier);
+   ele.setAttribute("data-title", title);
+   ele.setAttribute("data-url", url);
+
+var duoshuoQuery = {short_name:"yuyang0"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+
 }
 });
 InstantClick.init();</script>
