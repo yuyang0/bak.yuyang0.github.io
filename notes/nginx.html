@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>nginx</title>
-<!-- 2015-02-02 Mon 13:15 -->
+<!-- 2015-02-02 Mon 16:57 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -1021,6 +1021,9 @@ ngx.say(<span style="color: #2aa198;">"successfully read a line: "</span>, line)
 <script type="text/javascript">
    var url = window.location.pathname;
    var duoshuo_identifier = url.substring(url.lastIndexOf('/')+1);
+   if (!!! duoshuo_identifier) {
+     duoshuo_identifier = "index.html";
+   }
    var title = document.title;
    var ele = document.getElementById("duoshuo-id");
    ele.setAttribute("data-thread-key", duoshuo_identifier);
@@ -1053,7 +1056,7 @@ var duoshuoQuery = {short_name:"yuyang0"};
 </div>
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script type="text/javascript">
-	!window.jQuery && document.write('<script src="static/js/jquery-2.0.0.min.js"></script>');
+	!window.jQuery && document.write('<script src="static/js/jquery-2.0.0.min.js"');></script>
 	</script>
 <script type="text/javascript" src="static/js/custom.js"></script>
 <!-- end footer -->
