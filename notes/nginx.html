@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>nginx</title>
-<!-- 2015-02-02 Mon 10:32 -->
+<!-- 2015-02-02 Mon 13:15 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -324,7 +324,7 @@ http {
 求, 子请求的变量是独立的, 和父请求互不干扰.
 </li>
 <li>内部跳转: 使用rewrite,echo_exec等指令执行的跳转, 它的作用原理是直接修改
-url, 然后调回find config phase, 所以它就会使用修改后的url去匹配location,
+url, 然后跳回find config phase, 所以它就会使用修改后的url去匹配location,
 然后接着执行rewrite等一系列phase.
 </li>
 </ol>
@@ -334,7 +334,7 @@ url, 然后调回find config phase, 所以它就会使用修改后的url去匹�
 <h3 id="sec-2-2">phase</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-一个请求会依次经过如下11个phase:
+一个http请求会依次经过如下11个phase:
 </p>
 <ol class="org-ol">
 <li>post read: 接收完请求头之后的第一个阶段,它位于uri重写之前, 实际上很少有
@@ -374,7 +374,8 @@ location,值得注意的是该阶段可能会被执行多次,因为也可能有l
 </ol>
 <p>
 还有一个特殊的phase: <b>body filter</b>, 严格的说它不是一个phase, 任何时候输出响应
-体时都会运行该阶段的指令.
+体时都会运行该阶段的指令. 该phase可能执行多次,因为输出时是分多次写的,一次一
+个chunk.
 </p>
 </div>
 </div>
@@ -1013,25 +1014,33 @@ ngx.say(<span style="color: #2aa198;">"successfully read a line: "</span>, line)
 </div>
 </div>
 <div id="postamble" class="status">
-<div id="disqus_comment">
-  <div id="disqus_thread"></div>
-    <script type="text/javascript">
-        var url = window.location.pathname;
-        var disqus_identifier = url.substring(url.lastIndexOf('/')+1);
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'yuyang'; // required: replace example with your forum shortname
+<!-- 多说评论框 start -->
+  <div id="duoshuo-id" class="ds-thread" data-thread-key="请将此处替换成文章在你的站点中的ID" data-title="请替换成文章的标题" data-url="请替换成文章的网址"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+   var url = window.location.pathname;
+   var duoshuo_identifier = url.substring(url.lastIndexOf('/')+1);
+   var title = document.title;
+   var ele = document.getElementById("duoshuo-id");
+   ele.setAttribute("data-thread-key", duoshuo_identifier);
+   ele.setAttribute("data-title", title);
+   ele.setAttribute("data-url", url);
 
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div>
-<!-- begin footer -->
+</script>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yuyang0"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end --><!-- begin footer -->
 <div id="footer">
   <ul class="links vertical-nav">
     <li><a href="/sitemap.xml">Sitemap</a></li>
