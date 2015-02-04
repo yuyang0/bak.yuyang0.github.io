@@ -137,6 +137,51 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript">window.MathJax || document.write('<script src="static/js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" ><\/script>')</script>
+<script type="text/javascript">
+
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+            config: ["MMLorHTML.js"], jax: ["input/TeX"],
+        //  jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -345,10 +390,25 @@ var duoshuoQuery = {short_name:"yuyang0"};
   <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-<script type="text/javascript">
-	!window.jQuery && document.write('<script src="static/js/jquery-2.0.0.min.js"');></script>
-	</script>
+
 <script type="text/javascript" src="static/js/custom.js"></script>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/instantclick/3.0.1/instantclick.min.js"></script>
+<script data-no-instant>
+InstantClick.on('change', function(isInitialLoad) {
+  if (isInitialLoad === false) {
+    if (typeof MathJax !== 'undefined') // support MathJax
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    if (typeof prettyPrint !== 'undefined') // support google code prettify
+      prettyPrint();
+    if (typeof _hmt !== 'undefined')  // support 百度统计
+      _hmt.push(['_trackPageview', location.pathname + location.search]);
+    if (typeof ga !== 'undefined')  // support google analytics
+        ga('send', 'pageview', location.pathname + location.search);
+  }
+});
+InstantClick.init();
+</script>
+
 <!-- end footer -->
 </div>
 </body>
