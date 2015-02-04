@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>SET THEORY</title>
-<!-- 2015-02-02 Mon 18:19 -->
+<!-- 2015-02-04 Wed 18:36 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -1022,14 +1022,16 @@ nunmber. Otherwise it is infinite.
 
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"yuyang0"};
-
-</script>
-<script type="text/javascript" src="http://static.duoshuo.com/embed.js" charset="UTF-8" async="async"></script>
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementById('postamble')
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
 <!-- 多说公共JS代码 end --><!-- begin footer -->
-<script type="text/javascript">
-	if (typeof DUOSHUO !== 'undefined')
-		DUOSHUO.EmbedThread('.ds-thread');
-</script>
 <div id="footer">
   <ul class="links vertical-nav">
     <li><a href="/sitemap.xml">Sitemap</a></li>
@@ -1040,25 +1042,11 @@ var duoshuoQuery = {short_name:"yuyang0"};
   <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
   <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
-<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+	!window.jQuery && document.write('<script src="static/js/jquery-2.0.0.min.js"></script>');
+	</script>
 <script type="text/javascript" src="static/js/custom.js"></script>
-<script type="text/javascript" src="http://apps.bdimg.com/libs/instantclick/3.0.1/instantclick.min.js"></script>
-<script data-no-instant>
-InstantClick.on('change', function(isInitialLoad) {
-  if (isInitialLoad === false) {
-    if (typeof MathJax !== 'undefined') // support MathJax
-      MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-    if (typeof prettyPrint !== 'undefined') // support google code prettify
-      prettyPrint();
-    if (typeof _hmt !== 'undefined')  // support 百度统计
-      _hmt.push(['_trackPageview', location.pathname + location.search]);
-    if (typeof ga !== 'undefined')  // support google analytics
-        ga('send', 'pageview', location.pathname + location.search);
-  }
-});
-InstantClick.init();
-</script>
-
 <!-- end footer -->
 </div>
 </body>
