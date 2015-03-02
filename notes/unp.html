@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>UNIX网络编程</title>
+<!-- 2015-03-02 Mon 09:16 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Yu Yang" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="static/css/main.css"/>
+<link rel="shortcut icon" href="static/img/favicon.ico" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="header">
+      <div class="inner">
+        <h1 id="site-title"><a href="/"> 编码者言 </a></h1>
+        <div>
+          <a href="###" id="site-nav-btn">菜单</a>
+          <ul id="site-nav" class="vertical-nav mobi-hid">
+            <li> <a href="/">Home</a></li>
+            <li> <a href="/about.html">About</a></li>
+
+            <li> <a href="/tags.html">Tags</a></li>
+
+            <li> <a href="/atom.xml">RSS</a></li>
+          </ul>
+
+          <form id="site-search" method="get" action="https://google.com/search">
+            <input type="hidden" name="q" value="site:yuyang0.github.io" />
+            <input type="text" name="q" placeholder="Search..." />
+            <button class="btn-search" type="submit">Search</button>
+          </form>
+          <div style="clear:both;"> </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div id="content">
+<h1 class="title">UNIX网络编程</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">协议相关</a>
+<ul>
+<li><a href="#sec-1-1">TCP</a>
+<ul>
+<li><a href="#sec-1-1-1">协议详解</a></li>
+<li><a href="#sec-1-1-2">三步握手</a></li>
+<li><a href="#sec-1-1-3">连接关闭</a></li>
+<li><a href="#sec-1-1-4">状态变化</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-2">socket地址相关</a>
+<ul>
+<li><a href="#sec-2-1">常用代码</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">基本socket API</a>
+<ul>
+<li><a href="#sec-3-1">connect</a></li>
+<li><a href="#sec-3-2">bind</a></li>
+<li><a href="#sec-3-3">listen</a></li>
+<li><a href="#sec-3-4">socket读写api</a></li>
+<li><a href="#sec-3-5">一些情形下tcp socket的行为</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">协议相关</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">TCP</h3>
+<div class="outline-text-3" id="text-1-1">
+</div><div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1">协议详解</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+tcp的头部格式
+</p>
+<pre class="example">
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|          Source Port          |       Destination Port        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                        Sequence Number                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Acknowledgment Number                      |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|  Data |           |U|A|P|R|S|F|                               |
+| Offset| Reserved  |R|C|S|S|Y|I|            Window             |
+|       |           |G|K|H|T|N|N|                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|           Checksum            |         Urgent Pointer        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Options                    |    Padding    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                             data                              |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</pre>
+<p>
+<b>几点解释:</b>
+</p>
+<ol class="org-ol">
+<li>Source Port, Destination Port是端口号
+</li>
+<li>Sequence Number: tcp对内部传送的每一个字节都会编号, 该字段代表的就是该数
+据报第一个字节的编号.
+</li>
+<li>Acknowledgment Number: 当接受端收到一个tcp数据报后,会发送一个确认报文,发
+送端就是根据确认报文来判断该数据报是否发送成功,如果长时间没有收到确认报
+文,那么发送端就会重发tcp数据报, 确认报文的ACK必须为1,同时Acknowledgment
+Number代表该端期望接受数据的序号,比如接受端收到一个tcp报文,该报文的
+Sequence Number是a, 同时报文长度是b, 那么对该报文的确认报文的
+Acknowledgment Number字段就是a+b. <b>只有ACK标志为1时该字段才有效</b>
+</li>
+<li>Data Offset: 实际数据在报文中的偏移,也可以看作是tcp头部的大小,因为tcp头部
+包含options所以他的大小是可变的,这就是该字段存在的原因.
+</li>
+<li>标志:
+<ul class="org-ul">
+<li>URG: 紧急指针
+</li>
+<li>ACK: Acknowledgement number有效
+</li>
+<li>PSH:
+</li>
+<li>RST: 重置连接, 万恶的GFW经常这么干.
+</li>
+<li>SYN: Synchronize sequence numbers, 三步握手时需要.
+</li>
+<li>FIN: finish, 关闭连接时会用到该标志
+</li>
+</ul>
+</li>
+</ol>
+<p>
+<b>其他说明:</b>
+</p>
+<ol class="org-ol">
+<li>TCP可以看做是一个全双工管道,可读可写, 也就是说一个tcp socket的读写是分离,
+互不干扰的.
+</li>
+<li>TCP提供了流控制,也就是说内部有缓冲区,如果缓冲区满了那么相应的操作就会阻塞,举
+个例子, 如果接受者的读缓冲区满了,那么你在发送者一端调用write就会阻塞.
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2">三步握手</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+如下图所示:
+<img src="static/img/tcp-three-way-handshake.png" alt="tcp-three-way-handshake.png" />
+三个报文:
+</p>
+<ol class="org-ol">
+<li>SYN标志为1, 同时为Sequence Number指定一个初始值J
+</li>
+<li>SYN以及ACK标志为1,同时为Sequence Number指定一个初始值K, 同时将
+Acknowledgement Number设为J+1.
+</li>
+<li>ACK标志为1, 同时将Acknowledgement Number设为K+1, FIN报文会消耗一个编号
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3">连接关闭</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<p>
+如下图所示
+<img src="static/img/tcp-terminate.jpg" alt="tcp-terminate.jpg" />
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-4" class="outline-4">
+<h4 id="sec-1-1-4">状态变化</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<p>
+如下图所示
+<img src="static/img/tcp-state-change.png" alt="tcp-state-change.png" />
+</p>
+
+<p>
+<b>TIME_WAIT</b>: 关闭连接时, 执行主动关闭的一方的socket在发送了最后一个ACK后进入
+TIME_WAIT状态,并保持该状态2SML(1-4分钟), 该状态存在的原因是:
+</p>
+<ol class="org-ol">
+<li>如果最后一个ACK丢失,那么对方就会重发FIN报文,这时socket有机会发送ACK报文,
+而不是由内核发送RST报文.
+</li>
+<li>可以让网络中当前连接的tcp报文全部失效,因为TCP会超时重传,所以网络可能存在
+一些没有被当前客户端接受的报文,等待2SML后这些报文就都失效了. 如果不等待
+2SML, 同时你又在相同的interface上创建了socket,那么这些上一次连接的报文就
+可能被本次连接认为有效.
+</li>
+</ol>
+<p>
+<b>处于TIME_WAIT时,(ip, port)不可用, 所以有时重启服务器需要等一段时间.</b>, 当然
+只有在服务器有客户端连接的情况下才会出现这种情况,因为如果这时重启服务器,那么
+服务器端会执行主动关闭,所以就会进入TIME_WAIT状态. 如果没有客户端连接,那么服
+务器一般就只有一个listen socket,关闭它不会进入TIME_WAIT.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">socket地址相关</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+有一个通用地址结构 <code>struct sockaddr_in</code>, bind, connect这样的API中都是使用这个
+结构, 其它的地址结构必须类型转换为该结构. ipv6又定义了一个新的通用地址结构
+<code>struct sock_storage</code>, 该结构可以包含所有的地址,包括ipv4,ipv6以及unix.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">-------------- &#36890;&#29992;&#22320;&#22336;&#32467;&#26500;(&#26087;) ----------------------- </span><span style="color: #586e75; font-style: italic;">*/</span>
+<span style="color: #859900;">struct</span> <span style="color: #268bd2;">sockaddr</span> {
+    <span style="color: #268bd2;">uint8_t</span>     <span style="color: #6c71c4;">sa_len</span>;
+    <span style="color: #268bd2;">sa_family_t</span> <span style="color: #6c71c4;">sa_family</span>;    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">address family: AF_xxx value </span><span style="color: #586e75; font-style: italic;">*/</span>
+    <span style="color: #268bd2;">char</span>        <span style="color: #6c71c4;">sa_data</span>[14];  <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">protocol-specific address </span><span style="color: #586e75; font-style: italic;">*/</span>
+};
+<span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">---------------- ipv4 ----------------------------------- </span><span style="color: #586e75; font-style: italic;">*/</span>
+<span style="color: #859900;">struct</span> <span style="color: #268bd2;">in_addr</span> {
+    <span style="color: #268bd2;">in_addr_t</span>  <span style="color: #6c71c4;">s_addr</span>;    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">32-bit IPv4 address </span><span style="color: #586e75; font-style: italic;">*/</span>
+    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">network byte ordered </span><span style="color: #586e75; font-style: italic;">*/</span>
+};
+<span style="color: #859900;">struct</span> <span style="color: #268bd2;">sockaddr_in</span> {
+    <span style="color: #268bd2;">uint8_t</span>         <span style="color: #6c71c4;">sin_len</span>;       <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">length of structure (16) </span><span style="color: #586e75; font-style: italic;">*/</span>
+    <span style="color: #268bd2;">sa_family_t</span>     <span style="color: #6c71c4;">sin_family</span>;    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">AF_INET </span><span style="color: #586e75; font-style: italic;">*/</span>
+    <span style="color: #268bd2;">in_port_t</span>       <span style="color: #6c71c4;">sin_port</span>;      <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">16-bit TCP or UDP port number </span><span style="color: #586e75; font-style: italic;">*/</span>
+    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">network byte ordered </span><span style="color: #586e75; font-style: italic;">*/</span>
+    <span style="color: #859900;">struct</span> <span style="color: #268bd2;">in_addr</span>  <span style="color: #6c71c4;">sin_addr</span>;      <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">32-bit IPv4 address </span><span style="color: #586e75; font-style: italic;">*/</span>
+    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">network byte ordered </span><span style="color: #586e75; font-style: italic;">*/</span>
+    <span style="color: #268bd2;">char</span>            <span style="color: #6c71c4;">sin_zero</span>[8];   <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">unused </span><span style="color: #586e75; font-style: italic;">*/</span>
+};
+
+<span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">--------------&#36890;&#29992;&#22320;&#22336;&#32467;&#26500;(&#26032;, ipv6&#23450;&#20041;) ------------------ </span><span style="color: #586e75; font-style: italic;">*/</span>
+<span style="color: #859900;">struct</span> <span style="color: #268bd2;">sockaddr_storage</span> {
+    <span style="color: #268bd2;">uint8_t</span>      <span style="color: #6c71c4;">ss_len</span>;    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">length of this struct (implementation dependent) </span><span style="color: #ee82ee; background-color: #333333; font-style: italic;">*/</span>
+    <span style="color: #268bd2;">sa_family_t</span>  <span style="color: #6c71c4;">ss_family</span>; <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">address family: AF_xxx value </span><span style="color: #586e75; font-style: italic;">*/</span>
+    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">implementation-dependent elements to provide:</span>
+<span style="color: #586e75; font-style: italic;">     * a) alignment sufficient to fulfill the alignment requirements of</span>
+<span style="color: #586e75; font-style: italic;">     *    all socket address types that the system supports.</span>
+<span style="color: #586e75; font-style: italic;">     * b) enough storage to hold any type of socket address that the</span>
+<span style="color: #586e75; font-style: italic;">     *    system supports.</span>
+<span style="color: #586e75; font-style: italic;">      </span><span style="color: #586e75; font-style: italic;">*/</span>
+};
+
+<span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">------------------------ ipv6 --------------------------- </span><span style="color: #586e75; font-style: italic;">*/</span>
+<span style="color: #859900;">struct</span> <span style="color: #268bd2;">in6_addr</span> {
+    <span style="color: #268bd2;">uint8_t</span>   <span style="color: #6c71c4;">s6_addr</span>[16];   <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">128-bit IPv6 address </span><span style="color: #586e75; font-style: italic;">*/</span>
+                             <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">network byte ordered </span><span style="color: #586e75; font-style: italic;">*/</span>
+};
+<span style="color: #d33682;">#define</span> <span style="color: #6c71c4;">SIN6_LEN</span>         <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">required for compile-time tests </span><span style="color: #586e75; font-style: italic;">*/</span>
+<span style="color: #859900;">struct</span> <span style="color: #268bd2;">sockaddr_in6</span> {
+    <span style="color: #268bd2;">uint8_t</span>          <span style="color: #6c71c4;">sin6_len</span>;      <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">length of this struct (28) </span><span style="color: #586e75; font-style: italic;">*/</span>
+    <span style="color: #268bd2;">sa_family_t</span>      <span style="color: #6c71c4;">sin6_family</span>;   <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">AF_INET6 </span><span style="color: #586e75; font-style: italic;">*/</span>
+    <span style="color: #268bd2;">in_port_t</span>        <span style="color: #6c71c4;">sin6_port</span>;     <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">transport layer port# </span><span style="color: #586e75; font-style: italic;">*/</span>
+                                    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">network byte ordered </span><span style="color: #586e75; font-style: italic;">*/</span>
+    <span style="color: #268bd2;">uint32_t</span>         <span style="color: #6c71c4;">sin6_flowinfo</span>; <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">flow information, undefined </span><span style="color: #586e75; font-style: italic;">*/</span>
+    <span style="color: #859900;">struct</span> <span style="color: #268bd2;">in6_addr</span>  <span style="color: #6c71c4;">sin6_addr</span>;     <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">IPv6 address </span><span style="color: #586e75; font-style: italic;">*/</span>
+                                    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">network byte ordered </span><span style="color: #586e75; font-style: italic;">*/</span>
+    <span style="color: #268bd2;">uint32_t</span>         <span style="color: #6c71c4;">sin6_scope_id</span>; <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">set of interfaces for a scope </span><span style="color: #586e75; font-style: italic;">*/</span>
+};
+</pre>
+</div>
+<ol class="org-ol">
+<li>有两个函数来转换ip地址,也就是在presentation format与numeric format之间转换,
+presentation format是字符串,比如"127.0.0.1", 这种形式对人更友好,而numeric
+format是数字,它是放在地址结构体中, 这两个函数能转换ipv4以及ipv6地址,原型如
+下:
+<pre class="example">
+#include &lt;arpa/inet.h&gt;
+
+int inet_pton(int af, const char *src, void *dst);
+const char *inet_ntop(int af, const void *src,
+                      char *dst, socklen_t size);
+</pre>
+<p>
+常用 <code>inet_pton</code> 来将字符串表示的ip转换为地址结构体要求的数字ip
+</p>
+</li>
+<li>因为网络程序需要在不同的机器间通信,所以字节序很重要, 网络协议默认的字节序是
+大端字节序, 所以需要函数来在 <b>主机字节序(host byte order)</b> 与 <b>网络字节序
+(network byte order)</b> 之间转换, 有以下几个函数:
+<pre class="example">
+#include &lt;netinet/in.h&gt;
+uint16_t htons(uint16_t host16bitvalue) ;
+uint32_t htonl(uint32_t host32bitvalue) ;
+                       Both return: value in network byte order
+uint16_t ntohs(uint16_t net16bitvalue) ;
+uint32_t ntohl(uint32_t net32bitvalue) ;
+                       Both return: value in host byte order
+</pre>
+<p>
+常用 <code>htons</code> 来转换端口号.
+</p>
+</li>
+</ol>
+</div>
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">常用代码</h3>
+<div class="outline-text-3" id="text-2-1">
+<ol class="org-ol">
+<li>客户端
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #859900;">struct</span> <span style="color: #268bd2;">sockaddr_in</span> <span style="color: #6c71c4;">servaddr</span>;
+bzero(&amp;servaddr, <span style="color: #859900;">sizeof</span>(servaddr));
+servaddr.sin_family = AF_INET;
+servaddr.sin_port = htons(13);
+<span style="color: #859900;">if</span> (inet_pton(AF_INET, argv[1], &amp;servaddr.sin_addr) &lt; 0) {
+    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">error </span><span style="color: #586e75; font-style: italic;">*/</span>
+}
+</pre>
+</div>
+</li>
+<li>服务端
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #859900;">struct</span> <span style="color: #268bd2;">sockaddr_in</span> <span style="color: #6c71c4;">servaddr</span>;
+bzero(&amp;servaddr, <span style="color: #859900;">sizeof</span>(servaddr));
+servaddr.sin_family = AF_INET;
+servaddr.sin_port = htons(13);
+servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
+<span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">or use inet_pton to set ip </span><span style="color: #586e75; font-style: italic;">*/</span>
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">基本socket API</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">connect</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+客户端使用该api建立连接,它可能返回以下错误:
+</p>
+<ol class="org-ol">
+<li>ETIMEDOUT: 超时, 也就是说没有接收到server端的ACK报文.
+</li>
+<li>ECONNREFUSED: 发送SYN报文后,收到了RST报文,也就是说server端没有进程在监听
+你要连接的端口.
+</li>
+<li>EHOSTUNREACH, ENETUNREACH:收到了ICMP的unreachable的报文
+</li>
+</ol>
+<p>
+<b>connect一旦出错,那么该socket就不可用了,必须关闭.</b>
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">bind</h3>
+</div>
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3">listen</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+原型:
+</p>
+<pre class="example">
+int listen (int sockfd, int backlog);
+</pre>
+<p>
+内核会维护两个队列:
+</p>
+<ol class="org-ol">
+<li>未完成队列:　当客户端发送３次握手的第一个SYN报文到服务端时,该队列就会增加
+一项,完成三次握手后该项就会移到已完成队列的末尾
+</li>
+<li>已完成队列: 当客户端完成三次握手,那么在队列的末尾增加一项,当你调用accept
+时就从队列的开头移除一项,如果该队列为空,那么accept会阻塞.
+</li>
+</ol>
+<p>
+从linux2.2开始backlog是已完成队列的最大值. 未完成队列的最大值由一个全局值设
+定,该值在 /proc/sys/net/ipv4/tcp_max_syn_backlog中, 如果已完成队列满了,而此时
+未完成队列的某个连接收到了三步握手的最后一个ACK, 这时内核会忽略这个ACK(意思就
+是说就像没有收到这个ACK包一样), 因此一段时间后server端会重发第二步握手的
+SYN/ACK包.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4">socket读写api</h3>
+<div class="outline-text-3" id="text-3-4">
+<ol class="org-ol">
+<li>对于面向连接的socket(TCP), 有以下两组api, recv/send以及read/write, 前者比
+后者多了一个flag参数, 当使用flag=0来调用recv, send时,他的行为和read,write
+是一样的.
+</li>
+<li>面向非连接的socket(UDP, RAW):有以下api, recvfrom/sendto, 这两个有一个地址
+参数和一个指示地址结构长度的参数, 如果将这两个值设为NULL和0,那么行为实际
+和recv/send一样.
+</li>
+<li>buffer相关: 在内核中,每一个socket都有一个 <b>send buffer</b>, 当你调用write或者
+send时, 实际就是将数据从用户空间的buffer复制到内核空间的send buffer, 如果
+send buffer的空间不够,那么write/send操作或阻塞(前提是socket没有设为非阻
+塞).当write/send返回时,意味着数据已经都复制到了send buffer,但不保证数据已
+经通过网络发送出去了. 这有收到对方的ACK报文,这些数据才能从send buffer移除.
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5">一些情形下tcp socket的行为</h3>
+<div class="outline-text-3" id="text-3-5">
+<ol class="org-ol">
+<li>server端的进程终止了,这时client端向socket写则会收到RST报文, 如果你接着向
+这个socket写入数据,那么会收到SIGPIPE信号.如果你忽略了该信号,那么write会返
+回EPIPE错误.
+</li>
+<li>如果server崩溃(比如断电,比如断掉网线然后关掉进程, 总之让client无法收到正常
+关闭时的FIN包), 这时有两种情况:
+<ul class="org-ul">
+<li>如果server端没有恢复正常(比如没有重启, 或者没有插上网线重启进程), 那么
+client端会超时.
+</li>
+<li>如果server恢复了正常,那么client向server写会收到RST, 这时读该socket会产生
+ECONNRESET错误
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<!-- 多说评论框 start -->
+  <div id="duoshuo-id" class="ds-thread" data-thread-key="请将此处替换成文章在你的站点中的ID" data-title="请替换成文章的标题" data-url="请替换成文章的网址"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+   var url = window.location.pathname;
+   var duoshuo_identifier = url.substring(url.lastIndexOf('/')+1);
+   if (!!! duoshuo_identifier) {
+     duoshuo_identifier = "index.html";
+   }
+   var title = document.title;
+   var ele = document.getElementById("duoshuo-id");
+   ele.setAttribute("data-thread-key", duoshuo_identifier);
+   ele.setAttribute("data-title", title);
+   ele.setAttribute("data-url", url);
+
+</script>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yuyang0"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementById('postamble')
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end --><!-- begin footer -->
+<div id="footer">
+  <ul class="links vertical-nav">
+    <li><a href="/sitemap.xml">Sitemap</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    <li><a href="/about.html">About Me</a></li>
+    <li><a class="back-to-top" href="#">Back to Top</a></li>
+  </ul>
+  <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
+  <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+	window.jQuery || document.write('<script src="static/js/jquery-2.0.0.min.js"><\/script>');
+	</script>
+<script type="text/javascript" src="static/js/custom.js"></script>
+<!-- end footer -->
+</div>
+</body>
+</html>

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>nginx</title>
-<!-- 2015-02-06 Fri 16:26 -->
+<!-- 2015-03-02 Mon 09:16 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -210,6 +210,7 @@ for the JavaScript code in this tag.
 <li><a href="#sec-5-2">GEO(ngx_http_geo_module)</a></li>
 <li><a href="#sec-5-3">Access(ngx_http_access_module)</a></li>
 <li><a href="#sec-5-4">Rewrite(ngx_http_rewrite_module)</a></li>
+<li><a href="#sec-5-5">Echo(ngx_http_echo_module)</a></li>
 </ul>
 </li>
 <li><a href="#sec-6">nginx与lua</a>
@@ -780,8 +781,60 @@ return URL;
 </ol>
 </div>
 </div>
-</div>
 
+<div id="outline-container-sec-5-5" class="outline-3">
+<h3 id="sec-5-5">Echo(ngx_http_echo_module)</h3>
+<div class="outline-text-3" id="text-5-5">
+<p>
+这是第三方模块,提供了一些类似于shell的命令, 该模块的大部分指令运行于content
+phase. 常用的指令:
+</p>
+<ol class="org-ol">
+<li>echo: 输出内容到客户端(content phase)
+</li>
+<li>echo_exec: 执行内部跳转(类似于rewrite,不过运行于content phase)
+</li>
+<li>echo_location: 执行一个子请求(HTTP GET), 将子请求的结果发送到client,有点类
+似于ngx_lua模块中的指令ngx.location.capture. 只是ngx.location.capture更灵
+活,因为它可以做后续处理,而不是直接将结果发送到client.
+</li>
+<li>echo_location_async: 和echo_location不过是异步的(HTTP GET), 也就是说主请
+求很有可能在子请求之前结束. 但是nginx会保证输出指令的执行顺序:
+<div class="org-src-container">
+
+<pre class="src src-sh">location /main {
+        echo_reset_timer;
+        echo_location_async /sub1;
+        echo_location_async /sub2;
+        <span style="color: #6c71c4;">echo</span> <span style="color: #2aa198;">"took $echo_timer_elapsed sec for total."</span>;
+    }
+    location /sub1 {
+        echo_sleep 2; <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">sleeps 2 sec</span>
+        <span style="color: #6c71c4;">echo</span> hello;
+    }
+    location /sub2 {
+        echo_sleep 1; <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">sleeps 1 sec</span>
+        <span style="color: #6c71c4;">echo</span> world;
+    }
+</pre>
+</div>
+<p>
+main虽然可能在子请求的前面结束,但是sub1, sub2,main的输出顺序nginx会保证,
+因此输出会是:
+</p>
+<pre class="example">
+hello
+world
+took 0.000 sec for total.
+</pre>
+<p>
+该指令有点类似于ngx_lua模块的ngx.location.capture_multi指令.
+</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6">nginx与lua</h2>
 <div class="outline-text-2" id="text-6">
@@ -929,12 +982,12 @@ phase间传递数据
 </li>
 <li>worker进程级别: 可以创建一个lua模块,在模块内部创建一个表,因为lua解释器在
 worker进程启动后就常驻内存, 所以这个表在进程内部一直有效. 因此你可以使用
-这种方法在该进程处理的请求间共享数据.
+这种方法在该进程处理的不同请求间共享数据.
 </li>
 <li>nginx级别: 因为nginx是多进程架构, 为了在多个worker进程间共享数据必须用到
 IPC机制, ngx_lua使用share memory实现了一个ngx.shared.DICT, 内部是使用自旋
 锁来避免竞争条件,该结构有get,set,incr,delete等api, 使用比较简单, 为了高效
-的利用api, 数据的大小应该尽量一致,特别不同的数据应该用不同的dict存放,主要
+的利用此api, 数据的大小应该尽量一致,特别不同的数据应该用不同的dict存放,主要
 是为了减少碎片
 </li>
 </ol>
