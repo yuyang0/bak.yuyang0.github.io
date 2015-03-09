@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>UNIX网络编程</title>
-<!-- 2015-03-02 Mon 09:16 -->
+<!-- 2015-03-09 Mon 09:17 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -195,6 +195,14 @@ for the JavaScript code in this tag.
 <li><a href="#sec-3-5">一些情形下tcp socket的行为</a></li>
 </ul>
 </li>
+<li><a href="#sec-4">socket options</a>
+<ul>
+<li><a href="#sec-4-1">SO_KEEPALIVE</a></li>
+<li><a href="#sec-4-2">SO_LINGER</a></li>
+<li><a href="#sec-4-3">SO_RCVBUF/SO_SNDBUF</a></li>
+<li><a href="#sec-4-4">SO_REUSEADDR/SO_REUSEPORT</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -221,7 +229,7 @@ tcp的头部格式
 |                    Acknowledgment Number                      |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 |  Data |           |U|A|P|R|S|F|                               |
-| Offset| Reserved  |R|C|S|S|Y|I|            Window             |
+| Offset| Reserved  |R|C|S|S|Y|I|      Receive Window Size      |
 |       |           |G|K|H|T|N|N|                               |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 |           Checksum            |         Urgent Pointer        |
@@ -266,6 +274,9 @@ Acknowledgment Number字段就是a+b. <b>只有ACK标志为1时该字段才有�
 </li>
 </ul>
 </li>
+<li>Window size: 用来标示发送该数据报的一端希望接收的数据大小, 主要用来进行
+流控制(flow control). 
+</li>
 </ol>
 <p>
 <b>其他说明:</b>
@@ -304,7 +315,7 @@ Acknowledgement Number设为J+1.
 <div class="outline-text-4" id="text-1-1-3">
 <p>
 如下图所示
-<img src="static/img/tcp-terminate.jpg" alt="tcp-terminate.jpg" />
+<img src="static/img/tcp-terminate.png" alt="tcp-terminate.png" />
 </p>
 </div>
 </div>
@@ -536,11 +547,60 @@ SYN/ACK包.
 参数和一个指示地址结构长度的参数, 如果将这两个值设为NULL和0,那么行为实际
 和recv/send一样.
 </li>
-<li>buffer相关: 在内核中,每一个socket都有一个 <b>send buffer</b>, 当你调用write或者
-send时, 实际就是将数据从用户空间的buffer复制到内核空间的send buffer, 如果
-send buffer的空间不够,那么write/send操作或阻塞(前提是socket没有设为非阻
-塞).当write/send返回时,意味着数据已经都复制到了send buffer,但不保证数据已
-经通过网络发送出去了. 这有收到对方的ACK报文,这些数据才能从send buffer移除.
+<li>send buffer: 在内核中,每一个socket都有一个 send buffer
+<ul class="org-ul">
+<li><b>TCP</b>: 当你调用write或者send时, 实际就是将数据从用户空间的buffer复制到
+内核空间的send buffer, 如果send buffer的空间不够,那么write/send操作将阻
+塞(前提是socket没有设为非阻塞).当write/send返回时,意味着数据已经都复制
+到了send buffer,但不保证数据已经通过网络发送出去了. 只有收到对方的ACK报
+文,这些数据才能从send buffer移除.
+</li>
+<li><b>UDP</b>: 因为udp是直接将数据加上udp头部发往下层,也就是udp数据报要原子的发
+送,它不能拆解,所以如果你传入的数据太大,比如比send buffer还大,那么内核会
+返回错误EMSGSIZE. 如果只是当前的send buffer没有足够的空间,那么阻塞的
+socket上的send调用会阻塞,非阻塞的send调用会返回EAGAIN或者EWOULDBLOCK.
+<b>UDP上的send要么全部发送,要么出错,不会出现只发送一部分数据的情况</b>
+</li>
+</ul>
+</li>
+<li>receive buffer: 内核中每一个socket都有一个receive buffer.
+<ul class="org-ul">
+<li><b>TCP</b>: 通过tcp的流控制(tcp报文的Window字段), 可以通知peer该端目前能够接
+受的数据大小,如果peer忽略该建议,同时发送来的数据大于该大小,那么内核会丢
+弃这个数据报.因为receive buffer没有足够的空间容纳这些数据.丢弃后peer过
+一段时间要重发,那么peer就会"慢下来", 这实际就是流量控制.
+</li>
+<li><b>UDP</b>: udp没有流控制,如果receive buffer,内核会直接丢弃数据报
+</li>
+</ul>
+</li>
+<li>读就绪条件:满足下面四个条件之一的,read操作不会阻塞
+<ol class="org-ol">
+<li>socket的receive buffer中的数据大于等于"低水位"值(low-water mark)
+</li>
+<li>socket的被读关闭,那么read会马上返回0
+</li>
+<li>socket是listening socket,而且这时已完成队列不为空,那么accept会立即返回
+</li>
+<li>socket上有错误在排队,read操作会直接出错返回
+</li>
+</ol>
+<p>
+<b>当读就绪时, 阻塞读与非阻塞读的行为是相似的,都会立即返回.并且返回读到的字
+节数.</b>
+</p>
+</li>
+<li>写就绪条件: 满足下面四个条件之一的,write操作不会阻塞
+<ol class="org-ol">
+<li>socket的send buffer的空余空间大于"低水位"值,
+</li>
+<li>socket被写关闭,那么写操作会产生SIGPIPE信号.
+</li>
+<li>非阻塞的connect,或者connect出错
+</li>
+<li>socket上有错误在排队, write会直接出错返回.
+</li>
+</ol>
 </li>
 </ol>
 </div>
@@ -565,6 +625,60 @@ ECONNRESET错误
 </ul>
 </li>
 </ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">socket options</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+使用下面的两个系统调用来获取以及设置socket选项
+</p>
+<pre class="example">
+#include &lt;sys/socket.h&gt;
+int getsockopt(int sockfd, int level, int optname, void *optval, socklen_t *optlen);
+int setsockopt(int sockfd, int level, int optname, const void *optval socklen_t optlen);
+</pre>
+<p>
+注意optval对于不同的选项是不同的值,所以你要optlen参数来通知获得optval的长度.
+</p>
+</div>
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1">SO_KEEPALIVE</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+如果socket设置了该选项, 那么当一个连接有两个小时没有交换数据了(这意味着程序
+阻塞在某个系统调用上), 那么就会向对方发送一个keep-alive probe, 实际就是一个
+tcp报文. 如果这个报文收到了正常的ACK,那么审计么也不做,如果超时或者收到RST报
+文,那么被阻塞的系统调用会返回相应的错误.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2">SO_LINGER</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+改变socket调用close时的行为.默认如果你调用close,那么close会立即返回,但是如果
+send buffer有数据,那么系统会现将数据发送出去. 这种默认行为可以改变
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3">SO_RCVBUF/SO_SNDBUF</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+修改socket的send buffer以及receive buffer的大小. <b>这两个选项必须在connect与
+listen之前设置</b>. 
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4">SO_REUSEADDR/SO_REUSEPORT</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+主要是避免重启服务器程序时的address already in use的错误.
+</p>
 </div>
 </div>
 </div>

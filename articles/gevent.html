@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>gevent源码分析</title>
-<!-- 2015-02-06 Fri 16:26 -->
+<!-- 2015-03-09 Mon 09:17 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -224,7 +224,8 @@ the-continuation设置为当前的continuation，所以运行
 <h3 id="sec-1-2">coroutine</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
-Coroutine 也就是 corporate routine，中文名就是协程，从它的英文可以看出是协同的例程的意思
+Coroutine 也就是 corporate routine，中文名就是协程，从它的英文可以看出是协同
+的例程的意思
 </p>
 </div>
 </div>
@@ -233,8 +234,15 @@ Coroutine 也就是 corporate routine，中文名就是协程，从它的英文�
 <h2 id="sec-2">gevent源码分析</h2>
 <div class="outline-text-2" id="text-2">
 </div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">greenlet</h3>
+<h3 id="sec-2-1">背景知识</h3>
 <div class="outline-text-3" id="text-2-1">
+<p>
+gevent用到了了libev以及greenlet还有cares,下面简单的介绍这几个库.
+</p>
+</div>
+<div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1">greenlet</h4>
+<div class="outline-text-4" id="text-2-1-1">
 <p>
 实际是一个协程库(官方叫micro-thread), 它只提供协程本身,要在协程间切
 换调度必须你在程序中手动来进行,直接上代码:
@@ -259,20 +267,625 @@ gr1, gr2以及运行该代码的解释器本身都是协程, 协程对象的swit
 来切换,比如 <code>gr2.switch</code> 就是切换到gr2.
 </p>
 </div>
-</div>
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2">libev</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-sec-2-1-1-1" class="outline-5">
+<h5 id="sec-2-1-1-1">api</h5>
+<div class="outline-text-5" id="text-2-1-1-1">
+<ol class="org-ol">
+<li>greenlet(run=None, parent=None): 创建一个greenlet实例.
+</li>
+<li>greenlet.getcurrent:
+</li>
+</ol>
 <p>
-和libevent类似, libev是一个事件循环库,他可以监听各个file
-descriptor, 一旦发现就绪就调用对应的回调函数, gevent内部就是使用
-libev来监听socket的.
+实例方法与属性
+</p>
+<ol class="org-ol">
+<li>gr.parent:每一个协程都有一个父协程,当前协程结束后会回到父协程中执行,该
+属性默认是创建该协程的协程.
+</li>
+<li>gr.run: 该属性是协程实际运行的代码. run方法结束了,那么该协程也就结束了.
+</li>
+<li>gr.switch(*args, **kwargs): 切换到gr协程.
+</li>
+<li>gr.throw(): 切换到gr协程,接着抛出一个异常.
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2">libev</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+和libevent类似, libev是一个事件循环库,他可以监听各个file descriptor, 一旦发现
+就绪就调用对应的回调函数, gevent内部就是使用libev来监听socket的.为了后续理解
+方便有必要对libev进行简单的了解.
+</p>
+<ol class="org-ol">
+<li>watcher: 实际上是用来封装各种类型的事件的,不同类型的事件会有不同类型的
+watcher, 比如 <code>ev_io</code>, <code>ev_timer</code>, 该结构一般会有一个回调函数,当事件触发
+使就会调用回调函数. watcher会有两种函数(注意TYPE代表watcher类型,可以是
+io, timer, signal等等):
+<ul class="org-ul">
+<li>ev_TYPE_init: 对watcher对象进行初始化, 对IO而言该函数是 <code>ev_io_init</code>,
+对timer而言,该函数是 <code>ev_timer_init</code>.
+</li>
+<li>ev_TYPE_set: 与init系列函数的区别是该函数一般不设置callback
+</li>
+<li>ev_TYPE_start: 将watcher注册到事件循环中,这样就可以监听事件了.
+</li>
+</ul>
+</li>
+<li>loop: 事件循环
+</li>
+</ol>
+<p>
+来看看示例代码:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">a single header file is required</span>
+<span style="color: #d33682;">#include</span> <span style="color: #2aa198;">&lt;ev.h&gt;</span>
+
+<span style="color: #d33682;">#include</span> <span style="color: #2aa198;">&lt;stdio.h&gt;</span> <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">for puts</span>
+
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">every watcher type has its own typedef'd struct</span>
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">with the name ev_TYPE</span>
+<span style="color: #268bd2;">ev_io</span> <span style="color: #6c71c4;">stdin_watcher</span>;
+<span style="color: #268bd2;">ev_timer</span> <span style="color: #6c71c4;">timeout_watcher</span>;
+
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">all watcher callbacks have a similar signature</span>
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">this callback is called when data is readable on stdin</span>
+<span style="color: #859900;">static</span> <span style="color: #268bd2;">void</span>
+<span style="color: #b58900;">stdin_cb</span> (EV_P_ <span style="color: #268bd2;">ev_io</span> *<span style="color: #6c71c4;">w</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">revents</span>)
+{
+    puts (<span style="color: #2aa198;">"stdin ready"</span>);
+    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">for one-shot events, one must manually stop the watcher</span>
+    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">with its corresponding stop function.</span>
+    ev_io_stop (<span style="color: #268bd2;">EV_A_</span> <span style="color: #6c71c4;">w</span>);
+
+    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">this causes all nested ev_run's to stop iterating</span>
+    ev_break (<span style="color: #268bd2;">EV_A_</span> <span style="color: #6c71c4;">EVBREAK_ALL</span>);
+}
+
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">another callback, this time for a time-out</span>
+<span style="color: #859900;">static</span> <span style="color: #268bd2;">void</span>
+<span style="color: #b58900;">timeout_cb</span> (EV_P_ <span style="color: #268bd2;">ev_timer</span> *<span style="color: #6c71c4;">w</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">revents</span>)
+{
+    puts (<span style="color: #2aa198;">"timeout"</span>);
+    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">this causes the innermost ev_run to stop iterating</span>
+    ev_break (<span style="color: #268bd2;">EV_A_</span> <span style="color: #6c71c4;">EVBREAK_ONE</span>);
+}
+
+<span style="color: #268bd2;">int</span>
+<span style="color: #b58900;">main</span> (<span style="color: #268bd2;">void</span>)
+{
+    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">use the default event loop unless you have special needs</span>
+    <span style="color: #859900;">struct</span> <span style="color: #268bd2;">ev_loop</span> *<span style="color: #6c71c4;">loop</span> = EV_DEFAULT;
+
+    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">initialise an io watcher, then start it</span>
+    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">this one will watch for stdin to become readable</span>
+    ev_io_init (&amp;stdin_watcher, stdin_cb, <span style="color: #586e75; font-style: italic;">/*</span><span style="color: #586e75; font-style: italic;">STDIN_FILENO</span><span style="color: #586e75; font-style: italic;">*/</span> 0, EV_READ);
+    ev_io_start (loop, &amp;stdin_watcher);
+
+    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">initialise a timer watcher, then start it</span>
+    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">simple non-repeating 5.5 second timeout</span>
+    ev_timer_init (&amp;timeout_watcher, timeout_cb, 5.5, 0.);
+    ev_timer_start (loop, &amp;timeout_watcher);
+
+    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">now wait for events to arrive</span>
+    ev_run (loop, 0);
+
+    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">break was called, so exit</span>
+    <span style="color: #859900;">return</span> 0;
+}
+</pre>
+</div>
+<p>
+获得loop对象, 创建一个io watcher,一个timer watcher, 分别初始化(调用init函数),
+然后调用start注册到事件循环中, 接着调用ev_run启动事件循环.
 </p>
 </div>
 </div>
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3">源码</h3>
-<div class="outline-text-3" id="text-2-3">
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">源码</h3>
+<div class="outline-text-3" id="text-2-2">
+</div><div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1">HUB</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+这实际上是greenlet的子类,所以它的每一个实例实际上就代表一个协程,这个类创建的
+协程是专门用来运行事件循环的.
+</p>
+</div>
+<div id="outline-container-sec-2-2-1-1" class="outline-5">
+<h5 id="sec-2-2-1-1">Waiter</h5>
+<div class="outline-text-5" id="text-2-2-1-1">
+<p>
+协程间的通信机制.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Waiter</span>(<span style="color: #6c71c4;">object</span>):
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">__init__</span>(<span style="color: #859900;">self</span>, hub=<span style="color: #268bd2;">None</span>):
+        <span style="color: #859900;">if</span> hub <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>:
+            <span style="color: #859900;">self</span>.hub = get_hub()
+        <span style="color: #859900;">else</span>:
+            <span style="color: #859900;">self</span>.hub = hub
+        <span style="color: #859900;">self</span>.greenlet = <span style="color: #268bd2;">None</span>
+        <span style="color: #859900;">self</span>.value = <span style="color: #268bd2;">None</span>
+        <span style="color: #859900;">self</span>._exception = _NONE
+
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">get</span>(<span style="color: #859900;">self</span>):
+        <span style="color: #2aa198;">"""If a value/an exception is stored, return/raise it. Otherwise until s</span><span style="color: #ee82ee; background-color: #333333;">witch() or throw() is called."""</span>
+        <span style="color: #859900;">if</span> <span style="color: #859900;">self</span>._exception <span style="color: #859900;">is</span> <span style="color: #859900;">not</span> _NONE:
+            <span style="color: #859900;">if</span> <span style="color: #859900;">self</span>._exception <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>:
+                <span style="color: #859900;">return</span> <span style="color: #859900;">self</span>.value
+            <span style="color: #859900;">else</span>:
+                getcurrent().throw(*<span style="color: #859900;">self</span>._exception)
+        <span style="color: #859900;">else</span>:
+            <span style="color: #859900;">assert</span> <span style="color: #859900;">self</span>.greenlet <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>, <span style="color: #2aa198;">'This Waiter is already used by %r'</span> % <span style="color: #ee82ee; background-color: #333333;">(</span><span style="color: #ee82ee; background-color: #333333;">self</span><span style="color: #ee82ee; background-color: #333333;">.greenlet, )</span>
+            <span style="color: #859900;">self</span>.greenlet = getcurrent()
+            <span style="color: #859900;">try</span>:
+                <span style="color: #859900;">return</span> <span style="color: #859900;">self</span>.hub.switch()
+            <span style="color: #859900;">finally</span>:
+                <span style="color: #859900;">self</span>.greenlet = <span style="color: #268bd2;">None</span>
+
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">switch</span>(<span style="color: #859900;">self</span>, value=<span style="color: #268bd2;">None</span>):
+        <span style="color: #2aa198;">"""Switch to the greenlet if one's available. Otherwise store the value.</span><span style="color: #ee82ee; background-color: #333333;">"""</span>
+        <span style="color: #6c71c4;">greenlet</span> = <span style="color: #859900;">self</span>.greenlet
+        <span style="color: #859900;">if</span> greenlet <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>:
+            <span style="color: #859900;">self</span>.value = value
+            <span style="color: #859900;">self</span>._exception = <span style="color: #268bd2;">None</span>
+        <span style="color: #859900;">else</span>:
+            <span style="color: #859900;">assert</span> getcurrent() <span style="color: #859900;">is</span> <span style="color: #859900;">self</span>.hub, <span style="color: #2aa198;">"Can only use Waiter.switch method </span><span style="color: #ee82ee; background-color: #333333;">from the Hub greenlet"</span>
+            <span style="color: #6c71c4;">switch</span> = greenlet.switch
+            <span style="color: #859900;">try</span>:
+                switch(value)
+            <span style="color: #859900;">except</span>:
+                <span style="color: #859900;">self</span>.hub.handle_error(switch, *sys.exc_info())
+</pre>
+</div>
+<p>
+该类的实例有一个value属性,当你在一个协程中调用get方法时, 它会设置greenlet
+属性为当前的协程对象,接着就会切换到hub协程. switch方法一般会注册到某个
+watcher的回调函数,我们来看看Waiter的一个使用例子, Hub的wait方法的代码:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Hub</span>(greenlet):
+    ...
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">wait</span>(<span style="color: #859900;">self</span>, watcher):
+        <span style="color: #6c71c4;">waiter</span> = Waiter()
+        <span style="color: #6c71c4;">unique</span> = <span style="color: #6c71c4;">object</span>()
+        watcher.start(waiter.switch, unique)
+        <span style="color: #859900;">try</span>:
+            <span style="color: #6c71c4;">result</span> = waiter.get()
+            <span style="color: #859900;">assert</span> result <span style="color: #859900;">is</span> unique, <span style="color: #2aa198;">'Invalid switch into %s: %r (expected %r)'</span> <span style="color: #ee82ee; background-color: #333333;">% (getcurrent(), result, unique)</span>
+        <span style="color: #859900;">finally</span>:
+            watcher.stop()
+    ...
+</pre>
+</div>
+<p>
+<b>wait方法的作用是挂起当前的协程,直到watcher监听的事件就绪</b>.它创建一个
+Waiter实例waiter,接着将waiter的switch方法注册到wacher上,这样当watcher监听的
+事件就绪后就会调用实例的switch方法,接着就调用waiter的get方法, 根据watcher监
+听的事件就绪的快慢,这里有两种可能:
+</p>
+<ol class="org-ol">
+<li><b>get在switch之前运行</b>: get会设置waiter的greenlet属性为当前执行的协程, 接着
+切换到hub, 当将来某个时候事件就绪,那么调用waiter的switch,switch会调用
+greenlet属性的switch方法,这样就切换回了当前运行的协程.
+</li>
+<li><b>get在switch之后运行</b>: 这种情况比较少见,可是也是存在的, 这种情况下运行
+switch时,waiter对象的greenlet属性为None, 所以switch方法只是简单的设置
+waiter的value属性, 接着调用get会直接返回value属性,而不阻塞.注意不要弄
+混_NONE与None.
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2">core</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+core.ppyx文件实际上是用Cython写的代码，在Makefile中有这样一行代码:
+</p>
+<pre class="example">
+gevent/gevent.core.c: gevent/core.ppyx gevent/libev.pxd
+        $(PYTHON) util/cythonpp.py -o gevent.core.c gevent/core.ppyx
+        echo                          &gt;&gt; gevent.core.c
+        echo '#include "callbacks.c"' &gt;&gt; gevent.core.c
+        mv gevent.core.* gevent/
+</pre>
+<p>
+上面的代码告诉我们core.ppyx会先转换为gevent.core.c这个C语言文件,然后在编译成
+动态链接库，它的语法基本能看懂, 这个模块主要是实现loop这个类, hub对象中的
+loop就是这个类的一个对象(注意名字虽然相同但一个是类,一个对象,不要弄混),这个
+类将libev的事件循环机制封装了起来,我们先熟悉下这个类提供的API,熟悉这些API对
+使用gevent很有帮助,我假设lp是loop类的对象(在gevent中就是get_hub().loop)
+</p>
+<pre class="example">
+def io(self, int fd, int events, ref=True, priority=None):
+    return io(self, fd, events, ref, priority)
+
+def timer(self, double after, double repeat=0.0, ref=True, priority=None):
+    return timer(self, after, repeat, ref, priority)
+
+def signal(self, int signum, ref=True, priority=None):
+    return signal(self, signum, ref, priority)
+
+def idle(self, ref=True, priority=None):
+    return idle(self, ref, priority)
+
+def prepare(self, ref=True, priority=None):
+    return prepare(self, ref, priority)
+
+def fork(self, ref=True, priority=None):
+    return fork(self, ref, priority)
+
+def async(self, ref=True, priority=None):
+    return async(self, ref, priority)
+</pre>
+<p>
+注意上面是Cython, 上面的一系列方法实际是libev中watcher的等价物.比如你调用
+<code>lp.io(fd, 1)</code>, 就创建了一个监听fd的read事件的watcher对象,至于其它的api都是
+类似, 每一个watcher对象都有一个 <code>start</code> 方法, 该方法接受一个回调函数以及一系
+列传递给回调函数的参数, 调用该方法就会将watcher对象注册到libev的事件循环上,
+看下面的示例:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #6c71c4;">read_watcher</span> = lp.io(fd, 1)
+read_watcher.start(cb, args)
+</pre>
+</div>
+<p>
+运行上面的两行代码,那么当fd上读就绪时,那么就会调用cb函数,并且会把args传递给
+cb函数.在gevent中回调函数一般是协程的switch方法, 这样一旦调用,那么就切换到
+另一个协程中去执行.
+</p>
+</div>
+<div id="outline-container-sec-2-2-2-1" class="outline-5">
+<h5 id="sec-2-2-2-1">core源码分析</h5>
+<div class="outline-text-5" id="text-2-2-2-1">
+<p>
+这一节来分析core.ppyx的源码, 在一次提醒你注意,代码是Cython, 我对Cython也不
+太熟,但是代码大致能看懂. 同时要明白该模块是对libev的封装, libev中loop,
+watcher,callback在该模块中都有对应物, 所以你要注意当提到loop时,我们到底是
+该模块的loop还是libev的loop.
+</p>
+<ol class="org-ol">
+<li>先看callback
+<pre class="example">
+cdef public class callback [object PyGeventCallbackObject, type PyGeventCallback_Type]:
+    cdef public object callback
+    cdef public tuple args
+
+    def __init__(self, callback, args):
+        self.callback = callback
+        self.args = args
+
+    def stop(self):
+        self.callback = None
+        self.args = None
+</pre>
+<p>
+实际上就是把回调函数以及要提供给回调函数的参数封装了起来.
+</p>
+</li>
+<li>loop: 事件循环的封装.
+<pre class="example">
+cdef public class loop [object PyGeventLoopObject, type PyGeventLoop_Type]:
+    cdef libev.ev_loop* _ptr
+    cdef public object error_handler
+    cdef libev.ev_prepare _prepare
+    cdef public list _callbacks
+    cdef libev.ev_timer _timer0
+
+    def __init__(self, object flags=None, object default=None, size_t ptr=0):
+        cdef unsigned int c_flags
+        cdef object old_handler = None
+        libev.ev_prepare_init(&amp;self._prepare, &lt;void*&gt;gevent_run_callbacks)
+        libev.ev_timer_init(&amp;self._timer0, &lt;void*&gt;gevent_noop, 0.0, 0.0)
+        if ptr:
+            self._ptr = &lt;libev.ev_loop*&gt;ptr
+        else:
+            ......
+
+        self._callbacks = []
+</pre>
+<ol class="org-ol">
+<li>_ptr: libev的一个ev_loop对象.
+</li>
+<li>_prepare: libev中的prepare watcher,该watcher注册的回调函数会在事件循环进
+入阻塞使调用, 从代码中可以看到注册的回调函数是 <code>gevent_run_callbacks</code>,
+该函数会运行 <code>_callbacks</code> 列表中的每一个callback实例.
+</li>
+<li>_callbacks: 一个列表,实际上当你使用gevent的spawn创建协程时, spawn会在
+该列表中插入一个callback实例, 该实例的回调函数实际就是你创建的
+greenlet的switch方法, 这样当 <code>_prepare</code> watcher就绪时,新的协程就有了
+启动的机会.
+</li>
+</ol>
+</li>
+<li>watcher: 这是libev的watcher对象的封装,作为例子,我只分析io这一个例
+子,timer,signal等等都是相似的, 为了方便我使用cwatcher来指代libev中的
+watcher.
+<pre class="example">
+#define WATCHER_BASE(TYPE)                                                              \
+    cdef public loop loop                                                               \
+    cdef object _callback                                                               \
+    cdef public tuple args                                                              \
+    cdef readonly int _flags                                                            \
+    cdef libev.ev_##TYPE _watcher                                                       \
+
+cdef public class io(watcher) [object PyGeventIOObject, type PyGeventIO_Type]:
+
+    WATCHER_BASE(io)
+
+    def start(self, object callback, *args, pass_events=False):
+        CHECK_LOOP2(self.loop)
+        if callback is None:
+            raise TypeError('callback must be callable, not None')
+        self.callback = callback
+        if pass_events:
+            self.args = (GEVENT_CORE_EVENTS, ) + args
+        else:
+            self.args = args
+        LIBEV_UNREF
+        libev.ev_io_start(self.loop._ptr, &amp;self._watcher)
+
+    def __init__(self, loop loop, int fd, int events, ref=True, priority=None):
+        if fd &lt; 0:
+            raise ValueError('fd must be non-negative: %r' % fd)
+        if events &amp; ~(libev.EV__IOFDSET | libev.EV_READ | libev.EV_WRITE):
+            raise ValueError('illegal event mask: %r' % events)
+        libev.ev_io_init(&amp;self._watcher, &lt;void *&gt;gevent_callback_io, fd, events)
+        self.loop = loop
+        if ref:
+            self._flags = 0
+        else:
+            self._flags = 4
+        if priority is not None:
+            libev.ev_set_priority(&amp;self._watcher, priority)
+</pre>
+<p>
+先看WATCH_BASE, 它实际上定义了一系列的属性:
+</p>
+<ul class="org-ul">
+<li>loop: 实际是上面分析的loop类的一个实例
+</li>
+<li>_watcher: cwatcher对象,也就是一个libev的ev_io对象.
+</li>
+<li>callback: 回调函数, 注意该回调函数是由上层传递进来,它不是由libev直接
+调用,而是由libev的回调函数调用,具体到本例就是被 <code>gevent_callback_io</code>
+调用.
+</li>
+<li>args: 一个元组,传递给回调函数的参数
+</li>
+</ul>
+<p>
+在__init__会设置loop属性,同时初始化 <code>_watcher</code> 对象, 注意它的回调函数是
+<code>gevent_callback_io</code>, 在start中, 会设置回调函数以及参数, 同时将该
+watcher注册到libev的事件循环中. 为了弄明白libev事件循环的过程,我接下来
+分析 <code>gevent_callback_io</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #d33682;">#define</span> <span style="color: #b58900;">GET_OBJECT</span>(<span style="color: #6c71c4;">PY_TYPE</span>, <span style="color: #6c71c4;">EV_PTR</span>, <span style="color: #6c71c4;">MEMBER</span>)                             \
+    ((<span style="color: #859900;">struct</span> <span style="color: #268bd2;">PY_TYPE</span> *)(((<span style="color: #268bd2;">char</span> *)EV_PTR) - offsetof(<span style="color: #859900;">struct</span> <span style="color: #268bd2;">PY_TYPE</span>, MEMBER)))
+
+<span style="color: #859900;">static</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">gevent_callback_io</span>(<span style="color: #859900;">struct</span> <span style="color: #268bd2;">ev_loop</span> *<span style="color: #6c71c4;">_loop</span>, <span style="color: #268bd2;">void</span> *<span style="color: #6c71c4;">c_watcher</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">reven</span><span style="color: #ee82ee; background-color: #333333;">ts</span><span style="color: #ee82ee; background-color: #333333;">) {</span>
+    <span style="color: #859900;">struct</span> <span style="color: #268bd2;">PyGeventIOObject</span>* <span style="color: #6c71c4;">watcher</span> = GET_OBJECT(PyGeventIOObject, c_watcher, _<span style="color: #ee82ee; background-color: #333333;">watcher);</span>
+    gevent_callback(watcher-&gt;loop, watcher-&gt;_callback, watcher-&gt;args, (<span style="color: #268bd2;">PyObject</span>*<span style="color: #ee82ee; background-color: #333333;">)watcher, c_watcher, revents);</span>
+}
+</pre>
+</div>
+<p>
+GET_OBJECT的作用是通过结构体中某一个域的指针来获得整个结构体的指针. 如
+果你熟悉linux内核就会发现它和container_of的功能很相似.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #859900;">static</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">gevent_callback</span>(<span style="color: #859900;">struct</span> <span style="color: #268bd2;">PyGeventLoopObject</span>* <span style="color: #6c71c4;">loop</span>, <span style="color: #268bd2;">PyObject</span>* <span style="color: #6c71c4;">callback</span>,
+                            <span style="color: #268bd2;">PyObject</span>* <span style="color: #6c71c4;">args</span>, <span style="color: #268bd2;">PyObject</span>* <span style="color: #6c71c4;">watcher</span>, <span style="color: #268bd2;">void</span> *<span style="color: #6c71c4;">c_watcher</span>,
+                            <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">revents</span>) {
+    ......
+    result = PyObject_Call(callback, args, <span style="color: #268bd2;">NULL</span>);
+    ......
+}
+</pre>
+</div>
+<p>
+所以该函数就调用了上层传入的callback.
+</p>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-2-2-2-2" class="outline-5">
+<h5 id="sec-2-2-2-2">core的api总结</h5>
+<div class="outline-text-5" id="text-2-2-2-2">
+<p>
+假设Loop代表类, loop代表实例
+</p>
+<ol class="org-ol">
+<li>loop.run: 启动事件循环
+</li>
+<li>loop.run_callback(fun, *args): 将fun注册给loop的_prepare watcher,这样
+fun就会在事件循环要阻塞是运行, spawn以及rawlink都会使用该方法.
+</li>
+<li>loop.io: 创建一个IO watcher实例, 调用该实例的start方法来注册回调函数,同
+时将该watcher放入事件循环.
+</li>
+<li>loop.timer: 创建Timer Watcher对象
+</li>
+<li>loop.signal:
+</li>
+<li>loop.idle:
+</li>
+<li>loop.prepare:
+</li>
+<li>loop.fork
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-2-3" class="outline-4">
+<h4 id="sec-2-2-3">Greenlet</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+这也是一个greenlet的子类,它也是用来产生协程的, 我们先来看看我们创建协程时常
+用的spawn函数的源码:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Greenlet</span>(greenlet):
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">__init__</span>(<span style="color: #859900;">self</span>, run=<span style="color: #268bd2;">None</span>, *args, **kwargs):
+        <span style="color: #6c71c4;">hub</span> = get_hub()
+        greenlet.__init__(<span style="color: #859900;">self</span>, parent=hub)
+
+    <span style="color: #268bd2;">@classmethod</span>
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">spawn</span>(cls, *args, **kwargs):
+        <span style="color: #2aa198;">"""Return a new :class:`Greenlet` object, scheduled to start.</span>
+<span style="color: #2aa198;">        The arguments are passed to :meth:`Greenlet.__init__`.</span>
+<span style="color: #2aa198;">        """</span>
+        <span style="color: #6c71c4;">g</span> = cls(*args, **kwargs)
+        g.start()
+        <span style="color: #859900;">return</span> g
+</pre>
+</div>
+<p>
+gevent.spawn实际就是Greenlet类的spawn方法,该方法直接创建一个Greenlet实例,注
+意该实例的parent是hub,而不是默认的主协程, 这样的用处是当协程完成退出时,程序
+会继续执行hub的事件循环.然后调用实例的start方法, 下面看看start方法的代码
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">start</span>(<span style="color: #859900;">self</span>):
+    <span style="color: #2aa198;">"""Schedule the greenlet to run in this loop iteration"""</span>
+    <span style="color: #859900;">if</span> <span style="color: #859900;">self</span>._start_event <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>:
+        <span style="color: #859900;">self</span>._start_event = <span style="color: #859900;">self</span>.parent.loop.run_callback(<span style="color: #859900;">self</span>.switch)
+</pre>
+</div>
+<p>
+start方法实际上就是把该实例丢到hub协程的循环当中,也就是说这个新建的协程就可
+以被hub调度了.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">run_callback</span>(<span style="color: #859900;">self</span>, func, *args):
+    CHECK_LOOP2(<span style="color: #859900;">self</span>)
+    cdef callback <span style="color: #6c71c4;">cb</span> = callback(func, args)
+    <span style="color: #859900;">self</span>._callbacks.append(cb)
+    libev.ev_ref(<span style="color: #859900;">self</span>._ptr)
+    <span style="color: #859900;">return</span> cb
+</pre>
+</div>
+<p>
+上面的代码先创建一个callback实例cb,接着将这个实例放进_callbacks列表中, 在core
+部分我们分析了_callbacks列表的所有callback实例都会被_prepare watcher的回调
+函数 <code>gevent_run_callbacks</code> 运行, 这样实际就是启动了协程.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-2-4" class="outline-4">
+<h4 id="sec-2-2-4">socket模块</h4>
+<div class="outline-text-4" id="text-2-2-4">
+<p>
+我们知道为了发挥协程的威力, 我们不能使用标准socket库,必须使用gevent实现的
+socket库, 现在我们来分析一下gevent的socket模块,看看该模块是如何使用协程的,
+我这里以socket的recv方法为例. 假设调用recv方法的协程为gr.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">socket</span>(<span style="color: #6c71c4;">object</span>):
+
+    <span style="color: #859900;">def</span> <span style="color: #b58900;">__init__</span>(<span style="color: #859900;">self</span>, family=AF_INET, <span style="color: #6c71c4;">type</span>=SOCK_STREAM, proto=0, _sock=<span style="color: #268bd2;">None</span>):
+        <span style="color: #859900;">if</span> _sock <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>:
+            <span style="color: #859900;">self</span>._sock = _realsocket(family, <span style="color: #6c71c4;">type</span>, proto)
+            <span style="color: #859900;">self</span>.timeout = _socket.getdefaulttimeout()
+        <span style="color: #859900;">else</span>:
+            <span style="color: #859900;">if</span> <span style="color: #6c71c4;">hasattr</span>(_sock, <span style="color: #2aa198;">'_sock'</span>):
+                <span style="color: #859900;">self</span>._sock = _sock._sock
+                <span style="color: #859900;">self</span>.timeout = <span style="color: #6c71c4;">getattr</span>(_sock, <span style="color: #2aa198;">'timeout'</span>, <span style="color: #268bd2;">False</span>)
+                <span style="color: #859900;">if</span> <span style="color: #859900;">self</span>.timeout <span style="color: #859900;">is</span> <span style="color: #268bd2;">False</span>:
+                    <span style="color: #859900;">self</span>.timeout = _socket.getdefaulttimeout()
+            <span style="color: #859900;">else</span>:
+                <span style="color: #859900;">self</span>._sock = _sock
+                <span style="color: #859900;">self</span>.timeout = _socket.getdefaulttimeout()
+        <span style="color: #859900;">self</span>._sock.setblocking(0)
+        <span style="color: #6c71c4;">fileno</span> = <span style="color: #859900;">self</span>._sock.fileno()
+        <span style="color: #859900;">self</span>.hub = get_hub()
+        <span style="color: #6c71c4;">io</span> = <span style="color: #859900;">self</span>.hub.loop.io
+        <span style="color: #859900;">self</span>._read_event = io(fileno, 1)
+        <span style="color: #859900;">self</span>._write_event = io(fileno, 2)
+</pre>
+</div>
+<p>
+__init__很简单,创建一个socket(self._sock),将该描述符设置为非阻塞,同时创建两个
+watcher,分别监听读事件(self._read_event)以及写事件(self._write_event),下面
+看看recv的代码:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">recv</span>(<span style="color: #859900;">self</span>, *args):
+    <span style="color: #6c71c4;">sock</span> = <span style="color: #859900;">self</span>._sock  <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">keeping the reference so that fd is not closed during w</span><span style="color: #ee82ee; background-color: #333333; font-style: italic;">aiting</span>
+    <span style="color: #859900;">while</span> <span style="color: #268bd2;">True</span>:
+        <span style="color: #859900;">try</span>:
+            <span style="color: #859900;">return</span> sock.recv(*args)
+        <span style="color: #859900;">except</span> error:
+            <span style="color: #6c71c4;">ex</span> = sys.exc_info()[1]
+            <span style="color: #859900;">if</span> ex.args[0] != EWOULDBLOCK <span style="color: #859900;">or</span> <span style="color: #859900;">self</span>.timeout == 0.0:
+                <span style="color: #859900;">raise</span>
+            <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">QQQ without clearing exc_info test__refcount.test_clean_exit fails</span>
+            sys.exc_clear()
+        <span style="color: #859900;">self</span>._wait(<span style="color: #859900;">self</span>._read_event)
+</pre>
+</div>
+<p>
+recv直接调用内置模块的recv方法,如果发现该调用会阻塞,那么就调用_wait方法, 该
+方法也是代码的关键部分.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">_wait</span>(<span style="color: #859900;">self</span>, watcher, timeout_exc=timeout(<span style="color: #2aa198;">'timed out'</span>)):
+    <span style="color: #2aa198;">"""Block the current greenlet until *watcher* has pending events.</span>
+
+<span style="color: #2aa198;">    If *timeout* is non-negative, then *timeout_exc* is raised after *timeout* s</span><span style="color: #ee82ee; background-color: #333333;">econd has passed.</span>
+<span style="color: #2aa198;">    By default *timeout_exc* is ``socket.timeout('timed out')``.</span>
+
+<span style="color: #2aa198;">    If :func:`cancel_wait` is called, raise ``socket.error(EBADF, 'File descript</span><span style="color: #ee82ee; background-color: #333333;">or was closed in another greenlet')``.</span>
+<span style="color: #2aa198;">    """</span>
+    <span style="color: #859900;">assert</span> watcher.callback <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>, <span style="color: #2aa198;">'This socket is already used by another gre</span><span style="color: #ee82ee; background-color: #333333;">enlet: %r'</span><span style="color: #ee82ee; background-color: #333333;"> % (watcher.callback, )</span>
+    <span style="color: #859900;">if</span> <span style="color: #859900;">self</span>.timeout <span style="color: #859900;">is</span> <span style="color: #859900;">not</span> <span style="color: #268bd2;">None</span>:
+        <span style="color: #6c71c4;">timeout</span> = Timeout.start_new(<span style="color: #859900;">self</span>.timeout, timeout_exc, ref=<span style="color: #268bd2;">False</span>)
+    <span style="color: #859900;">else</span>:
+        <span style="color: #6c71c4;">timeout</span> = <span style="color: #268bd2;">None</span>
+    <span style="color: #859900;">try</span>:
+        <span style="color: #859900;">self</span>.hub.wait(watcher)
+    <span style="color: #859900;">finally</span>:
+        <span style="color: #859900;">if</span> timeout <span style="color: #859900;">is</span> <span style="color: #859900;">not</span> <span style="color: #268bd2;">None</span>:
+            timeout.cancel()
+</pre>
+</div>
+<p>
+根据注释我们知道_wait方法会使当前的协程暂停,直到watcher监听的事件就绪. 代码
+的关键部分是 <code>self.hub.wait(watcher)</code>, 这个方法在上面已经分析过,只要明白它
+会阻塞当前的协程切换到hub协程直到watcher监听的事件就绪, 在recv的例子中,一旦
+wacher监听的事件就绪也就意味着socket已经处于读就绪状态,所以也就可以调用内置
+的socket模块的recv方法来获得数据了.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-2-5" class="outline-4">
+<h4 id="sec-2-2-5">其它</h4>
+<div class="outline-text-4" id="text-2-2-5">
 <p>
 在Greenlet类的join函数中有如下代码：
 </p>
@@ -287,6 +900,7 @@ libev来监听socket的.
 <p>
 rawlink的作用是注册一个函数，这个函数会在这个greenlet运行完成后调用
 </p>
+</div>
 </div>
 </div>
 </div>
