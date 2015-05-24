@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>python源代码解析</title>
-<!-- 2015-05-24 Sun 19:04 -->
+<!-- 2015-05-24 Sun 21:29 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -182,6 +182,12 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#sec-2-1">调用者将引用传递给被调用者</a></li>
 <li><a href="#sec-2-2">被调用者返回一个引用给调用者</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">GC</a>
+<ul>
+<li><a href="#sec-3-1">引用计数</a></li>
+<li><a href="#sec-3-2">mark，sweep机制</a></li>
 </ul>
 </li>
 </ul>
@@ -432,6 +438,35 @@ item放进位置1时，实际上item已经失效了。解决上面的bug的方�
 </p>
 </li>
 </ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">GC</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+python的GC有两套垃圾收集机制，引用计数，以及mark，sweep机制，引用计
+数在垃圾收集中扮演主要角色，但是引用计数有一个致命的缺点，那就是它无
+法处理循环引用的问题，而mark，sweep就是用来处理循环引用的垃圾对象,实
+际上在python中mark，sweep机制也只能收集那些循环引用的垃圾对象。
+</p>
+</div>
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">引用计数</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+每一个对象都会有一个 <code>ob_refcnt</code> 域，同时有两个宏 <code>Py_INCREF</code>
+<code>Py_DECREF</code> 用来减少和增加引用计数，其中 <code>Py_DECREF</code> 会检查引用计数
+是否为0，如果为0那么就会回收该对象
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">mark，sweep机制</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+该机制只能用来收集循环引用的垃圾对象，它的基本实现机制是这样的：
+</p>
 </div>
 </div>
 </div>

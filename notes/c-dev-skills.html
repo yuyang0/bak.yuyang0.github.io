@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>C开发技巧</title>
-<!-- 2015-05-24 Sun 19:04 -->
+<!-- 2015-05-24 Sun 21:29 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -188,6 +188,12 @@ for the JavaScript code in this tag.
 <li><a href="#sec-4-2">原子操作</a></li>
 </ul>
 </li>
+<li><a href="#sec-5">Linux相关</a>
+<ul>
+<li><a href="#sec-5-1">EPOLL</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">基本概念</a></li>
 </ul>
 </div>
 </div>
@@ -371,6 +377,36 @@ int, long, long long以及这些类型的无符号版本使用,
 完整的列表在<a href="https://gcc.gnu.org/onlinedocs/gcc-4.1.2/gcc/Atomic-Builtins.html">这里</a>
 </p>
 </div>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">Linux相关</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1">EPOLL</h3>
+<div class="outline-text-3" id="text-5-1">
+<ol class="org-ol">
+<li>边缘触发：只有文件描述符改变时才触发, 也就是说即便文件描述符是就绪的，
+epoll_wait仍然可能阻塞，因为数据可能是上一次读操作没有读完。
+</li>
+<li>水平触发：只要文件描述符目前是就绪的就会触发，*该模式用的多*.
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">基本概念</h2>
+<div class="outline-text-2" id="text-6">
+<ol class="org-ol">
+<li>Reactor： 实际就是事件循环，libev，tornado都是这一类
+</li>
+<li>Actor：万物都是actor，可以理解为一系列的轻量级进程，他们只能通过消息来通信，代表语言是erlang
+</li>
+<li>CSP：一系列轻量级的进程，进程间通过channel来通信，等待channel的消息时，进程会
+挂起，代表语言是go
+</li>
+</ol>
 </div>
 </div>
 </div>
