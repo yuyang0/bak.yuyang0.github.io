@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>PHP笔记</title>
-<!-- 2015-02-06 Fri 16:26 -->
+<!-- 2015-05-24 Sun 19:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -231,21 +231,21 @@ for the JavaScript code in this tag.
 echo 效率高, 但是当使用 if, foreach, for, while 这样的结构时应该用这样的语法:
 <div class="org-src-container">
 
-<pre class="src src-php"><span style="color: #d33682;">&lt;?php</span> <span style="color: #859900;">if</span> (<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">expression</span> == <span style="color: #268bd2;">true</span>): <span style="color: #d33682;">?&gt;</span>
-  This will show <span style="color: #859900;">if</span> the expression is <span style="color: #268bd2;">true</span>.
-<span style="color: #d33682;">&lt;?php</span> <span style="color: #859900;">else</span>: <span style="color: #d33682;">?&gt;</span>
-  Otherwise <span style="color: #859900;">this</span> will show.
-<span style="color: #d33682;">&lt;?php</span> <span style="color: #859900;">endif</span>; <span style="color: #d33682;">?&gt;</span>
+<pre class="src src-php">&lt;?php if ($expression == true): ?&gt;
+  This will show if the expression is true.
+&lt;?php else: ?&gt;
+  Otherwise this will show.
+&lt;?php endif; ?&gt;
 
-<span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">foreach */</span>
-<span style="color: #d33682;">&lt;?php</span> <span style="color: #859900;">foreach</span> (<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">news</span> <span style="color: #859900;">as</span> <span style="color: #268bd2;">$news_item</span>): <span style="color: #d33682;">?&gt;</span>
-    &lt;h2&gt;<span style="color: #d33682;">&lt;?</span>php <span style="color: #859900;">echo</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">news_item</span>[<span style="color: #2aa198;">'title'</span>] <span style="color: #d33682;">?&gt;</span>&lt;/h2&gt;
-    &lt;div id=<span style="color: #2aa198;">"main"</span>&gt;
-<span style="color: #d33682;">        &lt;?php</span> <span style="color: #859900;">echo</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">news_item</span>[<span style="color: #2aa198;">'text'</span>] <span style="color: #d33682;">?&gt;</span>
+/* foreach */
+&lt;?php foreach ($news as $news_item): ?&gt;
+    &lt;h2&gt;&lt;?php echo $news_item['title'] ?&gt;&lt;/h2&gt;
+    &lt;div id="main"&gt;
+        &lt;?php echo $news_item['text'] ?&gt;
     &lt;/div&gt;
-    &lt;p&gt;&lt;a href=<span style="color: #2aa198;">"news/&lt;?php echo </span><span style="color: #6c71c4;">$news_item</span><span style="color: #2aa198;">['slug'] ?&gt;"</span>&gt;View article&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;a href="news/&lt;?php echo $news_item['slug'] ?&gt;"&gt;View article&lt;/a&gt;&lt;/p&gt;
 
-<span style="color: #d33682;">&lt;?php</span> <span style="color: #859900;">endforeach</span> <span style="color: #d33682;">?&gt;</span>
+&lt;?php endforeach ?&gt;
 </pre>
 </div>
 </li>
@@ -300,10 +300,10 @@ echo 效率高, 但是当使用 if, foreach, for, while 这样的结构时应该
 码:
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> <span style="color: #b58900;">test</span>
-  (<span style="color: #859900;">let</span> ([i 0])
-    (<span style="color: #859900;">lambda</span> (x)
-      ...)))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">test</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">[</span>i <span style="color: #BFEBBF;">0</span><span style="color: #93E0E3;">]</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #93E0E3;">(</span>x<span style="color: #93E0E3;">)</span>
+      ...<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -411,14 +411,14 @@ while(list($key, $value) = each($arr))
 是一个数组
 <div class="org-src-container">
 
-<pre class="src src-php"><span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">arr</span> = <span style="color: #859900;">array</span>(
-    <span style="color: #2aa198;">"aa"</span> =&gt; <span style="color: #2aa198;">"one"</span>,
-    <span style="color: #2aa198;">"bb"</span> =&gt; <span style="color: #2aa198;">"two"</span>,
-    <span style="color: #2aa198;">"cc"</span> =&gt; <span style="color: #2aa198;">"three"</span>);
-<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">first_item</span> = each(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">arr</span>);
-<span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">$first_item = array(0 =&gt; "aa", 1 =&gt; "one", "key" =&gt; "aa", "value" =&gt; "one") *</span><span style="color: #ee82ee; background-color: #333333; font-style: italic;">/</span>
-<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">second_item</span> = each(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">arr</span>);
-<span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">$second_item = array(0 =&gt; "bb", 1 =&gt; "two", "key" =&gt; "bb", "value" =&gt; "two") </span><span style="color: #ee82ee; background-color: #333333; font-style: italic;">*/</span>
+<pre class="src src-php">$arr = array(
+    "aa" =&gt; "one",
+    "bb" =&gt; "two",
+    "cc" =&gt; "three");
+$first_item = each($arr);
+/* $first_item = array(0 =&gt; "aa", 1 =&gt; "one", "key" =&gt; "aa", "value" =&gt; "one") */
+$second_item = each($arr);
+/* $second_item = array(0 =&gt; "bb", 1 =&gt; "two", "key" =&gt; "bb", "value" =&gt; "two") */
 </pre>
 </div>
 </li>
@@ -429,9 +429,9 @@ while(list($key, $value) = each($arr))
 环中有用,当函数使用数组返回多个值时也很有用.
 <div class="org-src-container">
 
-<pre class="src src-php"><span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">arr</span> = <span style="color: #859900;">array</span>(<span style="color: #2aa198;">"aa"</span>, <span style="color: #2aa198;">"bb"</span>, <span style="color: #2aa198;">"cc"</span>, <span style="color: #2aa198;">"hello"</span> =&gt; <span style="color: #2aa198;">"dd"</span>);
-<span style="color: #859900;">list</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">a</span>, <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">b</span>, <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">c</span>) = <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">arr</span>; <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">$a="aa", $b="bb", $c="cc"*/</span>
-<span style="color: #859900;">list</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">a</span>, , <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">c</span>) = <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">arr</span>;   <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">$a="aa", $c="cc" */</span>
+<pre class="src src-php">$arr = array("aa", "bb", "cc", "hello" =&gt; "dd");
+list($a, $b, $c) = $arr; /* $a="aa", $b="bb", $c="cc"*/
+list($a, , $c) = $arr;   /* $a="aa", $c="cc" */
 </pre>
 </div>
 </li>
@@ -621,13 +621,13 @@ function  func_name($a, $b….)
 </p>
 <div class="org-src-container">
 
-<pre class="src src-php"><span style="color: #d33682;">&lt;?php</span>
-<span style="color: #859900;">function</span> <span style="color: #b58900;">foo</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">arg_1</span>, <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">arg_2</span>, <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">..., */</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">arg_n</span>)
+<pre class="src src-php">&lt;?php
+function foo($arg_1, $arg_2, /* ..., */ $arg_n)
 {
-    <span style="color: #859900;">echo</span> <span style="color: #2aa198;">"Example function.\n"</span>;
-    <span style="color: #859900;">return</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">retval</span>;
+    echo "Example function.\n";
+    return $retval;
 }
-<span style="color: #d33682;">?&gt;</span>
+?&gt;
 </pre>
 </div>
 </div>
@@ -642,19 +642,19 @@ function  func_name($a, $b….)
 调用地第一个参数.
 <div class="org-src-container">
 
-<pre class="src src-php"><span style="color: #d33682;">&lt;?php</span>
-<span style="color: #859900;">function</span> <span style="color: #b58900;">foo</span>()
+<pre class="src src-php">&lt;?php
+function foo()
 {
-    <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">numargs</span> = func_num_args();
-    <span style="color: #859900;">if</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">numargs</span> &gt;= 2){
-        <span style="color: #859900;">echo</span> <span style="color: #2aa198;">"the second argument is: "</span> . func_get_arg(1);
-        <span style="color: #859900;">echo</span> <span style="color: #2aa198;">'&lt;br /&gt;'</span>;
+    $numargs = func_num_args();
+    if($numargs &gt;= 2){
+        echo "the second argument is: " . func_get_arg(1);
+        echo '&lt;br /&gt;';
     }
-    <span style="color: #859900;">echo</span> <span style="color: #2aa198;">"the argument list is: "</span>;
+    echo "the argument list is: ";
     var_dump(func_get_args ());
 }
-foo(<span style="color: #2aa198;">'first arg'</span>, <span style="color: #2aa198;">'second arg'</span>);
-<span style="color: #d33682;">?&gt;</span>
+foo('first arg', 'second arg');
+?&gt;
 </pre>
 </div>
 </li>
@@ -672,24 +672,24 @@ foo(<span style="color: #2aa198;">'first arg'</span>, <span style="color: #2aa19
 </p>
 <div class="org-src-container">
 
-<pre class="src src-php"><span style="color: #d33682;">&lt;?php</span>
-<span style="color: #859900;">function</span> <span style="color: #b58900;">add_some_extra</span>(&amp;<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">string</span>)
+<pre class="src src-php">&lt;?php
+function add_some_extra(&amp;$string)
 {
-    <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">string</span> .= <span style="color: #2aa198;">'and something extra.'</span>;
+    $string .= 'and something extra.';
 }
-<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">str</span> = <span style="color: #2aa198;">'This is a string,'</span>;
-add_some_extra(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">str</span>);        <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">don't use add_some_extra(&amp;$str) */</span>
-<span style="color: #859900;">echo</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">str</span>;    <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">outputs 'This is a string, and something extra.'</span>
-<span style="color: #d33682;">?&gt;</span>
+$str = 'This is a string,';
+add_some_extra($str);        /* don't use add_some_extra(&amp;$str) */
+echo $str;    //outputs 'This is a string, and something extra.'
+?&gt;
 
-<span style="color: #d33682;">&lt;?php</span>
-<span style="color: #859900;">function</span> &amp;<span style="color: #b58900;">returns_reference</span>()
+&lt;?php
+function &amp;returns_reference()
 {
-    <span style="color: #859900;">return</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">someref</span>;
+    return $someref;
 }
 
-<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">newref</span> =&amp; returns_reference();
-<span style="color: #d33682;">?&gt;</span>
+$newref =&amp; returns_reference();
+?&gt;
 </pre>
 </div>
 </div>
@@ -722,91 +722,91 @@ design</b>
 </p>
 <div class="org-src-container">
 
-<pre class="src src-php"><span style="color: #d33682;">&lt;?php</span>
+<pre class="src src-php">&lt;?php
 
-<span style="color: #859900;">class</span> <span style="color: #268bd2;">A</span>
+class A
 {
-   <span style="color: #859900;">var</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">attribute1</span>; <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#36825;&#20010;&#31867;&#23454;&#20363;&#30340;&#23646;&#24615;&#65292;&#19981;&#26159;&#31867;&#26412;&#36523;&#30340;&#23646;&#24615;&#65292;&#19981;&#35201;&#21644;python&#24324;&#28151;&#20102;&#12290;&#40664;&#35748;&#20844;&#26377;</span>
-   <span style="color: #859900;">public</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">attribute2</span>;<span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#25351;&#23450;public&#65292;private&#21518;&#26368;&#22909;&#30465;&#25481;var</span>
-   <span style="color: #859900;">private</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">attribute3</span> = 2;<span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#21487;&#20197;&#30452;&#25509;&#36171;&#20540;&#65292;&#19981;&#19968;&#23450;&#35201;&#22312;&#26500;&#36896;&#20989;&#25968;&#20013;</span>
-   <span style="color: #859900;">protected</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">attribute4</span>;
+   var $attribute1; //这个类实例的属性，不是类本身的属性，不要和python弄混了。默认公有
+   public $attribute2;//指定public，private后最好省掉var
+   private $attribute3 = 2;//可以直接赋值，不一定要在构造函数中
+   protected $attribute4;
 
-   <span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">my_static</span> = 5; <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#38745;&#24577;&#21464;&#37327;&#20063;&#26159;&#31867;&#21464;&#37327;&#65292;&#31867;&#22806;&#37096;&#35775;&#38382;</span>
-   <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">A::my_static; &#31867;&#20869;&#37096;&#35775;&#38382;&#65306;parent::my_static,self::my_static</span>
+   public static $my_static = 5; //静态变量也是类变量，类外部访问
+   //A::my_static; 类内部访问：parent::my_static,self::my_static
 
-   <span style="color: #859900;">function</span> <span style="color: #b58900;">__construct</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">param</span>)  <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#26500;&#36896;&#20989;&#25968;</span>
+   function __construct($param)  //构造函数
    {
-       <span style="color: #586e75; font-style: italic;">/*</span>
-<span style="color: #586e75; font-style: italic;">        * &#19981;&#26159; $this-&gt;$attribute1, &#22240;&#20026; $this-&gt;$attribute1 &#20250;&#20808;&#23558;</span>
-<span style="color: #586e75; font-style: italic;">        * $attribute1 &#27714;&#20540;, &#24471;&#21040;&#30340;&#20540;&#20877;&#20316;&#20026;&#23646;&#24615;&#21517;&#21435;&#26597;&#25214;, &#25152;&#20197;&#22914;&#26524;</span>
-<span style="color: #586e75; font-style: italic;">        * $attribute1 &#30340;&#27714;&#20540;&#32467;&#26524;&#20026; 'aa', &#37027;&#20040; $this-&gt;$attribute1 &#23601;&#31561;&#20215;&#20110;</span>
-<span style="color: #586e75; font-style: italic;">        * $this-&gt;aa .</span>
-<span style="color: #586e75; font-style: italic;">        */</span>
-       <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">this</span>-&gt;<span style="color: #6c71c4;">attribute1</span> = <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">param</span>;
+       /*
+        * 不是 $this-&gt;$attribute1, 因为 $this-&gt;$attribute1 会先将
+        * $attribute1 求值, 得到的值再作为属性名去查找, 所以如果
+        * $attribute1 的求值结果为 'aa', 那么 $this-&gt;$attribute1 就等价于
+        * $this-&gt;aa .
+        */
+       $this-&gt;attribute1 = $param;
    }
-   <span style="color: #859900;">function</span> <span style="color: #b58900;">__destruct</span>()  <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#26512;&#26500;&#20989;&#25968;</span>
+   function __destruct()  //析构函数
    {
    }
-   <span style="color: #859900;">function</span> <span style="color: #b58900;">__get</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">name</span>)
+   function __get($name)
    {
-       <span style="color: #586e75; font-style: italic;">/*</span>
-<span style="color: #586e75; font-style: italic;">        *&#21487;&#20197;&#25318;&#25130;$obj-&gt;$name&#36825;&#31181;&#23545;&#31867;&#23454;&#20363;&#30340;&#23646;&#24615;&#30452;&#25509;&#35775;&#38382;&#30340;&#35821;&#21477;&#12290;</span>
-<span style="color: #586e75; font-style: italic;">        *&#21482;&#26377;&#22312;$name&#23646;&#24615;&#27809;&#26377;&#23450;&#20041;&#26102;&#25165;&#20250;&#35302;&#21457;,&#36825;&#24847;&#21619;&#30528;&#24403;&#23646;&#24615;&#26159;&#31169;&#26377;&#25110;&#32773;&#20445;&#25252;&#26102;&#20063;&#20250;&#35302;&#21457;</span>
-<span style="color: #586e75; font-style: italic;">        */</span>
-       <span style="color: #859900;">return</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">this</span>-&gt;<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">name</span>;
+       /*
+        *可以拦截$obj-&gt;$name这种对类实例的属性直接访问的语句。
+        *只有在$name属性没有定义时才会触发,这意味着当属性是私有或者保护时也会触发
+        */
+       return $this-&gt;$name;
    }
-   <span style="color: #859900;">function</span> <span style="color: #b58900;">__set</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">name</span>, <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">value</span>)
+   function __set($name, $value)
    {
-       <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">&#21487;&#20197;&#25318;&#25130;$obj-&gt;$name=$value&#36825;&#31181;&#23545;&#31867;&#23454;&#20363;&#30340;&#23646;&#24615;&#30340;&#20540;&#30452;&#25509;&#36171;&#20540;&#30340;&#35821;&#21477;&#12290;</span>
-<span style="color: #586e75; font-style: italic;">        * &#21482;&#26377;&#22312;$name&#23646;&#24615;&#27809;&#26377;&#23450;&#20041;&#26102;&#25165;&#20250;&#35302;&#21457;,&#36825;&#24847;&#21619;&#30528;&#24403;&#23646;&#24615;&#26159;&#31169;&#26377;&#25110;&#32773;&#20445;&#25252;&#26102;&#20063;&#20250;&#35302;&#21457;</span>
-<span style="color: #586e75; font-style: italic;">        * Example:</span>
-<span style="color: #586e75; font-style: italic;">        *         $obj-&gt;aa = 2</span>
-<span style="color: #586e75; font-style: italic;">        * &#31561;&#20215;&#20110;:</span>
-<span style="color: #586e75; font-style: italic;">        *         __set('aa', 2)</span>
-<span style="color: #586e75; font-style: italic;">        */</span>
-       <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">this</span>-&gt;<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">name</span> = <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">value</span>;
+       /* 可以拦截$obj-&gt;$name=$value这种对类实例的属性的值直接赋值的语句。
+        * 只有在$name属性没有定义时才会触发,这意味着当属性是私有或者保护时也会触发
+        * Example:
+        *         $obj-&gt;aa = 2
+        * 等价于:
+        *         __set('aa', 2)
+        */
+       $this-&gt;$name = $value;
    }
-   <span style="color: #859900;">function</span> <span style="color: #b58900;">operation1</span>() <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#40664;&#35748;&#20844;&#26377;</span>
+   function operation1() //默认公有
    {
    }
 }
-<span style="color: #859900;">class</span> <span style="color: #268bd2;">B</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">A</span>
-{<span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#32487;&#25215;&#37117;&#26159;&#31867;&#20284;&#20110;C++&#30340;&#20844;&#26377;&#32487;&#25215;</span>
- <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#21487;&#20197;&#37325;&#36733;&#23376;&#31867;&#30340;&#23646;&#24615;&#19982;&#25104;&#21592;&#26041;&#27861;</span>
-   <span style="color: #859900;">function</span> <span style="color: #b58900;">__construct</span>()
+class B extends A
+{//继承都是类似于C++的公有继承
+ //可以重载子类的属性与成员方法
+   function __construct()
    {
-       <span style="color: #268bd2;">parent</span>::__construct();<span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#25191;&#34892;&#29238;&#31867;&#30340;&#26500;&#36896;&#20989;&#25968;</span>
+       parent::__construct();//执行父类的构造函数
    }
 }
 
-<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">interface (&#25509;&#21475;)</span>
-<span style="color: #859900;">interface</span> <span style="color: #268bd2;">iTemplate</span>
+// interface (接口)
+interface iTemplate
 {
-   <span style="color: #859900;">public</span> <span style="color: #859900;">function</span> <span style="color: #b58900;">setVariable</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">name</span>, <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">var</span>);
-   <span style="color: #859900;">public</span> <span style="color: #859900;">function</span> <span style="color: #b58900;">getHtml</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">template</span>);
+   public function setVariable($name, $var);
+   public function getHtml($template);
 }
 
-<span style="color: #859900;">class</span> <span style="color: #268bd2;">Template</span> <span style="color: #859900;">implements</span> <span style="color: #268bd2;">iTemplate</span>
+class Template implements iTemplate
 {
-   <span style="color: #859900;">private</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">vars</span> = <span style="color: #859900;">array</span>();
+   private $vars = array();
 
-   <span style="color: #859900;">public</span> <span style="color: #859900;">function</span> <span style="color: #b58900;">setVariable</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">name</span>, <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">var</span>)
+   public function setVariable($name, $var)
    {
-       <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">this</span>-&gt;<span style="color: #6c71c4;">vars</span>[<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">name</span>] = <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">var</span>;
+       $this-&gt;vars[$name] = $var;
    }
 
-   <span style="color: #859900;">public</span> <span style="color: #859900;">function</span> <span style="color: #b58900;">getHtml</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">template</span>)
+   public function getHtml($template)
    {
-       <span style="color: #859900;">foreach</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">this</span>-&gt;<span style="color: #6c71c4;">vars</span> <span style="color: #859900;">as</span> <span style="color: #268bd2;">$name</span> =&gt; <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">value</span>) {
-           <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">template</span> = str_replace(<span style="color: #2aa198;">'{'</span> . <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">name</span> . <span style="color: #2aa198;">'}'</span>, <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">value</span>, <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">template</span>);
+       foreach($this-&gt;vars as $name =&gt; $value) {
+           $template = str_replace('{' . $name . '}', $value, $template);
        }
 
-       <span style="color: #859900;">return</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">template</span>;
+       return $template;
    }
 }
 
-<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">object</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">A</span>() <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#23454;&#20363;&#21270;&#31867;</span>
-<span style="color: #d33682;">?&gt;</span>
+$object = new A() //实例化类
+?&gt;
 </pre>
 </div>
 </div>
@@ -819,36 +819,36 @@ design</b>
 <div class="outline-text-3" id="text-9-1">
 <div class="org-src-container">
 
-<pre class="src src-php"><span style="color: #d33682;">&lt;?php</span>
+<pre class="src src-php">&lt;?php
 
-<span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#38754;&#21521;&#36807;&#31243;&#30340;&#20195;&#30721;</span>
-<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">db</span> = mysqli_connect(<span style="color: #2aa198;">"example.com"</span>, <span style="color: #2aa198;">"user"</span>, <span style="color: #2aa198;">"password"</span>, <span style="color: #2aa198;">"database"</span>);
-<span style="color: #859900;">if</span> (mysqli_connect_errno(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">db</span>)) {
-    <span style="color: #859900;">echo</span> <span style="color: #2aa198;">"Failed to connect to MySQL: "</span> . mysqli_connect_error();
+//面向过程的代码
+$db = mysqli_connect("example.com", "user", "password", "database");
+if (mysqli_connect_errno($db)) {
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
-<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">res</span> = mysqli_query(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">db</span>, <span style="color: #2aa198;">"SELECT 'A world full of ' AS _msg FROM DUAL"</span>);
-<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">row</span> = mysqli_fetch_assoc(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">res</span>);
-<span style="color: #859900;">echo</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">row</span>[<span style="color: #2aa198;">'_msg'</span>];
+$res = mysqli_query($db, "SELECT 'A world full of ' AS _msg FROM DUAL");
+$row = mysqli_fetch_assoc($res);
+echo $row['_msg'];
 
 
-<span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#38754;&#21521;&#23545;&#35937;&#30340;&#20195;&#30721;</span>
-<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">db</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">mysqli</span>(<span style="color: #2aa198;">"example.com"</span>, <span style="color: #2aa198;">"user"</span>, <span style="color: #2aa198;">"password"</span>, <span style="color: #2aa198;">"database"</span>);
-<span style="color: #859900;">if</span> (<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">db</span>-&gt;<span style="color: #6c71c4;">connect_errno</span>) {
-    <span style="color: #859900;">echo</span> <span style="color: #2aa198;">"Failed to connect to MySQL: "</span> . <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">db</span>-&gt;<span style="color: #6c71c4;">connect_error</span>;
+//面向对象的代码
+$db = new mysqli("example.com", "user", "password", "database");
+if ($db-&gt;connect_errno) {
+    echo "Failed to connect to MySQL: " . $db-&gt;connect_error;
 }
 
-<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">res</span> = <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">db</span>-&gt;<span style="color: #839496; background-color: #002b36;">query</span>(<span style="color: #2aa198;">"SELECT 'choices to please everybody,' AS _msg FROM DUAL"</span>);
-<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">num_results</span> = <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">res</span>-&gt;<span style="color: #6c71c4;">num_rows</span>;
-<span style="color: #859900;">for</span>(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">i</span> = 0;<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">i</span> &lt; <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">num_result</span>; <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">i</span>++)
+$res = $db-&gt;query("SELECT 'choices to please everybody,' AS _msg FROM DUAL");
+$num_results = $res-&gt;num_rows;
+for($i = 0;$i &lt; $num_result; $i++)
 {
-<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">row</span> = <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">res</span>-&gt;<span style="color: #839496; background-color: #002b36;">fetch_assoc</span>();
-<span style="color: #859900;">echo</span> <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">row</span>[<span style="color: #2aa198;">'_msg'</span>];
+$row = $res-&gt;fetch_assoc();
+echo $row['_msg'];
 }
-<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">res</span>-&gt;<span style="color: #839496; background-color: #002b36;">free</span>();
-<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">db</span>-&gt;<span style="color: #839496; background-color: #002b36;">close</span>();
+$res-&gt;free();
+$db-&gt;close();
 
- <span style="color: #d33682;">?&gt;</span>
+ ?&gt;
 </pre>
 </div>
 <p>
@@ -873,8 +873,8 @@ php执行一次query时,如果是select 查询,那么会返回一个mysqli_resul
 field name, 同时将记录指针移到下一条记录.可以用while了来循环读取.
 <div class="org-src-container">
 
-<pre class="src src-php"><span style="color: #859900;">while</span> (<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">row</span> = <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">result</span>-&gt;<span style="color: #839496; background-color: #002b36;">fetch_assoc</span>()) {
-    printf (<span style="color: #2aa198;">"%s (%s)\n"</span>, <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">row</span>[<span style="color: #2aa198;">"Name"</span>], <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">row</span>[<span style="color: #2aa198;">"CountryCode"</span>]);
+<pre class="src src-php">while ($row = $result-&gt;fetch_assoc()) {
+    printf ("%s (%s)\n", $row["Name"], $row["CountryCode"]);
 }
 </pre>
 </div>
@@ -903,12 +903,12 @@ field name, 同时将记录指针移到下一条记录.可以用while了来循�
 <li>密码加密推荐使用crypt函数的blowfish算法，不推荐使用sha1,或者md5.
 <div class="org-src-container">
 
-<pre class="src src-php"><span style="color: #d33682;">&lt;?php</span>
-<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">hash</span> = crypt(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">password</span>);
-<span style="color: #859900;">if</span> (crypt(<span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">user_input</span>, <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">hash</span>) == <span style="color: #839496; background-color: #002b36;">$</span><span style="color: #6c71c4;">hash</span>) { <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">use hash as the salt */</span>
-   <span style="color: #859900;">echo</span> <span style="color: #2aa198;">"Password verified!"</span>;
+<pre class="src src-php">&lt;?php
+$hash = crypt($password);
+if (crypt($user_input, $hash) == $hash) { /* use hash as the salt */
+   echo "Password verified!";
 }
-<span style="color: #d33682;">?&gt;</span>
+?&gt;
 </pre>
 </div>
 </li>

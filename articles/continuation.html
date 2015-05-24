@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Continuation</title>
-<!-- 2015-02-06 Fri 16:26 -->
+<!-- 2015-05-24 Sun 19:05 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -202,9 +202,9 @@ procedure就是 <code>k^</code> , 还有 <code>lambda</code> 是用来构建普�
 部分)下面举个例子:
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> <span style="color: #b58900;">k</span>
-  (<span style="color: #859900;">lambda</span> (x y)
-    (+ x y)))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">k</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>x y<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>+ x y<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -222,9 +222,9 @@ procedure就是 <code>k^</code> , 还有 <code>lambda</code> 是用来构建普�
 <li>scheme的 call/cc
 <div class="org-src-container">
 
-<pre class="src src-scheme">(+ 2 (<span style="color: #859900;">call/cc</span>
-      (<span style="color: #859900;">lambda</span> (k^)
-        (* 5 (k^ 4)))))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>+ <span style="color: #BFEBBF;">2</span> <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">call/cc</span>
+      <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #93E0E3;">(</span>k^<span style="color: #93E0E3;">)</span>
+        <span style="color: #93E0E3;">(</span>* <span style="color: #BFEBBF;">5</span> <span style="color: #9FC59F;">(</span>k^ <span style="color: #BFEBBF;">4</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -234,8 +234,8 @@ procedure就是 <code>k^</code> , 还有 <code>lambda</code> 是用来构建普�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(lambda^ (v)
-         (+ 2 v))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>lambda^ <span style="color: #BFEBBF;">(</span>v<span style="color: #BFEBBF;">)</span>
+         <span style="color: #BFEBBF;">(</span>+ <span style="color: #BFEBBF;">2</span> v<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -243,8 +243,8 @@ procedure就是 <code>k^</code> , 还有 <code>lambda</code> 是用来构建普�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">lambda</span> (v)
-  (+ 2 v))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #BFEBBF;">(</span>v<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>+ <span style="color: #BFEBBF;">2</span> v<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -273,10 +273,10 @@ data context.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">call/cc</span>
-  (<span style="color: #859900;">lambda</span> (k)                           <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">k is the continuation</span>
-    (* 5 (k 4))))
-<span style="color: #586e75; font-style: italic;">;;; </span><span style="color: #586e75; font-style: italic;">the result is 4</span>
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">call/cc</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>k<span style="color: #D0BF8F;">)</span>                           <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">k is the continuation</span>
+    <span style="color: #D0BF8F;">(</span>* <span style="color: #BFEBBF;">5</span> <span style="color: #93E0E3;">(</span>k <span style="color: #BFEBBF;">4</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #5F7F5F;">;;; </span><span style="color: #7F9F7F;">the result is 4</span>
 </pre>
 </div>
 <p>
@@ -284,11 +284,11 @@ data context.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(let/cc k                               <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">k is the continuation</span>
-        body)
-<span style="color: #586e75; font-style: italic;">;;; </span><span style="color: #586e75; font-style: italic;">identical</span>
-(<span style="color: #859900;">call/cc</span> (<span style="color: #859900;">lambda</span> (k)                    <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">k is the continuation</span>
-           body))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>let/cc k                               <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">k is the continuation</span>
+        body<span style="color: #DCDCCC;">)</span>
+<span style="color: #5F7F5F;">;;; </span><span style="color: #7F9F7F;">identical</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">call/cc</span> <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>k<span style="color: #D0BF8F;">)</span>                    <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">k is the continuation</span>
+           body<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -300,21 +300,21 @@ data context.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">call/cc</span>
-  (<span style="color: #859900;">lambda</span> (k)
-    (* 5 4)))                           <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">return 20</span>
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">call/cc</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>k<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>* <span style="color: #BFEBBF;">5</span> <span style="color: #BFEBBF;">4</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>                           <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">return 20</span>
 
-(+ 2
-   (<span style="color: #859900;">call/cc</span>
-    (<span style="color: #859900;">lambda</span> (k)
-      (* 5 (k 4)))))                    <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">return 6</span>
+<span style="color: #DCDCCC;">(</span>+ <span style="color: #BFEBBF;">2</span>
+   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">call/cc</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #93E0E3;">(</span>k<span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span>* <span style="color: #BFEBBF;">5</span> <span style="color: #9FC59F;">(</span>k <span style="color: #BFEBBF;">4</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>                    <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">return 6</span>
 
-(<span style="color: #859900;">define</span> <span style="color: #b58900;">return</span> #f)
-(+ 1 (<span style="color: #859900;">call/cc</span>
-      (<span style="color: #859900;">lambda</span> (cont)
-        (set! return cont)
-        1)))                            <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">return 2</span>
-(return 22)                             <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">return 23</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">return</span> #f<span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">(</span>+ <span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">call/cc</span>
+      <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #93E0E3;">(</span>cont<span style="color: #93E0E3;">)</span>
+        <span style="color: #93E0E3;">(</span>set! return cont<span style="color: #93E0E3;">)</span>
+        <span style="color: #BFEBBF;">1</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>                            <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">return 2</span>
+<span style="color: #DCDCCC;">(</span>return <span style="color: #BFEBBF;">22</span><span style="color: #DCDCCC;">)</span>                             <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">return 23</span>
 </pre>
 </div>
 <p>
@@ -322,8 +322,8 @@ data context.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(((<span style="color: #859900;">call/cc</span> (<span style="color: #859900;">lambda</span> (k) k))
-  (<span style="color: #859900;">lambda</span> (x) x)) <span style="color: #2aa198;">"HEY!"</span>)
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">call/cc</span> <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>k<span style="color: #9FC59F;">)</span> k<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+  <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #93E0E3;">(</span>x<span style="color: #93E0E3;">)</span> x<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span> <span style="color: #CC9393;">"HEY!"</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -333,9 +333,9 @@ data context.
 
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">lambda</span> (val)
-  ((val
-    (<span style="color: #859900;">lambda</span> (x) x)) <span style="color: #2aa198;">"HEY!"</span>))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #BFEBBF;">(</span>val<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">(</span>val
+    <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>x<span style="color: #9FC59F;">)</span> x<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span> <span style="color: #CC9393;">"HEY!"</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -352,11 +352,11 @@ escape procedure,所以上面的表达式又等价于 <code>(cont (lambda(x) x))
 <li>BREAK与RESUME, 通过BREAK来暂停, 通过RESUME来从暂停的位置启动.
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> <span style="color: #b58900;">BREAK</span>
-  (<span style="color: #859900;">lambda</span> (message)
-    (<span style="color: #859900;">call/cc</span> (<span style="color: #859900;">lambda</span> (k^)
-               (set! RESUME K^)
-               ((lambda^ (x) x) message)))))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">BREAK</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>message<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">call/cc</span> <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>k^<span style="color: #9FC59F;">)</span>
+               <span style="color: #9FC59F;">(</span>set! RESUME K^<span style="color: #9FC59F;">)</span>
+               <span style="color: #9FC59F;">(</span><span style="color: #94BFF3;">(</span>lambda^ <span style="color: #E0CF9F;">(</span>x<span style="color: #E0CF9F;">)</span> x<span style="color: #94BFF3;">)</span> message<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </li>
@@ -371,10 +371,10 @@ escape procedure,所以上面的表达式又等价于 <code>(cont (lambda(x) x))
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">always-fail</span> n)
-    (with-handlers ([even? (<span style="color: #859900;">lambda</span> (v) 'even)]
-                    [positive? (<span style="color: #859900;">lambda</span> (v) 'positive)])
-      (raise n)))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #BFEBBF;">(</span><span style="color: #93E0E3;">always-fail</span> n<span style="color: #BFEBBF;">)</span>
+    <span style="color: #BFEBBF;">(</span>with-handlers <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">[</span>even? <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #94BFF3;">(</span>v<span style="color: #94BFF3;">)</span> 'even<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span>
+                    <span style="color: #93E0E3;">[</span>positive? <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #94BFF3;">(</span>v<span style="color: #94BFF3;">)</span> 'positive<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span><span style="color: #D0BF8F;">)</span>
+      <span style="color: #D0BF8F;">(</span>raise n<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -383,26 +383,26 @@ let/cc中, 调用raise实际就是调用continuation
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> <span style="color: #b58900;">convert</span>
-  (<span style="color: #859900;">lambda</span> (exp)
-    (match exp
-           [`(with-handlers ([,preds ,handlers] ...)
-                            ,body ...)
-            `(<span style="color: #859900;">let</span> ([ret (let/cc k^
-                                ,@(<span style="color: #859900;">map</span> convert body))])
-               (<span style="color: #859900;">cond</span>
-                ,@(<span style="color: #859900;">map</span> (<span style="color: #859900;">lambda</span> (p h) `[(,p ret) (,h ret)]) preds handlers)
-                ))]
-           [`(raise ,val) `(k^ ,val)]
-           [`(<span style="color: #859900;">lambda</span> (,uvar ...) ,body ...)
-            `(<span style="color: #859900;">lambda</span> (,@uvar)
-               ,@(<span style="color: #859900;">map</span> convert body))]
-           [`(,f ,v ...)
-            `(,(convert f)
-              ,@(<span style="color: #859900;">map</span> convert v))]
-           [`(<span style="color: #859900;">if</span> ,test ,conseq ,alt)
-            `(<span style="color: #859900;">if</span> ,(convert test) ,(convert conseq) ,(convert alt))]
-           [x x])))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">convert</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>exp<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>match exp
+           <span style="color: #93E0E3;">[</span>`<span style="color: #9FC59F;">(</span>with-handlers <span style="color: #94BFF3;">(</span><span style="color: #E0CF9F;">[</span>,preds ,handlers<span style="color: #E0CF9F;">]</span> ...<span style="color: #94BFF3;">)</span>
+                            ,body ...<span style="color: #9FC59F;">)</span>
+            `<span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #94BFF3;">(</span><span style="color: #E0CF9F;">[</span>ret <span style="color: #8FB28F;">(</span>let/cc k^
+                                ,@<span style="color: #6CA0A3;">(</span><span style="color: #F0DFAF; font-weight: bold;">map</span> convert body<span style="color: #6CA0A3;">)</span><span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">]</span><span style="color: #94BFF3;">)</span>
+               <span style="color: #94BFF3;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span>
+                ,@<span style="color: #E0CF9F;">(</span><span style="color: #F0DFAF; font-weight: bold;">map</span> <span style="color: #8FB28F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #6CA0A3;">(</span>p h<span style="color: #6CA0A3;">)</span> `<span style="color: #6CA0A3;">[</span><span style="color: #DCDCCC;">(</span>,p ret<span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">(</span>,h ret<span style="color: #DCDCCC;">)</span><span style="color: #6CA0A3;">]</span><span style="color: #8FB28F;">)</span> preds handlers<span style="color: #E0CF9F;">)</span>
+                <span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span>
+           <span style="color: #93E0E3;">[</span>`<span style="color: #9FC59F;">(</span>raise ,val<span style="color: #9FC59F;">)</span> `<span style="color: #9FC59F;">(</span>k^ ,val<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span>
+           <span style="color: #93E0E3;">[</span>`<span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #94BFF3;">(</span>,uvar ...<span style="color: #94BFF3;">)</span> ,body ...<span style="color: #9FC59F;">)</span>
+            `<span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #94BFF3;">(</span>,@uvar<span style="color: #94BFF3;">)</span>
+               ,@<span style="color: #94BFF3;">(</span><span style="color: #F0DFAF; font-weight: bold;">map</span> convert body<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span>
+           <span style="color: #93E0E3;">[</span>`<span style="color: #9FC59F;">(</span>,f ,v ...<span style="color: #9FC59F;">)</span>
+            `<span style="color: #9FC59F;">(</span>,<span style="color: #94BFF3;">(</span>convert f<span style="color: #94BFF3;">)</span>
+              ,@<span style="color: #94BFF3;">(</span><span style="color: #F0DFAF; font-weight: bold;">map</span> convert v<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span>
+           <span style="color: #93E0E3;">[</span>`<span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> ,test ,conseq ,alt<span style="color: #9FC59F;">)</span>
+            `<span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> ,<span style="color: #94BFF3;">(</span>convert test<span style="color: #94BFF3;">)</span> ,<span style="color: #94BFF3;">(</span>convert conseq<span style="color: #94BFF3;">)</span> ,<span style="color: #94BFF3;">(</span>convert alt<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span>
+           <span style="color: #93E0E3;">[</span>x x<span style="color: #93E0E3;">]</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -411,16 +411,16 @@ let/cc中, 调用raise实际就是调用continuation
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(convert '(with-handlers ([even? (<span style="color: #859900;">lambda</span> (v) 'even)]
-                          [positive? (<span style="color: #859900;">lambda</span> (v) 'positive)])
-                         1
-                         (raise 11)
-                         2))
-<span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">=&gt;</span>
-<span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">'(let ((ret (let/cc k^ 1 (k^ 11) 2)))</span>
-<span style="color: #586e75; font-style: italic;">;;    </span><span style="color: #586e75; font-style: italic;">(cond</span>
-<span style="color: #586e75; font-style: italic;">;;     </span><span style="color: #586e75; font-style: italic;">((even? ret) ((lambda (v) 'even) ret))</span>
-<span style="color: #586e75; font-style: italic;">;;     </span><span style="color: #586e75; font-style: italic;">((positive? ret) ((lambda (v) 'positive) ret))))</span>
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>convert '<span style="color: #BFEBBF;">(</span>with-handlers <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">[</span>even? <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #94BFF3;">(</span>v<span style="color: #94BFF3;">)</span> 'even<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span>
+                          <span style="color: #93E0E3;">[</span>positive? <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #94BFF3;">(</span>v<span style="color: #94BFF3;">)</span> 'positive<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span><span style="color: #D0BF8F;">)</span>
+                         <span style="color: #BFEBBF;">1</span>
+                         <span style="color: #D0BF8F;">(</span>raise <span style="color: #BFEBBF;">11</span><span style="color: #D0BF8F;">)</span>
+                         <span style="color: #BFEBBF;">2</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">=&gt;</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">'(let ((ret (let/cc k^ 1 (k^ 11) 2)))</span>
+<span style="color: #5F7F5F;">;;    </span><span style="color: #7F9F7F;">(cond</span>
+<span style="color: #5F7F5F;">;;     </span><span style="color: #7F9F7F;">((even? ret) ((lambda (v) 'even) ret))</span>
+<span style="color: #5F7F5F;">;;     </span><span style="color: #7F9F7F;">((positive? ret) ((lambda (v) 'positive) ret))))</span>
 </pre>
 </div>
 <p>
@@ -453,41 +453,41 @@ let/cc中, 调用raise实际就是调用continuation
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define-syntax</span> <span style="color: #6c71c4;">CPS</span>
-  (<span style="color: #859900;">syntax-rules</span> ()
-    [(_ (+ e1 e2))          <span style="color: #586e75; font-style: italic;">; </span><span style="color: #586e75; font-style: italic;">other binary operators(- * / etc) are similar to +</span>
-     (<span style="color: #859900;">lambda</span> (k^)
-       ((CPS e1)
-        (<span style="color: #859900;">lambda</span> (v1)
-          ((CPS e2)
-           (<span style="color: #859900;">lambda</span> (v2)
-             (k^ (+ v1 v2)))))))]
-    [(_ (zero? exp))        <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">other unary operators(number?, string? etc) are sim</span><span style="color: #ee82ee; background-color: #333333; font-style: italic;">ilar to zero?</span>
-     (<span style="color: #859900;">lambda</span> (k^)
-       ((CPS exp)
-        (<span style="color: #859900;">lambda</span> (val)
-          (k^ (zero? val)))))]
-    [(_ (<span style="color: #859900;">if</span> test conseq alt))
-     (<span style="color: #859900;">lambda</span> (k^)
-       ((CPS test)
-        (<span style="color: #859900;">lambda</span> (v)
-          (<span style="color: #859900;">if</span> v
-              ((CPS conseq) k^)
-              ((CPS alt) k^)))))]
-    [(_ (<span style="color: #859900;">lambda</span> (x) body))
-     (<span style="color: #859900;">lambda</span> (k^)
-       (k^ (<span style="color: #859900;">lambda</span> (x)
-             (<span style="color: #859900;">lambda</span> (k)
-               ((CPS body) k)))))]
-    [(_ (app arg))
-     (<span style="color: #859900;">lambda</span> (k^)
-       ((CPS app)
-        (<span style="color: #859900;">lambda</span> (f-val)
-          ((CPS arg)
-           (<span style="color: #859900;">lambda</span> (arg-val)
-             ((f-val arg-val) k^))))))]
-    [(_ v) (<span style="color: #859900;">lambda</span> (k^ ) (k^ v))]          <span style="color: #586e75; font-style: italic;">; </span><span style="color: #586e75; font-style: italic;">basic values(number, string etc) mu</span><span style="color: #ee82ee; background-color: #333333; font-style: italic;">st stay at last</span>
-    ))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-syntax</span> <span style="color: #DFAF8F;">CPS</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">syntax-rules</span> <span style="color: #D0BF8F;">()</span>
+    <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_ <span style="color: #9FC59F;">(</span>+ e1 e2<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>          <span style="color: #5F7F5F;">; </span><span style="color: #7F9F7F;">other binary operators(- * / etc) are similar to +</span>
+     <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>k^<span style="color: #9FC59F;">)</span>
+       <span style="color: #9FC59F;">(</span><span style="color: #94BFF3;">(</span>CPS e1<span style="color: #94BFF3;">)</span>
+        <span style="color: #94BFF3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #E0CF9F;">(</span>v1<span style="color: #E0CF9F;">)</span>
+          <span style="color: #E0CF9F;">(</span><span style="color: #8FB28F;">(</span>CPS e2<span style="color: #8FB28F;">)</span>
+           <span style="color: #8FB28F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #6CA0A3;">(</span>v2<span style="color: #6CA0A3;">)</span>
+             <span style="color: #6CA0A3;">(</span>k^ <span style="color: #DCDCCC;">(</span>+ v1 v2<span style="color: #DCDCCC;">)</span><span style="color: #6CA0A3;">)</span><span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span>
+    <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_ <span style="color: #9FC59F;">(</span>zero? exp<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>        <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">other unary operators(number?, string? etc) are similar to zero?</span>
+     <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>k^<span style="color: #9FC59F;">)</span>
+       <span style="color: #9FC59F;">(</span><span style="color: #94BFF3;">(</span>CPS exp<span style="color: #94BFF3;">)</span>
+        <span style="color: #94BFF3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #E0CF9F;">(</span>val<span style="color: #E0CF9F;">)</span>
+          <span style="color: #E0CF9F;">(</span>k^ <span style="color: #8FB28F;">(</span>zero? val<span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span>
+    <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_ <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> test conseq alt<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+     <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>k^<span style="color: #9FC59F;">)</span>
+       <span style="color: #9FC59F;">(</span><span style="color: #94BFF3;">(</span>CPS test<span style="color: #94BFF3;">)</span>
+        <span style="color: #94BFF3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #E0CF9F;">(</span>v<span style="color: #E0CF9F;">)</span>
+          <span style="color: #E0CF9F;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> v
+              <span style="color: #8FB28F;">(</span><span style="color: #6CA0A3;">(</span>CPS conseq<span style="color: #6CA0A3;">)</span> k^<span style="color: #8FB28F;">)</span>
+              <span style="color: #8FB28F;">(</span><span style="color: #6CA0A3;">(</span>CPS alt<span style="color: #6CA0A3;">)</span> k^<span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span>
+    <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_ <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #94BFF3;">(</span>x<span style="color: #94BFF3;">)</span> body<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+     <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>k^<span style="color: #9FC59F;">)</span>
+       <span style="color: #9FC59F;">(</span>k^ <span style="color: #94BFF3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #E0CF9F;">(</span>x<span style="color: #E0CF9F;">)</span>
+             <span style="color: #E0CF9F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #8FB28F;">(</span>k<span style="color: #8FB28F;">)</span>
+               <span style="color: #8FB28F;">(</span><span style="color: #6CA0A3;">(</span>CPS body<span style="color: #6CA0A3;">)</span> k<span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span>
+    <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_ <span style="color: #9FC59F;">(</span>app arg<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+     <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>k^<span style="color: #9FC59F;">)</span>
+       <span style="color: #9FC59F;">(</span><span style="color: #94BFF3;">(</span>CPS app<span style="color: #94BFF3;">)</span>
+        <span style="color: #94BFF3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #E0CF9F;">(</span>f-val<span style="color: #E0CF9F;">)</span>
+          <span style="color: #E0CF9F;">(</span><span style="color: #8FB28F;">(</span>CPS arg<span style="color: #8FB28F;">)</span>
+           <span style="color: #8FB28F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #6CA0A3;">(</span>arg-val<span style="color: #6CA0A3;">)</span>
+             <span style="color: #6CA0A3;">(</span><span style="color: #DCDCCC;">(</span>f-val arg-val<span style="color: #DCDCCC;">)</span> k^<span style="color: #6CA0A3;">)</span><span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span>
+    <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_ v<span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>k^ <span style="color: #9FC59F;">)</span> <span style="color: #9FC59F;">(</span>k^ v<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span>          <span style="color: #5F7F5F;">; </span><span style="color: #7F9F7F;">basic values(number, string etc) must stay at last</span>
+    <span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -503,8 +503,8 @@ continuation
 转换:
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">lambda</span> (k^)
-  (k^ (<span style="color: #859900;">lambda</span> (x) x)))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #BFEBBF;">(</span>k^<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>k^ <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #93E0E3;">(</span>x<span style="color: #93E0E3;">)</span> x<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -513,14 +513,14 @@ continuation
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">lambda</span> (k^)
-  (k^ (<span style="color: #859900;">lambda</span> (x dyn-k)
-        ((<span style="color: #859900;">lambda</span> (k) (k x))
-         dyn-k))))
-<span style="color: #586e75; font-style: italic;">;;; </span><span style="color: #586e75; font-style: italic;">a simple veraion</span>
-(<span style="color: #859900;">lambda</span> (k^)
-  (k^ (<span style="color: #859900;">lambda</span> (x dyn-k)
-        (dyn-k x))))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #BFEBBF;">(</span>k^<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>k^ <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #93E0E3;">(</span>x dyn-k<span style="color: #93E0E3;">)</span>
+        <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #94BFF3;">(</span>k<span style="color: #94BFF3;">)</span> <span style="color: #94BFF3;">(</span>k x<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
+         dyn-k<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #5F7F5F;">;;; </span><span style="color: #7F9F7F;">a simple veraion</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #BFEBBF;">(</span>k^<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>k^ <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #93E0E3;">(</span>x dyn-k<span style="color: #93E0E3;">)</span>
+        <span style="color: #93E0E3;">(</span>dyn-k x<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Clojure笔记</title>
-<!-- 2015-02-06 Fri 16:26 -->
+<!-- 2015-05-24 Sun 19:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -137,17 +137,14 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script type="text/javascript">window.MathJax || document.write('<script src="static/js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" ><\/script>')</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
 <script type="text/javascript">
-
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
         // First allows browser-native MathML display, second forces HTML/CSS
-            config: ["MMLorHTML.js"], jax: ["input/TeX"],
-        //  jax: ["input/TeX", "output/HTML-CSS"],
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
         extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
                      "TeX/noUndefined.js"],
         tex2jax: {
@@ -454,7 +451,7 @@ sequence.
 <div class="org-src-container">
 
 <pre class="src src-clojure">(range 5)
-<span style="color: #586e75; font-style: italic;">;;</span><span style="color: #586e75; font-style: italic;">=&gt; (0 1 2 3 4)</span>
+;;=&gt; (0 1 2 3 4)
 </pre>
 </div>
 </li>
@@ -534,24 +531,24 @@ sequence.
 <li>def: 可以将一个匿名函数与一个name关联起来,和 <code>scheme</code> 中的 <code>define</code> 类似
 <div class="org-src-container">
 
-<pre class="src src-clojure">(<span style="color: #859900;">def</span> <span style="color: #6c71c4;">my-add</span> (<span style="color: #859900;">fn</span> [x y] (+ x y)))
+<pre class="src src-clojure">(def my-add (fn [x y] (+ x y)))
 </pre>
 </div>
 </li>
 <li>defn: 是def 与 fn 的简写
 <div class="org-src-container">
 
-<pre class="src src-clojure">(<span style="color: #859900;">defn</span> <span style="color: #b58900;">my-add</span> [x y] (+ x y))
+<pre class="src src-clojure">(defn my-add [x y] (+ x y))
 </pre>
 </div>
 </li>
 <li>参数的解构
 <div class="org-src-container">
 
-<pre class="src src-clojure">(<span style="color: #859900;">defn</span> <span style="color: #b58900;">my-add</span> [x y [a b]]
+<pre class="src src-clojure">(defn my-add [x y [a b]]
   (+ x y a b))
 (my-add 1 2 [3 4])
-<span style="color: #586e75; font-style: italic;">; </span><span style="color: #586e75; font-style: italic;">=&gt; 10</span>
+; =&gt; 10
 </pre>
 </div>
 </li>
@@ -559,8 +556,8 @@ sequence.
 根据参数的不同而执行不同的动作
 <div class="org-src-container">
 
-<pre class="src src-clojure">(<span style="color: #859900;">defn</span> <span style="color: #b58900;">square-or-multiply</span>
-  <span style="color: #d33682;">"squares a single argument, multiplies two arguments"</span>
+<pre class="src src-clojure">(defn square-or-multiply
+  "squares a single argument, multiplies two arguments"
   ([] 0)
   ([x] (* x x))
   ([x y] (* x y)))
@@ -574,15 +571,15 @@ sequence.
 确的使用 <code>recur</code> 这个关键词,而不是函数名
 <div class="org-src-container">
 
-<pre class="src src-clojure">(<span style="color: #859900;">defn</span> <span style="color: #b58900;">my-add</span> [x y]
-  (<span style="color: #859900;">if</span> (zero? x)
+<pre class="src src-clojure">(defn my-add [x y]
+  (if (zero? x)
     y
     (my-add (dec x) (inc y))))
 
-(<span style="color: #859900;">defn</span> <span style="color: #b58900;">my-add</span> [x y]
-  (<span style="color: #859900;">if</span> (zero? x)
+(defn my-add [x y]
+  (if (zero? x)
     y
-    (<span style="color: #859900;">recur</span> (dec x) (inc y))))
+    (recur (dec x) (inc y))))
 </pre>
 </div>
 <p>
@@ -592,10 +589,10 @@ sequence.
 <li>loop:和 <code>recur</code> 配合可以实现和循环类似的效果
 <div class="org-src-container">
 
-<pre class="src src-clojure">(<span style="color: #859900;">loop</span> [i 10 j 10]
-  (<span style="color: #859900;">if</span> (zero? i)
+<pre class="src src-clojure">(loop [i 10 j 10]
+  (if (zero? i)
     j
-    (<span style="color: #859900;">recur</span> (dec i) (inc j))))
+    (recur (dec i) (inc j))))
 </pre>
 </div>
 <p>
@@ -603,10 +600,10 @@ sequence.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">let</span> <span style="color: #b58900;">loop</span> ([i 10] [j 10])
-  (<span style="color: #859900;">if</span> (zero? i)
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #93E0E3;">loop</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span>i <span style="color: #BFEBBF;">10</span><span style="color: #D0BF8F;">]</span> <span style="color: #D0BF8F;">[</span>j <span style="color: #BFEBBF;">10</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>zero? i<span style="color: #D0BF8F;">)</span>
       j
-      (loop (- i 1) (+ j 1))))
+      <span style="color: #D0BF8F;">(</span>loop <span style="color: #93E0E3;">(</span>- i <span style="color: #BFEBBF;">1</span><span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">(</span>+ j <span style="color: #BFEBBF;">1</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </li>
@@ -614,9 +611,9 @@ sequence.
 只提供部分参数给函数,比如我们可以这样定义 <code>add3</code>
 <div class="org-src-container">
 
-<pre class="src src-clojure">(<span style="color: #859900;">def</span> <span style="color: #6c71c4;">add3</span> (partial + 3))
+<pre class="src src-clojure">(def add3 (partial + 3))
 (add3 4)
-<span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">=&gt; 7</span>
+;=&gt; 7
 </pre>
 </div>
 <p>
@@ -657,10 +654,10 @@ namespace,所以在引用时就不需要添加模块名作为前缀,而require�
 <li>import: 导入java的类
 <div class="org-src-container">
 
-<pre class="src src-clojure">(<span style="color: #859900;">import</span> '<span style="color: #268bd2;">java.util.Date</span>)
-<span style="color: #586e75; font-style: italic;">; </span><span style="color: #586e75; font-style: italic;">(new Date)</span>
-(<span style="color: #859900;">import</span> '(<span style="color: #268bd2;">java.util.regex</span> <span style="color: #268bd2;">Pattern</span> <span style="color: #268bd2;">Matcher</span>))
-<span style="color: #586e75; font-style: italic;">; </span><span style="color: #586e75; font-style: italic;">only import Pattern and Matcher in java.util.regex</span>
+<pre class="src src-clojure">(import 'java.util.Date)
+; (new Date)
+(import '(java.util.regex Pattern Matcher))
+; only import Pattern and Matcher in java.util.regex
 </pre>
 </div>
 </li>
@@ -668,11 +665,11 @@ namespace,所以在引用时就不需要添加模块名作为前缀,而require�
 require,use,import是以keyword的形式给出
 <div class="org-src-container">
 
-<pre class="src src-clojure">(<span style="color: #859900;">ns</span> <span style="color: #268bd2;">com.example.library</span>
-  (<span style="color: #268bd2;">:require</span> [<span style="color: #268bd2;">clojure.contrib.sql</span> <span style="color: #268bd2;">:as</span> sql])
-  (<span style="color: #268bd2;">:use</span> (<span style="color: #268bd2;">com.example</span> one two))
-  (<span style="color: #268bd2;">:import</span> (<span style="color: #268bd2;">java.util</span> <span style="color: #268bd2;">Date</span> <span style="color: #268bd2;">Calendar</span>)
-           (<span style="color: #268bd2;">java.io</span> <span style="color: #268bd2;">File</span> <span style="color: #268bd2;">FileInputStream</span>)))
+<pre class="src src-clojure">(ns com.example.library
+  (:require [clojure.contrib.sql :as sql])
+  (:use (com.example one two))
+  (:import (java.util Date Calendar)
+           (java.io File FileInputStream)))
 </pre>
 </div>
 </li>
@@ -698,13 +695,13 @@ require,use,import是以keyword的形式给出
 实现了ACID.
 <div class="org-src-container">
 
-<pre class="src src-clojure">(<span style="color: #859900;">def</span> <span style="color: #6c71c4;">current-track</span> (ref <span style="color: #2aa198;">"Venus, the Bringer of Peace"</span>))
-<span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">-&gt; #'user/current-track</span>
-(<span style="color: #859900;">def</span> <span style="color: #6c71c4;">current-composer</span> (ref <span style="color: #2aa198;">"Holst"</span>))
-<span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">-&gt; #'user/current-composer</span>
-(<span style="color: #859900;">dosync</span>
- (ref-set current-track <span style="color: #2aa198;">"Credo"</span>)
- (ref-set current-composer <span style="color: #2aa198;">"Byrd"</span>))
+<pre class="src src-clojure">(def current-track (ref "Venus, the Bringer of Peace"))
+;; -&gt; #'user/current-track
+(def current-composer (ref "Holst"))
+;; -&gt; #'user/current-composer
+(dosync
+ (ref-set current-track "Credo")
+ (ref-set current-composer "Byrd"))
 </pre>
 </div>
 </li>
@@ -713,11 +710,11 @@ require,use,import是以keyword的形式给出
 可以看作是dosync,ref-set,deref的简写
 <div class="org-src-container">
 
-<pre class="src src-clojure">(<span style="color: #859900;">def</span> <span style="color: #6c71c4;">message</span> (ref ()))
-(<span style="color: #859900;">defn</span> <span style="color: #b58900;">navie-add-message</span> [msg]
-  (<span style="color: #859900;">dosync</span> (ref-set message (cons msg (deref message)))))
-<span style="color: #586e75; font-style: italic;">;;; </span><span style="color: #586e75; font-style: italic;">identical</span>
-(<span style="color: #859900;">defn</span> <span style="color: #b58900;">add-message</span> [msg]
+<pre class="src src-clojure">(def message (ref ()))
+(defn navie-add-message [msg]
+  (dosync (ref-set message (cons msg (deref message)))))
+;;; identical
+(defn add-message [msg]
   (alter message conj msg))
 </pre>
 </div>
@@ -759,13 +756,13 @@ atom和ref很类似,但是atom当你仅仅只是需要原子的更新单个值�
 能就是 foo_004 可以看作是let与gensym的等价物,这在避免符号捕捉时很有用.
 <div class="org-src-container">
 
-<pre class="src src-clojure">(<span style="color: #859900;">defmacro</span> <span style="color: #b58900;">and</span>
-  ([] <span style="color: #268bd2;">true</span>)
+<pre class="src src-clojure">(defmacro and
+  ([] true)
   ([x] x)
   ([x &amp; rest]
-     `(<span style="color: #859900;">let</span> [and# ~x]
-        (<span style="color: #859900;">if</span> and#
-          (<span style="color: #859900;">and</span> ~@rest)
+     `(let [and# ~x]
+        (if and#
+          (and ~@rest)
           and#))))
 </pre>
 </div>
@@ -795,10 +792,10 @@ atom和ref很类似,但是atom当你仅仅只是需要原子的更新单个值�
 <li>ClassName/field: 只对静态变量或者方法有效
 <div class="org-src-container">
 
-<pre class="src src-clojure"><span style="color: #268bd2;">Integer</span>/<span style="color: #268bd2;">MIN_VALUE</span>
-<span style="color: #586e75; font-style: italic;">; </span><span style="color: #586e75; font-style: italic;">=&gt; -2147483648</span>
-(<span style="color: #268bd2;">Integer</span>/<span style="color: #d33682;">parseInt</span> <span style="color: #2aa198;">"101"</span>)
-<span style="color: #586e75; font-style: italic;">; </span><span style="color: #586e75; font-style: italic;">=&gt; 101</span>
+<pre class="src src-clojure">Integer/MIN_VALUE
+; =&gt; -2147483648
+(Integer/parseInt "101")
+; =&gt; 101
 </pre>
 </div>
 </li>
@@ -807,8 +804,8 @@ atom和ref很类似,但是atom当你仅仅只是需要原子的更新单个值�
 map,filter这类函数
 <div class="org-src-container">
 
-<pre class="src src-clojure">(map #(<span style="color: #d33682;">.toUpperCase</span> <span style="color: #6c71c4;">%</span>) [<span style="color: #2aa198;">"one"</span> <span style="color: #2aa198;">"two"</span> <span style="color: #2aa198;">"three"</span>])
-<span style="color: #586e75; font-style: italic;">; </span><span style="color: #586e75; font-style: italic;">=&gt; ("ONE" "TWO" "THREE")</span>
+<pre class="src src-clojure">(map #(.toUpperCase %) ["one" "two" "three"])
+; =&gt; ("ONE" "TWO" "THREE")
 </pre>
 </div>
 </li>

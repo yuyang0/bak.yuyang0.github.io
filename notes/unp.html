@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>UNIX网络编程</title>
-<!-- 2015-03-09 Mon 09:17 -->
+<!-- 2015-05-24 Sun 19:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -362,55 +362,55 @@ TIME_WAIT状态,并保持该状态2SML(1-4分钟), 该状态存在的原因是:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">-------------- &#36890;&#29992;&#22320;&#22336;&#32467;&#26500;(&#26087;) ----------------------- </span><span style="color: #586e75; font-style: italic;">*/</span>
-<span style="color: #859900;">struct</span> <span style="color: #268bd2;">sockaddr</span> {
-    <span style="color: #268bd2;">uint8_t</span>     <span style="color: #6c71c4;">sa_len</span>;
-    <span style="color: #268bd2;">sa_family_t</span> <span style="color: #6c71c4;">sa_family</span>;    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">address family: AF_xxx value </span><span style="color: #586e75; font-style: italic;">*/</span>
-    <span style="color: #268bd2;">char</span>        <span style="color: #6c71c4;">sa_data</span>[14];  <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">protocol-specific address </span><span style="color: #586e75; font-style: italic;">*/</span>
-};
-<span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">---------------- ipv4 ----------------------------------- </span><span style="color: #586e75; font-style: italic;">*/</span>
-<span style="color: #859900;">struct</span> <span style="color: #268bd2;">in_addr</span> {
-    <span style="color: #268bd2;">in_addr_t</span>  <span style="color: #6c71c4;">s_addr</span>;    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">32-bit IPv4 address </span><span style="color: #586e75; font-style: italic;">*/</span>
-    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">network byte ordered </span><span style="color: #586e75; font-style: italic;">*/</span>
-};
-<span style="color: #859900;">struct</span> <span style="color: #268bd2;">sockaddr_in</span> {
-    <span style="color: #268bd2;">uint8_t</span>         <span style="color: #6c71c4;">sin_len</span>;       <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">length of structure (16) </span><span style="color: #586e75; font-style: italic;">*/</span>
-    <span style="color: #268bd2;">sa_family_t</span>     <span style="color: #6c71c4;">sin_family</span>;    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">AF_INET </span><span style="color: #586e75; font-style: italic;">*/</span>
-    <span style="color: #268bd2;">in_port_t</span>       <span style="color: #6c71c4;">sin_port</span>;      <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">16-bit TCP or UDP port number </span><span style="color: #586e75; font-style: italic;">*/</span>
-    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">network byte ordered </span><span style="color: #586e75; font-style: italic;">*/</span>
-    <span style="color: #859900;">struct</span> <span style="color: #268bd2;">in_addr</span>  <span style="color: #6c71c4;">sin_addr</span>;      <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">32-bit IPv4 address </span><span style="color: #586e75; font-style: italic;">*/</span>
-    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">network byte ordered </span><span style="color: #586e75; font-style: italic;">*/</span>
-    <span style="color: #268bd2;">char</span>            <span style="color: #6c71c4;">sin_zero</span>[8];   <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">unused </span><span style="color: #586e75; font-style: italic;">*/</span>
-};
+<pre class="src src-c"><span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">-------------- &#36890;&#29992;&#22320;&#22336;&#32467;&#26500;(&#26087;) ----------------------- </span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">sockaddr</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #7CB8BB;">uint8_t</span>     <span style="color: #DFAF8F;">sa_len</span>;
+    <span style="color: #7CB8BB;">sa_family_t</span> <span style="color: #DFAF8F;">sa_family</span>;    <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">address family: AF_xxx value </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #7CB8BB;">char</span>        <span style="color: #DFAF8F;">sa_data</span><span style="color: #BFEBBF;">[</span><span style="color: #BFEBBF;">14</span><span style="color: #BFEBBF;">]</span>;  <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">protocol-specific address </span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #DCDCCC;">}</span>;
+<span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">---------------- ipv4 ----------------------------------- </span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">in_addr</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #7CB8BB;">in_addr_t</span>  <span style="color: #DFAF8F;">s_addr</span>;    <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">32-bit IPv4 address </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">network byte ordered </span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #DCDCCC;">}</span>;
+<span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">sockaddr_in</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #7CB8BB;">uint8_t</span>         <span style="color: #DFAF8F;">sin_len</span>;       <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">length of structure (16) </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #7CB8BB;">sa_family_t</span>     <span style="color: #DFAF8F;">sin_family</span>;    <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">AF_INET </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #7CB8BB;">in_port_t</span>       <span style="color: #DFAF8F;">sin_port</span>;      <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">16-bit TCP or UDP port number </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">network byte ordered </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">in_addr</span>  <span style="color: #DFAF8F;">sin_addr</span>;      <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">32-bit IPv4 address </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">network byte ordered </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #7CB8BB;">char</span>            <span style="color: #DFAF8F;">sin_zero</span><span style="color: #BFEBBF;">[</span><span style="color: #BFEBBF;">8</span><span style="color: #BFEBBF;">]</span>;   <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">unused </span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #DCDCCC;">}</span>;
 
-<span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">--------------&#36890;&#29992;&#22320;&#22336;&#32467;&#26500;(&#26032;, ipv6&#23450;&#20041;) ------------------ </span><span style="color: #586e75; font-style: italic;">*/</span>
-<span style="color: #859900;">struct</span> <span style="color: #268bd2;">sockaddr_storage</span> {
-    <span style="color: #268bd2;">uint8_t</span>      <span style="color: #6c71c4;">ss_len</span>;    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">length of this struct (implementation dependent) </span><span style="color: #ee82ee; background-color: #333333; font-style: italic;">*/</span>
-    <span style="color: #268bd2;">sa_family_t</span>  <span style="color: #6c71c4;">ss_family</span>; <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">address family: AF_xxx value </span><span style="color: #586e75; font-style: italic;">*/</span>
-    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">implementation-dependent elements to provide:</span>
-<span style="color: #586e75; font-style: italic;">     * a) alignment sufficient to fulfill the alignment requirements of</span>
-<span style="color: #586e75; font-style: italic;">     *    all socket address types that the system supports.</span>
-<span style="color: #586e75; font-style: italic;">     * b) enough storage to hold any type of socket address that the</span>
-<span style="color: #586e75; font-style: italic;">     *    system supports.</span>
-<span style="color: #586e75; font-style: italic;">      </span><span style="color: #586e75; font-style: italic;">*/</span>
-};
+<span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">--------------&#36890;&#29992;&#22320;&#22336;&#32467;&#26500;(&#26032;, ipv6&#23450;&#20041;) ------------------ </span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">sockaddr_storage</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #7CB8BB;">uint8_t</span>      <span style="color: #DFAF8F;">ss_len</span>;    <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">length of this struct (implementation dependent) </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #7CB8BB;">sa_family_t</span>  <span style="color: #DFAF8F;">ss_family</span>; <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">address family: AF_xxx value </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">implementation-dependent elements to provide:</span>
+<span style="color: #7F9F7F;">     * a) alignment sufficient to fulfill the alignment requirements of</span>
+<span style="color: #7F9F7F;">     *    all socket address types that the system supports.</span>
+<span style="color: #7F9F7F;">     * b) enough storage to hold any type of socket address that the</span>
+<span style="color: #7F9F7F;">     *    system supports.</span>
+<span style="color: #7F9F7F;">      </span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #DCDCCC;">}</span>;
 
-<span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">------------------------ ipv6 --------------------------- </span><span style="color: #586e75; font-style: italic;">*/</span>
-<span style="color: #859900;">struct</span> <span style="color: #268bd2;">in6_addr</span> {
-    <span style="color: #268bd2;">uint8_t</span>   <span style="color: #6c71c4;">s6_addr</span>[16];   <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">128-bit IPv6 address </span><span style="color: #586e75; font-style: italic;">*/</span>
-                             <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">network byte ordered </span><span style="color: #586e75; font-style: italic;">*/</span>
-};
-<span style="color: #d33682;">#define</span> <span style="color: #6c71c4;">SIN6_LEN</span>         <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">required for compile-time tests </span><span style="color: #586e75; font-style: italic;">*/</span>
-<span style="color: #859900;">struct</span> <span style="color: #268bd2;">sockaddr_in6</span> {
-    <span style="color: #268bd2;">uint8_t</span>          <span style="color: #6c71c4;">sin6_len</span>;      <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">length of this struct (28) </span><span style="color: #586e75; font-style: italic;">*/</span>
-    <span style="color: #268bd2;">sa_family_t</span>      <span style="color: #6c71c4;">sin6_family</span>;   <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">AF_INET6 </span><span style="color: #586e75; font-style: italic;">*/</span>
-    <span style="color: #268bd2;">in_port_t</span>        <span style="color: #6c71c4;">sin6_port</span>;     <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">transport layer port# </span><span style="color: #586e75; font-style: italic;">*/</span>
-                                    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">network byte ordered </span><span style="color: #586e75; font-style: italic;">*/</span>
-    <span style="color: #268bd2;">uint32_t</span>         <span style="color: #6c71c4;">sin6_flowinfo</span>; <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">flow information, undefined </span><span style="color: #586e75; font-style: italic;">*/</span>
-    <span style="color: #859900;">struct</span> <span style="color: #268bd2;">in6_addr</span>  <span style="color: #6c71c4;">sin6_addr</span>;     <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">IPv6 address </span><span style="color: #586e75; font-style: italic;">*/</span>
-                                    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">network byte ordered </span><span style="color: #586e75; font-style: italic;">*/</span>
-    <span style="color: #268bd2;">uint32_t</span>         <span style="color: #6c71c4;">sin6_scope_id</span>; <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">set of interfaces for a scope </span><span style="color: #586e75; font-style: italic;">*/</span>
-};
+<span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">------------------------ ipv6 --------------------------- </span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">in6_addr</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #7CB8BB;">uint8_t</span>   <span style="color: #DFAF8F;">s6_addr</span><span style="color: #BFEBBF;">[</span><span style="color: #BFEBBF;">16</span><span style="color: #BFEBBF;">]</span>;   <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">128-bit IPv6 address </span><span style="color: #5F7F5F;">*/</span>
+                             <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">network byte ordered </span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #DCDCCC;">}</span>;
+<span style="color: #94BFF3;">#define</span> <span style="color: #DFAF8F;">SIN6_LEN</span>         <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">required for compile-time tests </span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">sockaddr_in6</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #7CB8BB;">uint8_t</span>          <span style="color: #DFAF8F;">sin6_len</span>;      <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">length of this struct (28) </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #7CB8BB;">sa_family_t</span>      <span style="color: #DFAF8F;">sin6_family</span>;   <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">AF_INET6 </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #7CB8BB;">in_port_t</span>        <span style="color: #DFAF8F;">sin6_port</span>;     <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">transport layer port# </span><span style="color: #5F7F5F;">*/</span>
+                                    <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">network byte ordered </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #7CB8BB;">uint32_t</span>         <span style="color: #DFAF8F;">sin6_flowinfo</span>; <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">flow information, undefined </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">in6_addr</span>  <span style="color: #DFAF8F;">sin6_addr</span>;     <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">IPv6 address </span><span style="color: #5F7F5F;">*/</span>
+                                    <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">network byte ordered </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #7CB8BB;">uint32_t</span>         <span style="color: #DFAF8F;">sin6_scope_id</span>; <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">set of interfaces for a scope </span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #DCDCCC;">}</span>;
 </pre>
 </div>
 <ol class="org-ol">
@@ -454,25 +454,25 @@ uint32_t ntohl(uint32_t net32bitvalue) ;
 <li>客户端
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #859900;">struct</span> <span style="color: #268bd2;">sockaddr_in</span> <span style="color: #6c71c4;">servaddr</span>;
-bzero(&amp;servaddr, <span style="color: #859900;">sizeof</span>(servaddr));
+<pre class="src src-c"><span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">sockaddr_in</span> <span style="color: #DFAF8F;">servaddr</span>;
+bzero<span style="color: #DCDCCC;">(</span>&amp;servaddr, <span style="color: #F0DFAF; font-weight: bold;">sizeof</span><span style="color: #BFEBBF;">(</span>servaddr<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>;
 servaddr.sin_family = AF_INET;
-servaddr.sin_port = htons(13);
-<span style="color: #859900;">if</span> (inet_pton(AF_INET, argv[1], &amp;servaddr.sin_addr) &lt; 0) {
-    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">error </span><span style="color: #586e75; font-style: italic;">*/</span>
-}
+servaddr.sin_port = htons<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">13</span><span style="color: #DCDCCC;">)</span>;
+<span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #DCDCCC;">(</span>inet_pton<span style="color: #BFEBBF;">(</span>AF_INET, argv<span style="color: #D0BF8F;">[</span><span style="color: #BFEBBF;">1</span><span style="color: #D0BF8F;">]</span>, &amp;servaddr.sin_addr<span style="color: #BFEBBF;">)</span> &lt; <span style="color: #BFEBBF;">0</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">error </span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 </li>
 <li>服务端
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #859900;">struct</span> <span style="color: #268bd2;">sockaddr_in</span> <span style="color: #6c71c4;">servaddr</span>;
-bzero(&amp;servaddr, <span style="color: #859900;">sizeof</span>(servaddr));
+<pre class="src src-c"><span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">sockaddr_in</span> <span style="color: #DFAF8F;">servaddr</span>;
+bzero<span style="color: #DCDCCC;">(</span>&amp;servaddr, <span style="color: #F0DFAF; font-weight: bold;">sizeof</span><span style="color: #BFEBBF;">(</span>servaddr<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>;
 servaddr.sin_family = AF_INET;
-servaddr.sin_port = htons(13);
-servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
-<span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">or use inet_pton to set ip </span><span style="color: #586e75; font-style: italic;">*/</span>
+servaddr.sin_port = htons<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">13</span><span style="color: #DCDCCC;">)</span>;
+servaddr.sin_addr.s_addr = htonl<span style="color: #DCDCCC;">(</span>INADDR_ANY<span style="color: #DCDCCC;">)</span>;
+<span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">or use inet_pton to set ip </span><span style="color: #5F7F5F;">*/</span>
 </pre>
 </div>
 </li>

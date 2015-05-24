@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Spark</title>
-<!-- 2015-02-06 Fri 16:26 -->
+<!-- 2015-05-24 Sun 19:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -211,7 +211,7 @@ for the JavaScript code in this tag.
 <li>groupBy: 先通过map得到key，然后reduceByKey
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">self</span>.<span style="color: #6c71c4;">map</span>(<span style="color: #859900;">lambda</span> x: (f(x), x)).reduceByKey()
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">self</span>.<span style="color: #DCDCCC; font-weight: bold;">map</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> x: <span style="color: #BFEBBF;">(</span>f<span style="color: #D0BF8F;">(</span>x<span style="color: #D0BF8F;">)</span>, x<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>.reduceByKey<span style="color: #DCDCCC;">()</span>
 </pre>
 </div>
 </li>
@@ -373,35 +373,35 @@ set(UniqAggregator), 还可以是其它的容器类型,这个东西主要是用�
 <li>SetValueMessage: 设置key所对应的值,注意值必须为列表
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">if</span> <span style="color: #859900;">not</span> <span style="color: #6c71c4;">isinstance</span>(value, <span style="color: #6c71c4;">list</span>):
-    <span style="color: #6c71c4;">value</span> = [value]
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #F0DFAF; font-weight: bold;">not</span> <span style="color: #DCDCCC; font-weight: bold;">isinstance</span><span style="color: #DCDCCC;">(</span>value, <span style="color: #DCDCCC; font-weight: bold;">list</span><span style="color: #DCDCCC;">)</span>:
+    <span style="color: #DFAF8F;">value</span> = <span style="color: #DCDCCC;">[</span>value<span style="color: #DCDCCC;">]</span>
 
-<span style="color: #859900;">self</span>.locs[key] = value
+<span style="color: #F0DFAF; font-weight: bold;">self</span>.locs<span style="color: #DCDCCC;">[</span>key<span style="color: #DCDCCC;">]</span> = value
 </pre>
 </div>
 </li>
 <li>AddItemMessage: 向key所对应的值列表中添加一个值
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">if</span> key <span style="color: #859900;">not</span> <span style="color: #859900;">in</span> <span style="color: #859900;">self</span>.locs:
-    <span style="color: #859900;">self</span>.locs[key] = []
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">if</span> key <span style="color: #F0DFAF; font-weight: bold;">not</span> <span style="color: #F0DFAF; font-weight: bold;">in</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.locs:
+    <span style="color: #F0DFAF; font-weight: bold;">self</span>.locs<span style="color: #DCDCCC;">[</span>key<span style="color: #DCDCCC;">]</span> = <span style="color: #DCDCCC;">[]</span>
 
-<span style="color: #859900;">self</span>.locs[key].append(item)
+<span style="color: #F0DFAF; font-weight: bold;">self</span>.locs<span style="color: #DCDCCC;">[</span>key<span style="color: #DCDCCC;">]</span>.append<span style="color: #DCDCCC;">(</span>item<span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </li>
 <li>RemoveItemMessage: 从key所对应的值列表中移除item
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">if</span> item <span style="color: #859900;">in</span> <span style="color: #859900;">self</span>.locs[key]:
-    <span style="color: #859900;">self</span>.locs[key].remove(item)
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">if</span> item <span style="color: #F0DFAF; font-weight: bold;">in</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.locs<span style="color: #DCDCCC;">[</span>key<span style="color: #DCDCCC;">]</span>:
+    <span style="color: #F0DFAF; font-weight: bold;">self</span>.locs<span style="color: #DCDCCC;">[</span>key<span style="color: #DCDCCC;">]</span>.remove<span style="color: #DCDCCC;">(</span>item<span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </li>
 <li>GetValueMessage: 返回和key绑定的值列表
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">self</span>.locs.get(key, [])
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">self</span>.locs.get<span style="color: #DCDCCC;">(</span>key, <span style="color: #BFEBBF;">[]</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </li>

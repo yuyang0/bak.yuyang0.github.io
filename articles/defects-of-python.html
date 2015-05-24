@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>python的“缺点”</title>
-<!-- 2015-02-06 Fri 16:26 -->
+<!-- 2015-05-24 Sun 19:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -178,12 +178,16 @@ for the JavaScript code in this tag.
 <li><a href="#sec-2">缩进</a></li>
 <li><a href="#sec-3">高阶函数(high order function)</a>
 <ul>
-<li><a href="#sec-3-1">声明与赋值</a>
+<li><a href="#sec-3-1">基本概念</a>
 <ul>
-<li><a href="#sec-3-1-1">作用域</a></li>
-<li><a href="#sec-3-1-2">python的作用域规则</a></li>
+<li><a href="#sec-3-1-1">环境（environment）</a></li>
+<li><a href="#sec-3-1-2">声明</a></li>
+<li><a href="#sec-3-1-3">赋值</a></li>
+<li><a href="#sec-3-1-4">作用域</a></li>
+<li><a href="#sec-3-1-5">python的作用域规则</a></li>
 </ul>
 </li>
+<li><a href="#sec-3-2">python的设计失误</a></li>
 </ul>
 </li>
 <li><a href="#sec-4">GIL</a></li>
@@ -199,11 +203,11 @@ python是一个动态类型的语言，它只能进行动态类型检查，所�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">add1</span>(x):
-    <span style="color: #859900;">return</span> x + 1
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">add1</span><span style="color: #DCDCCC;">(</span>x<span style="color: #DCDCCC;">)</span>:
+    <span style="color: #F0DFAF; font-weight: bold;">return</span> x + <span style="color: #BFEBBF;">1</span>
 
-<span style="color: #6c71c4;">a</span> = <span style="color: #2aa198;">"hello"</span>
-add1(a)
+<span style="color: #DFAF8F;">a</span> = <span style="color: #CC9393;">"hello"</span>
+add1<span style="color: #DCDCCC;">(</span>a<span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -249,8 +253,8 @@ pycharm我也可以很轻松的让它出错。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #6c71c4;">aa</span> = 1
-<span style="color: #6c71c4;">aa</span> = <span style="color: #2aa198;">'hello'</span>
+<pre class="src src-python"><span style="color: #DFAF8F;">aa</span> = <span style="color: #BFEBBF;">1</span>
+<span style="color: #DFAF8F;">aa</span> = <span style="color: #CC9393;">'hello'</span>
 </pre>
 </div>
 <p>
@@ -290,13 +294,13 @@ python强制缩进是一个明智的选择，它使得代码的可读性有了�
 <li><b>更容易出错</b>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">with</span> settings(warn_only=<span style="color: #268bd2;">True</span>):
-    <span style="color: #6c71c4;">ret</span> = local(<span style="color: #2aa198;">'echo %s |sudo -S salt-key -y -a %s'</span> % (config.MASTER_PASSWORD, <span style="color: #ee82ee; background-color: #333333;">minion_id))</span>
-    <span style="color: #859900;">if</span> ret.failed:
-        time.sleep(1)
-        <span style="color: #859900;">continue</span>
-    <span style="color: #859900;">else</span>:
-        <span style="color: #859900;">break</span>
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">with</span> settings<span style="color: #DCDCCC;">(</span>warn_only=<span style="color: #BFEBBF;">True</span><span style="color: #DCDCCC;">)</span>:
+    <span style="color: #DFAF8F;">ret</span> = local<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'echo %s |sudo -S salt-key -y -a %s'</span> % <span style="color: #BFEBBF;">(</span>config.MASTER_PASSWORD, minion_id<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> ret.failed:
+        time.sleep<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">1</span><span style="color: #DCDCCC;">)</span>
+        <span style="color: #F0DFAF; font-weight: bold;">continue</span>
+    <span style="color: #F0DFAF; font-weight: bold;">else</span>:
+        <span style="color: #F0DFAF; font-weight: bold;">break</span>
 </pre>
 </div>
 </li>
@@ -314,8 +318,8 @@ python这类语言的代码的, 这不是因为编辑器不够强大，而是本
 的例子，比如python的列表解析：
 <div class="org-src-container">
 
-<pre class="src src-python">[i+1 <span style="color: #859900;">for</span> i <span style="color: #859900;">in</span> <span style="color: #6c71c4;">range</span>(10)]
-<span style="color: #6c71c4;">map</span>(<span style="color: #859900;">lambda</span> i: i+1, <span style="color: #6c71c4;">range</span>(10))
+<pre class="src src-python"><span style="color: #DCDCCC;">[</span>i+<span style="color: #BFEBBF;">1</span> <span style="color: #F0DFAF; font-weight: bold;">for</span> i <span style="color: #F0DFAF; font-weight: bold;">in</span> <span style="color: #DCDCCC; font-weight: bold;">range</span><span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">10</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">]</span>
+<span style="color: #DCDCCC; font-weight: bold;">map</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> i: i+<span style="color: #BFEBBF;">1</span>, <span style="color: #DCDCCC; font-weight: bold;">range</span><span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">10</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -346,21 +350,21 @@ python这类语言的代码的, 这不是因为编辑器不够强大，而是本
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">make-account</span> balance)
-  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">withdraw</span> amount)
-    (<span style="color: #859900;">if</span> (&gt;= balance amount)
-        (<span style="color: #859900;">begin</span> (set! balance (- balance amount))
-               balance)
-        <span style="color: #2aa198;">"Insufficient funds"</span>))
-  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">deposit</span> amount)
-    (set! balance (+ balance amount))
-    balance)
-  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">dispatch</span> m)
-    (<span style="color: #859900;">cond</span> ((eq? m 'withdraw) withdraw)
-          ((eq? m 'deposit) deposit)
-          (<span style="color: #859900;">else</span> (error <span style="color: #2aa198;">"Unknown request -- MAKE-ACCOUNT"</span>
-                       m))))
-  dispatch)
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #BFEBBF;">(</span><span style="color: #93E0E3;">make-account</span> balance<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">withdraw</span> amount<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #93E0E3;">(</span>&gt;= balance amount<span style="color: #93E0E3;">)</span>
+        <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">begin</span> <span style="color: #9FC59F;">(</span>set! balance <span style="color: #94BFF3;">(</span>- balance amount<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
+               balance<span style="color: #93E0E3;">)</span>
+        <span style="color: #CC9393;">"Insufficient funds"</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">deposit</span> amount<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>set! balance <span style="color: #93E0E3;">(</span>+ balance amount<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    balance<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">dispatch</span> m<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span> <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>eq? m 'withdraw<span style="color: #9FC59F;">)</span> withdraw<span style="color: #93E0E3;">)</span>
+          <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>eq? m 'deposit<span style="color: #9FC59F;">)</span> deposit<span style="color: #93E0E3;">)</span>
+          <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #9FC59F;">(</span>error <span style="color: #CC9393;">"Unknown request -- MAKE-ACCOUNT"</span>
+                       m<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  dispatch<span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -368,32 +372,32 @@ python这类语言的代码的, 这不是因为编辑器不够强大，而是本
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript"><span style="color: #859900;">function</span> <span style="color: #b58900;">make_account</span><span style="color: #839496;">(</span><span style="color: #6c71c4;">balance</span><span style="color: #839496;">)</span> <span style="color: #839496;">{</span>
-  <span style="color: #859900;">function</span> <span style="color: #b58900;">withdraw</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">amount</span><span style="color: #2aa198;">)</span> <span style="color: #2aa198;">{</span>
-    <span style="color: #859900;">if</span> <span style="color: #b58900;">(</span>balance &gt;= amount<span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+<pre class="src src-javascript"><span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">make_account</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">balance</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
+  <span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">withdraw</span><span style="color: #BFEBBF;">(</span><span style="color: #DFAF8F;">amount</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>balance &gt;= amount<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
       balance = balance - amount;
-      <span style="color: #859900;">return</span> balance;
-    <span style="color: #b58900;">}</span> <span style="color: #859900;">else</span> <span style="color: #b58900;">{</span>
-      <span style="color: #859900;">return</span> <span style="color: #2aa198;">"Insufficient funds"</span>;
-    <span style="color: #b58900;">}</span>
-  <span style="color: #2aa198;">}</span>
+      <span style="color: #F0DFAF; font-weight: bold;">return</span> balance;
+    <span style="color: #D0BF8F;">}</span> <span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #D0BF8F;">{</span>
+      <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #CC9393;">"Insufficient funds"</span>;
+    <span style="color: #D0BF8F;">}</span>
+  <span style="color: #BFEBBF;">}</span>
 
-  <span style="color: #859900;">function</span> <span style="color: #b58900;">deposit</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">amount</span><span style="color: #2aa198;">)</span> <span style="color: #2aa198;">{</span>
+  <span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">deposit</span><span style="color: #BFEBBF;">(</span><span style="color: #DFAF8F;">amount</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
     balance += amount;
-    <span style="color: #859900;">return</span> balance;
-  <span style="color: #2aa198;">}</span>
+    <span style="color: #F0DFAF; font-weight: bold;">return</span> balance;
+  <span style="color: #BFEBBF;">}</span>
 
-  <span style="color: #859900;">function</span> <span style="color: #b58900;">dispatch</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">method</span><span style="color: #2aa198;">)</span> <span style="color: #2aa198;">{</span>
-    <span style="color: #859900;">if</span> <span style="color: #b58900;">(</span>method === <span style="color: #2aa198;">"withdraw"</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-      <span style="color: #859900;">return</span> withdraw;
-    <span style="color: #b58900;">}</span> <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> <span style="color: #b58900;">(</span>method == <span style="color: #2aa198;">"deposit"</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-      <span style="color: #859900;">return</span> deposit;
-    <span style="color: #b58900;">}</span> <span style="color: #859900;">else</span> <span style="color: #b58900;">{</span>
-      <span style="color: #859900;">return</span> <span style="color: #2aa198;">"error Unkown request..."</span>;
-    <span style="color: #b58900;">}</span>
-  <span style="color: #2aa198;">}</span>
-  <span style="color: #859900;">return</span> dispatch;
-<span style="color: #839496;">}</span>
+  <span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">dispatch</span><span style="color: #BFEBBF;">(</span><span style="color: #DFAF8F;">method</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>method === <span style="color: #CC9393;">"withdraw"</span><span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
+      <span style="color: #F0DFAF; font-weight: bold;">return</span> withdraw;
+    <span style="color: #D0BF8F;">}</span> <span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>method == <span style="color: #CC9393;">"deposit"</span><span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
+      <span style="color: #F0DFAF; font-weight: bold;">return</span> deposit;
+    <span style="color: #D0BF8F;">}</span> <span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #D0BF8F;">{</span>
+      <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #CC9393;">"error Unkown request..."</span>;
+    <span style="color: #D0BF8F;">}</span>
+  <span style="color: #BFEBBF;">}</span>
+  <span style="color: #F0DFAF; font-weight: bold;">return</span> dispatch;
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -402,9 +406,9 @@ python这类语言的代码的, 这不是因为编辑器不够强大，而是本
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">account</span> = make_account<span style="color: #839496;">(</span>100<span style="color: #839496;">)</span>; <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">&#21019;&#24314;&#19968;&#20010;&#26377;100&#22359;&#38065;&#30340;&#36134;&#21495;&#23545;&#35937;</span>
-<span style="color: #839496;">(</span><span style="color: #2aa198;">(</span>account <span style="color: #2aa198;">"withdraw"</span><span style="color: #2aa198;">)</span> 50<span style="color: #839496;">)</span>;       <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">&#21462;50&#22359;&#38065;,&#20320;&#29087;&#24713;&#30340;&#35821;&#27861;&#21487;&#33021;&#26159;:accout.withdraw(50)</span>
-<span style="color: #839496;">(</span><span style="color: #2aa198;">(</span>account <span style="color: #2aa198;">"deposit"</span><span style="color: #2aa198;">)</span> 50<span style="color: #839496;">)</span>;          <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">&#23384;50&#22359;&#38065;,&#20320;&#29087;&#24713;&#30340;&#35821;&#27861;&#21487;&#33021;&#26159;:account.deposit(50)</span>
+<pre class="src src-javascript"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">account</span> = make_account<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">100</span><span style="color: #DCDCCC;">)</span>; <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#21019;&#24314;&#19968;&#20010;&#26377;100&#22359;&#38065;&#30340;&#36134;&#21495;&#23545;&#35937;</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">(</span>account <span style="color: #CC9393;">"withdraw"</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">50</span><span style="color: #DCDCCC;">)</span>;       <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#21462;50&#22359;&#38065;,&#20320;&#29087;&#24713;&#30340;&#35821;&#27861;&#21487;&#33021;&#26159;:accout.withdraw(50)</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">(</span>account <span style="color: #CC9393;">"deposit"</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">50</span><span style="color: #DCDCCC;">)</span>;          <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#23384;50&#22359;&#38065;,&#20320;&#29087;&#24713;&#30340;&#35821;&#27861;&#21487;&#33021;&#26159;:account.deposit(50)</span>
 </pre>
 </div>
 <p>
@@ -413,77 +417,87 @@ python这类语言的代码的, 这不是因为编辑器不够强大，而是本
 阶函数完全做对。估计只做对了八成。对于高阶函数与静态作用域我来说一说python那
 些地方没做对，开始之前先解释一些概念。
 </p>
-<ol class="org-ol">
-<li>环境（environment）: 如果你写过解释器，那么你一定遇到过这个东西，简单的说
-环境就是用来跟踪在程序的执行过程中，每一个标识符都绑定到什么值，所以从逻辑
-上它就是一个map(identifier &lt;&#x2013;&gt; value)，和python的dict类似。环境要和作用域
-规则结合起来
+</div>
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">基本概念</h3>
+<div class="outline-text-3" id="text-3-1">
+</div><div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1">环境（environment）</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+如果你写过解释器，那么你一定遇到过这个东西，简单的说环境就是用来跟踪在程序
+ 的执行过程中，每一个标识符都绑定到什么值，所以从逻辑上它就是一个
+ map(identifier &lt;&#x2013;&gt; value)，和python的dict类似。环境要和作用域规则结合起来,
+ 下面来看一个简单的实现
+</p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Scope</span>(<span style="color: #6c71c4;">object</span>):
-    <span style="color: #859900;">def</span> <span style="color: #b58900;">__init__</span>(<span style="color: #859900;">self</span>, parent=<span style="color: #268bd2;">None</span>):
-        <span style="color: #859900;">self</span>.table = {}
-        <span style="color: #859900;">self</span>.parent = parent
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Scope</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
+    <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__init__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, parent=<span style="color: #BFEBBF;">None</span><span style="color: #DCDCCC;">)</span>:
+        <span style="color: #F0DFAF; font-weight: bold;">self</span>.table = <span style="color: #DCDCCC;">{}</span>
+        <span style="color: #F0DFAF; font-weight: bold;">self</span>.parent = parent
 
-    <span style="color: #859900;">def</span> <span style="color: #b58900;">bind</span>(<span style="color: #859900;">self</span>, var, val):
-        <span style="color: #859900;">if</span> var <span style="color: #859900;">in</span> <span style="color: #859900;">self</span>.table:
-            error(<span style="color: #2aa198;">"var(%s) have been binded in this environment"</span> % var)
-        <span style="color: #859900;">else</span>:
-            <span style="color: #859900;">self</span>.table[var] = val
+    <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">bind</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, var, val<span style="color: #DCDCCC;">)</span>:
+        <span style="color: #F0DFAF; font-weight: bold;">if</span> var <span style="color: #F0DFAF; font-weight: bold;">in</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.table:
+            error<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"var(%s) have been binded in this environment"</span> % var<span style="color: #DCDCCC;">)</span>
+        <span style="color: #F0DFAF; font-weight: bold;">else</span>:
+            <span style="color: #F0DFAF; font-weight: bold;">self</span>.table<span style="color: #DCDCCC;">[</span>var<span style="color: #DCDCCC;">]</span> = val
 
-    <span style="color: #859900;">def</span> <span style="color: #b58900;">get</span>(<span style="color: #859900;">self</span>, var):
-        <span style="color: #6c71c4;">val</span> = <span style="color: #859900;">self</span>.table.get(var, <span style="color: #268bd2;">None</span>)
-        <span style="color: #859900;">if</span> val <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>:
-            <span style="color: #859900;">if</span> <span style="color: #859900;">self</span>.parent <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>:
-                <span style="color: #859900;">return</span> <span style="color: #268bd2;">None</span>
-            <span style="color: #859900;">else</span>:
-                <span style="color: #859900;">return</span> <span style="color: #859900;">self</span>.parent.get(var)
-        <span style="color: #859900;">else</span>:
-            <span style="color: #859900;">return</span> val
+    <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">get</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, var<span style="color: #DCDCCC;">)</span>:
+        <span style="color: #DFAF8F;">val</span> = <span style="color: #F0DFAF; font-weight: bold;">self</span>.table.get<span style="color: #DCDCCC;">(</span>var, <span style="color: #BFEBBF;">None</span><span style="color: #DCDCCC;">)</span>
+        <span style="color: #F0DFAF; font-weight: bold;">if</span> val <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #BFEBBF;">None</span>:
+            <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.parent <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #BFEBBF;">None</span>:
+                <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #BFEBBF;">None</span>
+            <span style="color: #F0DFAF; font-weight: bold;">else</span>:
+                <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.parent.get<span style="color: #DCDCCC;">(</span>var<span style="color: #DCDCCC;">)</span>
+        <span style="color: #F0DFAF; font-weight: bold;">else</span>:
+            <span style="color: #F0DFAF; font-weight: bold;">return</span> val
 
-    <span style="color: #859900;">def</span> <span style="color: #b58900;">set</span>(<span style="color: #859900;">self</span>, var, val):
-        <span style="color: #859900;">if</span> var <span style="color: #859900;">in</span> <span style="color: #859900;">self</span>.table:
-            <span style="color: #859900;">self</span>.table[var] = val
-        <span style="color: #859900;">elif</span> <span style="color: #859900;">self</span>.parent <span style="color: #859900;">is</span> <span style="color: #859900;">not</span> <span style="color: #268bd2;">None</span>:
-            <span style="color: #859900;">self</span>.parent.<span style="color: #6c71c4;">set</span>(var, val)
-        <span style="color: #859900;">else</span>:
-            error(<span style="color: #2aa198;">"var(%s) is not binded in this environment"</span> % var)
+    <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">set</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, var, val<span style="color: #DCDCCC;">)</span>:
+        <span style="color: #F0DFAF; font-weight: bold;">if</span> var <span style="color: #F0DFAF; font-weight: bold;">in</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.table:
+            <span style="color: #F0DFAF; font-weight: bold;">self</span>.table<span style="color: #DCDCCC;">[</span>var<span style="color: #DCDCCC;">]</span> = val
+        <span style="color: #F0DFAF; font-weight: bold;">elif</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.parent <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #F0DFAF; font-weight: bold;">not</span> <span style="color: #BFEBBF;">None</span>:
+            <span style="color: #F0DFAF; font-weight: bold;">self</span>.parent.<span style="color: #DCDCCC; font-weight: bold;">set</span><span style="color: #DCDCCC;">(</span>var, val<span style="color: #DCDCCC;">)</span>
+        <span style="color: #F0DFAF; font-weight: bold;">else</span>:
+            error<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"var(%s) is not binded in this environment"</span> % var<span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
 上面的实现可以看出作用域实际上可以看做是一个dict,只是它有一个parent, 这样
 就构成了一个链式的dict,可以从下往上搜索.
 </p>
-</li>
-<li>声明：实际就是在当前变量所在作用域创建一个key/value对, 注意实际上是调用
-bind方法. 前提是该变量没有在当前作用域中绑定.
-</li>
-<li>赋值：改变作用域中变量的值,如果当前作用域中没有该变量,那么就父作用域中找,
-如果该变量不存在那么出错.
-</li>
-</ol>
-</div>
-<div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">声明与赋值</h3>
-<div class="outline-text-3" id="text-3-1">
-<p>
-python有一个巨大的设计失误就是没有明确的区分变量的声明与赋值，它严重的损伤了
-语言的表达能力，同时也让程序更容易出错，因为变量会自动创建。
-</p>
-</div>
-<div id="outline-container-sec-3-1-1" class="outline-4">
-<h4 id="sec-3-1-1">作用域</h4>
-<div class="outline-text-4" id="text-3-1-1">
-<p>
-解释器在执行一个程序的过程中，它需要一个数据结构来跟踪每一个变量的值是什么。
-这个数据结构就是环境（environment）, 环境可以简单的看做是一个类似于python的
-dict的结构，也就是key-value对，它的key是变量，它的value是与该变量关联的值
-</p>
 </div>
 </div>
 <div id="outline-container-sec-3-1-2" class="outline-4">
-<h4 id="sec-3-1-2">python的作用域规则</h4>
+<h4 id="sec-3-1-2">声明</h4>
 <div class="outline-text-4" id="text-3-1-2">
+<p>
+实际就是在当前变量所在作用域创建一个key/value对, 注意实际上是调用=bind= 方
+法. 前提是该变量没有在当前作用域中绑定.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-1-3" class="outline-4">
+<h4 id="sec-3-1-3">赋值</h4>
+<div class="outline-text-4" id="text-3-1-3">
+<p>
+改变作用域中变量的值,如果当前作用域中没有该变量,那么就父作用域中找,
+ 如果该变量不存在那么出错. 实际上该动作就是 <code>set</code> 方法.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-1-4" class="outline-4">
+<h4 id="sec-3-1-4">作用域</h4>
+<div class="outline-text-4" id="text-3-1-4">
+<p>
+每当进入一个新的作用域，那么解释器就会创建一个scope对象，该对象的
+ parent指针会指向当前的scope对象，从而构成一个链式的作用域。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-1-5" class="outline-4">
+<h4 id="sec-3-1-5">python的作用域规则</h4>
+<div class="outline-text-4" id="text-3-1-5">
 <p>
 python有一个内置作用域，这个作用域的所有绑定是在任何地方都可见的。python的内
 置函数以及内置异常都是在内置作用域中. 可以使用如下代码来查看内置作用域有哪些
@@ -491,13 +505,25 @@ python有一个内置作用域，这个作用域的所有绑定是在任何地�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">import</span> __builtin__
-<span style="color: #859900;">print</span> <span style="color: #6c71c4;">dir</span>(__builtin__)
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">import</span> __builtin__
+<span style="color: #F0DFAF; font-weight: bold;">print</span> <span style="color: #DCDCCC; font-weight: bold;">dir</span><span style="color: #DCDCCC;">(</span>__builtin__<span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
 除了内置作用域，python在两个地方会创建新的作用域，一个是模块，另一个是函数
-（包括类方法）
+（包括方法）
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">python的设计失误</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+python有一个巨大的设计失误就是没有明确的区分变量的声明与赋值，也就是说python
+的赋值有两种语义：当前作用域不存在该变量时，它会在作用域中创建该绑定，如果已
+存在，那么它就会修改该绑定的值，这种混淆的行为严重的损伤了语言的表达能力，同
+时也让程序更容易出错，因为变量会自动创建。
 </p>
 
 <p>
@@ -507,14 +533,14 @@ python有一个内置作用域，这个作用域的所有绑定是在任何地�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">succ</span> = <span style="color: #839496;">(</span><span style="color: #859900;">function</span><span style="color: #2aa198;">(){</span>
-    <span style="color: #859900;">var</span> <span style="color: #6c71c4;">i</span> = 0;
-    <span style="color: #859900;">var</span> <span style="color: #6c71c4;">inner</span> = <span style="color: #859900;">function</span><span style="color: #b58900;">(){</span>
+<pre class="src src-javascript"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">succ</span> = <span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #BFEBBF;">(){</span>
+    <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">i</span> = <span style="color: #BFEBBF;">0</span>;
+    <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">inner</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #D0BF8F;">(){</span>
         i++;
-        <span style="color: #859900;">return</span> i;
-    <span style="color: #b58900;">}</span>
-    <span style="color: #859900;">return</span> inner;
-<span style="color: #2aa198;">}</span><span style="color: #839496;">)()</span>
+        <span style="color: #F0DFAF; font-weight: bold;">return</span> i;
+    <span style="color: #D0BF8F;">}</span>
+    <span style="color: #F0DFAF; font-weight: bold;">return</span> inner;
+<span style="color: #BFEBBF;">}</span><span style="color: #DCDCCC;">)()</span>
 </pre>
 </div>
 <p>
@@ -522,24 +548,26 @@ python有一个内置作用域，这个作用域的所有绑定是在任何地�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">temp</span>():
-    <span style="color: #6c71c4;">i</span> = 0
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">temp</span><span style="color: #DCDCCC;">()</span>:
+    <span style="color: #DFAF8F;">i</span> = <span style="color: #BFEBBF;">0</span>
 
-    <span style="color: #859900;">def</span> <span style="color: #b58900;">inner</span>():
-        <span style="color: #859900;">print</span> <span style="color: #2aa198;">'i is :'</span>, i
-        <span style="color: #6c71c4;">i</span> = i + 1
-        <span style="color: #859900;">return</span> i
-    <span style="color: #859900;">return</span> inner
+    <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">inner</span><span style="color: #DCDCCC;">()</span>:
+        <span style="color: #DFAF8F;">i</span> = i + <span style="color: #BFEBBF;">1</span>
+        <span style="color: #F0DFAF; font-weight: bold;">return</span> i
+    <span style="color: #F0DFAF; font-weight: bold;">return</span> inner
 
-<span style="color: #6c71c4;">succ</span> = temp()
+<span style="color: #DFAF8F;">succ</span> = temp<span style="color: #DCDCCC;">()</span>
 </pre>
 </div>
+
 <p>
-这个代码和上面的代码逻辑是一样的，但是却达不到我们预期的效果，如果
-你运行的话就会发现，它会出错(UNBoundError). 这其中有一些很细微的区
-别.
+这个代码和上面的代码逻辑是一样的，但是却达不到我们预期的效果，如果你运行的话
+就会发现，它会出错(UnboundLocalError: local variable 'i' referenced before
+assignment). 这其中有一些很细微的区别. 在inner中i=i+1会在当前作用域创建一个
+绑定，这个绑定在该语句之前也是可见的， 所以在求值 <code>i+1</code> 这个表达式时，python
+不会去外层作用域中查找， 它引用local作用域中的i，而你又是在赋值之前引用，所
+以会报错。
 </p>
-</div>
 </div>
 </div>
 </div>

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>gevent源码分析</title>
-<!-- 2015-03-17 Tue 10:18 -->
+<!-- 2015-05-24 Sun 19:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -188,15 +188,15 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#sec-3">gevent源码分析</a>
 <ul>
-<li><a href="#sec-3-1">HUB</a>
+<li><a href="#sec-3-1">core</a>
 <ul>
-<li><a href="#sec-3-1-1">Waiter</a></li>
+<li><a href="#sec-3-1-1">core源码分析</a></li>
+<li><a href="#sec-3-1-2">core的api总结</a></li>
 </ul>
 </li>
-<li><a href="#sec-3-2">core</a>
+<li><a href="#sec-3-2">HUB</a>
 <ul>
-<li><a href="#sec-3-2-1">core源码分析</a></li>
-<li><a href="#sec-3-2-2">core的api总结</a></li>
+<li><a href="#sec-3-2-1">Waiter</a></li>
 </ul>
 </li>
 <li><a href="#sec-3-3">Greenlet</a></li>
@@ -242,21 +242,21 @@ continuation，接着挂起一个程序正在执行的部分，然后跳到该�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme"><span class="linenr"> 1: </span>(<span style="color: #859900;">define</span> <span style="color: #b58900;">the-continuation</span> #f)
-<span class="linenr"> 2: </span>(<span style="color: #859900;">define</span> (<span style="color: #b58900;">test</span>)
-<span class="linenr"> 3: </span>  (<span style="color: #859900;">let</span> ((i 0))
-<span class="linenr"> 4: </span>    <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">call/cc calls its first function argument, passing</span>
-<span class="linenr"> 5: </span>    <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">a continuation variable representing this point in</span>
-<span class="linenr"> 6: </span>    <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">the program as the argument to that function.</span>
-<span class="linenr"> 7: </span>    <span style="color: #586e75; font-style: italic;">;;</span>
-<span class="linenr"> 8: </span>    <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">In this case, the function argument assigns that</span>
-<span class="linenr"> 9: </span>    <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">continuation to the variable the-continuation.</span>
-<span class="linenr">10: </span>    <span style="color: #586e75; font-style: italic;">;;</span>
-<span class="linenr">11: </span>    (<span style="color: #859900;">call/cc</span> (<span style="color: #859900;">lambda</span> (k) (set! the-continuation k)))
-<span class="linenr">12: </span>    <span style="color: #586e75; font-style: italic;">;;</span>
-<span class="linenr">13: </span>    <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">The next time the-continuation is called, we start here.</span>
-<span class="linenr">14: </span>    (set! i (+ i 1))
-<span class="linenr">15: </span>    i))
+<pre class="src src-scheme"><span class="linenr"> 1: </span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">the-continuation</span> #f<span style="color: #DCDCCC;">)</span>
+<span class="linenr"> 2: </span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #BFEBBF;">(</span><span style="color: #93E0E3;">test</span><span style="color: #BFEBBF;">)</span>
+<span class="linenr"> 3: </span>  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>i <span style="color: #BFEBBF;">0</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+<span class="linenr"> 4: </span>    <span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">call/cc calls its first function argument, passing</span>
+<span class="linenr"> 5: </span>    <span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">a continuation variable representing this point in</span>
+<span class="linenr"> 6: </span>    <span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">the program as the argument to that function.</span>
+<span class="linenr"> 7: </span>    <span style="color: #5F7F5F;">;;</span>
+<span class="linenr"> 8: </span>    <span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">In this case, the function argument assigns that</span>
+<span class="linenr"> 9: </span>    <span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">continuation to the variable the-continuation.</span>
+<span class="linenr">10: </span>    <span style="color: #5F7F5F;">;;</span>
+<span class="linenr">11: </span>    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">call/cc</span> <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>k<span style="color: #9FC59F;">)</span> <span style="color: #9FC59F;">(</span>set! the-continuation k<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+<span class="linenr">12: </span>    <span style="color: #5F7F5F;">;;</span>
+<span class="linenr">13: </span>    <span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">The next time the-continuation is called, we start here.</span>
+<span class="linenr">14: </span>    <span style="color: #D0BF8F;">(</span>set! i <span style="color: #93E0E3;">(</span>+ i <span style="color: #BFEBBF;">1</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+<span class="linenr">15: </span>    i<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -343,17 +343,17 @@ gevent用到了了libev以及greenlet还有cares,下面简单的介绍这几个�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">test1</span>(x, y):
-    <span style="color: #6c71c4;">z</span> = gr2.switch(x+y)
-    <span style="color: #859900;">print</span> z
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">test1</span><span style="color: #DCDCCC;">(</span>x, y<span style="color: #DCDCCC;">)</span>:
+    <span style="color: #DFAF8F;">z</span> = gr2.switch<span style="color: #DCDCCC;">(</span>x+y<span style="color: #DCDCCC;">)</span>
+    <span style="color: #F0DFAF; font-weight: bold;">print</span> z
 
-<span style="color: #859900;">def</span> <span style="color: #b58900;">test2</span>(u):
-    <span style="color: #859900;">print</span> u
-    gr1.switch(42)
+<span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">test2</span><span style="color: #DCDCCC;">(</span>u<span style="color: #DCDCCC;">)</span>:
+    <span style="color: #F0DFAF; font-weight: bold;">print</span> u
+    gr1.switch<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">42</span><span style="color: #DCDCCC;">)</span>
 
-<span style="color: #6c71c4;">gr1</span> = greenlet(test1)
-<span style="color: #6c71c4;">gr2</span> = greenlet(test2)
-gr1.switch(<span style="color: #2aa198;">"hello"</span>, <span style="color: #2aa198;">" world"</span>)
+<span style="color: #DFAF8F;">gr1</span> = greenlet<span style="color: #DCDCCC;">(</span>test1<span style="color: #DCDCCC;">)</span>
+<span style="color: #DFAF8F;">gr2</span> = greenlet<span style="color: #DCDCCC;">(</span>test2<span style="color: #DCDCCC;">)</span>
+gr1.switch<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"hello"</span>, <span style="color: #CC9393;">" world"</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -418,61 +418,61 @@ io, timer, signal等等):
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">a single header file is required</span>
-<span style="color: #d33682;">#include</span> <span style="color: #2aa198;">&lt;ev.h&gt;</span>
+<pre class="src src-c"><span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">a single header file is required</span>
+<span style="color: #94BFF3;">#include</span> <span style="color: #CC9393;">&lt;ev.h&gt;</span>
 
-<span style="color: #d33682;">#include</span> <span style="color: #2aa198;">&lt;stdio.h&gt;</span> <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">for puts</span>
+<span style="color: #94BFF3;">#include</span> <span style="color: #DCDCCC;">&lt;</span><span style="color: #CC9393;">stdio.h</span><span style="color: #DCDCCC;">&gt;</span> <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">for puts</span>
 
-<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">every watcher type has its own typedef'd struct</span>
-<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">with the name ev_TYPE</span>
-<span style="color: #268bd2;">ev_io</span> <span style="color: #6c71c4;">stdin_watcher</span>;
-<span style="color: #268bd2;">ev_timer</span> <span style="color: #6c71c4;">timeout_watcher</span>;
+<span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">every watcher type has its own typedef'd struct</span>
+<span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">with the name ev_TYPE</span>
+<span style="color: #7CB8BB;">ev_io</span> <span style="color: #DFAF8F;">stdin_watcher</span>;
+<span style="color: #7CB8BB;">ev_timer</span> <span style="color: #DFAF8F;">timeout_watcher</span>;
 
-<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">all watcher callbacks have a similar signature</span>
-<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">this callback is called when data is readable on stdin</span>
-<span style="color: #859900;">static</span> <span style="color: #268bd2;">void</span>
-<span style="color: #b58900;">stdin_cb</span> (EV_P_ <span style="color: #268bd2;">ev_io</span> *<span style="color: #6c71c4;">w</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">revents</span>)
-{
-    puts (<span style="color: #2aa198;">"stdin ready"</span>);
-    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">for one-shot events, one must manually stop the watcher</span>
-    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">with its corresponding stop function.</span>
-    ev_io_stop (<span style="color: #268bd2;">EV_A_</span> <span style="color: #6c71c4;">w</span>);
+<span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">all watcher callbacks have a similar signature</span>
+<span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">this callback is called when data is readable on stdin</span>
+<span style="color: #F0DFAF; font-weight: bold;">static</span> <span style="color: #7CB8BB;">void</span>
+<span style="color: #93E0E3;">stdin_cb</span> <span style="color: #DCDCCC;">(</span>EV_P_ <span style="color: #7CB8BB;">ev_io</span> *<span style="color: #DFAF8F;">w</span>, <span style="color: #7CB8BB;">int</span> <span style="color: #DFAF8F;">revents</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">{</span>
+    puts <span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">"stdin ready"</span><span style="color: #BFEBBF;">)</span>;
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">for one-shot events, one must manually stop the watcher</span>
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">with its corresponding stop function.</span>
+    ev_io_stop <span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">EV_A_</span> <span style="color: #DFAF8F;">w</span><span style="color: #BFEBBF;">)</span>;
 
-    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">this causes all nested ev_run's to stop iterating</span>
-    ev_break (<span style="color: #268bd2;">EV_A_</span> <span style="color: #6c71c4;">EVBREAK_ALL</span>);
-}
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">this causes all nested ev_run's to stop iterating</span>
+    ev_break <span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">EV_A_</span> <span style="color: #DFAF8F;">EVBREAK_ALL</span><span style="color: #BFEBBF;">)</span>;
+<span style="color: #DCDCCC;">}</span>
 
-<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">another callback, this time for a time-out</span>
-<span style="color: #859900;">static</span> <span style="color: #268bd2;">void</span>
-<span style="color: #b58900;">timeout_cb</span> (EV_P_ <span style="color: #268bd2;">ev_timer</span> *<span style="color: #6c71c4;">w</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">revents</span>)
-{
-    puts (<span style="color: #2aa198;">"timeout"</span>);
-    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">this causes the innermost ev_run to stop iterating</span>
-    ev_break (<span style="color: #268bd2;">EV_A_</span> <span style="color: #6c71c4;">EVBREAK_ONE</span>);
-}
+<span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">another callback, this time for a time-out</span>
+<span style="color: #F0DFAF; font-weight: bold;">static</span> <span style="color: #7CB8BB;">void</span>
+<span style="color: #93E0E3;">timeout_cb</span> <span style="color: #DCDCCC;">(</span>EV_P_ <span style="color: #7CB8BB;">ev_timer</span> *<span style="color: #DFAF8F;">w</span>, <span style="color: #7CB8BB;">int</span> <span style="color: #DFAF8F;">revents</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">{</span>
+    puts <span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">"timeout"</span><span style="color: #BFEBBF;">)</span>;
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">this causes the innermost ev_run to stop iterating</span>
+    ev_break <span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">EV_A_</span> <span style="color: #DFAF8F;">EVBREAK_ONE</span><span style="color: #BFEBBF;">)</span>;
+<span style="color: #DCDCCC;">}</span>
 
-<span style="color: #268bd2;">int</span>
-<span style="color: #b58900;">main</span> (<span style="color: #268bd2;">void</span>)
-{
-    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">use the default event loop unless you have special needs</span>
-    <span style="color: #859900;">struct</span> <span style="color: #268bd2;">ev_loop</span> *<span style="color: #6c71c4;">loop</span> = EV_DEFAULT;
+<span style="color: #7CB8BB;">int</span>
+<span style="color: #93E0E3;">main</span> <span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">void</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">{</span>
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">use the default event loop unless you have special needs</span>
+    <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">ev_loop</span> *<span style="color: #DFAF8F;">loop</span> = EV_DEFAULT;
 
-    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">initialise an io watcher, then start it</span>
-    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">this one will watch for stdin to become readable</span>
-    ev_io_init (&amp;stdin_watcher, stdin_cb, <span style="color: #586e75; font-style: italic;">/*</span><span style="color: #586e75; font-style: italic;">STDIN_FILENO</span><span style="color: #586e75; font-style: italic;">*/</span> 0, EV_READ);
-    ev_io_start (loop, &amp;stdin_watcher);
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">initialise an io watcher, then start it</span>
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">this one will watch for stdin to become readable</span>
+    ev_io_init <span style="color: #BFEBBF;">(</span>&amp;stdin_watcher, stdin_cb, <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">STDIN_FILENO</span><span style="color: #5F7F5F;">*/</span> <span style="color: #BFEBBF;">0</span>, EV_READ<span style="color: #BFEBBF;">)</span>;
+    ev_io_start <span style="color: #BFEBBF;">(</span>loop, &amp;stdin_watcher<span style="color: #BFEBBF;">)</span>;
 
-    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">initialise a timer watcher, then start it</span>
-    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">simple non-repeating 5.5 second timeout</span>
-    ev_timer_init (&amp;timeout_watcher, timeout_cb, 5.5, 0.);
-    ev_timer_start (loop, &amp;timeout_watcher);
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">initialise a timer watcher, then start it</span>
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">simple non-repeating 5.5 second timeout</span>
+    ev_timer_init <span style="color: #BFEBBF;">(</span>&amp;timeout_watcher, timeout_cb, <span style="color: #BFEBBF;">5</span>.<span style="color: #BFEBBF;">5</span>, <span style="color: #BFEBBF;">0</span>.<span style="color: #BFEBBF;">)</span>;
+    ev_timer_start <span style="color: #BFEBBF;">(</span>loop, &amp;timeout_watcher<span style="color: #BFEBBF;">)</span>;
 
-    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">now wait for events to arrive</span>
-    ev_run (loop, 0);
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">now wait for events to arrive</span>
+    ev_run <span style="color: #BFEBBF;">(</span>loop, <span style="color: #BFEBBF;">0</span><span style="color: #BFEBBF;">)</span>;
 
-    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">break was called, so exit</span>
-    <span style="color: #859900;">return</span> 0;
-}
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">break was called, so exit</span>
+    <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #BFEBBF;">0</span>;
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -486,167 +486,8 @@ io, timer, signal等等):
 <h2 id="sec-3">gevent源码分析</h2>
 <div class="outline-text-2" id="text-3">
 </div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">HUB</h3>
+<h3 id="sec-3-1">core</h3>
 <div class="outline-text-3" id="text-3-1">
-<p>
-这实际上是greenlet的子类,所以它的每一个实例实际上就代表一个协程,这个类创建的
-协程是专门用来运行事件循环的.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Hub</span>(greenlet):
-    ...
-
-    <span style="color: #6c71c4;">NOT_ERROR</span> = (GreenletExit, <span style="color: #268bd2;">SystemExit</span>)
-    <span style="color: #6c71c4;">loop_class</span> = config(<span style="color: #2aa198;">'gevent.core.loop'</span>, <span style="color: #2aa198;">'GEVENT_LOOP'</span>)
-    ...
-    <span style="color: #6c71c4;">backend</span> = config(<span style="color: #268bd2;">None</span>, <span style="color: #2aa198;">'GEVENT_BACKEND'</span>)
-    ...
-
-    <span style="color: #859900;">def</span> <span style="color: #b58900;">__init__</span>(<span style="color: #859900;">self</span>, loop=<span style="color: #268bd2;">None</span>, default=<span style="color: #268bd2;">None</span>):
-        greenlet.__init__(<span style="color: #859900;">self</span>)
-        <span style="color: #859900;">if</span> <span style="color: #6c71c4;">hasattr</span>(loop, <span style="color: #2aa198;">'run'</span>):
-           ...
-        <span style="color: #859900;">else</span>:
-            ...
-            <span style="color: #6c71c4;">loop_class</span> = _import(<span style="color: #859900;">self</span>.loop_class)
-            <span style="color: #859900;">if</span> loop <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>:
-                <span style="color: #6c71c4;">loop</span> = <span style="color: #859900;">self</span>.backend
-            <span style="color: #859900;">self</span>.loop = loop_class(flags=loop, default=default)
-        ...
-</pre>
-</div>
-<p>
-创建一个hub实例, 这个实例最重要的就是loop属性,这个实际就是core模块的loop类的
-实例,也就是说是libev的事件循环的封装.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">run</span>(<span style="color: #859900;">self</span>):
-    <span style="color: #859900;">assert</span> <span style="color: #859900;">self</span> <span style="color: #859900;">is</span> getcurrent(), <span style="color: #2aa198;">'Do not call Hub.run() directly'</span>
-    <span style="color: #859900;">while</span> <span style="color: #268bd2;">True</span>:
-        <span style="color: #6c71c4;">loop</span> = <span style="color: #859900;">self</span>.loop
-        <span style="color: #6c71c4;">loop.error_handler</span> = <span style="color: #859900;">self</span>
-        <span style="color: #859900;">try</span>:
-            loop.run()
-        <span style="color: #859900;">finally</span>:
-            <span style="color: #6c71c4;">loop.error_handler</span> = <span style="color: #268bd2;">None</span>  <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">break the refcount cycle</span>
-        <span style="color: #859900;">self</span>.parent.throw(LoopExit(<span style="color: #2aa198;">'This operation would block forever'</span>))
-</pre>
-</div>
-<p>
-这个方法就是协程的入口函数,它内部实际是一个循环, 这个循环就是用来启动libev的
-事件循环的. 该函数一般是在调用 <code>hub.switch</code> 时开始运行的.
-</p>
-</div>
-<div id="outline-container-sec-3-1-1" class="outline-4">
-<h4 id="sec-3-1-1">Waiter</h4>
-<div class="outline-text-4" id="text-3-1-1">
-<p>
-协程间的通信机制.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Waiter</span>(<span style="color: #6c71c4;">object</span>):
-    <span style="color: #859900;">def</span> <span style="color: #b58900;">__init__</span>(<span style="color: #859900;">self</span>, hub=<span style="color: #268bd2;">None</span>):
-        <span style="color: #859900;">if</span> hub <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>:
-            <span style="color: #859900;">self</span>.hub = get_hub()
-        <span style="color: #859900;">else</span>:
-            <span style="color: #859900;">self</span>.hub = hub
-        <span style="color: #859900;">self</span>.greenlet = <span style="color: #268bd2;">None</span>
-        <span style="color: #859900;">self</span>.value = <span style="color: #268bd2;">None</span>
-        <span style="color: #859900;">self</span>._exception = _NONE
-
-    <span style="color: #859900;">def</span> <span style="color: #b58900;">get</span>(<span style="color: #859900;">self</span>):
-        <span style="color: #2aa198;">"""If a value/an exception is stored, return/raise it. Otherwise until s</span><span style="color: #ee82ee; background-color: #333333;">witch() or throw() is called."""</span>
-        <span style="color: #859900;">if</span> <span style="color: #859900;">self</span>._exception <span style="color: #859900;">is</span> <span style="color: #859900;">not</span> _NONE:
-            <span style="color: #859900;">if</span> <span style="color: #859900;">self</span>._exception <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>:
-                <span style="color: #859900;">return</span> <span style="color: #859900;">self</span>.value
-            <span style="color: #859900;">else</span>:
-                getcurrent().throw(*<span style="color: #859900;">self</span>._exception)
-        <span style="color: #859900;">else</span>:
-            <span style="color: #859900;">assert</span> <span style="color: #859900;">self</span>.greenlet <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>, <span style="color: #2aa198;">'This Waiter is already used by %r'</span> % <span style="color: #ee82ee; background-color: #333333;">(</span><span style="color: #ee82ee; background-color: #333333;">self</span><span style="color: #ee82ee; background-color: #333333;">.greenlet, )</span>
-            <span style="color: #859900;">self</span>.greenlet = getcurrent()
-            <span style="color: #859900;">try</span>:
-                <span style="color: #859900;">return</span> <span style="color: #859900;">self</span>.hub.switch()
-            <span style="color: #859900;">finally</span>:
-                <span style="color: #859900;">self</span>.greenlet = <span style="color: #268bd2;">None</span>
-
-    <span style="color: #859900;">def</span> <span style="color: #b58900;">switch</span>(<span style="color: #859900;">self</span>, value=<span style="color: #268bd2;">None</span>):
-        <span style="color: #2aa198;">"""Switch to the greenlet if one's available. Otherwise store the value.</span><span style="color: #ee82ee; background-color: #333333;">"""</span>
-        <span style="color: #6c71c4;">greenlet</span> = <span style="color: #859900;">self</span>.greenlet
-        <span style="color: #859900;">if</span> greenlet <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>:
-            <span style="color: #859900;">self</span>.value = value
-            <span style="color: #859900;">self</span>._exception = <span style="color: #268bd2;">None</span>
-        <span style="color: #859900;">else</span>:
-            <span style="color: #859900;">assert</span> getcurrent() <span style="color: #859900;">is</span> <span style="color: #859900;">self</span>.hub, <span style="color: #2aa198;">"Can only use Waiter.switch method </span><span style="color: #ee82ee; background-color: #333333;">from the Hub greenlet"</span>
-            <span style="color: #6c71c4;">switch</span> = greenlet.switch
-            <span style="color: #859900;">try</span>:
-                switch(value)
-            <span style="color: #859900;">except</span>:
-                <span style="color: #859900;">self</span>.hub.handle_error(switch, *sys.exc_info())
-</pre>
-</div>
-<p>
-该类的实例有一个value属性, 一个_expception属性, 一个get方法,一个switch方法,他
-们的行为是这样的:
-</p>
-<ol class="org-ol">
-<li>get: 当你在一个协程中调用get方法时, 它会先检查_exception的值,如果不为默
-认的_NONE, 那么它就会根据value属性的值来决定是返回value的值还是抛出异
-常, 如果_exception为默认值, 它会设置greenlet属性为当前的协程对象,接着就
-会切换到hub协程.
-</li>
-<li>switch: 实际就是调用Waiter对象的greenlet属性的switch方法, 这样就切换到
-了对应的协程. 一般会注册到某个watcher的回调函数. 如果greenlet属性为
-None,那么意味着switch在get之前运行了,那么就简单的设置下value以
-及_exception属性.
-</li>
-</ol>
-<p>
-<b>需要等待的协程调用get方法,这样该协程就会挂起, 其他的协程调用switch方法切换
-到因等待而挂起的协程</b>, 我们来看看Waiter的一个使用例子, Hub的wait方法的代
-码:
-</p>
-<div class="org-src-container">
-
-<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Hub</span>(greenlet):
-    ...
-    <span style="color: #859900;">def</span> <span style="color: #b58900;">wait</span>(<span style="color: #859900;">self</span>, watcher):
-        <span style="color: #6c71c4;">waiter</span> = Waiter()
-        <span style="color: #6c71c4;">unique</span> = <span style="color: #6c71c4;">object</span>()
-        watcher.start(waiter.switch, unique)
-        <span style="color: #859900;">try</span>:
-            <span style="color: #6c71c4;">result</span> = waiter.get()
-            <span style="color: #859900;">assert</span> result <span style="color: #859900;">is</span> unique, <span style="color: #2aa198;">'Invalid switch into %s: %r (expected %r)'</span> <span style="color: #ee82ee; background-color: #333333;">% (getcurrent(), result, unique)</span>
-        <span style="color: #859900;">finally</span>:
-            watcher.stop()
-    ...
-</pre>
-</div>
-<p>
-<b>wait方法的作用是挂起当前的协程,直到watcher监听的事件就绪</b>.它创建一个
-Waiter实例waiter,接着将waiter的switch方法注册到wacher上,这样当watcher监听的
-事件就绪后就会调用实例的switch方法,接着就调用waiter的get方法, 根据watcher监
-听的事件就绪的快慢,这里有两种可能:
-</p>
-<ol class="org-ol">
-<li><b>get在switch之前运行</b>: get会设置waiter的greenlet属性为当前执行的协程, 接着
-切换到hub, 当将来某个时候事件就绪,那么调用waiter的switch,switch会调用
-greenlet属性的switch方法,这样就切换回了当前运行的协程.
-</li>
-<li><b>get在switch之后运行</b>: 这种情况比较少见,可是也是存在的, 这种情况下运行
-switch时,waiter对象的greenlet属性为None, 所以switch方法只是简单的设置
-waiter的value属性, 接着调用get会直接返回value属性,而不阻塞.注意不要弄
-混_NONE与None.
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2">core</h3>
-<div class="outline-text-3" id="text-3-2">
 <p>
 core.ppyx文件实际上是用Cython写的代码，在Makefile中有这样一行代码:
 </p>
@@ -695,8 +536,8 @@ def async(self, ref=True, priority=None):
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #6c71c4;">read_watcher</span> = lp.io(fd, 1)
-read_watcher.start(cb, args)
+<pre class="src src-python"><span style="color: #DFAF8F;">read_watcher</span> = lp.io<span style="color: #DCDCCC;">(</span>fd, <span style="color: #BFEBBF;">1</span><span style="color: #DCDCCC;">)</span>
+read_watcher.start<span style="color: #DCDCCC;">(</span>cb, args<span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -705,9 +546,9 @@ cb函数.在gevent中回调函数一般是协程的switch方法, 这样一旦调
 另一个协程中去执行.
 </p>
 </div>
-<div id="outline-container-sec-3-2-1" class="outline-4">
-<h4 id="sec-3-2-1">core源码分析</h4>
-<div class="outline-text-4" id="text-3-2-1">
+<div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1">core源码分析</h4>
+<div class="outline-text-4" id="text-3-1-1">
 <p>
 这一节来分析core.ppyx的源码, 在一次提醒你注意,代码是Cython, 我对Cython也不
 太熟,但是代码大致能看懂. 同时要明白该模块是对libev的封装, libev中loop,
@@ -772,12 +613,12 @@ greenlet的switch方法, 这样当 <code>_prepare</code> watcher就绪时,新的
 子,timer,signal等等都是相似的, 为了方便我使用cwatcher来指代libev中的
 watcher.
 <pre class="example">
-#define WATCHER_BASE(TYPE)                                                              \
-    cdef public loop loop                                                               \
-    cdef object _callback                                                               \
-    cdef public tuple args                                                              \
-    cdef readonly int _flags                                                            \
-    cdef libev.ev_##TYPE _watcher                                                       \
+#define WATCHER_BASE(TYPE)                                            \
+    cdef public loop loop                                             \
+    cdef object _callback                                             \
+    cdef public tuple args                                            \
+    cdef readonly int _flags                                          \
+    cdef libev.ev_##TYPE _watcher                                     \
 
 cdef public class io(watcher) [object PyGeventIOObject, type PyGeventIO_Type]:
 
@@ -809,9 +650,8 @@ cdef public class io(watcher) [object PyGeventIOObject, type PyGeventIO_Type]:
         if priority is not None:
             libev.ev_set_priority(&amp;self._watcher, priority)
 </pre>
-<p>
-先看WATCH_BASE, 它实际上定义了一系列的属性:
-</p>
+<ol class="org-ol">
+<li>WATCH_BASE, 它实际上定义了一系列的属性:
 <ul class="org-ul">
 <li>loop: 实际是上面分析的loop类的一个实例
 </li>
@@ -824,21 +664,26 @@ cdef public class io(watcher) [object PyGeventIOObject, type PyGeventIO_Type]:
 <li>args: 一个元组,传递给回调函数的参数
 </li>
 </ul>
-<p>
-在__init__会设置loop属性,同时初始化 <code>_watcher</code> 对象, 注意它的回调函数是
-<code>gevent_callback_io</code>, 在start中, 会设置回调函数以及参数, 同时将该
-watcher注册到libev的事件循环中. 为了弄明白libev事件循环的过程,我接下来
-分析 <code>gevent_callback_io</code>.
-</p>
+</li>
+<li><span class="underline"><span class="underline">init</span></span>: 该函数会设置loop属性,同时初始化libev的io watcher对象
+<code>_watcher</code> (主要做两件事: 指定事件类型,指定回调函数), 注意它的回调函数
+是 <code>gevent_callback_io</code>
+</li>
+<li>start: 该函数中 会设置回调函数以及参数, 这里设置的回调函数是上层传入的,
+不要和libev的回调函数混淆, 同时调用 <code>ev_io_start</code> 将该watcher注册到
+libev的事件循环中. 为了弄明白libev事件循环的过程,我接下来分析
+<code>gevent_callback_io</code>.
+</li>
+<li>gevent_callback_io
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #d33682;">#define</span> <span style="color: #b58900;">GET_OBJECT</span>(<span style="color: #6c71c4;">PY_TYPE</span>, <span style="color: #6c71c4;">EV_PTR</span>, <span style="color: #6c71c4;">MEMBER</span>)                             \
-    ((<span style="color: #859900;">struct</span> <span style="color: #268bd2;">PY_TYPE</span> *)(((<span style="color: #268bd2;">char</span> *)EV_PTR) - offsetof(<span style="color: #859900;">struct</span> <span style="color: #268bd2;">PY_TYPE</span>, MEMBER)))
+<pre class="src src-c"><span style="color: #94BFF3;">#define</span> <span style="color: #93E0E3;">GET_OBJECT</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">PY_TYPE</span>, <span style="color: #DFAF8F;">EV_PTR</span>, <span style="color: #DFAF8F;">MEMBER</span><span style="color: #DCDCCC;">)</span>                             \
+    <span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">PY_TYPE</span> *<span style="color: #BFEBBF;">)(</span><span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span><span style="color: #7CB8BB;">char</span> *<span style="color: #93E0E3;">)</span>EV_PTR<span style="color: #D0BF8F;">)</span> - offsetof<span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">PY_TYPE</span>, MEMBER<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 
-<span style="color: #859900;">static</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">gevent_callback_io</span>(<span style="color: #859900;">struct</span> <span style="color: #268bd2;">ev_loop</span> *<span style="color: #6c71c4;">_loop</span>, <span style="color: #268bd2;">void</span> *<span style="color: #6c71c4;">c_watcher</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">reven</span><span style="color: #ee82ee; background-color: #333333;">ts</span><span style="color: #ee82ee; background-color: #333333;">) {</span>
-    <span style="color: #859900;">struct</span> <span style="color: #268bd2;">PyGeventIOObject</span>* <span style="color: #6c71c4;">watcher</span> = GET_OBJECT(PyGeventIOObject, c_watcher, _<span style="color: #ee82ee; background-color: #333333;">watcher);</span>
-    gevent_callback(watcher-&gt;loop, watcher-&gt;_callback, watcher-&gt;args, (<span style="color: #268bd2;">PyObject</span>*<span style="color: #ee82ee; background-color: #333333;">)watcher, c_watcher, revents);</span>
-}
+<span style="color: #F0DFAF; font-weight: bold;">static</span> <span style="color: #7CB8BB;">void</span> <span style="color: #93E0E3;">gevent_callback_io</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">ev_loop</span> *<span style="color: #DFAF8F;">_loop</span>, <span style="color: #7CB8BB;">void</span> *<span style="color: #DFAF8F;">c_watcher</span>, <span style="color: #7CB8BB;">int</span> <span style="color: #DFAF8F;">revents</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">PyGeventIOObject</span>* <span style="color: #DFAF8F;">watcher</span> = GET_OBJECT<span style="color: #BFEBBF;">(</span>PyGeventIOObject, c_watcher, _watcher<span style="color: #BFEBBF;">)</span>;
+    gevent_callback<span style="color: #BFEBBF;">(</span>watcher-&gt;loop, watcher-&gt;_callback, watcher-&gt;args, <span style="color: #D0BF8F;">(</span><span style="color: #7CB8BB;">PyObject</span>*<span style="color: #D0BF8F;">)</span>watcher, c_watcher, revents<span style="color: #BFEBBF;">)</span>;
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -849,13 +694,13 @@ GET_OBJECT的作用是通过结构体中某一个域的指针来获得整个结�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #859900;">static</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">gevent_callback</span>(<span style="color: #859900;">struct</span> <span style="color: #268bd2;">PyGeventLoopObject</span>* <span style="color: #6c71c4;">loop</span>, <span style="color: #268bd2;">PyObject</span>* <span style="color: #6c71c4;">callback</span>,
-                            <span style="color: #268bd2;">PyObject</span>* <span style="color: #6c71c4;">args</span>, <span style="color: #268bd2;">PyObject</span>* <span style="color: #6c71c4;">watcher</span>, <span style="color: #268bd2;">void</span> *<span style="color: #6c71c4;">c_watcher</span>,
-                            <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">revents</span>) {
+<pre class="src src-c"><span style="color: #F0DFAF; font-weight: bold;">static</span> <span style="color: #7CB8BB;">void</span> <span style="color: #93E0E3;">gevent_callback</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">PyGeventLoopObject</span>* <span style="color: #DFAF8F;">loop</span>, <span style="color: #7CB8BB;">PyObject</span>* <span style="color: #DFAF8F;">callback</span>,
+                            <span style="color: #7CB8BB;">PyObject</span>* <span style="color: #DFAF8F;">args</span>, <span style="color: #7CB8BB;">PyObject</span>* <span style="color: #DFAF8F;">watcher</span>, <span style="color: #7CB8BB;">void</span> *<span style="color: #DFAF8F;">c_watcher</span>,
+                            <span style="color: #7CB8BB;">int</span> <span style="color: #DFAF8F;">revents</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
     ......
-    result = PyObject_Call(callback, args, <span style="color: #268bd2;">NULL</span>);
+    result = PyObject_Call<span style="color: #BFEBBF;">(</span>callback, args, <span style="color: #BFEBBF;">NULL</span><span style="color: #BFEBBF;">)</span>;
     ......
-}
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -863,11 +708,13 @@ GET_OBJECT的作用是通过结构体中某一个域的指针来获得整个结�
 </p>
 </li>
 </ol>
+</li>
+</ol>
 </div>
 </div>
-<div id="outline-container-sec-3-2-2" class="outline-4">
-<h4 id="sec-3-2-2">core的api总结</h4>
-<div class="outline-text-4" id="text-3-2-2">
+<div id="outline-container-sec-3-1-2" class="outline-4">
+<h4 id="sec-3-1-2">core的api总结</h4>
+<div class="outline-text-4" id="text-3-1-2">
 <p>
 假设Loop代表类, loop代表实例
 </p>
@@ -875,20 +722,183 @@ GET_OBJECT的作用是通过结构体中某一个域的指针来获得整个结�
 <li>loop.run: 启动事件循环
 </li>
 <li>loop.run_callback(fun, *args): 将fun注册给loop的_prepare watcher,这样
-fun就会在事件循环要阻塞是运行, spawn以及rawlink都会使用该方法.
+fun就会在事件循环要阻塞时运行, spawn以及rawlink都会使用该方法.
 </li>
 <li>loop.io: 创建一个IO watcher实例, 调用该实例的start方法来注册回调函数,同
 时将该watcher放入事件循环.
 </li>
 <li>loop.timer: 创建Timer Watcher对象
 </li>
-<li>loop.signal:
+<li>loop.signal: 创建signal Watcher对象
 </li>
 <li>loop.idle:
 </li>
 <li>loop.prepare:
 </li>
-<li>loop.fork
+<li>loop.fork:
+</li>
+</ol>
+<p>
+<b>注意使用io,timer, signal</b> 等方法创建watcher对象后, 必须调用该对象start方法
+才能将watcher注册到事件循环中
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">HUB</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+这实际上是greenlet的子类,所以它的每一个实例实际上就代表一个协程,这个类创建的
+协程是专门用来运行事件循环的.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Hub</span><span style="color: #DCDCCC;">(</span>greenlet<span style="color: #DCDCCC;">)</span>:
+    ...
+
+    <span style="color: #DFAF8F;">NOT_ERROR</span> = <span style="color: #DCDCCC;">(</span>GreenletExit, <span style="color: #7CB8BB;">SystemExit</span><span style="color: #DCDCCC;">)</span>
+    <span style="color: #DFAF8F;">loop_class</span> = config<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'gevent.core.loop'</span>, <span style="color: #CC9393;">'GEVENT_LOOP'</span><span style="color: #DCDCCC;">)</span>
+    ...
+    <span style="color: #DFAF8F;">backend</span> = config<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">None</span>, <span style="color: #CC9393;">'GEVENT_BACKEND'</span><span style="color: #DCDCCC;">)</span>
+    ...
+
+    <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__init__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, loop=<span style="color: #BFEBBF;">None</span>, default=<span style="color: #BFEBBF;">None</span><span style="color: #DCDCCC;">)</span>:
+        greenlet.__init__<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span><span style="color: #DCDCCC;">)</span>
+        <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #DCDCCC; font-weight: bold;">hasattr</span><span style="color: #DCDCCC;">(</span>loop, <span style="color: #CC9393;">'run'</span><span style="color: #DCDCCC;">)</span>:
+           ...
+        <span style="color: #F0DFAF; font-weight: bold;">else</span>:
+            ...
+            <span style="color: #DFAF8F;">loop_class</span> = _import<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>.loop_class<span style="color: #DCDCCC;">)</span>
+            <span style="color: #F0DFAF; font-weight: bold;">if</span> loop <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #BFEBBF;">None</span>:
+                <span style="color: #DFAF8F;">loop</span> = <span style="color: #F0DFAF; font-weight: bold;">self</span>.backend
+            <span style="color: #F0DFAF; font-weight: bold;">self</span>.loop = loop_class<span style="color: #DCDCCC;">(</span>flags=loop, default=default<span style="color: #DCDCCC;">)</span>
+        ...
+</pre>
+</div>
+<p>
+创建一个hub实例, 这个实例最重要的就是loop属性,这个实际就是core模块的loop类的
+实例,也就是说是libev的事件循环的封装.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">run</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span><span style="color: #DCDCCC;">)</span>:
+    <span style="color: #F0DFAF; font-weight: bold;">assert</span> <span style="color: #F0DFAF; font-weight: bold;">self</span> <span style="color: #F0DFAF; font-weight: bold;">is</span> getcurrent<span style="color: #DCDCCC;">()</span>, <span style="color: #CC9393;">'Do not call Hub.run() directly'</span>
+    <span style="color: #F0DFAF; font-weight: bold;">while</span> <span style="color: #BFEBBF;">True</span>:
+        <span style="color: #DFAF8F;">loop</span> = <span style="color: #F0DFAF; font-weight: bold;">self</span>.loop
+        <span style="color: #DFAF8F;">loop.error_handler</span> = <span style="color: #F0DFAF; font-weight: bold;">self</span>
+        <span style="color: #F0DFAF; font-weight: bold;">try</span>:
+            loop.run<span style="color: #DCDCCC;">()</span>
+        <span style="color: #F0DFAF; font-weight: bold;">finally</span>:
+            <span style="color: #DFAF8F;">loop.error_handler</span> = <span style="color: #BFEBBF;">None</span>  <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">break the refcount cycle</span>
+        <span style="color: #F0DFAF; font-weight: bold;">self</span>.parent.throw<span style="color: #DCDCCC;">(</span>LoopExit<span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">'This operation would block forever'</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+</pre>
+</div>
+<p>
+这个方法就是协程的入口函数,它内部实际是一个循环, 这个循环就是用来启动libev的
+事件循环的. 该函数一般是在调用 <code>hub.switch</code> 时开始运行的.
+</p>
+</div>
+<div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1">Waiter</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+协程间的通信机制.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Waiter</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
+    <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__init__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, hub=<span style="color: #BFEBBF;">None</span><span style="color: #DCDCCC;">)</span>:
+        <span style="color: #F0DFAF; font-weight: bold;">if</span> hub <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #BFEBBF;">None</span>:
+            <span style="color: #F0DFAF; font-weight: bold;">self</span>.hub = get_hub<span style="color: #DCDCCC;">()</span>
+        <span style="color: #F0DFAF; font-weight: bold;">else</span>:
+            <span style="color: #F0DFAF; font-weight: bold;">self</span>.hub = hub
+        <span style="color: #F0DFAF; font-weight: bold;">self</span>.greenlet = <span style="color: #BFEBBF;">None</span>
+        <span style="color: #F0DFAF; font-weight: bold;">self</span>.value = <span style="color: #BFEBBF;">None</span>
+        <span style="color: #F0DFAF; font-weight: bold;">self</span>._exception = _NONE
+
+    <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">get</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span><span style="color: #DCDCCC;">)</span>:
+        <span style="color: #CC9393;">"""If a value/an exception is stored, return/raise it. Otherwise until switch() or throw() is called."""</span>
+        <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>._exception <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #F0DFAF; font-weight: bold;">not</span> _NONE:
+            <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>._exception <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #BFEBBF;">None</span>:
+                <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.value
+            <span style="color: #F0DFAF; font-weight: bold;">else</span>:
+                getcurrent<span style="color: #DCDCCC;">()</span>.throw<span style="color: #DCDCCC;">(</span>*<span style="color: #F0DFAF; font-weight: bold;">self</span>._exception<span style="color: #DCDCCC;">)</span>
+        <span style="color: #F0DFAF; font-weight: bold;">else</span>:
+            <span style="color: #F0DFAF; font-weight: bold;">assert</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.greenlet <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #BFEBBF;">None</span>, <span style="color: #CC9393;">'This Waiter is already used by %r'</span> % <span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>.greenlet, <span style="color: #DCDCCC;">)</span>
+            <span style="color: #F0DFAF; font-weight: bold;">self</span>.greenlet = getcurrent<span style="color: #DCDCCC;">()</span>
+            <span style="color: #F0DFAF; font-weight: bold;">try</span>:
+                <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.hub.switch<span style="color: #DCDCCC;">()</span>
+            <span style="color: #F0DFAF; font-weight: bold;">finally</span>:
+                <span style="color: #F0DFAF; font-weight: bold;">self</span>.greenlet = <span style="color: #BFEBBF;">None</span>
+
+    <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">switch</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, value=<span style="color: #BFEBBF;">None</span><span style="color: #DCDCCC;">)</span>:
+        <span style="color: #CC9393;">"""Switch to the greenlet if one's available. Otherwise store the value."""</span>
+        <span style="color: #DFAF8F;">greenlet</span> = <span style="color: #F0DFAF; font-weight: bold;">self</span>.greenlet
+        <span style="color: #F0DFAF; font-weight: bold;">if</span> greenlet <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #BFEBBF;">None</span>:
+            <span style="color: #F0DFAF; font-weight: bold;">self</span>.value = value
+            <span style="color: #F0DFAF; font-weight: bold;">self</span>._exception = <span style="color: #BFEBBF;">None</span>
+        <span style="color: #F0DFAF; font-weight: bold;">else</span>:
+            <span style="color: #F0DFAF; font-weight: bold;">assert</span> getcurrent<span style="color: #DCDCCC;">()</span> <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.hub, <span style="color: #CC9393;">"Can only use Waiter.switch method from the Hub greenlet"</span>
+            <span style="color: #DFAF8F;">switch</span> = greenlet.switch
+            <span style="color: #F0DFAF; font-weight: bold;">try</span>:
+                switch<span style="color: #DCDCCC;">(</span>value<span style="color: #DCDCCC;">)</span>
+            <span style="color: #F0DFAF; font-weight: bold;">except</span>:
+                <span style="color: #F0DFAF; font-weight: bold;">self</span>.hub.handle_error<span style="color: #DCDCCC;">(</span>switch, *sys.exc_info<span style="color: #BFEBBF;">()</span><span style="color: #DCDCCC;">)</span>
+</pre>
+</div>
+<p>
+该类的实例有一个value属性, 一个_expception属性, 一个get方法,一个switch方法,他
+们的行为是这样的:
+</p>
+<ol class="org-ol">
+<li>get: 当你在一个协程中调用get方法时, 它会先检查_exception的值,如果不为默
+认的_NONE, 那么它就会根据value属性的值来决定是返回value的值还是抛出异
+常, 如果_exception为默认值, 它会设置greenlet属性为当前的协程对象,接着就
+会切换到hub协程.
+</li>
+<li>switch: 实际就是调用Waiter对象的greenlet属性的switch方法, 这样就切换到
+了对应的协程. 一般会注册到某个watcher的回调函数. 如果greenlet属性为
+None,那么意味着switch在get之前运行了,那么就简单的设置下value以
+及_exception属性.
+</li>
+</ol>
+<p>
+<b>需要等待的协程调用get方法,这样该协程就会挂起, 其他的协程调用switch方法切换
+到因等待而挂起的协程</b>, 我们来看看Waiter的一个使用例子, Hub的wait方法的代
+码:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Hub</span><span style="color: #DCDCCC;">(</span>greenlet<span style="color: #DCDCCC;">)</span>:
+    ...
+    <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">wait</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, watcher<span style="color: #DCDCCC;">)</span>:
+        <span style="color: #DFAF8F;">waiter</span> = Waiter<span style="color: #DCDCCC;">()</span>
+        <span style="color: #DFAF8F;">unique</span> = <span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">()</span>
+        watcher.start<span style="color: #DCDCCC;">(</span>waiter.switch, unique<span style="color: #DCDCCC;">)</span>
+        <span style="color: #F0DFAF; font-weight: bold;">try</span>:
+            <span style="color: #DFAF8F;">result</span> = waiter.get<span style="color: #DCDCCC;">()</span>
+            <span style="color: #F0DFAF; font-weight: bold;">assert</span> result <span style="color: #F0DFAF; font-weight: bold;">is</span> unique, <span style="color: #CC9393;">'Invalid switch into %s: %r (expected %r)'</span> % <span style="color: #DCDCCC;">(</span>getcurrent<span style="color: #BFEBBF;">()</span>, result, unique<span style="color: #DCDCCC;">)</span>
+        <span style="color: #F0DFAF; font-weight: bold;">finally</span>:
+            watcher.stop<span style="color: #DCDCCC;">()</span>
+    ...
+</pre>
+</div>
+<p>
+<b>wait方法的作用是挂起当前的协程,直到watcher监听的事件就绪</b>.它创建一个
+Waiter实例waiter,接着将waiter的switch方法注册到wacher上,这样当watcher监听的
+事件就绪后就会调用实例的switch方法,接着就调用waiter的get方法, 根据watcher监
+听的事件就绪的快慢,这里有两种可能:
+</p>
+<ol class="org-ol">
+<li><b>get在switch之前运行</b>: get会设置waiter的greenlet属性为当前执行的协程, 接着
+切换到hub, 当将来某个时候事件就绪,那么调用waiter的switch,switch会调用
+greenlet属性的switch方法,这样就切换回了当前运行的协程.
+</li>
+<li><b>get在switch之后运行</b>: 这种情况比较少见,可是也是存在的, 这种情况下运行
+switch时,waiter对象的greenlet属性为None, 所以switch方法只是简单的设置
+waiter的value属性, 接着调用get会直接返回value属性,而不阻塞.注意不要弄
+混_NONE与None.
 </li>
 </ol>
 </div>
@@ -903,19 +913,19 @@ fun就会在事件循环要阻塞是运行, spawn以及rawlink都会使用该方
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Greenlet</span>(greenlet):
-    <span style="color: #859900;">def</span> <span style="color: #b58900;">__init__</span>(<span style="color: #859900;">self</span>, run=<span style="color: #268bd2;">None</span>, *args, **kwargs):
-        <span style="color: #6c71c4;">hub</span> = get_hub()
-        greenlet.__init__(<span style="color: #859900;">self</span>, parent=hub)
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Greenlet</span><span style="color: #DCDCCC;">(</span>greenlet<span style="color: #DCDCCC;">)</span>:
+    <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__init__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, run=<span style="color: #BFEBBF;">None</span>, *args, **kwargs<span style="color: #DCDCCC;">)</span>:
+        <span style="color: #DFAF8F;">hub</span> = get_hub<span style="color: #DCDCCC;">()</span>
+        greenlet.__init__<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, parent=hub<span style="color: #DCDCCC;">)</span>
 
-    <span style="color: #268bd2;">@classmethod</span>
-    <span style="color: #859900;">def</span> <span style="color: #b58900;">spawn</span>(cls, *args, **kwargs):
-        <span style="color: #2aa198;">"""Return a new :class:`Greenlet` object, scheduled to start.</span>
-<span style="color: #2aa198;">        The arguments are passed to :meth:`Greenlet.__init__`.</span>
-<span style="color: #2aa198;">        """</span>
-        <span style="color: #6c71c4;">g</span> = cls(*args, **kwargs)
-        g.start()
-        <span style="color: #859900;">return</span> g
+    <span style="color: #7CB8BB;">@classmethod</span>
+    <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">spawn</span><span style="color: #DCDCCC;">(</span>cls, *args, **kwargs<span style="color: #DCDCCC;">)</span>:
+        <span style="color: #CC9393;">"""Return a new :class:`Greenlet` object, scheduled to start.</span>
+<span style="color: #CC9393;">        The arguments are passed to :meth:`Greenlet.__init__`.</span>
+<span style="color: #CC9393;">        """</span>
+        <span style="color: #DFAF8F;">g</span> = cls<span style="color: #DCDCCC;">(</span>*args, **kwargs<span style="color: #DCDCCC;">)</span>
+        g.start<span style="color: #DCDCCC;">()</span>
+        <span style="color: #F0DFAF; font-weight: bold;">return</span> g
 </pre>
 </div>
 <p>
@@ -925,10 +935,10 @@ gevent.spawn实际就是Greenlet类的spawn方法,该方法直接创建一个Gre
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">start</span>(<span style="color: #859900;">self</span>):
-    <span style="color: #2aa198;">"""Schedule the greenlet to run in this loop iteration"""</span>
-    <span style="color: #859900;">if</span> <span style="color: #859900;">self</span>._start_event <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>:
-        <span style="color: #859900;">self</span>._start_event = <span style="color: #859900;">self</span>.parent.loop.run_callback(<span style="color: #859900;">self</span>.switch)
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">start</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span><span style="color: #DCDCCC;">)</span>:
+    <span style="color: #CC9393;">"""Schedule the greenlet to run in this loop iteration"""</span>
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>._start_event <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #BFEBBF;">None</span>:
+        <span style="color: #F0DFAF; font-weight: bold;">self</span>._start_event = <span style="color: #F0DFAF; font-weight: bold;">self</span>.parent.loop.run_callback<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>.switch<span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -937,12 +947,12 @@ start方法实际上就是把该实例丢到hub协程的循环当中,也就是�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">run_callback</span>(<span style="color: #859900;">self</span>, func, *args):
-    CHECK_LOOP2(<span style="color: #859900;">self</span>)
-    cdef callback <span style="color: #6c71c4;">cb</span> = callback(func, args)
-    <span style="color: #859900;">self</span>._callbacks.append(cb)
-    libev.ev_ref(<span style="color: #859900;">self</span>._ptr)
-    <span style="color: #859900;">return</span> cb
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">run_callback</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, func, *args<span style="color: #DCDCCC;">)</span>:
+    CHECK_LOOP2<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span><span style="color: #DCDCCC;">)</span>
+    cdef callback <span style="color: #DFAF8F;">cb</span> = callback<span style="color: #DCDCCC;">(</span>func, args<span style="color: #DCDCCC;">)</span>
+    <span style="color: #F0DFAF; font-weight: bold;">self</span>._callbacks.append<span style="color: #DCDCCC;">(</span>cb<span style="color: #DCDCCC;">)</span>
+    libev.ev_ref<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>._ptr<span style="color: #DCDCCC;">)</span>
+    <span style="color: #F0DFAF; font-weight: bold;">return</span> cb
 </pre>
 </div>
 <p>
@@ -962,27 +972,27 @@ socket库, 现在我们来分析一下gevent的socket模块,看看该模块是�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">socket</span>(<span style="color: #6c71c4;">object</span>):
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">socket</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
 
-    <span style="color: #859900;">def</span> <span style="color: #b58900;">__init__</span>(<span style="color: #859900;">self</span>, family=AF_INET, <span style="color: #6c71c4;">type</span>=SOCK_STREAM, proto=0, _sock=<span style="color: #268bd2;">None</span>):
-        <span style="color: #859900;">if</span> _sock <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>:
-            <span style="color: #859900;">self</span>._sock = _realsocket(family, <span style="color: #6c71c4;">type</span>, proto)
-            <span style="color: #859900;">self</span>.timeout = _socket.getdefaulttimeout()
-        <span style="color: #859900;">else</span>:
-            <span style="color: #859900;">if</span> <span style="color: #6c71c4;">hasattr</span>(_sock, <span style="color: #2aa198;">'_sock'</span>):
-                <span style="color: #859900;">self</span>._sock = _sock._sock
-                <span style="color: #859900;">self</span>.timeout = <span style="color: #6c71c4;">getattr</span>(_sock, <span style="color: #2aa198;">'timeout'</span>, <span style="color: #268bd2;">False</span>)
-                <span style="color: #859900;">if</span> <span style="color: #859900;">self</span>.timeout <span style="color: #859900;">is</span> <span style="color: #268bd2;">False</span>:
-                    <span style="color: #859900;">self</span>.timeout = _socket.getdefaulttimeout()
-            <span style="color: #859900;">else</span>:
-                <span style="color: #859900;">self</span>._sock = _sock
-                <span style="color: #859900;">self</span>.timeout = _socket.getdefaulttimeout()
-        <span style="color: #859900;">self</span>._sock.setblocking(0)
-        <span style="color: #6c71c4;">fileno</span> = <span style="color: #859900;">self</span>._sock.fileno()
-        <span style="color: #859900;">self</span>.hub = get_hub()
-        <span style="color: #6c71c4;">io</span> = <span style="color: #859900;">self</span>.hub.loop.io
-        <span style="color: #859900;">self</span>._read_event = io(fileno, 1)
-        <span style="color: #859900;">self</span>._write_event = io(fileno, 2)
+    <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__init__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, family=AF_INET, <span style="color: #DCDCCC; font-weight: bold;">type</span>=SOCK_STREAM, proto=<span style="color: #BFEBBF;">0</span>, _sock=<span style="color: #BFEBBF;">None</span><span style="color: #DCDCCC;">)</span>:
+        <span style="color: #F0DFAF; font-weight: bold;">if</span> _sock <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #BFEBBF;">None</span>:
+            <span style="color: #F0DFAF; font-weight: bold;">self</span>._sock = _realsocket<span style="color: #DCDCCC;">(</span>family, <span style="color: #DCDCCC; font-weight: bold;">type</span>, proto<span style="color: #DCDCCC;">)</span>
+            <span style="color: #F0DFAF; font-weight: bold;">self</span>.timeout = _socket.getdefaulttimeout<span style="color: #DCDCCC;">()</span>
+        <span style="color: #F0DFAF; font-weight: bold;">else</span>:
+            <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #DCDCCC; font-weight: bold;">hasattr</span><span style="color: #DCDCCC;">(</span>_sock, <span style="color: #CC9393;">'_sock'</span><span style="color: #DCDCCC;">)</span>:
+                <span style="color: #F0DFAF; font-weight: bold;">self</span>._sock = _sock._sock
+                <span style="color: #F0DFAF; font-weight: bold;">self</span>.timeout = <span style="color: #DCDCCC; font-weight: bold;">getattr</span><span style="color: #DCDCCC;">(</span>_sock, <span style="color: #CC9393;">'timeout'</span>, <span style="color: #BFEBBF;">False</span><span style="color: #DCDCCC;">)</span>
+                <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.timeout <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #BFEBBF;">False</span>:
+                    <span style="color: #F0DFAF; font-weight: bold;">self</span>.timeout = _socket.getdefaulttimeout<span style="color: #DCDCCC;">()</span>
+            <span style="color: #F0DFAF; font-weight: bold;">else</span>:
+                <span style="color: #F0DFAF; font-weight: bold;">self</span>._sock = _sock
+                <span style="color: #F0DFAF; font-weight: bold;">self</span>.timeout = _socket.getdefaulttimeout<span style="color: #DCDCCC;">()</span>
+        <span style="color: #F0DFAF; font-weight: bold;">self</span>._sock.setblocking<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">0</span><span style="color: #DCDCCC;">)</span>
+        <span style="color: #DFAF8F;">fileno</span> = <span style="color: #F0DFAF; font-weight: bold;">self</span>._sock.fileno<span style="color: #DCDCCC;">()</span>
+        <span style="color: #F0DFAF; font-weight: bold;">self</span>.hub = get_hub<span style="color: #DCDCCC;">()</span>
+        <span style="color: #DFAF8F;">io</span> = <span style="color: #F0DFAF; font-weight: bold;">self</span>.hub.loop.io
+        <span style="color: #F0DFAF; font-weight: bold;">self</span>._read_event = io<span style="color: #DCDCCC;">(</span>fileno, <span style="color: #BFEBBF;">1</span><span style="color: #DCDCCC;">)</span>
+        <span style="color: #F0DFAF; font-weight: bold;">self</span>._write_event = io<span style="color: #DCDCCC;">(</span>fileno, <span style="color: #BFEBBF;">2</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -992,18 +1002,18 @@ watcher,分别监听读事件(self._read_event)以及写事件(self._write_event
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">recv</span>(<span style="color: #859900;">self</span>, *args):
-    <span style="color: #6c71c4;">sock</span> = <span style="color: #859900;">self</span>._sock  <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">keeping the reference so that fd is not closed during w</span><span style="color: #ee82ee; background-color: #333333; font-style: italic;">aiting</span>
-    <span style="color: #859900;">while</span> <span style="color: #268bd2;">True</span>:
-        <span style="color: #859900;">try</span>:
-            <span style="color: #859900;">return</span> sock.recv(*args)
-        <span style="color: #859900;">except</span> error:
-            <span style="color: #6c71c4;">ex</span> = sys.exc_info()[1]
-            <span style="color: #859900;">if</span> ex.args[0] != EWOULDBLOCK <span style="color: #859900;">or</span> <span style="color: #859900;">self</span>.timeout == 0.0:
-                <span style="color: #859900;">raise</span>
-            <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">QQQ without clearing exc_info test__refcount.test_clean_exit fails</span>
-            sys.exc_clear()
-        <span style="color: #859900;">self</span>._wait(<span style="color: #859900;">self</span>._read_event)
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">recv</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, *args<span style="color: #DCDCCC;">)</span>:
+    <span style="color: #DFAF8F;">sock</span> = <span style="color: #F0DFAF; font-weight: bold;">self</span>._sock  <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">keeping the reference so that fd is not closed during waiting</span>
+    <span style="color: #F0DFAF; font-weight: bold;">while</span> <span style="color: #BFEBBF;">True</span>:
+        <span style="color: #F0DFAF; font-weight: bold;">try</span>:
+            <span style="color: #F0DFAF; font-weight: bold;">return</span> sock.recv<span style="color: #DCDCCC;">(</span>*args<span style="color: #DCDCCC;">)</span>
+        <span style="color: #F0DFAF; font-weight: bold;">except</span> error:
+            <span style="color: #DFAF8F;">ex</span> = sys.exc_info<span style="color: #DCDCCC;">()[</span><span style="color: #BFEBBF;">1</span><span style="color: #DCDCCC;">]</span>
+            <span style="color: #F0DFAF; font-weight: bold;">if</span> ex.args<span style="color: #DCDCCC;">[</span><span style="color: #BFEBBF;">0</span><span style="color: #DCDCCC;">]</span> != EWOULDBLOCK <span style="color: #F0DFAF; font-weight: bold;">or</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.timeout == <span style="color: #BFEBBF;">0</span>.<span style="color: #BFEBBF;">0</span>:
+                <span style="color: #F0DFAF; font-weight: bold;">raise</span>
+            <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">QQQ without clearing exc_info test__refcount.test_clean_exit fails</span>
+            sys.exc_clear<span style="color: #DCDCCC;">()</span>
+        <span style="color: #F0DFAF; font-weight: bold;">self</span>._wait<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>._read_event<span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -1012,32 +1022,32 @@ recv直接调用内置模块的recv方法,如果发现该调用会阻塞,那么�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">_wait</span>(<span style="color: #859900;">self</span>, watcher, timeout_exc=timeout(<span style="color: #2aa198;">'timed out'</span>)):
-    <span style="color: #2aa198;">"""Block the current greenlet until *watcher* has pending events.</span>
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">_wait</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, watcher, timeout_exc=timeout<span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">'timed out'</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>:
+    <span style="color: #CC9393;">"""Block the current greenlet until *watcher* has pending events.</span>
 
-<span style="color: #2aa198;">    If *timeout* is non-negative, then *timeout_exc* is raised after *timeout* s</span><span style="color: #ee82ee; background-color: #333333;">econd has passed.</span>
-<span style="color: #2aa198;">    By default *timeout_exc* is ``socket.timeout('timed out')``.</span>
+<span style="color: #CC9393;">    If *timeout* is non-negative, then *timeout_exc* is raised after *timeout* second has passed.</span>
+<span style="color: #CC9393;">    By default *timeout_exc* is ``socket.timeout('timed out')``.</span>
 
-<span style="color: #2aa198;">    If :func:`cancel_wait` is called, raise ``socket.error(EBADF, 'File descript</span><span style="color: #ee82ee; background-color: #333333;">or was closed in another greenlet')``.</span>
-<span style="color: #2aa198;">    """</span>
-    <span style="color: #859900;">assert</span> watcher.callback <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>, <span style="color: #2aa198;">'This socket is already used by another gre</span><span style="color: #ee82ee; background-color: #333333;">enlet: %r'</span><span style="color: #ee82ee; background-color: #333333;"> % (watcher.callback, )</span>
-    <span style="color: #859900;">if</span> <span style="color: #859900;">self</span>.timeout <span style="color: #859900;">is</span> <span style="color: #859900;">not</span> <span style="color: #268bd2;">None</span>:
-        <span style="color: #6c71c4;">timeout</span> = Timeout.start_new(<span style="color: #859900;">self</span>.timeout, timeout_exc, ref=<span style="color: #268bd2;">False</span>)
-    <span style="color: #859900;">else</span>:
-        <span style="color: #6c71c4;">timeout</span> = <span style="color: #268bd2;">None</span>
-    <span style="color: #859900;">try</span>:
-        <span style="color: #859900;">self</span>.hub.wait(watcher)
-    <span style="color: #859900;">finally</span>:
-        <span style="color: #859900;">if</span> timeout <span style="color: #859900;">is</span> <span style="color: #859900;">not</span> <span style="color: #268bd2;">None</span>:
-            timeout.cancel()
+<span style="color: #CC9393;">    If :func:`cancel_wait` is called, raise ``socket.error(EBADF, 'File descriptor was closed in another greenlet')``.</span>
+<span style="color: #CC9393;">    """</span>
+    <span style="color: #F0DFAF; font-weight: bold;">assert</span> watcher.callback <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #BFEBBF;">None</span>, <span style="color: #CC9393;">'This socket is already used by another greenlet: %r'</span> % <span style="color: #DCDCCC;">(</span>watcher.callback, <span style="color: #DCDCCC;">)</span>
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.timeout <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #F0DFAF; font-weight: bold;">not</span> <span style="color: #BFEBBF;">None</span>:
+        <span style="color: #DFAF8F;">timeout</span> = Timeout.start_new<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>.timeout, timeout_exc, ref=<span style="color: #BFEBBF;">False</span><span style="color: #DCDCCC;">)</span>
+    <span style="color: #F0DFAF; font-weight: bold;">else</span>:
+        <span style="color: #DFAF8F;">timeout</span> = <span style="color: #BFEBBF;">None</span>
+    <span style="color: #F0DFAF; font-weight: bold;">try</span>:
+        <span style="color: #F0DFAF; font-weight: bold;">self</span>.hub.wait<span style="color: #DCDCCC;">(</span>watcher<span style="color: #DCDCCC;">)</span>
+    <span style="color: #F0DFAF; font-weight: bold;">finally</span>:
+        <span style="color: #F0DFAF; font-weight: bold;">if</span> timeout <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #F0DFAF; font-weight: bold;">not</span> <span style="color: #BFEBBF;">None</span>:
+            timeout.cancel<span style="color: #DCDCCC;">()</span>
 </pre>
 </div>
 <p>
-根据注释我们知道_wait方法会使当前的协程暂停,直到watcher监听的事件就绪. 代码
-的关键部分是 <code>self.hub.wait(watcher)</code>, 这个方法在上面已经分析过,只要明白它
-会阻塞当前的协程切换到hub协程直到watcher监听的事件就绪, 在recv的例子中,一旦
-wacher监听的事件就绪也就意味着socket已经处于读就绪状态,所以也就可以调用内置
-的socket模块的recv方法来获得数据了.
+根据注释我们知道_wait方法会使当前的协程暂停,直到watcher监听的事件就绪. 代码的
+关键部分是 <code>self.hub.wait(watcher)</code>, 这个方法在上面已经分析过,只要明白它会阻
+塞当前的协程切换到hub协程, 而如果watcher监听的事件就绪,它又会切换会当前协程,
+在recv的例子中,一旦wacher监听的事件就绪也就意味着socket已经处于读就绪状态,所
+以也就可以调用内置的socket模块的recv方法来获得数据了.
 </p>
 </div>
 </div>
@@ -1050,41 +1060,41 @@ wacher监听的事件就绪也就意味着socket已经处于读就绪状态,所�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Timeout</span>(<span style="color: #268bd2;">BaseException</span>):
-    <span style="color: #859900;">def</span> <span style="color: #b58900;">__init__</span>(<span style="color: #859900;">self</span>, seconds=<span style="color: #268bd2;">None</span>, exception=<span style="color: #268bd2;">None</span>, ref=<span style="color: #268bd2;">True</span>, priority=-1):
-        <span style="color: #859900;">self</span>.seconds = seconds
-        <span style="color: #859900;">self</span>.exception = exception
-        <span style="color: #859900;">self</span>.timer = get_hub().loop.timer(seconds <span style="color: #859900;">or</span> 0.0, ref=ref, priority=prio<span style="color: #ee82ee; background-color: #333333;">rity)</span>
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Timeout</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">BaseException</span><span style="color: #DCDCCC;">)</span>:
+    <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__init__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, seconds=<span style="color: #BFEBBF;">None</span>, exception=<span style="color: #BFEBBF;">None</span>, ref=<span style="color: #BFEBBF;">True</span>, priority=-<span style="color: #BFEBBF;">1</span><span style="color: #DCDCCC;">)</span>:
+        <span style="color: #F0DFAF; font-weight: bold;">self</span>.seconds = seconds
+        <span style="color: #F0DFAF; font-weight: bold;">self</span>.exception = exception
+        <span style="color: #F0DFAF; font-weight: bold;">self</span>.timer = get_hub<span style="color: #DCDCCC;">()</span>.loop.timer<span style="color: #DCDCCC;">(</span>seconds <span style="color: #F0DFAF; font-weight: bold;">or</span> <span style="color: #BFEBBF;">0</span>.<span style="color: #BFEBBF;">0</span>, ref=ref, priority=priority<span style="color: #DCDCCC;">)</span>
 
-    <span style="color: #859900;">def</span> <span style="color: #b58900;">start</span>(<span style="color: #859900;">self</span>):
-        <span style="color: #2aa198;">"""Schedule the timeout."""</span>
-        <span style="color: #859900;">assert</span> <span style="color: #859900;">not</span> <span style="color: #859900;">self</span>.pending, <span style="color: #2aa198;">'%r is already started; to restart it, cancel i</span><span style="color: #ee82ee; background-color: #333333;">t first'</span><span style="color: #ee82ee; background-color: #333333;"> % </span><span style="color: #ee82ee; background-color: #333333;">self</span>
-        <span style="color: #859900;">if</span> <span style="color: #859900;">self</span>.seconds <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span>:  <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">"fake" timeout (never expires)</span>
-            <span style="color: #859900;">pass</span>
-        <span style="color: #859900;">elif</span> <span style="color: #859900;">self</span>.exception <span style="color: #859900;">is</span> <span style="color: #268bd2;">None</span> <span style="color: #859900;">or</span> <span style="color: #859900;">self</span>.exception <span style="color: #859900;">is</span> <span style="color: #268bd2;">False</span> <span style="color: #859900;">or</span> <span style="color: #6c71c4;">isinstance</span>(<span style="color: #859900;">sel</span><span style="color: #ee82ee; background-color: #333333;">f</span><span style="color: #ee82ee; background-color: #333333;">.exception, string_types):</span>
-            <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">timeout that raises self</span>
-            <span style="color: #859900;">self</span>.timer.start(getcurrent().throw, <span style="color: #859900;">self</span>)
-        <span style="color: #859900;">else</span>:  <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">regular timeout with user-provided exception</span>
-            <span style="color: #859900;">self</span>.timer.start(getcurrent().throw, <span style="color: #859900;">self</span>.exception)
+    <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">start</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span><span style="color: #DCDCCC;">)</span>:
+        <span style="color: #CC9393;">"""Schedule the timeout."""</span>
+        <span style="color: #F0DFAF; font-weight: bold;">assert</span> <span style="color: #F0DFAF; font-weight: bold;">not</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.pending, <span style="color: #CC9393;">'%r is already started; to restart it, cancel it first'</span> % <span style="color: #F0DFAF; font-weight: bold;">self</span>
+        <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.seconds <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #BFEBBF;">None</span>:  <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">"fake" timeout (never expires)</span>
+            <span style="color: #F0DFAF; font-weight: bold;">pass</span>
+        <span style="color: #F0DFAF; font-weight: bold;">elif</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.exception <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #BFEBBF;">None</span> <span style="color: #F0DFAF; font-weight: bold;">or</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.exception <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #BFEBBF;">False</span> <span style="color: #F0DFAF; font-weight: bold;">or</span> <span style="color: #DCDCCC; font-weight: bold;">isinstance</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>.exception, string_types<span style="color: #DCDCCC;">)</span>:
+            <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">timeout that raises self</span>
+            <span style="color: #F0DFAF; font-weight: bold;">self</span>.timer.start<span style="color: #DCDCCC;">(</span>getcurrent<span style="color: #BFEBBF;">()</span>.throw, <span style="color: #F0DFAF; font-weight: bold;">self</span><span style="color: #DCDCCC;">)</span>
+        <span style="color: #F0DFAF; font-weight: bold;">else</span>:  <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">regular timeout with user-provided exception</span>
+            <span style="color: #F0DFAF; font-weight: bold;">self</span>.timer.start<span style="color: #DCDCCC;">(</span>getcurrent<span style="color: #BFEBBF;">()</span>.throw, <span style="color: #F0DFAF; font-weight: bold;">self</span>.exception<span style="color: #DCDCCC;">)</span>
 
-    <span style="color: #268bd2;">@classmethod</span>
-    <span style="color: #859900;">def</span> <span style="color: #b58900;">start_new</span>(cls, timeout=<span style="color: #268bd2;">None</span>, exception=<span style="color: #268bd2;">None</span>, ref=<span style="color: #268bd2;">True</span>):
-        <span style="color: #859900;">if</span> <span style="color: #6c71c4;">isinstance</span>(timeout, Timeout):
-            <span style="color: #859900;">if</span> <span style="color: #859900;">not</span> timeout.pending:
-                timeout.start()
-            <span style="color: #859900;">return</span> timeout
-        <span style="color: #6c71c4;">timeout</span> = cls(timeout, exception, ref=ref)
-        timeout.start()
-        <span style="color: #859900;">return</span> timeout
+    <span style="color: #7CB8BB;">@classmethod</span>
+    <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">start_new</span><span style="color: #DCDCCC;">(</span>cls, timeout=<span style="color: #BFEBBF;">None</span>, exception=<span style="color: #BFEBBF;">None</span>, ref=<span style="color: #BFEBBF;">True</span><span style="color: #DCDCCC;">)</span>:
+        <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #DCDCCC; font-weight: bold;">isinstance</span><span style="color: #DCDCCC;">(</span>timeout, Timeout<span style="color: #DCDCCC;">)</span>:
+            <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #F0DFAF; font-weight: bold;">not</span> timeout.pending:
+                timeout.start<span style="color: #DCDCCC;">()</span>
+            <span style="color: #F0DFAF; font-weight: bold;">return</span> timeout
+        <span style="color: #DFAF8F;">timeout</span> = cls<span style="color: #DCDCCC;">(</span>timeout, exception, ref=ref<span style="color: #DCDCCC;">)</span>
+        timeout.start<span style="color: #DCDCCC;">()</span>
+        <span style="color: #F0DFAF; font-weight: bold;">return</span> timeout
 
-    <span style="color: #268bd2;">@property</span>
-    <span style="color: #859900;">def</span> <span style="color: #b58900;">pending</span>(<span style="color: #859900;">self</span>):
-        <span style="color: #2aa198;">"""Return True if the timeout is scheduled to be raised."""</span>
-        <span style="color: #859900;">return</span> <span style="color: #859900;">self</span>.timer.pending <span style="color: #859900;">or</span> <span style="color: #859900;">self</span>.timer.active
+    <span style="color: #7CB8BB;">@property</span>
+    <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">pending</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span><span style="color: #DCDCCC;">)</span>:
+        <span style="color: #CC9393;">"""Return True if the timeout is scheduled to be raised."""</span>
+        <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.timer.pending <span style="color: #F0DFAF; font-weight: bold;">or</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.timer.active
 
-    <span style="color: #859900;">def</span> <span style="color: #b58900;">cancel</span>(<span style="color: #859900;">self</span>):
-        <span style="color: #2aa198;">"""If the timeout is pending, cancel it. Otherwise, do nothing."""</span>
-        <span style="color: #859900;">self</span>.timer.stop()
+    <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">cancel</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span><span style="color: #DCDCCC;">)</span>:
+        <span style="color: #CC9393;">"""If the timeout is pending, cancel it. Otherwise, do nothing."""</span>
+        <span style="color: #F0DFAF; font-weight: bold;">self</span>.timer.stop<span style="color: #DCDCCC;">()</span>
 </pre>
 </div>
 <p>
@@ -1127,12 +1137,12 @@ start_new是一个包装函数, 正常情况下你要先创建一个timeout实�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #6c71c4;">timeout</span> = Timeout(seconds, exception)
-timeout.start()
-<span style="color: #859900;">try</span>:
-    ...  <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">exception will be raised here, after *seconds* passed since start() c</span><span style="color: #ee82ee; background-color: #333333; font-style: italic;">all</span>
-<span style="color: #859900;">finally</span>:
-    timeout.cancel()
+<pre class="src src-python"><span style="color: #DFAF8F;">timeout</span> = Timeout<span style="color: #DCDCCC;">(</span>seconds, exception<span style="color: #DCDCCC;">)</span>
+timeout.start<span style="color: #DCDCCC;">()</span>
+<span style="color: #F0DFAF; font-weight: bold;">try</span>:
+    ...  <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">exception will be raised here, after *seconds* passed since start() call</span>
+<span style="color: #F0DFAF; font-weight: bold;">finally</span>:
+    timeout.cancel<span style="color: #DCDCCC;">()</span>
 </pre>
 </div>
 <p>
@@ -1142,16 +1152,16 @@ timeout.start()
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #6c71c4;">timer</span> = Timeout.start_new(timeout)
-<span style="color: #859900;">try</span>:
-    <span style="color: #859900;">try</span>:
-        <span style="color: #6c71c4;">result</span> = <span style="color: #859900;">self</span>.hub.switch()
-        <span style="color: #859900;">assert</span> result <span style="color: #859900;">is</span> <span style="color: #859900;">self</span>, <span style="color: #2aa198;">'Invalid switch into Event.wait(): %r'</span> % (result,<span style="color: #ee82ee; background-color: #333333;"> )</span>
-    <span style="color: #859900;">except</span> Timeout <span style="color: #859900;">as</span> ex:
-        <span style="color: #859900;">if</span> ex <span style="color: #859900;">is</span> <span style="color: #859900;">not</span> timer:
-            <span style="color: #859900;">raise</span>
-<span style="color: #859900;">finally</span>:
-    timer.cancel()
+<pre class="src src-python"><span style="color: #DFAF8F;">timer</span> = Timeout.start_new<span style="color: #DCDCCC;">(</span>timeout<span style="color: #DCDCCC;">)</span>
+<span style="color: #F0DFAF; font-weight: bold;">try</span>:
+    <span style="color: #F0DFAF; font-weight: bold;">try</span>:
+        <span style="color: #DFAF8F;">result</span> = <span style="color: #F0DFAF; font-weight: bold;">self</span>.hub.switch<span style="color: #DCDCCC;">()</span>
+        <span style="color: #F0DFAF; font-weight: bold;">assert</span> result <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>, <span style="color: #CC9393;">'Invalid switch into Event.wait(): %r'</span> % <span style="color: #DCDCCC;">(</span>result, <span style="color: #DCDCCC;">)</span>
+    <span style="color: #F0DFAF; font-weight: bold;">except</span> Timeout <span style="color: #F0DFAF; font-weight: bold;">as</span> ex:
+        <span style="color: #F0DFAF; font-weight: bold;">if</span> ex <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #F0DFAF; font-weight: bold;">not</span> timer:
+            <span style="color: #F0DFAF; font-weight: bold;">raise</span>
+<span style="color: #F0DFAF; font-weight: bold;">finally</span>:
+    timer.cancel<span style="color: #DCDCCC;">()</span>
 </pre>
 </div>
 <p>
@@ -1177,12 +1187,12 @@ timeout.start()
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">greenlet1</span>
-<span style="color: #6c71c4;">evt</span> = Event()
-evt.wait()                <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">block until other greenlets invoke evt.set()</span>
+<pre class="src src-python"><span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">greenlet1</span>
+<span style="color: #DFAF8F;">evt</span> = Event<span style="color: #DCDCCC;">()</span>
+evt.wait<span style="color: #DCDCCC;">()</span>                <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">block until other greenlets invoke evt.set()</span>
 
-<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">greenlet2</span>
-evt.<span style="color: #6c71c4;">set</span>()
+<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">greenlet2</span>
+evt.<span style="color: #DCDCCC; font-weight: bold;">set</span><span style="color: #DCDCCC;">()</span>
 </pre>
 </div>
 </div>
@@ -1206,12 +1216,12 @@ evt.<span style="color: #6c71c4;">set</span>()
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">greenlet1</span>
-<span style="color: #6c71c4;">chan</span> = Channel()
-<span style="color: #6c71c4;">val</span> = chan.get()
+<pre class="src src-python"><span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">greenlet1</span>
+<span style="color: #DFAF8F;">chan</span> = Channel<span style="color: #DCDCCC;">()</span>
+<span style="color: #DFAF8F;">val</span> = chan.get<span style="color: #DCDCCC;">()</span>
 
-<span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">greenlet2</span>
-chan.put(val)
+<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">greenlet2</span>
+chan.put<span style="color: #DCDCCC;">(</span>val<span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -1229,10 +1239,10 @@ chan.put(val)
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span class="linenr">1: </span><span style="color: #6c71c4;">switch</span> = getcurrent().switch
-<span class="linenr">2: </span><span style="color: #859900;">self</span>.rawlink(switch)
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #DFAF8F;">switch</span> = getcurrent<span style="color: #DCDCCC;">()</span>.switch
+<span class="linenr">2: </span><span style="color: #F0DFAF; font-weight: bold;">self</span>.rawlink<span style="color: #DCDCCC;">(</span>switch<span style="color: #DCDCCC;">)</span>
 <span class="linenr">3: </span>
-<span class="linenr">4: </span><span style="color: #6c71c4;">result</span> = <span style="color: #859900;">self</span>.parent.switch()
+<span class="linenr">4: </span><span style="color: #DFAF8F;">result</span> = <span style="color: #F0DFAF; font-weight: bold;">self</span>.parent.switch<span style="color: #DCDCCC;">()</span>
 </pre>
 </div>
 <p>

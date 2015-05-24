@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Lua</title>
-<!-- 2015-02-06 Fri 16:26 -->
+<!-- 2015-05-24 Sun 19:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -203,10 +203,10 @@ for the JavaScript code in this tag.
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 
-<pre class="src src-lua"><span style="color: #859900;">local</span> <span style="color: #6c71c4;">tbl</span> = {aa=1, bb=2, <span style="color: #2aa198;">"l1"</span>, <span style="color: #2aa198;">"l2"</span>, <span style="color: #2aa198;">"l3"</span>}
-<span style="color: #6c71c4;">print</span>(#tbl)    <span style="color: #586e75; font-style: italic;">-- </span><span style="color: #586e75; font-style: italic;">return 3</span>
-<span style="color: #859900;">local</span> <span style="color: #6c71c4;">tbl</span> = {aa=1, bb=2}
-<span style="color: #6c71c4;">print</span>(#tbl)    <span style="color: #586e75; font-style: italic;">-- </span><span style="color: #586e75; font-style: italic;">return 0</span>
+<pre class="src src-lua">local tbl = {aa=1, bb=2, "l1", "l2", "l3"}
+print(#tbl)    -- return 3
+local tbl = {aa=1, bb=2}
+print(#tbl)    -- return 0
 </pre>
 </div>
 <p>
@@ -217,15 +217,15 @@ for the JavaScript code in this tag.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua"><span style="color: #859900;">function</span> <span style="color: #b58900;">get_len</span>(tbl)
-   <span style="color: #859900;">local</span> <span style="color: #6c71c4;">i</span> = 1
-   <span style="color: #859900;">while</span> <span style="color: #268bd2;">true</span> <span style="color: #859900;">do</span>
-      <span style="color: #859900;">if</span> <span style="color: #859900;">not</span> tbl[i] <span style="color: #859900;">then</span>
-         <span style="color: #859900;">return</span> i-1
-      <span style="color: #859900;">end</span>
+<pre class="src src-lua">function get_len(tbl)
+   local i = 1
+   while true do
+      if not tbl[i] then
+         return i-1
+      end
       i = i+1
-   <span style="color: #859900;">end</span>
-<span style="color: #859900;">end</span>
+   end
+end
 </pre>
 </div>
 </div>
@@ -284,10 +284,10 @@ lua将每一个chunk转换为一个匿名函数, 匿名函数中的自由变量(
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">_ENV = <span style="color: #6c71c4;">_G</span>
-<span style="color: #859900;">return</span> <span style="color: #859900;">function</span> ()
+<pre class="src src-lua">_ENV = _G
+return function ()
    _ENV.var1 = _ENV.var2 + 1
-<span style="color: #859900;">end</span>
+end
 </pre>
 </div>
 <p>
@@ -320,27 +320,27 @@ __ENV机制是lua5.2引入的, 在luajit中也没有实现, setfenv实际上也�
 
 <pre class="src src-lua">Account = {
    balance=0,
-   <span style="color: #b58900;">withdraw</span> = <span style="color: #859900;">function</span> (<span style="color: #6c71c4;">self</span>, v)
-      <span style="color: #6c71c4;">self</span>.balance = <span style="color: #6c71c4;">self</span>.balance - v
-   <span style="color: #859900;">end</span>
+   withdraw = function (self, v)
+      self.balance = self.balance - v
+   end
 }
 
-<span style="color: #859900;">function</span> <span style="color: #b58900;">Account:new</span> (o)
-   o = o <span style="color: #859900;">or</span> {}
-   <span style="color: #586e75; font-style: italic;">-- </span><span style="color: #586e75; font-style: italic;">create object if user does not provide one</span>
-   <span style="color: #6c71c4;">setmetatable</span>(o, <span style="color: #6c71c4;">self</span>)
-   <span style="color: #6c71c4;">self</span>.__index = <span style="color: #6c71c4;">self</span>
-   <span style="color: #859900;">return</span> o
-<span style="color: #859900;">end</span>
+function Account:new (o)
+   o = o or {}
+   -- create object if user does not provide one
+   setmetatable(o, self)
+   self.__index = self
+   return o
+end
 
-<span style="color: #859900;">function</span> <span style="color: #b58900;">Account:deposit</span> (v)
-   <span style="color: #6c71c4;">self</span>.balance = <span style="color: #6c71c4;">self</span>.balance + v
-<span style="color: #859900;">end</span>
+function Account:deposit (v)
+   self.balance = self.balance + v
+end
 
-<span style="color: #586e75; font-style: italic;">-- </span><span style="color: #586e75; font-style: italic;">&#31561;&#20215;,&#20882;&#21495;&#26159;&#35821;&#27861;&#31958;&#65292;&#21487;&#20197;&#30475;&#20570;&#26159;&#33258;&#21160;&#28155;&#21152;self</span>
-<span style="color: #859900;">function</span> <span style="color: #b58900;">Account.deposit</span> (<span style="color: #6c71c4;">self</span>, v)
-   <span style="color: #6c71c4;">self</span>.balance = <span style="color: #6c71c4;">self</span>.balance + v
-<span style="color: #859900;">end</span>
+-- 等价,冒号是语法糖，可以看做是自动添加self
+function Account.deposit (self, v)
+   self.balance = self.balance + v
+end
 </pre>
 </div>
 <p>
@@ -367,43 +367,43 @@ lua中比较好的package设施应该满足以下几点:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua"><span style="color: #586e75; font-style: italic;">-- </span><span style="color: #586e75; font-style: italic;">&#23558;&#27169;&#22359;&#29992;&#21040;&#30340;&#20840;&#23616;&#21464;&#37327;&#36171;&#20540;&#32473;local&#21464;&#37327;</span>
-<span style="color: #859900;">local</span> <span style="color: #6c71c4;">print</span> = <span style="color: #6c71c4;">print</span>
-<span style="color: #859900;">local</span> <span style="color: #6c71c4;">error</span> = <span style="color: #6c71c4;">error</span>
-<span style="color: #859900;">local</span> <span style="color: #6c71c4;">ngx</span> = ngx
+<pre class="src src-lua">-- 将模块用到的全局变量赋值给local变量
+local print = print
+local error = error
+local ngx = ngx
 
-<span style="color: #859900;">local</span> <span style="color: #6c71c4;">P</span> = {}
-<span style="color: #586e75; font-style: italic;">-- </span><span style="color: #586e75; font-style: italic;">&#20462;&#25913;&#24403;&#21069;chunk&#30340;&#21311;&#21517;&#20989;&#25968;&#30340;&#29615;&#22659;&#20026;P, &#36825;&#26679;&#35813;chunk&#30340;&#25152;&#26377;&#20840;&#23616;&#21464;&#37327;&#37117;&#20250;&#21464;&#25104;P&#30340;&#20803;&#32032;</span>
-<span style="color: #586e75; font-style: italic;">-- </span><span style="color: #586e75; font-style: italic;">&#36825;&#26679;&#21487;&#20197;&#36991;&#20813;&#28431;&#25481;local&#23548;&#33268;&#30340;&#20989;&#25968;&#21464;&#25104;&#20840;&#23616;&#20989;&#25968;&#30340;&#38382;&#39064;.</span>
-<span style="color: #859900;">if</span> <span style="color: #6c71c4;">setfenv</span> <span style="color: #859900;">then</span>                 <span style="color: #586e75; font-style: italic;">-- </span><span style="color: #586e75; font-style: italic;">for lua5.1 and luajit</span>
-   <span style="color: #6c71c4;">setfenv</span>(1, P)
-<span style="color: #859900;">elseif</span> _ENV <span style="color: #859900;">then</span>                <span style="color: #586e75; font-style: italic;">-- </span><span style="color: #586e75; font-style: italic;">for lua5.2 or newer</span>
+local P = {}
+-- 修改当前chunk的匿名函数的环境为P, 这样该chunk的所有全局变量都会变成P的元素
+-- 这样可以避免漏掉local导致的函数变成全局函数的问题.
+if setfenv then                 -- for lua5.1 and luajit
+   setfenv(1, P)
+elseif _ENV then                -- for lua5.2 or newer
    _ENV = P
-<span style="color: #859900;">else</span>
-   <span style="color: #6c71c4;">error</span>(<span style="color: #2aa198;">"both setfenv and _ENV are nil..."</span>)
-<span style="color: #859900;">end</span>
+else
+   error("both setfenv and _ENV are nil...")
+end
 
-<span style="color: #586e75; font-style: italic;">-- </span><span style="color: #586e75; font-style: italic;">private function</span>
-<span style="color: #859900;">local</span> <span style="color: #859900;">function</span> <span style="color: #b58900;">afunc</span>()
+-- private function
+local function afunc()
    dosomething
-<span style="color: #859900;">end</span>
+end
 
-<span style="color: #586e75; font-style: italic;">-- </span><span style="color: #586e75; font-style: italic;">public method</span>
-<span style="color: #859900;">function</span> <span style="color: #b58900;">new</span>()
+-- public method
+function new()
    do_something
-<span style="color: #859900;">end</span>
+end
 
-<span style="color: #586e75; font-style: italic;">-- </span><span style="color: #586e75; font-style: italic;">safety set, &#31105;&#27490;&#28155;&#21152;&#26032;&#23646;&#24615;</span>
-<span style="color: #859900;">local</span> <span style="color: #6c71c4;">module_mt</span> = {
+-- safety set, 禁止添加新属性
+local module_mt = {
    __newindex = (
-      <span style="color: #859900;">function</span> (<span style="color: #6c71c4;">table</span>, key, val)
-         <span style="color: #6c71c4;">error</span>(<span style="color: #2aa198;">'Attempt to write to undeclared variable "'</span> .. key .. <span style="color: #2aa198;">'"'</span>)
-                <span style="color: #859900;">end</span>),
+      function (table, key, val)
+         error('Attempt to write to undeclared variable "' .. key .. '"')
+                end),
 }
 
-<span style="color: #6c71c4;">setmetatable</span>(P, module_mt)
+setmetatable(P, module_mt)
 
-<span style="color: #859900;">return</span> P
+return P
 </pre>
 </div>
 </div>
@@ -416,7 +416,7 @@ lua中比较好的package设施应该满足以下几点:
 chunk是最上层的block,一般来说一个文件中的所有lua代码是一个chunk, 在交互环
 境下每一行(前提是这一行是一个完整的语句)都是一个chunk
 </li>
-<li>list的下表从1开始
+<li>list的下标从1开始
 </li>
 <li>lua的不等于是 ~=, 不是 !=
 </li>

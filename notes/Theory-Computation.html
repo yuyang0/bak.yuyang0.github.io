@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>计算理论导引</title>
-<!-- 2015-02-06 Fri 16:25 -->
+<!-- 2015-05-24 Sun 19:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -137,17 +137,14 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script type="text/javascript">window.MathJax || document.write('<script src="static/js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" ><\/script>')</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
 <script type="text/javascript">
-
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
         // First allows browser-native MathML display, second forces HTML/CSS
-            config: ["MMLorHTML.js"], jax: ["input/TeX"],
-        //  jax: ["input/TeX", "output/HTML-CSS"],
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
         extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
                      "TeX/noUndefined.js"],
         tex2jax: {
@@ -367,29 +364,29 @@ for the JavaScript code in this tag.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">m1</span> ss)
-  (<span style="color: #859900;">define</span> <span style="color: #b58900;">tbl</span>                     <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">transformation rules</span>
-    '(((q1 . #\0) . q1) ((q1 . #\1) . q2)
-      ((q2 . #\0) . q3) ((q2 . #\1) . q2)
-      ((q3 . #\0) . q2) ((q3 . #\1) . q2)))
-  (<span style="color: #859900;">define</span> <span style="color: #b58900;">accepted-states</span>
-    '(q2))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #BFEBBF;">(</span><span style="color: #93E0E3;">m1</span> ss<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">tbl</span>                     <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">transformation rules</span>
+    '<span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>q1 . #\<span style="color: #BFEBBF;">0</span><span style="color: #9FC59F;">)</span> . q1<span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>q1 . #\<span style="color: #BFEBBF;">1</span><span style="color: #9FC59F;">)</span> . q2<span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>q2 . #\<span style="color: #BFEBBF;">0</span><span style="color: #9FC59F;">)</span> . q3<span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>q2 . #\<span style="color: #BFEBBF;">1</span><span style="color: #9FC59F;">)</span> . q2<span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>q3 . #\<span style="color: #BFEBBF;">0</span><span style="color: #9FC59F;">)</span> . q2<span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>q3 . #\<span style="color: #BFEBBF;">1</span><span style="color: #9FC59F;">)</span> . q2<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">accepted-states</span>
+    '<span style="color: #D0BF8F;">(</span>q2<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
 
-  (<span style="color: #859900;">define</span> <span style="color: #b58900;">m1-inner</span>
-    (<span style="color: #859900;">let</span> ([state 'q1])
-      (<span style="color: #859900;">lambda</span> (input)
-        (<span style="color: #859900;">cond</span> [(assoc `(,state . ,input) tbl) =&gt;
-               (<span style="color: #859900;">lambda</span> (entry)
-                 (set! state (cdr entry))
-                 (cdr entry))]
-              [else (error 'Error <span style="color: #2aa198;">"unkown state input pair ~a"</span>
-                           `(,state ,input))]))))
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">m1-inner</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">[</span>state 'q1<span style="color: #9FC59F;">]</span><span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>input<span style="color: #9FC59F;">)</span>
+        <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span> <span style="color: #94BFF3;">[</span><span style="color: #E0CF9F;">(</span>assoc `<span style="color: #8FB28F;">(</span>,state . ,input<span style="color: #8FB28F;">)</span> tbl<span style="color: #E0CF9F;">)</span> =&gt;
+               <span style="color: #E0CF9F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #8FB28F;">(</span>entry<span style="color: #8FB28F;">)</span>
+                 <span style="color: #8FB28F;">(</span>set! state <span style="color: #6CA0A3;">(</span>cdr entry<span style="color: #6CA0A3;">)</span><span style="color: #8FB28F;">)</span>
+                 <span style="color: #8FB28F;">(</span>cdr entry<span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">]</span>
+              <span style="color: #94BFF3;">[</span>else <span style="color: #E0CF9F;">(</span>error 'Error <span style="color: #CC9393;">"unkown state input pair ~a"</span>
+                           `<span style="color: #8FB28F;">(</span>,state ,input<span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">]</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
 
-  (<span style="color: #859900;">let*</span> ([char-lst (string-&gt;list ss)]
-         [ret (last (<span style="color: #859900;">map</span> m1-inner char-lst))])
-    (<span style="color: #859900;">if</span> (memv ret accepted-states)
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let*</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">[</span>char-lst <span style="color: #9FC59F;">(</span>string-&gt;list ss<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span>
+         <span style="color: #93E0E3;">[</span>ret <span style="color: #9FC59F;">(</span>last <span style="color: #94BFF3;">(</span><span style="color: #F0DFAF; font-weight: bold;">map</span> m1-inner char-lst<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #93E0E3;">(</span>memv ret accepted-states<span style="color: #93E0E3;">)</span>
         'accept
-        'reject)))
+        'reject<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 

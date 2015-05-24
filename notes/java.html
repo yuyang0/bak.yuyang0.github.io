@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>java syntax note</title>
-<!-- 2015-02-06 Fri 16:26 -->
+<!-- 2015-05-24 Sun 19:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -248,7 +248,7 @@ java welcome
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">package</span> com.example.<span style="color: #268bd2;">testcode</span>
+<pre class="src src-java"><span style="color: #F0DFAF; font-weight: bold;">package</span> com.example.<span style="color: #BFEBBF;">testcode</span>
 </pre>
 </div>
 <p>
@@ -265,40 +265,40 @@ java的所有继承都是公有继承,使用 <code>extends</code> 关键字.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Employee</span>{
-        <span style="color: #859900;">public</span> <span style="color: #b58900;">Employee</span>(<span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">name</span>, <span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">salary</span>){
-                <span style="color: #859900;">this</span>.name = name;
-                <span style="color: #859900;">this</span>.salary = salary;
-        }
-        <span style="color: #859900;">public</span> <span style="color: #268bd2;">String</span> <span style="color: #b58900;">getName</span>(){
-                <span style="color: #859900;">return</span> <span style="color: #859900;">this</span>.name;
-        }
-        <span style="color: #859900;">public</span> <span style="color: #268bd2;">double</span> <span style="color: #b58900;">getSalary</span>(){
-                <span style="color: #859900;">return</span> <span style="color: #859900;">this</span>.salary;
-        }
-        <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">raiseSalary</span>(<span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">byPercent</span>){
-                <span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">raise</span> = <span style="color: #859900;">this</span>.salary * byPercent /100;
-                <span style="color: #859900;">this</span>.salary += raise;
-        }
+<pre class="src src-java"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Employee</span><span style="color: #DCDCCC;">{</span>
+        <span style="color: #F0DFAF; font-weight: bold;">public</span> <span style="color: #93E0E3;">Employee</span><span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">String</span> <span style="color: #DFAF8F;">name</span>, <span style="color: #7CB8BB;">double</span> <span style="color: #DFAF8F;">salary</span><span style="color: #BFEBBF;">){</span>
+                <span style="color: #F0DFAF; font-weight: bold;">this</span>.name = name;
+                <span style="color: #F0DFAF; font-weight: bold;">this</span>.salary = salary;
+        <span style="color: #BFEBBF;">}</span>
+        <span style="color: #F0DFAF; font-weight: bold;">public</span> <span style="color: #7CB8BB;">String</span> <span style="color: #93E0E3;">getName</span><span style="color: #BFEBBF;">(){</span>
+                <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #F0DFAF; font-weight: bold;">this</span>.name;
+        <span style="color: #BFEBBF;">}</span>
+        <span style="color: #F0DFAF; font-weight: bold;">public</span> <span style="color: #7CB8BB;">double</span> <span style="color: #93E0E3;">getSalary</span><span style="color: #BFEBBF;">(){</span>
+                <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #F0DFAF; font-weight: bold;">this</span>.salary;
+        <span style="color: #BFEBBF;">}</span>
+        <span style="color: #F0DFAF; font-weight: bold;">public</span> <span style="color: #7CB8BB;">void</span> <span style="color: #93E0E3;">raiseSalary</span><span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">double</span> <span style="color: #DFAF8F;">byPercent</span><span style="color: #BFEBBF;">){</span>
+                <span style="color: #7CB8BB;">double</span> <span style="color: #DFAF8F;">raise</span> = <span style="color: #F0DFAF; font-weight: bold;">this</span>.salary * byPercent /<span style="color: #BFEBBF;">100</span>;
+                <span style="color: #F0DFAF; font-weight: bold;">this</span>.salary += raise;
+        <span style="color: #BFEBBF;">}</span>
 
-        <span style="color: #859900;">private</span> <span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">name</span>;
-        <span style="color: #859900;">private</span> <span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">salary</span>;
-}
+        <span style="color: #F0DFAF; font-weight: bold;">private</span> <span style="color: #7CB8BB;">String</span> <span style="color: #DFAF8F;">name</span>;
+        <span style="color: #F0DFAF; font-weight: bold;">private</span> <span style="color: #7CB8BB;">double</span> <span style="color: #DFAF8F;">salary</span>;
+<span style="color: #DCDCCC;">}</span>
 
-<span style="color: #859900;">class</span> <span style="color: #268bd2;">Manager</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">Employee</span>{
-        <span style="color: #859900;">public</span> <span style="color: #b58900;">Manager</span>(<span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">name</span>, <span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">salary</span>){
-                <span style="color: #859900;">super</span>(name, salary); <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">super&#35843;&#29992;&#29238;&#31867;&#30340;&#26500;&#36896;&#26041;&#27861;</span>
-                <span style="color: #859900;">this</span>.bonus = 0;
-        }
-        <span style="color: #859900;">public</span> <span style="color: #268bd2;">double</span> <span style="color: #b58900;">getSalary</span>(){
-                <span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">baseSalary</span> = <span style="color: #859900;">super</span>.getSalary(); <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">super&#35843;&#29992;&#29238;&#31867;&#30340;&#26222;&#36890;&#26041;&#27861;</span>
-                <span style="color: #859900;">return</span> baseSalary + <span style="color: #859900;">this</span>.bonus;
-        }
-        <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">setBonus</span>(<span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">bonus</span>){
-                <span style="color: #859900;">this</span>.bonus = bonus;
-        }
-        <span style="color: #859900;">private</span> <span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">bonus</span>;
-}
+<span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Manager</span> <span style="color: #F0DFAF; font-weight: bold;">extends</span> <span style="color: #7CB8BB;">Employee</span><span style="color: #DCDCCC;">{</span>
+        <span style="color: #F0DFAF; font-weight: bold;">public</span> <span style="color: #93E0E3;">Manager</span><span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">String</span> <span style="color: #DFAF8F;">name</span>, <span style="color: #7CB8BB;">double</span> <span style="color: #DFAF8F;">salary</span><span style="color: #BFEBBF;">){</span>
+                <span style="color: #F0DFAF; font-weight: bold;">super</span><span style="color: #D0BF8F;">(</span>name, salary<span style="color: #D0BF8F;">)</span>; <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">super&#35843;&#29992;&#29238;&#31867;&#30340;&#26500;&#36896;&#26041;&#27861;</span>
+                <span style="color: #F0DFAF; font-weight: bold;">this</span>.bonus = <span style="color: #BFEBBF;">0</span>;
+        <span style="color: #BFEBBF;">}</span>
+        <span style="color: #F0DFAF; font-weight: bold;">public</span> <span style="color: #7CB8BB;">double</span> <span style="color: #93E0E3;">getSalary</span><span style="color: #BFEBBF;">(){</span>
+                <span style="color: #7CB8BB;">double</span> <span style="color: #DFAF8F;">baseSalary</span> = <span style="color: #F0DFAF; font-weight: bold;">super</span>.getSalary<span style="color: #D0BF8F;">()</span>; <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">super&#35843;&#29992;&#29238;&#31867;&#30340;&#26222;&#36890;&#26041;&#27861;</span>
+                <span style="color: #F0DFAF; font-weight: bold;">return</span> baseSalary + <span style="color: #F0DFAF; font-weight: bold;">this</span>.bonus;
+        <span style="color: #BFEBBF;">}</span>
+        <span style="color: #F0DFAF; font-weight: bold;">public</span> <span style="color: #7CB8BB;">void</span> <span style="color: #93E0E3;">setBonus</span><span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">double</span> <span style="color: #DFAF8F;">bonus</span><span style="color: #BFEBBF;">){</span>
+                <span style="color: #F0DFAF; font-weight: bold;">this</span>.bonus = bonus;
+        <span style="color: #BFEBBF;">}</span>
+        <span style="color: #F0DFAF; font-weight: bold;">private</span> <span style="color: #7CB8BB;">double</span> <span style="color: #DFAF8F;">bonus</span>;
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -317,8 +317,8 @@ java的所有继承都是公有继承,使用 <code>extends</code> 关键字.
 如下代码:
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #268bd2;">Employee</span> <span style="color: #6c71c4;">e</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">Manager</span>(...);
-e.getSalary();
+<pre class="src src-java"><span style="color: #7CB8BB;">Employee</span> <span style="color: #DFAF8F;">e</span> = <span style="color: #F0DFAF; font-weight: bold;">new</span> <span style="color: #7CB8BB;">Manager</span><span style="color: #DCDCCC;">(</span>...<span style="color: #DCDCCC;">)</span>;
+e.getSalary<span style="color: #DCDCCC;">()</span>;
 </pre>
 </div>
 <p>
@@ -329,10 +329,10 @@ e.getSalary();
 的子类, 那么:
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #268bd2;">Employee</span> <span style="color: #6c71c4;">e</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">Manager</span>(...);
-<span style="color: #859900;">if</span>(e <span style="color: #859900;">instanceof</span> Manager){
-    <span style="color: #268bd2;">Manager</span> <span style="color: #6c71c4;">m</span> = (<span style="color: #268bd2;">Manager</span>) e;
-}
+<pre class="src src-java"><span style="color: #7CB8BB;">Employee</span> <span style="color: #DFAF8F;">e</span> = <span style="color: #F0DFAF; font-weight: bold;">new</span> <span style="color: #7CB8BB;">Manager</span><span style="color: #DCDCCC;">(</span>...<span style="color: #DCDCCC;">)</span>;
+<span style="color: #F0DFAF; font-weight: bold;">if</span><span style="color: #DCDCCC;">(</span>e <span style="color: #F0DFAF; font-weight: bold;">instanceof</span> Manager<span style="color: #DCDCCC;">){</span>
+    <span style="color: #7CB8BB;">Manager</span> <span style="color: #DFAF8F;">m</span> = <span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">Manager</span><span style="color: #BFEBBF;">)</span> e;
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -353,27 +353,27 @@ Object是所有类的超类,该类有有一些方法建议每一个类都重载:
 式:
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Employee</span>{
+<pre class="src src-java"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Employee</span><span style="color: #DCDCCC;">{</span>
     ....
-    <span style="color: #859900;">public</span> bool equals(<span style="color: #268bd2;">Object</span> <span style="color: #6c71c4;">otherObject</span>){
-        <span style="color: #859900;">if</span>(<span style="color: #859900;">this</span> == otherObject) <span style="color: #859900;">return</span> <span style="color: #268bd2;">true</span>;
-        <span style="color: #859900;">if</span>(otherObject == <span style="color: #268bd2;">null</span>) <span style="color: #859900;">return</span> <span style="color: #268bd2;">false</span>;
-        <span style="color: #859900;">if</span>(getClass() != otherObject.getClass()) <span style="color: #859900;">return</span> <span style="color: #268bd2;">false</span>;
+    <span style="color: #F0DFAF; font-weight: bold;">public</span> bool equals<span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">Object</span> <span style="color: #DFAF8F;">otherObject</span><span style="color: #BFEBBF;">){</span>
+        <span style="color: #F0DFAF; font-weight: bold;">if</span><span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">this</span> == otherObject<span style="color: #D0BF8F;">)</span> <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #BFEBBF;">true</span>;
+        <span style="color: #F0DFAF; font-weight: bold;">if</span><span style="color: #D0BF8F;">(</span>otherObject == <span style="color: #BFEBBF;">null</span><span style="color: #D0BF8F;">)</span> <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #BFEBBF;">false</span>;
+        <span style="color: #F0DFAF; font-weight: bold;">if</span><span style="color: #D0BF8F;">(</span>getClass<span style="color: #93E0E3;">()</span> != otherObject.getClass<span style="color: #93E0E3;">()</span><span style="color: #D0BF8F;">)</span> <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #BFEBBF;">false</span>;
 
-        <span style="color: #268bd2;">Employee</span> <span style="color: #6c71c4;">other</span> = (<span style="color: #268bd2;">Employee</span>) otherObject;
-        <span style="color: #859900;">return</span> name.equals(other.name)
+        <span style="color: #7CB8BB;">Employee</span> <span style="color: #DFAF8F;">other</span> = <span style="color: #D0BF8F;">(</span><span style="color: #7CB8BB;">Employee</span><span style="color: #D0BF8F;">)</span> otherObject;
+        <span style="color: #F0DFAF; font-weight: bold;">return</span> name.equals<span style="color: #D0BF8F;">(</span>other.name<span style="color: #D0BF8F;">)</span>
             &amp;&amp; salary == other.salary;
-    }
-}
-<span style="color: #859900;">class</span> <span style="color: #268bd2;">Manager</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">Employee</span>{
+    <span style="color: #BFEBBF;">}</span>
+<span style="color: #DCDCCC;">}</span>
+<span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Manager</span> <span style="color: #F0DFAF; font-weight: bold;">extends</span> <span style="color: #7CB8BB;">Employee</span><span style="color: #DCDCCC;">{</span>
     ...
-    <span style="color: #859900;">public</span> bool equals(<span style="color: #268bd2;">Object</span> <span style="color: #6c71c4;">otherObject</span>){
-        <span style="color: #859900;">if</span> (<span style="color: #268bd2;">!</span> <span style="color: #859900;">super</span>.equals(otherObject)) <span style="color: #859900;">return</span> <span style="color: #268bd2;">false</span>;
+    <span style="color: #F0DFAF; font-weight: bold;">public</span> bool equals<span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">Object</span> <span style="color: #DFAF8F;">otherObject</span><span style="color: #BFEBBF;">){</span>
+        <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">!</span> <span style="color: #F0DFAF; font-weight: bold;">super</span>.equals<span style="color: #93E0E3;">(</span>otherObject<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span> <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #BFEBBF;">false</span>;
 
-        <span style="color: #268bd2;">Manager</span> <span style="color: #6c71c4;">other</span> = (<span style="color: #268bd2;">Manager</span>) otherObject;
-        <span style="color: #859900;">return</span> <span style="color: #859900;">this</span>.bonus == other.bonus;
-    }
-}
+        <span style="color: #7CB8BB;">Manager</span> <span style="color: #DFAF8F;">other</span> = <span style="color: #D0BF8F;">(</span><span style="color: #7CB8BB;">Manager</span><span style="color: #D0BF8F;">)</span> otherObject;
+        <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #F0DFAF; font-weight: bold;">this</span>.bonus == other.bonus;
+    <span style="color: #BFEBBF;">}</span>
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -399,18 +399,18 @@ Object是所有类的超类,该类有有一些方法建议每一个类都重载:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">abstract</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">Person</span>{
-    <span style="color: #859900;">public</span> <span style="color: #b58900;">Person</span>(<span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">name</span>){
-        <span style="color: #859900;">this</span>.name = name;
-    }
+<pre class="src src-java"><span style="color: #F0DFAF; font-weight: bold;">abstract</span> <span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Person</span><span style="color: #DCDCCC;">{</span>
+    <span style="color: #F0DFAF; font-weight: bold;">public</span> <span style="color: #93E0E3;">Person</span><span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">String</span> <span style="color: #DFAF8F;">name</span><span style="color: #BFEBBF;">){</span>
+        <span style="color: #F0DFAF; font-weight: bold;">this</span>.name = name;
+    <span style="color: #BFEBBF;">}</span>
 
-    <span style="color: #859900;">public</span> <span style="color: #859900;">abstract</span> <span style="color: #268bd2;">String</span> <span style="color: #b58900;">getDescription</span>();
+    <span style="color: #F0DFAF; font-weight: bold;">public</span> <span style="color: #F0DFAF; font-weight: bold;">abstract</span> <span style="color: #7CB8BB;">String</span> <span style="color: #93E0E3;">getDescription</span><span style="color: #BFEBBF;">()</span>;
 
-    <span style="color: #859900;">public</span> <span style="color: #268bd2;">String</span> <span style="color: #b58900;">getName</span>(){
-        <span style="color: #859900;">return</span> <span style="color: #859900;">this</span>.name;
-    }
-    <span style="color: #859900;">private</span> <span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">name</span>;
-}
+    <span style="color: #F0DFAF; font-weight: bold;">public</span> <span style="color: #7CB8BB;">String</span> <span style="color: #93E0E3;">getName</span><span style="color: #BFEBBF;">(){</span>
+        <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #F0DFAF; font-weight: bold;">this</span>.name;
+    <span style="color: #BFEBBF;">}</span>
+    <span style="color: #F0DFAF; font-weight: bold;">private</span> <span style="color: #7CB8BB;">String</span> <span style="color: #DFAF8F;">name</span>;
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 </div>
@@ -432,7 +432,7 @@ Class对象.
 <li>如果知道类的字符串表示, 那么可以使用 forName来获得Class 对象, 比如:
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #268bd2;">Class</span> <span style="color: #6c71c4;">cl</span> = Class.forName(<span style="color: #2aa198;">"java.util.Date"</span>);
+<pre class="src src-java"><span style="color: #7CB8BB;">Class</span> <span style="color: #DFAF8F;">cl</span> = Class.forName<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"java.util.Date"</span><span style="color: #DCDCCC;">)</span>;
 </pre>
 </div>
 </li>
@@ -446,9 +446,9 @@ Class对象.
 转换
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #268bd2;">Class</span> <span style="color: #6c71c4;">cl</span> = Class.forName(<span style="color: #2aa198;">"java.util.Date"</span>);
-<span style="color: #268bd2;">Object</span> <span style="color: #6c71c4;">m</span> = cl.newInstance();
-<span style="color: #268bd2;">Date</span> <span style="color: #6c71c4;">d</span> = (<span style="color: #268bd2;">Date</span>) m;
+<pre class="src src-java"><span style="color: #7CB8BB;">Class</span> <span style="color: #DFAF8F;">cl</span> = Class.forName<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"java.util.Date"</span><span style="color: #DCDCCC;">)</span>;
+<span style="color: #7CB8BB;">Object</span> <span style="color: #DFAF8F;">m</span> = cl.newInstance<span style="color: #DCDCCC;">()</span>;
+<span style="color: #7CB8BB;">Date</span> <span style="color: #DFAF8F;">d</span> = <span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">Date</span><span style="color: #DCDCCC;">)</span> m;
 </pre>
 </div>
 </li>
@@ -462,9 +462,9 @@ Class对象.
 <li>定义
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">interface</span> <span style="color: #268bd2;">Comparable</span>&lt;<span style="color: #268bd2;">T</span>&gt;{
-    <span style="color: #268bd2;">int</span> <span style="color: #b58900;">CompareTo</span>(<span style="color: #268bd2;">T</span> <span style="color: #6c71c4;">otherObject</span>);
-}
+<pre class="src src-java"><span style="color: #F0DFAF; font-weight: bold;">public</span> <span style="color: #F0DFAF; font-weight: bold;">interface</span> <span style="color: #7CB8BB;">Comparable</span><span style="color: #DCDCCC;">&lt;</span><span style="color: #7CB8BB;">T</span><span style="color: #DCDCCC;">&gt;{</span>
+    <span style="color: #7CB8BB;">int</span> <span style="color: #93E0E3;">CompareTo</span><span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">T</span> <span style="color: #DFAF8F;">otherObject</span><span style="color: #BFEBBF;">)</span>;
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -474,11 +474,11 @@ interface中的方法自动为public.
 <li>实现接口
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Employee</span> <span style="color: #859900;">implements</span> <span style="color: #268bd2;">Comparable</span>&lt;<span style="color: #268bd2;">Employee</span>&gt;{
-    <span style="color: #859900;">public</span> <span style="color: #268bd2;">int</span> <span style="color: #b58900;">compareTo</span>(<span style="color: #268bd2;">Employee</span> <span style="color: #6c71c4;">other</span>){
+<pre class="src src-java"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Employee</span> <span style="color: #F0DFAF; font-weight: bold;">implements</span> <span style="color: #7CB8BB;">Comparable</span><span style="color: #DCDCCC;">&lt;</span><span style="color: #7CB8BB;">Employee</span><span style="color: #DCDCCC;">&gt;{</span>
+    <span style="color: #F0DFAF; font-weight: bold;">public</span> <span style="color: #7CB8BB;">int</span> <span style="color: #93E0E3;">compareTo</span><span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">Employee</span> <span style="color: #DFAF8F;">other</span><span style="color: #BFEBBF;">){</span>
         ...
-    }
-}
+    <span style="color: #BFEBBF;">}</span>
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -490,10 +490,10 @@ interface中的方法自动为public.
 实现了该接口.
 <div class="org-src-container">
 
-<pre class="src src-java">x = <span style="color: #859900;">new</span> <span style="color: #268bd2;">Comparable</span>();            <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">&#38169;&#35823;&#35821;&#27861;</span>
+<pre class="src src-java">x = <span style="color: #F0DFAF; font-weight: bold;">new</span> <span style="color: #7CB8BB;">Comparable</span><span style="color: #DCDCCC;">()</span>;            <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#38169;&#35823;&#35821;&#27861;</span>
 
-<span style="color: #268bd2;">Comparable</span> <span style="color: #6c71c4;">x</span>;
-<span style="color: #268bd2;">Comparable</span> <span style="color: #6c71c4;">y</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">Employee</span>(...)           <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">Employee&#31867;&#23454;&#29616;&#20102;Comparable&#25509;&#21475;</span>
+<span style="color: #7CB8BB;">Comparable</span> <span style="color: #DFAF8F;">x</span>;
+<span style="color: #7CB8BB;">Comparable</span> <span style="color: #DFAF8F;">y</span> = <span style="color: #F0DFAF; font-weight: bold;">new</span> <span style="color: #7CB8BB;">Employee</span><span style="color: #DCDCCC;">(</span>...<span style="color: #DCDCCC;">)</span>           <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Employee&#31867;&#23454;&#29616;&#20102;Comparable&#25509;&#21475;</span>
 </pre>
 </div>
 </li>
@@ -536,12 +536,12 @@ IOException是所有不属于RuntimeException的异常,这类异常应该通过t
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">class</span> <span style="color: #268bd2;">MyAnimation</span>{
+<pre class="src src-java"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">MyAnimation</span><span style="color: #DCDCCC;">{</span>
     ...
-    <span style="color: #859900;">public</span> Image loadImage(<span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">s</span>) <span style="color: #859900;">throws</span> <span style="color: #268bd2;">EOFException</span>, <span style="color: #268bd2;">MalformatURLException</span>{
+    <span style="color: #F0DFAF; font-weight: bold;">public</span> Image loadImage<span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">String</span> <span style="color: #DFAF8F;">s</span><span style="color: #BFEBBF;">)</span> <span style="color: #F0DFAF; font-weight: bold;">throws</span> <span style="color: #7CB8BB;">EOFException</span>, <span style="color: #7CB8BB;">MalformatURLException</span><span style="color: #BFEBBF;">{</span>
         ...
-    }
-}
+    <span style="color: #BFEBBF;">}</span>
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -551,18 +551,18 @@ loadImage有可能抛出两个异常,如果一个方法没有声明 throws语句
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">try</span>{
+<pre class="src src-java"><span style="color: #F0DFAF; font-weight: bold;">try</span><span style="color: #DCDCCC;">{</span>
     ...
-}
-<span style="color: #859900;">catch</span>(<span style="color: #268bd2;">MakformatURLException</span> <span style="color: #6c71c4;">e</span>){
+<span style="color: #DCDCCC;">}</span>
+<span style="color: #F0DFAF; font-weight: bold;">catch</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">MakformatURLException</span> <span style="color: #DFAF8F;">e</span><span style="color: #DCDCCC;">){</span>
     ...
-}
-<span style="color: #859900;">catch</span>(<span style="color: #268bd2;">IOException</span> <span style="color: #6c71c4;">e</span>){
+<span style="color: #DCDCCC;">}</span>
+<span style="color: #F0DFAF; font-weight: bold;">catch</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">IOException</span> <span style="color: #DFAF8F;">e</span><span style="color: #DCDCCC;">){</span>
     ...
-}
-<span style="color: #859900;">finally</span>{
+<span style="color: #DCDCCC;">}</span>
+<span style="color: #F0DFAF; font-weight: bold;">finally</span><span style="color: #DCDCCC;">{</span>
     ...
-}
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -646,12 +646,12 @@ handler也有自己的level,只有日志级别高于等于handler的level时,han
 </ol>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #268bd2;">Logger</span> <span style="color: #6c71c4;">logger</span> = Logger.getLogger(<span style="color: #2aa198;">"com.mycompany.myapp"</span>);
-logger.setLevel(<span style="color: #268bd2;">Level</span>.FINE);
-logger.setUseParentHandler(<span style="color: #268bd2;">false</span>); <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">&#38450;&#27490;&#26085;&#24535;&#36865;&#20837; &#29238;logger,&#22240;&#20026;&#36825;&#26679;&#20250;&#37325;&#22797;</span>
-<span style="color: #268bd2;">Handler</span> <span style="color: #6c71c4;">hd</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">ConsoleHandler</span>();
-hd.setLevel(<span style="color: #268bd2;">Level</span>.Fine);
-logger.addHandler(hd);
+<pre class="src src-java"><span style="color: #7CB8BB;">Logger</span> <span style="color: #DFAF8F;">logger</span> = Logger.getLogger<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"com.mycompany.myapp"</span><span style="color: #DCDCCC;">)</span>;
+logger.setLevel<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">Level</span>.FINE<span style="color: #DCDCCC;">)</span>;
+logger.setUseParentHandler<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">false</span><span style="color: #DCDCCC;">)</span>; <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#38450;&#27490;&#26085;&#24535;&#36865;&#20837; &#29238;logger,&#22240;&#20026;&#36825;&#26679;&#20250;&#37325;&#22797;</span>
+<span style="color: #7CB8BB;">Handler</span> <span style="color: #DFAF8F;">hd</span> = <span style="color: #F0DFAF; font-weight: bold;">new</span> <span style="color: #7CB8BB;">ConsoleHandler</span><span style="color: #DCDCCC;">()</span>;
+hd.setLevel<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">Level</span>.Fine<span style="color: #DCDCCC;">)</span>;
+logger.addHandler<span style="color: #DCDCCC;">(</span>hd<span style="color: #DCDCCC;">)</span>;
 </pre>
 </div>
 </div>
@@ -662,7 +662,7 @@ logger.addHandler(hd);
 <li>将logger 命名为与主应用程序包一样的名字.
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #268bd2;">Logger</span> <span style="color: #6c71c4;">logger</span> = Logger.getLogger(<span style="color: #2aa198;">"com.mycompany.myproj"</span>);
+<pre class="src src-java"><span style="color: #7CB8BB;">Logger</span> <span style="color: #DFAF8F;">logger</span> = Logger.getLogger<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"com.mycompany.myproj"</span><span style="color: #DCDCCC;">)</span>;
 </pre>
 </div>
 <p>
@@ -670,10 +670,10 @@ logger.addHandler(hd);
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">class</span> <span style="color: #268bd2;">MyClass</span>{
+<pre class="src src-java"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">MyClass</span><span style="color: #DCDCCC;">{</span>
     ...
-    <span style="color: #859900;">private</span> <span style="color: #859900;">static</span> <span style="color: #859900;">final</span> Logger = Logger.getLogger(<span style="color: #2aa198;">"com.mycompany.myproj"</span>);
-}
+    <span style="color: #F0DFAF; font-weight: bold;">private</span> <span style="color: #F0DFAF; font-weight: bold;">static</span> <span style="color: #F0DFAF; font-weight: bold;">final</span> Logger = Logger.getLogger<span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">"com.mycompany.myproj"</span><span style="color: #BFEBBF;">)</span>;
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 </li>
@@ -719,10 +719,10 @@ logger.addHandler(hd);
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">s1</span> = <span style="color: #2aa198;">"aaaa"</span>;
-<span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">s2</span> = s1 + <span style="color: #2aa198;">"bbbb"</span>;        <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">s2 = "aaaabbbb"</span>
-<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">len</span> = s2.length();    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">len = 8</span>
-<span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">newStr</span> = s2.substring(0, 3); <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">newStr = "aaa"</span>
+<pre class="src src-java"><span style="color: #7CB8BB;">String</span> <span style="color: #DFAF8F;">s1</span> = <span style="color: #CC9393;">"aaaa"</span>;
+<span style="color: #7CB8BB;">String</span> <span style="color: #DFAF8F;">s2</span> = s1 + <span style="color: #CC9393;">"bbbb"</span>;        <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">s2 = "aaaabbbb"</span>
+<span style="color: #7CB8BB;">int</span> <span style="color: #DFAF8F;">len</span> = s2.length<span style="color: #DCDCCC;">()</span>;    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">len = 8</span>
+<span style="color: #7CB8BB;">String</span> <span style="color: #DFAF8F;">newStr</span> = s2.substring<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">0</span>, <span style="color: #BFEBBF;">3</span><span style="color: #DCDCCC;">)</span>; <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">newStr = "aaa"</span>
 </pre>
 </div>
 </div>
@@ -735,10 +735,10 @@ logger.addHandler(hd);
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #268bd2;">StringBuider</span> <span style="color: #6c71c4;">builder</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">StringBuider</span>();
-builder.append(<span style="color: #2aa198;">"hello"</span>);
-builder.append(<span style="color: #2aa198;">' '</span>);
-<span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">completeString</span> = builder.toString();
+<pre class="src src-java"><span style="color: #7CB8BB;">StringBuider</span> <span style="color: #DFAF8F;">builder</span> = <span style="color: #F0DFAF; font-weight: bold;">new</span> <span style="color: #7CB8BB;">StringBuider</span><span style="color: #DCDCCC;">()</span>;
+builder.append<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"hello"</span><span style="color: #DCDCCC;">)</span>;
+builder.append<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">' '</span><span style="color: #DCDCCC;">)</span>;
+<span style="color: #7CB8BB;">String</span> <span style="color: #DFAF8F;">completeString</span> = builder.toString<span style="color: #DCDCCC;">()</span>;
 </pre>
 </div>
 </div>

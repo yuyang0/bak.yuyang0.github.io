@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>C开发技巧</title>
-<!-- 2015-02-06 Fri 16:26 -->
+<!-- 2015-05-24 Sun 19:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -318,12 +318,12 @@ probe timer.s(4) {
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #859900;">struct</span> <span style="color: #268bd2;">str</span>{
-    <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">len</span>;
-    <span style="color: #268bd2;">char</span> <span style="color: #6c71c4;">s</span>[0];  <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">c99&#24212;&#35813;&#36825;&#26679; char s[] </span><span style="color: #586e75; font-style: italic;">*/</span>
-};
-<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">len</span> = 10;
-<span style="color: #859900;">struct</span> <span style="color: #268bd2;">str</span> *<span style="color: #6c71c4;">p</span> = malloc(<span style="color: #859900;">sizeof</span>(<span style="color: #859900;">struct</span> <span style="color: #268bd2;">str</span>) + (len+1) * <span style="color: #859900;">sizeof</span>(<span style="color: #268bd2;">char</span>));
+<pre class="src src-c"><span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">str</span><span style="color: #DCDCCC;">{</span>
+    <span style="color: #7CB8BB;">int</span> <span style="color: #DFAF8F;">len</span>;
+    <span style="color: #7CB8BB;">char</span> <span style="color: #DFAF8F;">s</span><span style="color: #BFEBBF;">[</span><span style="color: #BFEBBF;">0</span><span style="color: #BFEBBF;">]</span>;  <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">c99&#24212;&#35813;&#36825;&#26679; char s[] </span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #DCDCCC;">}</span>;
+<span style="color: #7CB8BB;">int</span> <span style="color: #DFAF8F;">len</span> = <span style="color: #BFEBBF;">10</span>;
+<span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">str</span> *<span style="color: #DFAF8F;">p</span> = malloc<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">sizeof</span><span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">str</span><span style="color: #BFEBBF;">)</span> + <span style="color: #BFEBBF;">(</span>len+<span style="color: #BFEBBF;">1</span><span style="color: #BFEBBF;">)</span> * <span style="color: #F0DFAF; font-weight: bold;">sizeof</span><span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">char</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>;
 p-&gt;len = len;
 </pre>
 </div>
@@ -340,20 +340,20 @@ s实际上是不占空间的, 它可以h看作是一个占位符, p-&gt;s 会自
 <div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #859900;">struct</span> <span style="color: #268bd2;">aa</span> {
-    <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">lock</span>;
-    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">other field </span><span style="color: #586e75; font-style: italic;">*/</span>
-};
-<span style="color: #859900;">struct</span> <span style="color: #268bd2;">aa</span> <span style="color: #6c71c4;">S</span>;
-<span style="color: #859900;">static</span> <span style="color: #859900;">inline</span> <span style="color: #268bd2;">void</span>
-<span style="color: #b58900;">LOCK</span>() {
-    <span style="color: #859900;">while</span> (__sync_lock_test_and_set(&amp;(S.lock),1)) {}
-}
+<pre class="src src-c"><span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">aa</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #7CB8BB;">int</span> <span style="color: #DFAF8F;">lock</span>;
+    <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">other field </span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #DCDCCC;">}</span>;
+<span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">aa</span> <span style="color: #DFAF8F;">S</span>;
+<span style="color: #F0DFAF; font-weight: bold;">static</span> <span style="color: #F0DFAF; font-weight: bold;">inline</span> <span style="color: #7CB8BB;">void</span>
+<span style="color: #93E0E3;">LOCK</span><span style="color: #DCDCCC;">()</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #F0DFAF; font-weight: bold;">while</span> <span style="color: #BFEBBF;">(</span>__sync_lock_test_and_set<span style="color: #D0BF8F;">(</span>&amp;<span style="color: #93E0E3;">(</span>S.lock<span style="color: #93E0E3;">)</span>,<span style="color: #BFEBBF;">1</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{}</span>
+<span style="color: #DCDCCC;">}</span>
 
-<span style="color: #859900;">static</span> <span style="color: #859900;">inline</span> <span style="color: #268bd2;">void</span>
-<span style="color: #b58900;">UNLOCK</span>() {
-    __sync_lock_release(&amp;(S.lock));
-}
+<span style="color: #F0DFAF; font-weight: bold;">static</span> <span style="color: #F0DFAF; font-weight: bold;">inline</span> <span style="color: #7CB8BB;">void</span>
+<span style="color: #93E0E3;">UNLOCK</span><span style="color: #DCDCCC;">()</span> <span style="color: #DCDCCC;">{</span>
+    __sync_lock_release<span style="color: #BFEBBF;">(</span>&amp;<span style="color: #D0BF8F;">(</span>S.lock<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>;
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>

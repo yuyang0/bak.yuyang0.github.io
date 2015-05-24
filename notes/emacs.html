@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
 <head>
 <title>Emacs笔记</title>
-<!-- 2015-02-06 Fri 16:26 -->
+<!-- 2015-05-24 Sun 19:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -295,9 +295,9 @@ gedit /usr/bin/emacs
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #586e75; font-style: italic;">#</span><span style="color: #586e75; font-style: italic;">!/bin/</span><span style="color: #859900;">bash</span>
-<span style="color: #6c71c4;">export</span> <span style="color: #6c71c4;">LC_CTYPE</span>=zh_CN.utf-8
-/usr/bin/emacs.raw <span style="color: #2aa198;">"$@"</span>
+<pre class="src src-sh"><span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">!/bin/</span><span style="color: #F0DFAF; font-weight: bold;">bash</span>
+<span style="color: #DCDCCC; font-weight: bold;">export</span> <span style="color: #DFAF8F;">LC_CTYPE</span>=zh_CN.utf-8
+/usr/bin/emacs.raw <span style="color: #CC9393;">"$@"</span>
 </pre>
 </div>
 </div>
@@ -563,30 +563,30 @@ C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span><span style="color: #859900;">defvar</span> <span style="color: #6c71c4;">jc/mc-search--last-term</span> nil<span style="color: #839496;">)</span>
+<pre class="src src-emacs-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defvar</span> <span style="color: #DFAF8F;">jc/mc-search--last-term</span> nil<span style="color: #DCDCCC;">)</span>
 
-<span style="color: #839496;">(</span><span style="color: #859900;">defun</span> <span style="color: #b58900;">jc/mc-search</span> <span style="color: #2aa198;">(</span>search-command<span style="color: #2aa198;">)</span>
-  <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">Read new search term when not repeated command or applying to fake cursors</span>
-  <span style="color: #2aa198;">(</span><span style="color: #859900;">when</span> <span style="color: #b58900;">(</span>and <span style="color: #859900;">(</span>not mc--executing-command-for-fake-cursor<span style="color: #859900;">)</span>
-             <span style="color: #859900;">(</span>not <span style="color: #268bd2;">(</span>eq last-command <span style="color: #859900;">'</span><span style="color: #268bd2;">jc/mc-search-forward</span><span style="color: #268bd2;">)</span><span style="color: #859900;">)</span>
-             <span style="color: #859900;">(</span>not <span style="color: #268bd2;">(</span>eq last-command <span style="color: #859900;">'</span><span style="color: #268bd2;">jc/mc-search-backward</span><span style="color: #268bd2;">)</span><span style="color: #859900;">)</span><span style="color: #b58900;">)</span>
-    <span style="color: #b58900;">(</span>setq jc/mc-search--last-term <span style="color: #859900;">(</span>read-from-minibuffer <span style="color: #2aa198;">"Search(regex): "</span><span style="color: #859900;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
-  <span style="color: #2aa198;">(</span>funcall search-command jc/mc-search--last-term<span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">jc/mc-search</span> <span style="color: #BFEBBF;">(</span>search-command<span style="color: #BFEBBF;">)</span>
+  <span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">Read new search term when not repeated command or applying to fake cursors</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">when</span> <span style="color: #D0BF8F;">(</span>and <span style="color: #93E0E3;">(</span>not mc--executing-command-for-fake-cursor<span style="color: #93E0E3;">)</span>
+             <span style="color: #93E0E3;">(</span>not <span style="color: #9FC59F;">(</span>eq last-command 'jc/mc-search-forward<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+             <span style="color: #93E0E3;">(</span>not <span style="color: #9FC59F;">(</span>eq last-command 'jc/mc-search-backward<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>setq jc/mc-search--last-term <span style="color: #93E0E3;">(</span>read-from-minibuffer <span style="color: #CC9393;">"Search(regex): "</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>funcall search-command jc/mc-search--last-term<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 
-<span style="color: #839496;">(</span><span style="color: #859900;">defun</span> <span style="color: #b58900;">jc/mc-search-forward</span> <span style="color: #2aa198;">()</span>
-  <span style="color: #d33682;">"Simplified version of forward search that supports multiple cursors"</span>
-  <span style="color: #2aa198;">(</span>interactive<span style="color: #2aa198;">)</span>
-  <span style="color: #2aa198;">(</span>jc/mc-search <span style="color: #859900;">'</span><span style="color: #268bd2;">search-forward-regexp</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">jc/mc-search-forward</span> <span style="color: #BFEBBF;">()</span>
+  <span style="color: #9FC59F;">"Simplified version of forward search that supports multiple cursors"</span>
+  <span style="color: #BFEBBF;">(</span>interactive<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>jc/mc-search 'search-forward-regexp<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 
-<span style="color: #839496;">(</span><span style="color: #859900;">defun</span> <span style="color: #b58900;">jc/mc-search-backward</span> <span style="color: #2aa198;">()</span>
-  <span style="color: #d33682;">"Simplified version of backward search that supports multiple cursors"</span>
-  <span style="color: #2aa198;">(</span>interactive<span style="color: #2aa198;">)</span>
-  <span style="color: #2aa198;">(</span>jc/mc-search <span style="color: #859900;">'</span><span style="color: #268bd2;">search-backward-regexp</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">jc/mc-search-backward</span> <span style="color: #BFEBBF;">()</span>
+  <span style="color: #9FC59F;">"Simplified version of backward search that supports multiple cursors"</span>
+  <span style="color: #BFEBBF;">(</span>interactive<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>jc/mc-search 'search-backward-regexp<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 
-<span style="color: #839496;">(</span>add-hook <span style="color: #859900;">'</span><span style="color: #268bd2;">multiple-cursors-mode-enabled-hook</span>
-          <span style="color: #2aa198;">(</span><span style="color: #859900;">lambda</span><span style="color: #b58900;">()</span>
-            <span style="color: #b58900;">(</span>local-set-key <span style="color: #859900;">(</span>kbd <span style="color: #2aa198;">"C-s"</span><span style="color: #859900;">)</span> <span style="color: #859900;">'</span><span style="color: #268bd2;">jc/mc-search-forward</span><span style="color: #b58900;">)</span>
-            <span style="color: #b58900;">(</span>local-set-key <span style="color: #859900;">(</span>kbd <span style="color: #2aa198;">"C-r"</span><span style="color: #859900;">)</span> <span style="color: #859900;">'</span><span style="color: #268bd2;">jc/mc-search-backward</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
+<span style="color: #DCDCCC;">(</span>add-hook 'multiple-cursors-mode-enabled-hook
+          <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span><span style="color: #D0BF8F;">()</span>
+            <span style="color: #D0BF8F;">(</span>local-set-key <span style="color: #93E0E3;">(</span>kbd <span style="color: #CC9393;">"C-s"</span><span style="color: #93E0E3;">)</span> 'jc/mc-search-forward<span style="color: #D0BF8F;">)</span>
+            <span style="color: #D0BF8F;">(</span>local-set-key <span style="color: #93E0E3;">(</span>kbd <span style="color: #CC9393;">"C-r"</span><span style="color: #93E0E3;">)</span> 'jc/mc-search-backward<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -1032,12 +1032,12 @@ textlive-latex-extra一定要装,不装会有File `wrapfig.sty' not found.的错
 <li>在emacs配置文件中添加
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">org-mode &lt; 8.0</span>
-<span style="color: #839496;">(</span>setq org-latex-to-pdf-process <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span><span style="color: #2aa198;">"xelatex -interaction nonstopmode %f"</span>
-                                 <span style="color: #2aa198;">"xelatex -interaction nonstopmode %f"</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
-<span style="color: #586e75; font-style: italic;">;;  </span><span style="color: #586e75; font-style: italic;">org-mode 8.0</span>
-<span style="color: #839496;">(</span>setq org-latex-pdf-process <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span><span style="color: #2aa198;">"xelatex -interaction nonstopmode %f"</span>
-                              <span style="color: #2aa198;">"xelatex -interaction nonstopmode %f"</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
+<pre class="src src-emacs-lisp"><span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">org-mode &lt; 8.0</span>
+<span style="color: #DCDCCC;">(</span>setq org-latex-to-pdf-process '<span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">"xelatex -interaction nonstopmode %f"</span>
+                                 <span style="color: #CC9393;">"xelatex -interaction nonstopmode %f"</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #5F7F5F;">;;  </span><span style="color: #7F9F7F;">org-mode 8.0</span>
+<span style="color: #DCDCCC;">(</span>setq org-latex-pdf-process '<span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">"xelatex -interaction nonstopmode %f"</span>
+                              <span style="color: #CC9393;">"xelatex -interaction nonstopmode %f"</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </li>
@@ -1080,29 +1080,29 @@ M-x package-install request安装
 </p>
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span><span style="color: #859900;">require</span> <span style="color: #859900;">'</span><span style="color: #268bd2;">request</span><span style="color: #839496;">)</span>
-<span style="color: #839496;">(</span><span style="color: #859900;">require</span> <span style="color: #859900;">'</span><span style="color: #268bd2;">json</span><span style="color: #839496;">)</span>
-<span style="color: #839496;">(</span><span style="color: #859900;">defun</span> <span style="color: #b58900;">dwz-url-shorten</span> <span style="color: #2aa198;">(</span>long-url<span style="color: #2aa198;">)</span>
-  <span style="color: #d33682;">"shorten url with dwz.cn"</span>
-  <span style="color: #2aa198;">(</span>interactive <span style="color: #b58900;">(</span>list
-                <span style="color: #859900;">(</span>read-string <span style="color: #268bd2;">(</span>format <span style="color: #2aa198;">"long url (%s): "</span> <span style="color: #839496;">(</span>thing-at-point <span style="color: #859900;">'</span><span style="color: #268bd2;">url</span><span style="color: #839496;">)</span><span style="color: #268bd2;">)</span>
-                             nil nil <span style="color: #268bd2;">(</span>thing-at-point <span style="color: #859900;">'</span><span style="color: #268bd2;">url</span><span style="color: #268bd2;">)</span><span style="color: #859900;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
-  <span style="color: #2aa198;">(</span>request
-   <span style="color: #2aa198;">"http://dwz.cn/create.php"</span>
-   <span style="color: #6c71c4;">:type</span> <span style="color: #2aa198;">"POST"</span>
-   <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">:data '(("url" . long-url))</span>
-   <span style="color: #6c71c4;">:data</span> <span style="color: #b58900;">(</span>format <span style="color: #2aa198;">"url=%s"</span> long-url<span style="color: #b58900;">)</span>
-   <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">:data "key=value&amp;key2=value2"  ; this is equivalent</span>
-   <span style="color: #6c71c4;">:parser</span> <span style="color: #859900;">'</span><span style="color: #268bd2;">json-read</span>
-   <span style="color: #6c71c4;">:success</span> <span style="color: #b58900;">(</span>function*
-             <span style="color: #859900;">(</span><span style="color: #859900;">lambda</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">&amp;key</span> data <span style="color: #268bd2;">&amp;allow-other-keys</span><span style="color: #268bd2;">)</span>
-               <span style="color: #268bd2;">(</span><span style="color: #859900;">let</span> <span style="color: #839496;">(</span><span style="color: #2aa198;">(</span>tinyurl <span style="color: #b58900;">(</span>assoc-default <span style="color: #859900;">'</span><span style="color: #268bd2;">tinyurl</span> data<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
-                     <span style="color: #2aa198;">(</span>url-boundaries <span style="color: #b58900;">(</span>bounds-of-thing-at-point <span style="color: #859900;">'</span><span style="color: #268bd2;">url</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
-                 <span style="color: #839496;">(</span><span style="color: #859900;">progn</span>
-                   <span style="color: #2aa198;">(</span>message <span style="color: #2aa198;">"%S"</span> tinyurl<span style="color: #2aa198;">)</span>
-                   <span style="color: #2aa198;">(</span><span style="color: #859900;">if</span> url-boundaries
-                       <span style="color: #b58900;">(</span>goto-char <span style="color: #859900;">(</span>cdr url-boundaries<span style="color: #859900;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
-                   <span style="color: #2aa198;">(</span>insert <span style="color: #2aa198;">" "</span> tinyurl <span style="color: #2aa198;">" "</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span><span style="color: #268bd2;">)</span><span style="color: #859900;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
+<pre class="src src-emacs-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">require</span> '<span style="color: #BFEBBF;">request</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">require</span> '<span style="color: #BFEBBF;">json</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">dwz-url-shorten</span> <span style="color: #BFEBBF;">(</span>long-url<span style="color: #BFEBBF;">)</span>
+  <span style="color: #9FC59F;">"shorten url with dwz.cn"</span>
+  <span style="color: #BFEBBF;">(</span>interactive <span style="color: #D0BF8F;">(</span>list
+                <span style="color: #93E0E3;">(</span>read-string <span style="color: #9FC59F;">(</span>format <span style="color: #CC9393;">"long url (%s): "</span> <span style="color: #94BFF3;">(</span>thing-at-point 'url<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
+                             nil nil <span style="color: #9FC59F;">(</span>thing-at-point 'url<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>request
+   <span style="color: #CC9393;">"http://dwz.cn/create.php"</span>
+   <span style="color: #DCDCCC; font-weight: bold;">:type</span> <span style="color: #CC9393;">"POST"</span>
+   <span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">:data '(("url" . long-url))</span>
+   <span style="color: #DCDCCC; font-weight: bold;">:data</span> <span style="color: #D0BF8F;">(</span>format <span style="color: #CC9393;">"url=%s"</span> long-url<span style="color: #D0BF8F;">)</span>
+   <span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">:data "key=value&amp;key2=value2"  ; this is equivalent</span>
+   <span style="color: #DCDCCC; font-weight: bold;">:parser</span> 'json-read
+   <span style="color: #DCDCCC; font-weight: bold;">:success</span> <span style="color: #D0BF8F;">(</span>function*
+             <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span><span style="color: #7CB8BB;">&amp;key</span> data <span style="color: #7CB8BB;">&amp;allow-other-keys</span><span style="color: #9FC59F;">)</span>
+               <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #94BFF3;">(</span><span style="color: #E0CF9F;">(</span>tinyurl <span style="color: #8FB28F;">(</span>assoc-default 'tinyurl data<span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span>
+                     <span style="color: #E0CF9F;">(</span>url-boundaries <span style="color: #8FB28F;">(</span>bounds-of-thing-at-point 'url<span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span>
+                 <span style="color: #94BFF3;">(</span><span style="color: #F0DFAF; font-weight: bold;">progn</span>
+                   <span style="color: #E0CF9F;">(</span>message <span style="color: #CC9393;">"%S"</span> tinyurl<span style="color: #E0CF9F;">)</span>
+                   <span style="color: #E0CF9F;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> url-boundaries
+                       <span style="color: #8FB28F;">(</span>goto-char <span style="color: #6CA0A3;">(</span>cdr url-boundaries<span style="color: #6CA0A3;">)</span><span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span>
+                   <span style="color: #E0CF9F;">(</span>insert <span style="color: #CC9393;">" "</span> tinyurl <span style="color: #CC9393;">" "</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -1120,8 +1120,8 @@ dwz.cn,126.am,bit.ly,goo.gl.
 <div class="outline-text-4" id="text-1-22-1">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span>setq url-proxy-services <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span><span style="color: #b58900;">(</span><span style="color: #2aa198;">"no_proxy"</span> . <span style="color: #2aa198;">"work\\.com"</span><span style="color: #b58900;">)</span>
-                           <span style="color: #b58900;">(</span><span style="color: #2aa198;">"http"</span> . <span style="color: #2aa198;">"localhost:8087"</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
+<pre class="src src-emacs-lisp"><span style="color: #DCDCCC;">(</span>setq url-proxy-services '<span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">(</span><span style="color: #CC9393;">"no_proxy"</span> . <span style="color: #CC9393;">"work\\.com"</span><span style="color: #D0BF8F;">)</span>
+                           <span style="color: #D0BF8F;">(</span><span style="color: #CC9393;">"http"</span> . <span style="color: #CC9393;">"localhost:8087"</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -1410,9 +1410,9 @@ latex代码预览的原理是先创建一个临时的tex文件, 然后调用late
 <li>有两种方法来预览latex代码: dvipng(默认) 和 imagemagick,可以通过如下代码设置
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span>setq org-latex-create-formula-image-program <span style="color: #859900;">'</span><span style="color: #268bd2;">dvipng</span><span style="color: #839496;">)</span>
-<span style="color: #586e75; font-style: italic;">;;; </span><span style="color: #586e75; font-style: italic;">or</span>
-<span style="color: #839496;">(</span>setq org-latex-create-formula-image-program <span style="color: #859900;">'</span><span style="color: #268bd2;">imagemagick</span><span style="color: #839496;">)</span>
+<pre class="src src-emacs-lisp"><span style="color: #DCDCCC;">(</span>setq org-latex-create-formula-image-program 'dvipng<span style="color: #DCDCCC;">)</span>
+<span style="color: #5F7F5F;">;;; </span><span style="color: #7F9F7F;">or</span>
+<span style="color: #DCDCCC;">(</span>setq org-latex-create-formula-image-program 'imagemagick<span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </li>
@@ -1454,11 +1454,11 @@ latex代码预览的原理是先创建一个临时的tex文件, 然后调用late
 </p>
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span style="color: #839496;">(</span>setq org-html-mathjax-options <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span><span style="color: #b58900;">(</span>path <span style="color: #2aa198;">"http://cdn.mathjax.org/mathjax/latest/Ma</span><span style="color: #ee82ee; background-color: #333333;">thJax.js?config=TeX-AMS-MML_HTMLorMML"</span><span style="color: #b58900; background-color: #333333;">)</span>
-                                 <span style="color: #b58900;">(</span>scale <span style="color: #2aa198;">"100"</span><span style="color: #b58900;">)</span>
-                                 <span style="color: #b58900;">(</span>align <span style="color: #2aa198;">"center"</span><span style="color: #b58900;">)</span>
-                                 <span style="color: #b58900;">(</span>indent <span style="color: #2aa198;">"2em"</span><span style="color: #b58900;">)</span>
-                                 <span style="color: #b58900;">(</span>mathml t<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span><span style="color: #839496;">)</span>
+<pre class="src src-emacs-lisp"><span style="color: #DCDCCC;">(</span>setq org-html-mathjax-options '<span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">(</span>path <span style="color: #CC9393;">"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span><span style="color: #D0BF8F;">)</span>
+                                 <span style="color: #D0BF8F;">(</span>scale <span style="color: #CC9393;">"100"</span><span style="color: #D0BF8F;">)</span>
+                                 <span style="color: #D0BF8F;">(</span>align <span style="color: #CC9393;">"center"</span><span style="color: #D0BF8F;">)</span>
+                                 <span style="color: #D0BF8F;">(</span>indent <span style="color: #CC9393;">"2em"</span><span style="color: #D0BF8F;">)</span>
+                                 <span style="color: #D0BF8F;">(</span>mathml t<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>

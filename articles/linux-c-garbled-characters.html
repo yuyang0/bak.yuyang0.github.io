@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Linux平台C语言乱码</title>
-<!-- 2015-02-06 Fri 16:26 -->
+<!-- 2015-05-24 Sun 19:05 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -236,18 +236,18 @@ utf8编码得到的二进制信息，这里分两种情况讨论:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span class="linenr"> 1: </span><span style="color: #586e75; font-style: italic;">#</span><span style="color: #586e75; font-style: italic;">!/bin/</span><span style="color: #859900;">bash</span>
-<span class="linenr"> 2: </span><span style="color: #859900;">for</span> i<span style="color: #859900;"> in</span> *.lrc
-<span class="linenr"> 3: </span><span style="color: #859900;">do</span>
-<span class="linenr"> 4: </span>    <span style="color: #6c71c4;">is_utf8</span>=$(<span style="color: #d33682;">file</span> <span style="color: #2aa198;">"$i"</span> | grep <span style="color: #2aa198;">'UTF-8'</span>)
-<span class="linenr"> 5: </span>    <span style="color: #859900;">if</span> [ -z <span style="color: #2aa198;">"$is_utf8"</span> ]
-<span class="linenr"> 6: </span>    <span style="color: #859900;">then</span>
-<span class="linenr"> 7: </span>        iconv -f gb2312 -t utf8 <span style="color: #2aa198;">"$i"</span> -c -o tmp_lrc &amp;&amp; rm -f <span style="color: #2aa198;">"$i"</span>
-<span class="linenr"> 8: </span>        mv tmp_lrc <span style="color: #2aa198;">"$i"</span>
-<span class="linenr"> 9: </span>    <span style="color: #859900;">else</span>
-<span class="linenr">10: </span>        <span style="color: #859900;">continue</span>;
-<span class="linenr">11: </span>    <span style="color: #859900;">fi</span>
-<span class="linenr">12: </span><span style="color: #859900;">done</span>
+<pre class="src src-sh"><span class="linenr"> 1: </span><span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">!/bin/</span><span style="color: #F0DFAF; font-weight: bold;">bash</span>
+<span class="linenr"> 2: </span><span style="color: #F0DFAF; font-weight: bold;">for</span> i<span style="color: #F0DFAF; font-weight: bold;"> in</span> *.lrc
+<span class="linenr"> 3: </span><span style="color: #F0DFAF; font-weight: bold;">do</span>
+<span class="linenr"> 4: </span>    <span style="color: #DFAF8F;">is_utf8</span>=$<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">file</span> <span style="color: #CC9393;">"$i"</span> | grep <span style="color: #CC9393;">'UTF-8'</span><span style="color: #DCDCCC;">)</span>
+<span class="linenr"> 5: </span>    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #DCDCCC;">[</span> -z <span style="color: #CC9393;">"$is_utf8"</span> <span style="color: #DCDCCC;">]</span>
+<span class="linenr"> 6: </span>    <span style="color: #F0DFAF; font-weight: bold;">then</span>
+<span class="linenr"> 7: </span>        iconv -f gb2312 -t utf8 <span style="color: #CC9393;">"$i"</span> -c -o tmp_lrc &amp;&amp; rm -f <span style="color: #CC9393;">"$i"</span>
+<span class="linenr"> 8: </span>        mv tmp_lrc <span style="color: #CC9393;">"$i"</span>
+<span class="linenr"> 9: </span>    <span style="color: #F0DFAF; font-weight: bold;">else</span>
+<span class="linenr">10: </span>        <span style="color: #F0DFAF; font-weight: bold;">continue</span>;
+<span class="linenr">11: </span>    <span style="color: #F0DFAF; font-weight: bold;">fi</span>
+<span class="linenr">12: </span><span style="color: #F0DFAF; font-weight: bold;">done</span>
 </pre>
 </div>
 <p>
@@ -261,28 +261,28 @@ utf8编码得到的二进制信息，这里分两种情况讨论:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-C"><span class="linenr"> 1: </span><span style="color: #d33682;">#include</span><span style="color: #2aa198;">&lt;stdio.h&gt;</span>
-<span class="linenr"> 2: </span><span style="color: #d33682;">#include</span><span style="color: #2aa198;">&lt;iconv.h&gt;</span>
+<pre class="src src-C"><span class="linenr"> 1: </span><span style="color: #94BFF3;">#include</span><span style="color: #CC9393;">&lt;stdio.h&gt;</span>
+<span class="linenr"> 2: </span><span style="color: #94BFF3;">#include</span><span style="color: #CC9393;">&lt;iconv.h&gt;</span>
 <span class="linenr"> 3: </span>
-<span class="linenr"> 4: </span><span style="color: #d33682;">#define</span> <span style="color: #6c71c4;">MAXLINE</span> 1024
-<span class="linenr"> 5: </span><span style="color: #268bd2;">int</span> <span style="color: #b58900;">main</span>()
-<span class="linenr"> 6: </span>{
-<span class="linenr"> 7: </span>    <span style="color: #268bd2;">FILE</span> *<span style="color: #6c71c4;">fp</span> = fopen(<span style="color: #2aa198;">"she.lrc"</span>,<span style="color: #2aa198;">"r"</span>);
+<span class="linenr"> 4: </span><span style="color: #94BFF3;">#define</span> <span style="color: #DFAF8F;">MAXLINE</span> <span style="color: #BFEBBF;">1024</span>
+<span class="linenr"> 5: </span><span style="color: #7CB8BB;">int</span> <span style="color: #93E0E3;">main</span><span style="color: #DCDCCC;">()</span>
+<span class="linenr"> 6: </span><span style="color: #DCDCCC;">{</span>
+<span class="linenr"> 7: </span>    <span style="color: #7CB8BB;">FILE</span> *<span style="color: #DFAF8F;">fp</span> = fopen<span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">"she.lrc"</span>,<span style="color: #CC9393;">"r"</span><span style="color: #BFEBBF;">)</span>;
 <span class="linenr"> 8: </span>
-<span class="linenr"> 9: </span>    <span style="color: #268bd2;">char</span> <span style="color: #6c71c4;">buf</span>[MAXLINE];
-<span class="linenr">10: </span>    <span style="color: #268bd2;">char</span> <span style="color: #6c71c4;">dest</span>[MAXLINE];
-<span class="linenr">11: </span>    <span style="color: #268bd2;">char</span> *<span style="color: #6c71c4;">in</span> = buf;
-<span class="linenr">12: </span>    <span style="color: #268bd2;">char</span> *<span style="color: #6c71c4;">out</span> = dest;
-<span class="linenr">13: </span>    fgets(buf,MAXLINE,fp);
+<span class="linenr"> 9: </span>    <span style="color: #7CB8BB;">char</span> <span style="color: #DFAF8F;">buf</span><span style="color: #BFEBBF;">[</span>MAXLINE<span style="color: #BFEBBF;">]</span>;
+<span class="linenr">10: </span>    <span style="color: #7CB8BB;">char</span> <span style="color: #DFAF8F;">dest</span><span style="color: #BFEBBF;">[</span>MAXLINE<span style="color: #BFEBBF;">]</span>;
+<span class="linenr">11: </span>    <span style="color: #7CB8BB;">char</span> *<span style="color: #DFAF8F;">in</span> = buf;
+<span class="linenr">12: </span>    <span style="color: #7CB8BB;">char</span> *<span style="color: #DFAF8F;">out</span> = dest;
+<span class="linenr">13: </span>    fgets<span style="color: #BFEBBF;">(</span>buf,MAXLINE,fp<span style="color: #BFEBBF;">)</span>;
 <span class="linenr">14: </span>
-<span class="linenr">15: </span>    <span style="color: #268bd2;">iconv_t</span> <span style="color: #6c71c4;">cd</span> = iconv_open(<span style="color: #2aa198;">"UTF-8"</span>,<span style="color: #2aa198;">"GBK"</span>);
-<span class="linenr">16: </span>    <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">lenght</span> = MAXLINE;
-<span class="linenr">17: </span>    iconv(cd,&amp;in,&amp;lenght,&amp;out,&amp;lenght)
-<span class="linenr">18: </span>    iconv_close(cd);
-<span class="linenr">19: </span>    fputs(dest,stdout);
-<span class="linenr">20: </span>    printf(<span style="color: #2aa198;">"\n"</span>);
-<span class="linenr">21: </span>    <span style="color: #859900;">return</span> 0;
-<span class="linenr">22: </span>}
+<span class="linenr">15: </span>    <span style="color: #7CB8BB;">iconv_t</span> <span style="color: #DFAF8F;">cd</span> = iconv_open<span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">"UTF-8"</span>,<span style="color: #CC9393;">"GBK"</span><span style="color: #BFEBBF;">)</span>;
+<span class="linenr">16: </span>    <span style="color: #7CB8BB;">int</span> <span style="color: #DFAF8F;">lenght</span> = MAXLINE;
+<span class="linenr">17: </span>    iconv<span style="color: #BFEBBF;">(</span>cd,&amp;in,&amp;lenght,&amp;out,&amp;lenght<span style="color: #BFEBBF;">)</span>
+<span class="linenr">18: </span>    iconv_close<span style="color: #BFEBBF;">(</span>cd<span style="color: #BFEBBF;">)</span>;
+<span class="linenr">19: </span>    fputs<span style="color: #BFEBBF;">(</span>dest,stdout<span style="color: #BFEBBF;">)</span>;
+<span class="linenr">20: </span>    printf<span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">"\n"</span><span style="color: #BFEBBF;">)</span>;
+<span class="linenr">21: </span>    <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #BFEBBF;">0</span>;
+<span class="linenr">22: </span><span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -306,11 +306,11 @@ utf8编码得到的二进制信息，这里分两种情况讨论:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-C"><span class="linenr">1: </span><span style="color: #268bd2;">iconv_t</span> <span style="color: #b58900;">iconv_open</span>(<span style="color: #859900;">const</span> <span style="color: #268bd2;">char</span> *<span style="color: #6c71c4;">tocode</span>, <span style="color: #859900;">const</span> <span style="color: #268bd2;">char</span> *<span style="color: #6c71c4;">fromcode</span>)
-<span class="linenr">2: </span><span style="color: #268bd2;">size_t</span> <span style="color: #b58900;">iconv</span>(<span style="color: #268bd2;">iconv_t</span> <span style="color: #6c71c4;">cd</span>,
-<span class="linenr">3: </span>                    <span style="color: #268bd2;">char</span> **<span style="color: #6c71c4;">inbuf</span>, <span style="color: #268bd2;">size_t</span> *<span style="color: #6c71c4;">inbytesleft</span>,
-<span class="linenr">4: </span>                    <span style="color: #268bd2;">char</span> **<span style="color: #6c71c4;">outbuf</span>, <span style="color: #268bd2;">size_t</span> *<span style="color: #6c71c4;">outbytesleft</span>);
-<span class="linenr">5: </span> <span style="color: #268bd2;">int</span> <span style="color: #b58900;">iconv_close</span>(<span style="color: #268bd2;">iconv_t</span> <span style="color: #6c71c4;">cd</span>);
+<pre class="src src-C"><span class="linenr">1: </span><span style="color: #7CB8BB;">iconv_t</span> <span style="color: #93E0E3;">iconv_open</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *<span style="color: #DFAF8F;">tocode</span>, <span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *<span style="color: #DFAF8F;">fromcode</span><span style="color: #DCDCCC;">)</span>
+<span class="linenr">2: </span><span style="color: #7CB8BB;">size_t</span> <span style="color: #93E0E3;">iconv</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">iconv_t</span> <span style="color: #DFAF8F;">cd</span>,
+<span class="linenr">3: </span>                    <span style="color: #7CB8BB;">char</span> **<span style="color: #DFAF8F;">inbuf</span>, <span style="color: #7CB8BB;">size_t</span> *<span style="color: #DFAF8F;">inbytesleft</span>,
+<span class="linenr">4: </span>                    <span style="color: #7CB8BB;">char</span> **<span style="color: #DFAF8F;">outbuf</span>, <span style="color: #7CB8BB;">size_t</span> *<span style="color: #DFAF8F;">outbytesleft</span><span style="color: #DCDCCC;">)</span>;
+<span class="linenr">5: </span> <span style="color: #7CB8BB;">int</span> <span style="color: #93E0E3;">iconv_close</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">iconv_t</span> <span style="color: #DFAF8F;">cd</span><span style="color: #DCDCCC;">)</span>;
 </pre>
 </div>
 <p>

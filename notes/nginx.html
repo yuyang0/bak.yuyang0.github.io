@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>nginx</title>
-<!-- 2015-03-02 Mon 09:16 -->
+<!-- 2015-05-24 Sun 19:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -504,10 +504,10 @@ set_by_lua之所以能和内置的set指令交叉执行,是因为使用了一些
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">location = / {}                 <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">&#21482;&#21305;&#37197;/, &#19981;&#20250;&#21305;&#37197;/xxx</span>
-location / {}
-location ^~ /images/ {}
-location ~* <span style="color: #2aa198;">\.</span>(gif|jpg|jpeg)$ {} <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">&#21305;&#37197;&#25152;&#26377;&#22270;&#20687;&#25991;&#20214;</span>
+<pre class="src src-sh">location = / <span style="color: #DCDCCC;">{}</span>                 <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">&#21482;&#21305;&#37197;/, &#19981;&#20250;&#21305;&#37197;/xxx</span>
+location / <span style="color: #DCDCCC;">{}</span>
+location ^~ /images/ <span style="color: #DCDCCC;">{}</span>
+location ~* <span style="color: #CC9393;">\.</span><span style="color: #DCDCCC;">(</span>gif|jpg|jpeg<span style="color: #DCDCCC;">)</span>$ <span style="color: #DCDCCC;">{}</span> <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">&#21305;&#37197;&#25152;&#26377;&#22270;&#20687;&#25991;&#20214;</span>
 </pre>
 </div>
 </div>
@@ -610,16 +610,16 @@ nginx变量是在nginx启动时创建, 而在请求中赋值的,变量在每一�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">server {
-    listen 8080;
-    location /foo {
-         <span style="color: #6c71c4;">set</span> $<span style="color: #6c71c4;">a</span> hello;
+<pre class="src src-sh">server <span style="color: #DCDCCC;">{</span>
+    listen <span style="color: #BFEBBF;">8080</span>;
+    location /foo <span style="color: #BFEBBF;">{</span>
+         <span style="color: #DCDCCC; font-weight: bold;">set</span> $<span style="color: #DFAF8F;">a</span> hello;
          echo_exec /bar;
-    }
-    location /bar {
-         <span style="color: #6c71c4;">echo</span> <span style="color: #2aa198;">"a = [$a]"</span>;
-     }
- }
+    <span style="color: #BFEBBF;">}</span>
+    location /bar <span style="color: #BFEBBF;">{</span>
+         <span style="color: #DCDCCC; font-weight: bold;">echo</span> <span style="color: #CC9393;">"a = [$a]"</span>;
+     <span style="color: #BFEBBF;">}</span>
+ <span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -669,12 +669,12 @@ Tom.注意返回的值是未解码形式.
 <li>map: <code>map string $variable { ... }</code>
 <div class="org-src-container">
 
-<pre class="src src-sh">map $<span style="color: #6c71c4;">http_user_agent</span> $<span style="color: #6c71c4;">bad_client</span> {
-    default            0;
-    <span style="color: #2aa198;">"~*Baiduspider"</span>    1;
-    <span style="color: #2aa198;">"~*360Spider"</span>      1;
-    <span style="color: #2aa198;">"~*Yandex"</span>         1;
-}
+<pre class="src src-sh">map $<span style="color: #DFAF8F;">http_user_agent</span> $<span style="color: #DFAF8F;">bad_client</span> <span style="color: #DCDCCC;">{</span>
+    default            <span style="color: #BFEBBF;">0</span>;
+    <span style="color: #CC9393;">"~*Baiduspider"</span>    <span style="color: #BFEBBF;">1</span>;
+    <span style="color: #CC9393;">"~*360Spider"</span>      <span style="color: #BFEBBF;">1</span>;
+    <span style="color: #CC9393;">"~*Yandex"</span>         <span style="color: #BFEBBF;">1</span>;
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -694,16 +694,16 @@ Tom.注意返回的值是未解码形式.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">geo $<span style="color: #6c71c4;">geo</span> {
-    default        0;
+<pre class="src src-sh">geo $<span style="color: #DFAF8F;">geo</span> <span style="color: #DCDCCC;">{</span>
+    default        <span style="color: #BFEBBF;">0</span>;
 
-    127.0.0.1      2;
-    192.168.1.0/24 1;
-    10.1.0.0/16    1;
+    <span style="color: #BFEBBF;">127.0.0.1</span>      <span style="color: #BFEBBF;">2</span>;
+    <span style="color: #BFEBBF;">192.168.1.0/24</span> <span style="color: #BFEBBF;">1</span>;
+    <span style="color: #BFEBBF;">10.1.0.0/16</span>    <span style="color: #BFEBBF;">1</span>;
 
-    ::1            2;
-    2001:0db8::/32 1;
-}
+    ::1            <span style="color: #BFEBBF;">2</span>;
+    <span style="color: #BFEBBF;">2001:0db8::/32</span> <span style="color: #BFEBBF;">1</span>;
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -751,14 +751,14 @@ Tom.注意返回的值是未解码形式.
 if只有在location中,并且在以下两种情况才100%正确:
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #859900;">if</span>(condition){
-    <span style="color: #859900;">return</span> status_code
-}
+<pre class="src src-sh"><span style="color: #F0DFAF; font-weight: bold;">if</span><span style="color: #DCDCCC;">(</span>condition<span style="color: #DCDCCC;">){</span>
+    <span style="color: #F0DFAF; font-weight: bold;">return</span> status_code
+<span style="color: #DCDCCC;">}</span>
 
-<span style="color: #859900;">if</span>(condition) {
-    <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">other things</span>
-    rewrite xxx xxx             <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">must stay last in if block</span>
-}
+<span style="color: #F0DFAF; font-weight: bold;">if</span><span style="color: #DCDCCC;">(</span>condition<span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">other things</span>
+    rewrite xxx xxx             <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">must stay last in if block</span>
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 </li>
@@ -802,20 +802,20 @@ phase. 常用的指令:
 求很有可能在子请求之前结束. 但是nginx会保证输出指令的执行顺序:
 <div class="org-src-container">
 
-<pre class="src src-sh">location /main {
+<pre class="src src-sh">location /main <span style="color: #DCDCCC;">{</span>
         echo_reset_timer;
         echo_location_async /sub1;
         echo_location_async /sub2;
-        <span style="color: #6c71c4;">echo</span> <span style="color: #2aa198;">"took $echo_timer_elapsed sec for total."</span>;
-    }
-    location /sub1 {
-        echo_sleep 2; <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">sleeps 2 sec</span>
-        <span style="color: #6c71c4;">echo</span> hello;
-    }
-    location /sub2 {
-        echo_sleep 1; <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">sleeps 1 sec</span>
-        <span style="color: #6c71c4;">echo</span> world;
-    }
+        <span style="color: #DCDCCC; font-weight: bold;">echo</span> <span style="color: #CC9393;">"took $echo_timer_elapsed sec for total."</span>;
+    <span style="color: #DCDCCC;">}</span>
+    location /sub1 <span style="color: #DCDCCC;">{</span>
+        echo_sleep <span style="color: #BFEBBF;">2</span>; <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">sleeps 2 sec</span>
+        <span style="color: #DCDCCC; font-weight: bold;">echo</span> hello;
+    <span style="color: #DCDCCC;">}</span>
+    location /sub2 <span style="color: #DCDCCC;">{</span>
+        echo_sleep <span style="color: #BFEBBF;">1</span>; <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">sleeps 1 sec</span>
+        <span style="color: #DCDCCC; font-weight: bold;">echo</span> world;
+    <span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -863,7 +863,7 @@ nginx从一个单纯的http服务器变成一个web应用服务器,在配合ngin
 <li>nginx安装
 <div class="org-src-container">
 
-<pre class="src src-sh">./configure  --add-module=/path/to/ngx_lua <span style="color: #2aa198;">\</span>
+<pre class="src src-sh">./configure  --add-module=/path/to/ngx_lua <span style="color: #CC9393;">\</span>
              --add-module=/path/to/ngx_devel_kit
 </pre>
 </div>
@@ -871,7 +871,7 @@ nginx从一个单纯的http服务器变成一个web应用服务器,在配合ngin
 <li>tengine上安装
 <div class="org-src-container">
 
-<pre class="src src-sh">./configure  --with-http_lua_module <span style="color: #2aa198;">\</span>
+<pre class="src src-sh">./configure  --with-http_lua_module <span style="color: #CC9393;">\</span>
              --add-module=/path/to/ngx_devel_kit
 </pre>
 </div>
@@ -1013,12 +1013,12 @@ rewrite_by_lua, access_by_lua, content_by_lua,ngx.timer中</b>, 该库的api分�
 <li>connect: 可以使用hostname/ip, port, 也可以使用unix socket文件
 <div class="org-src-container">
 
-<pre class="src src-lua"><span style="color: #859900;">local</span> <span style="color: #6c71c4;">ok</span>, <span style="color: #6c71c4;">err</span> = sock:connect(<span style="color: #2aa198;">"www.google.com"</span>, 80)
-<span style="color: #859900;">local</span> <span style="color: #6c71c4;">ok</span>, <span style="color: #6c71c4;">err</span> = sock:connect(<span style="color: #2aa198;">"220.181.57.216"</span>, 80)
-<span style="color: #859900;">local</span> <span style="color: #6c71c4;">ok</span>, <span style="color: #6c71c4;">err</span> = sock:connect(<span style="color: #2aa198;">"unix:/tmp/memcached.sock"</span>)
-<span style="color: #859900;">if</span> <span style="color: #859900;">not</span> ok <span style="color: #859900;">then</span>
+<pre class="src src-lua">local ok, err = sock:connect("www.google.com", 80)
+local ok, err = sock:connect("220.181.57.216", 80)
+local ok, err = sock:connect("unix:/tmp/memcached.sock")
+if not ok then
    check_error()
-<span style="color: #859900;">end</span>
+end
 </pre>
 </div>
 <p>
@@ -1038,8 +1038,8 @@ rewrite_by_lua, access_by_lua, content_by_lua,ngx.timer中</b>, 该库的api分�
 那么返回nil,以及一个错误消息字符串, 出错时socket会自动关闭,无需手动清理
 <div class="org-src-container">
 
-<pre class="src src-lua">sock:settimeout(1000)  <span style="color: #586e75; font-style: italic;">-- </span><span style="color: #586e75; font-style: italic;">one second timeout</span>
-<span style="color: #859900;">local</span> <span style="color: #6c71c4;">bytes</span>, <span style="color: #6c71c4;">err</span> = sock:send(request)
+<pre class="src src-lua">sock:settimeout(1000)  -- one second timeout
+local bytes, err = sock:send(request)
 </pre>
 </div>
 </li>
@@ -1052,13 +1052,13 @@ rewrite_by_lua, access_by_lua, content_by_lua,ngx.timer中</b>, 该库的api分�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">sock:settimeout(1000)  <span style="color: #586e75; font-style: italic;">-- </span><span style="color: #586e75; font-style: italic;">one second timeout</span>
-<span style="color: #859900;">local</span> <span style="color: #6c71c4;">line</span>, <span style="color: #6c71c4;">err</span>, <span style="color: #6c71c4;">partial</span> = sock:receive()
-<span style="color: #859900;">if</span> <span style="color: #859900;">not</span> line <span style="color: #859900;">then</span>
-   ngx.say(<span style="color: #2aa198;">"failed to read a line: "</span>, err)
-   <span style="color: #859900;">return</span>
-<span style="color: #859900;">end</span>
-ngx.say(<span style="color: #2aa198;">"successfully read a line: "</span>, line)
+<pre class="src src-lua">sock:settimeout(1000)  -- one second timeout
+local line, err, partial = sock:receive()
+if not line then
+   ngx.say("failed to read a line: ", err)
+   return
+end
+ngx.say("successfully read a line: ", line)
 </pre>
 </div>
 </div>

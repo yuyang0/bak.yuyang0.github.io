@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Client-Side javascript</title>
-<!-- 2015-02-06 Fri 16:26 -->
+<!-- 2015-05-24 Sun 19:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -253,7 +253,7 @@ for the JavaScript code in this tag.
 <li>任何能使用url的地方，比如 a 标签的href，form的action使用如下代码：
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">a</span> <span style="color: #6c71c4;">href</span>=<span style="color: #2aa198;">"javascript: alert('hello world');"</span>&gt;&lt;/<span style="color: #b58900;">a</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #93E0E3;">a</span> <span style="color: #DFAF8F;">href</span>=<span style="color: #CC9393;">"javascript: alert('hello world');"</span>&gt;&lt;/<span style="color: #93E0E3;">a</span>&gt;
 </pre>
 </div>
 <p>
@@ -262,7 +262,7 @@ for the JavaScript code in this tag.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">a</span> <span style="color: #6c71c4;">href</span>=<span style="color: #2aa198;">"javascript:void new Date().toLocaleTimeString();"</span>&gt;Check the time without overwriting the document&lt;/<span style="color: #b58900;">a</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #93E0E3;">a</span> <span style="color: #DFAF8F;">href</span>=<span style="color: #CC9393;">"javascript:void new Date().toLocaleTimeString();"</span>&gt;Check the time without overwriting the document&lt;/<span style="color: #93E0E3;">a</span>&gt;
 </pre>
 </div>
 </li>
@@ -270,7 +270,7 @@ for the JavaScript code in this tag.
 加入书签，那么这段代码就相当于直接插入了当前页面，比如订阅到鲜果的书签：
 <div class="org-src-container">
 
-<pre class="src src-js">javascript:window.open<span style="color: #839496;">(</span><span style="color: #2aa198;">'http://xianguo.com/subscribe?url='</span>+encodeURIComponent<span style="color: #2aa198;">(</span>lo<span style="color: #ee82ee; background-color: #333333;">cation.href</span><span style="color: #2aa198; background-color: #333333;">)</span><span style="color: #ee82ee; background-color: #333333;">, </span><span style="color: #ee82ee; background-color: #333333;">'xianguo'</span><span style="color: #839496; background-color: #333333;">)</span><span style="color: #ee82ee; background-color: #333333;">;</span><span style="color: #ee82ee; background-color: #333333;">void</span><span style="color: #839496; background-color: #333333;">(</span><span style="color: #ee82ee; background-color: #333333;">0</span><span style="color: #839496; background-color: #333333;">)</span>
+<pre class="src src-js">javascript:window.open<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'http://xianguo.com/subscribe?url='</span>+encodeURIComponent<span style="color: #BFEBBF;">(</span>location.href<span style="color: #BFEBBF;">)</span>, <span style="color: #CC9393;">'xianguo'</span><span style="color: #DCDCCC;">)</span>;<span style="color: #F0DFAF; font-weight: bold;">void</span><span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">0</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </li>
@@ -381,14 +381,14 @@ node: DOM树中的一个节点, 以下面这段html为例:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">html</span>&gt;
-  &lt;<span style="color: #b58900;">head</span>&gt;
-    &lt;<span style="color: #b58900;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Sample Document</span>&lt;/<span style="color: #b58900;">title</span>&gt;
-  &lt;/<span style="color: #b58900;">head</span>&gt;
-  &lt;<span style="color: #b58900;">body</span>&gt;
-    &lt;<span style="color: #b58900;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">An HTML Document</span>&lt;/<span style="color: #b58900;">h1</span>&gt;
-    &lt;<span style="color: #b58900;">p</span>&gt;This is a &lt;<span style="color: #b58900;">i</span>&gt;<span style="font-style: italic;">simple</span>&lt;/<span style="color: #b58900;">i</span>&gt; document.
-&lt;/<span style="color: #b58900;">html</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #93E0E3;">html</span>&gt;
+  &lt;<span style="color: #93E0E3;">head</span>&gt;
+    &lt;<span style="color: #93E0E3;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Sample Document</span>&lt;/<span style="color: #93E0E3;">title</span>&gt;
+  &lt;/<span style="color: #93E0E3;">head</span>&gt;
+  &lt;<span style="color: #93E0E3;">body</span>&gt;
+    &lt;<span style="color: #93E0E3;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">An HTML Document</span>&lt;/<span style="color: #93E0E3;">h1</span>&gt;
+    &lt;<span style="color: #93E0E3;">p</span>&gt;This is a &lt;<span style="color: #93E0E3;">i</span>&gt;<span style="font-style: italic;">simple</span>&lt;/<span style="color: #93E0E3;">i</span>&gt; document.
+&lt;/<span style="color: #93E0E3;">html</span>&gt;
 </pre>
 </div>
 <p>
@@ -466,8 +466,8 @@ element node代表一个html元素, 他可以直接获得以及设置该html元�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-js">f.action === <span style="color: #2aa198;">"http://www.baidu.com"</span> <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">test form's action attribute</span>
-f.method = <span style="color: #2aa198;">"POST"</span>                   <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">set the form's method attribute to "POST"</span>
+<pre class="src src-js">f.action === <span style="color: #CC9393;">"http://www.baidu.com"</span> <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">test form's action attribute</span>
+f.method = <span style="color: #CC9393;">"POST"</span>                   <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">set the form's method attribute to "POST"</span>
 </pre>
 </div>
 <p>
@@ -534,7 +534,7 @@ f.method = <span style="color: #2aa198;">"POST"</span>                   <span s
 <li>document.createElement: 创建元素节点
 <div class="org-src-container">
 
-<pre class="src src-js"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">div</span> = document.createElement<span style="color: #839496;">(</span><span style="color: #2aa198;">'div'</span><span style="color: #839496;">)</span>;
+<pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">div</span> = document.createElement<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'div'</span><span style="color: #DCDCCC;">)</span>;
 </pre>
 </div>
 </li>
@@ -558,19 +558,19 @@ parentElem.appendChild(nodeToInsert);
 </p>
 <div class="org-src-container">
 
-<pre class="src src-js"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">before</span> = <span style="color: #859900;">function</span><span style="color: #839496;">(</span><span style="color: #6c71c4;">parent</span>, <span style="color: #6c71c4;">before</span>, <span style="color: #6c71c4;">elem</span><span style="color: #839496;">){</span>
-  <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">check if passed ``parent''</span>
-  <span style="color: #859900;">if</span> <span style="color: #2aa198;">(</span>! !!elem<span style="color: #2aa198;">){</span>
+<pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">before</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">parent</span>, <span style="color: #DFAF8F;">before</span>, <span style="color: #DFAF8F;">elem</span><span style="color: #DCDCCC;">){</span>
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">check if passed ``parent''</span>
+  <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>! !!elem<span style="color: #BFEBBF;">){</span>
     elem = before;
     before = parent;
     parent = before.parentNode;
-  <span style="color: #2aa198;">}</span>
-  parent.insertBefore<span style="color: #2aa198;">(</span>checkElem<span style="color: #b58900;">(</span>elem<span style="color: #b58900;">)</span>, before<span style="color: #2aa198;">)</span>;
-<span style="color: #839496;">}</span>;
+  <span style="color: #BFEBBF;">}</span>
+  parent.insertBefore<span style="color: #BFEBBF;">(</span>checkElem<span style="color: #D0BF8F;">(</span>elem<span style="color: #D0BF8F;">)</span>, before<span style="color: #BFEBBF;">)</span>;
+<span style="color: #DCDCCC;">}</span>;
 
-<span style="color: #859900;">var</span> <span style="color: #6c71c4;">append</span> = <span style="color: #859900;">function</span><span style="color: #839496;">(</span><span style="color: #6c71c4;">parent</span>, <span style="color: #6c71c4;">elem</span><span style="color: #839496;">){</span>
-  parent.appendChild<span style="color: #2aa198;">(</span>checkElem<span style="color: #b58900;">(</span>elem<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>;
-<span style="color: #839496;">}</span>;
+<span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">append</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">parent</span>, <span style="color: #DFAF8F;">elem</span><span style="color: #DCDCCC;">){</span>
+  parent.appendChild<span style="color: #BFEBBF;">(</span>checkElem<span style="color: #D0BF8F;">(</span>elem<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>;
+<span style="color: #DCDCCC;">}</span>;
 </pre>
 </div>
 </div>
@@ -589,7 +589,7 @@ NodeParent.removeChild(NodeToRemove);
 </p>
 <div class="org-src-container">
 
-<pre class="src src-js">n.parentNode.removeChild<span style="color: #839496;">(</span>n<span style="color: #839496;">)</span>;
+<pre class="src src-js">n.parentNode.removeChild<span style="color: #DCDCCC;">(</span>n<span style="color: #DCDCCC;">)</span>;
 </pre>
 </div>
 <p>
@@ -597,7 +597,7 @@ NodeParent.removeChild(NodeToRemove);
 </p>
 <div class="org-src-container">
 
-<pre class="src src-js">n.parentNode.replaceChild<span style="color: #839496;">(</span>document.createTextNode<span style="color: #2aa198;">(</span><span style="color: #2aa198;">"[ REDACTED ]"</span><span style="color: #2aa198;">)</span>, n<span style="color: #839496;">)</span>;
+<pre class="src src-js">n.parentNode.replaceChild<span style="color: #DCDCCC;">(</span>document.createTextNode<span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">"[ REDACTED ]"</span><span style="color: #BFEBBF;">)</span>, n<span style="color: #DCDCCC;">)</span>;
 </pre>
 </div>
 </div>
@@ -623,7 +623,7 @@ scrollX, scrollY 代表滚动条滚动的距离.
 <li>获得viewpoint坐标
 <div class="org-src-container">
 
-<pre class="src src-js"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">box</span> = e.getBoundingClientRect<span style="color: #839496;">()</span>
+<pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">box</span> = e.getBoundingClientRect<span style="color: #DCDCCC;">()</span>
 box.top;
 box.right;
 box.bottom;
@@ -637,33 +637,33 @@ e是一个DOM节点元素, 返回的那几个属性都可以为负值或者大�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-js"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">box</span> = e.getBoundingClientRect<span style="color: #839496;">()</span>;
-<span style="color: #859900;">var</span> <span style="color: #6c71c4;">w</span> = box.width || <span style="color: #839496;">(</span>box.right - box.left<span style="color: #839496;">)</span>; <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">width</span>
-<span style="color: #859900;">var</span> <span style="color: #6c71c4;">h</span> = box.height || <span style="color: #839496;">(</span>box.bottom - box.top<span style="color: #839496;">)</span>; <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">height</span>
+<pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">box</span> = e.getBoundingClientRect<span style="color: #DCDCCC;">()</span>;
+<span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">w</span> = box.width || <span style="color: #DCDCCC;">(</span>box.right - box.left<span style="color: #DCDCCC;">)</span>; <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">width</span>
+<span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">h</span> = box.height || <span style="color: #DCDCCC;">(</span>box.bottom - box.top<span style="color: #DCDCCC;">)</span>; <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">height</span>
 </pre>
 </div>
 </li>
 <li>获得滚动条的offset
 <div class="org-src-container">
 
-<pre class="src src-js"><span style="color: #859900;">function</span> <span style="color: #b58900;">getScrollOffsets</span><span style="color: #839496;">(</span><span style="color: #6c71c4;">w</span><span style="color: #839496;">)</span> <span style="color: #839496;">{</span>
-  <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">Use the specified window or the current window if no argument</span>
+<pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">getScrollOffsets</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">w</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Use the specified window or the current window if no argument</span>
   w = w || window;
-  <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">This works for all browsers except IE versions 8 and before</span>
-  <span style="color: #859900;">if</span> <span style="color: #2aa198;">(</span>w.pageXOffset != <span style="color: #268bd2;">null</span><span style="color: #2aa198;">){</span>
-    <span style="color: #859900;">return</span> <span style="color: #b58900;">{</span>scrollX: w.pageXOffset, scrollY: w.pageYOffset<span style="color: #b58900;">}</span>;
-  <span style="color: #2aa198;">}</span>
-  <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">For IE (or any browser) in Standards mode</span>
-  <span style="color: #859900;">var</span> <span style="color: #6c71c4;">d</span> = w.document;
-  <span style="color: #859900;">if</span> <span style="color: #2aa198;">(</span>document.compatMode == <span style="color: #2aa198;">"CSS1Compat"</span><span style="color: #2aa198;">){</span>
-    <span style="color: #859900;">return</span> <span style="color: #b58900;">{</span>
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">This works for all browsers except IE versions 8 and before</span>
+  <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>w.pageXOffset != <span style="color: #BFEBBF;">null</span><span style="color: #BFEBBF;">){</span>
+    <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #D0BF8F;">{</span>scrollX: w.pageXOffset, scrollY: w.pageYOffset<span style="color: #D0BF8F;">}</span>;
+  <span style="color: #BFEBBF;">}</span>
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">For IE (or any browser) in Standards mode</span>
+  <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">d</span> = w.document;
+  <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>document.compatMode == <span style="color: #CC9393;">"CSS1Compat"</span><span style="color: #BFEBBF;">){</span>
+    <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #D0BF8F;">{</span>
       scrollX: d.documentElement.scrollLeft,
       scrollY: d.documentElement.scrollTop
-    <span style="color: #b58900;">}</span>;
-  <span style="color: #2aa198;">}</span>
-  <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">For browsers in Quirks mode</span>
-  <span style="color: #859900;">return</span> <span style="color: #2aa198;">{</span> scrollX: d.body.scrollLeft, scrollY: d.body.scrollTop <span style="color: #2aa198;">}</span>;
-<span style="color: #839496;">}</span>
+    <span style="color: #D0BF8F;">}</span>;
+  <span style="color: #BFEBBF;">}</span>
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">For browsers in Quirks mode</span>
+  <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #BFEBBF;">{</span> scrollX: d.body.scrollLeft, scrollY: d.body.scrollTop <span style="color: #BFEBBF;">}</span>;
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 </li>
@@ -693,9 +693,9 @@ e是一个DOM节点元素, 返回的那几个属性都可以为负值或者大�
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
 
-<pre class="src src-js">e.style.position = <span style="color: #2aa198;">"absolute"</span>;
-e.style.fontFamily = <span style="color: #2aa198;">"sans-serif"</span>;
-e.style.backgroundColor = <span style="color: #2aa198;">"#ffffff"</span>;
+<pre class="src src-js">e.style.position = <span style="color: #CC9393;">"absolute"</span>;
+e.style.fontFamily = <span style="color: #CC9393;">"sans-serif"</span>;
+e.style.backgroundColor = <span style="color: #CC9393;">"#ffffff"</span>;
 </pre>
 </div>
 <p>
@@ -714,19 +714,19 @@ e.style.backgroundColor = <span style="color: #2aa198;">"#ffffff"</span>;
 </p>
 <div class="org-src-container">
 
-<pre class="src src-js"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">getStyle</span> = <span style="color: #859900;">function</span> <span style="color: #839496;">(</span><span style="color: #6c71c4;">elem</span>, <span style="color: #6c71c4;">name</span><span style="color: #839496;">){</span>
-  <span style="color: #859900;">if</span><span style="color: #2aa198;">(</span>elem.currentStyle<span style="color: #2aa198;">){</span>   <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">IE browser</span>
-    <span style="color: #859900;">return</span> elem.currentStyle<span style="color: #b58900;">[</span>name<span style="color: #b58900;">]</span>;
-  <span style="color: #2aa198;">}</span><span style="color: #859900;">else</span> <span style="color: #859900;">if</span> <span style="color: #2aa198;">(</span>!! window.getComputedStyle<span style="color: #2aa198;">){</span>
-    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">W3C method(window.getComputedStyle)</span>
-    name = name.replace<span style="color: #b58900;">(</span><span style="color: #2aa198;">/([A-Z])/</span>g, <span style="color: #2aa198;">"-$1"</span><span style="color: #b58900;">)</span>;
-    name = name.toLowerCase<span style="color: #b58900;">()</span>;
-    <span style="color: #859900;">var</span> <span style="color: #6c71c4;">s</span> = window.getComputedStyle<span style="color: #b58900;">(</span>elem, <span style="color: #2aa198;">""</span><span style="color: #b58900;">)</span>;
-    <span style="color: #859900;">return</span> s &amp;&amp; s.getPropertyValue<span style="color: #b58900;">(</span>name<span style="color: #b58900;">)</span>;
-  <span style="color: #2aa198;">}</span><span style="color: #859900;">else</span><span style="color: #2aa198;">{</span>
-    <span style="color: #859900;">return</span> <span style="color: #268bd2;">null</span>;
-  <span style="color: #2aa198;">}</span>
-<span style="color: #839496;">}</span>;
+<pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">getStyle</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">elem</span>, <span style="color: #DFAF8F;">name</span><span style="color: #DCDCCC;">){</span>
+  <span style="color: #F0DFAF; font-weight: bold;">if</span><span style="color: #BFEBBF;">(</span>elem.currentStyle<span style="color: #BFEBBF;">){</span>   <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">IE browser</span>
+    <span style="color: #F0DFAF; font-weight: bold;">return</span> elem.currentStyle<span style="color: #D0BF8F;">[</span>name<span style="color: #D0BF8F;">]</span>;
+  <span style="color: #BFEBBF;">}</span><span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>!! window.getComputedStyle<span style="color: #BFEBBF;">){</span>
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">W3C method(window.getComputedStyle)</span>
+    name = name.replace<span style="color: #D0BF8F;">(</span><span style="color: #CC9393;">/([A-Z])/</span>g, <span style="color: #CC9393;">"-$1"</span><span style="color: #D0BF8F;">)</span>;
+    name = name.toLowerCase<span style="color: #D0BF8F;">()</span>;
+    <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">s</span> = window.getComputedStyle<span style="color: #D0BF8F;">(</span>elem, <span style="color: #CC9393;">""</span><span style="color: #D0BF8F;">)</span>;
+    <span style="color: #F0DFAF; font-weight: bold;">return</span> s &amp;&amp; s.getPropertyValue<span style="color: #D0BF8F;">(</span>name<span style="color: #D0BF8F;">)</span>;
+  <span style="color: #BFEBBF;">}</span><span style="color: #F0DFAF; font-weight: bold;">else</span><span style="color: #BFEBBF;">{</span>
+    <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #BFEBBF;">null</span>;
+  <span style="color: #BFEBBF;">}</span>
+<span style="color: #DCDCCC;">}</span>;
 </pre>
 </div>
 <p>
@@ -915,18 +915,18 @@ IE(attachEvent)注册的事件处理函数, 那么事件处理函数应该调用
 </p>
 <div class="org-src-container">
 
-<pre class="src src-js"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">eventHandler</span> = <span style="color: #859900;">function</span><span style="color: #839496;">(</span><span style="color: #6c71c4;">evt</span><span style="color: #839496;">){</span>
-  evt = evt || window.event;    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">for IE</span>
+<pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">eventHandler</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">evt</span><span style="color: #DCDCCC;">){</span>
+  evt = evt || window.event;    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">for IE</span>
 
-  <span style="color: #859900;">if</span> <span style="color: #2aa198;">(</span>evt.preventDefault<span style="color: #2aa198;">){</span>      <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">standard technique</span>
-    evt.preventDefault<span style="color: #b58900;">()</span>;
-  <span style="color: #2aa198;">}</span>
-  <span style="color: #859900;">if</span> <span style="color: #2aa198;">(</span>evt.returnValue<span style="color: #2aa198;">){</span>         <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">IE</span>
-    evt.returnValue = <span style="color: #268bd2;">false</span>;
-  <span style="color: #2aa198;">}</span>
+  <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>evt.preventDefault<span style="color: #BFEBBF;">){</span>      <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">standard technique</span>
+    evt.preventDefault<span style="color: #D0BF8F;">()</span>;
+  <span style="color: #BFEBBF;">}</span>
+  <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>evt.returnValue<span style="color: #BFEBBF;">){</span>         <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">IE</span>
+    evt.returnValue = <span style="color: #BFEBBF;">false</span>;
+  <span style="color: #BFEBBF;">}</span>
 
-  <span style="color: #859900;">return</span> <span style="color: #268bd2;">false</span>;                 <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">onevent</span>
-<span style="color: #839496;">}</span>
+  <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #BFEBBF;">false</span>;                 <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">onevent</span>
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 </div>
@@ -940,13 +940,13 @@ cancelBubble设为true.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-js"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">eventHandler</span> = <span style="color: #859900;">function</span><span style="color: #839496;">(</span><span style="color: #6c71c4;">evt</span><span style="color: #839496;">){</span>
-  <span style="color: #859900;">if</span> <span style="color: #2aa198;">(</span>evt &amp;&amp; evt.stopPropagation<span style="color: #2aa198;">){</span> <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">non IE</span>
-    evt.stopPropagation<span style="color: #b58900;">()</span>;
-  <span style="color: #2aa198;">}</span><span style="color: #859900;">else</span><span style="color: #2aa198;">{</span>                        <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">IE</span>
-    window.event.cancelBubble = <span style="color: #268bd2;">true</span>;
-  <span style="color: #2aa198;">}</span>
-<span style="color: #839496;">}</span>
+<pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">eventHandler</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">evt</span><span style="color: #DCDCCC;">){</span>
+  <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>evt &amp;&amp; evt.stopPropagation<span style="color: #BFEBBF;">){</span> <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">non IE</span>
+    evt.stopPropagation<span style="color: #D0BF8F;">()</span>;
+  <span style="color: #BFEBBF;">}</span><span style="color: #F0DFAF; font-weight: bold;">else</span><span style="color: #BFEBBF;">{</span>                        <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">IE</span>
+    window.event.cancelBubble = <span style="color: #BFEBBF;">true</span>;
+  <span style="color: #BFEBBF;">}</span>
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 </div>
@@ -960,9 +960,9 @@ cancelBubble设为true.
 对象作为参数给事件处理函数)
 <div class="org-src-container">
 
-<pre class="src src-js"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">eventhanlder</span> = <span style="color: #859900;">function</span><span style="color: #839496;">(</span><span style="color: #6c71c4;">evt</span><span style="color: #839496;">){</span>
+<pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">eventhanlder</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">evt</span><span style="color: #DCDCCC;">){</span>
   evt = evt || window.event;
-<span style="color: #839496;">}</span>
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 </li>
@@ -981,23 +981,23 @@ IE6没有标准的XMLHttpRequest构造函数, 可以使用以下代码模拟:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-js"><span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">Emulate the XMLHttpRequest() constructor in IE5 and IE6</span>
-<span style="color: #859900;">if</span> <span style="color: #839496;">(</span>window.XMLHttpRequest === <span style="color: #268bd2;">undefined</span><span style="color: #839496;">)</span> <span style="color: #839496;">{</span>
-  window.XMLHttpRequest = <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
-    <span style="color: #859900;">try</span> <span style="color: #b58900;">{</span>
-      <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">Use the latest version of the ActiveX object if available</span>
-      <span style="color: #859900;">return</span> <span style="color: #859900;">new</span> <span style="color: #268bd2;">ActiveXObject</span><span style="color: #859900;">(</span><span style="color: #2aa198;">"Msxml2.XMLHTTP.6.0"</span><span style="color: #859900;">)</span>;
-    <span style="color: #b58900;">}</span> <span style="color: #859900;">catch</span> <span style="color: #b58900;">(</span>e1<span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-      <span style="color: #859900;">try</span> <span style="color: #859900;">{</span>
-        <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">Otherwise fall back on an older version</span>
-        <span style="color: #859900;">return</span> <span style="color: #859900;">new</span> <span style="color: #268bd2;">ActiveXObject</span><span style="color: #268bd2;">(</span><span style="color: #2aa198;">"Msxml2.XMLHTTP.3.0"</span><span style="color: #268bd2;">)</span>;
-      <span style="color: #859900;">}</span> <span style="color: #859900;">catch</span><span style="color: #859900;">(</span>e2<span style="color: #859900;">)</span> <span style="color: #859900;">{</span>
-        <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">Otherwise, throw an error</span>
-        <span style="color: #859900;">throw</span> <span style="color: #859900;">new</span> <span style="color: #268bd2;">Error</span><span style="color: #268bd2;">(</span><span style="color: #2aa198;">"XMLHttpRequest is not supported"</span><span style="color: #268bd2;">)</span>;
-      <span style="color: #859900;">}</span>
-    <span style="color: #b58900;">}</span>
-  <span style="color: #2aa198;">}</span>;
-<span style="color: #839496;">}</span>
+<pre class="src src-js"><span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Emulate the XMLHttpRequest() constructor in IE5 and IE6</span>
+<span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #DCDCCC;">(</span>window.XMLHttpRequest === <span style="color: #BFEBBF;">undefined</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
+  window.XMLHttpRequest = <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #BFEBBF;">()</span> <span style="color: #BFEBBF;">{</span>
+    <span style="color: #F0DFAF; font-weight: bold;">try</span> <span style="color: #D0BF8F;">{</span>
+      <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Use the latest version of the ActiveX object if available</span>
+      <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #F0DFAF; font-weight: bold;">new</span> <span style="color: #7CB8BB;">ActiveXObject</span><span style="color: #93E0E3;">(</span><span style="color: #CC9393;">"Msxml2.XMLHTTP.6.0"</span><span style="color: #93E0E3;">)</span>;
+    <span style="color: #D0BF8F;">}</span> <span style="color: #F0DFAF; font-weight: bold;">catch</span> <span style="color: #D0BF8F;">(</span>e1<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
+      <span style="color: #F0DFAF; font-weight: bold;">try</span> <span style="color: #93E0E3;">{</span>
+        <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Otherwise fall back on an older version</span>
+        <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #F0DFAF; font-weight: bold;">new</span> <span style="color: #7CB8BB;">ActiveXObject</span><span style="color: #9FC59F;">(</span><span style="color: #CC9393;">"Msxml2.XMLHTTP.3.0"</span><span style="color: #9FC59F;">)</span>;
+      <span style="color: #93E0E3;">}</span> <span style="color: #F0DFAF; font-weight: bold;">catch</span><span style="color: #93E0E3;">(</span>e2<span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">{</span>
+        <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Otherwise, throw an error</span>
+        <span style="color: #F0DFAF; font-weight: bold;">throw</span> <span style="color: #F0DFAF; font-weight: bold;">new</span> <span style="color: #7CB8BB;">Error</span><span style="color: #9FC59F;">(</span><span style="color: #CC9393;">"XMLHttpRequest is not supported"</span><span style="color: #9FC59F;">)</span>;
+      <span style="color: #93E0E3;">}</span>
+    <span style="color: #D0BF8F;">}</span>
+  <span style="color: #BFEBBF;">}</span>;
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -1020,7 +1020,7 @@ req.open(verb, url [, async]);
 </p>
 <div class="org-src-container">
 
-<pre class="src src-js">req.setRequestHeader<span style="color: #839496;">(</span><span style="color: #2aa198;">'Content-Type'</span>, <span style="color: #2aa198;">"text/plain;charset=UTF-8"</span><span style="color: #839496;">)</span>;
+<pre class="src src-js">req.setRequestHeader<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'Content-Type'</span>, <span style="color: #CC9393;">"text/plain;charset=UTF-8"</span><span style="color: #DCDCCC;">)</span>;
 </pre>
 </div>
 <p>
@@ -1145,29 +1145,29 @@ readyState的值比如下面这个函数:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-js"><span style="color: #859900;">function</span> <span style="color: #b58900;">getText</span><span style="color: #839496;">(</span><span style="color: #6c71c4;">url</span>, <span style="color: #6c71c4;">callback</span><span style="color: #839496;">)</span> <span style="color: #839496;">{</span>
-  <span style="color: #859900;">var</span> <span style="color: #6c71c4;">request</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">XMLHttpRequest</span><span style="color: #2aa198;">()</span>;
-  <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">Create new request</span>
-  request.open<span style="color: #2aa198;">(</span><span style="color: #2aa198;">"GET"</span>, url<span style="color: #2aa198;">)</span>;
-  <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">Specify URL to fetch</span>
-  request.onreadystatechange = <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
-    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">Define event listener</span>
-    <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">If the request is compete and was successful</span>
-    <span style="color: #859900;">if</span> <span style="color: #b58900;">(</span>request.readyState === 4 &amp;&amp; request.status === 200<span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-      <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">get type</span>
-      <span style="color: #859900;">var</span> <span style="color: #6c71c4;">type</span> = request.getResponseHeader<span style="color: #859900;">(</span><span style="color: #2aa198;">"Content-Type"</span><span style="color: #859900;">)</span>;
-      <span style="color: #859900;">if</span> <span style="color: #859900;">(</span>type.indexOf<span style="color: #268bd2;">(</span><span style="color: #2aa198;">'xml'</span><span style="color: #268bd2;">)</span> !== -1 &amp;&amp; request.responseXML<span style="color: #859900;">){</span>
-        callback<span style="color: #268bd2;">(</span>request.responseXML<span style="color: #268bd2;">)</span>;
-      <span style="color: #859900;">}</span><span style="color: #859900;">else</span> <span style="color: #859900;">if</span> <span style="color: #859900;">(</span>type === <span style="color: #2aa198;">"application/json"</span><span style="color: #859900;">){</span>
-        callback<span style="color: #268bd2;">(</span>JSON.parse<span style="color: #839496;">(</span>request.responseText<span style="color: #839496;">)</span><span style="color: #268bd2;">)</span> <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">JSON response</span>
-      <span style="color: #859900;">}</span> <span style="color: #859900;">else</span><span style="color: #859900;">{</span>
-        callback<span style="color: #268bd2;">(</span>request.responseText<span style="color: #268bd2;">)</span>;  <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">String response</span>
-      <span style="color: #859900;">}</span>
-    <span style="color: #b58900;">}</span>
-  <span style="color: #2aa198;">}</span>;
-  request.send<span style="color: #2aa198;">(</span><span style="color: #268bd2;">null</span><span style="color: #2aa198;">)</span>;
-  <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">Send the request now</span>
-<span style="color: #839496;">}</span>
+<pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">getText</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">url</span>, <span style="color: #DFAF8F;">callback</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
+  <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">request</span> = <span style="color: #F0DFAF; font-weight: bold;">new</span> <span style="color: #7CB8BB;">XMLHttpRequest</span><span style="color: #BFEBBF;">()</span>;
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Create new request</span>
+  request.open<span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">"GET"</span>, url<span style="color: #BFEBBF;">)</span>;
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Specify URL to fetch</span>
+  request.onreadystatechange = <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #BFEBBF;">()</span> <span style="color: #BFEBBF;">{</span>
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Define event listener</span>
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">If the request is compete and was successful</span>
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>request.readyState === <span style="color: #BFEBBF;">4</span> &amp;&amp; request.status === <span style="color: #BFEBBF;">200</span><span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
+      <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">get type</span>
+      <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">type</span> = request.getResponseHeader<span style="color: #93E0E3;">(</span><span style="color: #CC9393;">"Content-Type"</span><span style="color: #93E0E3;">)</span>;
+      <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #93E0E3;">(</span>type.indexOf<span style="color: #9FC59F;">(</span><span style="color: #CC9393;">'xml'</span><span style="color: #9FC59F;">)</span> !== -<span style="color: #BFEBBF;">1</span> &amp;&amp; request.responseXML<span style="color: #93E0E3;">){</span>
+        callback<span style="color: #9FC59F;">(</span>request.responseXML<span style="color: #9FC59F;">)</span>;
+      <span style="color: #93E0E3;">}</span><span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #93E0E3;">(</span>type === <span style="color: #CC9393;">"application/json"</span><span style="color: #93E0E3;">){</span>
+        callback<span style="color: #9FC59F;">(</span>JSON.parse<span style="color: #94BFF3;">(</span>request.responseText<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span> <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">JSON response</span>
+      <span style="color: #93E0E3;">}</span> <span style="color: #F0DFAF; font-weight: bold;">else</span><span style="color: #93E0E3;">{</span>
+        callback<span style="color: #9FC59F;">(</span>request.responseText<span style="color: #9FC59F;">)</span>;  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">String response</span>
+      <span style="color: #93E0E3;">}</span>
+    <span style="color: #D0BF8F;">}</span>
+  <span style="color: #BFEBBF;">}</span>;
+  request.send<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">null</span><span style="color: #BFEBBF;">)</span>;
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Send the request now</span>
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>

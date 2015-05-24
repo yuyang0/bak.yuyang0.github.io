@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>scheme笔记</title>
-<!-- 2015-02-06 Fri 16:26 -->
+<!-- 2015-05-24 Sun 19:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -311,10 +311,10 @@ for the JavaScript code in this tag.
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> <span style="color: #b58900;">atom?</span>
-  (<span style="color: #859900;">lambda</span> (s)
-    (<span style="color: #859900;">and</span> (not (pair? s))
-         (not (null? s)))))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">atom?</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>s<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">and</span> <span style="color: #93E0E3;">(</span>not <span style="color: #9FC59F;">(</span>pair? s<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+         <span style="color: #93E0E3;">(</span>not <span style="color: #9FC59F;">(</span>null? s<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -384,14 +384,14 @@ sexp -&gt; list
 
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> <span style="color: #b58900;">double-any</span>
-  (<span style="color: #859900;">lambda</span> (f x)
-    (f x x)))
-<span style="color: #586e75; font-style: italic;">;;; </span><span style="color: #586e75; font-style: italic;">identical</span>
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">double-any</span> f x)
-  (f x x))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">double-any</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>f x<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>f x x<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #5F7F5F;">;;; </span><span style="color: #7F9F7F;">identical</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #BFEBBF;">(</span><span style="color: #93E0E3;">double-any</span> f x<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>f x x<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 
-(<span style="color: #859900;">define</span> <span style="color: #b58900;">xyz</span> '(x y z))
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">xyz</span> '<span style="color: #BFEBBF;">(</span>x y z<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </li>
@@ -464,17 +464,17 @@ variable)
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define-syntax</span> <span style="color: #6c71c4;">let</span>
-  (<span style="color: #859900;">syntax-rules</span> ()
-    [(_ ((x v) ...) e1 e2 ...)
-     ((<span style="color: #859900;">lambda</span> (x ...) e1 e2 ...) v ...)]))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-syntax</span> <span style="color: #DFAF8F;">let</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">syntax-rules</span> <span style="color: #D0BF8F;">()</span>
+    <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_ <span style="color: #9FC59F;">(</span><span style="color: #94BFF3;">(</span>x v<span style="color: #94BFF3;">)</span> ...<span style="color: #9FC59F;">)</span> e1 e2 ...<span style="color: #93E0E3;">)</span>
+     <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #94BFF3;">(</span>x ...<span style="color: #94BFF3;">)</span> e1 e2 ...<span style="color: #9FC59F;">)</span> v ...<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 
-(<span style="color: #859900;">define-syntax</span> <span style="color: #6c71c4;">and</span>
-  (<span style="color: #859900;">syntax-rules</span> ()
-    [(_) #t]
-    [(_ e) e]
-    [(_ e1 e2 e3 ...)
-     (<span style="color: #859900;">if</span> e1 (<span style="color: #859900;">and</span> e2 e3 ...) #f)]))
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-syntax</span> <span style="color: #DFAF8F;">and</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">syntax-rules</span> <span style="color: #D0BF8F;">()</span>
+    <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_<span style="color: #93E0E3;">)</span> #t<span style="color: #D0BF8F;">]</span>
+    <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_ e<span style="color: #93E0E3;">)</span> e<span style="color: #D0BF8F;">]</span>
+    <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_ e1 e2 e3 ...<span style="color: #93E0E3;">)</span>
+     <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> e1 <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">and</span> e2 e3 ...<span style="color: #9FC59F;">)</span> #f<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -489,16 +489,16 @@ variable)
 <div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
 
-<pre class="src src-scheme"><span style="color: #586e75; font-style: italic;">;;; </span><span style="color: #586e75; font-style: italic;">form 1</span>
-(<span style="color: #859900;">let</span> ((a exp1)
-      (b exp2))
-  (body1)
-  (body2))
-<span style="color: #586e75; font-style: italic;">;;; </span><span style="color: #586e75; font-style: italic;">form2</span>
-(<span style="color: #859900;">let</span> <span style="color: #b58900;">f</span> ([a exp1]
-        [b exp2])
-  (body1)
-  (body2))
+<pre class="src src-scheme"><span style="color: #5F7F5F;">;;; </span><span style="color: #7F9F7F;">form 1</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">(</span>a exp1<span style="color: #D0BF8F;">)</span>
+      <span style="color: #D0BF8F;">(</span>b exp2<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>body1<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>body2<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #5F7F5F;">;;; </span><span style="color: #7F9F7F;">form2</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #93E0E3;">f</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span>a exp1<span style="color: #D0BF8F;">]</span>
+        <span style="color: #D0BF8F;">[</span>b exp2<span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>body1<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>body2<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -507,10 +507,10 @@ variable)
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">let</span> ([a exp1]
-      [b exp2])
-  (body1)
-  (body2))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span>a exp1<span style="color: #D0BF8F;">]</span>
+      <span style="color: #D0BF8F;">[</span>b exp2<span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>body1<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>body2<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -518,10 +518,10 @@ form2主要是为了递归, 它使得在函数体中可以引用函数名, 比�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">let</span> <span style="color: #b58900;">fac</span> ([n 10])
-  (<span style="color: #859900;">if</span> (zero? n)
-      1
-      (* n (fac (sub1 n)))))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #93E0E3;">fac</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span>n <span style="color: #BFEBBF;">10</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>zero? n<span style="color: #D0BF8F;">)</span>
+      <span style="color: #BFEBBF;">1</span>
+      <span style="color: #D0BF8F;">(</span>* n <span style="color: #93E0E3;">(</span>fac <span style="color: #9FC59F;">(</span>sub1 n<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <ul class="org-ul">
@@ -532,23 +532,23 @@ form2主要是为了递归, 它使得在函数体中可以引用函数名, 比�
 <code>let*</code>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define-syntax</span> <span style="color: #6c71c4;">let*</span>
-  (<span style="color: #859900;">syntax-rules</span> ()
-    [(_ () e1 e2 ...)
-     (<span style="color: #859900;">let</span> () e1 e2 ...)]
-    [(_ ((x1 v1) (x2 v2) ...) e1 e2 ...)
-     (<span style="color: #859900;">let</span> ((x1 v1))
-       (<span style="color: #859900;">let*</span> ((x2 v2) ...) e1 e2 ...))]))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-syntax</span> <span style="color: #DFAF8F;">let*</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">syntax-rules</span> <span style="color: #D0BF8F;">()</span>
+    <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_ <span style="color: #9FC59F;">()</span> e1 e2 ...<span style="color: #93E0E3;">)</span>
+     <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #9FC59F;">()</span> e1 e2 ...<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span>
+    <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_ <span style="color: #9FC59F;">(</span><span style="color: #94BFF3;">(</span>x1 v1<span style="color: #94BFF3;">)</span> <span style="color: #94BFF3;">(</span>x2 v2<span style="color: #94BFF3;">)</span> ...<span style="color: #9FC59F;">)</span> e1 e2 ...<span style="color: #93E0E3;">)</span>
+     <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #9FC59F;">(</span><span style="color: #94BFF3;">(</span>x1 v1<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
+       <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">let*</span> <span style="color: #94BFF3;">(</span><span style="color: #E0CF9F;">(</span>x2 v2<span style="color: #E0CF9F;">)</span> ...<span style="color: #94BFF3;">)</span> e1 e2 ...<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </li>
 <li>letrec: 主要用来解决定义递归函数时,函数名在函数体中不可见的问题,比如
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">let</span> ([sum (<span style="color: #859900;">lambda</span> (lst)
-                (<span style="color: #859900;">if</span> (null? lst) 0
-                    (+ (car lst) (sum (cdr lst)))))])
-  (sum '(1 2 3 4 5)))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span>sum <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>lst<span style="color: #9FC59F;">)</span>
+                <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #94BFF3;">(</span>null? lst<span style="color: #94BFF3;">)</span> <span style="color: #BFEBBF;">0</span>
+                    <span style="color: #94BFF3;">(</span>+ <span style="color: #E0CF9F;">(</span>car lst<span style="color: #E0CF9F;">)</span> <span style="color: #E0CF9F;">(</span>sum <span style="color: #8FB28F;">(</span>cdr lst<span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>sum '<span style="color: #D0BF8F;">(</span><span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span> <span style="color: #BFEBBF;">3</span> <span style="color: #BFEBBF;">4</span> <span style="color: #BFEBBF;">5</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -557,10 +557,10 @@ form2主要是为了递归, 它使得在函数体中可以引用函数名, 比�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">let</span> ([sum (<span style="color: #859900;">lambda</span> (sum lst)
-                (<span style="color: #859900;">if</span> (null? lst) 0
-                    (+ (car lst) (sum sum (cdr lst)))))])
-  (sum sum '(1 2 3 4 5)))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span>sum <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>sum lst<span style="color: #9FC59F;">)</span>
+                <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #94BFF3;">(</span>null? lst<span style="color: #94BFF3;">)</span> <span style="color: #BFEBBF;">0</span>
+                    <span style="color: #94BFF3;">(</span>+ <span style="color: #E0CF9F;">(</span>car lst<span style="color: #E0CF9F;">)</span> <span style="color: #E0CF9F;">(</span>sum sum <span style="color: #8FB28F;">(</span>cdr lst<span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>sum sum '<span style="color: #D0BF8F;">(</span><span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span> <span style="color: #BFEBBF;">3</span> <span style="color: #BFEBBF;">4</span> <span style="color: #BFEBBF;">5</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -569,12 +569,12 @@ form2主要是为了递归, 它使得在函数体中可以引用函数名, 比�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">letrec</span> ([sum (<span style="color: #859900;">lambda</span> (ls)
-                (<span style="color: #859900;">if</span> (null? ls)
-                    0
-                    (+ (car ls) (sum (cdr ls)))))])
-  (sum '(1 2 3 4 5)))
-<span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">the result is 15</span>
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">letrec</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span>sum <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>ls<span style="color: #9FC59F;">)</span>
+                <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #94BFF3;">(</span>null? ls<span style="color: #94BFF3;">)</span>
+                    <span style="color: #BFEBBF;">0</span>
+                    <span style="color: #94BFF3;">(</span>+ <span style="color: #E0CF9F;">(</span>car ls<span style="color: #E0CF9F;">)</span> <span style="color: #E0CF9F;">(</span>sum <span style="color: #8FB28F;">(</span>cdr ls<span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>sum '<span style="color: #D0BF8F;">(</span><span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span> <span style="color: #BFEBBF;">3</span> <span style="color: #BFEBBF;">4</span> <span style="color: #BFEBBF;">5</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">the result is 15</span>
 </pre>
 </div>
 </li>
@@ -590,11 +590,11 @@ syntax:
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">let-values</span> ([(a b) (values 1 2)] [c (values 1 2 3)])
-  (list a b c)) <span style="color: #586e75; font-style: italic;">; </span><span style="color: #586e75; font-style: italic;">the result is (1 2 (1 2 3))</span>
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let-values</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>a b<span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">(</span>values <span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span> <span style="color: #D0BF8F;">[</span>c <span style="color: #93E0E3;">(</span>values <span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span> <span style="color: #BFEBBF;">3</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>list a b c<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span> <span style="color: #5F7F5F;">; </span><span style="color: #7F9F7F;">the result is (1 2 (1 2 3))</span>
 
-(<span style="color: #859900;">let*-values</span> ([(a b) (values 1 2)] [(a b) (values b a)])
-  (list a b)) <span style="color: #586e75; font-style: italic;">; </span><span style="color: #586e75; font-style: italic;">the result is (2 1)</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let*-values</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>a b<span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">(</span>values <span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span> <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>a b<span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">(</span>values b a<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>list a b<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span> <span style="color: #5F7F5F;">; </span><span style="color: #7F9F7F;">the result is (2 1)</span>
 </pre>
 </div>
 </li>
@@ -613,11 +613,11 @@ syntax:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">if</span> (test-exp)
-    (<span style="color: #859900;">begin</span>
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>test-exp<span style="color: #BFEBBF;">)</span>
+    <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">begin</span>
       expression1
-      expression2)
-    expression3)
+      expression2<span style="color: #BFEBBF;">)</span>
+    expression3<span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -627,9 +627,9 @@ syntax:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">if</span> (test-exp)
-    (true-exp)
-    (false-exp))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>test-exp<span style="color: #BFEBBF;">)</span>
+    <span style="color: #BFEBBF;">(</span>true-exp<span style="color: #BFEBBF;">)</span>
+    <span style="color: #BFEBBF;">(</span>false-exp<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -665,8 +665,8 @@ syntax:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">cond</span> [(test-exp) (exp1) (exp2)]
-      [else expression3])
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span> <span style="color: #BFEBBF;">[</span><span style="color: #D0BF8F;">(</span>test-exp<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>exp1<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>exp2<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">]</span>
+      <span style="color: #BFEBBF;">[</span>else expression3<span style="color: #BFEBBF;">]</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -675,8 +675,8 @@ syntax:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">cond</span> ((assv 'b '((a 1) (b 2))) =&gt; cadr)
-      (<span style="color: #859900;">else</span> #f))                       <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">==&gt;  2</span>
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">(</span>assv 'b '<span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>a <span style="color: #BFEBBF;">1</span><span style="color: #9FC59F;">)</span> <span style="color: #9FC59F;">(</span>b <span style="color: #BFEBBF;">2</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span> =&gt; cadr<span style="color: #BFEBBF;">)</span>
+      <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">else</span> #f<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>                       <span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">==&gt;  2</span>
 </pre>
 </div>
 <p>
@@ -691,9 +691,9 @@ syntax:
 <li>(when (test-exp) exp1 exp2) : test-exp为真就执行exp1, exp2
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define-syntax</span> <span style="color: #6c71c4;">when</span>
-  (<span style="color: #859900;">syntax-rules</span> ()
-    [(_ e0 e1 e2 ...) (<span style="color: #859900;">if</span> e0 (<span style="color: #859900;">begin</span> e1 e2 ...))]))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-syntax</span> <span style="color: #DFAF8F;">when</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">syntax-rules</span> <span style="color: #D0BF8F;">()</span>
+    <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_ e0 e1 e2 ...<span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> e0 <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">begin</span> e1 e2 ...<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </li>
@@ -711,11 +711,11 @@ syntax:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">let</span> ((x 4) (y 5))
-  (<span style="color: #859900;">case</span> (+ x y)
-    ((1 3 5 7 9) 'odd)
-    ((0 2 4 6 8) 'even)
-    (<span style="color: #859900;">else</span> 'out-of-range))) <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">===&gt; odd</span>
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">(</span>x <span style="color: #BFEBBF;">4</span><span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>y <span style="color: #BFEBBF;">5</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">case</span> <span style="color: #D0BF8F;">(</span>+ x y<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span><span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">3</span> <span style="color: #BFEBBF;">5</span> <span style="color: #BFEBBF;">7</span> <span style="color: #BFEBBF;">9</span><span style="color: #93E0E3;">)</span> 'odd<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span><span style="color: #BFEBBF;">0</span> <span style="color: #BFEBBF;">2</span> <span style="color: #BFEBBF;">4</span> <span style="color: #BFEBBF;">6</span> <span style="color: #BFEBBF;">8</span><span style="color: #93E0E3;">)</span> 'even<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">else</span> 'out-of-range<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span> <span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">===&gt; odd</span>
 </pre>
 </div>
 </div>
@@ -733,14 +733,14 @@ syntax:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> <span style="color: #b58900;">divisors</span>
-  (<span style="color: #859900;">lambda</span> (n)
-    (<span style="color: #859900;">do</span> ((i 2 (+ i 1))
-         (ls '()
-             (<span style="color: #859900;">if</span> (integer? (/ n i))
-                 (cons i ls)
-                 ls)))
-        ((&gt;= i n) ls))))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">divisors</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>n<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">do</span> <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>i <span style="color: #BFEBBF;">2</span> <span style="color: #94BFF3;">(</span>+ i <span style="color: #BFEBBF;">1</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
+         <span style="color: #9FC59F;">(</span>ls '<span style="color: #94BFF3;">()</span>
+             <span style="color: #94BFF3;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #E0CF9F;">(</span>integer? <span style="color: #8FB28F;">(</span>/ n i<span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span>
+                 <span style="color: #E0CF9F;">(</span>cons i ls<span style="color: #E0CF9F;">)</span>
+                 ls<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+        <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>&gt;= i n<span style="color: #9FC59F;">)</span> ls<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -753,9 +753,9 @@ syntax:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">map</span> (<span style="color: #859900;">lambda</span> (x y) (* x y))
-     '(1 2 3 4)
-     '(8 7 6 5))      <span style="color: #586e75; font-style: italic;">; </span><span style="color: #586e75; font-style: italic;">return (8 14 18 20)</span>
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">map</span> <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>x y<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>* x y<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+     '<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span> <span style="color: #BFEBBF;">3</span> <span style="color: #BFEBBF;">4</span><span style="color: #BFEBBF;">)</span>
+     '<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">8</span> <span style="color: #BFEBBF;">7</span> <span style="color: #BFEBBF;">6</span> <span style="color: #BFEBBF;">5</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>      <span style="color: #5F7F5F;">; </span><span style="color: #7F9F7F;">return (8 14 18 20)</span>
 </pre>
 </div>
 <p>
@@ -793,8 +793,8 @@ effect.
 <li>(values obj &#x2026;) :返回多个值,注意它的返回值可以用 <code>let-values</code> 来绑定,不能用 <code>define</code>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">let-values</span> ([(a b) (values 1 2)])
-  (+ a b))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let-values</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>a b<span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">(</span>values <span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>+ a b<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </li>
@@ -802,9 +802,9 @@ effect.
 递给consumer.注意producer必须可以不带参数的方式来调用
 <div class="org-src-container">
 
-<pre class="src src-scheme">(call-with-values
-  (<span style="color: #859900;">lambda</span> () (values 'bond 'james))
-  (<span style="color: #859900;">lambda</span> (x y) (cons y x)))  <span style="color: #586e75; font-style: italic;">; </span><span style="color: #586e75; font-style: italic;">the result is (james . bond)</span>
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>call-with-values
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">()</span> <span style="color: #D0BF8F;">(</span>values 'bond 'james<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>x y<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>cons y x<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>  <span style="color: #5F7F5F;">; </span><span style="color: #7F9F7F;">the result is (james . bond)</span>
 </pre>
 </div>
 </li>
@@ -831,9 +831,9 @@ effect.
 
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> <span style="color: #b58900;">sym1</span> 'hello)
-(<span style="color: #859900;">define</span> <span style="color: #b58900;">sym2</span> 'hello)
-(eq? sym1 sym2)
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">sym1</span> 'hello<span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">sym2</span> 'hello<span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">(</span>eq? sym1 sym2<span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </li>
@@ -925,12 +925,12 @@ List ::= '()
 list, <code>(memq 'a '(b c a d e)) --&gt; (a d e)</code>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> <span style="color: #b58900;">memq</span>
-  (<span style="color: #859900;">lambda</span> (x ls)
-    (<span style="color: #859900;">cond</span>
-      ((null? ls) #f)
-      ((eq? (car ls) x) ls)
-      (<span style="color: #859900;">else</span> (memq x (cdr ls))))))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">memq</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>x ls<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>null? ls<span style="color: #9FC59F;">)</span> #f<span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>eq? <span style="color: #94BFF3;">(</span>car ls<span style="color: #94BFF3;">)</span> x<span style="color: #9FC59F;">)</span> ls<span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #9FC59F;">(</span>memq x <span style="color: #94BFF3;">(</span>cdr ls<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </li>
@@ -939,12 +939,12 @@ list, <code>(memq 'a '(b c a d e)) --&gt; (a d e)</code>
 <li>assq assv assoc assp 可以看做是关联数组((key1 . val1) (key2 . val2) &#x2026;)
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> <span style="color: #b58900;">assq</span>
-  (<span style="color: #859900;">lambda</span> (x ls)
-    (<span style="color: #859900;">cond</span>
-      ((null? ls) #f)
-      ((eq? (caar ls) x) (car ls))
-      (<span style="color: #859900;">else</span> (assq x (cdr ls))))))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">assq</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>x ls<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>null? ls<span style="color: #9FC59F;">)</span> #f<span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>eq? <span style="color: #94BFF3;">(</span>caar ls<span style="color: #94BFF3;">)</span> x<span style="color: #9FC59F;">)</span> <span style="color: #9FC59F;">(</span>car ls<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #9FC59F;">(</span>assq x <span style="color: #94BFF3;">(</span>cdr ls<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -968,24 +968,24 @@ procedure returns true
 <li>(foldr f init list1 list2 &#x2026;):
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> <span style="color: #b58900;">foldl</span>
-  (<span style="color: #859900;">lambda</span> (f x ls)
-    (<span style="color: #859900;">cond</span>
-     [(null? ls) x]
-     [else
-      (foldl f (f x (car ls)) (cdr ls))])))
-<span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">(foldl op init '(1 2 3 4))</span>
-<span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">we can think foldl's behavior like this: (init op 1 op 2 op 3 op 4)</span>
-<span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">op has left associativity</span>
-(<span style="color: #859900;">define</span> <span style="color: #b58900;">foldr</span>
-  (<span style="color: #859900;">lambda</span> (f x ls)
-    (<span style="color: #859900;">cond</span>
-     [(null? ls) x]
-     [else
-      (f (car ls) (foldr f x (cdr ls)))])))
-<span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">(foldr op init '(1 2 3 4 5))</span>
-<span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">we can think foldl's behavior like this: (1 op 2 op 3 op 4 op init)</span>
-<span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">op has right associativity</span>
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">foldl</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>f x ls<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span>
+     <span style="color: #93E0E3;">[</span><span style="color: #9FC59F;">(</span>null? ls<span style="color: #9FC59F;">)</span> x<span style="color: #93E0E3;">]</span>
+     <span style="color: #93E0E3;">[</span>else
+      <span style="color: #9FC59F;">(</span>foldl f <span style="color: #94BFF3;">(</span>f x <span style="color: #E0CF9F;">(</span>car ls<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span> <span style="color: #94BFF3;">(</span>cdr ls<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">(foldl op init '(1 2 3 4))</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">we can think foldl's behavior like this: (init op 1 op 2 op 3 op 4)</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">op has left associativity</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">foldr</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>f x ls<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span>
+     <span style="color: #93E0E3;">[</span><span style="color: #9FC59F;">(</span>null? ls<span style="color: #9FC59F;">)</span> x<span style="color: #93E0E3;">]</span>
+     <span style="color: #93E0E3;">[</span>else
+      <span style="color: #9FC59F;">(</span>f <span style="color: #94BFF3;">(</span>car ls<span style="color: #94BFF3;">)</span> <span style="color: #94BFF3;">(</span>foldr f x <span style="color: #E0CF9F;">(</span>cdr ls<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">(foldr op init '(1 2 3 4 5))</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">we can think foldl's behavior like this: (1 op 2 op 3 op 4 op init)</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">op has right associativity</span>
 </pre>
 </div>
 </li>
@@ -1182,10 +1182,10 @@ object. <code>syntax-rules</code> 返回的就是一个macro transform.所以你
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define-syntax</span> <span style="color: #6c71c4;">self-as-string</span>
-  (<span style="color: #859900;">lambda</span> (stx)
-    (datum-&gt;syntax stx
-                   (format <span style="color: #2aa198;">"~s"</span> (syntax-&gt;datum stx)))))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-syntax</span> <span style="color: #DFAF8F;">self-as-string</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>stx<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>datum-&gt;syntax stx
+                   <span style="color: #93E0E3;">(</span>format <span style="color: #CC9393;">"~s"</span> <span style="color: #9FC59F;">(</span>syntax-&gt;datum stx<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -1197,12 +1197,12 @@ object. <code>syntax-rules</code> 返回的就是一个macro transform.所以你
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define-syntax</span> <span style="color: #6c71c4;">let*</span>
-  (<span style="color: #859900;">syntax-rules</span> ()
-    [(_ () b1 b2 ...) (<span style="color: #859900;">let</span> () b1 b2 ...)]
-    [(_ ((i1 e1) (i2 e2) ...) b1 b2 ...)
-     (<span style="color: #859900;">let</span> ([i1 e1])
-       (<span style="color: #859900;">let*</span> ([i2 e2] ...) b1 b2 ...))]))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-syntax</span> <span style="color: #DFAF8F;">let*</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">syntax-rules</span> <span style="color: #D0BF8F;">()</span>
+    <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_ <span style="color: #9FC59F;">()</span> b1 b2 ...<span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #9FC59F;">()</span> b1 b2 ...<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span>
+    <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_ <span style="color: #9FC59F;">(</span><span style="color: #94BFF3;">(</span>i1 e1<span style="color: #94BFF3;">)</span> <span style="color: #94BFF3;">(</span>i2 e2<span style="color: #94BFF3;">)</span> ...<span style="color: #9FC59F;">)</span> b1 b2 ...<span style="color: #93E0E3;">)</span>
+     <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #9FC59F;">(</span><span style="color: #94BFF3;">[</span>i1 e1<span style="color: #94BFF3;">]</span><span style="color: #9FC59F;">)</span>
+       <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">let*</span> <span style="color: #94BFF3;">(</span><span style="color: #E0CF9F;">[</span>i2 e2<span style="color: #E0CF9F;">]</span> ...<span style="color: #94BFF3;">)</span> b1 b2 ...<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -1212,19 +1212,19 @@ object. <code>syntax-rules</code> 返回的就是一个macro transform.所以你
 <div class="outline-text-4" id="text-1-7-2">
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">let</span> ([f (<span style="color: #859900;">lambda</span> (x) (+ x 1))])
-  (<span style="color: #859900;">let-syntax</span> ([f (<span style="color: #859900;">syntax-rules</span> ()
-                    [(_ x) x])]
-               [g (<span style="color: #859900;">syntax-rules</span> ()
-                    [(_ x) (f x)])])
-    (list (f 1) (g 1)))) <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">(1 2)</span>
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span>f <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>x<span style="color: #9FC59F;">)</span> <span style="color: #9FC59F;">(</span>+ x <span style="color: #BFEBBF;">1</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let-syntax</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">[</span>f <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">syntax-rules</span> <span style="color: #94BFF3;">()</span>
+                    <span style="color: #94BFF3;">[</span><span style="color: #E0CF9F;">(</span>_ x<span style="color: #E0CF9F;">)</span> x<span style="color: #94BFF3;">]</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span>
+               <span style="color: #93E0E3;">[</span>g <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">syntax-rules</span> <span style="color: #94BFF3;">()</span>
+                    <span style="color: #94BFF3;">[</span><span style="color: #E0CF9F;">(</span>_ x<span style="color: #E0CF9F;">)</span> <span style="color: #E0CF9F;">(</span>f x<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">]</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>list <span style="color: #93E0E3;">(</span>f <span style="color: #BFEBBF;">1</span><span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">(</span>g <span style="color: #BFEBBF;">1</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span> <span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">(1 2)</span>
 
-(<span style="color: #859900;">let</span> ([f (<span style="color: #859900;">lambda</span> (x) (+ x 1))])
-  (<span style="color: #859900;">letrec-syntax</span> ([f (<span style="color: #859900;">syntax-rules</span> ()
-                       [(_ x) x])]
-                  [g (<span style="color: #859900;">syntax-rules</span> ()
-                       [(_ x) (f x)])])
-    (list (f 1) (g 1)))) <span style="color: #586e75; font-style: italic;">;; </span><span style="color: #586e75; font-style: italic;">(1 1)</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span>f <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>x<span style="color: #9FC59F;">)</span> <span style="color: #9FC59F;">(</span>+ x <span style="color: #BFEBBF;">1</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">letrec-syntax</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">[</span>f <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">syntax-rules</span> <span style="color: #94BFF3;">()</span>
+                       <span style="color: #94BFF3;">[</span><span style="color: #E0CF9F;">(</span>_ x<span style="color: #E0CF9F;">)</span> x<span style="color: #94BFF3;">]</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span>
+                  <span style="color: #93E0E3;">[</span>g <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">syntax-rules</span> <span style="color: #94BFF3;">()</span>
+                       <span style="color: #94BFF3;">[</span><span style="color: #E0CF9F;">(</span>_ x<span style="color: #E0CF9F;">)</span> <span style="color: #E0CF9F;">(</span>f x<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">]</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>list <span style="color: #93E0E3;">(</span>f <span style="color: #BFEBBF;">1</span><span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">(</span>g <span style="color: #BFEBBF;">1</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span> <span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">(1 1)</span>
 </pre>
 </div>
 </div>
@@ -1258,10 +1258,10 @@ syntax object,然后返回一个syntax object.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define-syntax</span> <span style="color: #6c71c4;">my-if</span>
-  (<span style="color: #859900;">syntax-rules</span> (then else)
-    [(_ condition then true-exp else false-exp)
-     (<span style="color: #859900;">if</span> condition true-exp false-exp)]))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-syntax</span> <span style="color: #DFAF8F;">my-if</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">syntax-rules</span> <span style="color: #D0BF8F;">(</span>then else<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_ condition then true-exp else false-exp<span style="color: #93E0E3;">)</span>
+     <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> condition true-exp false-exp<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -1314,30 +1314,30 @@ x 实际就是一个包含了原始代码的syntax object. 通过syntax-case 来
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define-syntax</span> <span style="color: #6c71c4;">my-if</span>
-  (<span style="color: #859900;">lambda</span> (x)
-    (syntax-case x (then else)
-      [(_ condition then true-exp else false-exp)
-       (<span style="color: #859900;">syntax</span> (<span style="color: #859900;">if</span> condition true-exp false-exp))])))
-<span style="color: #586e75; font-style: italic;">;;</span><span style="color: #586e75; font-style: italic;">Define a new macro</span>
-(<span style="color: #859900;">define-syntax</span> <span style="color: #6c71c4;">swap!</span>
-  (<span style="color: #859900;">lambda</span> (x)
-    <span style="color: #586e75; font-style: italic;">;;</span><span style="color: #586e75; font-style: italic;">we don't have any keywords this time</span>
-    (syntax-case x ()
-      [(swap! a b)
-       (<span style="color: #859900;">syntax</span>
-        (<span style="color: #859900;">let</span> ((c a))
-          (set! a b)
-          (set! b c)))]
-      )))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-syntax</span> <span style="color: #DFAF8F;">my-if</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>x<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>syntax-case x <span style="color: #93E0E3;">(</span>then else<span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">[</span><span style="color: #9FC59F;">(</span>_ condition then true-exp else false-exp<span style="color: #9FC59F;">)</span>
+       <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">syntax</span> <span style="color: #94BFF3;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> condition true-exp false-exp<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #5F7F5F;">;;</span><span style="color: #7F9F7F;">Define a new macro</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-syntax</span> <span style="color: #DFAF8F;">swap!</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>x<span style="color: #D0BF8F;">)</span>
+    <span style="color: #5F7F5F;">;;</span><span style="color: #7F9F7F;">we don't have any keywords this time</span>
+    <span style="color: #D0BF8F;">(</span>syntax-case x <span style="color: #93E0E3;">()</span>
+      <span style="color: #93E0E3;">[</span><span style="color: #9FC59F;">(</span>swap! a b<span style="color: #9FC59F;">)</span>
+       <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">syntax</span>
+        <span style="color: #94BFF3;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #E0CF9F;">(</span><span style="color: #8FB28F;">(</span>c a<span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span>
+          <span style="color: #E0CF9F;">(</span>set! a b<span style="color: #E0CF9F;">)</span>
+          <span style="color: #E0CF9F;">(</span>set! b c<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span>
+      <span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 
-(<span style="color: #859900;">define-syntax</span> <span style="color: #6c71c4;">syntax-rules</span>
-  (<span style="color: #859900;">lambda</span> (x)
-    (syntax-case x ()
-      [(_ (i ...) ((keyword . pattern) template) ...)
-       #'(<span style="color: #859900;">lambda</span> (x)
-           (syntax-case x (i ...)
-             [(_ . pattern) #'template] ...))])))
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-syntax</span> <span style="color: #DFAF8F;">syntax-rules</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>x<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>syntax-case x <span style="color: #93E0E3;">()</span>
+      <span style="color: #93E0E3;">[</span><span style="color: #9FC59F;">(</span>_ <span style="color: #94BFF3;">(</span>i ...<span style="color: #94BFF3;">)</span> <span style="color: #94BFF3;">(</span><span style="color: #E0CF9F;">(</span>keyword . pattern<span style="color: #E0CF9F;">)</span> template<span style="color: #94BFF3;">)</span> ...<span style="color: #9FC59F;">)</span>
+       #'<span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #94BFF3;">(</span>x<span style="color: #94BFF3;">)</span>
+           <span style="color: #94BFF3;">(</span>syntax-case x <span style="color: #E0CF9F;">(</span>i ...<span style="color: #E0CF9F;">)</span>
+             <span style="color: #E0CF9F;">[</span><span style="color: #8FB28F;">(</span>_ . pattern<span style="color: #8FB28F;">)</span> #'template<span style="color: #E0CF9F;">]</span> ...<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -1347,12 +1347,12 @@ x 实际就是一个包含了原始代码的syntax object. 通过syntax-case 来
 <div class="outline-text-4" id="text-1-7-6">
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define-syntax</span> <span style="color: #6c71c4;">with-syntax</span>
-  (<span style="color: #859900;">lambda</span> (x)
-    (syntax-case x ()
-      [(_ ((p e) ...) b1 b2 ...)
-       #'(syntax-case (list e ...) ()
-           [(p ...) (<span style="color: #859900;">let</span> () b1 b2 ...)])])))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-syntax</span> <span style="color: #DFAF8F;">with-syntax</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>x<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>syntax-case x <span style="color: #93E0E3;">()</span>
+      <span style="color: #93E0E3;">[</span><span style="color: #9FC59F;">(</span>_ <span style="color: #94BFF3;">(</span><span style="color: #E0CF9F;">(</span>p e<span style="color: #E0CF9F;">)</span> ...<span style="color: #94BFF3;">)</span> b1 b2 ...<span style="color: #9FC59F;">)</span>
+       #'<span style="color: #9FC59F;">(</span>syntax-case <span style="color: #94BFF3;">(</span>list e ...<span style="color: #94BFF3;">)</span> <span style="color: #94BFF3;">()</span>
+           <span style="color: #94BFF3;">[</span><span style="color: #E0CF9F;">(</span>p ...<span style="color: #E0CF9F;">)</span> <span style="color: #E0CF9F;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #8FB28F;">()</span> b1 b2 ...<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">]</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -1391,14 +1391,14 @@ scheme的输入输出用到一个叫做port的对象,port也是first class objec
 给proc, 并且调用完成时会关闭port
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">call-with-output-file</span> <span style="color: #2aa198;">"data"</span>
-  <span style="color: #6c71c4;">#:exists</span> 'truncate
-  (<span style="color: #859900;">lambda</span> (out)
-    (display <span style="color: #2aa198;">"hello"</span> out)))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">call-with-output-file</span> <span style="color: #CC9393;">"data"</span>
+  <span style="color: #DCDCCC; font-weight: bold;">#:exists</span> 'truncate
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>out<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>display <span style="color: #CC9393;">"hello"</span> out<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 
-(<span style="color: #859900;">call-with-input-file</span> <span style="color: #2aa198;">"data"</span>
-  (<span style="color: #859900;">lambda</span> (in)
-    (read-line in)))
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">call-with-input-file</span> <span style="color: #CC9393;">"data"</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>in<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>read-line in<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </li>
@@ -1478,24 +1478,24 @@ scheme的输入输出用到一个叫做port的对象,port也是first class objec
 <div class="outline-text-4" id="text-1-8-3">
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">call-with-input-file</span> <span style="color: #2aa198;">"myfile.ss"</span>
-  (<span style="color: #859900;">lambda</span> (p)
-    (<span style="color: #859900;">let</span> <span style="color: #b58900;">f</span> ((x (read p)))
-      (<span style="color: #859900;">if</span> (eof-object? x)
-          '()
-          (cons x (f (read p)))))))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">call-with-input-file</span> <span style="color: #CC9393;">"myfile.ss"</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>p<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #93E0E3;">f</span> <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>x <span style="color: #94BFF3;">(</span>read p<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #9FC59F;">(</span>eof-object? x<span style="color: #9FC59F;">)</span>
+          '<span style="color: #9FC59F;">()</span>
+          <span style="color: #9FC59F;">(</span>cons x <span style="color: #94BFF3;">(</span>f <span style="color: #E0CF9F;">(</span>read p<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 
-(<span style="color: #859900;">define</span> <span style="color: #b58900;">read-word</span>
-  (<span style="color: #859900;">lambda</span> (p)
-    (list-&gt;string
-      (<span style="color: #859900;">let</span> <span style="color: #b58900;">f</span> ()
-        (<span style="color: #859900;">let</span> ((c (peek-char p)))
-          (<span style="color: #859900;">cond</span>
-            ((eof-object? c) '())
-            ((char-alphabetic? c)
-             (read-char p)
-             (cons c (f)))
-            (<span style="color: #859900;">else</span> '())))))))
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">read-word</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>p<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>list-&gt;string
+      <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #93E0E3;">f</span> <span style="color: #9FC59F;">()</span>
+        <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #94BFF3;">(</span><span style="color: #E0CF9F;">(</span>c <span style="color: #8FB28F;">(</span>peek-char p<span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span>
+          <span style="color: #94BFF3;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span>
+            <span style="color: #E0CF9F;">(</span><span style="color: #8FB28F;">(</span>eof-object? c<span style="color: #8FB28F;">)</span> '<span style="color: #8FB28F;">()</span><span style="color: #E0CF9F;">)</span>
+            <span style="color: #E0CF9F;">(</span><span style="color: #8FB28F;">(</span>char-alphabetic? c<span style="color: #8FB28F;">)</span>
+             <span style="color: #8FB28F;">(</span>read-char p<span style="color: #8FB28F;">)</span>
+             <span style="color: #8FB28F;">(</span>cons c <span style="color: #6CA0A3;">(</span>f<span style="color: #6CA0A3;">)</span><span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span>
+            <span style="color: #E0CF9F;">(</span><span style="color: #F0DFAF; font-weight: bold;">else</span> '<span style="color: #8FB28F;">()</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -1530,11 +1530,11 @@ scheme中获得当前continuation的构造是call/cc, let/cc
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(let/cc k                               <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">k is the continuation</span>
-        body)
-<span style="color: #586e75; font-style: italic;">;;; </span><span style="color: #586e75; font-style: italic;">identical</span>
-(<span style="color: #859900;">call/cc</span> (<span style="color: #859900;">lambda</span> (k)                    <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">k is the continuation</span>
-           body))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>let/cc k                               <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">k is the continuation</span>
+        body<span style="color: #DCDCCC;">)</span>
+<span style="color: #5F7F5F;">;;; </span><span style="color: #7F9F7F;">identical</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">call/cc</span> <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>k<span style="color: #D0BF8F;">)</span>                    <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">k is the continuation</span>
+           body<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -1544,10 +1544,10 @@ scheme中获得当前continuation的构造是call/cc, let/cc
 <div class="outline-text-3" id="text-1-11">
 <div class="org-src-container">
 
-<pre class="src src-scheme"><span class="linenr">1: </span>(<span style="color: #859900;">define</span> <span style="color: #b58900;">last-try</span>
-<span class="linenr">2: </span>  (<span style="color: #859900;">lambda</span> ( x )
-<span class="linenr">3: </span>    (<span style="color: #859900;">and</span> ( will-stop ? last-try)
-<span class="linenr">4: </span>         ( eternity x ))))
+<pre class="src src-scheme"><span class="linenr">1: </span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">last-try</span>
+<span class="linenr">2: </span>  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span> x <span style="color: #D0BF8F;">)</span>
+<span class="linenr">3: </span>    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">and</span> <span style="color: #93E0E3;">(</span> will-stop ? last-try<span style="color: #93E0E3;">)</span>
+<span class="linenr">4: </span>         <span style="color: #93E0E3;">(</span> eternity x <span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -1555,9 +1555,9 @@ scheme中获得当前continuation的构造是call/cc, let/cc
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> <span style="color: #b58900;">eternity</span>
-  (<span style="color: #859900;">lambda</span> (x)
-    (eternity x)))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">eternity</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>x<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>eternity x<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -1602,10 +1602,10 @@ scheme中获得当前continuation的构造是call/cc, let/cc
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(struct posn (x y))                     <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">&#23450;&#20041;&#19968;&#20010;posn&#31867;&#22411;</span>
-(<span style="color: #859900;">define</span> <span style="color: #b58900;">pos1</span> (posn 1 2))                <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">struct-id: &#26500;&#24314;&#19968;&#20010;posn&#23454;&#20363;</span>
-(posn? pos1)                            <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">struct-id?: &#26159;&#21542;&#20026;&#19968;&#20010;posn&#23545;&#35937;&#23454;&#20363;</span>
-(posn-x pos1)                           <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">struct-id-field-id: &#33719;&#24471;x&#23646;&#24615;</span>
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>struct posn <span style="color: #BFEBBF;">(</span>x y<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>                     <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">&#23450;&#20041;&#19968;&#20010;posn&#31867;&#22411;</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">pos1</span> <span style="color: #BFEBBF;">(</span>posn <span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>                <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">struct-id: &#26500;&#24314;&#19968;&#20010;posn&#23454;&#20363;</span>
+<span style="color: #DCDCCC;">(</span>posn? pos1<span style="color: #DCDCCC;">)</span>                            <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">struct-id?: &#26159;&#21542;&#20026;&#19968;&#20010;posn&#23545;&#35937;&#23454;&#20363;</span>
+<span style="color: #DCDCCC;">(</span>posn-x pos1<span style="color: #DCDCCC;">)</span>                           <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">struct-id-field-id: &#33719;&#24471;x&#23646;&#24615;</span>
 </pre>
 </div>
 </div>
@@ -1642,8 +1642,8 @@ Examples:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(struct posn (x y))
-(struct pos3d posn (z))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>struct posn <span style="color: #BFEBBF;">(</span>x y<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">(</span>struct pos3d posn <span style="color: #BFEBBF;">(</span>z<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -1674,13 +1674,13 @@ Examples:
 下面是一个将let转换为等价的lambda形式的例子
 <div class="org-src-container">
 
-<pre class="src src-scheme">(match '(<span style="color: #859900;">let</span> ([a 1]
-              [b 2])
-          (set! a 11)
-          (- a b))
-       [`(<span style="color: #859900;">let</span> ([,var* ,val*] ...) ,body* ...)
-        `((<span style="color: #859900;">lambda</span> (,@var*)
-            ,@body*) ,@val*)])
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>match '<span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">[</span>a <span style="color: #BFEBBF;">1</span><span style="color: #93E0E3;">]</span>
+              <span style="color: #93E0E3;">[</span>b <span style="color: #BFEBBF;">2</span><span style="color: #93E0E3;">]</span><span style="color: #D0BF8F;">)</span>
+          <span style="color: #D0BF8F;">(</span>set! a <span style="color: #BFEBBF;">11</span><span style="color: #D0BF8F;">)</span>
+          <span style="color: #D0BF8F;">(</span>- a b<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+       <span style="color: #BFEBBF;">[</span>`<span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">[</span>,var* ,val*<span style="color: #9FC59F;">]</span> ...<span style="color: #93E0E3;">)</span> ,body* ...<span style="color: #D0BF8F;">)</span>
+        `<span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>,@var*<span style="color: #9FC59F;">)</span>
+            ,@body*<span style="color: #93E0E3;">)</span> ,@val*<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">]</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -1691,28 +1691,28 @@ Examples:
 <li>literal: 字面值直接用 <code>equal?</code> 测试是否相等
 <div class="org-src-container">
 
-<pre class="src src-scheme">(match 2
-       [1 'one]
-       [2 'two]
-       [3 'three])
-(match #f
-       [#t 'yes]
-       [#f 'no])
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>match <span style="color: #BFEBBF;">2</span>
+       <span style="color: #BFEBBF;">[</span><span style="color: #BFEBBF;">1</span> 'one<span style="color: #BFEBBF;">]</span>
+       <span style="color: #BFEBBF;">[</span><span style="color: #BFEBBF;">2</span> 'two<span style="color: #BFEBBF;">]</span>
+       <span style="color: #BFEBBF;">[</span><span style="color: #BFEBBF;">3</span> 'three<span style="color: #BFEBBF;">]</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">(</span>match #f
+       <span style="color: #BFEBBF;">[</span>#t 'yes<span style="color: #BFEBBF;">]</span>
+       <span style="color: #BFEBBF;">[</span>#f 'no<span style="color: #BFEBBF;">]</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </li>
 <li>(list lvp &#x2026;): 会绑定对应的标识符,注意几个特殊符号,vector和list类似
 <div class="org-src-container">
 
-<pre class="src src-scheme">(match '(1 + 2)
-[(list a '+ b) (+ a b)])         <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">return 3</span>
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>match '<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">1</span> + <span style="color: #BFEBBF;">2</span><span style="color: #BFEBBF;">)</span>
+<span style="color: #BFEBBF;">[</span><span style="color: #D0BF8F;">(</span>list a '+ b<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>+ a b<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">]</span><span style="color: #DCDCCC;">)</span>         <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">return 3</span>
 
-(match '(1 2 3)
-[(list 1 a ...) a])                 <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">return '(2 3)</span>
+<span style="color: #DCDCCC;">(</span>match '<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span> <span style="color: #BFEBBF;">3</span><span style="color: #BFEBBF;">)</span>
+<span style="color: #BFEBBF;">[</span><span style="color: #D0BF8F;">(</span>list <span style="color: #BFEBBF;">1</span> a ...<span style="color: #D0BF8F;">)</span> a<span style="color: #BFEBBF;">]</span><span style="color: #DCDCCC;">)</span>                 <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">return '(2 3)</span>
 
-(match '(1 2 3 4)
-[(list 1 a ..3) a]
-[_ 'else])                          <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">return '(2 3 4)</span>
+<span style="color: #DCDCCC;">(</span>match '<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span> <span style="color: #BFEBBF;">3</span> <span style="color: #BFEBBF;">4</span><span style="color: #BFEBBF;">)</span>
+<span style="color: #BFEBBF;">[</span><span style="color: #D0BF8F;">(</span>list <span style="color: #BFEBBF;">1</span> a ..3<span style="color: #D0BF8F;">)</span> a<span style="color: #BFEBBF;">]</span>
+<span style="color: #BFEBBF;">[</span>_ 'else<span style="color: #BFEBBF;">]</span><span style="color: #DCDCCC;">)</span>                          <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">return '(2 3 4)</span>
 </pre>
 </div>
 <p>
@@ -1723,9 +1723,9 @@ Examples:
 一些变量
 <div class="org-src-container">
 
-<pre class="src src-scheme">(define-struct tree (val left right))
-(match (make-tree 0 (make-tree 1 #f #f) #f)
-       [(tree a (tree b  _ _) _) (list a b)])       <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">'(0 1)</span>
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>define-struct tree <span style="color: #BFEBBF;">(</span>val left right<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">(</span>match <span style="color: #BFEBBF;">(</span>make-tree <span style="color: #BFEBBF;">0</span> <span style="color: #D0BF8F;">(</span>make-tree <span style="color: #BFEBBF;">1</span> #f #f<span style="color: #D0BF8F;">)</span> #f<span style="color: #BFEBBF;">)</span>
+       <span style="color: #BFEBBF;">[</span><span style="color: #D0BF8F;">(</span>tree a <span style="color: #93E0E3;">(</span>tree b  _ _<span style="color: #93E0E3;">)</span> _<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>list a b<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">]</span><span style="color: #DCDCCC;">)</span>       <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">'(0 1)</span>
 </pre>
 </div>
 </li>
@@ -1735,8 +1735,8 @@ Examples:
 面的pat
 <div class="org-src-container">
 
-<pre class="src src-scheme">(match '(1 3 5)
-       [(list (? odd?) ...) 'yes])
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>match '<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">3</span> <span style="color: #BFEBBF;">5</span><span style="color: #BFEBBF;">)</span>
+       <span style="color: #BFEBBF;">[</span><span style="color: #D0BF8F;">(</span>list <span style="color: #93E0E3;">(</span>? odd?<span style="color: #93E0E3;">)</span> ...<span style="color: #D0BF8F;">)</span> 'yes<span style="color: #BFEBBF;">]</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -1744,8 +1744,8 @@ Examples:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(match '((1 2) 3 6)
-       [`(,(? pred? `(,a1 ,a2)) ,b ,c) `(,a1 ,b ,c)])
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>match '<span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">(</span><span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span><span style="color: #D0BF8F;">)</span> <span style="color: #BFEBBF;">3</span> <span style="color: #BFEBBF;">6</span><span style="color: #BFEBBF;">)</span>
+       <span style="color: #BFEBBF;">[</span>`<span style="color: #D0BF8F;">(</span>,<span style="color: #93E0E3;">(</span>? pred? `<span style="color: #9FC59F;">(</span>,a1 ,a2<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span> ,b ,c<span style="color: #D0BF8F;">)</span> `<span style="color: #D0BF8F;">(</span>,a1 ,b ,c<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">]</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -1758,8 +1758,8 @@ Examples:
 <li>(quasiquote qp): unqote或unquote-splicing的部分会绑定为变量,其它部分会原样匹配
 <div class="org-src-container">
 
-<pre class="src src-scheme">(match '(1 + 2)
-[`(,a + ,b) (+ a b)])
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>match '<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">1</span> + <span style="color: #BFEBBF;">2</span><span style="color: #BFEBBF;">)</span>
+<span style="color: #BFEBBF;">[</span>`<span style="color: #D0BF8F;">(</span>,a + ,b<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>+ a b<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">]</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -1768,9 +1768,9 @@ a b都是unquote指定的部分,所以绑定为变量, 其它部分比如 + 就�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(match '(+ a <span style="color: #2aa198;">"hello"</span>)
-       [`(+ a ,(? number? x)) x]
-       [`(+ a ,(? string? x)) x])
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>match '<span style="color: #BFEBBF;">(</span>+ a <span style="color: #CC9393;">"hello"</span><span style="color: #BFEBBF;">)</span>
+       <span style="color: #BFEBBF;">[</span>`<span style="color: #D0BF8F;">(</span>+ a ,<span style="color: #93E0E3;">(</span>? number? x<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span> x<span style="color: #BFEBBF;">]</span>
+       <span style="color: #BFEBBF;">[</span>`<span style="color: #D0BF8F;">(</span>+ a ,<span style="color: #93E0E3;">(</span>? string? x<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span> x<span style="color: #BFEBBF;">]</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 
@@ -1785,9 +1785,9 @@ a b都是unquote指定的部分,所以绑定为变量, 其它部分比如 + 就�
 <li>unquote(,): 指定的部分会先求职,在插入list中
 <div class="org-src-container">
 
-<pre class="src src-scheme">(quasiquote (1 2 (unquote (+ 1 2)) (unquote (- 5 1))))
-<span style="color: #586e75; font-style: italic;">;;; </span><span style="color: #586e75; font-style: italic;">equivalent</span>
-`(1 2 ,(+ 1 2) ,(+ 5 1))                <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">'(1 2 3 6)</span>
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>quasiquote <span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span> <span style="color: #D0BF8F;">(</span>unquote <span style="color: #93E0E3;">(</span>+ <span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>unquote <span style="color: #93E0E3;">(</span>- <span style="color: #BFEBBF;">5</span> <span style="color: #BFEBBF;">1</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #5F7F5F;">;;; </span><span style="color: #7F9F7F;">equivalent</span>
+`<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span> ,<span style="color: #BFEBBF;">(</span>+ <span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span><span style="color: #BFEBBF;">)</span> ,<span style="color: #BFEBBF;">(</span>+ <span style="color: #BFEBBF;">5</span> <span style="color: #BFEBBF;">1</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>                <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">'(1 2 3 6)</span>
 </pre>
 </div>
 </li>
@@ -1796,7 +1796,7 @@ a b都是unquote指定的部分,所以绑定为变量, 其它部分比如 + 就�
 须返回list,这个list中的元素会拆开然后插入原list中
 <div class="org-src-container">
 
-<pre class="src src-scheme">`(1 2 ,@(list (+ 1 2) (2 2)) 5)         <span style="color: #586e75; font-style: italic;">;</span><span style="color: #586e75; font-style: italic;">'(1 2 3 4 5)</span>
+<pre class="src src-scheme">`<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span> ,@<span style="color: #BFEBBF;">(</span>list <span style="color: #D0BF8F;">(</span>+ <span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span><span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span><span style="color: #BFEBBF;">2</span> <span style="color: #BFEBBF;">2</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">5</span><span style="color: #DCDCCC;">)</span>         <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">'(1 2 3 4 5)</span>
 </pre>
 </div>
 </li>
@@ -1821,18 +1821,18 @@ module的基本语法是:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(module cake racket
-        (provide print-cake)
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>module cake racket
+        <span style="color: #BFEBBF;">(</span>provide print-cake<span style="color: #BFEBBF;">)</span>
 
-        (<span style="color: #859900;">define</span> (<span style="color: #b58900;">print-cake</span> n)
-          (show <span style="color: #2aa198;">"   ~a   "</span> n #\.)
-          (show <span style="color: #2aa198;">" .-~a-. "</span> n #\|)
-          (show <span style="color: #2aa198;">" | ~a | "</span> n #\space)
-          (show <span style="color: #2aa198;">"---~a---"</span> n #\-))
+        <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">print-cake</span> n<span style="color: #D0BF8F;">)</span>
+          <span style="color: #D0BF8F;">(</span>show <span style="color: #CC9393;">"   ~a   "</span> n #\.<span style="color: #D0BF8F;">)</span>
+          <span style="color: #D0BF8F;">(</span>show <span style="color: #CC9393;">" .-~a-. "</span> n #\|<span style="color: #D0BF8F;">)</span>
+          <span style="color: #D0BF8F;">(</span>show <span style="color: #CC9393;">" | ~a | "</span> n #\space<span style="color: #D0BF8F;">)</span>
+          <span style="color: #D0BF8F;">(</span>show <span style="color: #CC9393;">"---~a---"</span> n #\-<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
 
-        (<span style="color: #859900;">define</span> (<span style="color: #b58900;">show</span> fmt n ch)
-          (printf fmt (make-string n ch))
-          (newline)))
+        <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">show</span> fmt n ch<span style="color: #D0BF8F;">)</span>
+          <span style="color: #D0BF8F;">(</span>printf fmt <span style="color: #93E0E3;">(</span>make-string n ch<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+          <span style="color: #D0BF8F;">(</span>newline<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <ul class="org-ul">
@@ -1861,11 +1861,11 @@ module的基本语法是:
 <div class="org-src-container">
 
 <pre class="src src-scheme">#lang racket
-(module zoo racket
-        (provide tiger)
-        (<span style="color: #859900;">define</span> <span style="color: #b58900;">tiger</span> <span style="color: #2aa198;">"Tony"</span>))
+<span style="color: #DCDCCC;">(</span>module zoo racket
+        <span style="color: #BFEBBF;">(</span>provide tiger<span style="color: #BFEBBF;">)</span>
+        <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">tiger</span> <span style="color: #CC9393;">"Tony"</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 
-(require 'zoo)
+<span style="color: #DCDCCC;">(</span>require 'zoo<span style="color: #DCDCCC;">)</span>
 
 tiger
 </pre>
@@ -1895,18 +1895,18 @@ decl ...)
 
 <pre class="src src-scheme">#lang racket
 
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">print-cake</span> n)
-  (show <span style="color: #2aa198;">"   ~a   "</span> n #\.)
-  (show <span style="color: #2aa198;">" .-~a-. "</span> n #\|)
-  (show <span style="color: #2aa198;">" | ~a | "</span> n #\space)
-  (show <span style="color: #2aa198;">"---~a---"</span> n #\-))
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #BFEBBF;">(</span><span style="color: #93E0E3;">print-cake</span> n<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>show <span style="color: #CC9393;">"   ~a   "</span> n #\.<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>show <span style="color: #CC9393;">" .-~a-. "</span> n #\|<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>show <span style="color: #CC9393;">" | ~a | "</span> n #\space<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>show <span style="color: #CC9393;">"---~a---"</span> n #\-<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">show</span> fmt n ch)
-  (printf fmt (make-string n ch))
-  (newline))
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #BFEBBF;">(</span><span style="color: #93E0E3;">show</span> fmt n ch<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>printf fmt <span style="color: #D0BF8F;">(</span>make-string n ch<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>newline<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 
-(module* main #f
-         (print-cake 10))
+<span style="color: #DCDCCC;">(</span>module* main #f
+         <span style="color: #BFEBBF;">(</span>print-cake <span style="color: #BFEBBF;">10</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -1963,9 +1963,9 @@ racket的源文件一般需要使用 <code>#lang lang-name</code> 这样的方�
 <li>如果是文件那么应该使用这样的语法:
 <div class="org-src-container">
 
-<pre class="src src-scheme">(require <span style="color: #2aa198;">"aa.rkt"</span>)
-(require <span style="color: #2aa198;">"../aa.rkt"</span>)
-(require <span style="color: #2aa198;">"../subdirectory/aa.rkt"</span>)
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>require <span style="color: #CC9393;">"aa.rkt"</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">(</span>require <span style="color: #CC9393;">"../aa.rkt"</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">(</span>require <span style="color: #CC9393;">"../subdirectory/aa.rkt"</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -2001,8 +2001,8 @@ some example:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(provide run run-all)
-(provide (all-defined-out))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>provide run run-all<span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">(</span>provide <span style="color: #BFEBBF;">(</span>all-defined-out<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -2018,12 +2018,12 @@ some example:
 <div class="org-src-container">
 
 <pre class="src src-scheme">#lang typed/racket
-(struct: pt ([x : Real] [y : Real]))
+<span style="color: #DCDCCC;">(</span>struct: pt <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span>x : Real<span style="color: #D0BF8F;">]</span> <span style="color: #D0BF8F;">[</span>y : Real<span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 
-(: distance (pt pt -&gt; Real))
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">distance</span> p1 p2)
-  (sqrt (+ (sqr (- (pt-x p2) (pt-x p1)))
-           (sqr (- (pt-y p2) (pt-y p1))))))
+<span style="color: #DCDCCC;">(</span>: distance <span style="color: #BFEBBF;">(</span>pt pt -&gt; Real<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #BFEBBF;">(</span><span style="color: #93E0E3;">distance</span> p1 p2<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>sqrt <span style="color: #D0BF8F;">(</span>+ <span style="color: #93E0E3;">(</span>sqr <span style="color: #9FC59F;">(</span>- <span style="color: #94BFF3;">(</span>pt-x p2<span style="color: #94BFF3;">)</span> <span style="color: #94BFF3;">(</span>pt-x p1<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+           <span style="color: #93E0E3;">(</span>sqr <span style="color: #9FC59F;">(</span>- <span style="color: #94BFF3;">(</span>pt-y p2<span style="color: #94BFF3;">)</span> <span style="color: #94BFF3;">(</span>pt-y p1<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -2064,15 +2064,15 @@ some example:
 <div class="org-src-container">
 
 <pre class="src src-scheme">#lang typed/racket
-(define-type Tree (U leaf node))
-(struct: leaf ([val : Number]))
-(struct: node ([left : Tree] [right : Tree]))
+<span style="color: #DCDCCC;">(</span>define-type Tree <span style="color: #BFEBBF;">(</span>U leaf node<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">(</span>struct: leaf <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span>val : Number<span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">(</span>struct: node <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span>left : Tree<span style="color: #D0BF8F;">]</span> <span style="color: #D0BF8F;">[</span>right : Tree<span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 
-(: tree-height (Tree -&gt; Integer))
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">tree-height</span> t)
-  (<span style="color: #859900;">cond</span> [(leaf? t) 1]
-        [else (max (+ 1 (tree-height (node-left t)))
-                   (+ 1 (tree-height (node-right t))))]))
+<span style="color: #DCDCCC;">(</span>: tree-height <span style="color: #BFEBBF;">(</span>Tree -&gt; Integer<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #BFEBBF;">(</span><span style="color: #93E0E3;">tree-height</span> t<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span> <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>leaf? t<span style="color: #93E0E3;">)</span> <span style="color: #BFEBBF;">1</span><span style="color: #D0BF8F;">]</span>
+        <span style="color: #D0BF8F;">[</span>else <span style="color: #93E0E3;">(</span>max <span style="color: #9FC59F;">(</span>+ <span style="color: #BFEBBF;">1</span> <span style="color: #94BFF3;">(</span>tree-height <span style="color: #E0CF9F;">(</span>node-left t<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
+                   <span style="color: #9FC59F;">(</span>+ <span style="color: #BFEBBF;">1</span> <span style="color: #94BFF3;">(</span>tree-height <span style="color: #E0CF9F;">(</span>node-right t<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -2085,7 +2085,7 @@ some example:
 <div class="outline-text-4" id="text-3-2-4">
 <div class="org-src-container">
 
-<pre class="src src-scheme">(define-type BinaryTree (Rec BT (U Number (Pair BT BT))))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>define-type BinaryTree <span style="color: #BFEBBF;">(</span>Rec BT <span style="color: #D0BF8F;">(</span>U Number <span style="color: #93E0E3;">(</span>Pair BT BT<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -2103,11 +2103,11 @@ some example:
 <div class="outline-text-4" id="text-3-2-6">
 <div class="org-src-container">
 
-<pre class="src src-scheme">(: list-length (All (A) ((Listof A) -&gt; Integer)))
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">list-length</span> l)
-  (<span style="color: #859900;">if</span> (null? l)
-      0
-      (add1 (list-length (cdr l)))))
+<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>: list-length <span style="color: #BFEBBF;">(</span>All <span style="color: #D0BF8F;">(</span>A<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>Listof A<span style="color: #93E0E3;">)</span> -&gt; Integer<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #BFEBBF;">(</span><span style="color: #93E0E3;">list-length</span> l<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>null? l<span style="color: #D0BF8F;">)</span>
+      <span style="color: #BFEBBF;">0</span>
+      <span style="color: #D0BF8F;">(</span>add1 <span style="color: #93E0E3;">(</span>list-length <span style="color: #9FC59F;">(</span>cdr l<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>

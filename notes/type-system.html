@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Type System</title>
-<!-- 2015-02-06 Fri 16:26 -->
+<!-- 2015-05-24 Sun 19:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -137,17 +137,14 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script type="text/javascript">window.MathJax || document.write('<script src="static/js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" ><\/script>')</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
 <script type="text/javascript">
-
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
         // First allows browser-native MathML display, second forces HTML/CSS
-            config: ["MMLorHTML.js"], jax: ["input/TeX"],
-        //  jax: ["input/TeX", "output/HTML-CSS"],
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
         extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
                      "TeX/noUndefined.js"],
         tex2jax: {
@@ -354,12 +351,6 @@ resulting term is also well typed.
 <p>
 The type of a function should describe the type of the argument and the
 type of the function body.
-</p>
-\begin{displaymath}
-  \frac{\Gamma , x:T_1 \vdash t:T_2}{\Gamma \vdash \lambda x . t :T_1 \rightarrow T_2}
-\end{displaymath}
-
-<p>
 One can think &rarr; as a type constructor which consumes two types and
 produces a function type.
 </p>
@@ -368,20 +359,6 @@ produces a function type.
 <div id="outline-container-sec-3-2" class="outline-3">
 <h3 id="sec-3-2">terms</h3>
 <div class="outline-text-3" id="text-3-2">
-\begin{eqnarray*}
-  t ::= &                   &\textrm{terms}\\
-        & x                 &\textrm{variable}\\
-        & \lambda x:T.t     &\textrm{abstraction}\\
-        & tt                &\textrm{application} \\
-  v ::= &                   &\textrm{values} \\
-        & \lambda x:T.t     &\textrm{abstraction value} \\
-  T ::= &                   &\textrm{types} \\
-        & T \rightarrow T   &\textrm{function type}\\
-  \Gamma ::=&               &\textrm{type context}\\
-            & \emptyset     &\textrm{empty context} \\
-            & \Gamma , x:T  &\textrm{term variable binding}
-\end{eqnarray*}
-
 <ul class="org-ul">
 <li><code>t</code> define the terms(expressions) of the STLC
 </li>
@@ -399,27 +376,11 @@ type.
 </div>
 <div id="outline-container-sec-3-3" class="outline-3">
 <h3 id="sec-3-3">evaluation relation</h3>
-<div class="outline-text-3" id="text-3-3">
-\begin{eqnarray*}
-  & \frac{t_1 \rightarrow t_1'}{t_1 t_2 \rightarrow t_1' t_2} \qquad &\textrm{(E-APP1)}\\
-  & \frac{t_2 \rightarrow t_2'}{v_1 t_2 \rightarrow v_1 t_2'} \qquad &\textrm{(E-APP2)}\\
-  & (\lambda x:T_{11}.t_{12})v_2 \rightarrow t_{12}[x \leftarrow v_2] \qquad &\textrm{(E-APPABS)}
-\end{eqnarray*}
 </div>
-</div>
-
 <div id="outline-container-sec-3-4" class="outline-3">
 <h3 id="sec-3-4">type relations</h3>
-<div class="outline-text-3" id="text-3-4">
-\begin{eqnarray*}
-  & \frac{x:T \in \Gamma}{\Gamma \vdash x:T} &\textrm{(T-VAR)} \\
-  & \frac{\Gamma, x:T_1 \vdash t_2 : T_2}{\Gamma \vdash \lambda x:T_1.t_2 : T_2} &\textrm{(T-ABS)} \\
-  & \frac{\Gamma \vdash t_1 : T_1\rightarrow T_2 \qquad \Gamma \vdash t_2:T_1}{\Gamma \vdash t_1 t_2 :T_2} &\textrm{(T-APP)}
-\end{eqnarray*}
 </div>
 </div>
-</div>
-
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">Type extensions</h2>
 <div class="outline-text-2" id="text-4">
@@ -446,54 +407,19 @@ Unit type is another base type. statements or expressions which are used to
 perform side affect return Unit type. One can think Unit type means no
 type.
 </p>
-\begin{eqnarray*}
-  & \Gamma \vdash unit:Unit & \\
-  & t_1;t_2 \overset{def}{=} (\lambda x:Unit. t_2)\ t_1 & \qquad where \ x \notin \mathcal{FV}(t_2)
-\end{eqnarray*}
 </div>
 </div>
-
 <div id="outline-container-sec-4-3" class="outline-3">
 <h3 id="sec-4-3">pairs T<sub>1</sub> &times; T<sub>2</sub></h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 One can think pair as a special case of tuple which only has two
 elements. The type rule of pair is as follows:
-</p>
-\begin{eqnarray*}
-  t ::= &...                &\textrm{terms}\\
-        & \{t, t\}          &\textrm{pair}\\
-        & t.1               &\textrm{first projection}\\
-        & t.2               &\textrm{second projection}\\
-  v ::= &...                &\textrm{values}\\
-        &\{v, v\}           &\textrm{pair value}\\
-  T ::= &...                &\textrm{types}\\
-        & T_1 \times T_2    &\textrm{pair type}
-\end{eqnarray*}
-
-<p>
 evaluation rules:
-</p>
-\begin{eqnarray*}
-  & \{v_1, v_2\}.1 \rightarrow v_1 \\
-  & \{v_1, v_2\}.2 \rightarrow v_2 \\
-  & \frac{t \rightarrow t'}{t.1 \rightarrow t'.1} \\
-  & \frac{t \rightarrow t'}{t.2 \rightarrow t'.2} \\
-  & \frac{t_1 \rightarrow t_1'} {\{t_1, t_2\} \rightarrow \{t_1', t_2\}}  \\
-  & \frac{t_2 \rightarrow t_2'} {\{v_1, t_2\} \rightarrow \{v_1, t_2'\}}
-\end{eqnarray*}
-
-<p>
 type rules
 </p>
-\begin{eqnarray*}
-  & \frac{\Gamma \vdash t_1:T_1 \qquad \Gamma \vdash t_2:T_2}{\Gamma \vdash \{t_1,t_2\}: T_1 \times T_2} &\textrm{(T-PAIR)}\\
-  & \frac{\Gamma \vdash t:T_1 \times T_2}{\Gamma \vdash t.1 : T_1} &\textrm{(T-PROJ1)}\\
-  & \frac{\Gamma \vdash t:T_1 \times T_2}{\Gamma \vdash t.2 : T_2} &\textrm{(T-PROJ2)}
-\end{eqnarray*}
 </div>
 </div>
-
 <div id="outline-container-sec-4-4" class="outline-3">
 <h3 id="sec-4-4">tuples {T<sub>1</sub> T<sub>2</sub> &#x2026;}</h3>
 <div class="outline-text-3" id="text-4-4">
@@ -508,13 +434,8 @@ The type of aa tuple can also write as: {T1 T2 T3 &#x2026;}
 <p>
 type rules:
 </p>
-\begin{eqnarray*}
-  & \frac{for \ each i \quad \Gamma \vdash t_i:T_i}{\Gamma \vdash \{{t_i}^{i\in 1..n}\}:\{{T_i}^{i \in 1..n}\}} &\textrm{(T-TUPLE)}\\
-  & \frac{\Gamma \vdash t:\{{T_i}^{i \in 1..n}\}}{\Gamma \vdash t.j:T_j} &\textrm{(T-PROJ)}
-\end{eqnarray*}
 </div>
 </div>
-
 <div id="outline-container-sec-4-5" class="outline-3">
 <h3 id="sec-4-5">records {l<sub>i</sub> = T<sub>i</sub> &#x2026;}</h3>
 <div class="outline-text-3" id="text-4-5">
@@ -529,37 +450,11 @@ the index to fetch the field, record uses the name to fetch the field
 
 <p>
 terms,values,types:
-</p>
-\begin{eqnarray*}
-  t ::= & ...                      &\textrm{terms} \\
-        & \{l_i={t_i}^{i \in 1..n} \}     &\textrm{record} \\
-        & t.l                      &\textrm{projection}  \\
-  v ::= & ...                      &\textrm{values}  \\
-        & \{l_i={v_i}^{i \in 1..n} \}     &\textrm{record value}  \\
-  T ::= & ...                      &\textrm{types}   \\
-        & \{l_i={T_i}^{i \in 1..n} \}     &\textrm{record type} \\
-\end{eqnarray*}
-
-<p>
 evaluation rules
-</p>
-\begin{eqnarray*}
-  & \frac{t_j \rightarrow t_j'}{\{ {l_i=v_i}^{i \in 1..j-1}, l_j=t_j, {l_k=t_k}^{k \in j+1..n}\} \rightarrow} \\
-  &   \{ {l_i=v_i}^{i \in 1..j-1}, l_j=t_j', {l_k=t_k}^{k \in j+1..n}\} \\
-  & \frac{t \rightarrow t'}{t.l_i \rightarrow t'.l_i}       \\
-  & \{ {l_i=v_i}^{i \in 1..n}\}.l_i \rightarrow v_i
-\end{eqnarray*}
-
-<p>
 type rules:
 </p>
-\begin{eqnarray*}
-  & \frac{for \ each \ \Gamma \vdash t_i:T_i}{\Gamma \vdash \{ {l_i=t_i}^{i \in 1..n}\}:\{ {l_i=T_i}^{i \in 1..n}\}} \\
-  & \frac{\Gamma \vdash t:\{ {l_i=T_i}^{i \in 1..n}\}}{\Gamma \vdash t.l_i : T_i}   \\
-\end{eqnarray*}
 </div>
 </div>
-
 <div id="outline-container-sec-4-6" class="outline-3">
 <h3 id="sec-4-6">sums T<sub>1</sub> + T<sub>2</sub></h3>
 <div class="outline-text-3" id="text-4-6">
@@ -574,16 +469,8 @@ T1 + T2
 <p>
 type rules:
 </p>
-\begin{eqnarray*}
-  & \frac{\Gamma \vdash t:T_1}{\Gamma \vdash inl \ t:T_1 + T_2}  \\
-  & \frac{\Gamma \vdash t:T_2}{\Gamma \vdash inr \ t:T_1 + T_2}  \\
-
-  & \frac{\Gamma \vdash t:T_1 + T_2 \quad \Gamma, x_1:T_1 \vdash t_1:T \quad \Gamma, x_2:T_2 \vdash t_2:T}
-       {\Gamma \vdash case\ t\ of\  x_1 \Rightarrow t_1 | inr\ x_2 \Rightarrow t_2 :T}
-\end{eqnarray*}
 </div>
 </div>
-
 <div id="outline-container-sec-4-7" class="outline-3">
 <h3 id="sec-4-7">variants &lt;l<sub>i</sub>:T<sub>i</sub> &#x2026;&gt;</h3>
 <div class="outline-text-3" id="text-4-7">
@@ -605,28 +492,16 @@ expression type.
 <p>
 type rules:
 </p>
-\begin{eqnarray*}
-  \frac{\Gamma \vdash t_j:T_j}{\Gamma \vdash \langle l_j=t_j\rangle \ as \
-    \langle l_i:{T_i}^{i \in 1..n} \rangle : \langle l_i:{T_i}^{i \in 1..n} \rangle}  &\textrm{(T-VARIANT)}\\
-  \Gamma \vdash t_0: \langle l_i:{T_i}^{i \in 1..n} \rangle  \\
-  \frac{for \ each \ i \quad \Gamma,x_i:T_i \vdash t_i:T}
-  {\Gamma \vdash case \ t_0 \ of \ \langle l_i=x_i \rangle \Rightarrow {t_i}^{i \in 1..n} :T}  &\textrm{(T-CASE)}
-\end{eqnarray*}
 </div>
 </div>
-
 <div id="outline-container-sec-4-8" class="outline-3">
 <h3 id="sec-4-8">recursive function</h3>
 <div class="outline-text-3" id="text-4-8">
 <p>
 add <code>fix</code> to the language.
 </p>
-\begin{equation}
-  \frac{\Gamma \vdash t:T\rightarrow T}{\Gamma \vdash fix \ t :T}
-\end{equation}
 </div>
 </div>
-
 <div id="outline-container-sec-4-9" class="outline-3">
 <h3 id="sec-4-9">Lists (List T)</h3>
 <div class="outline-text-3" id="text-4-9">
@@ -649,53 +524,11 @@ type. the reason why we need &Sigma; is that without the help of
 type of the content pointed by this location.
 </li>
 </ol>
-\begin{eqnarray*}
-  t ::= &                &\textrm{terms}\\
-        & x              &\textrm{variable}\\
-        & \lambda x:T.t  &\textrm{abstraction}\\
-        & t\ t           &\textrm{application}\\
-        & unit           &\textrm{constant unit}\\
-        & ref \ t        &\textrm{new reference}\\
-        & !t             &\textrm{dereference}\\
-        & t := t         &\textrm{assignment}\\
-        & l              &\textrm{store location} \\
-  v ::= &                &\textrm{values}\\
-        & \lambda x:T.t  &\textrm{function value}\\
-        & unit           &\textrm{constant unit}\\
-        & l              &\textrm{store location}\\
-  T ::= &                &\textrm{types}\\
-        & T \rightarrow T   &\textrm{function type}\\
-        & Unit              &\textrm{unit type}\\
-        & Ref \ T             &\textrm{type of reference cell}\\
-  \Gamma ::= &              &\textrm{type context}\\
-             & \emptyset    &\textrm{empty context}\\
-             & \Gamma,x:T   &\textrm{varible binding}\\
-  \mu ::= &                 &\textrm{store}\\
-          & \emptyset       &\textrm{empty store}\\
-          & \mu,l=v         &\textrm{location binding}\\
-  \Sigma ::= &              &\textrm{store typings}\\
-             & \emptyset    &\textrm{empty store typing}\\
-             & \Sigma,l:T   &\textrm{location typing}
-\end{eqnarray*}
 </div>
-
 <div id="outline-container-sec-5-1" class="outline-3">
 <h3 id="sec-5-1">type rules</h3>
-<div class="outline-text-3" id="text-5-1">
-\begin{eqnarray*}
-  & \frac{x:T \in \Gamma}{\Gamma | \Sigma \vdash x:T} &\textrm{(T-VAR)} \\
-  & \frac{\Gamma,x:T_1|\Sigma \vdash t_2:T_2}{\Gamma | \Sigma \vdash \lambda x:T_1.t_2:T_1 \rightarrow T_2}  &\textrm{(T-ABS)}    \\
-  & \frac{\Gamma | \Sigma \vdash t_1:T_1\rightarrow T_2 \qquad \Gamma | \Sigma \vdash t_2:T_1}{\Gamma | \Sigma \vdash t_1t_2:T_2}  &\textrm{(T-APP)}\\
-  & \Gamma | \Sigma \vdash unit:Unit  &\textrm{(T-UNIT)}  \\
-  & \frac{\Sigma(l)=T_1}{\Gamma | \Sigma \vdash l:Ref \ T_1}   &\textrm{(T-LOC)}\\
-  & \frac{\Gamma | \Sigma \vdash t_1:T_1}{\Gamma | \Sigma \vdash ref\ t_1:Ref \ T_1}   &\textrm{(T-REF)} \\
-  & \frac{\Gamma | \Sigma \vdash t:Ref \ T}{\Gamma | \Sigma \vdash !t:T}    &\textrm{(T-DEREF)}     \\
-  & \frac{\Gamma | \Sigma \vdash t_1:Ref \ T \qquad \Gamma | \Sigma \vdash t_2:T}{\Gamma | \Sigma \vdash t_1:=t_2:Unit}   &\textrm{(T-ASSIGN)}
-\end{eqnarray*}
 </div>
 </div>
-</div>
-
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6">Subtype</h2>
 <div class="outline-text-2" id="text-6">
@@ -714,20 +547,10 @@ S &lt;: T means S is the subtype of T, One can think S is a subset of T.
 <div class="outline-text-3" id="text-6-1">
 <p>
 The subtype rule of function type is as follows:
-</p>
-\begin{displaymath}
-  \frac{T_1 <: S_1 \qquad S_2 <: T_2}{S_1 \rightarrow S_2 <: T_1 \rightarrow T_2}
-\end{displaymath}
-
-<p>
 the inverse Lemma:
 </p>
-\begin{displaymath}
-  \frac{S_1 \rightarrow S_2 <: T_1 \rightarrow T_2}{T_1 <: S_1 \qquad S_2 <: T_2}
-\end{displaymath}
 </div>
 </div>
-
 <div id="outline-container-sec-6-2" class="outline-3">
 <h3 id="sec-6-2">record</h3>
 </div>
@@ -737,10 +560,6 @@ the inverse Lemma:
 <div id="outline-container-sec-6-4" class="outline-3">
 <h3 id="sec-6-4">reference</h3>
 <div class="outline-text-3" id="text-6-4">
-\begin{displaymath}
-  \frac{S_1 <: T_1 \qquad T_1 <: S_1}{Ref\ S_1 <: Ref \ T_1}
-\end{displaymath}
-
 <p>
 since reference can be used for reading and writing, so S<sub>1</sub> and T<sub>1</sub> should
 be equivalent in substype relation.
@@ -816,38 +635,14 @@ the term <b>generics(泛型)</b> is used to denote parameter polymorphism.
 value作出反应, 对type我们也可以采用类似的方法.用&Lambda; 来提供抽象使得一个
 definition可以对多个type作出反应,以swap函数为例,它会交换一个pair中first与
 second位置的元素, swap的定义如下:
-</p>
-\begin{displaymath}
-  swap = \Lambda \alpha . \Lambda \beta . \lambda p : (\alpha \times \beta) . \langle snd \  p , fst \  p \rangle
-\end{displaymath}
-
-<p>
 该函数的type如下:
-</p>
-\begin{displaymath}
-  \vdash swap : (\forall \alpha . (\forall \beta . ((\alpha \times \beta) \rightarrow (\beta \times \alpha))))
-\end{displaymath}
-
-<p>
 如果要交换的pair的type是 \(bool \times int\), 那么就可以将这两个type应用到
 swap上,也就是 \(swap[bool][int]\) 这样就可以得到类型正确的swap函数了.
 </p>
 
 <p>
 在比如说 identity 函数
-</p>
-\begin{displaymath}
-  id = \Lambda \alpha . \lambda x: \alpha . x
-\end{displaymath}
-
-<p>
 identity函数的类型就是
-</p>
-\begin{displaymath}
-  \vdash id : (\forall \alpha. (\alpha \rightarrow \alpha))
-\end{displaymath}
-
-<p>
 前面说过,STLC实际上限制了 untyped lambda calculus的表达能力, STLC不能编码
 pair,list,不能定义递归函数等等,当我们引入了 &Lambda; 抽象后, 这些问题就都解
 决了. 比如编码list:
@@ -904,45 +699,21 @@ An number list is either
 <p>
 what is the type of the number list? The \(List_{num}\) must obey the
 following equation:
-</p>
-\begin{displaymath}
-  List_{num} = (bool + (num \times List_{num}))
-\end{displaymath}
-
-<p>
 but like the recusive function, you can't reference the type itself when
 you define it. so you can't use \(List_{num}\) on the right side of the
 equation. but we can use the same skill like we define the recusive
 function: we can define tfix(the type fix combinator), so the \(List_{num}\)
 can define like this:
-</p>
-\begin{displaymath}
-  List_{num} \dot{=}_{} tfix(\forall \alpha .(bool + (num \times \alpha)))
-\end{displaymath}
-
-<p>
 by convention a <code>tfix</code> an its following &forall; are collapsed together to a
 single &mu;, &mu; is a explicit recursive operator for types. one can
 think &mu; is like letrec.
-</p>
-\begin{displaymath}
-  List_{num} \dot{=}_{} \mu \alpha(bool + (num \times \alpha))
-\end{displaymath}
-
-<p>
 a type constructed by &mu; is a <b>recursive type</b>.
 </p>
 </div>
 </div>
 <div id="outline-container-sec-8-2" class="outline-3">
 <h3 id="sec-8-2">fix combinator</h3>
-<div class="outline-text-3" id="text-8-2">
-\begin{displaymath}
-  fix_T = \lambda f:T \rightarrow T.(\lambda x:(\mu A.A \rightarrow T) .f (x\ x)) (\lambda x:(\mu A.A \rightarrow T). f (x\ x))
-\end{displaymath}
 </div>
-</div>
-
 <div id="outline-container-sec-8-3" class="outline-3">
 <h3 id="sec-8-3">fold and unfold</h3>
 <div class="outline-text-3" id="text-8-3">
@@ -952,20 +723,9 @@ each use of a constructor to create a value implies a <code>fold</code>, and eac
 of a constructor in a pattern match implies <code>unfold</code>. The type rules for
 <code>fold</code> and <code>unfold</code> is as follows:
 </p>
-\begin{displaymath}
-  \frac{\Gamma \vdash M:T[A \leftarrow (\mu A.T)]}{\Gamma \vdash (fold \ M) : (\mu A.T)}
-  \qquad
-  \frac{\Gamma \vdash M:(\mu A.T)}{\Gamma \vdash (unfold \ M) : T[A \leftarrow (\mu A.T)]}
-\end{displaymath}
-
-\begin{eqnarray}
-  List_\tau &\dot{=}& \mu \alpha . (bool + (\tau \times \alpha)) \\
-  UList_\tau &\dot{=}& (bool + (\tau \times List_\tau))
-\end{eqnarray}
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-9" class="outline-2">
 <h2 id="sec-9">Type Inference</h2>
 <div class="outline-text-2" id="text-9">

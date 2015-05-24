@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>webpy源代码分析</title>
-<!-- 2015-02-06 Fri 16:26 -->
+<!-- 2015-05-24 Sun 19:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -201,21 +201,21 @@ session等等一些特性，但是就实质而言这些东西都不是必须。�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">import</span> web
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">import</span> web
 
-<span style="color: #6c71c4;">urls</span> = (
-    <span style="color: #2aa198;">'/(.*)'</span>, <span style="color: #2aa198;">'hello'</span>
-)
-<span style="color: #6c71c4;">app</span> = web.application(urls, <span style="color: #6c71c4;">globals</span>())
+<span style="color: #DFAF8F;">urls</span> = <span style="color: #DCDCCC;">(</span>
+    <span style="color: #CC9393;">'/(.*)'</span>, <span style="color: #CC9393;">'hello'</span>
+<span style="color: #DCDCCC;">)</span>
+<span style="color: #DFAF8F;">app</span> = web.application<span style="color: #DCDCCC;">(</span>urls, <span style="color: #DCDCCC; font-weight: bold;">globals</span><span style="color: #BFEBBF;">()</span><span style="color: #DCDCCC;">)</span>
 
-<span style="color: #859900;">class</span> <span style="color: #268bd2;">hello</span>:
-    <span style="color: #859900;">def</span> <span style="color: #b58900;">GET</span>(<span style="color: #859900;">self</span>, name):
-        <span style="color: #859900;">if</span> <span style="color: #859900;">not</span> name:
-            <span style="color: #6c71c4;">name</span> = <span style="color: #2aa198;">'World'</span>
-        <span style="color: #859900;">return</span> <span style="color: #2aa198;">'Hello, '</span> + name + <span style="color: #2aa198;">'!'</span>
+<span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">hello</span>:
+    <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">GET</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, name<span style="color: #DCDCCC;">)</span>:
+        <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #F0DFAF; font-weight: bold;">not</span> name:
+            <span style="color: #DFAF8F;">name</span> = <span style="color: #CC9393;">'World'</span>
+        <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #CC9393;">'Hello, '</span> + name + <span style="color: #CC9393;">'!'</span>
 
-<span style="color: #859900;">if</span> <span style="color: #6c71c4;">__name__</span> == <span style="color: #2aa198;">"__main__"</span>:
-    app.run()
+<span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #DCDCCC; font-weight: bold;">__name__</span> == <span style="color: #CC9393;">"__main__"</span>:
+    app.run<span style="color: #DCDCCC;">()</span>
 </pre>
 </div>
 <p>
@@ -235,7 +235,7 @@ session等等一些特性，但是就实质而言这些东西都不是必须。�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #6c71c4;">app</span> = web.application(urls, <span style="color: #6c71c4;">globals</span>())
+<pre class="src src-python"><span style="color: #DFAF8F;">app</span> = web.application<span style="color: #DCDCCC;">(</span>urls, <span style="color: #DCDCCC; font-weight: bold;">globals</span><span style="color: #BFEBBF;">()</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -243,14 +243,14 @@ session等等一些特性，但是就实质而言这些东西都不是必须。�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">__init__</span>(<span style="color: #859900;">self</span>, mapping=(), fvars={}, autoreload=<span style="color: #268bd2;">None</span>):
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__init__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, mapping=<span style="color: #BFEBBF;">()</span>, fvars=<span style="color: #BFEBBF;">{}</span>, autoreload=<span style="color: #BFEBBF;">None</span><span style="color: #DCDCCC;">)</span>:
     ...
-    <span style="color: #859900;">self</span>.init_mapping(mapping)
-    <span style="color: #859900;">self</span>.fvars = fvars
-    <span style="color: #859900;">self</span>.processors = []
+    <span style="color: #F0DFAF; font-weight: bold;">self</span>.init_mapping<span style="color: #DCDCCC;">(</span>mapping<span style="color: #DCDCCC;">)</span>
+    <span style="color: #F0DFAF; font-weight: bold;">self</span>.fvars = fvars
+    <span style="color: #F0DFAF; font-weight: bold;">self</span>.processors = <span style="color: #DCDCCC;">[]</span>
 
-    <span style="color: #859900;">self</span>.add_processor(loadhook(<span style="color: #859900;">self</span>._load))
-    <span style="color: #859900;">self</span>.add_processor(unloadhook(<span style="color: #859900;">self</span>._unload))
+    <span style="color: #F0DFAF; font-weight: bold;">self</span>.add_processor<span style="color: #DCDCCC;">(</span>loadhook<span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>._load<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+    <span style="color: #F0DFAF; font-weight: bold;">self</span>.add_processor<span style="color: #DCDCCC;">(</span>unloadhook<span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>._unload<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
     ...
 </pre>
 </div>
@@ -259,8 +259,8 @@ session等等一些特性，但是就实质而言这些东西都不是必须。�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">init_mapping</span>(<span style="color: #859900;">self</span>, mapping):
-    <span style="color: #859900;">self</span>.mapping = <span style="color: #6c71c4;">list</span>(utils.group(mapping, 2))
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">init_mapping</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, mapping<span style="color: #DCDCCC;">)</span>:
+    <span style="color: #F0DFAF; font-weight: bold;">self</span>.mapping = <span style="color: #DCDCCC; font-weight: bold;">list</span><span style="color: #DCDCCC;">(</span>utils.group<span style="color: #BFEBBF;">(</span>mapping, <span style="color: #BFEBBF;">2</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -281,8 +281,8 @@ wsgi是一种规范，它对框架的要求就是：必须定义一个接受两�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">run</span>(<span style="color: #859900;">self</span>, *middleware):
-    <span style="color: #859900;">return</span> wsgi.runwsgi(<span style="color: #859900;">self</span>.wsgifunc(*middleware))
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">run</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, *middleware<span style="color: #DCDCCC;">)</span>:
+    <span style="color: #F0DFAF; font-weight: bold;">return</span> wsgi.runwsgi<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>.wsgifunc<span style="color: #BFEBBF;">(</span>*middleware<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -291,32 +291,32 @@ wsgi是一种规范，它对框架的要求就是：必须定义一个接受两�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">wsgifunc</span>(<span style="color: #859900;">self</span>, *middleware):
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">wsgifunc</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, *middleware<span style="color: #DCDCCC;">)</span>:
     ....
-    <span style="color: #859900;">def</span> <span style="color: #b58900;">wsgi</span>(env, start_resp):
-        <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">clear threadlocal to avoid inteference of previous requests</span>
-        <span style="color: #859900;">self</span>._cleanup()
+    <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">wsgi</span><span style="color: #DCDCCC;">(</span>env, start_resp<span style="color: #DCDCCC;">)</span>:
+        <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">clear threadlocal to avoid inteference of previous requests</span>
+        <span style="color: #F0DFAF; font-weight: bold;">self</span>._cleanup<span style="color: #DCDCCC;">()</span>
 
-        <span style="color: #859900;">self</span>.load(env)
+        <span style="color: #F0DFAF; font-weight: bold;">self</span>.load<span style="color: #DCDCCC;">(</span>env<span style="color: #DCDCCC;">)</span>
         ....
 
-        <span style="color: #6c71c4;">result</span> = <span style="color: #859900;">self</span>.handle_with_processors()
+        <span style="color: #DFAF8F;">result</span> = <span style="color: #F0DFAF; font-weight: bold;">self</span>.handle_with_processors<span style="color: #DCDCCC;">()</span>
         ....
-        <span style="color: #6c71c4;">result</span> = web.safestr(<span style="color: #6c71c4;">iter</span>(result))
+        <span style="color: #DFAF8F;">result</span> = web.safestr<span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">iter</span><span style="color: #BFEBBF;">(</span>result<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 
-        <span style="color: #6c71c4;">status</span>, <span style="color: #6c71c4;">headers</span> = web.ctx.status, web.ctx.headers
-        start_resp(status, headers)
+        <span style="color: #DFAF8F;">status</span>, <span style="color: #DFAF8F;">headers</span> = web.ctx.status, web.ctx.headers
+        start_resp<span style="color: #DCDCCC;">(</span>status, headers<span style="color: #DCDCCC;">)</span>
 
-        <span style="color: #859900;">def</span> <span style="color: #b58900;">cleanup</span>():
-            <span style="color: #859900;">self</span>._cleanup()
-            <span style="color: #859900;">yield</span> <span style="color: #2aa198;">''</span> <span style="color: #586e75; font-style: italic;"># </span><span style="color: #586e75; font-style: italic;">force this function to be a generator</span>
+        <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">cleanup</span><span style="color: #DCDCCC;">()</span>:
+            <span style="color: #F0DFAF; font-weight: bold;">self</span>._cleanup<span style="color: #DCDCCC;">()</span>
+            <span style="color: #F0DFAF; font-weight: bold;">yield</span> <span style="color: #CC9393;">''</span> <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">force this function to be a generator</span>
 
-        <span style="color: #859900;">return</span> itertools.chain(result, cleanup())
+        <span style="color: #F0DFAF; font-weight: bold;">return</span> itertools.chain<span style="color: #DCDCCC;">(</span>result, cleanup<span style="color: #BFEBBF;">()</span><span style="color: #DCDCCC;">)</span>
 
-    <span style="color: #859900;">for</span> m <span style="color: #859900;">in</span> middleware:
-        <span style="color: #6c71c4;">wsgi</span> = m(wsgi)
+    <span style="color: #F0DFAF; font-weight: bold;">for</span> m <span style="color: #F0DFAF; font-weight: bold;">in</span> middleware:
+        <span style="color: #DFAF8F;">wsgi</span> = m<span style="color: #DCDCCC;">(</span>wsgi<span style="color: #DCDCCC;">)</span>
 
-    <span style="color: #859900;">return</span> wsgi
+    <span style="color: #F0DFAF; font-weight: bold;">return</span> wsgi
 </pre>
 </div>
 <p>
@@ -330,15 +330,15 @@ wsgi是一种规范，它对框架的要求就是：必须定义一个接受两�
 <li>load : 这个函数的代码大体如下:
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">load</span>(<span style="color: #859900;">self</span>, env):
-    <span style="color: #2aa198;">"""Initializes ctx using env."""</span>
-    <span style="color: #6c71c4;">ctx</span> = web.ctx
-    ctx.clear()
-    <span style="color: #6c71c4;">ctx.status</span> = <span style="color: #2aa198;">'200 OK'</span>
-    <span style="color: #6c71c4;">ctx.headers</span> = []
-    <span style="color: #6c71c4;">ctx.output</span> = <span style="color: #2aa198;">''</span>
-    <span style="color: #6c71c4;">ctx.environ</span> = <span style="color: #6c71c4;">ctx.env</span> = env
-    <span style="color: #6c71c4;">ctx.host</span> = env.get(<span style="color: #2aa198;">'HTTP_HOST'</span>)
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">load</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, env<span style="color: #DCDCCC;">)</span>:
+    <span style="color: #CC9393;">"""Initializes ctx using env."""</span>
+    <span style="color: #DFAF8F;">ctx</span> = web.ctx
+    ctx.clear<span style="color: #DCDCCC;">()</span>
+    <span style="color: #DFAF8F;">ctx.status</span> = <span style="color: #CC9393;">'200 OK'</span>
+    <span style="color: #DFAF8F;">ctx.headers</span> = <span style="color: #DCDCCC;">[]</span>
+    <span style="color: #DFAF8F;">ctx.output</span> = <span style="color: #CC9393;">''</span>
+    <span style="color: #DFAF8F;">ctx.environ</span> = <span style="color: #DFAF8F;">ctx.env</span> = env
+    <span style="color: #DFAF8F;">ctx.host</span> = env.get<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'HTTP_HOST'</span><span style="color: #DCDCCC;">)</span>
     ...
 </pre>
 </div>

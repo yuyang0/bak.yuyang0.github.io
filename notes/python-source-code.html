@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>python源代码解析</title>
-<!-- 2015-02-06 Fri 16:26 -->
+<!-- 2015-05-24 Sun 19:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -178,6 +178,12 @@ for the JavaScript code in this tag.
 <li><a href="#sec-1-5">PuListObject</a></li>
 </ul>
 </li>
+<li><a href="#sec-2">referrence count</a>
+<ul>
+<li><a href="#sec-2-1">调用者将引用传递给被调用者</a></li>
+<li><a href="#sec-2-2">被调用者返回一个引用给调用者</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -222,16 +228,16 @@ contains a pointer to itself!).
 </p>
 <div class="org-src-container">
 
-<pre class="src src-C"><span style="color: #859900;">typedef</span> <span style="color: #859900;">struct</span> <span style="color: #268bd2;">_object</span> {
-    <span style="color: #268bd2;">Py_ssize_t</span> <span style="color: #6c71c4;">ob_refcnt</span>;
-    <span style="color: #859900;">struct</span> <span style="color: #268bd2;">_typeobject</span> *<span style="color: #6c71c4;">ob_type</span>;
-} <span style="color: #268bd2;">PyObject</span>;
+<pre class="src src-C"><span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">_object</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #7CB8BB;">Py_ssize_t</span> <span style="color: #DFAF8F;">ob_refcnt</span>;
+    <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">_typeobject</span> *<span style="color: #DFAF8F;">ob_type</span>;
+<span style="color: #DCDCCC;">}</span> <span style="color: #7CB8BB;">PyObject</span>;
 
-<span style="color: #859900;">typedef</span> <span style="color: #859900;">struct</span> {
-    <span style="color: #268bd2;">Py_ssize_t</span> <span style="color: #6c71c4;">ob_refcnt</span>;
-    <span style="color: #859900;">struct</span> <span style="color: #268bd2;">_typeobject</span> *<span style="color: #6c71c4;">ob_type</span>;
-    <span style="color: #268bd2;">Py_ssize_t</span> <span style="color: #6c71c4;">ob_size</span>; <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">Number of items in variable part </span><span style="color: #586e75; font-style: italic;">*/</span>
-} <span style="color: #268bd2;">PyVarObject</span>;
+<span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #7CB8BB;">Py_ssize_t</span> <span style="color: #DFAF8F;">ob_refcnt</span>;
+    <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">_typeobject</span> *<span style="color: #DFAF8F;">ob_type</span>;
+    <span style="color: #7CB8BB;">Py_ssize_t</span> <span style="color: #DFAF8F;">ob_size</span>; <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Number of items in variable part </span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #DCDCCC;">}</span> <span style="color: #7CB8BB;">PyVarObject</span>;
 </pre>
 </div>
 <ol class="org-ol">
@@ -241,10 +247,10 @@ contains a pointer to itself!).
 同而不同,比如IntObject与StringObject的ob_type中的函数指针的值就不同,这个值是python实现多态的关键所在
 <div class="org-src-container">
 
-<pre class="src src-C"><span style="color: #268bd2;">void</span> <span style="color: #b58900;">Print</span>(<span style="color: #268bd2;">PyObject</span>* <span style="color: #6c71c4;">object</span>)
-{
-    object-&gt;ob_type-&gt;tp_print(object);
-}
+<pre class="src src-C"><span style="color: #7CB8BB;">void</span> <span style="color: #93E0E3;">Print</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">PyObject</span>* <span style="color: #DFAF8F;">object</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">{</span>
+    object-&gt;ob_type-&gt;tp_print<span style="color: #BFEBBF;">(</span>object<span style="color: #BFEBBF;">)</span>;
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -264,12 +270,12 @@ PyIntObject是python内部用来代表整数对象的C struct
 </p>
 <div class="org-src-container">
 
-<pre class="src src-C"><span style="color: #859900;">typedef</span> <span style="color: #859900;">struct</span> {
-    <span style="color: #268bd2;">Py_ssize_t</span> <span style="color: #6c71c4;">ob_refcnt</span>;
-    <span style="color: #859900;">struct</span> <span style="color: #268bd2;">_typeobject</span> *<span style="color: #6c71c4;">ob_type</span>;
+<pre class="src src-C"><span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #7CB8BB;">Py_ssize_t</span> <span style="color: #DFAF8F;">ob_refcnt</span>;
+    <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">_typeobject</span> *<span style="color: #DFAF8F;">ob_type</span>;
 
-    <span style="color: #268bd2;">long</span> <span style="color: #6c71c4;">ob_ival</span>;
-} <span style="color: #268bd2;">PyIntObject</span>;
+    <span style="color: #7CB8BB;">long</span> <span style="color: #DFAF8F;">ob_ival</span>;
+<span style="color: #DCDCCC;">}</span> <span style="color: #7CB8BB;">PyIntObject</span>;
 </pre>
 </div>
 <p>
@@ -286,25 +292,25 @@ PyIntObject是python内部用来代表整数对象的C struct
 </p>
 <div class="org-src-container">
 
-<pre class="src src-C"><span style="color: #859900;">typedef</span> <span style="color: #859900;">struct</span> {
-    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">PyObject_VAR_HEAD </span><span style="color: #586e75; font-style: italic;">*/</span>
-    <span style="color: #268bd2;">Py_ssize_t</span> <span style="color: #6c71c4;">ob_refcnt</span>;
-    <span style="color: #859900;">struct</span> <span style="color: #268bd2;">_typeobject</span> *<span style="color: #6c71c4;">ob_type</span>;
-    <span style="color: #268bd2;">Py_ssize_t</span> <span style="color: #6c71c4;">ob_size</span>; <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">Number of items in variable part </span><span style="color: #586e75; font-style: italic;">*/</span>
+<pre class="src src-C"><span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">PyObject_VAR_HEAD </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #7CB8BB;">Py_ssize_t</span> <span style="color: #DFAF8F;">ob_refcnt</span>;
+    <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">_typeobject</span> *<span style="color: #DFAF8F;">ob_type</span>;
+    <span style="color: #7CB8BB;">Py_ssize_t</span> <span style="color: #DFAF8F;">ob_size</span>; <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Number of items in variable part </span><span style="color: #5F7F5F;">*/</span>
 
-    <span style="color: #268bd2;">long</span> <span style="color: #6c71c4;">ob_shash</span>;
-    <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">ob_sstate</span>;
-    <span style="color: #268bd2;">char</span> <span style="color: #6c71c4;">ob_sval</span>[1];
+    <span style="color: #7CB8BB;">long</span> <span style="color: #DFAF8F;">ob_shash</span>;
+    <span style="color: #7CB8BB;">int</span> <span style="color: #DFAF8F;">ob_sstate</span>;
+    <span style="color: #7CB8BB;">char</span> <span style="color: #DFAF8F;">ob_sval</span><span style="color: #BFEBBF;">[</span><span style="color: #BFEBBF;">1</span><span style="color: #BFEBBF;">]</span>;
 
-    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">Invariants:</span>
-<span style="color: #586e75; font-style: italic;">     *     ob_sval contains space for 'ob_size+1' elements.</span>
-<span style="color: #586e75; font-style: italic;">     *     ob_sval[ob_size] == 0.</span>
-<span style="color: #586e75; font-style: italic;">     *     ob_shash is the hash of the string or -1 if not computed yet.</span>
-<span style="color: #586e75; font-style: italic;">     *     ob_sstate != 0 iff the string object is in stringobject.c's</span>
-<span style="color: #586e75; font-style: italic;">     *       'interned' dictionary; in this case the two references</span>
-<span style="color: #586e75; font-style: italic;">     *       from 'interned' to this object are *not counted* in ob_refcnt.</span>
-<span style="color: #586e75; font-style: italic;">     </span><span style="color: #586e75; font-style: italic;">*/</span>
-} <span style="color: #268bd2;">PyStringObject</span>;
+    <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Invariants:</span>
+<span style="color: #7F9F7F;">     *     ob_sval contains space for 'ob_size+1' elements.</span>
+<span style="color: #7F9F7F;">     *     ob_sval[ob_size] == 0.</span>
+<span style="color: #7F9F7F;">     *     ob_shash is the hash of the string or -1 if not computed yet.</span>
+<span style="color: #7F9F7F;">     *     ob_sstate != 0 iff the string object is in stringobject.c's</span>
+<span style="color: #7F9F7F;">     *       'interned' dictionary; in this case the two references</span>
+<span style="color: #7F9F7F;">     *       from 'interned' to this object are *not counted* in ob_refcnt.</span>
+<span style="color: #7F9F7F;">     </span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #DCDCCC;">}</span> <span style="color: #7CB8BB;">PyStringObject</span>;
 </pre>
 </div>
 <p>
@@ -320,30 +326,112 @@ ob_sval后面的内存就恰好是7个字节了.
 <div class="outline-text-3" id="text-1-5">
 <div class="org-src-container">
 
-<pre class="src src-C"><span style="color: #859900;">typedef</span> <span style="color: #859900;">struct</span> {
-    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">PyObject_VAR_HEAD </span><span style="color: #586e75; font-style: italic;">*/</span>
-    <span style="color: #268bd2;">Py_ssize_t</span> <span style="color: #6c71c4;">ob_refcnt</span>;
-    <span style="color: #859900;">struct</span> <span style="color: #268bd2;">_typeobject</span> *<span style="color: #6c71c4;">ob_type</span>;
-    <span style="color: #268bd2;">Py_ssize_t</span> <span style="color: #6c71c4;">ob_size</span>; <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">Number of items in variable part </span><span style="color: #586e75; font-style: italic;">*/</span>
+<pre class="src src-C"><span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">PyObject_VAR_HEAD </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #7CB8BB;">Py_ssize_t</span> <span style="color: #DFAF8F;">ob_refcnt</span>;
+    <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">_typeobject</span> *<span style="color: #DFAF8F;">ob_type</span>;
+    <span style="color: #7CB8BB;">Py_ssize_t</span> <span style="color: #DFAF8F;">ob_size</span>; <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Number of items in variable part </span><span style="color: #5F7F5F;">*/</span>
 
-    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">Vector of pointers to list elements.  list[0] is ob_item[0], etc. </span><span style="color: #586e75; font-style: italic;">*/</span>
-    <span style="color: #268bd2;">PyObject</span> **<span style="color: #6c71c4;">ob_item</span>;
+    <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Vector of pointers to list elements.  list[0] is ob_item[0], etc. </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #7CB8BB;">PyObject</span> **<span style="color: #DFAF8F;">ob_item</span>;
 
-    <span style="color: #586e75; font-style: italic;">/* </span><span style="color: #586e75; font-style: italic;">ob_item contains space for 'allocated' elements.  The number</span>
-<span style="color: #586e75; font-style: italic;">     * currently in use is ob_size.</span>
-<span style="color: #586e75; font-style: italic;">     * Invariants:</span>
-<span style="color: #586e75; font-style: italic;">     *     0 &lt;= ob_size &lt;= allocated</span>
-<span style="color: #586e75; font-style: italic;">     *     len(list) == ob_size</span>
-<span style="color: #586e75; font-style: italic;">     *     ob_item == NULL implies ob_size == allocated == 0</span>
-<span style="color: #586e75; font-style: italic;">     * list.sort() temporarily sets allocated to -1 to detect mutations.</span>
-<span style="color: #586e75; font-style: italic;">     *</span>
-<span style="color: #586e75; font-style: italic;">     * Items must normally not be NULL, except during construction when</span>
-<span style="color: #586e75; font-style: italic;">     * the list is not yet visible outside the function that builds it.</span>
-<span style="color: #586e75; font-style: italic;">     </span><span style="color: #586e75; font-style: italic;">*/</span>
-    <span style="color: #268bd2;">Py_ssize_t</span> <span style="color: #6c71c4;">allocated</span>;
-} <span style="color: #268bd2;">PyListObject</span>;
+    <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">ob_item contains space for 'allocated' elements.  The number</span>
+<span style="color: #7F9F7F;">     * currently in use is ob_size.</span>
+<span style="color: #7F9F7F;">     * Invariants:</span>
+<span style="color: #7F9F7F;">     *     0 &lt;= ob_size &lt;= allocated</span>
+<span style="color: #7F9F7F;">     *     len(list) == ob_size</span>
+<span style="color: #7F9F7F;">     *     ob_item == NULL implies ob_size == allocated == 0</span>
+<span style="color: #7F9F7F;">     * list.sort() temporarily sets allocated to -1 to detect mutations.</span>
+<span style="color: #7F9F7F;">     *</span>
+<span style="color: #7F9F7F;">     * Items must normally not be NULL, except during construction when</span>
+<span style="color: #7F9F7F;">     * the list is not yet visible outside the function that builds it.</span>
+<span style="color: #7F9F7F;">     </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #7CB8BB;">Py_ssize_t</span> <span style="color: #DFAF8F;">allocated</span>;
+<span style="color: #DCDCCC;">}</span> <span style="color: #7CB8BB;">PyListObject</span>;
 </pre>
 </div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">referrence count</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+每一个PyObject都有一个引用计数，在解释器内部必须处理好计数的增加与减少。首先
+弄明白下面几点：
+</p>
+<ol class="org-ol">
+<li>任何东西都不会拥有对象，它只会拥有引用（Nobody “owns” an object; however,
+you can own a reference to an object.）
+</li>
+<li>当引用不在需要时，引用的拥有者必须调用 <code>Py_DECREF</code> 来减少引用计数。
+</li>
+</ol>
+<p>
+所以农明白谁是引用的拥有者是至关重要的，下面分两种情况讨论何时应该增加，何时
+应该减少引用计数：
+</p>
+</div>
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">调用者将引用传递给被调用者</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+假设调用者为A， 被调用者为B，A将一个对象obj作为参数传递给了B，那么这时的行为
+分为两种情况：
+</p>
+<ol class="org-ol">
+<li>绝大多数情况下，obj的引用仍然归A所有，所以该引用如果没有用了，那么A要调用
+<code>Py_DECREF</code> 。
+</li>
+<li>B将obj的引用(steal)偷走了，这种情况obj的引用归B所有，所以A不需要在调用
+<code>Py_DECREF</code> 了，这种情况比较少见，最常见的例子就是 <code>PyList_SetItem</code>,
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">被调用者返回一个引用给调用者</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+假设调用者为A， 被调用者为B，B使用return语句将一个对象obj返回给了A，那么这时的行为
+分为两种情况：
+</p>
+<ol class="org-ol">
+<li>obj的引用归A所有，所以如果该引用没有用了，必须调用 <code>Py_DECREF</code>, 这是最常
+见的情况。这些函数在返回引用时一般都对引用调用了 <code>Py_INCREF</code>, 所以调用者
+就获得了一个引用，所有创建新对象的函数都是这种情况，比如 <code>PyInt_FromLong,
+      Py_BuildValue</code>. 所有 <code>PyObject_, PyNumber_, PySequence_ or PyMapping_</code> 开
+头的函数也是这种情况。特别要注意 <code>PySequence_GetItem</code> 与 <code>PyList_GetItem,
+      PyTuple_GetItem</code> 的区别，前者会增加返回对象的引用计数，后者不会增加。
+</li>
+<li>obj的引用不归A所有，这种情况叫A借(borrow)了一个引用, 最常见有这几个函数
+<code>PyTuple_GetItem, PyList_GetItem, PyDict_GetItem, PyDict_GetItemString</code>,
+这几个函数都是从复合对象中获取元素，在这些函数返回前并没有对获得的元素对
+象调用 <code>Py_INCREF</code>, 所以调用者也就没有获得引用，这种情况非常容易出问题，
+必然要如下的代码：
+<div class="org-src-container">
+
+<pre class="src src-python">void
+bug<span style="color: #DCDCCC;">(</span>PyObject *<span style="color: #DCDCCC; font-weight: bold;">list</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">{</span>
+    PyObject *item = PyList_GetItem<span style="color: #BFEBBF;">(</span><span style="color: #DCDCCC; font-weight: bold;">list</span>, <span style="color: #BFEBBF;">0</span><span style="color: #BFEBBF;">)</span>;
+
+    PyList_SetItem<span style="color: #BFEBBF;">(</span><span style="color: #DCDCCC; font-weight: bold;">list</span>, <span style="color: #BFEBBF;">1</span>, PyInt_FromLong<span style="color: #D0BF8F;">(</span><span style="color: #BFEBBF;">0L</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>;
+    PyObject_Print<span style="color: #BFEBBF;">(</span>item, stdout, <span style="color: #BFEBBF;">0</span><span style="color: #BFEBBF;">)</span>; /* BUG! */
+<span style="color: #DCDCCC;">}</span>
+</pre>
+</div>
+<p>
+如何list位置0和位置1的元素对象引用计数都为1，同时位置1的对象的__del__ 会
+释放list位置为0的元素，那么上面的代码就有bug，因为调用 <code>PyList_SetItem</code>
+时它会减少位置为1的对象的引用计数，__del__就会调用，那么item指向的对象的
+引用计数就会减少，这时就会触发对item的回收，等到 <code>PyList_SetItem</code> 想把
+item放进位置1时，实际上item已经失效了。解决上面的bug的方法就是
+<code>PyList_SetItem</code> 之前对item调用 <code>Py_INCREF</code> 这样bug函数就获得了一个引用，
+当然这样做之后在函数的结尾要调用 <code>Py_DECREF</code>.
+</p>
+</li>
+</ol>
 </div>
 </div>
 </div>

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>jQuery</title>
-<!-- 2015-02-06 Fri 16:26 -->
+<!-- 2015-05-24 Sun 19:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -704,9 +704,9 @@ div元素并不被该模式识别)
 <li>.bind : 可以通过该方法将特定函数绑定到特定的事件上eg:
 <div class="org-src-container">
 
-<pre class="src src-javascript">$<span style="color: #839496;">(</span><span style="color: #2aa198;">'div.li'</span><span style="color: #839496;">)</span>.bind<span style="color: #839496;">(</span><span style="color: #2aa198;">'click'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">(){</span>
-  alert<span style="color: #b58900;">(</span><span style="color: #2aa198;">'clicked'</span><span style="color: #b58900;">)</span>;
-<span style="color: #2aa198;">}</span><span style="color: #839496;">)</span>
+<pre class="src src-javascript">$<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'div.li'</span><span style="color: #DCDCCC;">)</span>.bind<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'click'</span>, <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #BFEBBF;">(){</span>
+  alert<span style="color: #D0BF8F;">(</span><span style="color: #CC9393;">'clicked'</span><span style="color: #D0BF8F;">)</span>;
+<span style="color: #BFEBBF;">}</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -733,19 +733,19 @@ toggle()就会隐藏该元素,如果该元素已隐藏,那么调用toggle()就�
 代码：
 <div class="org-src-container">
 
-<pre class="src src-javascript">$<span style="color: #839496;">(</span><span style="color: #859900;">function</span><span style="color: #2aa198;">(){</span>
-  $<span style="color: #b58900;">(</span><span style="color: #2aa198;">"#sub"</span><span style="color: #b58900;">)</span>.bind<span style="color: #b58900;">(</span><span style="color: #2aa198;">"click"</span>,<span style="color: #859900;">function</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">event</span><span style="color: #859900;">){</span>
-    <span style="color: #859900;">var</span> <span style="color: #6c71c4;">username</span> = $<span style="color: #268bd2;">(</span><span style="color: #2aa198;">"#username"</span><span style="color: #268bd2;">)</span>.val<span style="color: #268bd2;">()</span>;  <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#33719;&#21462;&#20803;&#32032;&#30340;&#20540;</span>
-    <span style="color: #859900;">if</span><span style="color: #268bd2;">(</span>username==<span style="color: #2aa198;">""</span><span style="color: #268bd2;">){</span>     <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#21028;&#26029;&#20540;&#26159;&#21542;&#20026;&#31354;</span>
-      $<span style="color: #839496;">(</span><span style="color: #2aa198;">"#msg"</span><span style="color: #839496;">)</span>.html<span style="color: #839496;">(</span><span style="color: #2aa198;">"&lt;p&gt;&#25991;&#26412;&#26694;&#30340;&#20540;&#19981;&#33021;&#20026;&#31354;.&lt;/p&gt;"</span><span style="color: #839496;">)</span>;  <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#25552;&#31034;&#20449;&#24687;</span>
+<pre class="src src-javascript">$<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #BFEBBF;">(){</span>
+  $<span style="color: #D0BF8F;">(</span><span style="color: #CC9393;">"#sub"</span><span style="color: #D0BF8F;">)</span>.bind<span style="color: #D0BF8F;">(</span><span style="color: #CC9393;">"click"</span>,<span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #93E0E3;">(</span><span style="color: #DFAF8F;">event</span><span style="color: #93E0E3;">){</span>
+    <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">username</span> = $<span style="color: #9FC59F;">(</span><span style="color: #CC9393;">"#username"</span><span style="color: #9FC59F;">)</span>.val<span style="color: #9FC59F;">()</span>;  <span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">&#33719;&#21462;&#20803;&#32032;&#30340;&#20540;</span>
+    <span style="color: #F0DFAF; font-weight: bold;">if</span><span style="color: #9FC59F;">(</span>username==<span style="color: #CC9393;">""</span><span style="color: #9FC59F;">){</span>     <span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">&#21028;&#26029;&#20540;&#26159;&#21542;&#20026;&#31354;</span>
+      $<span style="color: #94BFF3;">(</span><span style="color: #CC9393;">"#msg"</span><span style="color: #94BFF3;">)</span>.html<span style="color: #94BFF3;">(</span><span style="color: #CC9393;">"&lt;p&gt;&#25991;&#26412;&#26694;&#30340;&#20540;&#19981;&#33021;&#20026;&#31354;.&lt;/p&gt;"</span><span style="color: #94BFF3;">)</span>;  <span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">&#25552;&#31034;&#20449;&#24687;</span>
 
-      event.stopPropagation<span style="color: #839496;">()</span>;  <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">&#38459;&#27490;&#20107;&#20214;&#20882;&#27873;</span>
-      event.preventDefault<span style="color: #839496;">()</span>;  <span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#38459;&#27490;&#40664;&#35748;&#34892;&#20026; ( &#34920;&#21333;&#25552;&#20132;&#65292;&#38142;&#25509;(a)&#36339;&#36716;&#31561; )</span>
-      <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">&#22914;&#26524;&#26082;&#35201;&#38459;&#27490;&#20107;&#20214;&#20882;&#27873;&#21448;&#35201;&#38459;&#27490;&#40664;&#35748;&#34892;&#20026;&#65292;&#37027;&#20040;&#21487;&#20197;&#30452;&#25509;&#36890;&#36807;</span>
-      <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">return false; &#26469;&#23454;&#29616;</span>
-    <span style="color: #268bd2;">}</span>
-  <span style="color: #859900;">}</span><span style="color: #b58900;">)</span>
-<span style="color: #2aa198;">}</span><span style="color: #839496;">)</span>
+      event.stopPropagation<span style="color: #94BFF3;">()</span>;  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#38459;&#27490;&#20107;&#20214;&#20882;&#27873;</span>
+      event.preventDefault<span style="color: #94BFF3;">()</span>;  <span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">&#38459;&#27490;&#40664;&#35748;&#34892;&#20026; ( &#34920;&#21333;&#25552;&#20132;&#65292;&#38142;&#25509;(a)&#36339;&#36716;&#31561; )</span>
+      <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#22914;&#26524;&#26082;&#35201;&#38459;&#27490;&#20107;&#20214;&#20882;&#27873;&#21448;&#35201;&#38459;&#27490;&#40664;&#35748;&#34892;&#20026;&#65292;&#37027;&#20040;&#21487;&#20197;&#30452;&#25509;&#36890;&#36807;</span>
+      <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">return false; &#26469;&#23454;&#29616;</span>
+    <span style="color: #9FC59F;">}</span>
+  <span style="color: #93E0E3;">}</span><span style="color: #D0BF8F;">)</span>
+<span style="color: #BFEBBF;">}</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>

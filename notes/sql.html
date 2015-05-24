@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>MySQL笔记</title>
-<!-- 2015-02-06 Fri 16:26 -->
+<!-- 2015-05-24 Sun 19:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -248,9 +248,9 @@ mysql –h hostname -P port –u username –p password.
 <li>grant 权限 on 数据库.* to 用户名称@登陆主机  identified 密码
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #859900;">grant</span> <span style="color: #859900;">select</span>, <span style="color: #859900;">insert</span>, <span style="color: #859900;">update</span>, <span style="color: #859900;">delete</span>
-<span style="color: #859900;">on</span> books.*
-<span style="color: #859900;">to</span> <span style="color: #6c71c4;">user</span> identified <span style="color: #859900;">by</span> <span style="color: #2aa198;">'1234'</span>
+<pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">grant</span> <span style="color: #F0DFAF; font-weight: bold;">select</span>, <span style="color: #F0DFAF; font-weight: bold;">insert</span>, <span style="color: #F0DFAF; font-weight: bold;">update</span>, <span style="color: #F0DFAF; font-weight: bold;">delete</span>
+<span style="color: #F0DFAF; font-weight: bold;">on</span> books.*
+<span style="color: #F0DFAF; font-weight: bold;">to</span> <span style="color: #DCDCCC; font-weight: bold;">user</span> identified <span style="color: #F0DFAF; font-weight: bold;">by</span> <span style="color: #CC9393;">'1234'</span>
 </pre>
 </div>
 </li>
@@ -390,9 +390,9 @@ php,python)过滤数据), 因为数据库过滤效率较高, 而且也可以避�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #859900;">SELECT</span> prod_name, prod_price
-<span style="color: #859900;">FROM</span> products
-<span style="color: #859900;">WHERE</span> prod_name <span style="color: #859900;">LIKE</span> <span style="color: #2aa198;">'%anvil%'</span>;
+<pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> prod_name, prod_price
+<span style="color: #F0DFAF; font-weight: bold;">FROM</span> products
+<span style="color: #F0DFAF; font-weight: bold;">WHERE</span> prod_name <span style="color: #F0DFAF; font-weight: bold;">LIKE</span> <span style="color: #CC9393;">'%anvil%'</span>;
 </pre>
 </div>
 </li>
@@ -401,28 +401,28 @@ php,python)过滤数据), 因为数据库过滤效率较高, 而且也可以避�
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #586e75; font-style: italic;">-- (greater than)</span>
-<span style="color: #859900;">SELECT</span> prod_name, prod_price
-<span style="color: #859900;">FROM</span> products
-<span style="color: #859900;">WHERE</span> prod_price &gt; 10;
-<span style="color: #586e75; font-style: italic;">-- (not equal)</span>
-<span style="color: #859900;">SELECT</span> vend_id, prod_name
-<span style="color: #859900;">FROM</span> products
-<span style="color: #859900;">WHERE</span> vend_id != 1003;
-<span style="color: #586e75; font-style: italic;">-- (between)</span>
-<span style="color: #859900;">SELECT</span> prod_name, prod_price
-<span style="color: #859900;">FROM</span> products
-<span style="color: #859900;">WHERE</span> prod_price <span style="color: #859900;">BETWEEN</span> 5 <span style="color: #859900;">AND</span> 10;
-<span style="color: #586e75; font-style: italic;">-- (in)</span>
-<span style="color: #859900;">SELECT</span> prod_name, prod_price
-<span style="color: #859900;">FROM</span> products
-<span style="color: #859900;">WHERE</span> vend_id <span style="color: #859900;">IN</span> (1002, 1003)
-<span style="color: #859900;">ORDER</span> <span style="color: #859900;">BY</span> prod_name;
-<span style="color: #586e75; font-style: italic;">-- NOT IN</span>
-<span style="color: #859900;">SELECT</span> prod_name, prod_price
-<span style="color: #859900;">FROM</span> products
-<span style="color: #859900;">WHERE</span> vend_id <span style="color: #859900;">NOT</span> <span style="color: #859900;">IN</span> (1002, 1003)
-<span style="color: #859900;">ORDER</span> <span style="color: #859900;">BY</span> prod_name;
+<pre class="src src-sql"><span style="color: #7F9F7F;">-- (greater than)</span>
+<span style="color: #F0DFAF; font-weight: bold;">SELECT</span> prod_name, prod_price
+<span style="color: #F0DFAF; font-weight: bold;">FROM</span> products
+<span style="color: #F0DFAF; font-weight: bold;">WHERE</span> prod_price &gt; <span style="color: #BFEBBF;">10</span>;
+<span style="color: #7F9F7F;">-- (not equal)</span>
+<span style="color: #F0DFAF; font-weight: bold;">SELECT</span> vend_id, prod_name
+<span style="color: #F0DFAF; font-weight: bold;">FROM</span> products
+<span style="color: #F0DFAF; font-weight: bold;">WHERE</span> vend_id != <span style="color: #BFEBBF;">1003</span>;
+<span style="color: #7F9F7F;">-- (between)</span>
+<span style="color: #F0DFAF; font-weight: bold;">SELECT</span> prod_name, prod_price
+<span style="color: #F0DFAF; font-weight: bold;">FROM</span> products
+<span style="color: #F0DFAF; font-weight: bold;">WHERE</span> prod_price <span style="color: #F0DFAF; font-weight: bold;">BETWEEN</span> <span style="color: #BFEBBF;">5</span> <span style="color: #F0DFAF; font-weight: bold;">AND</span> <span style="color: #BFEBBF;">10</span>;
+<span style="color: #7F9F7F;">-- (in)</span>
+<span style="color: #F0DFAF; font-weight: bold;">SELECT</span> prod_name, prod_price
+<span style="color: #F0DFAF; font-weight: bold;">FROM</span> products
+<span style="color: #F0DFAF; font-weight: bold;">WHERE</span> vend_id <span style="color: #F0DFAF; font-weight: bold;">IN</span> <span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">1002</span>, <span style="color: #BFEBBF;">1003</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #F0DFAF; font-weight: bold;">ORDER</span> <span style="color: #F0DFAF; font-weight: bold;">BY</span> prod_name;
+<span style="color: #7F9F7F;">-- NOT IN</span>
+<span style="color: #F0DFAF; font-weight: bold;">SELECT</span> prod_name, prod_price
+<span style="color: #F0DFAF; font-weight: bold;">FROM</span> products
+<span style="color: #F0DFAF; font-weight: bold;">WHERE</span> vend_id <span style="color: #F0DFAF; font-weight: bold;">NOT</span> <span style="color: #F0DFAF; font-weight: bold;">IN</span> <span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">1002</span>, <span style="color: #BFEBBF;">1003</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #F0DFAF; font-weight: bold;">ORDER</span> <span style="color: #F0DFAF; font-weight: bold;">BY</span> prod_name;
 </pre>
 </div>
 </li>
@@ -434,13 +434,13 @@ php,python)过滤数据), 因为数据库过滤效率较高, 而且也可以避�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #859900;">SELECT</span> prod_name, prod_price
-<span style="color: #859900;">FROM</span> products
-<span style="color: #859900;">WHERE</span> vend_id = 1003 <span style="color: #859900;">AND</span> prod_price &lt; 10;
-<span style="color: #586e75; font-style: italic;">-- OR</span>
-<span style="color: #859900;">SELECT</span> prod_name, prod_price
-<span style="color: #859900;">FROM</span> products
-<span style="color: #859900;">WHERE</span> vend_id = 1001 <span style="color: #859900;">OR</span> vend_id = 1002;
+<pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> prod_name, prod_price
+<span style="color: #F0DFAF; font-weight: bold;">FROM</span> products
+<span style="color: #F0DFAF; font-weight: bold;">WHERE</span> vend_id = <span style="color: #BFEBBF;">1003</span> <span style="color: #F0DFAF; font-weight: bold;">AND</span> prod_price &lt; <span style="color: #BFEBBF;">10</span>;
+<span style="color: #7F9F7F;">-- OR</span>
+<span style="color: #F0DFAF; font-weight: bold;">SELECT</span> prod_name, prod_price
+<span style="color: #F0DFAF; font-weight: bold;">FROM</span> products
+<span style="color: #F0DFAF; font-weight: bold;">WHERE</span> vend_id = <span style="color: #BFEBBF;">1001</span> <span style="color: #F0DFAF; font-weight: bold;">OR</span> vend_id = <span style="color: #BFEBBF;">1002</span>;
 </pre>
 </div>
 </li>
@@ -452,10 +452,10 @@ php,python)过滤数据), 因为数据库过滤效率较高, 而且也可以避�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #859900;">SELECT</span> price,
+<pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> price,
     quantity,
-    price*quantity <span style="color: #859900;">AS</span>  expanded_price
-<span style="color: #859900;">FROM</span> orderitems
+    price*quantity <span style="color: #F0DFAF; font-weight: bold;">AS</span>  expanded_price
+<span style="color: #F0DFAF; font-weight: bold;">FROM</span> orderitems
 </pre>
 </div>
 <p>
@@ -465,10 +465,10 @@ php,python)过滤数据), 因为数据库过滤效率较高, 而且也可以避�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #859900;">SELECT</span> Concat(RTrim(vend_name), <span style="color: #2aa198;">'('</span>, RTrim(vend_country), <span style="color: #2aa198;">')'</span>) <span style="color: #859900;">AS</span>
+<pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> Concat<span style="color: #DCDCCC;">(</span>RTrim<span style="color: #BFEBBF;">(</span>vend_name<span style="color: #BFEBBF;">)</span>, <span style="color: #CC9393;">'('</span>, RTrim<span style="color: #BFEBBF;">(</span>vend_country<span style="color: #BFEBBF;">)</span>, <span style="color: #CC9393;">')'</span><span style="color: #DCDCCC;">)</span> <span style="color: #F0DFAF; font-weight: bold;">AS</span>
 vend_title
-<span style="color: #859900;">FROM</span> vendors
-<span style="color: #859900;">ORDER</span> <span style="color: #859900;">BY</span> vend_name;
+<span style="color: #F0DFAF; font-weight: bold;">FROM</span> vendors
+<span style="color: #F0DFAF; font-weight: bold;">ORDER</span> <span style="color: #F0DFAF; font-weight: bold;">BY</span> vend_name;
 </pre>
 </div>
 </li>
@@ -483,17 +483,17 @@ vend_title
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #859900;">SELECT</span> cust_id, order_num
-<span style="color: #859900;">FROM</span> orders
-<span style="color: #859900;">WHERE</span> <span style="color: #268bd2;">Date</span>(order_date) = <span style="color: #2aa198;">'2005-09-01'</span>;
-<span style="color: #586e75; font-style: italic;">-- orders in 2005-09</span>
-<span style="color: #859900;">SELECT</span> cust_id, order_num
-<span style="color: #859900;">FROM</span> orders
-<span style="color: #859900;">WHERE</span> <span style="color: #268bd2;">Date</span>(order_date) <span style="color: #859900;">BETWEEN</span> <span style="color: #2aa198;">'2005-09-01'</span> <span style="color: #859900;">AND</span> <span style="color: #2aa198;">'2005-9-30'</span>;
-<span style="color: #586e75; font-style: italic;">-- identical(better version)</span>
-<span style="color: #859900;">SELECT</span> cust_id, order_num
-<span style="color: #859900;">FROM</span> orders
-<span style="color: #859900;">WHERE</span> <span style="color: #859900;">Year</span>(order_date) = 2005 <span style="color: #859900;">AND</span> <span style="color: #859900;">Month</span>(order_date) = 9;
+<pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> cust_id, order_num
+<span style="color: #F0DFAF; font-weight: bold;">FROM</span> orders
+<span style="color: #F0DFAF; font-weight: bold;">WHERE</span> <span style="color: #7CB8BB;">Date</span><span style="color: #DCDCCC;">(</span>order_date<span style="color: #DCDCCC;">)</span> = <span style="color: #CC9393;">'2005-09-01'</span>;
+<span style="color: #7F9F7F;">-- orders in 2005-09</span>
+<span style="color: #F0DFAF; font-weight: bold;">SELECT</span> cust_id, order_num
+<span style="color: #F0DFAF; font-weight: bold;">FROM</span> orders
+<span style="color: #F0DFAF; font-weight: bold;">WHERE</span> <span style="color: #7CB8BB;">Date</span><span style="color: #DCDCCC;">(</span>order_date<span style="color: #DCDCCC;">)</span> <span style="color: #F0DFAF; font-weight: bold;">BETWEEN</span> <span style="color: #CC9393;">'2005-09-01'</span> <span style="color: #F0DFAF; font-weight: bold;">AND</span> <span style="color: #CC9393;">'2005-9-30'</span>;
+<span style="color: #7F9F7F;">-- identical(better version)</span>
+<span style="color: #F0DFAF; font-weight: bold;">SELECT</span> cust_id, order_num
+<span style="color: #F0DFAF; font-weight: bold;">FROM</span> orders
+<span style="color: #F0DFAF; font-weight: bold;">WHERE</span> <span style="color: #F0DFAF; font-weight: bold;">Year</span><span style="color: #DCDCCC;">(</span>order_date<span style="color: #DCDCCC;">)</span> = <span style="color: #BFEBBF;">2005</span> <span style="color: #F0DFAF; font-weight: bold;">AND</span> <span style="color: #F0DFAF; font-weight: bold;">Month</span><span style="color: #DCDCCC;">(</span>order_date<span style="color: #DCDCCC;">)</span> = <span style="color: #BFEBBF;">9</span>;
 </pre>
 </div>
 </li>
@@ -504,11 +504,11 @@ vend_title
 <li>聚集函数: AVG, COUNT, MAX, MIN, SUM.
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #859900;">SELECT</span> <span style="color: #6c71c4;">COUNT</span>(*) <span style="color: #859900;">AS</span> num_items,
-    <span style="color: #6c71c4;">MIN</span>(prod_price) <span style="color: #859900;">AS</span> price_min,
-    <span style="color: #6c71c4;">MAX</span>(prod_price) <span style="color: #859900;">AS</span> price_max,
-    <span style="color: #6c71c4;">AVG</span>(prod_price) <span style="color: #859900;">AS</span> price_avg
-<span style="color: #859900;">FROM</span> products;
+<pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> <span style="color: #DCDCCC; font-weight: bold;">COUNT</span><span style="color: #DCDCCC;">(</span>*<span style="color: #DCDCCC;">)</span> <span style="color: #F0DFAF; font-weight: bold;">AS</span> num_items,
+    <span style="color: #DCDCCC; font-weight: bold;">MIN</span><span style="color: #DCDCCC;">(</span>prod_price<span style="color: #DCDCCC;">)</span> <span style="color: #F0DFAF; font-weight: bold;">AS</span> price_min,
+    <span style="color: #DCDCCC; font-weight: bold;">MAX</span><span style="color: #DCDCCC;">(</span>prod_price<span style="color: #DCDCCC;">)</span> <span style="color: #F0DFAF; font-weight: bold;">AS</span> price_max,
+    <span style="color: #DCDCCC; font-weight: bold;">AVG</span><span style="color: #DCDCCC;">(</span>prod_price<span style="color: #DCDCCC;">)</span> <span style="color: #F0DFAF; font-weight: bold;">AS</span> price_avg
+<span style="color: #F0DFAF; font-weight: bold;">FROM</span> products;
 </pre>
 </div>
 <p>
@@ -539,9 +539,9 @@ vendors表存储制造商信息,其主键为vend_id, products表存储产品信�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #859900;">SELECT</span> vend_name, prod_name, prod_price
-<span style="color: #859900;">FROM</span> vendors, products
-<span style="color: #859900;">WHERE</span> vendors.vend_id = products.vend_id;
+<pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> vend_name, prod_name, prod_price
+<span style="color: #F0DFAF; font-weight: bold;">FROM</span> vendors, products
+<span style="color: #F0DFAF; font-weight: bold;">WHERE</span> vendors.vend_id = products.vend_id;
 </pre>
 </div>
 <p>
@@ -549,8 +549,8 @@ vendors表存储制造商信息,其主键为vend_id, products表存储产品信�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #859900;">SELECT</span> vend_name <span style="color: #859900;">FROM</span> vendors;
-<span style="color: #859900;">SELECT</span> prod_name, prod_price <span style="color: #859900;">FROM</span> products;
+<pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> vend_name <span style="color: #F0DFAF; font-weight: bold;">FROM</span> vendors;
+<span style="color: #F0DFAF; font-weight: bold;">SELECT</span> prod_name, prod_price <span style="color: #F0DFAF; font-weight: bold;">FROM</span> products;
 </pre>
 </div>
 <p>
@@ -563,9 +563,9 @@ vendors表存储制造商信息,其主键为vend_id, products表存储产品信�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #859900;">SELECT</span> vend_name, prod_name, prod_price
-<span style="color: #859900;">FROM</span> vendors <span style="color: #859900;">INNER</span> <span style="color: #859900;">JOIN</span> products
-<span style="color: #859900;">ON</span> vendors.vend_id = products.vend_id;
+<pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> vend_name, prod_name, prod_price
+<span style="color: #F0DFAF; font-weight: bold;">FROM</span> vendors <span style="color: #F0DFAF; font-weight: bold;">INNER</span> <span style="color: #F0DFAF; font-weight: bold;">JOIN</span> products
+<span style="color: #F0DFAF; font-weight: bold;">ON</span> vendors.vend_id = products.vend_id;
 </pre>
 </div>
 <p>
@@ -582,10 +582,10 @@ INNER JOIN 是推荐的写法.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #859900;">SELECT</span> p1.prod_id, p1.prod_name
-<span style="color: #859900;">FROM</span> products <span style="color: #859900;">AS</span> p1, products <span style="color: #859900;">AS</span> p2
-<span style="color: #859900;">WHERE</span> p1.vend_id = p2.vend_id
-    <span style="color: #859900;">AND</span> p2.prod_id = <span style="color: #2aa198;">'DTNTR'</span>;
+<pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> p1.prod_id, p1.prod_name
+<span style="color: #F0DFAF; font-weight: bold;">FROM</span> products <span style="color: #F0DFAF; font-weight: bold;">AS</span> p1, products <span style="color: #F0DFAF; font-weight: bold;">AS</span> p2
+<span style="color: #F0DFAF; font-weight: bold;">WHERE</span> p1.vend_id = p2.vend_id
+    <span style="color: #F0DFAF; font-weight: bold;">AND</span> p2.prod_id = <span style="color: #CC9393;">'DTNTR'</span>;
 </pre>
 </div>
 </div>
@@ -600,9 +600,9 @@ INNER JOIN 是推荐的写法.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #859900;">SELECT</span> cust_id, amount
-<span style="color: #859900;">FROM</span> orders
-<span style="color: #859900;">WHERE</span> amount = (<span style="color: #859900;">SELECT</span> <span style="color: #6c71c4;">max</span>(amount) <span style="color: #859900;">from</span> orders);
+<pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> cust_id, amount
+<span style="color: #F0DFAF; font-weight: bold;">FROM</span> orders
+<span style="color: #F0DFAF; font-weight: bold;">WHERE</span> amount = <span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> <span style="color: #DCDCCC; font-weight: bold;">max</span><span style="color: #BFEBBF;">(</span>amount<span style="color: #BFEBBF;">)</span> <span style="color: #F0DFAF; font-weight: bold;">from</span> orders<span style="color: #DCDCCC;">)</span>;
 </pre>
 </div>
 <p>
@@ -623,14 +623,14 @@ INNER JOIN 是推荐的写法.
 </ol>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #859900;">SELECT</span> vend_id, prod_id, prod_price
-<span style="color: #859900;">FROM</span> products
-<span style="color: #859900;">WHERE</span> prod_price &lt;= 5
-<span style="color: #859900;">UNION</span>
-<span style="color: #859900;">SELECT</span> vend_id, prod_id, prod_price
-<span style="color: #859900;">FROM</span> products
-<span style="color: #859900;">WHERE</span> vend_id <span style="color: #859900;">IN</span> (1001, 1002)
-<span style="color: #859900;">ORDER</span> <span style="color: #859900;">BY</span> vend_id, prod_price;
+<pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> vend_id, prod_id, prod_price
+<span style="color: #F0DFAF; font-weight: bold;">FROM</span> products
+<span style="color: #F0DFAF; font-weight: bold;">WHERE</span> prod_price &lt;= <span style="color: #BFEBBF;">5</span>
+<span style="color: #F0DFAF; font-weight: bold;">UNION</span>
+<span style="color: #F0DFAF; font-weight: bold;">SELECT</span> vend_id, prod_id, prod_price
+<span style="color: #F0DFAF; font-weight: bold;">FROM</span> products
+<span style="color: #F0DFAF; font-weight: bold;">WHERE</span> vend_id <span style="color: #F0DFAF; font-weight: bold;">IN</span> <span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">1001</span>, <span style="color: #BFEBBF;">1002</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #F0DFAF; font-weight: bold;">ORDER</span> <span style="color: #F0DFAF; font-weight: bold;">BY</span> vend_id, prod_price;
 </pre>
 </div>
 </div>
@@ -967,16 +967,16 @@ ALTER TABLE tablename
 <li>增加列: alert  table  表名  add  列名  数据类型
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #859900;">ALTER</span> <span style="color: #859900;">TABLE</span> <span style="color: #b58900;">vendors</span>
-<span style="color: #859900;">ADD</span> vend_phone <span style="color: #268bd2;">CHAR</span>(20);
+<pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">ALTER</span> <span style="color: #F0DFAF; font-weight: bold;">TABLE</span> <span style="color: #93E0E3;">vendors</span>
+<span style="color: #F0DFAF; font-weight: bold;">ADD</span> vend_phone <span style="color: #7CB8BB;">CHAR</span><span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">20</span><span style="color: #DCDCCC;">)</span>;
 </pre>
 </div>
 </li>
 <li>删除列: ALTER TABLE 表名 DROP column 列名
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #859900;">ALTER</span> <span style="color: #859900;">TABLE</span> <span style="color: #b58900;">vendors</span>
-<span style="color: #859900;">DROP</span> <span style="color: #859900;">COLUMN</span> vend_phone;
+<pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">ALTER</span> <span style="color: #F0DFAF; font-weight: bold;">TABLE</span> <span style="color: #93E0E3;">vendors</span>
+<span style="color: #F0DFAF; font-weight: bold;">DROP</span> <span style="color: #F0DFAF; font-weight: bold;">COLUMN</span> vend_phone;
 </pre>
 </div>
 </li>
@@ -985,9 +985,9 @@ ALTER TABLE tablename
 <li>定义外键:
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #859900;">ALTER</span> <span style="color: #859900;">TABLE</span> <span style="color: #b58900;">products</span>
-<span style="color: #859900;">ADD</span> <span style="color: #859900;">CONSTRAINT</span> fk_products_vendors
-<span style="color: #859900;">FOREIGN</span> <span style="color: #859900;">KEY</span>(vend_id) <span style="color: #859900;">REFERENCES</span> vendors(vend_id);
+<pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">ALTER</span> <span style="color: #F0DFAF; font-weight: bold;">TABLE</span> <span style="color: #93E0E3;">products</span>
+<span style="color: #F0DFAF; font-weight: bold;">ADD</span> <span style="color: #F0DFAF; font-weight: bold;">CONSTRAINT</span> fk_products_vendors
+<span style="color: #F0DFAF; font-weight: bold;">FOREIGN</span> <span style="color: #F0DFAF; font-weight: bold;">KEY</span><span style="color: #DCDCCC;">(</span>vend_id<span style="color: #DCDCCC;">)</span> <span style="color: #F0DFAF; font-weight: bold;">REFERENCES</span> vendors<span style="color: #DCDCCC;">(</span>vend_id<span style="color: #DCDCCC;">)</span>;
 </pre>
 </div>
 <p>
@@ -1006,29 +1006,29 @@ ALTER TABLE tablename
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #859900;">CREATE</span> <span style="color: #859900;">PROCEDURE</span> <span style="color: #b58900;">ordertotal</span>(
-        <span style="color: #859900;">IN</span> onumber <span style="color: #268bd2;">INT</span>,
-        <span style="color: #859900;">IN</span> taxable <span style="color: #268bd2;">BOOLEAN</span>,
-        <span style="color: #859900;">OUT</span> ototal <span style="color: #268bd2;">DECIMAL</span>(8, 2
-) COMMENT <span style="color: #2aa198;">'Obtain order total, optional adding tax'</span>
+<pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">CREATE</span> <span style="color: #F0DFAF; font-weight: bold;">PROCEDURE</span> <span style="color: #93E0E3;">ordertotal</span><span style="color: #DCDCCC;">(</span>
+        <span style="color: #F0DFAF; font-weight: bold;">IN</span> onumber <span style="color: #7CB8BB;">INT</span>,
+        <span style="color: #F0DFAF; font-weight: bold;">IN</span> taxable <span style="color: #7CB8BB;">BOOLEAN</span>,
+        <span style="color: #F0DFAF; font-weight: bold;">OUT</span> ototal <span style="color: #7CB8BB;">DECIMAL</span><span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">8</span>, <span style="color: #BFEBBF;">2</span>
+<span style="color: #BFEBBF;">)</span> COMMENT <span style="color: #CC9393;">'Obtain order total, optional adding tax'</span>
 
-<span style="color: #859900;">BEGIN</span>
-    <span style="color: #586e75; font-style: italic;">-- declare variable for total</span>
-    <span style="color: #859900;">DECLARE</span> total <span style="color: #268bd2;">DECIMAL</span>(8, 2);
-    <span style="color: #586e75; font-style: italic;">-- declare tax percentage</span>
-    <span style="color: #859900;">DECLARE</span> taxrate <span style="color: #268bd2;">INT</span> <span style="color: #859900;">DEFAULT</span> 6;
-    <span style="color: #586e75; font-style: italic;">-- Get the order toltal</span>
-    <span style="color: #859900;">SELECT</span> <span style="color: #6c71c4;">Sum</span>(item_price*quantity)
-    <span style="color: #859900;">FROM</span> orderitems
-    <span style="color: #859900;">WHERE</span> order_num = onumber
-    <span style="color: #859900;">INTO</span> total;
-    <span style="color: #586e75; font-style: italic;">-- Is this taxable?</span>
-    IF taxable <span style="color: #859900;">THEN</span>
-        <span style="color: #859900;">SELECT</span> total+(total/100*taxrate) <span style="color: #859900;">INTO</span> total
-    <span style="color: #859900;">END</span> IF;
+<span style="color: #F0DFAF; font-weight: bold;">BEGIN</span>
+    <span style="color: #7F9F7F;">-- declare variable for total</span>
+    <span style="color: #F0DFAF; font-weight: bold;">DECLARE</span> total <span style="color: #7CB8BB;">DECIMAL</span><span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">8</span>, <span style="color: #BFEBBF;">2</span><span style="color: #BFEBBF;">)</span>;
+    <span style="color: #7F9F7F;">-- declare tax percentage</span>
+    <span style="color: #F0DFAF; font-weight: bold;">DECLARE</span> taxrate <span style="color: #7CB8BB;">INT</span> <span style="color: #F0DFAF; font-weight: bold;">DEFAULT</span> <span style="color: #BFEBBF;">6</span>;
+    <span style="color: #7F9F7F;">-- Get the order toltal</span>
+    <span style="color: #F0DFAF; font-weight: bold;">SELECT</span> <span style="color: #DCDCCC; font-weight: bold;">Sum</span><span style="color: #BFEBBF;">(</span>item_price*quantity<span style="color: #BFEBBF;">)</span>
+    <span style="color: #F0DFAF; font-weight: bold;">FROM</span> orderitems
+    <span style="color: #F0DFAF; font-weight: bold;">WHERE</span> order_num = onumber
+    <span style="color: #F0DFAF; font-weight: bold;">INTO</span> total;
+    <span style="color: #7F9F7F;">-- Is this taxable?</span>
+    IF taxable <span style="color: #F0DFAF; font-weight: bold;">THEN</span>
+        <span style="color: #F0DFAF; font-weight: bold;">SELECT</span> total+<span style="color: #BFEBBF;">(</span>total/<span style="color: #BFEBBF;">100</span>*taxrate<span style="color: #BFEBBF;">)</span> <span style="color: #F0DFAF; font-weight: bold;">INTO</span> total
+    <span style="color: #F0DFAF; font-weight: bold;">END</span> IF;
 
-    <span style="color: #859900;">SELECT</span> total <span style="color: #859900;">INTO</span> otatol;
-<span style="color: #859900;">END</span>
+    <span style="color: #F0DFAF; font-weight: bold;">SELECT</span> total <span style="color: #F0DFAF; font-weight: bold;">INTO</span> otatol;
+<span style="color: #F0DFAF; font-weight: bold;">END</span>
 </pre>
 </div>
 <p>
@@ -1040,8 +1040,8 @@ IN 代表输入参数, OUT代表输出参数.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #859900;">CALL</span> ordertotal(20005, 0, @total);
-<span style="color: #859900;">SELECT</span> @total;
+<pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">CALL</span> ordertotal<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">20005</span>, <span style="color: #BFEBBF;">0</span>, @total<span style="color: #DCDCCC;">)</span>;
+<span style="color: #F0DFAF; font-weight: bold;">SELECT</span> @total;
 </pre>
 </div>
 </div>
@@ -1061,10 +1061,10 @@ InnoDB.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #859900;">START</span> <span style="color: #859900;">TRANSACTION</span>;
-<span style="color: #859900;">DELETE</span> <span style="color: #859900;">FROM</span> orderitems <span style="color: #859900;">WHERE</span> order_num = 20010;
-<span style="color: #859900;">DELETE</span> <span style="color: #859900;">FROM</span> orders <span style="color: #859900;">WHERE</span> order_num = 20010;
-<span style="color: #859900;">COMMIT</span>;
+<pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">START</span> <span style="color: #F0DFAF; font-weight: bold;">TRANSACTION</span>;
+<span style="color: #F0DFAF; font-weight: bold;">DELETE</span> <span style="color: #F0DFAF; font-weight: bold;">FROM</span> orderitems <span style="color: #F0DFAF; font-weight: bold;">WHERE</span> order_num = <span style="color: #BFEBBF;">20010</span>;
+<span style="color: #F0DFAF; font-weight: bold;">DELETE</span> <span style="color: #F0DFAF; font-weight: bold;">FROM</span> orders <span style="color: #F0DFAF; font-weight: bold;">WHERE</span> order_num = <span style="color: #BFEBBF;">20010</span>;
+<span style="color: #F0DFAF; font-weight: bold;">COMMIT</span>;
 </pre>
 </div>
 <p>
