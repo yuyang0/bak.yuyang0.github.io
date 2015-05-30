@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Essential of Programming language</title>
-<!-- 2015-05-24 Sun 21:29 -->
+<!-- 2015-05-30 Sat 22:00 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -137,14 +137,14 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script type="text/javascript">
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
         // First allows browser-native MathML display, second forces HTML/CSS
-        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
-            jax: ["input/TeX", "output/HTML-CSS"],
+            config: ["MMLorHTML.js"], jax: ["input/TeX"],
+        //  jax: ["input/TeX", "output/HTML-CSS"],
         extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
                      "TeX/noUndefined.js"],
         tex2jax: {
@@ -360,19 +360,35 @@ following two properties:
 </div>
 <div id="outline-container-sec-2-1-3" class="outline-4">
 <h4 id="sec-2-1-3">rules of inference</h4>
+<div class="outline-text-4" id="text-2-1-3">
+\begin{align}
+  () \in List-of-Int  \\
+  \frac {n \in Int \quad l \in List-of-Int} {(n . l) \in List-of-Int}
+\end{align}
 </div>
 </div>
+</div>
+
 <div id="outline-container-sec-2-2" class="outline-3">
 <h3 id="sec-2-2">1.2</h3>
 <div class="outline-text-3" id="text-2-2">
 </div><div id="outline-container-sec-2-2-1" class="outline-4">
 <h4 id="sec-2-2-1">用语法规则定义集合</h4>
 <div class="outline-text-4" id="text-2-2-1">
+\begin{align}
+  List-of-Int &::= ()  \\
+              &::= (Int . List-of-Int)
+\end{align}
+
 <p>
 可以缩写为:
 </p>
+\begin{equation}
+  List-of-Int ::= () | (Int . List-of-Int)
+\end{equation}
 </div>
 </div>
+
 <div id="outline-container-sec-2-2-2" class="outline-4">
 <h4 id="sec-2-2-2">The Smaller-Subproblem Principle</h4>
 <div class="outline-text-4" id="text-2-2-2">
@@ -486,6 +502,14 @@ the data type.
 </ol>
 <p>
 举个例子, 比如lambda calculus的语法定义是这样:
+</p>
+\begin{align}
+  Lc-exp &::= Identifier \\
+         &::= (lambda \ (Identifier) \ Lc-exp) \\
+         &::= (Lc-exp \ Lc-exp)
+\end{align}
+
+<p>
 我们来定义它的interface(<b>注意是接口,不是实现</b>).
 </p>
 <ol class="org-ol">
@@ -744,19 +768,46 @@ data used by this task at the point it has been interrupted
 The set of lambda-calculus expressions can be defined with following
 grammar:
 </p>
+\begin{eqnarray*}
+  M,N,L   &=& X  \\
+          &|& (\lambda X.M)  \\
+          &|& (M \ M)  \\
+  X       &=& \textrm{a variable x,y ...}  \\
+
+\end{eqnarray*}
 </div>
 </div>
+
 <div id="outline-container-sec-7-2" class="outline-3">
 <h3 id="sec-7-2">Relations</h3>
 <div class="outline-text-3" id="text-7-2">
 <ol class="org-ol">
 <li>FV: a relation(function) that maps a lambda calculus expression to a set
 free variables.
+\begin{eqnarray*}
+  FV(X) &=& \{ X \}  \\
+  FV( (\lambda X.M) ) &=& FV(M) / \{X \}  \\
+  FV( (M_1 M_2) ) &=& FV(M_1) \cup FV(M_2)  \\
+
+\end{eqnarray*}
 </li>
+
 <li>\(\_[\_ \leftarrow \_]\): a relation that maps a source expression, a
 variable, and an argument expression to a target expression. The target
 expression is the same as the source expression, except that free
 instances of the variable are replaced by the argument expression:
+
+\begin{eqnarray*}
+  X_1[X_1 \leftarrow M]       &=& M     \\
+  X_2[X_1 \leftarrow M]       &=& X_2    \\
+  (\lambda X_1.M_1)[X_1 \leftarrow M_2]    &=& (\lambda X_1.M_1)   \\
+  (\lambda X_1.M_1)[X_2 \leftarrow M_2]    &=& (\lambda X_3.M_1[X_1 \leftarrow X_3][X_2 \leftarrow M_2]) \\
+                                             && where\ X_1 \neq X_2  \quad
+                                             X_3 \notin FV(M_1) / \{X_1\} \quad
+                                             X_3 \notin FV(M_2) \\
+  (M_1 M_2)[X \leftarrow M_3]      &=& (M_1[X \leftarrow M_3] M_2[X \leftarrow M_3])\\
+
+\end{eqnarray*}
 </li>
 
 <li>&alpha; conversion: a relation that maps a expression to another expression
@@ -766,7 +817,13 @@ with formal argument changed.
 </li>
 
 <li>&eta; equivalence
+\begin{eqnarray*}
+  (\lambda X. M)        &\alpha&   (\lambda Y.M[X \leftarrow Y])   &where\ Y \notin FV(M) \\
+  ((\lambda X.M_1) M2)   &\beta&    M_1[X \leftarrow M_2]         & \\
+  (\lambda X.(M X))     &\eta&     M                              &where\ X \notin FV(M)  \\
+\end{eqnarray*}
 </li>
+
 <li>\(n = \alpha \cup \beta \cup \eta\)
 </li>
 <li>\(\rightarrow_n^\alpha, \rightarrow_n^\beta, \rightarrow_n^\eta\) is the
@@ -801,6 +858,12 @@ An expression is in normal form if it cann't be reduced by
 
 <p>
 not every lambda calculus expression has a normal form. for example:
+</p>
+\begin{displaymath}
+  \Omega = ((\lambda x.x \ x) (\lambda x.x \ x))
+\end{displaymath}
+
+<p>
 don't have normal form.
 </p>
 </div>
@@ -830,6 +893,16 @@ to a value.
 </div><div id="outline-container-sec-7-5-1" class="outline-4">
 <h4 id="sec-7-5-1">boolean</h4>
 <div class="outline-text-4" id="text-7-5-1">
+\begin{eqnarray*}
+  true &=& \lambda t. \lambda f.t   \\
+  false &=& \lambda t.\lambda f.f    \\
+  if &=& \lambda v. \lambda t.\lambda f. v\ t\ f  \\
+
+  and &=& \lambda m.\lambda n. ((m\ n)\ false)      \\
+  or &=& \lambda m.\lambda n.((m\ true)\ n)         \\
+  not &=& \lambda m. if \ m \ false \ true
+\end{eqnarray*}
+
 <p>
 lambda calculus is call by name. so ``if'' can be implemented as a function.
 </p>
@@ -838,6 +911,12 @@ lambda calculus is call by name. so ``if'' can be implemented as a function.
 <div id="outline-container-sec-7-5-2" class="outline-4">
 <h4 id="sec-7-5-2">pair</h4>
 <div class="outline-text-4" id="text-7-5-2">
+\begin{eqnarray*}
+  mkpair &=& \lambda m.\lambda n. \lambda b. b\ m\ n   \\
+  fst &=& \lambda p. p \ true   \\
+  snd &=& \lambda p. p \ false
+\end{eqnarray*}
+
 <p>
 b is true or false
 </p>
@@ -846,6 +925,23 @@ b is true or false
 <div id="outline-container-sec-7-5-3" class="outline-4">
 <h4 id="sec-7-5-3">number</h4>
 <div class="outline-text-4" id="text-7-5-3">
+\begin{eqnarray*}
+  zero &=& \lambda s.\lambda z. z     \\
+  one &=& \lambda s.\lambda z.s\ z     \\
+  two &=& \lambda s.\lambda z.s\ s\ z     \\
+  ...                                 \\
+  add1 &=& \lambda n. \lambda s.\lambda z. (s (n\ s\ z))  \\
+  add &=& \lambda m. \lambda n. m\ add1\ n                \\
+  add &=& \lambda m. \lambda n.\lambda s.\lambda z. m\ s (n\ s\ z) \\
+  mul &=& \lambda m.\lambda n. m (add\ n) zero    \\
+
+  zz &=& pair\ zero\ zero                         \\
+  ss &=& \lambda p. mkpair (snd\ p) (add1 (snd\ p))    \\
+  sub1 &=& \lambda n. fst (n\ ss\ zz)                 \\
+  sub &=& \lambda m.\lambda n.\lambda s.\lambda z. n\ sub1\ m
+
+\end{eqnarray*}
+
 <p>
 <code>s</code> means successor, <code>z</code> means zero. ``zero'' is same with ``false''.
 </p>
@@ -853,31 +949,86 @@ b is true or false
 </div>
 <div id="outline-container-sec-7-5-4" class="outline-4">
 <h4 id="sec-7-5-4">list</h4>
+<div class="outline-text-4" id="text-7-5-4">
+\begin{eqnarray*}
+  [x, y, z] &=& \lambda c.\lambda n. (c\ x\ (c\ y\ (c\ z\ n)))         \\
+  nil &=& \lambda c.\lambda n. n                       \\
+  cons &=& \lambda e.\lambda l.\lambda c.\lambda n. (c\ e\ (l\ c\ n))   \\
+  isnil &=& \lambda l. l (\lambda x. false) true                       \\
+  head &=& \lambda l. l\ true\ true                 \\
+
+  nn &=& (mkpair\ nil\ nil)                        \\
+  ss &=& \lambda e.\lambda p. mkpair (snd\ p) (cons\ e\ (snd\ p)) \\
+  tail &=& \lambda l. fst (l\ ss\ nn)
+\end{eqnarray*}
 </div>
 </div>
+</div>
+
 <div id="outline-container-sec-7-6" class="outline-3">
 <h3 id="sec-7-6">Y Combinator</h3>
 <div class="outline-text-3" id="text-7-6">
 <p>
 假设要在lambda calculus中构造递归函数mul,那么最直观的想法就是:
+</p>
+\begin{displaymath}
+  mult = \lambda n.\lambda m.if\ (iszero\ n)\ 0\ (add\ m\ (mult\ (sub1\ n)\ m))
+\end{displaymath}
+
+<p>
 可是上述构造是不合法的,因为你不能在函数体引用你正在定义的函数, 所以函数体不
 能有 <code>mult</code>:
+</p>
+\begin{displaymath}
+  mkmult0 = \lambda t.\lambda n.\lambda m.if\ (iszero\ n)\ 0\ (add\ m\ (t\ (sub1\ n)\ m))
+\end{displaymath}
+
+<p>
 假设我们已经构造出了mult,那么 (mkmult0 mult) 就是mult了, 可是实际上我们没有
 构造出mult,所以mkmult0 仍然不能定义出mult, 同时应该看到一点: mult是mkmult0的
 不动点,因此如果我们有一个算子可以求一个函数的不动点,那么就可以将这个算子应用
 到 mkmult0 来得到 mult.
 </p>
 
+\begin{displaymath}
+  mkmult1 = \lambda t.\lambda n.\lambda m.if\ (iszero\ n)\ 0\ (add\ m\ ((t\ t)\ (sub1\ n)\ m))
+\end{displaymath}
+
 <p>
 (mkmult1 mkmult1)就是mult了,这就是一个定义递归函数的常用方法了,可是这个方法
 比较笨拙,因为我们每一次调用必须将mkmult1应用于自身.更好的做法应该是能将自我
 应用的部分提取出来,现在我们假设有一个 <code>mk</code> 函数
+</p>
+\begin{displaymath}
+  mk = \lambda t.t\ (mk\ t)
+\end{displaymath}
+
+<p>
 这个函数可以构造出mult: (mk mkmult0),可是 <code>mk</code> 的定义是递归的也犯了最开始定
 义mul时同样的错误,所以我们使用 <code>mkmult1</code> 类似的方式来变换一下:
+</p>
+\begin{eqnarray*}
+  mkmk &=& \lambda k.\lambda t.t ((k\ k)\ t)  \\
+  mk   &=& (mkmk\ mkmk)
+\end{eqnarray*}
+
+<p>
 因此我们得到了一个很重要的性质:
+</p>
+\begin{displaymath}
+  (mkmult0\ (mk\ mkmult0)) = (mk\ mkmult0)
+\end{displaymath}
+
+<p>
 那么 <code>(mk mkmult0)</code> 产生的函数就是 <code>mkmult0</code> 的不动点,而 <code>mk</code> 就是不动点算子,也
 就是说将 <code>mk</code> 作用于一个函数就可以得到该函数的不动点, Y Combinator是一个更常
 用的不动点算子:
+</p>
+\begin{displaymath}
+  Y = \lambda f.(\lambda x.f\ (x\ x))\ (\lambda x.f\ (x\ x))
+\end{displaymath}
+
+<p>
 这是一个Y combinator的推导过程(slideshare需翻墙):
 </p>
 <iframe src="http://www.slideshare.net/slideshow/embed_code/12319464"
@@ -933,11 +1084,32 @@ operations.
 </div>
 <div id="outline-container-sec-8-1" class="outline-3">
 <h3 id="sec-8-1">terms</h3>
+<div class="outline-text-3" id="text-8-1">
+\begin{eqnarray*}
+    M, N, L, K  &=&  X      \\
+                &|&  (\lambda X.M )  \\
+                &|&  (M \ M)  \\
+                &|&  b  \\
+                &|&  (o^n \ M \ M ... M)  \\
+    X           &=&  \textrm{a variable x, y, z ...}  \\
+    b           &=&  \textrm{a basic constant}  \\
+    o^n         &=&  \textrm{a n-ary primitive operation}  \\
+\end{eqnarray*}
 </div>
+</div>
+
 <div id="outline-container-sec-8-2" class="outline-3">
 <h3 id="sec-8-2">Values</h3>
+<div class="outline-text-3" id="text-8-2">
+\begin{eqnarray*}
+    V,U,W   &=&  b                     &\textrm{;constant}  \\
+            &|&  X                     &\textrm{;variable}  \\
+            &|&  (\lambda X.M)                &\textrm{;function}  \\
+\end{eqnarray*}
 </div>
 </div>
+</div>
+
 <div id="outline-container-sec-9" class="outline-2">
 <h2 id="sec-9">Standard reduction</h2>
 <div class="outline-text-2" id="text-9">
@@ -958,6 +1130,33 @@ a redex in there.
 <div class="outline-text-2" id="text-10">
 </div><div id="outline-container-sec-10-1" class="outline-3">
 <h3 id="sec-10-1">CC Machine</h3>
+<div class="outline-text-3" id="text-10-1">
+\begin{eqnarray*}
+  \left\langle \left( M N \right), E \right\rangle  &
+  \mapsto_{cc} & \left\langle M, E \left[ \left( \left[  \right] N
+  \right) \right] \right\rangle\\
+  \left\langle \left( V_1 N \right), E \right\rangle & \mapsto_{cc} &
+  \left\langle N, E \left[ \left( V_1  \left[  \right] \right) \right]
+  \right\rangle\\
+  \left\langle \left( o^n V_1 \ldots V_i M N \ldots \right) , E
+  \right\rangle & \mapsto_{cc} & \left\langle M, E \left[ \left( o^n
+  V_1 \ldots V_i  \left[  \right] N \ldots \right) \right] \right\rangle\\
+  \left\langle \left( \left( \lambda X.M \right) V \right), E \right\rangle &
+  \mapsto_{cc} & \left\langle M \left[ X \leftarrow V \right], E
+  \right\rangle\\
+  \left\langle \left( o^m b_1 \ldots b_m \right), E \right\rangle &
+  \mapsto_{cc} & \left\langle V, E \right\rangle\\
+  \left\langle V, E \left[ \left( \left[  \right] N \right) \right]
+  \right\rangle & \mapsto_{cc} & \left\langle \left( V N \right), E
+  \right\rangle\\
+  \left\langle V, E \left[ \left( U \left[  \right] \right) \right]
+  \right\rangle & \mapsto_{cc} & \left\langle \left( U V \right), E
+  \right\rangle\\
+  \left\langle V, E \left[ \left( o^n V_1 \ldots V_i  \left[  \right] N \ldots
+  \right) \right] \right\rangle & \mapsto_{cc} & \left\langle \left(
+  o^n V_1 \ldots V_i V N \ldots \right) , E \right\rangle
+\end{eqnarray*}
+</div>
 </div>
 </div>
 </div>

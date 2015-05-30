@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>java syntax note</title>
-<!-- 2015-05-24 Sun 19:04 -->
+<!-- 2015-05-30 Sat 22:00 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -188,33 +188,35 @@ for the JavaScript code in this tag.
 <li><a href="#sec-2-5">接口(interface)</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">exception(异常)</a>
+<li><a href="#sec-3">杂七杂八</a></li>
+<li><a href="#sec-4">exception(异常)</a>
 <ul>
-<li><a href="#sec-3-1">异常使用的建议</a></li>
+<li><a href="#sec-4-1">异常使用的建议</a></li>
 </ul>
 </li>
-<li><a href="#sec-4">日志</a>
+<li><a href="#sec-5">日志</a>
 <ul>
-<li><a href="#sec-4-1">使用建议</a></li>
+<li><a href="#sec-5-1">使用建议</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">java标准库</a>
+<li><a href="#sec-6">java标准库</a>
 <ul>
-<li><a href="#sec-5-1">java.lang(默认导入)</a>
+<li><a href="#sec-6-1">java.lang(默认导入)</a>
 <ul>
-<li><a href="#sec-5-1-1">java.lang.String(字符串)</a></li>
-<li><a href="#sec-5-1-2">java.lang.StringBuilder</a></li>
-<li><a href="#sec-5-1-3">java.lang.Math</a></li>
-<li><a href="#sec-5-1-4">java.lang.System</a></li>
+<li><a href="#sec-6-1-1">java.lang.String(字符串)</a></li>
+<li><a href="#sec-6-1-2">java.lang.StringBuilder</a></li>
+<li><a href="#sec-6-1-3">java.lang.Math</a></li>
+<li><a href="#sec-6-1-4">java.lang.System</a></li>
 </ul>
 </li>
-<li><a href="#sec-5-2">java.util</a>
+<li><a href="#sec-6-2">java.util</a>
 <ul>
-<li><a href="#sec-5-2-1">java.util.Date(Time)</a></li>
-<li><a href="#sec-5-2-2">java.util.GregorianCalendar(日历)</a></li>
-<li><a href="#sec-5-2-3">java.util.ArrayList</a></li>
+<li><a href="#sec-6-2-1">java.util.Date(Time)</a></li>
+<li><a href="#sec-6-2-2">java.util.GregorianCalendar(日历)</a></li>
+<li><a href="#sec-6-2-3">java.util.ArrayList</a></li>
 </ul>
 </li>
+<li><a href="#sec-6-3">java集合</a></li>
 </ul>
 </li>
 </ul>
@@ -240,7 +242,11 @@ java welcome
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">OOP</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
+<p>
+OOP编程范式最核心的三大概念：继承，封装，多态。
+</p>
+</div>
+<div id="outline-container-sec-2-1" class="outline-3">
 <h3 id="sec-2-1">package</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
@@ -322,7 +328,12 @@ e.getSalary<span style="color: #DCDCCC;">()</span>;
 </pre>
 </div>
 <p>
-上面的getSalary调用的是 Manager的方法,而不是Employee的方法.
+上面的getSalary调用的是 Manager的方法,而不是Employee的方法.这实际就是所
+谓的 <b>多态</b>, 也就是说相同的编译时类型调用相同的方法可能呈现出不同的行为.这
+里需要注意的是e只能调用Employee类拥有的方法，虽然这里的e是一个Manager实
+例，但是它不能调用 <code>setBonus</code> 方法，如果你调用那么编译器会报错，这好理解，
+因为编译时，e是一个Employee类型的变量. 而Employee类型很显然没有
+<code>setBonus</code> 方法。
 </p>
 </li>
 <li>父类变量要赋给子类变量,则必须使用强制转化, 比如类 Manager 是 Employee
@@ -413,6 +424,9 @@ Object是所有类的超类,该类有有一些方法建议每一个类都重载:
 <span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
+<p>
+实际上一般抽象类主要用来作为创建其它类的模板。
+</p>
 </div>
 </div>
 <div id="outline-container-sec-2-4" class="outline-3">
@@ -497,13 +511,30 @@ interface中的方法自动为public.
 </pre>
 </div>
 </li>
+<li>接口类型的变量只能调用接口中定义的方法，这和多态的情况是一样的，因为只有
+这样才能通过编译时检查.
+</li>
 </ol>
 </div>
 </div>
 </div>
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">exception(异常)</h2>
+<h2 id="sec-3">杂七杂八</h2>
 <div class="outline-text-2" id="text-3">
+<ol class="org-ol">
+<li>java提供了八种基本类型(byte,short,int,long,char,boolean,float,double)这些类型
+不是对象，但是java提供了包装对象，并且在适当的地方会自动的装箱和拆箱
+(boxing,unboxing).java中所有的对象类型都是引用类型
+</li>
+<li>==与equals： 前者在基本类型为数值并且值相等时有效，对引用类型只有两个引用指向
+同一个对象时才相等。
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">exception(异常)</h2>
+<div class="outline-text-2" id="text-4">
 
 <div class="figure">
 <p><img src="static/img/exceptions.png" alt="exceptions.png" />
@@ -570,9 +601,9 @@ loadImage有可能抛出两个异常,如果一个方法没有声明 throws语句
 以用来清理资源
 </p>
 </div>
-<div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">异常使用的建议</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1">异常使用的建议</h3>
+<div class="outline-text-3" id="text-4-1">
 <ol class="org-ol">
 <li>如果一个方法中调用了一个能够抛出异常的方法,那么这时候有两个选择,一是如果
 目前能够处理该异常, 那么就使用try catch来捕获该异常.二是将该异常传递给该
@@ -592,9 +623,9 @@ loadImage有可能抛出两个异常,如果一个方法没有声明 throws语句
 </div>
 </div>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">日志</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">日志</h2>
+<div class="outline-text-2" id="text-5">
 <ol class="org-ol">
 <li>获得logger, 主要是使用 Logger类的 getLogger工厂方法, 该方法只有在logger
 不存在时才创建
@@ -655,9 +686,9 @@ logger.addHandler<span style="color: #DCDCCC;">(</span>hd<span style="color: #DC
 </pre>
 </div>
 </div>
-<div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1">使用建议</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1">使用建议</h3>
+<div class="outline-text-3" id="text-5-1">
 <ol class="org-ol">
 <li>将logger 命名为与主应用程序包一样的名字.
 <div class="org-src-container">
@@ -683,15 +714,15 @@ logger.addHandler<span style="color: #DCDCCC;">(</span>hd<span style="color: #DC
 </div>
 </div>
 
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5">java标准库</h2>
-<div class="outline-text-2" id="text-5">
-</div><div id="outline-container-sec-5-1" class="outline-3">
-<h3 id="sec-5-1">java.lang(默认导入)</h3>
-<div class="outline-text-3" id="text-5-1">
-</div><div id="outline-container-sec-5-1-1" class="outline-4">
-<h4 id="sec-5-1-1">java.lang.String(字符串)</h4>
-<div class="outline-text-4" id="text-5-1-1">
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">java标准库</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1">java.lang(默认导入)</h3>
+<div class="outline-text-3" id="text-6-1">
+</div><div id="outline-container-sec-6-1-1" class="outline-4">
+<h4 id="sec-6-1-1">java.lang.String(字符串)</h4>
+<div class="outline-text-4" id="text-6-1-1">
 <p>
 字符串是不可变的.所以修改会返回一个新的字符串
 </p>
@@ -727,9 +758,9 @@ logger.addHandler<span style="color: #DCDCCC;">(</span>hd<span style="color: #DC
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5-1-2" class="outline-4">
-<h4 id="sec-5-1-2">java.lang.StringBuilder</h4>
-<div class="outline-text-4" id="text-5-1-2">
+<div id="outline-container-sec-6-1-2" class="outline-4">
+<h4 id="sec-6-1-2">java.lang.StringBuilder</h4>
+<div class="outline-text-4" id="text-6-1-2">
 <p>
 该类表示的字符串可变,主要是为了效率考虑
 </p>
@@ -743,9 +774,9 @@ builder.append<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5-1-3" class="outline-4">
-<h4 id="sec-5-1-3">java.lang.Math</h4>
-<div class="outline-text-4" id="text-5-1-3">
+<div id="outline-container-sec-6-1-3" class="outline-4">
+<h4 id="sec-6-1-3">java.lang.Math</h4>
+<div class="outline-text-4" id="text-6-1-3">
 <p>
 各种数学函数以及变量, 都是静态函数以及变量
 </p>
@@ -759,21 +790,30 @@ builder.append<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-5-1-4" class="outline-4">
-<h4 id="sec-5-1-4">java.lang.System</h4>
+<div id="outline-container-sec-6-1-4" class="outline-4">
+<h4 id="sec-6-1-4">java.lang.System</h4>
 </div>
 </div>
-<div id="outline-container-sec-5-2" class="outline-3">
-<h3 id="sec-5-2">java.util</h3>
-<div class="outline-text-3" id="text-5-2">
-</div><div id="outline-container-sec-5-2-1" class="outline-4">
-<h4 id="sec-5-2-1">java.util.Date(Time)</h4>
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2">java.util</h3>
+<div class="outline-text-3" id="text-6-2">
+</div><div id="outline-container-sec-6-2-1" class="outline-4">
+<h4 id="sec-6-2-1">java.util.Date(Time)</h4>
 </div>
-<div id="outline-container-sec-5-2-2" class="outline-4">
-<h4 id="sec-5-2-2">java.util.GregorianCalendar(日历)</h4>
+<div id="outline-container-sec-6-2-2" class="outline-4">
+<h4 id="sec-6-2-2">java.util.GregorianCalendar(日历)</h4>
 </div>
-<div id="outline-container-sec-5-2-3" class="outline-4">
-<h4 id="sec-5-2-3">java.util.ArrayList</h4>
+<div id="outline-container-sec-6-2-3" class="outline-4">
+<h4 id="sec-6-2-3">java.util.ArrayList</h4>
+</div>
+</div>
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3">java集合</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+java的集合大体上分为Set，List，Map三类。集合类型的元素必须是引用类型，而不能是基
+本类型，但是一般java会自动装箱
+</p>
 </div>
 </div>
 </div>

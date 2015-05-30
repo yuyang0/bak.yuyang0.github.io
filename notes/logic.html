@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>数理逻辑</title>
-<!-- 2015-05-24 Sun 19:04 -->
+<!-- 2015-05-30 Sat 22:03 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -137,14 +137,14 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script type="text/javascript">
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
         // First allows browser-native MathML display, second forces HTML/CSS
-        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
-            jax: ["input/TeX", "output/HTML-CSS"],
+            config: ["MMLorHTML.js"], jax: ["input/TeX"],
+        //  jax: ["input/TeX", "output/HTML-CSS"],
         extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
                      "TeX/noUndefined.js"],
         tex2jax: {
@@ -606,9 +606,14 @@ a'' &#x2026;
 <p>
 哥德尔的不完全性定理的证明实际就是构造一个类似说谎者悖论的公式
 </p>
+\begin{displaymath}
+       \neg \ \exists a: \exists a': \textrm{TNT-PROOF-PAIR}
+\{a, a'\} \land \textrm{ARITHMOQUINE}\{a'', a'\}
+     \end{displaymath}
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">Propositon logic</h2>
 <div class="outline-text-2" id="text-2">
@@ -703,6 +708,11 @@ a'' &#x2026;
 <li>\(\overset{-}{v}\) 为 \(\overset{-}{S}\) 中每一个合式公式指定一个真值.
 </li>
 </ol>
+\begin{eqnarray*}
+  v : S \rightarrow \{T, F\}   \\
+  \overset{-}{v} :\overset{-}{S} \rightarrow \{T, F\}    \\
+\end{eqnarray*}
+
 <p>
 \(\overset{-}v\) 的存在性可以由递归定理来证明, 因为5个逻辑联接符函数是自由生成
 的, 所以必然可以将 v 由 S 扩展到 \(\overset{-}S\)
@@ -823,11 +833,21 @@ A 与 B有相同的真值.
 </p>
 <ol class="org-ol">
 <li>重言蕴含的基本意义
+\begin{displaymath}
+  \Sigma;\alpha \vDash \beta \quad \textrm{iff} \quad \Sigma \vDash (\alpha \rightarrow \beta)
+\end{displaymath}
 </li>
+
 <li>&alpha;, &beta; 是重言等价的  <b>iff</b>  \(\vDash (\alpha \leftrightarrow \beta)\)
 </li>
 <li>对于任意的合式公式B
+\begin{displaymath}
+  \{A, \neg B\} \vDash B
+\end{displaymath}
+
+<p>
 上式实际就是 \(A \rightarrow (\neg A) \rightarrow B\), 很显然是重言式.
+</p>
 </li>
 </ol>
 </div>
@@ -836,13 +856,38 @@ A 与 B有相同的真值.
 <div class="outline-text-4" id="text-2-4-1">
 <ol class="org-ol">
 <li>分配律
+\begin{eqnarray*}
+  (A \land (B \lor C))  \leftrightarrow (A \land B) \lor (A \land C) \\
+  (A \lor (B \land C))  \leftrightarrow (A \lor B) \land (A \lor C)
+\end{eqnarray*}
 </li>
+
 <li>否定
+\begin{eqnarray*}
+  &(\neg \neg A) \leftrightarrow A  \\
+  &\neg (A \rightarrow B) \leftrightarrow (A \land (\neg B)) \\
+  &\neg (A \leftrightarrow B) \leftrightarrow (A \land (\neg B)) \lor (\neg A \land B)
+\end{eqnarray*}
 </li>
+
 <li>德.摩根
+\begin{eqnarray*}
+  (\neg (A \land B)) \leftrightarrow (\neg A) \lor (\neg B)  \\
+  (\neg (A \lor B)) \leftrightarrow (\neg A) \land (\neg B)
+\end{eqnarray*}
 </li>
+
 <li>其它
+\begin{eqnarray*}
+  &(A \lor (\neg A))  \\
+  &\neg(A \land (\neg A))  \\
+  &(P \rightarrow Q) \leftrightarrow (\neg Q \rightarrow \neg P)   \\
+  &((A \land B) \rightarrow C)  \leftrightarrow (A \rightarrow (B \rightarrow C))
+\end{eqnarray*}
+
+<p>
 最后一个可以这样理解:
+</p>
 <pre class="example">
 if A {
     if B{
@@ -915,8 +960,22 @@ f 和 g 在 C上的限制 f<sub>C</sub> g<sub>C</sub> 必须满足以下条件:
 <li><b>自下而上定义</b>: 设 \(C_*\) 是 B 中的元素经过有限次的使用 f 和 g 得到的所有
 元素的集合, 临时定义一个构造序列是 U 中元素组成的有限序列 &lt;x<sub>1</sub>, x<sub>2</sub>,&#x2026;,
 x<sub>n</sub>&gt;, 那么对任意\(i \leq n\) 它至少满足以下三个条件之一:
+\begin{eqnarray*}
+  &x_i& \in B          \\
+  &x_i& =  f(x_j, x_k) \quad \textrm{j < i and k < i} \\
+  &x_i& =  g(x_j)      \qquad \textrm{j < i}
+\end{eqnarray*}
+
+<p>
 C<sub>n</sub> 是所有长度为 n 的构造序列的最后一个元素组成的集合, 那么 C<sub>1</sub>=B,
+</p>
+\begin{displaymath}
+  C_1 \subseteq C_2 \subseteq C_3 \subseteq ...
+\end{displaymath}
+
+<p>
 \(C_* = \bigcup_n C_n\)
+</p>
 
 <p>
 该定义实际说明了一个重要性质: <b>归纳集合的每一个元素都可以由该元素之前的
@@ -978,16 +1037,42 @@ a<sub>j</sub> 满足该性质, 那么证明 a<sub>n</sub> 也满足该性质
 <div class="outline-text-4" id="text-2-5-3">
 <p>
 U 的子集 C 是由 B 在 f 与 g上 <b>自由生成</b> 的, 其中:
+</p>
+\begin{eqnarray*}
+  f: &U \times U& \rightarrow U   \\
+  g: &U& \rightarrow U
+\end{eqnarray*}
+
+<p>
 V 是集合,函数 F, G 与 f 满足:
+</p>
+\begin{eqnarray*}
+  f: &B& \rightarrow V   \\
+  F: &V \times V& \rightarrow V \\
+  G: &V& \rightarrow V
+\end{eqnarray*}
+
+<p>
 那么存在唯一的函数
+</p>
+\begin{eqnarray*}
+  \overset{-}{h}: C \rightarrow V
+\end{eqnarray*}
+
+<p>
 使得:
 </p>
 <ol class="org-ol">
 <li>对 B 中的 x, \(\overset{-}{h}(x) = h(x)\)
 </li>
 <li>对 C 中 x 与 y:
+\begin{eqnarray*}
+  &\overset{-}{h}(f(x,y)) = F(\overset{-}{h}(x), \overset{-}{h}(y))   \\
+  &\overset{-}{h}(g(x)) = G(\overset{-}{h}(x))
+\end{eqnarray*}
 </li>
 </ol>
+
 <p>
 递归定理说明了, 如果 C 是自由生成的, 那么 B上的函数 \(h\), 必定可以扩展到 C上的
 函数 \(\overset{-}h\)
@@ -1019,15 +1104,27 @@ V 是集合,函数 F, G 与 f 满足:
 </p>
 <ol class="org-ol">
 <li>\(\lnot, \land\) 是完备的
+\begin{eqnarray*}
+  A \lor B            &=& \lnot (\lnot A \land \lnot B)    \\
+  A \rightarrow B     &=& \lnot(A \land \lnot B) = \lnot A \lor B  \\
+  A \leftrightarrow B &=& (A \land B) \lor (\lnot A \land \lnot B)
+\end{eqnarray*}
 </li>
+
 <li>\(\lnot, \lor\) 是完备的
 </li>
 <li>\(\lnot, \rightarrow\) 是完备的
+\begin{eqnarray*}
+  A \land B &=& \lnot(A \rightarrow \lnot B)\\
+  A \lor B  &=& \lnot A \rightarrow B        \\
+  A \leftrightarrow B &=& (A \rightarrow B) \land (B \rightarrow A)
+\end{eqnarray*}
 </li>
 </ol>
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">一阶逻辑</h2>
 <div class="outline-text-2" id="text-3">
@@ -1054,7 +1151,13 @@ term ::= 0<br  />
 </li>
 <li>原子公式: 没有使用逻辑联接符以及量词符号的合式公式, 原子公式相当于命题逻
 辑中命题符号的作用.
+\begin{displaymath}
+  Pt_1 t_2...t_n
+\end{displaymath}
+
+<p>
 其中P是 n元谓词符号, t<sub>n</sub> 是项
+</p>
 
 <p>
 在数论系统一般只有一个谓词等于(=), 所以原子公式有如下形式:
@@ -1068,7 +1171,13 @@ atom  ::= term = term<br  />
 </li>
 <li>自由变量: 和 lambda calculus的 free variable 类似, 量词(&forall;, &exist;,
 etc) 就相当于lambda calculus中的 &lambda; abstraction.
+\begin{eqnarray*}
+  \overset{-}{h}(\xi_\lnot(\alpha)) &=& \overset{-}{h}(\alpha)  \\
+  \overset{-}{h}(\xi_\land(\alpha)) &=& \overset{-}{h}(\alpha)  \\
+  \overset{-}{h}(\forall v_i \alpha) &=& \overset{-}{h}(\alpha) / \{ v_i \}
+\end{eqnarray*}
 </li>
+
 <li>句子: 如果合式公式没有自由变量出现,那么该合式公式就是句子. 之所以叫做句子
 是因为它解释后是一个完整的句子(包含主语). 句子是一个断言,所以它要么为真,
 要么为假
@@ -1101,9 +1210,19 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 <li>形式证明(演绎): 从 &Sigma; 到 &varphi; 的一个 <b>演绎</b>,
 </li>
 <li>假言推理: 从公式 \(\alpha, \alpha \rightarrow \beta\) 可以推出 &beta;.
+\begin{displaymath}
+  \frac{\alpha, \alpha \rightarrow \beta}{\beta}
+\end{displaymath}
 </li>
+
 <li>理论(theory): 逻辑蕴含意义下封闭的 <b>句子</b> 集合.
+\begin{displaymath}
+  T \vDash \sigma \rightarrow \sigma \in T
+\end{displaymath}
+
+<p>
 注意仅仅指句子
+</p>
 </li>
 </ol>
 </div>
@@ -1223,6 +1342,12 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 
 <p>
 结构有时候可以非形式的写成一行,比如下面:
+</p>
+\begin{displaymath}
+  \mathfrak{A} = (\mathbb{N}; \le, S, 0)
+\end{displaymath}
+
+<p>
 依次指定了论域, 谓词, 函数, 常数
 </p>
 </div>
@@ -1247,7 +1372,19 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 <p>
 那么定义对于 \(\mathfrak{A}\), s 满足 \(\varphi\) 的含义(也就是使 \(\varphi\) 为
 真)是:
+</p>
+\begin{displaymath}
+  \vDash_\mathfrak{A} \varphi[s]
+\end{displaymath}
+
+<p>
 还有一种表示方法:
+</p>
+\begin{displaymath}
+  \vDash_\mathfrak{A} \varphi \lVert a_1, ..., a_k\rVert
+\end{displaymath}
+
+<p>
 上面的意思是说 \(\varphi\) 中自由出现的变量为 \(v_1, ..., v_k\), 那么为这些自由
 变量依次指定论域中的元素为 \(a_1, ..., a_k\).
 </p>
@@ -1261,7 +1398,19 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 
 <p>
 <code>s</code> 是一个变量到论域的函数(V 是变量的集合):
+</p>
+\begin{displaymath}
+  s: V \rightarrow |\mathfrak{A}|
+\end{displaymath}
+
+<p>
 项可以如下定义:
+</p>
+\begin{displaymath}
+  \overset{-}{s} : T \rightarrow |\mathfrak{A}|
+\end{displaymath}
+
+<p>
 \(\overset{-}{s}\) 的递归定义如下:
 </p>
 <ol class="org-ol">
@@ -1270,10 +1419,14 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 <li>x 是常数符号, 那么: \(\overset{-}{s} = c^\mathfrak{A}\)
 </li>
 <li>如果 t<sub>1</sub>, t<sub>2</sub>&#x2026; t<sub>n</sub> 是项, f是一个n元函数符号,那么:
+\begin{displaymath}
+  \overset{-}{s}(f t_1t_2...t_n) = f^\mathfrak{A}(\overset{-}{s}(t_1), \overset{-}{s}(t_2)...\overset{-}{s}(t_n))
+\end{displaymath}
 </li>
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-3-3-1-2" class="outline-5">
 <h5 id="sec-3-3-1-2">原子公式</h5>
 <div class="outline-text-5" id="text-3-3-1-2">
@@ -1283,12 +1436,20 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 
 <ol class="org-ol">
 <li>对等于符号而言:
+\begin{displaymath}
+  \vDash_\mathfrak{A} \ = t_1t_2[s] \quad \textrm{iff} \quad \overset{-}{s}(t_1)=\overset{-}{s}(t_2)
+\end{displaymath}
 </li>
+
 <li>对n元谓词符号 P:
+\begin{displaymath}
+  \vDash_\mathfrak{A} Pt_1 ... t_n[s]  \quad \textrm{iff} \quad \langle \overset{-}{s}(t_1) ... \overset{-}{s}(t_n) \rangle \in P^\mathfrak{A}
+\end{displaymath}
 </li>
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-3-3-1-3" class="outline-5">
 <h5 id="sec-3-3-1-3">其它合式公式</h5>
 <div class="outline-text-5" id="text-3-3-1-3">
@@ -1296,18 +1457,41 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 <li>原子公式同上
 </li>
 <li>对 \(\lnot\) 逻辑符号
+\begin{displaymath}
+  \vDash_\mathfrak{A} \lnot \varphi[s] \quad \textrm{iff} \quad \nvDash_\mathfrak{A} \varphi[s]
+\end{displaymath}
 </li>
+
 <li>对 &rarr; 逻辑符号而言:
+\begin{displaymath}
+  \vDash_\mathfrak{A} (\varphi \rightarrow \psi)[s] \quad \textrm{iff} \quad \vDash_\mathfrak{A} \varphi[s] \ \rightarrow \ \vDash_\mathfrak{A}\psi[s]
+\end{displaymath}
+
+<p>
 也就是说, \(\nvDash_\mathfrak{A} \varphi[s]\) 或者 \(\vDash_\mathfrak{A}
         \varphi[s] \ \land \ \vDash_\mathfrak{A} \psi[s]\)
+</p>
 </li>
 <li>对 &forall; 量词符号而言:
+\begin{displaymath}
+  \vDash_\mathfrak{A} \forall x \varphi[s] \quad \textrm{iff} \quad \forall d \in |\mathfrak{A}|(\vDash_\mathfrak{A} \varphi[s(x|d)])
+\end{displaymath}
+
+<p>
 s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其定义如下:
+</p>
+\begin{displaymath}
+  s (x|d)(y) = \left\{ \begin{array}{ll}
+      d    & \textrm{if $y=x$} \\
+      s(y) & \textrm{if $y \ne x$}
+      \end{array} \right.
+\end{displaymath}
 </li>
 </ol>
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-3-3-2" class="outline-4">
 <h4 id="sec-3-3-2">缩写</h4>
 <div class="outline-text-4" id="text-3-3-2">
@@ -1338,9 +1522,19 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 <div class="outline-text-4" id="text-3-3-3">
 <ul class="org-ul">
 <li>某个类中每个对象都有某种属性:
+\begin{displaymath}
+  \forall v(\_ \rightarrow \_)
+\end{displaymath}
 </li>
+
 <li>某个类中某些对象有某个属性:
+\begin{displaymath}
+  \exists v(\_ \land \_)
+\end{displaymath}
+
+<p>
 假设A代表是"是苹果", B代表"是烂的", 那么:
+</p>
 </li>
 <li>\(\forall x(Ax \rightarrow Bx)\): 所有的苹果都是烂的
 </li>
@@ -1365,7 +1559,17 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 </div>
 <div id="outline-container-sec-3-4-1" class="outline-4">
 <h4 id="sec-3-4-1">examples</h4>
+<div class="outline-text-4" id="text-3-4-1">
+\begin{eqnarray*}
+  \forall v_1 Q v_1 \vDash Q v_2  \\
+  Qv_1 \nvDash \forall v_2 Q v_2   \\
+  \forall v_1 Q v_1 \vDash \exists v_2 Q v_2  \\
+  \exists x \forall y Pxy \vDash \forall y \exists x Pxy   \\
+  \forall y \exists x Pxy \nvDash \exists x \forall y Pxy
+\end{eqnarray*}
 </div>
+</div>
+
 <div id="outline-container-sec-3-4-2" class="outline-4">
 <h4 id="sec-3-4-2">几个结论</h4>
 <div class="outline-text-4" id="text-3-4-2">
@@ -1375,16 +1579,38 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 </p>
 <ol class="org-ol">
 <li>一个重要的结论:
+\begin{displaymath}
+\Gamma;\alpha \vDash \varphi \quad \textrm{iff} \quad \Gamma \vDash (\alpha \rightarrow \varphi)
+\end{displaymath}
+
+<p>
 这个结论也有这样的形式:
+</p>
+\begin{displaymath}
+  \{a_1, a_2, ..., a_n\} \vDash \varphi \quad \textrm{iff} \quad \vDash (a_1 \rightarrow a_2 \rightarrow ... \rightarrow a_n)
+\end{displaymath}
+
+<p>
 上述转换从直观角度不言而喻.
+</p>
 </li>
 <li>根据紧致性定理, 必存在
+\begin{displaymath}
+  \{\gamma_1, \gamma_2, ..., \gamma_n\} \subseteq \Gamma
+\end{displaymath}
+
+<p>
 使得如果 \(\Gamma \vDash \varphi\), 那么:
+</p>
+\begin{displaymath}
+  \vDash \gamma_1 \rightarrow \gamma_2 \rightarrow ... \rightarrow \gamma_n \rightarrow \varphi
+\end{displaymath}
 </li>
 </ol>
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-3-5" class="outline-3">
 <h3 id="sec-3-5">同态(homomorphism)</h3>
 <div class="outline-text-3" id="text-3-5">
@@ -1394,10 +1620,19 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 </p>
 <ol class="org-ol">
 <li>对谓词
+\begin{displaymath}
+  \langle a_1, ..., a_k\rangle \in P^\mathfrak{A} \quad \textrm{iff} \quad
+  \langle h(a_1), ..., h(a_k)\rangle \in P^\mathfrak{B}
+\end{displaymath}
 </li>
+
 <li>对函数
+\begin{displaymath}
+  h(f^\mathfrak{A}(a_1, ..., a_k)) = f^\mathfrak{B}(h(a_1), ..., h(a_k)))
+\end{displaymath}
 </li>
 </ol>
+
 <p>
 也就是说,两个结构会保持相同的谓词以及函数关系, 如果 h 是一对一的, 那么二者是
 <b>同构</b> 的.
@@ -1483,6 +1718,14 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 注意这里的公理是逻辑推理的公理, 它对任何一阶语言都是一样的, 但是对于一个公
 理化的数学理论, 该理论自身会有一些公理, 比如数论的公理化系统中就会有数个公
 理:
+</p>
+\begin{eqnarray*}
+  &\forall x & Sx \ne 0   \\
+  &\forall x & x + 0 = x   \\
+  &\forall x \forall y & x + Sy = S(x + y)
+\end{eqnarray*}
+
+<p>
 当然数论系统的公理不只上面3个, 这些理论自身的公理就放在 &Gamma; 中.
 </p>
 </div>
@@ -1493,7 +1736,13 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 <div class="outline-text-4" id="text-3-6-2">
 <ol class="org-ol">
 <li>\(\vDash, \vdash\) 的关系
+\begin{displaymath}
+  \Gamma \vdash \varphi \quad \textrm{iff} \quad \Gamma \cup \Lambda \vDash \varphi
+\end{displaymath}
+
+<p>
 <b>proof</b>: 正向: 归纳法, 反向: 紧致性定理
+</p>
 </li>
 <li><b>概化定理</b>:如果 \(\Gamma \vdash \varphi\) 且x不在 &Gamma; 中任何公式中自由
 出现, 那么 \(\Gamma \vdash \forall x \varphi\)
