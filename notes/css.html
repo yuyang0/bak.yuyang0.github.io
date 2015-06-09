@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>css笔记</title>
-<!-- 2015-05-24 Sun 19:04 -->
+<!-- 2015-06-09 Tue 13:01 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -135,6 +135,48 @@ for the JavaScript code in this tag.
    if(elem.cacheClassTarget)
      target.className = elem.cacheClassTarget;
  }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+            config: ["MMLorHTML.js"], jax: ["input/TeX"],
+        //  jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
 /*]]>*///-->
 </script>
 </head>
@@ -1266,6 +1308,28 @@ border-image 是border-image-* 的简写
 transform的变换实际就是一次坐标变换，也就是待变换的元素中的每一个点
 (x,y)都通过一个变换得到一个新的坐标(x1, y1),然后该点就在(x1,y1)处显示
 出来，所以关键就是(x, y) =&gt; (x1, x2)的变换过程:
+</p>
+\begin{equation}
+  \left( \begin{array}{ccc}
+    a & b & tx \\
+    c & d & ty \\
+    0 & 0 & 1
+  \end{array} \right)
+\times
+  \left( \begin{array}{c}
+    x \\
+    y \\
+    1
+  \end{array} \right)
+  =
+  \left( \begin{array}{c}
+    x2 \\
+    y2 \\
+    1
+  \end{array} \right)
+\end{equation}
+
+<p>
 一个3×3的矩阵 乘以 3×1的矩阵结果是一个3×1的矩阵，所以:
 </p>
 <pre class="example">

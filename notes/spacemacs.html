@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
 <head>
 <title>spacemacs笔记</title>
-<!-- 2015-05-24 Sun 21:29 -->
+<!-- 2015-06-09 Tue 13:01 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -174,6 +174,7 @@ for the JavaScript code in this tag.
 <li><a href="#sec-1">1. evil-mode</a>
 <ul>
 <li><a href="#sec-1-1">1.1. 常用的命令：</a></li>
+<li><a href="#sec-1-2">1.2. visual mode</a></li>
 </ul>
 </li>
 <li><a href="#sec-2">2. spacemacs键绑定</a>
@@ -229,6 +230,36 @@ for the JavaScript code in this tag.
 <li><code>:2,20s/old/new/g</code>: 替换第2行到第20行之间的old为new
 </li>
 </ul>
+</li>
+<li>.: 重复上一条命令
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> visual mode</h3>
+<div class="outline-text-3" id="text-1-2">
+<ol class="org-ol">
+<li>v(字符可视化), V(行可视化) C-v(列可视化)
+</li>
+<li>vi{,vi[, vi(, vi&lt;, vis, vip: 选中{}, [], (), &lt;&gt;, 句子，段落。
+</li>
+<li>d/D: 删除选中的文本，前者仅仅只删除选中的文本，而后者会删除所有选中文本所在
+的行，即便该行只有一部分文本被选中
+</li>
+<li>y/Y: 复制选中的文本，后者会复制所有的行
+</li>
+<li>c/C: 删除所有选中的文本同时进入编辑模式。
+</li>
+<li>&lt;, &gt;: 选中的字符左移或者右移shiftwidth个字符
+</li>
+<li>u/U/~: 选中的文本全部变小写/变大写/反转大小写。
+</li>
+<li>I: 所有行的开头插入
+</li>
+<li>A: 在所有行的末尾插入
+</li>
+<li>J: 将所有选中的行用空格连接起来
 </li>
 </ol>
 </div>
