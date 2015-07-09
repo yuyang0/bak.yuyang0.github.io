@@ -3,7 +3,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
       <loc>https://yuyang0.github.io/sitemap.html</loc>
-      <lastmod>2015-06-09</lastmod>
+      <lastmod>2015-07-09</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -68,6 +68,12 @@
       <priority>0.5</priority>
    </url>
 <url>
+      <loc>https://yuyang0.github.io/notes/big-data.html</loc>
+      <lastmod>2015-07-09</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+<url>
       <loc>https://yuyang0.github.io/notes/client-javascript.html</loc>
       <lastmod>2015-01-05</lastmod>
       <changefreq>weekly</changefreq>
@@ -87,7 +93,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/c-dev-skills.html</loc>
-      <lastmod>2015-05-21</lastmod>
+      <lastmod>2015-07-09</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -99,7 +105,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/dpark.html</loc>
-      <lastmod>2015-06-08</lastmod>
+      <lastmod>2015-06-15</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -231,7 +237,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/javascript.html</loc>
-      <lastmod>2015-01-05</lastmod>
+      <lastmod>2015-06-15</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -339,19 +345,19 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/index.html</loc>
-      <lastmod>2015-05-26</lastmod>
+      <lastmod>2015-07-09</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
 <url>
       <loc>https://yuyang0.github.io/sitemap.html</loc>
-      <lastmod>2015-06-09</lastmod>
+      <lastmod>2015-07-09</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
 <url>
       <loc>https://yuyang0.github.io/tags.html</loc>
-      <lastmod>2015-05-26</lastmod>
+      <lastmod>2015-06-09</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
