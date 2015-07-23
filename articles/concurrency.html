@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
 <head>
 <title>并发</title>
-<!-- 2015-07-10 Fri 11:48 -->
+<!-- 2015-07-23 Thu 15:09 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -179,6 +179,12 @@ for the JavaScript code in this tag.
 <h2 id="sec-1"><span class="section-number-2">1</span> CSP</h2>
 <div class="outline-text-2" id="text-1">
 <p>
+CSP的执行实体是一个一个的process，这些process之间通过channel通信，代表语言是go，
+go语言中的goroutine就是执行实体，goroutine之间通过channel通信，注意go语言中
+channel是可以有缓冲区.
+</p>
+
+<p>
 CSP模型有这几个特点:
 </p>
 <ol class="org-ol">
@@ -197,9 +203,18 @@ process在读该channel那么该process就会阻塞，同理读的时候也一�
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2"><span class="section-number-2">2</span> Actor</h2>
 <div class="outline-text-2" id="text-2">
+<p>
+Actor模型的执行实体是actor，每一个actor都有一个关联的mailbox，每个actor都可以读
+取自己的mailbox中的消息，任一actor都可以向其它actor的mailbox发送消息，这样不同的
+actor之间就可以通信了。Actor模型的代表语言是erlang。
+</p>
+
+<p>
+Actor模型的特点:
+</p>
 <ol class="org-ol">
 <li>actor通过mailbox通信，这种通信是点对点的，也就是说一个actor发送消息时必须指定
-要把消息发给哪一个actor的mailbox，这个CSP的channel的区别很大
+要把消息发给哪一个actor的mailbox，这和CSP的channel的区别很大
 </li>
 <li>actor发送消息时是异步的，也就是说它不会阻塞，当然如果一个actor读它的mailbox,
 而这个时候mailbox中没有消息，那么该actor也是会阻塞的。

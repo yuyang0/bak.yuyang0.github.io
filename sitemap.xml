@@ -3,7 +3,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
       <loc>https://yuyang0.github.io/sitemap.html</loc>
-      <lastmod>2015-07-10</lastmod>
+      <lastmod>2015-07-23</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -75,7 +75,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/big-data.html</loc>
-      <lastmod>2015-07-10</lastmod>
+      <lastmod>2015-07-21</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -106,6 +106,12 @@
 <url>
       <loc>https://yuyang0.github.io/notes/django.html</loc>
       <lastmod>2015-01-05</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+<url>
+      <loc>https://yuyang0.github.io/notes/database.html</loc>
+      <lastmod>2015-07-13</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -153,7 +159,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/lua.html</loc>
-      <lastmod>2015-04-03</lastmod>
+      <lastmod>2015-07-22</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -285,7 +291,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/spacemacs.html</loc>
-      <lastmod>2015-06-08</lastmod>
+      <lastmod>2015-07-13</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -357,7 +363,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/sitemap.html</loc>
-      <lastmod>2015-07-10</lastmod>
+      <lastmod>2015-07-23</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>

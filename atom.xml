@@ -4,7 +4,7 @@
   <title></title>
   <link href="https://yuyang0.github.io/"/>
   <link type="application/atom+xml" rel="self" href="/atom.xml"/>
-  <updated>Fri Jul 10 11:47:51 2015</updated>
+  <updated>Thu Jul 23 15:08:54 2015</updated>
   <id>https://yuyang0.github.io/</id>
   <author>
     <name>Yu Yang</name>
@@ -14,7 +14,7 @@
     <id>sitemap.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/sitemap.html"/>
     <title>Sitemap</title>
-    <updated> 2015-07-10</updated>
+    <updated> 2015-07-23</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -134,7 +134,7 @@
     <id>big-data.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/big-data.html"/>
     <title>Big Data</title>
-    <updated> 2015-07-10</updated>
+    <updated> 2015-07-21</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -185,6 +185,16 @@
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/django.html"/>
     <title>DJANGO笔记</title>
     <updated> 2015-01-05</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>https://yuyang0.github.io/</uri>
+    </author>
+    <content type="html"> </content>
+  </entry><entry>
+    <id>database.org</id>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/database.html"/>
+    <title>Database</title>
+    <updated> 2015-07-13</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -264,7 +274,7 @@
     <id>lua.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/lua.html"/>
     <title>Lua</title>
-    <updated> 2015-04-03</updated>
+    <updated> 2015-07-22</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -484,7 +494,7 @@
     <id>spacemacs.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/spacemacs.html"/>
     <title>spacemacs笔记</title>
-    <updated> 2015-06-08</updated>
+    <updated> 2015-07-13</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -604,7 +614,7 @@
     <id>sitemap.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/sitemap.html"/>
     <title>Sitemap</title>
-    <updated> 2015-07-10</updated>
+    <updated> 2015-07-23</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
