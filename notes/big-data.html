@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
 <head>
 <title>Big Data</title>
-<!-- 2015-07-23 Thu 15:09 -->
+<!-- 2015-07-28 Tue 16:21 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -202,7 +202,12 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#sec-3-1">3.1. Dynamo(amazon)</a></li>
 <li><a href="#sec-3-2">3.2. Tair(taobao)</a></li>
-<li><a href="#sec-3-3">3.3. Redis Cluster</a></li>
+<li><a href="#sec-3-3">3.3. Redis Cluster</a>
+<ul>
+<li><a href="#sec-3-3-1">3.3.1. 一致性</a></li>
+<li><a href="#sec-3-3-2">3.3.2. 数据分布</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#sec-4">4. 分布式文档数据库</a>
@@ -248,18 +253,19 @@ for the JavaScript code in this tag.
 <li><a href="#sec-9-2">9.2. metaq</a></li>
 </ul>
 </li>
-<li><a href="#sec-10">10. 分布式计算系统</a>
+<li><a href="#sec-10">10. CDN</a></li>
+<li><a href="#sec-11">11. 分布式计算系统</a>
 <ul>
-<li><a href="#sec-10-1">10.1. 批处理系统(离线处理)</a>
+<li><a href="#sec-11-1">11.1. 批处理系统(离线处理)</a>
 <ul>
-<li><a href="#sec-10-1-1">10.1.1. MapReduce</a></li>
-<li><a href="#sec-10-1-2">10.1.2. Spark</a></li>
+<li><a href="#sec-11-1-1">11.1.1. MapReduce</a></li>
+<li><a href="#sec-11-1-2">11.1.2. Spark</a></li>
 </ul>
 </li>
-<li><a href="#sec-10-2">10.2. 实时流处理系统(在线处理)</a>
+<li><a href="#sec-11-2">11.2. 实时流处理系统(在线处理)</a>
 <ul>
-<li><a href="#sec-10-2-1">10.2.1. storm</a></li>
-<li><a href="#sec-10-2-2">10.2.2. Spark Streaming</a></li>
+<li><a href="#sec-11-2-1">11.2.1. storm</a></li>
+<li><a href="#sec-11-2-2">11.2.2. Spark Streaming</a></li>
 </ul>
 </li>
 </ul>
@@ -407,9 +413,18 @@ master必须在租约上加一个提前量，比如10分钟的租约可能需要
 <div id="outline-container-sec-3-3" class="outline-3">
 <h3 id="sec-3-3"><span class="section-number-3">3.3</span> Redis Cluster</h3>
 <div class="outline-text-3" id="text-3-3">
+</div><div id="outline-container-sec-3-3-1" class="outline-4">
+<h4 id="sec-3-3-1"><span class="section-number-4">3.3.1</span> 一致性</h4>
+</div>
+<div id="outline-container-sec-3-3-2" class="outline-4">
+<h4 id="sec-3-3-2"><span class="section-number-4">3.3.2</span> 数据分布</h4>
+<div class="outline-text-4" id="text-3-3-2">
 <p>
-集群中有16384个slot，映射规则是直接直接CRC16然后取模
+集群中有16384个slot，映射规则是直接直接CRC16然后取模(对hash tag会作特殊处理), 接
+着手工将这16384个slot映射到物理机上。
+<img src="static/img/redis-cluster-slots.png" alt="redis-cluster-slots.png" />
 </p>
+</div>
 </div>
 </div>
 </div>
@@ -544,26 +559,52 @@ master必须在租约上加一个提前量，比如10分钟的租约可能需要
 </div>
 </div>
 <div id="outline-container-sec-10" class="outline-2">
-<h2 id="sec-10"><span class="section-number-2">10</span> 分布式计算系统</h2>
+<h2 id="sec-10"><span class="section-number-2">10</span> CDN</h2>
 <div class="outline-text-2" id="text-10">
-</div><div id="outline-container-sec-10-1" class="outline-3">
-<h3 id="sec-10-1"><span class="section-number-3">10.1</span> 批处理系统(离线处理)</h3>
-<div class="outline-text-3" id="text-10-1">
-</div><div id="outline-container-sec-10-1-1" class="outline-4">
-<h4 id="sec-10-1-1"><span class="section-number-4">10.1.1</span> MapReduce</h4>
+<p>
+CDN从本质上说是一个分布式缓存系统，它的基本使用流程是这样
+</p>
+<ol class="org-ol">
+<li>你提供给CDN厂商你的域名A以及源ip，CDN厂商会给你一个域名B
+</li>
+<li>给域名A添加一条CNAME记录到域名B
+</li>
+</ol>
+<p>
+系统的工作原理是这样的：
+</p>
 </div>
-<div id="outline-container-sec-10-1-2" class="outline-4">
-<h4 id="sec-10-1-2"><span class="section-number-4">10.1.2</span> Spark</h4>
+</div>
+
+<div id="outline-container-sec-11" class="outline-2">
+<h2 id="sec-11"><span class="section-number-2">11</span> 分布式计算系统</h2>
+<div class="outline-text-2" id="text-11">
+</div><div id="outline-container-sec-11-1" class="outline-3">
+<h3 id="sec-11-1"><span class="section-number-3">11.1</span> 批处理系统(离线处理)</h3>
+<div class="outline-text-3" id="text-11-1">
+<p>
+这种一般以追求系统的吞吐量为目标。
+</p>
+</div>
+<div id="outline-container-sec-11-1-1" class="outline-4">
+<h4 id="sec-11-1-1"><span class="section-number-4">11.1.1</span> MapReduce</h4>
+</div>
+<div id="outline-container-sec-11-1-2" class="outline-4">
+<h4 id="sec-11-1-2"><span class="section-number-4">11.1.2</span> Spark</h4>
 </div>
 </div>
-<div id="outline-container-sec-10-2" class="outline-3">
-<h3 id="sec-10-2"><span class="section-number-3">10.2</span> 实时流处理系统(在线处理)</h3>
-<div class="outline-text-3" id="text-10-2">
-</div><div id="outline-container-sec-10-2-1" class="outline-4">
-<h4 id="sec-10-2-1"><span class="section-number-4">10.2.1</span> storm</h4>
+<div id="outline-container-sec-11-2" class="outline-3">
+<h3 id="sec-11-2"><span class="section-number-3">11.2</span> 实时流处理系统(在线处理)</h3>
+<div class="outline-text-3" id="text-11-2">
+<p>
+这种系统一般以追求系统的延迟为目标。
+</p>
 </div>
-<div id="outline-container-sec-10-2-2" class="outline-4">
-<h4 id="sec-10-2-2"><span class="section-number-4">10.2.2</span> Spark Streaming</h4>
+<div id="outline-container-sec-11-2-1" class="outline-4">
+<h4 id="sec-11-2-1"><span class="section-number-4">11.2.1</span> storm</h4>
+</div>
+<div id="outline-container-sec-11-2-2" class="outline-4">
+<h4 id="sec-11-2-2"><span class="section-number-4">11.2.2</span> Spark Streaming</h4>
 </div>
 </div>
 </div>
