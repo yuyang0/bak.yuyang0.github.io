@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
 <head>
 <title>Big Data</title>
-<!-- 2015-07-28 Tue 16:21 -->
+<!-- 2015-08-02 Sun 02:38 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -230,6 +230,7 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#sec-6-1">6.1. Spanner(google)</a></li>
 <li><a href="#sec-6-2">6.2. OceanBase</a></li>
+<li><a href="#sec-6-3">6.3. CockroachDB</a></li>
 </ul>
 </li>
 <li><a href="#sec-7">7. 分布式资源管理</a>
@@ -325,13 +326,15 @@ for the JavaScript code in this tag.
 因为复制的存在，所以系统就存在一致性问题，主要由这几种：
 </p>
 <ol class="org-ol">
-<li>强一致性：也就是说更新必须更新了所有副本后才返回，这样能够保证任何一个客户端
-读任何一个副本时都能读到更新后的数据。
+<li>强一致性：当一个客户端对系统进行了一次更新后，那么后续的所有客户端都能读到这
+次更新，比如在主从复制协议中,同步复制就是强一致的，更新必须在更新了所有副本后
+才返回，这样能够保证任何一个客户端读任何一个副本时都能读到更新后的数据。
 </li>
-<li>弱一致性：主副本更新之后就返回，后台会异步的更新其他副本,极端情况可能出现丢失
-数据的情况
+<li>弱一致性：当一个客户端对系统进行了一次更新后，后续的客户端可能读到也可能读不
+到这次更新，在常见的主从复制协议中，异步复制就是弱一致的，也就是说主副本更新
+之后就返回，后台会异步的更新其他副本,极端情况可能出现丢失数据的情况
 </li>
-<li>最终一致性：经过一段时间，客户端最终将能够读到更新后的数据，这其中就有一个不
+<li>最终一致性：是弱一致性的一个特例，是指经过一段时间，客户端最终将能够读到更新后的数据，这其中就有一个不
 一致窗口。
 </li>
 </ol>
@@ -348,6 +351,8 @@ for the JavaScript code in this tag.
 为了扩展性，必须将数据分布到多个节点，分布的方式主要有这几种：
 </p>
 <ol class="org-ol">
+<li>Round-Robin: 轮转
+</li>
 <li>hash分布
 </li>
 <li>顺序分布
@@ -357,6 +362,19 @@ for the JavaScript code in this tag.
 </div>
 <div id="outline-container-sec-1-2-2" class="outline-4">
 <h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> 复制</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+复制是一种冗余技术，用来保证当服务器出现故障时不丢失数据，常见的复制协议：
+</p>
+<ol class="org-ol">
+<li>主从复制: 只有主副本能用来写，主副本以同步或者异步的方式将更新同步到备副本，
+备副本只能用来读
+</li>
+<li>NWR: W+R&gt;N, 也就是说读的副本数加上写的副本数要大于总副本数，那么每一次读到的
+副本中必然包含最近更新的数据，只是这种协议可能出现数据冲突。
+</li>
+</ol>
+</div>
 </div>
 <div id="outline-container-sec-1-2-3" class="outline-4">
 <h4 id="sec-1-2-3"><span class="section-number-4">1.2.3</span> 容错</h4>
@@ -435,10 +453,10 @@ master必须在租约上加一个提前量，比如10分钟的租约可能需要
 <h3 id="sec-4-1"><span class="section-number-3">4.1</span> 基本原理</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
-系统无预先定义的模式，每个document都有多个属性，更通俗的说文档就是 <b>键值对的有续
-集</b>, 属性对应的值可以标量值也可以是嵌入的document或者数组，系统除了可以在主键上创
-建索引外，也可以在其他属性上创建索引，你不仅可以根据主键搜索，也可以根据其它的属
-性来搜索。这类系统的基本术语如下：
+系统无预先定义的模式，每个document都有多个属性，更通俗的说文档就是 <b>键值对的有序
+集</b>, 属性对应的值可以是标量值也可以是嵌入的document或者数组，系统除了可以在主键
+上创建索引外，也可以在其他属性上创建索引，你不仅可以根据主键搜索，也可以根据其它
+的属性来搜索。这类系统的基本术语如下：
 </p>
 <ol class="org-ol">
 <li>document: 类似于关系数据库的row
@@ -497,6 +515,14 @@ master必须在租约上加一个提前量，比如10分钟的租约可能需要
 </div>
 <div id="outline-container-sec-6-2" class="outline-3">
 <h3 id="sec-6-2"><span class="section-number-3">6.2</span> OceanBase</h3>
+</div>
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> CockroachDB</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+google spanner的开源实现版本。
+</p>
+</div>
 </div>
 </div>
 <div id="outline-container-sec-7" class="outline-2">
