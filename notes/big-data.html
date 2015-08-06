@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
 <head>
 <title>Big Data</title>
-<!-- 2015-08-02 Sun 02:38 -->
+<!-- 2015-08-06 Thu 11:20 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -187,6 +187,14 @@ for the JavaScript code in this tag.
 <li><a href="#sec-1-2-3">1.2.3. 容错</a></li>
 </ul>
 </li>
+<li><a href="#sec-1-3">1.3. 常见理论</a>
+<ul>
+<li><a href="#sec-1-3-1">1.3.1. CAP</a></li>
+<li><a href="#sec-1-3-2">1.3.2. Paxos</a></li>
+<li><a href="#sec-1-3-3">1.3.3. Raft</a></li>
+<li><a href="#sec-1-3-4">1.3.4. 2PC</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#sec-2">2. 分布式文件系统</a>
@@ -198,75 +206,74 @@ for the JavaScript code in this tag.
 <li><a href="#sec-2-5">2.5. Ceph</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">3. 分布式键值系统</a>
+<li><a href="#sec-3">3. NOSQL</a>
 <ul>
-<li><a href="#sec-3-1">3.1. Dynamo(amazon)</a></li>
-<li><a href="#sec-3-2">3.2. Tair(taobao)</a></li>
-<li><a href="#sec-3-3">3.3. Redis Cluster</a>
+<li><a href="#sec-3-1">3.1. 分布式键值系统</a>
 <ul>
-<li><a href="#sec-3-3-1">3.3.1. 一致性</a></li>
-<li><a href="#sec-3-3-2">3.3.2. 数据分布</a></li>
+<li><a href="#sec-3-1-1">3.1.1. Dynamo(amazon)</a></li>
+<li><a href="#sec-3-1-2">3.1.2. Tair(taobao)</a></li>
+<li><a href="#sec-3-1-3">3.1.3. Redis Cluster</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-2">3.2. 分布式文档数据库</a>
+<ul>
+<li><a href="#sec-3-2-1">3.2.1. 基本原理</a></li>
+<li><a href="#sec-3-2-2">3.2.2. MongoDB</a></li>
+<li><a href="#sec-3-2-3">3.2.3. CouchDB</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-3">3.3. 分布式表格系统</a>
+<ul>
+<li><a href="#sec-3-3-1">3.3.1. 基本原理</a></li>
+<li><a href="#sec-3-3-2">3.3.2. BigTable(google)</a></li>
+<li><a href="#sec-3-3-3">3.3.3. Megastore(google)</a></li>
+<li><a href="#sec-3-3-4">3.3.4. DynamoDB(amazon)</a></li>
+<li><a href="#sec-3-3-5">3.3.5. HBase</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-4">3.4. 分布式关系数据库</a>
+<ul>
+<li><a href="#sec-3-4-1">3.4.1. Spanner(google)</a></li>
+<li><a href="#sec-3-4-2">3.4.2. OceanBase</a></li>
+<li><a href="#sec-3-4-3">3.4.3. CockroachDB</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sec-4">4. 分布式文档数据库</a>
+<li><a href="#sec-4">4. 分布式资源管理</a>
 <ul>
-<li><a href="#sec-4-1">4.1. 基本原理</a></li>
-<li><a href="#sec-4-2">4.2. MongoDB</a></li>
-<li><a href="#sec-4-3">4.3. CouchDB</a></li>
+<li><a href="#sec-4-1">4.1. 设计动机</a></li>
+<li><a href="#sec-4-2">4.2. 发展路径</a></li>
+<li><a href="#sec-4-3">4.3. mesos</a></li>
+<li><a href="#sec-4-4">4.4. YARN</a></li>
+<li><a href="#sec-4-5">4.5. Borg(google)</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">5. 分布式表格系统</a>
+<li><a href="#sec-5">5. 分布式锁</a>
 <ul>
-<li><a href="#sec-5-1">5.1. 基本原理</a></li>
-<li><a href="#sec-5-2">5.2. BigTable(google)</a></li>
-<li><a href="#sec-5-3">5.3. Megastore(google)</a></li>
-<li><a href="#sec-5-4">5.4. DynamoDB(amazon)</a></li>
-<li><a href="#sec-5-5">5.5. HBase</a></li>
+<li><a href="#sec-5-1">5.1. zookeeper</a></li>
+<li><a href="#sec-5-2">5.2. chubby(google)</a></li>
 </ul>
 </li>
-<li><a href="#sec-6">6. 分布式关系数据库</a>
+<li><a href="#sec-6">6. 分布式消息中间件</a>
 <ul>
-<li><a href="#sec-6-1">6.1. Spanner(google)</a></li>
-<li><a href="#sec-6-2">6.2. OceanBase</a></li>
-<li><a href="#sec-6-3">6.3. CockroachDB</a></li>
+<li><a href="#sec-6-1">6.1. kafka</a></li>
+<li><a href="#sec-6-2">6.2. metaq</a></li>
 </ul>
 </li>
-<li><a href="#sec-7">7. 分布式资源管理</a>
+<li><a href="#sec-7">7. CDN</a></li>
+<li><a href="#sec-8">8. 分布式计算系统</a>
 <ul>
-<li><a href="#sec-7-1">7.1. 设计动机</a></li>
-<li><a href="#sec-7-2">7.2. 发展路径</a></li>
-<li><a href="#sec-7-3">7.3. mesos</a></li>
-<li><a href="#sec-7-4">7.4. YARN</a></li>
-<li><a href="#sec-7-5">7.5. Borg(google)</a></li>
+<li><a href="#sec-8-1">8.1. 批处理系统(离线处理)</a>
+<ul>
+<li><a href="#sec-8-1-1">8.1.1. MapReduce</a></li>
+<li><a href="#sec-8-1-2">8.1.2. Spark</a></li>
 </ul>
 </li>
-<li><a href="#sec-8">8. 分布式锁</a>
+<li><a href="#sec-8-2">8.2. 实时流处理系统(在线处理)</a>
 <ul>
-<li><a href="#sec-8-1">8.1. zookeeper</a></li>
-<li><a href="#sec-8-2">8.2. chubby(google)</a></li>
-</ul>
-</li>
-<li><a href="#sec-9">9. 分布式消息中间件</a>
-<ul>
-<li><a href="#sec-9-1">9.1. kafka</a></li>
-<li><a href="#sec-9-2">9.2. metaq</a></li>
-</ul>
-</li>
-<li><a href="#sec-10">10. CDN</a></li>
-<li><a href="#sec-11">11. 分布式计算系统</a>
-<ul>
-<li><a href="#sec-11-1">11.1. 批处理系统(离线处理)</a>
-<ul>
-<li><a href="#sec-11-1-1">11.1.1. MapReduce</a></li>
-<li><a href="#sec-11-1-2">11.1.2. Spark</a></li>
-</ul>
-</li>
-<li><a href="#sec-11-2">11.2. 实时流处理系统(在线处理)</a>
-<ul>
-<li><a href="#sec-11-2-1">11.2.1. storm</a></li>
-<li><a href="#sec-11-2-2">11.2.2. Spark Streaming</a></li>
+<li><a href="#sec-8-2-1">8.2.1. storm</a></li>
+<li><a href="#sec-8-2-2">8.2.2. Spark Streaming</a></li>
 </ul>
 </li>
 </ul>
@@ -311,11 +318,10 @@ for the JavaScript code in this tag.
 <h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> 可用性(availablity)</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <p>
-可用性是指系统在遇到各种异常时仍然能够正常提供服务的能力。
-分布式系统为了保证可用性就必须进行容错，而容错的唯一方法就是冗余，冗余又分为时
-间冗余和物理冗余，前者就是计算系统中出错重试，后者就是存储系统中常用的一份数据复
-制三份。在存储系统中一旦使用复制，那么就会出现一致性问题。也就是说更新数据时如何
-保证数据多个副本之间的一致性。
+可用性是指系统在遇到各种异常时仍然能够正常提供服务的能力。分布式系统为了保证可用
+性就必须进行容错，同时也要进行冗余，冗余又分为时间冗余和物理冗余，前者就是计算系
+统中出错重试，后者就是存储系统中常用的一份数据复制三份。在存储系统中一旦使用复制，
+那么就会出现一致性问题。也就是说更新数据时如何保证数据多个副本之间的一致性。
 </p>
 </div>
 </div>
@@ -338,6 +344,27 @@ for the JavaScript code in this tag.
 一致窗口。
 </li>
 </ol>
+<p>
+最终一致性有以下常见的变体：
+</p>
+<ol class="org-ol">
+<li>Causal consistency. A更新了对象之后通知B，那么B能读取A写入的值， 而与A没有因
+果关系的C则可以读不到最新值。 以微博为例， 用户甲发布微博之后， 系统通知了它
+的粉丝， 那么粉丝必须能看到甲发表的微博。
+</li>
+<li>Read your wirte consistency. 客户端总是能读取到自己的写入最新值。 以博客为例，
+用户必须能看到自己刚发表的博客。
+</li>
+<li>Session consistency. 客户端与服务器维护一个会话， 会话有效期间， 满足read
+your write consistency。
+</li>
+<li>monotonic read consistency. 如果客户端已经读取了对象， 那么后续读取操作不能读
+到该对象的旧值。 以邮件收件箱为例， 用户跑到上海的时候必须也能读到他在杭州已
+经读过的邮件。
+</li>
+<li>monotonic write consistency. 单客户端发出的写操作串行执行。
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -348,7 +375,8 @@ for the JavaScript code in this tag.
 <h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> 数据分布</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
-为了扩展性，必须将数据分布到多个节点，分布的方式主要有这几种：
+数据分布和分片(sharding)与分区(partitioning)表述的是同一个意思, 也就是为了扩展性，
+必须将数据分布到多个节点，分布的方式主要有这几种：
 </p>
 <ol class="org-ol">
 <li>Round-Robin: 轮转
@@ -364,7 +392,8 @@ for the JavaScript code in this tag.
 <h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> 复制</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <p>
-复制是一种冗余技术，用来保证当服务器出现故障时不丢失数据，常见的复制协议：
+复制是一种冗余技术，用来保证当服务器出现故障时不丢失数据，它主要用来提高系统可用
+性与持久性，常见的复制协议：
 </p>
 <ol class="org-ol">
 <li>主从复制: 只有主副本能用来写，主副本以同步或者异步的方式将更新同步到备副本，
@@ -380,23 +409,71 @@ for the JavaScript code in this tag.
 <h4 id="sec-1-2-3"><span class="section-number-4">1.2.3</span> 容错</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <p>
-因为分布式系统大多运行与X86服务器上，X86服务器性价比高，可是不够可靠，同时数据中
+因为分布式系统大多运行于X86服务器上，X86服务器性价比高，可是不够可靠，同时数据中
 心也会有各种故障，系统必须进行故障检测和故障恢复：
 </p>
 <ol class="org-ol">
-<li>故障检测: 最常见的检测方法是心跳，但是收不到心跳有很多情况，比如机器负载过大，
-有可能是临时故障，也可能是永久故障，当机器发生故障后，我们需要迁移机器上的服
-务，那么这时候必须保证机器不在提供服务，可是心跳检测无法保证这一点，所以在分
-布式系统通常使用 <b>租约</b>,来进行故障检测。也就是说机器从master获得租约比如10分
-钟，10分钟后又申请10分钟的租约，如果租约超时那么该节点就肯定没有提供服务了。
-master必须在租约上加一个提前量，比如10分钟的租约可能需要等11分钟才能确定机器
-已出故障。
+<li>故障检测的常见方法有两种:
+<ol class="org-ol">
+<li><b>心跳</b>: 也就是服务器定时发送心跳包，但是收不到心跳有很多情况，比如机器负载
+过大，有可能是临时故障，也可能是永久故障，当机器发生故障后，我们需要迁移机
+器上的服务，那么这时候必须保证不管机器是否真的挂掉，这台机器都不能在提供服
+务，可是心跳检测无法保证这一点，
+</li>
+<li><b>租约</b>: 也就是说机器从master获得租约比如10分钟，10分钟后又申请10分钟的租约，
+如果租约超时那么该节点就肯定没有提供服务了。master必须在租约上加一个提前量，
+比如10分钟的租约可能需要等11分钟才能确定机器已出故障。
+</li>
+</ol>
 </li>
 <li>故障恢复：当一台机器挂掉后，系统必须增加副本，如果挂掉的机器中有主副本那么必
 须为其从备副本中指定一个主副本。
 </li>
 </ol>
 </div>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> 常见理论</h3>
+<div class="outline-text-3" id="text-1-3">
+</div><div id="outline-container-sec-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1"><span class="section-number-4">1.3.1</span> CAP</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+原始定义：
+</p>
+<ul class="org-ul">
+<li>C（Consistency）：A read is guaranteed to return the most recent write for a
+given client
+</li>
+<li>A（Availability）: <b>A non-failing node will return a reasonable response
+within a reasonable amount of time (no error or timeout)</b>
+</li>
+<li>P（Partition Tolerance）：The system will continue to function when network
+partitions occur.
+</li>
+</ul>
+<p>
+关键是这里对A的定义，它的意思是说，只要一台机器没有挂掉，那么它就应该能提供服务，
+但是这只是理论上的，实际我们可以把网络不通的机器直接踢出系统，只要系统能快速的恢
+复过来，那么这也是高可用的系统。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-3-2" class="outline-4">
+<h4 id="sec-1-3-2"><span class="section-number-4">1.3.2</span> Paxos</h4>
+</div>
+<div id="outline-container-sec-1-3-3" class="outline-4">
+<h4 id="sec-1-3-3"><span class="section-number-4">1.3.3</span> Raft</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<p>
+和paxos类似的算法，但是在牺牲了很少可用性的情况下，对paxos做了很大的简化。比较容
+易理解。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-3-4" class="outline-4">
+<h4 id="sec-1-3-4"><span class="section-number-4">1.3.4</span> 2PC</h4>
 </div>
 </div>
 </div>
@@ -420,38 +497,54 @@ master必须在租约上加一个提前量，比如10分钟的租约可能需要
 </div>
 </div>
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> 分布式键值系统</h2>
+<h2 id="sec-3"><span class="section-number-2">3</span> NOSQL</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Dynamo(amazon)</h3>
+<p>
+NOSQL的出现主要是为了处理以下问题才出现：
+</p>
+<ol class="org-ol">
+<li>避免不必要的复杂性，关系数据库提供了很多功能，但是这些功能对于特定的应用是不需要的。
+</li>
+<li>提高系统高吞吐量
+</li>
+<li>提供可用性与一致性之间的折衷，有些场景数据的一致性是不重要，那么这时候我们可
+以牺牲一致性来换取性能，但是关系数据库不允许这样做
+</li>
+<li>高水平扩展能力并且能运行于廉价的硬件上. <b>高扩展性是NOSQL的最主要的动机</b>.
+</li>
+<li>降低系统的管理与运维复杂性, 比如自动的故障检测与恢复，以及自动的负载均衡等等。
+</li>
+</ol>
 </div>
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Tair(taobao)</h3>
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 分布式键值系统</h3>
+<div class="outline-text-3" id="text-3-1">
+</div><div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1"><span class="section-number-4">3.1.1</span> Dynamo(amazon)</h4>
 </div>
-<div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Redis Cluster</h3>
-<div class="outline-text-3" id="text-3-3">
-</div><div id="outline-container-sec-3-3-1" class="outline-4">
-<h4 id="sec-3-3-1"><span class="section-number-4">3.3.1</span> 一致性</h4>
+<div id="outline-container-sec-3-1-2" class="outline-4">
+<h4 id="sec-3-1-2"><span class="section-number-4">3.1.2</span> Tair(taobao)</h4>
 </div>
-<div id="outline-container-sec-3-3-2" class="outline-4">
-<h4 id="sec-3-3-2"><span class="section-number-4">3.3.2</span> 数据分布</h4>
-<div class="outline-text-4" id="text-3-3-2">
+<div id="outline-container-sec-3-1-3" class="outline-4">
+<h4 id="sec-3-1-3"><span class="section-number-4">3.1.3</span> Redis Cluster</h4>
+<div class="outline-text-4" id="text-3-1-3">
+</div><ol class="org-ol"><li><a id="sec-3-1-3-1" name="sec-3-1-3-1"></a>一致性<br  /></li>
+<li><a id="sec-3-1-3-2" name="sec-3-1-3-2"></a>数据分布<br  /><div class="outline-text-5" id="text-3-1-3-2">
 <p>
 集群中有16384个slot，映射规则是直接直接CRC16然后取模(对hash tag会作特殊处理), 接
 着手工将这16384个slot映射到物理机上。
 <img src="static/img/redis-cluster-slots.png" alt="redis-cluster-slots.png" />
 </p>
 </div>
+</li></ol>
 </div>
 </div>
-</div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> 分布式文档数据库</h2>
-<div class="outline-text-2" id="text-4">
-</div><div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1"><span class="section-number-3">4.1</span> 基本原理</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> 分布式文档数据库</h3>
+<div class="outline-text-3" id="text-3-2">
+</div><div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1"><span class="section-number-4">3.2.1</span> 基本原理</h4>
+<div class="outline-text-4" id="text-3-2-1">
 <p>
 系统无预先定义的模式，每个document都有多个属性，更通俗的说文档就是 <b>键值对的有序
 集</b>, 属性对应的值可以是标量值也可以是嵌入的document或者数组，系统除了可以在主键
@@ -471,19 +564,19 @@ master必须在租约上加一个提前量，比如10分钟的租约可能需要
 </p>
 </div>
 </div>
-<div id="outline-container-sec-4-2" class="outline-3">
-<h3 id="sec-4-2"><span class="section-number-3">4.2</span> MongoDB</h3>
+<div id="outline-container-sec-3-2-2" class="outline-4">
+<h4 id="sec-3-2-2"><span class="section-number-4">3.2.2</span> MongoDB</h4>
 </div>
-<div id="outline-container-sec-4-3" class="outline-3">
-<h3 id="sec-4-3"><span class="section-number-3">4.3</span> CouchDB</h3>
+<div id="outline-container-sec-3-2-3" class="outline-4">
+<h4 id="sec-3-2-3"><span class="section-number-4">3.2.3</span> CouchDB</h4>
 </div>
 </div>
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> 分布式表格系统</h2>
-<div class="outline-text-2" id="text-5">
-</div><div id="outline-container-sec-5-1" class="outline-3">
-<h3 id="sec-5-1"><span class="section-number-3">5.1</span> 基本原理</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> 分布式表格系统</h3>
+<div class="outline-text-3" id="text-3-3">
+</div><div id="outline-container-sec-3-3-1" class="outline-4">
+<h4 id="sec-3-3-1"><span class="section-number-4">3.3.1</span> 基本原理</h4>
+<div class="outline-text-4" id="text-3-3-1">
 <p>
 表格系统实际和关系数据库类似，只是它弱化了多表关联，对事务的支持很弱(分布式事务
 要用到两阶段提交协议(2PC)，性能低，而且无法容忍节点出错)，也不支持二级索引，同时
@@ -494,43 +587,44 @@ master必须在租约上加一个提前量，比如10分钟的租约可能需要
 </p>
 </div>
 </div>
-<div id="outline-container-sec-5-2" class="outline-3">
-<h3 id="sec-5-2"><span class="section-number-3">5.2</span> BigTable(google)</h3>
+<div id="outline-container-sec-3-3-2" class="outline-4">
+<h4 id="sec-3-3-2"><span class="section-number-4">3.3.2</span> BigTable(google)</h4>
 </div>
-<div id="outline-container-sec-5-3" class="outline-3">
-<h3 id="sec-5-3"><span class="section-number-3">5.3</span> Megastore(google)</h3>
+<div id="outline-container-sec-3-3-3" class="outline-4">
+<h4 id="sec-3-3-3"><span class="section-number-4">3.3.3</span> Megastore(google)</h4>
 </div>
-<div id="outline-container-sec-5-4" class="outline-3">
-<h3 id="sec-5-4"><span class="section-number-3">5.4</span> DynamoDB(amazon)</h3>
+<div id="outline-container-sec-3-3-4" class="outline-4">
+<h4 id="sec-3-3-4"><span class="section-number-4">3.3.4</span> DynamoDB(amazon)</h4>
 </div>
-<div id="outline-container-sec-5-5" class="outline-3">
-<h3 id="sec-5-5"><span class="section-number-3">5.5</span> HBase</h3>
+<div id="outline-container-sec-3-3-5" class="outline-4">
+<h4 id="sec-3-3-5"><span class="section-number-4">3.3.5</span> HBase</h4>
 </div>
 </div>
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> 分布式关系数据库</h2>
-<div class="outline-text-2" id="text-6">
-</div><div id="outline-container-sec-6-1" class="outline-3">
-<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Spanner(google)</h3>
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> 分布式关系数据库</h3>
+<div class="outline-text-3" id="text-3-4">
+</div><div id="outline-container-sec-3-4-1" class="outline-4">
+<h4 id="sec-3-4-1"><span class="section-number-4">3.4.1</span> Spanner(google)</h4>
 </div>
-<div id="outline-container-sec-6-2" class="outline-3">
-<h3 id="sec-6-2"><span class="section-number-3">6.2</span> OceanBase</h3>
+<div id="outline-container-sec-3-4-2" class="outline-4">
+<h4 id="sec-3-4-2"><span class="section-number-4">3.4.2</span> OceanBase</h4>
 </div>
-<div id="outline-container-sec-6-3" class="outline-3">
-<h3 id="sec-6-3"><span class="section-number-3">6.3</span> CockroachDB</h3>
-<div class="outline-text-3" id="text-6-3">
+<div id="outline-container-sec-3-4-3" class="outline-4">
+<h4 id="sec-3-4-3"><span class="section-number-4">3.4.3</span> CockroachDB</h4>
+<div class="outline-text-4" id="text-3-4-3">
 <p>
 google spanner的开源实现版本。
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> 分布式资源管理</h2>
-<div class="outline-text-2" id="text-7">
-</div><div id="outline-container-sec-7-1" class="outline-3">
-<h3 id="sec-7-1"><span class="section-number-3">7.1</span> 设计动机</h3>
-<div class="outline-text-3" id="text-7-1">
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 分布式资源管理</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> 设计动机</h3>
+<div class="outline-text-3" id="text-4-1">
 <ol class="org-ol">
 <li>提高集群的资源利用率, 为了避免干扰,传统上不同的框架要部署到不同的集群, 这样就
 可能造成一个集群资源紧张，一个集群的空闲资源很多，这就造成了资源浪费。分布式
@@ -541,9 +635,9 @@ google spanner的开源实现版本。
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-7-2" class="outline-3">
-<h3 id="sec-7-2"><span class="section-number-3">7.2</span> 发展路径</h3>
-<div class="outline-text-3" id="text-7-2">
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> 发展路径</h3>
+<div class="outline-text-3" id="text-4-2">
 <ol class="org-ol">
 <li>集中式：资源管理与应用管理放在一起，典型的就是MapReduce的JobTracker。
 </li>
@@ -554,39 +648,39 @@ google spanner的开源实现版本。
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-7-3" class="outline-3">
-<h3 id="sec-7-3"><span class="section-number-3">7.3</span> mesos</h3>
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> mesos</h3>
 </div>
-<div id="outline-container-sec-7-4" class="outline-3">
-<h3 id="sec-7-4"><span class="section-number-3">7.4</span> YARN</h3>
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> YARN</h3>
 </div>
-<div id="outline-container-sec-7-5" class="outline-3">
-<h3 id="sec-7-5"><span class="section-number-3">7.5</span> Borg(google)</h3>
-</div>
-</div>
-<div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> 分布式锁</h2>
-<div class="outline-text-2" id="text-8">
-</div><div id="outline-container-sec-8-1" class="outline-3">
-<h3 id="sec-8-1"><span class="section-number-3">8.1</span> zookeeper</h3>
-</div>
-<div id="outline-container-sec-8-2" class="outline-3">
-<h3 id="sec-8-2"><span class="section-number-3">8.2</span> chubby(google)</h3>
+<div id="outline-container-sec-4-5" class="outline-3">
+<h3 id="sec-4-5"><span class="section-number-3">4.5</span> Borg(google)</h3>
 </div>
 </div>
-<div id="outline-container-sec-9" class="outline-2">
-<h2 id="sec-9"><span class="section-number-2">9</span> 分布式消息中间件</h2>
-<div class="outline-text-2" id="text-9">
-</div><div id="outline-container-sec-9-1" class="outline-3">
-<h3 id="sec-9-1"><span class="section-number-3">9.1</span> kafka</h3>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 分布式锁</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> zookeeper</h3>
 </div>
-<div id="outline-container-sec-9-2" class="outline-3">
-<h3 id="sec-9-2"><span class="section-number-3">9.2</span> metaq</h3>
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> chubby(google)</h3>
 </div>
 </div>
-<div id="outline-container-sec-10" class="outline-2">
-<h2 id="sec-10"><span class="section-number-2">10</span> CDN</h2>
-<div class="outline-text-2" id="text-10">
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> 分布式消息中间件</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> kafka</h3>
+</div>
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> metaq</h3>
+</div>
+</div>
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> CDN</h2>
+<div class="outline-text-2" id="text-7">
 <p>
 CDN从本质上说是一个分布式缓存系统，它的基本使用流程是这样
 </p>
@@ -602,35 +696,35 @@ CDN从本质上说是一个分布式缓存系统，它的基本使用流程是�
 </div>
 </div>
 
-<div id="outline-container-sec-11" class="outline-2">
-<h2 id="sec-11"><span class="section-number-2">11</span> 分布式计算系统</h2>
-<div class="outline-text-2" id="text-11">
-</div><div id="outline-container-sec-11-1" class="outline-3">
-<h3 id="sec-11-1"><span class="section-number-3">11.1</span> 批处理系统(离线处理)</h3>
-<div class="outline-text-3" id="text-11-1">
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> 分布式计算系统</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1"><span class="section-number-3">8.1</span> 批处理系统(离线处理)</h3>
+<div class="outline-text-3" id="text-8-1">
 <p>
 这种一般以追求系统的吞吐量为目标。
 </p>
 </div>
-<div id="outline-container-sec-11-1-1" class="outline-4">
-<h4 id="sec-11-1-1"><span class="section-number-4">11.1.1</span> MapReduce</h4>
+<div id="outline-container-sec-8-1-1" class="outline-4">
+<h4 id="sec-8-1-1"><span class="section-number-4">8.1.1</span> MapReduce</h4>
 </div>
-<div id="outline-container-sec-11-1-2" class="outline-4">
-<h4 id="sec-11-1-2"><span class="section-number-4">11.1.2</span> Spark</h4>
+<div id="outline-container-sec-8-1-2" class="outline-4">
+<h4 id="sec-8-1-2"><span class="section-number-4">8.1.2</span> Spark</h4>
 </div>
 </div>
-<div id="outline-container-sec-11-2" class="outline-3">
-<h3 id="sec-11-2"><span class="section-number-3">11.2</span> 实时流处理系统(在线处理)</h3>
-<div class="outline-text-3" id="text-11-2">
+<div id="outline-container-sec-8-2" class="outline-3">
+<h3 id="sec-8-2"><span class="section-number-3">8.2</span> 实时流处理系统(在线处理)</h3>
+<div class="outline-text-3" id="text-8-2">
 <p>
 这种系统一般以追求系统的延迟为目标。
 </p>
 </div>
-<div id="outline-container-sec-11-2-1" class="outline-4">
-<h4 id="sec-11-2-1"><span class="section-number-4">11.2.1</span> storm</h4>
+<div id="outline-container-sec-8-2-1" class="outline-4">
+<h4 id="sec-8-2-1"><span class="section-number-4">8.2.1</span> storm</h4>
 </div>
-<div id="outline-container-sec-11-2-2" class="outline-4">
-<h4 id="sec-11-2-2"><span class="section-number-4">11.2.2</span> Spark Streaming</h4>
+<div id="outline-container-sec-8-2-2" class="outline-4">
+<h4 id="sec-8-2-2"><span class="section-number-4">8.2.2</span> Spark Streaming</h4>
 </div>
 </div>
 </div>
