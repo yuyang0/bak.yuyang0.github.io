@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Linux平台C语言乱码</title>
-<!-- 2015-06-09 Tue 13:01 -->
+<!-- 2015-08-21 Fri 17:27 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -239,7 +239,7 @@ utf8编码得到的二进制信息，这里分两种情况讨论:
 <pre class="src src-sh"><span class="linenr"> 1: </span><span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">!/bin/</span><span style="color: #F0DFAF; font-weight: bold;">bash</span>
 <span class="linenr"> 2: </span><span style="color: #F0DFAF; font-weight: bold;">for</span> i<span style="color: #F0DFAF; font-weight: bold;"> in</span> *.lrc
 <span class="linenr"> 3: </span><span style="color: #F0DFAF; font-weight: bold;">do</span>
-<span class="linenr"> 4: </span>    <span style="color: #DFAF8F;">is_utf8</span>=$<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">file</span> <span style="color: #CC9393;">"$i"</span> | grep <span style="color: #CC9393;">'UTF-8'</span><span style="color: #DCDCCC;">)</span>
+<span class="linenr"> 4: </span>    <span style="color: #DFAF8F;">is_utf8</span>=$<span style="color: #DCDCCC;">(</span>file <span style="color: #CC9393;">"$i"</span> | grep <span style="color: #CC9393;">'UTF-8'</span><span style="color: #DCDCCC;">)</span>
 <span class="linenr"> 5: </span>    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #DCDCCC;">[</span> -z <span style="color: #CC9393;">"$is_utf8"</span> <span style="color: #DCDCCC;">]</span>
 <span class="linenr"> 6: </span>    <span style="color: #F0DFAF; font-weight: bold;">then</span>
 <span class="linenr"> 7: </span>        iconv -f gb2312 -t utf8 <span style="color: #CC9393;">"$i"</span> -c -o tmp_lrc &amp;&amp; rm -f <span style="color: #CC9393;">"$i"</span>

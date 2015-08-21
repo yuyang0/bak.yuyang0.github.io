@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>nginx</title>
-<!-- 2015-06-09 Tue 13:01 -->
+<!-- 2015-08-21 Fri 17:27 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -504,7 +504,7 @@ set_by_lua之所以能和内置的set指令交叉执行,是因为使用了一些
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">location = / <span style="color: #DCDCCC;">{}</span>                 <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">&#21482;&#21305;&#37197;/, &#19981;&#20250;&#21305;&#37197;/xxx</span>
+<pre class="src src-sh"><span style="color: #DFAF8F;">location</span> = / <span style="color: #DCDCCC;">{}</span>                 <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">&#21482;&#21305;&#37197;/, &#19981;&#20250;&#21305;&#37197;/xxx</span>
 location / <span style="color: #DCDCCC;">{}</span>
 location ^~ /images/ <span style="color: #DCDCCC;">{}</span>
 location ~* <span style="color: #CC9393;">\.</span><span style="color: #DCDCCC;">(</span>gif|jpg|jpeg<span style="color: #DCDCCC;">)</span>$ <span style="color: #DCDCCC;">{}</span> <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">&#21305;&#37197;&#25152;&#26377;&#22270;&#20687;&#25991;&#20214;</span>
@@ -1013,12 +1013,12 @@ rewrite_by_lua, access_by_lua, content_by_lua,ngx.timer中</b>, 该库的api分�
 <li>connect: 可以使用hostname/ip, port, 也可以使用unix socket文件
 <div class="org-src-container">
 
-<pre class="src src-lua">local ok, err = sock:connect("www.google.com", 80)
-local ok, err = sock:connect("220.181.57.216", 80)
-local ok, err = sock:connect("unix:/tmp/memcached.sock")
-if not ok then
-   check_error()
-end
+<pre class="src src-lua"><span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DFAF8F;">ok</span>, <span style="color: #DFAF8F;">err</span> = sock:connect<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"www.google.com"</span>, <span style="color: #BFEBBF;">80</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DFAF8F;">ok</span>, <span style="color: #DFAF8F;">err</span> = sock:connect<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"220.181.57.216"</span>, <span style="color: #BFEBBF;">80</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DFAF8F;">ok</span>, <span style="color: #DFAF8F;">err</span> = sock:connect<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"unix:/tmp/memcached.sock"</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #F0DFAF; font-weight: bold;">not</span> ok <span style="color: #F0DFAF; font-weight: bold;">then</span>
+   check_error<span style="color: #DCDCCC;">()</span>
+<span style="color: #F0DFAF; font-weight: bold;">end</span>
 </pre>
 </div>
 <p>
@@ -1038,8 +1038,8 @@ end
 那么返回nil,以及一个错误消息字符串, 出错时socket会自动关闭,无需手动清理
 <div class="org-src-container">
 
-<pre class="src src-lua">sock:settimeout(1000)  -- one second timeout
-local bytes, err = sock:send(request)
+<pre class="src src-lua">sock:settimeout<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">1000</span><span style="color: #DCDCCC;">)</span>  <span style="color: #5F7F5F;">-- </span><span style="color: #7F9F7F;">one second timeout</span>
+<span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DFAF8F;">bytes</span>, <span style="color: #DFAF8F;">err</span> = sock:send<span style="color: #DCDCCC;">(</span>request<span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </li>
@@ -1052,13 +1052,13 @@ local bytes, err = sock:send(request)
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lua">sock:settimeout(1000)  -- one second timeout
-local line, err, partial = sock:receive()
-if not line then
-   ngx.say("failed to read a line: ", err)
-   return
-end
-ngx.say("successfully read a line: ", line)
+<pre class="src src-lua">sock:settimeout<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">1000</span><span style="color: #DCDCCC;">)</span>  <span style="color: #5F7F5F;">-- </span><span style="color: #7F9F7F;">one second timeout</span>
+<span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DFAF8F;">line</span>, <span style="color: #DFAF8F;">err</span>, <span style="color: #DFAF8F;">partial</span> = sock:receive<span style="color: #DCDCCC;">()</span>
+<span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #F0DFAF; font-weight: bold;">not</span> line <span style="color: #F0DFAF; font-weight: bold;">then</span>
+   ngx.say<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"failed to read a line: "</span>, err<span style="color: #DCDCCC;">)</span>
+   <span style="color: #F0DFAF; font-weight: bold;">return</span>
+<span style="color: #F0DFAF; font-weight: bold;">end</span>
+ngx.say<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"successfully read a line: "</span>, line<span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>

@@ -675,47 +675,17 @@ mongodb的复制是通过复制集来实现的，本质上是一种以机器为�
 表格系统实际和关系数据库类似，只是它弱化了多表关联，对事务的支持很弱(分布式事务
 要用到两阶段提交协议(2PC)，性能低，而且无法容忍节点出错)，也不支持二级索引，同时
 它对模式也不像关系数据库那么严格，也就是说，同一张表的不同行可以有不同的数据类型。
-另外表格模型可以看做是关系模型与文档模型的混合，表格模型需要定义列族(column
-family)，每一个列族可以动态的添加属性。所以它不像文档模型那样完全不需要预先定义
-的模式，同时也不像关系数据库那样需要非常严格的模式。
+另外表格模型可以看做是关系模型与文档模型的混合，表格模型需要定义列组，每一个列组
+可以动态的添加属性。所以它不像文档模型那样完全不需要预先定义的模式，同是也不像关
+系数据库那样需要非常严格的模式。
 </p>
 </div>
 </div>
 <div id="outline-container-sec-3-3-2" class="outline-4">
 <h4 id="sec-3-3-2"><span class="section-number-4">3.3.2</span> BigTable(google)/HBase</h4>
-<div class="outline-text-4" id="text-3-3-2">
-<p>
-这二者非常类似，所以这里以HBASE为例：
-</p>
-<ol class="org-ol">
-<li>每一个表会按顺序切分为不同的region(子表), 每个region负责表的一个范围。
-</li>
-<li>使用三种表来保存数据
-<ul class="org-ul">
-<li>ROOT表: 这个表只有一个region，它会保存META表的region列表，ROOT表的位置信息
-(元信息)保存在zookeeper中。
-</li>
-<li>META表: 这个表用来保存用户表的所有region，以及各个region所在的RegionServer，
-总之，它就是用来保存用户表的元数据的。
-</li>
-<li>用户表：这个表会保存用户的实际数据
-</li>
-</ul>
-</li>
-<li>RegionServer需要将每一个region的操作日志以及数据文件保存到HDFS，数据文件使用
-一个或者多个store来保存，每一个store保存一个该region的列族，这也是为什么称
-bigtable/hbase为列存储的原因。
-</li>
-</ol>
-</div>
 </div>
 <div id="outline-container-sec-3-3-3" class="outline-4">
 <h4 id="sec-3-3-3"><span class="section-number-4">3.3.3</span> Megastore(google)</h4>
-<div class="outline-text-4" id="text-3-3-3">
-<p>
-在bigtable上的一层抽象，提供了一个sql接口。
-</p>
-</div>
 </div>
 <div id="outline-container-sec-3-3-4" class="outline-4">
 <h4 id="sec-3-3-4"><span class="section-number-4">3.3.4</span> DynamoDB(amazon)</h4>
@@ -771,11 +741,6 @@ google spanner的开源实现版本。
 </div>
 <div id="outline-container-sec-4-3" class="outline-3">
 <h3 id="sec-4-3"><span class="section-number-3">4.3</span> mesos</h3>
-<div class="outline-text-3" id="text-4-3">
-<p>
-mesos是berkeley的AMP实验室开源出来的一个分布式资源管理系统
-</p>
-</div>
 </div>
 <div id="outline-container-sec-4-4" class="outline-3">
 <h3 id="sec-4-4"><span class="section-number-3">4.4</span> YARN</h3>

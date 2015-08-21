@@ -3,8 +3,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Sitemap</title>
-<!-- 2015-08-21 Fri 17:29 -->
+<title>Mesos</title>
+<!-- 2015-08-21 Fri 17:27 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -164,143 +164,60 @@ for the JavaScript code in this tag.
     </div>
 </div>
 <div id="content">
-<h1 class="title">Sitemap</h1>
-<ul class="org-ul">
-<li>articles
-<ul class="org-ul">
-<li><a href="articles/continuation.html">Continuation</a>
-</li>
-<li><a href="articles/linux-c-garbled-characters.html">Linux平台C语言乱码</a>
-</li>
-<li><a href="articles/introduction-to-opencl.html">OpenCL介绍</a>
-</li>
-<li><a href="articles/gevent.html">gevent源码分析</a>
-</li>
-<li><a href="articles/python-descriptor.html">python Descriptor</a>
-</li>
-<li><a href="articles/defects-of-python.html">python的“缺点”</a>
-</li>
-<li><a href="articles/web-py-source-code.html">webpy源代码分析</a>
-</li>
-<li><a href="articles/wsgi.html">wsgi</a>
-</li>
-<li><a href="articles/org-mode-dropbox-blog.html">使用org-mode与dropbox搭建静态博客</a>
-</li>
-<li><a href="articles/concurrency.html">并发</a>
-</li>
+<h1 class="title">Mesos</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Mesos架构</a></li>
+<li><a href="#sec-2">mesos framework</a></li>
 </ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Mesos架构</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+mesos的基本架构是这样的：
+<img src="static/img/mesos-architecture.jpg" alt="mesos-architecture.jpg" />
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">mesos framework</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+mesos上运行的应用都叫framework，framework分为两部分：
+</p>
+<ol class="org-ol">
+<li>scheduler: 可以看做是framework的中心节点，它会注册到mesos的master，接着接受
+mesos提供的资源，然后启动executor。
 </li>
-<li>notes
-<ul class="org-ul">
-<li><a href="notes/apue.html">APUE</a>
+<li>executor
 </li>
-<li><a href="notes/big-data.html">Big Data</a>
+</ol>
+<p>
+mesos接受资源，同时启动task的过程可以用下图来表示：
+<img src="static/img/mesos-resource-offer.jpg" alt="mesos-resource-offer.jpg" />
+</p>
+<ol class="org-ol">
+<li>Slave 1报告master，它有4个CPU和4 GB内存。master然后调用分配策略模块，分配策略
+模块显示:应该把所有可用的资源提供给framework 1.
 </li>
-<li><a href="notes/big-data(冲突_work-pc_2015-08-10 15-33-03).html">Big Data</a>
+<li>master将slave 1上可用的资源的信息封装进resource offer中，然后将这个resource
+offer发送到framework 1.
 </li>
-<li><a href="notes/client-javascript.html">Client-Side javascript</a>
+<li>framework的scheduler向master返回两个taskInfo，第一个task使用的资源为&lt;2 CPU，1
+GB RAM&gt;，第二个task使用的资源为&lt;1 CPUS, 2 GB RAM&gt; 这两个task都会运行于slave 1
+上。
 </li>
-<li><a href="notes/clojure.html">Clojure笔记</a>
+<li>最后，master将两个task发送给slave 1， slave 1会分配适当的资源给framework 的
+executor，framework 的executor会启动这两个task，因为1个CPU和1 GB的RAM2并没有
+使用，所以分配模块现在可以把他们提供给framework 2。
 </li>
-<li><a href="notes/compiler.html">Compiler</a>
-</li>
-<li><a href="notes/c-dev-skills.html">C开发技巧</a>
-</li>
-<li><a href="notes/django.html">DJANGO笔记</a>
-</li>
-<li><a href="notes/database.html">Database</a>
-</li>
-<li><a href="notes/dpark.html">Dpark</a>
-</li>
-<li><a href="notes/emacs-lisp.html">Emacs Lisp</a>
-</li>
-<li><a href="notes/emacs.html">Emacs笔记</a>
-</li>
-<li><a href="notes/gdb.html">GDB</a>
-</li>
-<li><a href="notes/golang.html">Go语言</a>
-</li>
-<li><a href="notes/haskell.html">Haskell note</a>
-</li>
-<li><a href="notes/IT术语.html">IT术语</a>
-</li>
-<li><a href="notes/linux-kernel.html">Linux Kernel</a>
-</li>
-<li><a href="notes/lua.html">Lua</a>
-</li>
-<li><a href="notes/mesos.html">Mesos</a>
-</li>
-<li><a href="notes/sql.html">MySQL笔记</a>
-</li>
-<li><a href="notes/opencl.html">OpenCL笔记</a>
-</li>
-<li><a href="notes/php.html">PHP笔记</a>
-</li>
-<li><a href="notes/set-theory.html">SET THEORY</a>
-</li>
-<li><a href="notes/sicp.html">SICP笔记</a>
-</li>
-<li><a href="notes/EOPL.html">The Essential of Programming language</a>
-</li>
-<li><a href="notes/type-system.html">Type System</a>
-</li>
-<li><a href="notes/unp.html">UNIX网络编程</a>
-</li>
-<li><a href="notes/css.html">css笔记</a>
-</li>
-<li><a href="notes/git.html">git/github学习笔记</a>
-</li>
-<li><a href="notes/how-to-study.html">how to study</a>
-</li>
-<li><a href="notes/how-to-read-a-book.html">how-to-read-a-book</a>
-</li>
-<li><a href="notes/jquery.html">jQuery</a>
-</li>
-<li><a href="notes/java.html">java syntax note</a>
-</li>
-<li><a href="notes/javascript.html">javascript笔记</a>
-</li>
-<li><a href="notes/linux-note.html">linux笔记</a>
-</li>
-<li><a href="notes/nginx.html">nginx</a>
-</li>
-<li><a href="notes/python-source-code.html">python源代码解析</a>
-</li>
-<li><a href="notes/python-note.html">python笔记</a>
-</li>
-<li><a href="notes/ruby.html">ruby notes</a>
-</li>
-<li><a href="notes/scheme.html">scheme笔记</a>
-</li>
-<li><a href="notes/spacemacs.html">spacemacs笔记</a>
-</li>
-<li><a href="notes/loader-linker-library.html">《程序员的自我修养》读书笔记</a>
-</li>
-<li><a href="notes/乌合之众.html">乌合之众(古斯塔夫.勒庞 )</a>
-</li>
-<li><a href="notes/information-theory.html">信息论</a>
-</li>
-<li><a href="notes/investment.html">投资笔记</a>
-</li>
-<li><a href="notes/second-treatise-civil-government.html">政府论读书笔记</a>
-</li>
-<li><a href="notes/logic.html">数理逻辑</a>
-</li>
-<li><a href="notes/number-theory.html">数论</a>
-</li>
-<li><a href="notes/Probability.html">概率论与数理统计笔记</a>
-</li>
-<li><a href="notes/linear-algebra.html">线性代数</a>
-</li>
-<li><a href="notes/Theory-Computation.html">计算理论导引</a>
-</li>
-</ul>
-</li>
-<li><a href="index.html">Index Page</a>
-</li>
-<li><a href="tags.html">tags</a>
-</li>
-</ul>
+</ol>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <!-- 多说评论框 start -->
