@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Dpark</title>
-<!-- 2015-08-27 Thu 10:16 -->
+<!-- 2015-08-27 Thu 14:39 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -219,6 +219,7 @@ for the JavaScript code in this tag.
 <li><a href="#sec-10-1">web server</a></li>
 <li><a href="#sec-10-2">进程池</a></li>
 <li><a href="#sec-10-3">run_task</a></li>
+<li><a href="#sec-10-4">MyExecutor</a></li>
 </ul>
 </li>
 </ul>
@@ -278,6 +279,47 @@ RDD可以理解为一个集合.
 </div>
 <div id="outline-container-sec-2-2" class="outline-3">
 <h3 id="sec-2-2">Actions</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+dpark上的计算是惰性的，当你调用一系列的transformation时，计算并没有真正触发，只
+有调用Action时才真正触发运算，常用的Action如下：
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">count</td>
+<td class="left">获得元素个数</td>
+</tr>
+
+<tr>
+<td class="left">collect</td>
+<td class="left">返回元素列表</td>
+</tr>
+
+<tr>
+<td class="left">first</td>
+<td class="left">返回第一个元素</td>
+</tr>
+
+<tr>
+<td class="left">reduce</td>
+<td class="left">归约</td>
+</tr>
+
+<tr>
+<td class="left">saveAsTextFile</td>
+<td class="left">保存为文件</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div id="outline-container-sec-2-3" class="outline-3">
 <h3 id="sec-2-3">Dependency</h3>
@@ -339,7 +381,8 @@ RDD可以理解为一个集合.
 <ol class="org-ol">
 <li>numPartitions: 获得分区数量
 </li>
-<li>getPartition: 获得分区编号
+<li>getPartition: 获得分区编号, 一个父rdd中的key应该放在现rdd的哪个split由这个函
+数决定。
 </li>
 </ol>
 <p>
@@ -616,27 +659,35 @@ TrackerClient实例，它会和TrackerServer通信,它有两个方法:
 <ul class="org-ul">
 <li>设置eviron中的属性,如果是master机器会设置如下的属性:
 <ul class="org-ul">
-<li>SERVER_URI: 一个file url,实际上是<a href="file://+WORKDIR[0">file://+WORKDIR[0</a>]
+<li>SERVER_URI: 在master上是一个file url,实际上是<a href="file://WORKDIR[0">file://WORKDIR[0</a>], 其它节点
+上为 <a href="http://hostname:port/workdir_basename">http://hostname:port/workdir_basename</a> , 比如如果一个workdir为
+<code>/tmp/dpark/20150827-111925-yy-5488</code>, 那么这个url可能就是
+<a href="http://yy:45445/20150827-111925-yy-5488">http://yy:45445/20150827-111925-yy-5488</a>, 这个url很重要，它是节点间获取数
+据的途径。除master以外的其它节点都要启动一个web server，这个web server会
+跟据请求的url来将WORKDIR<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>中相应的文件返回给客户端，这样cache以及各种中
+间计算文件只要放在工作目录，那么其它的节点就可以根据这个url来获得了。
 </li>
-<li>WORKDIR: 一个目录列表,每一个元素是这样的格式, DPARK_WORK_DIR+时间+host+进程id
+<li>WORKDIR: 一个目录列表,每一个元素是这样的格式, DPARK_WORK_DIR+时间+hostname+进程id
 </li>
 <li>COMPRESS: 压缩函数
 </li>
 </ul>
 <p>
-如果不是master,那么只设置COMPRESS.
+如果不是master,那么只设置COMPRESS. 其它的部分比如SERVER_URI会由Scheduler序
+列化后传给Executor，然后通过environ来传给start，start会将这些合并到内部d额
+字典
 </p>
 </li>
 <li>创建一个ctx属性, 这是一个zmq的context实例。
 </li>
-<li>如果是master机器,那么会启动一个TrackerServer实例, 所以会有一个
-trackerServer属性.
+<li>如果是master机器,那么会启动一个TrackerServer实例, 所以会有一个trackerServer
+属性.
 </li>
 <li>创建一个trackerClinet属性，它是一个TrackerClient实例
 </li>
 <li>创建一个cacheTracker属性，它是一个CacheTracker实例
 </li>
-<li>创建一个mapOutputTracker属性, 它是一个MapOutTracker实例。
+<li>创建一个mapOutputTracker属性, 它是一个MapOutputTracker实例。
 </li>
 <li>创建一个shuffleFetcher属性, 它是一个ParallelShuffleFetcher实例
 </li>
@@ -649,7 +700,8 @@ trackerServer属性.
 <h2 id="sec-8">conf(conf.py)</h2>
 <div class="outline-text-2" id="text-8">
 <ol class="org-ol">
-<li>DPARK_WORK_DIR: 工作目录,shuffle等操作都会使用该目录.可能包含目录,以逗号分割
+<li>DPARK_WORK_DIR: 工作目录,shuffle等操作都会使用该目录.可能包含多个目录,以逗号
+分割
 </li>
 <li>MESOS_MASTER: mesos集群的master地址
 </li>
@@ -746,8 +798,36 @@ multiprocess的pool来创建的。之所以用进程池也是为了规避GIL的�
 </p>
 </div>
 </div>
+<div id="outline-container-sec-10-4" class="outline-3">
+<h3 id="sec-10-4">MyExecutor</h3>
+<div class="outline-text-3" id="text-10-4">
+<p>
+这是按mesos的要求实现的Executor类
+</p>
+<ol class="org-ol">
+<li>registered: 这个函数主要用来干这几件事：
+<ul class="org-ul">
+<li>从ExecutorInfo变量中获得osenv以及env.environ，前者用来设置进程的环境变量，
+后者用来初始化env.py中env。
+</li>
+<li>修改env中的SERVER_URI, 因为shcudler传过来的是一个file类型的url这是不符合要
+求的，所以根据workdir来修改为http类型的url，同时启动一个webserver来
+</li>
+</ul>
+</li>
+</ol>
 </div>
 </div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p>DEFINITION NOT FOUND.</p></div>
+
+
+</div>
+</div></div>
 <div id="postamble" class="status">
 <!-- 多说评论框 start -->
   <div id="duoshuo-id" class="ds-thread" data-thread-key="请将此处替换成文章在你的站点中的ID" data-title="请替换成文章的标题" data-url="请替换成文章的网址"></div>
