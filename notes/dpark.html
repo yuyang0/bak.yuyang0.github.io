@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Dpark</title>
-<!-- 2015-08-21 Fri 17:27 -->
+<!-- 2015-08-27 Thu 10:16 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -183,10 +183,22 @@ for the JavaScript code in this tag.
 <li><a href="#sec-2-4">Partitioner</a></li>
 <li><a href="#sec-2-5">Aggregator</a></li>
 <li><a href="#sec-2-6">Merger</a></li>
+<li><a href="#sec-2-7">rdd</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">Context</a></li>
-<li><a href="#sec-4">cache(cache.py)</a></li>
+<li><a href="#sec-3">Context(context.py)</a>
+<ul>
+<li><a href="#sec-3-1">DparkContext</a></li>
+<li><a href="#sec-3-2">命令行参数</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">cache(cache.py)</a>
+<ul>
+<li><a href="#sec-4-1">Cache</a></li>
+<li><a href="#sec-4-2">DiskCache</a></li>
+<li><a href="#sec-4-3">CacheTracker</a></li>
+</ul>
+</li>
 <li><a href="#sec-5">Tracker(tracker.py)</a>
 <ul>
 <li><a href="#sec-5-1">消息类型</a></li>
@@ -198,6 +210,15 @@ for the JavaScript code in this tag.
 <li><a href="#sec-9">调度系统</a>
 <ul>
 <li><a href="#sec-9-1">基本概念</a></li>
+<li><a href="#sec-9-2">DAGScheduler</a></li>
+<li><a href="#sec-9-3">Task(task.py)</a></li>
+</ul>
+</li>
+<li><a href="#sec-10">Executor(executor.py)</a>
+<ul>
+<li><a href="#sec-10-1">web server</a></li>
+<li><a href="#sec-10-2">进程池</a></li>
+<li><a href="#sec-10-3">run_task</a></li>
 </ul>
 </li>
 </ul>
@@ -207,12 +228,28 @@ for the JavaScript code in this tag.
 <h2 id="sec-1">Big Picture</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-dpark的计算过程是这样的：先创建第一个RDD，这是通过Context类的textFile，CSVFile这
-类调用实现的，接着在这个rdd调用一系列的transformation，最后调用一个operation，调
-用operation才会触发真正的运算, 因为这类操作运算一般都会调用Context对像的runJob方
-法，该方法就会初始化env，scheduler, 接着调用scheduler的runJob方法，该方法就会根
-据你指定的运行模式(local,process, mesos)来运行。
+dpark的计算过程是这样的：
 </p>
+<ol class="org-ol">
+<li>先创建第一个RDD，这是通过Context类的textFile，CSVFile这类调用实现的，
+</li>
+<li>接着在这个rdd调用一系列的transformation.
+</li>
+<li>最后调用一个operation，调用operation才会触发真正的运算, 因为这类操作运算一般
+都会调用Context对象的runJob方法，
+</li>
+<li>Context的runJob方法会执行如下动作：
+<ul class="org-ul">
+<li>调用Context的start方法，该方法会初始化env，scheduler, 
+</li>
+<li>调用scheduler的runJob方法，该方法就会根据你指定的运行模式(local,process,
+mesos)来运行。
+</li>
+<li>将scheduler的runJob的返回值(一般rdd的一个分区对应一个值) yield 出来。
+</li>
+</ul>
+</li>
+</ol>
 </div>
 </div>
 <div id="outline-container-sec-2" class="outline-2">
@@ -269,9 +306,11 @@ RDD可以理解为一个集合.
 子rdd一个分区对应父rdd的分区的个数,不是指分区的元素个数,同时length也是指父rdd
 分区的个数.
 </li>
-<li>CartesianDependency
+<li>CartesianDependency: 笛卡尔积，通过cartesian(rdd1, rdd2)运算后得到的rdd它的分
+区数是rdd1的分区数乘以rdd2的分区数，所以结果rdd中的一个分区实际只依赖rdd1中的
+一个分区，以及rdd2中的一个分区。
 </li>
-<li>RangeDependency: 比喻子rdd的第10~20分区依赖父rdd的1~11分区,也就是说分区是一一
+<li>RangeDependency: 比如子rdd的第10~20分区依赖父rdd的1~11分区,也就是说分区是一一
 对应的,只是有多个分区,其实我们可以把这种依赖拆成length个OneToOneDependency
 </li>
 </ol>
@@ -282,7 +321,7 @@ RDD可以理解为一个集合.
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 父RDD的一个分区被子RDD的多个分区所依赖，这种依赖意味着为了计算子RDD的一个分区，
-我们必须进行shuffle操作。shuffle对en性能的3影响很大。
+我们必须进行shuffle操作。shuffle对性能的影响很大。
 </p>
 <ol class="org-ol">
 <li>shuffleDependency: 一个id, 父rdd, aggregator, partitioner
@@ -326,7 +365,7 @@ RDD可以理解为一个集合.
 <ol class="org-ol">
 <li>createCombiner： 如何根据一个值来创建一个combiner
 </li>
-<li>mergeValue： 如何将一个值添加到一个copmbainer中
+<li>mergeValue： 如何将一个值添加到一个combiner中
 </li>
 <li>mergeCombiner： 将两个combiner合并
 </li>
@@ -352,12 +391,30 @@ set(UniqAggregator), 还可以是其它的容器类型,这个东西主要是用�
 </ol>
 </div>
 </div>
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7">rdd</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+这个类是用来描述rdd的，它有很多子类, 这些类都有以下几个比较重要的属性和方法:
+</p>
+<ol class="org-ol">
+<li>iterator: 最终实际上返回的是compute的结果，只是会先到snapshot或者cache中找。
+</li>
+<li>compute：根据rdd的类型确定如何根据父rdd来计算本rdd。一般是返回一个生产器或者
+可迭代对象。
+</li>
+</ol>
+</div>
+</div>
 </div>
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">Context</h2>
+<h2 id="sec-3">Context(context.py)</h2>
 <div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">DparkContext</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
-主要是一个DparkContext类, 下面就有几个非常重要的方法
+DparkContext类中中有几个非常重要的方法:
 </p>
 <ol class="org-ol">
 <li>init: 实际根据运行模式插创建scheduler属性
@@ -369,18 +426,72 @@ set(UniqAggregator), 还可以是其它的容器类型,这个东西主要是用�
 </ol>
 </div>
 </div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">命令行参数</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+add_default_options, parse_options都是用来获取命令行参数的。命令行参数有以下几个：
+</p>
+<ul class="org-ul">
+<li>master: 运行模式，默认local
+</li>
+<li>self： 是不是将本脚本作为executor，默认为None
+</li>
+<li>cpus：一个task占用的cpu核数, 默认为1
+</li>
+<li>mem： 一个task占用的内存，默认为None
+</li>
+<li>snapshot_dir: 存储rdd的snapshot的dir，默认为""
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">cache(cache.py)</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 缓存相关
 </p>
-<ol class="org-ol">
-<li>Cache: 实际是对字典的一层包装, 提供get, put, clear三个方法.
+</div>
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1">Cache</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+实际是对字典的一层包装, 提供get, put, clear三个方法.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2">DiskCache</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+文件cache，将rdd的每一个分区保存为一个文件$(WORK_DIR)/cache/rddId_splitId.pid
+</p>
+<ul class="org-ul">
+<li>get
 </li>
-<li>DiskCache:
+<li>put
 </li>
-</ol>
+<li>save
+</li>
+<li>load
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3">CacheTracker</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+它内部有一个DiskCache对象，也就是用来缓存rdd的分区计算结果的。每一个split缓存在
+哪个host都是会保存到TrackerServer上的。{“cache:rddIdx-splitIdx": hostname}
+</p>
+<ul class="org-ul">
+<li>getOrCompute: 缓存上有，那么就返回缓存上的结果，如果没有那就是用compute来计算。
+</li>
+</ul>
+</div>
 </div>
 </div>
 
@@ -388,7 +499,9 @@ set(UniqAggregator), 还可以是其它的容器类型,这个东西主要是用�
 <h2 id="sec-5">Tracker(tracker.py)</h2>
 <div class="outline-text-2" id="text-5">
 <p>
-实际上是使用zmq实现的一个服务器与客户端
+实际上是使用zmq实现的一个服务器与客户端, 这个服务器会跟踪整个系统的信息，比如每
+个rdd的split的缓存节点的url，shuffle的相关信息等等。像CacheTracker，
+MapOutputTracker都需要和TrackServer进行交互。
 </p>
 <ol class="org-ol">
 <li>TrackerServer: 服务器,内部有一个locs字典, 该字典的value都是列表,这个server
@@ -448,6 +561,11 @@ set(UniqAggregator), 还可以是其它的容器类型,这个东西主要是用�
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6">shuffle</h2>
 <div class="outline-text-2" id="text-6">
+<p>
+shuffle实际就是将分布在不同split中的元素进行重组，所以为了计算当前rdd的一个split，
+它要拿到父rdd的所有split, 然后对父rdd所有元素根据partitioner来确定它是否属于的这
+个split。
+</p>
 <ol class="org-ol">
 <li>MapOutputTracker: 用来跟踪shuffleId与该shuffle的输出的，内部实际上是一个
 TrackerClient实例，它会和TrackerServer通信,它有两个方法:
@@ -478,8 +596,7 @@ TrackerClient实例，它会和TrackerServer通信,它有两个方法:
 </li>
 </ul>
 </li>
-<li>ParallelShuffleFetcher:　和SimpleShuffleFetcher的区别就是会使用多线程下载
-数据
+<li>ParallelShuffleFetcher:和SimpleShuffleFetcher的区别就是会使用多线程下载数据
 </li>
 </ol>
 </div>
@@ -560,6 +677,73 @@ shuffle dependence
 <li>taskSet： 一个stage拆分成得到的多个task组成的一个聚合
 </li>
 </ol>
+</div>
+</div>
+<div id="outline-container-sec-9-2" class="outline-3">
+<h3 id="sec-9-2">DAGScheduler</h3>
+<div class="outline-text-3" id="text-9-2">
+<p>
+这是一个很核心的类，也就是后面的LocalScheduler，ProcessScheduler，MesosScheduler
+都是继承的这个类，下面详细的分析一下这个类：
+</p>
+<ol class="org-ol">
+<li>runJob: 这个方法是被ctx的runJob方法触发的，它的基本流程是这样的：
+<ol class="org-ol">
+<li></li>
+</ol>
+</li>
+<li>submitTasks: 这个方法在DAGScheduler中没有实现，但是这个需要在子类中实现，在子
+类中会根据自己的运行模式来选择适当的方法来运行task。
+</li>
+</ol>
+<p>
+下面以MesosScheduler为例来说一说submitTasks的实现：
+</p>
+<ol class="org-ol">
+<li>创建一个SimpleJob
+</li>
+<li>接着启动mesos的SchedulerDriver
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-9-3" class="outline-3">
+<h3 id="sec-9-3">Task(task.py)</h3>
+<div class="outline-text-3" id="text-9-3">
+<p>
+task实际上是mesos中的运行单元，mesos的scheduler得到资源后就会提交一个task。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10">Executor(executor.py)</h2>
+<div class="outline-text-2" id="text-10">
+</div><div id="outline-container-sec-10-1" class="outline-3">
+<h3 id="sec-10-1">web server</h3>
+<div class="outline-text-3" id="text-10-1">
+<p>
+在executor中启动了一个http server，这个server是用来获取本地文件系统的中的文件,
+也就是work_dir中的文件的。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-10-2" class="outline-3">
+<h3 id="sec-10-2">进程池</h3>
+<div class="outline-text-3" id="text-10-2">
+<p>
+executor用一个进程池来运行task，这个进程池的创建主要在get_idle_workers中，使用
+multiprocess的pool来创建的。之所以用进程池也是为了规避GIL的影响。多线程无法利用
+多核的优势。在初始化process时先运行init_env，它会初始化dpark.env
+</p>
+</div>
+</div>
+<div id="outline-container-sec-10-3" class="outline-3">
+<h3 id="sec-10-3">run_task</h3>
+<div class="outline-text-3" id="text-10-3">
+<p>
+这个函数就是运行task的关键函数。
+</p>
 </div>
 </div>
 </div>
