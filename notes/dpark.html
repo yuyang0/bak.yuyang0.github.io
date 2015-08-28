@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Dpark</title>
-<!-- 2015-08-27 Thu 14:39 -->
+<!-- 2015-08-28 Fri 11:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -183,7 +183,7 @@ for the JavaScript code in this tag.
 <li><a href="#sec-2-4">Partitioner</a></li>
 <li><a href="#sec-2-5">Aggregator</a></li>
 <li><a href="#sec-2-6">Merger</a></li>
-<li><a href="#sec-2-7">rdd</a></li>
+<li><a href="#sec-2-7">RDD</a></li>
 </ul>
 </li>
 <li><a href="#sec-3">Context(context.py)</a>
@@ -210,8 +210,10 @@ for the JavaScript code in this tag.
 <li><a href="#sec-9">调度系统</a>
 <ul>
 <li><a href="#sec-9-1">基本概念</a></li>
-<li><a href="#sec-9-2">DAGScheduler</a></li>
-<li><a href="#sec-9-3">Task(task.py)</a></li>
+<li><a href="#sec-9-2">Stage</a></li>
+<li><a href="#sec-9-3">DAGScheduler</a></li>
+<li><a href="#sec-9-4">MesosScheduler</a></li>
+<li><a href="#sec-9-5">Task(task.py)</a></li>
 </ul>
 </li>
 <li><a href="#sec-10">Executor(executor.py)</a>
@@ -435,15 +437,16 @@ set(UniqAggregator), 还可以是其它的容器类型,这个东西主要是用�
 </div>
 </div>
 <div id="outline-container-sec-2-7" class="outline-3">
-<h3 id="sec-2-7">rdd</h3>
+<h3 id="sec-2-7">RDD</h3>
 <div class="outline-text-3" id="text-2-7">
 <p>
 这个类是用来描述rdd的，它有很多子类, 这些类都有以下几个比较重要的属性和方法:
 </p>
 <ol class="org-ol">
 <li>iterator: 最终实际上返回的是compute的结果，只是会先到snapshot或者cache中找。
+找不到就调用compute生成。
 </li>
-<li>compute：根据rdd的类型确定如何根据父rdd来计算本rdd。一般是返回一个生产器或者
+<li>compute：根据rdd的类型确定如何根据父rdd来计算本rdd。一般是返回一个生成器或者
 可迭代对象。
 </li>
 </ol>
@@ -478,7 +481,7 @@ add_default_options, parse_options都是用来获取命令行参数的。命令�
 <ul class="org-ul">
 <li>master: 运行模式，默认local
 </li>
-<li>self： 是不是将本脚本作为executor，默认为None
+<li>self： 是不是将该脚本本身作为executor，默认为None(如果该参数为None，那么默认为executor.py)
 </li>
 <li>cpus：一个task占用的cpu核数, 默认为1
 </li>
@@ -605,9 +608,20 @@ MapOutputTracker都需要和TrackServer进行交互。
 <h2 id="sec-6">shuffle</h2>
 <div class="outline-text-2" id="text-6">
 <p>
-shuffle实际就是将分布在不同split中的元素进行重组，所以为了计算当前rdd的一个split，
-它要拿到父rdd的所有split, 然后对父rdd所有元素根据partitioner来确定它是否属于的这
-个split。
+因为宽依赖的关系，rdd的一个split的数据可能分布在多个不同机器上，所以必须通过
+shuffle来重组，实际上宽依赖的计算是这样进行的：
+</p>
+<ol class="org-ol">
+<li>父rdd的每一个split根据partitioner被拆成多个bucket，每一个bucket就保存为一个文
+件, 实际上bucket和split是对应的，例如bucket 1就保存着split 1中的一部分元素，
+split 1的剩余元素在其它节点的bucket 1中
+</li>
+<li>将分布再多个节点的bucket合并成split，假设有A，B，C三个节点保存了rdd的 信息，
+那么要获得split 1，那么就要拿到A，B，C上的bucket 1，将三者合并，split 2类似。
+</li>
+</ol>
+<p>
+shuffle.py文件主要有这样几个属性：
 </p>
 <ol class="org-ol">
 <li>MapOutputTracker: 用来跟踪shuffleId与该shuffle的输出的，内部实际上是一个
@@ -732,8 +746,28 @@ shuffle dependence
 </div>
 </div>
 <div id="outline-container-sec-9-2" class="outline-3">
-<h3 id="sec-9-2">DAGScheduler</h3>
+<h3 id="sec-9-2">Stage</h3>
 <div class="outline-text-3" id="text-9-2">
+<p>
+所有的transformation在rdd上最后会形成一个有向无环图(DAG), 所以要把那些能在一台机
+器上运行的任务切分出来，dpark就是用stage表示的，注意dpark只在两个地方创建stage，
+一个是finalStage，在一个就是遇到shuffleDependence时创建一个stage，stage有如下属性：
+</p>
+<ol class="org-ol">
+<li>shuffleDep： finalStage的该属性为None。
+</li>
+<li>rdd：这个shuffleDep依赖的rdd。
+</li>
+<li>outputLocs: 各个split输出的结果所在的hosts(一个列表)
+</li>
+<li>parents: 该stage的父stage列表。
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-9-3" class="outline-3">
+<h3 id="sec-9-3">DAGScheduler</h3>
+<div class="outline-text-3" id="text-9-3">
 <p>
 这是一个很核心的类，也就是后面的LocalScheduler，ProcessScheduler，MesosScheduler
 都是继承的这个类，下面详细的分析一下这个类：
@@ -741,11 +775,26 @@ shuffle dependence
 <ol class="org-ol">
 <li>runJob: 这个方法是被ctx的runJob方法触发的，它的基本流程是这样的：
 <ol class="org-ol">
-<li></li>
+<li>创建一个finalStage
+</li>
+<li>submitStage：先检查该stage依赖并且还没有被计算的父stage，这是通过调用
+<code>getMissingParentStages</code> 来完成的，如果所有的父stage都计算完成了，那么就使
+用 <code>submitMissingTasks</code> 来将这个stage提交上去, 并且将这个stage放进running
+队列里。
+</li>
+<li>submitMissingTasks: 将一个stage拆分成一个一个task，最后调用子类的
+submitTasks来提交tasks
+</li>
 </ol>
 </li>
 <li>submitTasks: 这个方法在DAGScheduler中没有实现，但是这个需要在子类中实现，在子
 类中会根据自己的运行模式来选择适当的方法来运行task。
+</li>
+<li>getMissingParentStages: 这个函数实际上就是沿着依赖链往上遍历，遇到
+shuffleDependence那么就创建一个Stage。它内部有一个visit函数，它会依次遍历每个
+rdd，接着将这个rdd，如果它发现rdd的所有split在集群的节点上都有cache，那么它直
+接返回，否则就检查dependences，如果为窄依赖，那么继续往上遍历，如果为
+shuffleDependence那么就创建stage。
 </li>
 </ol>
 <p>
@@ -759,12 +808,35 @@ shuffle dependence
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-9-3" class="outline-3">
-<h3 id="sec-9-3">Task(task.py)</h3>
-<div class="outline-text-3" id="text-9-3">
+<div id="outline-container-sec-9-4" class="outline-3">
+<h3 id="sec-9-4">MesosScheduler</h3>
+<div class="outline-text-3" id="text-9-4">
+<ol class="org-ol">
+<li>createTask: 返回一个mesos要求的TaskInfo
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-9-5" class="outline-3">
+<h3 id="sec-9-5">Task(task.py)</h3>
+<div class="outline-text-3" id="text-9-5">
 <p>
-task实际上是mesos中的运行单元，mesos的scheduler得到资源后就会提交一个task。
+一个stage会根据分区拆分成多个task，每个task一般运行于不同的机器，所以task实际上
+就是mesos中的运行单元，mesos的scheduler得到资源后就会提交一个task。注意这里的
+task和mesos的taskInfo不是一回事，实际上这里的task对象会被序列化并且压缩后塞进
+taskInfo的data属性上，这样通过mesos，executor就可以通过解压反序列化来重建task对
+象，Task类有两个子类，类的run方法就是实际执行运算的方法
 </p>
+<ol class="org-ol">
+<li>ResultTask: 在finalStage上就会创建这种task，它的run方法很简单，就是在分区上应
+用传入的func。
+</li>
+<li>ShuffleMapTask: 一个ShuffleMapTask只会处理父RDD的一个分区，它遍历这个分区中的
+所有元素，然后根据partitioner来确定各个元素应该放到当前rdd的哪个分区，最后把
+每个分区的结果都存到一个单独的文件中，后面的计算就可以通过shuffleFetcher来合
+并分散在各个节点的分区元素。
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -814,6 +886,8 @@ multiprocess的pool来创建的。之所以用进程池也是为了规避GIL的�
 求的，所以根据workdir来修改为http类型的url，同时启动一个webserver来
 </li>
 </ul>
+</li>
+<li>launchTask: 用来启动task，内部定义了一个callback，接着以异步的方式启动run_task
 </li>
 </ol>
 </div>
