@@ -3,7 +3,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
       <loc>https://yuyang0.github.io/sitemap.html</loc>
-      <lastmod>2015-08-28</lastmod>
+      <lastmod>2015-11-20</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -75,13 +75,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/big-data.html</loc>
-      <lastmod>2015-08-21</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-<url>
-      <loc>https://yuyang0.github.io/notes/big-data(冲突_work-pc_2015-08-10 15-33-03).html</loc>
-      <lastmod>2015-08-10</lastmod>
+      <lastmod>2015-11-02</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -123,7 +117,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/dpark.html</loc>
-      <lastmod>2015-08-28</lastmod>
+      <lastmod>2015-09-03</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -147,7 +141,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/golang.html</loc>
-      <lastmod>2015-08-02</lastmod>
+      <lastmod>2015-11-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -177,7 +171,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/mesos.html</loc>
-      <lastmod>2015-08-21</lastmod>
+      <lastmod>2015-10-12</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -189,7 +183,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/opencl.html</loc>
-      <lastmod>2015-01-06</lastmod>
+      <lastmod>2015-11-20</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -381,13 +375,13 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/sitemap.html</loc>
-      <lastmod>2015-08-28</lastmod>
+      <lastmod>2015-11-20</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
 <url>
       <loc>https://yuyang0.github.io/tags.html</loc>
-      <lastmod>2015-08-27</lastmod>
+      <lastmod>2015-08-28</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>

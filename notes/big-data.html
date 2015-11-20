@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
 <head>
 <title>Big Data</title>
-<!-- 2015-08-21 Fri 17:27 -->
+<!-- 2015-11-20 Fri 15:44 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -228,9 +228,10 @@ for the JavaScript code in this tag.
 <li><a href="#sec-3-3">3.3. 分布式表格系统</a>
 <ul>
 <li><a href="#sec-3-3-1">3.3.1. 基本原理</a></li>
-<li><a href="#sec-3-3-2">3.3.2. BigTable(google)/HBase</a></li>
-<li><a href="#sec-3-3-3">3.3.3. Megastore(google)</a></li>
-<li><a href="#sec-3-3-4">3.3.4. DynamoDB(amazon)</a></li>
+<li><a href="#sec-3-3-2">3.3.2. 数据模型</a></li>
+<li><a href="#sec-3-3-3">3.3.3. BigTable(google)/HBase</a></li>
+<li><a href="#sec-3-3-4">3.3.4. Megastore(google)</a></li>
+<li><a href="#sec-3-3-5">3.3.5. DynamoDB(amazon)</a></li>
 </ul>
 </li>
 <li><a href="#sec-3-4">3.4. 分布式关系数据库</a>
@@ -240,6 +241,7 @@ for the JavaScript code in this tag.
 <li><a href="#sec-3-4-3">3.4.3. CockroachDB</a></li>
 </ul>
 </li>
+<li><a href="#sec-3-5">3.5. 图数据库</a></li>
 </ul>
 </li>
 <li><a href="#sec-4">4. 分布式资源管理</a>
@@ -562,7 +564,8 @@ CLock也只能排出partial order，而无法排出total order。也就是说系
 NOSQL的出现主要是为了处理以下问题才出现：
 </p>
 <ol class="org-ol">
-<li>避免不必要的复杂性，关系数据库提供了很多功能，但是这些功能对于特定的应用是不需要的。
+<li>避免不必要的复杂性，关系数据库提供了很多功能，但是这些功能对于特定的应用是不
+需要的。
 </li>
 <li>提高系统高吞吐量
 </li>
@@ -587,12 +590,39 @@ NOSQL的出现主要是为了处理以下问题才出现：
 <div id="outline-container-sec-3-1-3" class="outline-4">
 <h4 id="sec-3-1-3"><span class="section-number-4">3.1.3</span> Redis Cluster</h4>
 <div class="outline-text-4" id="text-3-1-3">
-</div><ol class="org-ol"><li><a id="sec-3-1-3-1" name="sec-3-1-3-1"></a>一致性<br  /></li>
+</div><ol class="org-ol"><li><a id="sec-3-1-3-1" name="sec-3-1-3-1"></a>一致性<br  /><div class="outline-text-5" id="text-3-1-3-1">
+<p>
+redis使用的是一种弱一致性模型，在复制的时候它使用的是异步复制，所以是有可能u丢失
+数据的
+</p>
+</div>
+</li>
 <li><a id="sec-3-1-3-2" name="sec-3-1-3-2"></a>数据分布<br  /><div class="outline-text-5" id="text-3-1-3-2">
 <p>
 集群中有16384个slot，映射规则是直接直接CRC16然后取模(对hash tag会作特殊处理), 接
 着手工将这16384个slot映射到物理机上。
 <img src="static/img/redis-cluster-slots.png" alt="redis-cluster-slots.png" />
+</p>
+</div>
+</li>
+<li><a id="sec-3-1-3-3" name="sec-3-1-3-3"></a>复制<br  /><div class="outline-text-5" id="text-3-1-3-3">
+<p>
+redis的复制本质上是通过主从实现的，所以其实是一种基于机器的复制，对于K/V系统而言
+基于slot的复制应该是一个更好的选择，基于机器的复制最大的缺点就是当一台机器挂掉后，
+除非你增加一台机器，否则你没有办法增加挂掉机器上的slot的备份数目，设想有这样一个
+集群：
+</p>
+<pre class="example">
+A A1 A2
+B B1 B2
+C C1 C2
+</pre>
+<p>
+如果slot1在A上，那么如果A1挂了，除非你添加一台机器到A这个组中否则slot1的副本数目
+不可能恢复到3，当然如果你将slot1迁移到B或者C这种情况不在讨论范围之内，redis之所
+以这样设计我想应该是为了简单，同时也是为了复用单机版的redis的主从同步设施, 但是
+这样设计缺陷很明显，系统的自动恢复能力大打折扣，同时需要人工介入的次数增多，运维
+的麻烦程度也上升了。
 </p>
 </div>
 </li></ol>
@@ -682,21 +712,49 @@ family)，每一个列族可以动态的添加属性。所以它不像文档模�
 </div>
 </div>
 <div id="outline-container-sec-3-3-2" class="outline-4">
-<h4 id="sec-3-3-2"><span class="section-number-4">3.3.2</span> BigTable(google)/HBase</h4>
+<h4 id="sec-3-3-2"><span class="section-number-4">3.3.2</span> 数据模型</h4>
 <div class="outline-text-4" id="text-3-3-2">
 <p>
-这二者非常类似，所以这里以HBASE为例：
+表格系统提供的数据模型是一个表格，从更本质的角度讲 <b>一个稀疏的、分布式的、持久化
+存储的多维度排序 Map</b>, 这个map的基本的K/V映射如下：
+</p>
+<pre class="example">
+(row:string, column:string, time:int64)-&gt;string
+</pre>
+<p>
+每一个行都有一个行健(row key), 对于列，你需要指定列族(column family), 一张表的列
+不宜过多，最多几百个，但是列可以有几乎无限个。一个列使用 <code>family:qualifier</code> 来标
+示
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-3-3" class="outline-4">
+<h4 id="sec-3-3-3"><span class="section-number-4">3.3.3</span> BigTable(google)/HBase</h4>
+<div class="outline-text-4" id="text-3-3-3">
+<p>
+这二者非常类似, 从本质上说bigtable/HBase是建立在GFS/HDFS上的一个分布式索引，这里
+以HBASE为例来说明这类系统的特点：
 </p>
 <ol class="org-ol">
 <li>每一个表会按顺序切分为不同的region(子表), 每个region负责表的一个范围。
 </li>
 <li>使用三种表来保存数据
 <ul class="org-ul">
-<li>ROOT表: 这个表只有一个region，它会保存META表的region列表，ROOT表的位置信息
-(元信息)保存在zookeeper中。
+<li>ROOT表: 这个表只有一个region，它会保存META表的region列表，ROOT表的每一行会保
+存META表的一个region的元信息，这些元信息主要是：
+<ul class="org-ul">
+<li>该region所在的服务器
+</li>
+<li>该region服务的主键范围
+</li>
+</ul>
+<p>
+ROOT表的位置信息(元信息)保存在zookeeper中。
+</p>
 </li>
 <li>META表: 这个表用来保存用户表的所有region，以及各个region所在的RegionServer，
-总之，它就是用来保存用户表的元数据的。
+META表的每一行都保存一个用户表的region的元信息。总之，它就是用来保存用户表
+的元数据的。
 </li>
 <li>用户表：这个表会保存用户的实际数据
 </li>
@@ -709,16 +767,16 @@ bigtable/hbase为列存储的原因。
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-3-3-3" class="outline-4">
-<h4 id="sec-3-3-3"><span class="section-number-4">3.3.3</span> Megastore(google)</h4>
-<div class="outline-text-4" id="text-3-3-3">
+<div id="outline-container-sec-3-3-4" class="outline-4">
+<h4 id="sec-3-3-4"><span class="section-number-4">3.3.4</span> Megastore(google)</h4>
+<div class="outline-text-4" id="text-3-3-4">
 <p>
 在bigtable上的一层抽象，提供了一个sql接口。
 </p>
 </div>
 </div>
-<div id="outline-container-sec-3-3-4" class="outline-4">
-<h4 id="sec-3-3-4"><span class="section-number-4">3.3.4</span> DynamoDB(amazon)</h4>
+<div id="outline-container-sec-3-3-5" class="outline-4">
+<h4 id="sec-3-3-5"><span class="section-number-4">3.3.5</span> DynamoDB(amazon)</h4>
 </div>
 </div>
 <div id="outline-container-sec-3-4" class="outline-3">
@@ -738,6 +796,9 @@ google spanner的开源实现版本。
 </p>
 </div>
 </div>
+</div>
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> 图数据库</h3>
 </div>
 </div>
 <div id="outline-container-sec-4" class="outline-2">

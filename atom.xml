@@ -4,7 +4,7 @@
   <title></title>
   <link href="https://yuyang0.github.io/"/>
   <link type="application/atom+xml" rel="self" href="/atom.xml"/>
-  <updated>Fri Aug 28 11:03:58 2015</updated>
+  <updated>Fri Nov 20 15:43:40 2015</updated>
   <id>https://yuyang0.github.io/</id>
   <author>
     <name>Yu Yang</name>
@@ -14,7 +14,7 @@
     <id>sitemap.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/sitemap.html"/>
     <title>Sitemap</title>
-    <updated> 2015-08-28</updated>
+    <updated> 2015-11-20</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -134,17 +134,7 @@
     <id>big-data.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/big-data.html"/>
     <title>Big Data</title>
-    <updated> 2015-08-21</updated>
-    <author>
-      <name>Yu Yang</name>
-      <uri>https://yuyang0.github.io/</uri>
-    </author>
-    <content type="html"> </content>
-  </entry><entry>
-    <id>big-data(冲突_work-pc_2015-08-10 15-33-03).org</id>
-    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/big-data(冲突_work-pc_2015-08-10 15-33-03).html"/>
-    <title>Big Data</title>
-    <updated> 2015-08-10</updated>
+    <updated> 2015-11-02</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -214,7 +204,7 @@
     <id>dpark.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/dpark.html"/>
     <title>Dpark</title>
-    <updated> 2015-08-28</updated>
+    <updated> 2015-09-03</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -254,7 +244,7 @@
     <id>golang.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/golang.html"/>
     <title>Go语言</title>
-    <updated> 2015-08-02</updated>
+    <updated> 2015-11-10</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -304,7 +294,7 @@
     <id>mesos.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/mesos.html"/>
     <title>Mesos</title>
-    <updated> 2015-08-21</updated>
+    <updated> 2015-10-12</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -324,7 +314,7 @@
     <id>opencl.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/opencl.html"/>
     <title>OpenCL笔记</title>
-    <updated> 2015-01-06</updated>
+    <updated> 2015-11-20</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -644,7 +634,7 @@
     <id>sitemap.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/sitemap.html"/>
     <title>Sitemap</title>
-    <updated> 2015-08-28</updated>
+    <updated> 2015-11-20</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -654,7 +644,7 @@
     <id>tags.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/tags.html"/>
     <title>tags</title>
-    <updated> 2015-08-27</updated>
+    <updated> 2015-08-28</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>

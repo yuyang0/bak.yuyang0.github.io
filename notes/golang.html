@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Go语言</title>
-<!-- 2015-08-21 Fri 17:27 -->
+<!-- 2015-11-20 Fri 15:44 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
@@ -170,7 +170,27 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#sec-1">go代码规范</a></li>
-<li><a href="#sec-2">基本类型</a></li>
+<li><a href="#sec-2">基本类型</a>
+<ul>
+<li><a href="#sec-2-1">bool</a></li>
+<li><a href="#sec-2-2">整数</a></li>
+<li><a href="#sec-2-3">浮点</a></li>
+<li><a href="#sec-2-4">复数</a></li>
+<li><a href="#sec-2-5">字符</a></li>
+<li><a href="#sec-2-6">字符串</a>
+<ul>
+<li><a href="#sec-2-6-1">fmt</a></li>
+<li><a href="#sec-2-6-2">strings</a></li>
+<li><a href="#sec-2-6-3">strconv</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-7">数组</a></li>
+<li><a href="#sec-2-8">切片(slice)</a></li>
+<li><a href="#sec-2-9">字典(map)</a></li>
+<li><a href="#sec-2-10">channel</a></li>
+<li><a href="#sec-2-11">struct</a></li>
+</ul>
+</li>
 <li><a href="#sec-3">go工程管理</a></li>
 </ul>
 </div>
@@ -184,7 +204,7 @@ for the JavaScript code in this tag.
 </li>
 <li>大括号不要换行
 </li>
-<li>包名最好文件夹名相同
+<li>包名最好文件夹名相同, 并且为小写
 </li>
 </ol>
 </div>
@@ -194,28 +214,55 @@ for the JavaScript code in this tag.
 <div class="outline-text-2" id="text-2">
 <p>
 go引用提供了很多基本类型，这些基本类型分为两类：值类型和引用类型。 <b>map，channel，
-slice,interface是引用类型，其它的包括array，struct都是值类型</b>. 这两种类型的不同
-在函数调用时会表现出不同。
+slice,interface, function，method，其它的包括array，struct都是值类型</b>. 这两种类
+型的不同在函数调用时会表现出不同。
 </p>
-<ol class="org-ol">
-<li>bool
-只能取值true，false。不能通过其它类型转换为bool，所以 <code>aa:=bool(1)</code> 这样
-的语句是错误的。
-</li>
-<li>整数
+</div>
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">bool</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+只能取值true，false。不能通过其它类型转换为bool，所以 <code>aa:=bool(1)</code> 这样的语句是
+错误的。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">整数</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
 可以取值int, uint, int8,int16,int32, int64, uint8(byte), uint16, uint32, uint64.
 int, uint是平台相关的，可能为32或者64位。
-</li>
-<li>浮点
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">浮点</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
 可以为float32或者float64，浮点不能使用==来直接比较相等，可以使用math包的 <code>Fdim</code> 来处理
-</li>
-<li>复数
-</li>
-<li>字符
-可以为byte或者rune，前者是字节或者是unicode
-</li>
-<li>字符串
-go中字符串不可变，
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4">复数</h3>
+</div>
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5">字符</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+可以为byte或者rune(rune和int32是等价的)，前者是字节或者是unicode
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6">字符串</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+<b>go中字符串不可变</b>, go中的字符串实际就是utf8编码的字节流，所以如果存储的全部是英
+文字符那么他和字节流(<code>[]byte</code>)没什么两样，但是如果有汉字，那么需要注意，因为一个
+汉字在utf8中需要3到4个字节，所以你可能需要使用 <code>[]rune(s)</code> 转换成unicode字符串
+</p>
 <div class="org-src-container">
 
 <pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">var</span> str string <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#22768;&#26126;&#19968;&#20010;&#23383;&#31526;&#20018;&#21464;&#37327;</span>
@@ -232,14 +279,70 @@ fmt.<span style="color: #93E0E3;">Printf</span><span style="color: #DCDCCC;">(</
 <span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
+</div>
+<div id="outline-container-sec-2-6-1" class="outline-4">
+<h4 id="sec-2-6-1">fmt</h4>
+<div class="outline-text-4" id="text-2-6-1">
+<p>
+这个包包括了很多字符串格式化的命令。
+</p>
+<pre class="example">
+fmt.Errorf(format, args...)           // 返回一个错误值
+fmt,Fprintf(writer, format, args...)  //向writer写入字符串
+fmt.Printf(format, args...)           //向os.Stdout写入字符串
+fmt.Sprintf(format, args...)       //返回一个字符串
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-2-6-2" class="outline-4">
+<h4 id="sec-2-6-2">strings</h4>
+<div class="outline-text-4" id="text-2-6-2">
 <p>
 标准库中的strings包含了许多常见的字符串处理函数。
 </p>
-</li>
-<li>数组
 <div class="org-src-container">
 
-<pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DCDCCC;">[</span><span style="color: #BFEBBF;">32</span><span style="color: #DCDCCC;">]</span><span style="color: #7CB8BB;">byte</span> <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#38271;&#24230;&#20026;32&#30340;&#25968;&#32452;&#65292;&#27599;&#20010;&#20803;&#32032;&#20026;&#19968;&#20010;&#23383;&#33410;</span>
+<pre class="src src-go">strings.<span style="color: #93E0E3;">Split</span><span style="color: #DCDCCC;">(</span>ss, sep<span style="color: #DCDCCC;">)</span>
+strings.<span style="color: #93E0E3;">SplitAfter</span><span style="color: #DCDCCC;">(</span>ss, sep<span style="color: #DCDCCC;">)</span>    <span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">&#20445;&#30041;&#20998;&#38548;&#31526;</span>
+strings.<span style="color: #93E0E3;">Join</span><span style="color: #DCDCCC;">(</span>xs, sep<span style="color: #DCDCCC;">)</span>          <span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">&#20351;&#29992;sep&#23558;xs&#30340;&#20803;&#32032;&#36830;&#25509;&#25104;&#23383;&#31526;&#20018;</span>
+strings.<span style="color: #93E0E3;">ToLower</span><span style="color: #DCDCCC;">(</span>s<span style="color: #DCDCCC;">)</span>
+strings.<span style="color: #93E0E3;">ToUpper</span><span style="color: #DCDCCC;">(</span>s<span style="color: #DCDCCC;">)</span>
+strings.<span style="color: #93E0E3;">ToTitle</span><span style="color: #DCDCCC;">(</span>s<span style="color: #DCDCCC;">)</span>
+
+strings.<span style="color: #93E0E3;">Trim</span><span style="color: #DCDCCC;">(</span>s, t<span style="color: #DCDCCC;">)</span>
+strings.<span style="color: #93E0E3;">TrimLeft</span><span style="color: #DCDCCC;">(</span>s, t<span style="color: #DCDCCC;">)</span>
+strings.<span style="color: #93E0E3;">TrimRight</span><span style="color: #DCDCCC;">(</span>s, t<span style="color: #DCDCCC;">)</span>
+
+strings.<span style="color: #93E0E3;">HasPrefix</span><span style="color: #DCDCCC;">(</span>s, p<span style="color: #DCDCCC;">)</span>
+strings.<span style="color: #93E0E3;">HasSuffix</span><span style="color: #DCDCCC;">(</span>s, t<span style="color: #DCDCCC;">)</span>
+
+strings.<span style="color: #93E0E3;">Index</span><span style="color: #DCDCCC;">(</span>s, t<span style="color: #DCDCCC;">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-6-3" class="outline-4">
+<h4 id="sec-2-6-3">strconv</h4>
+<div class="outline-text-4" id="text-2-6-3">
+<p>
+这个包可以将字符串和其它类型进行转换
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7">数组</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+数组是一个定长的序列，创建了长度就不能更改了。在go中切片远比数组通用
+</p>
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #DCDCCC;">[</span>length<span style="color: #DCDCCC;">]</span>Type
+<span style="color: #DCDCCC;">[</span>length<span style="color: #DCDCCC;">]</span><span style="color: #7CB8BB;">Type</span><span style="color: #DCDCCC;">{</span>val1, val2, ..., valN<span style="color: #DCDCCC;">}</span>
+<span style="color: #DCDCCC;">[</span>...<span style="color: #DCDCCC;">]</span><span style="color: #7CB8BB;">Type</span><span style="color: #DCDCCC;">{</span>val1, val2, ... , valN<span style="color: #DCDCCC;">}</span>
+
+<span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DCDCCC;">[</span><span style="color: #BFEBBF;">32</span><span style="color: #DCDCCC;">]</span><span style="color: #7CB8BB;">byte</span> <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#38271;&#24230;&#20026;32&#30340;&#25968;&#32452;&#65292;&#27599;&#20010;&#20803;&#32032;&#20026;&#19968;&#20010;&#23383;&#33410;</span>
 <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DCDCCC;">[</span><span style="color: #BFEBBF;">2</span>*N<span style="color: #DCDCCC;">]</span> <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #DCDCCC;">{</span> x, y int32 <span style="color: #DCDCCC;">}</span> <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#22797;&#26434;&#31867;&#22411;&#25968;&#32452;</span>
 <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DCDCCC;">[</span><span style="color: #BFEBBF;">1000</span><span style="color: #DCDCCC;">]</span>*<span style="color: #7CB8BB;">float64</span> <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#25351;&#38024;&#25968;&#32452;</span>
 <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DCDCCC;">[</span><span style="color: #BFEBBF;">3</span><span style="color: #DCDCCC;">][</span><span style="color: #BFEBBF;">5</span><span style="color: #DCDCCC;">]</span><span style="color: #7CB8BB;">int</span> <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#20108;&#32500;&#25968;&#32452;(3&#34892;5&#21015;)</span>
@@ -252,11 +355,23 @@ aa := <span style="color: #DCDCCC;">[</span><span style="color: #BFEBBF;">5</spa
 aa := <span style="color: #DCDCCC;">[</span>...<span style="color: #DCDCCC;">]</span><span style="color: #7CB8BB;">int</span><span style="color: #DCDCCC;">{</span><span style="color: #BFEBBF;">2</span>:<span style="color: #BFEBBF;">1</span>, <span style="color: #BFEBBF;">3</span>:<span style="color: #BFEBBF;">2</span>, <span style="color: #BFEBBF;">4</span>:<span style="color: #BFEBBF;">3</span><span style="color: #DCDCCC;">}</span>    <span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">0, 0, 1, 2, 3</span>
 </pre>
 </div>
-</li>
-<li>切片(slice)
+</div>
+</div>
+<div id="outline-container-sec-2-8" class="outline-3">
+<h3 id="sec-2-8">切片(slice)</h3>
+<div class="outline-text-3" id="text-2-8">
+<p>
+切片是引用类型，在标准库中，所有的api都使用切片，创建切片和创建数组最大的区别是，
+数组必须在[]中指定长度，切片则一直是空的 
+</p>
 <div class="org-src-container">
 
-<pre class="src src-go">slice1 := <span style="color: #DCDCCC;">[]</span><span style="color: #7CB8BB;">int</span> <span style="color: #DCDCCC;">{</span><span style="color: #BFEBBF;">1</span>, <span style="color: #BFEBBF;">2</span>, <span style="color: #BFEBBF;">3</span>, <span style="color: #BFEBBF;">4</span>, <span style="color: #BFEBBF;">5</span><span style="color: #DCDCCC;">}</span>
+<pre class="src src-go"><span style="color: #DCDCCC; font-weight: bold;">make</span><span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">[]</span><span style="color: #7CB8BB;">Type</span>, length, capacity<span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC; font-weight: bold;">make</span><span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">[]</span><span style="color: #7CB8BB;">Type</span>, length<span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">[]</span><span style="color: #7CB8BB;">Type</span><span style="color: #DCDCCC;">{}</span>
+<span style="color: #DCDCCC;">[]</span><span style="color: #7CB8BB;">Type</span><span style="color: #DCDCCC;">{</span>val1, val2, ..., valN<span style="color: #DCDCCC;">}</span>   <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#22235;&#31181;&#21019;&#24314;&#20999;&#29255;&#30340;&#26041;&#27861;&#65292;&#37117;&#27809;&#26377;&#22312;[]&#20013;&#25351;&#23450;&#22823;&#23567;</span>
+
+slice1 := <span style="color: #DCDCCC;">[]</span><span style="color: #7CB8BB;">int</span> <span style="color: #DCDCCC;">{</span><span style="color: #BFEBBF;">1</span>, <span style="color: #BFEBBF;">2</span>, <span style="color: #BFEBBF;">3</span>, <span style="color: #BFEBBF;">4</span>, <span style="color: #BFEBBF;">5</span><span style="color: #DCDCCC;">}</span>
 slice2 := arr<span style="color: #DCDCCC;">[</span>:<span style="color: #DCDCCC;">]</span>                <span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">&#20174;&#25968;&#32452;&#21019;&#24314;&#65292;&#35821;&#27861;&#21644;python&#31867;&#20284;</span>
 slice3 := <span style="color: #DCDCCC; font-weight: bold;">make</span><span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">[]</span><span style="color: #7CB8BB;">int</span>, <span style="color: #BFEBBF;">5</span><span style="color: #DCDCCC;">)</span>        <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">5&#20010;&#20803;&#32032;&#30340;&#20999;&#29255;&#65292;&#37117;&#21021;&#22987;&#21270;&#20026;0</span>
 slice3 := <span style="color: #DCDCCC; font-weight: bold;">make</span><span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">[]</span><span style="color: #7CB8BB;">int</span>, <span style="color: #BFEBBF;">5</span>, <span style="color: #BFEBBF;">10</span><span style="color: #DCDCCC;">)</span>    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">5&#20010;&#20803;&#32032;&#30340;&#20999;&#29255;&#65292;&#37117;&#21021;&#22987;&#21270;&#20026;0,&#21516;&#26102;&#39044;&#30041;10&#20010;&#20803;&#32032;&#30340;&#31354;&#38388;</span>
@@ -264,8 +379,15 @@ newSlice := <span style="color: #DCDCCC; font-weight: bold;">append</span><span 
 newSlice := <span style="color: #DCDCCC; font-weight: bold;">append</span><span style="color: #DCDCCC;">(</span>slice1, slice2...<span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
-</li>
-<li>字典(map)
+<p>
+可以通过切片语法从字符串，数组，切片来创建切片，语法是python切片语法的子集，记住
+是左闭右开就是了。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-9" class="outline-3">
+<h3 id="sec-2-9">字典(map)</h3>
+<div class="outline-text-3" id="text-2-9">
 <div class="org-src-container">
 
 <pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">var</span> aa <span style="color: #F0DFAF; font-weight: bold;">map</span><span style="color: #DCDCCC;">[</span><span style="color: #7CB8BB;">string</span><span style="color: #DCDCCC;">]</span> int           <span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">&#22768;&#26126;</span>
@@ -277,14 +399,19 @@ value, ok := myMap<span style="color: #DCDCCC;">[</span><span style="color: #CC9
 <span style="color: #F0DFAF; font-weight: bold;">if</span> ok <span style="color: #DCDCCC;">{</span> <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#25214;&#21040;&#20102;</span>
   <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#22788;&#29702;&#25214;&#21040;&#30340;value</span>
 <span style="color: #DCDCCC;">}</span>
+<span style="color: #DCDCCC; font-weight: bold;">len</span><span style="color: #DCDCCC;">(</span>cc<span style="color: #DCDCCC;">)</span>                           <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">cc&#21253;&#21547;&#30340;&#38190;&#20540;&#23545;&#30340;&#20010;&#25968;</span>
+<span style="color: #F0DFAF; font-weight: bold;">for</span> k, v := <span style="color: #F0DFAF; font-weight: bold;">range</span> cc <span style="color: #DCDCCC;">{</span>            <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#36941;&#21382;map </span>
+
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
-</li>
-<li>channel
-</li>
-<li>struct
-</li>
-</ol>
+</div>
+</div>
+<div id="outline-container-sec-2-10" class="outline-3">
+<h3 id="sec-2-10">channel</h3>
+</div>
+<div id="outline-container-sec-2-11" class="outline-3">
+<h3 id="sec-2-11">struct</h3>
 </div>
 </div>
 <div id="outline-container-sec-3" class="outline-2">
