@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>APUE</title>
-<!-- 2015-11-20 Fri 15:44 -->
+<!-- 2016-02-20 Sat 22:43 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>APUE</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -169,31 +175,29 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">IO</a>
+<li><a href="#orgheadline2">IO</a>
 <ul>
-<li><a href="#sec-1-1">epoll</a></li>
+<li><a href="#orgheadline1">epoll</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">IO</h2>
-<div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">epoll</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">IO</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1">epoll</h3>
+<div class="outline-text-3" id="text-orgheadline1">
 <ol class="org-ol">
 <li>水平触发(LT): 如果内核通知应用层某一个文件描述符已经就绪，而如果应用层此后
 一直没有完整的处理该描述符（没有读取完相应的数据或者没有写入任何数据），那
 么内核会不断地通知应用层该文件描述符已经就绪。这就是所谓的水平触发：只要条
 件满足，那内核就会触发一个事件（只要文件描述符对应的数据没有被读取或者写入，
-那内核就不断地通知你）
-</li>
+那内核就不断地通知你）</li>
 <li>边沿触发(ET): 内核只是在文件描述符的状态发生变换的时候才进行通知。这就意味着在大多数情况下，当内核通知某个读描述符就绪
 后，除非该读描述符内部缓冲区的所有数据已经完全被读取从而使得就绪状态发生了变化，
-否则内核不会发出任何新的通知，会永远沉默下去
-</li>
+否则内核不会发出任何新的通知，会永远沉默下去</li>
 </ol>
 </div>
 </div>

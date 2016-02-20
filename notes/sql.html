@@ -3,24 +3,31 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>MySQL笔记</title>
-<!-- 2015-11-20 Fri 15:44 -->
+<!-- 2016-02-20 Sat 22:43 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>MySQL笔记</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
 <meta  name="keywords" content="SQL mysql" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -59,15 +66,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -170,160 +176,147 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">SQL基本知识与常用代码</a>
+<li><a href="#orgheadline24">SQL基本知识与常用代码</a>
 <ul>
-<li><a href="#sec-1-1">conventions</a></li>
-<li><a href="#sec-1-2">登录</a></li>
-<li><a href="#sec-1-3">增加新用户</a></li>
-<li><a href="#sec-1-4">database相关</a></li>
-<li><a href="#sec-1-5">SHOW</a></li>
-<li><a href="#sec-1-6">SELECT</a></li>
-<li><a href="#sec-1-7">联接</a>
+<li><a href="#orgheadline1">conventions</a></li>
+<li><a href="#orgheadline2">登录</a></li>
+<li><a href="#orgheadline3">增加新用户</a></li>
+<li><a href="#orgheadline4">database相关</a></li>
+<li><a href="#orgheadline5">SHOW</a></li>
+<li><a href="#orgheadline6">SELECT</a></li>
+<li><a href="#orgheadline9">联接</a>
 <ul>
-<li><a href="#sec-1-7-1">内联接(等值联接)</a></li>
-<li><a href="#sec-1-7-2">自联接</a></li>
+<li><a href="#orgheadline7">内联接(等值联接)</a></li>
+<li><a href="#orgheadline8">自联接</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-8">子查询</a></li>
-<li><a href="#sec-1-9">UNION</a></li>
-<li><a href="#sec-1-10">INSERT(增)</a></li>
-<li><a href="#sec-1-11">DELETE(删)</a></li>
-<li><a href="#sec-1-12">UPDATE(改)</a></li>
-<li><a href="#sec-1-13">CREATE TABLE</a>
+<li><a href="#orgheadline10">子查询</a></li>
+<li><a href="#orgheadline11">UNION</a></li>
+<li><a href="#orgheadline12">INSERT(增)</a></li>
+<li><a href="#orgheadline13">DELETE(删)</a></li>
+<li><a href="#orgheadline14">UPDATE(改)</a></li>
+<li><a href="#orgheadline15">CREATE TABLE</a>
 <ul>
-<li><a href="#sec-1-13-1">数据类型</a></li>
-<li><a href="#sec-1-13-2">约束</a></li>
+<li><a href="#orgheadline16">数据类型</a></li>
+<li><a href="#orgheadline17">约束</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-14">INDEX(索引)</a></li>
-<li><a href="#sec-1-15">DROP</a></li>
-<li><a href="#sec-1-16">ALTER(修改表结构)</a></li>
-<li><a href="#sec-1-17">存储过程(MySQL 5.1)</a></li>
-<li><a href="#sec-1-18">事务(transaction)</a></li>
-<li><a href="#sec-1-19">从文件创建数据表</a></li>
+<li><a href="#orgheadline18">INDEX(索引)</a></li>
+<li><a href="#orgheadline19">DROP</a></li>
+<li><a href="#orgheadline20">ALTER(修改表结构)</a></li>
+<li><a href="#orgheadline21">存储过程(MySQL 5.1)</a></li>
+<li><a href="#orgheadline22">事务(transaction)</a></li>
+<li><a href="#orgheadline23">从文件创建数据表</a></li>
 </ul>
 </li>
-<li><a href="#sec-2">数据库设计的三大范式：</a></li>
-<li><a href="#sec-3">数据库的常用模式</a>
+<li><a href="#orgheadline25">数据库设计的三大范式：</a></li>
+<li><a href="#orgheadline30">数据库的常用模式</a>
 <ul>
-<li><a href="#sec-3-1">主扩展模式</a></li>
-<li><a href="#sec-3-2">主从模式</a></li>
-<li><a href="#sec-3-3">名值模式</a></li>
-<li><a href="#sec-3-4">多对多模式</a></li>
+<li><a href="#orgheadline26">主扩展模式</a></li>
+<li><a href="#orgheadline27">主从模式</a></li>
+<li><a href="#orgheadline28">名值模式</a></li>
+<li><a href="#orgheadline29">多对多模式</a></li>
 </ul>
 </li>
-<li><a href="#sec-4">一些建议</a></li>
+<li><a href="#orgheadline31">一些建议</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">SQL基本知识与常用代码</h2>
-<div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">conventions</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-orgheadline24" class="outline-2">
+<h2 id="orgheadline24">SQL基本知识与常用代码</h2>
+<div class="outline-text-2" id="text-orgheadline24">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1">conventions</h3>
+<div class="outline-text-3" id="text-orgheadline1">
 <ol class="org-ol">
 <li>SQL 不区分大小写,但是惯例是SQL的关键字要大写, 所有的列名,表名,数据库名都
-用小写.
-</li>
-<li>每一条SQL语句后加分号;
-</li>
-<li>SQL不区分空格,所以为了可读性,可以把Sql语句分成多行.
-</li>
+用小写.</li>
+<li>每一条SQL语句后加分号;</li>
+<li>SQL不区分空格,所以为了可读性,可以把Sql语句分成多行.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">登录</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">登录</h3>
+<div class="outline-text-3" id="text-orgheadline2">
 <pre class="example">
 mysql –h hostname -P port –u username –p password.
 </pre>
 </div>
 </div>
-<div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3">增加新用户</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">增加新用户</h3>
+<div class="outline-text-3" id="text-orgheadline3">
 <ul class="org-ul">
-<li>grant 权限 on 数据库.* to 用户名称@登陆主机  identified 密码
+<li><p>
+grant 权限 on 数据库.* to 用户名称@登陆主机  identified 密码
+</p>
 <div class="org-src-container">
 
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">grant</span> <span style="color: #F0DFAF; font-weight: bold;">select</span>, <span style="color: #F0DFAF; font-weight: bold;">insert</span>, <span style="color: #F0DFAF; font-weight: bold;">update</span>, <span style="color: #F0DFAF; font-weight: bold;">delete</span>
 <span style="color: #F0DFAF; font-weight: bold;">on</span> books.*
 <span style="color: #F0DFAF; font-weight: bold;">to</span> <span style="color: #DCDCCC; font-weight: bold;">user</span> identified <span style="color: #F0DFAF; font-weight: bold;">by</span> <span style="color: #CC9393;">'1234'</span>
 </pre>
-</div>
-</li>
+</div></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-4" class="outline-3">
-<h3 id="sec-1-4">database相关</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">database相关</h3>
+<div class="outline-text-3" id="text-orgheadline4">
 <ul class="org-ul">
-<li>create database 数据库名;  (创建数据库)
-</li>
-<li>show databases;            (显示所有数据库)
-</li>
-<li>use dbname;                (改变当前数据库)
-</li>
+<li>create database 数据库名;  (创建数据库)</li>
+<li>show databases;            (显示所有数据库)</li>
+<li>use dbname;                (改变当前数据库)</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-5" class="outline-3">
-<h3 id="sec-1-5">SHOW</h3>
-<div class="outline-text-3" id="text-1-5">
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">SHOW</h3>
+<div class="outline-text-3" id="text-orgheadline5">
 <ul class="org-ul">
-<li>SHOW DATABASES;
-</li>
-<li>SHOW TABLES;
-</li>
-<li>SHOW COLUMNS FROM tbname; (显示数据表tbname的结构)
-</li>
-<li>DESCRIBE tbname; (等价于 show columns from tbname;)
-</li>
-<li>SHOW STATUS;                 (显示数据库的基本信息)
-</li>
-<li>SHOW GRANTS [username];      (显示当前用户或username的权限)
-</li>
-<li>SHOW CREATE DATABASE dbname; (显示创建数据库dbname的sql语句)
-</li>
-<li>SHOW CREATE DATABASE tbname; (显示创建数据表tbname的sql语句)
-</li>
+<li>SHOW DATABASES;</li>
+<li>SHOW TABLES;</li>
+<li>SHOW COLUMNS FROM tbname; (显示数据表tbname的结构)</li>
+<li>DESCRIBE tbname; (等价于 show columns from tbname;)</li>
+<li>SHOW STATUS;                 (显示数据库的基本信息)</li>
+<li>SHOW GRANTS [username];      (显示当前用户或username的权限)</li>
+<li>SHOW CREATE DATABASE dbname; (显示创建数据库dbname的sql语句)</li>
+<li>SHOW CREATE DATABASE tbname; (显示创建数据表tbname的sql语句)</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-6" class="outline-3">
-<h3 id="sec-1-6">SELECT</h3>
-<div class="outline-text-3" id="text-1-6">
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6">SELECT</h3>
+<div class="outline-text-3" id="text-orgheadline6">
 <p>
 select用来检索数据, 检索时至少要指定两条信息:
 </p>
 <ol class="org-ol">
-<li>你要检索什么(field name)
-</li>
-<li>从哪里检索(database name)
+<li>你要检索什么(field name)</li>
+<li><p>
+从哪里检索(database name)
+</p>
 <pre class="example">
 SELECT  列1,列2  FROM  表名
 SELECT  表1.列1, 表2. 列2  FROM  表1, 表2（多张表中选取）
 SELECT  *  FROM  表名
 SELECT  DISTINCT  列2   FROM  表名       (去除重复)
-</pre>
-</li>
+</pre></li>
 </ol>
 <p>
 同时还可以指定一些过滤规则与排序规则, 这一般是通过子句实现的:
 </p>
 <ol class="org-ol">
-<li>ORDER BY 列1, 列2 [DESC|ASC] : <b>必须在where子句后,在limit子句前.</b>
-</li>
-<li>LIMIT num : 用来指定最多返回多少条记录.必须在order by子句之后.
-</li>
+<li>ORDER BY 列1, 列2 [DESC|ASC] : <b>必须在where子句后,在limit子句前.</b></li>
+<li>LIMIT num : 用来指定最多返回多少条记录.必须在order by子句之后.</li>
 <li>WHERE 子句: 指定过滤条件(尽量在数据库层面过滤数据,而不要在语言层面(如
 php,python)过滤数据), 因为数据库过滤效率较高, 而且也可以避免不必要的数据
 在数据库服务端到数据库客户端的传输
 <ol class="org-ol">
-<li>WHERE 列名 操作符 值
+<li><p>
+WHERE 列名 操作符 值
+</p>
 
 <p>
 对应的列如果是整数那么值就不要引号,如果是字符串那么值就加单引号.
@@ -336,54 +329,54 @@ php,python)过滤数据), 因为数据库过滤效率较高, 而且也可以避�
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">operator</td>
-<td class="left">meaning</td>
+<td class="org-left">operator</td>
+<td class="org-left">meaning</td>
 </tr>
 
 <tr>
-<td class="left">=,&gt;,&gt;=,&lt;,&lt;=, &lt;&gt;, !=</td>
-<td class="left">等于,大于..etc(!=, &lt;&gt;都是不等于的意思)</td>
+<td class="org-left">=,&gt;,&gt;=,&lt;,&lt;=, &lt;&gt;, !=</td>
+<td class="org-left">等于,大于..etc(!=, &lt;&gt;都是不等于的意思)</td>
 </tr>
 
 <tr>
-<td class="left">BETWEEN</td>
-<td class="left">介于指定值之间</td>
+<td class="org-left">BETWEEN</td>
+<td class="org-left">介于指定值之间</td>
 </tr>
 
 <tr>
-<td class="left">IN</td>
-<td class="left">枚举(可以看做是OR的简写)</td>
+<td class="org-left">IN</td>
+<td class="org-left">枚举(可以看做是OR的简写)</td>
 </tr>
 
 <tr>
-<td class="left">NOT</td>
-<td class="left">MySQL只允许NOT出现在IN, BETWEEN, EXISTS之前, 也就是NOT IN, NOT BETWEEN, NOT EXISTS</td>
+<td class="org-left">NOT</td>
+<td class="org-left">MySQL只允许NOT出现在IN, BETWEEN, EXISTS之前, 也就是NOT IN, NOT BETWEEN, NOT EXISTS</td>
 </tr>
 
 <tr>
-<td class="left">LIKE</td>
-<td class="left">使用通配符来匹配字段,性能不是很高,所以慎用</td>
+<td class="org-left">LIKE</td>
+<td class="org-left">使用通配符来匹配字段,性能不是很高,所以慎用</td>
 </tr>
 
 <tr>
-<td class="left">REGEX</td>
-<td class="left">使用正则表达式来匹配字段,性能也不是很高,所以慎用</td>
+<td class="org-left">REGEX</td>
+<td class="org-left">使用正则表达式来匹配字段,性能也不是很高,所以慎用</td>
 </tr>
 </tbody>
 </table>
 <ul class="org-ul">
-<li>LIKE: 模式必须匹配整个列,而不是一列的一部分
+<li><p>
+LIKE: 模式必须匹配整个列,而不是一列的一部分
+</p>
 <ul class="org-ul">
-<li>%: 代表任意字符出现任意次数
-</li>
-<li>_: 代表单个字符
-</li>
+<li>%: 代表任意字符出现任意次数</li>
+<li>_: 代表单个字符</li>
 </ul>
 <p>
 通配符要尽量少用,特别是不要放在模式的开头,因为那非常慢.
@@ -394,10 +387,8 @@ php,python)过滤数据), 因为数据库过滤效率较高, 而且也可以避�
 <span style="color: #F0DFAF; font-weight: bold;">FROM</span> products
 <span style="color: #F0DFAF; font-weight: bold;">WHERE</span> prod_name <span style="color: #F0DFAF; font-weight: bold;">LIKE</span> <span style="color: #CC9393;">'%anvil%'</span>;
 </pre>
-</div>
-</li>
-<li>REGEX: 和一般的正则表达式差不多
-</li>
+</div></li>
+<li>REGEX: 和一般的正则表达式差不多</li>
 </ul>
 <div class="org-src-container">
 
@@ -424,10 +415,11 @@ php,python)过滤数据), 因为数据库过滤效率较高, 而且也可以避�
 <span style="color: #F0DFAF; font-weight: bold;">WHERE</span> vend_id <span style="color: #F0DFAF; font-weight: bold;">NOT</span> <span style="color: #F0DFAF; font-weight: bold;">IN</span> <span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">1002</span>, <span style="color: #BFEBBF;">1003</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #F0DFAF; font-weight: bold;">ORDER</span> <span style="color: #F0DFAF; font-weight: bold;">BY</span> prod_name;
 </pre>
-</div>
-</li>
+</div></li>
 
-<li>逻辑联结词 AND, OR
+<li><p>
+逻辑联结词 AND, OR
+</p>
 
 <p>
 可以用来连接多个过滤条件,必要时要加小括号来分组.
@@ -442,9 +434,10 @@ php,python)过滤数据), 因为数据库过滤效率较高, 而且也可以避�
 <span style="color: #F0DFAF; font-weight: bold;">FROM</span> products
 <span style="color: #F0DFAF; font-weight: bold;">WHERE</span> vend_id = <span style="color: #BFEBBF;">1001</span> <span style="color: #F0DFAF; font-weight: bold;">OR</span> vend_id = <span style="color: #BFEBBF;">1002</span>;
 </pre>
-</div>
-</li>
-<li>创建计算字段:
+</div></li>
+<li><p>
+创建计算字段:
+</p>
 
 <p>
 假设一个订单表包含一个price字段以及一个quantity字段, 那么为了计算总价,就
@@ -470,13 +463,13 @@ vend_title
 <span style="color: #F0DFAF; font-weight: bold;">FROM</span> vendors
 <span style="color: #F0DFAF; font-weight: bold;">ORDER</span> <span style="color: #F0DFAF; font-weight: bold;">BY</span> vend_name;
 </pre>
-</div>
-</li>
+</div></li>
 <li>函数
 <ul class="org-ul">
-<li>字符串函数(Upper, Lower, LTrim, RTrim, Trim, Substring &#x2026;)
-</li>
-<li>日期,时间函数(Now, Curdate, Curtime, Year, Month, Day&#x2026;)
+<li>字符串函数(Upper, Lower, LTrim, RTrim, Trim, Substring &#x2026;)</li>
+<li><p>
+日期,时间函数(Now, Curdate, Curtime, Year, Month, Day&#x2026;)
+</p>
 
 <p>
 日期的格式应该是: yyyy-mm-dd
@@ -495,13 +488,12 @@ vend_title
 <span style="color: #F0DFAF; font-weight: bold;">FROM</span> orders
 <span style="color: #F0DFAF; font-weight: bold;">WHERE</span> <span style="color: #F0DFAF; font-weight: bold;">Year</span><span style="color: #DCDCCC;">(</span>order_date<span style="color: #DCDCCC;">)</span> = <span style="color: #BFEBBF;">2005</span> <span style="color: #F0DFAF; font-weight: bold;">AND</span> <span style="color: #F0DFAF; font-weight: bold;">Month</span><span style="color: #DCDCCC;">(</span>order_date<span style="color: #DCDCCC;">)</span> = <span style="color: #BFEBBF;">9</span>;
 </pre>
-</div>
-</li>
-<li>数值处理函数: Abs, Sin, Cos 等等
-</li>
-</ul>
-</li>
-<li>聚集函数: AVG, COUNT, MAX, MIN, SUM.
+</div></li>
+<li>数值处理函数: Abs, Sin, Cos 等等</li>
+</ul></li>
+<li><p>
+聚集函数: AVG, COUNT, MAX, MIN, SUM.
+</p>
 <div class="org-src-container">
 
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> <span style="color: #DCDCCC; font-weight: bold;">COUNT</span><span style="color: #DCDCCC;">(</span>*<span style="color: #DCDCCC;">)</span> <span style="color: #F0DFAF; font-weight: bold;">AS</span> num_items,
@@ -520,19 +512,17 @@ vend_title
 |-----------+-----------+-----------+-----------|
 |        14 |      2.50 |     55.00 | 16.133571 |
 +-----------+-----------+-----------+-----------+
-</pre>
-</li>
-</ol>
-</li>
+</pre></li>
+</ol></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-1-7" class="outline-3">
-<h3 id="sec-1-7">联接</h3>
-<div class="outline-text-3" id="text-1-7">
-</div><div id="outline-container-sec-1-7-1" class="outline-4">
-<h4 id="sec-1-7-1">内联接(等值联接)</h4>
-<div class="outline-text-4" id="text-1-7-1">
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9">联接</h3>
+<div class="outline-text-3" id="text-orgheadline9">
+</div><div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7">内联接(等值联接)</h4>
+<div class="outline-text-4" id="text-orgheadline7">
 <p>
 vendors表存储制造商信息,其主键为vend_id, products表存储产品信息,其中有一个
 外键 vend_id指向vendors表.
@@ -574,9 +564,9 @@ INNER JOIN 是推荐的写法.
 </div>
 </div>
 
-<div id="outline-container-sec-1-7-2" class="outline-4">
-<h4 id="sec-1-7-2">自联接</h4>
-<div class="outline-text-4" id="text-1-7-2">
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8">自联接</h4>
+<div class="outline-text-4" id="text-orgheadline8">
 <p>
 联接的两个表是同一个表
 </p>
@@ -592,9 +582,9 @@ INNER JOIN 是推荐的写法.
 </div>
 </div>
 
-<div id="outline-container-sec-1-8" class="outline-3">
-<h3 id="sec-1-8">子查询</h3>
-<div class="outline-text-3" id="text-1-8">
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10">子查询</h3>
+<div class="outline-text-3" id="text-orgheadline10">
 <p>
 一个select 返回的结果作为另外一条select 的条件.
 </p>
@@ -610,16 +600,13 @@ INNER JOIN 是推荐的写法.
 </p>
 </div>
 </div>
-<div id="outline-container-sec-1-9" class="outline-3">
-<h3 id="sec-1-9">UNION</h3>
-<div class="outline-text-3" id="text-1-9">
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11">UNION</h3>
+<div class="outline-text-3" id="text-orgheadline11">
 <ol class="org-ol">
-<li>必须是两条或者两条以上select语句
-</li>
-<li>每个select语句必须包含相同的列,表达式或者汇集函数.
-</li>
-<li>列数据类型必须兼容
-</li>
+<li>必须是两条或者两条以上select语句</li>
+<li>每个select语句必须包含相同的列,表达式或者汇集函数.</li>
+<li>列数据类型必须兼容</li>
 </ol>
 <div class="org-src-container">
 
@@ -635,46 +622,45 @@ INNER JOIN 是推荐的写法.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-1-10" class="outline-3">
-<h3 id="sec-1-10">INSERT(增)</h3>
-<div class="outline-text-3" id="text-1-10">
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12">INSERT(增)</h3>
+<div class="outline-text-3" id="text-orgheadline12">
 <ul class="org-ul">
-<li>插入一条记录,省略列名:
+<li><p>
+插入一条记录,省略列名:
+</p>
 <pre class="example">
 INSERT INTO 表名  VALUES(val1, val2 ...)
-</pre>
-</li>
-<li>插入一条记录:
+</pre></li>
+<li><p>
+插入一条记录:
+</p>
 <pre class="example">
 INSERT INTO 表名 (列1，列2 ...) VALUES (val1, val2 ...)
-</pre>
-</li>
-<li>插入多条记录:
+</pre></li>
+<li><p>
+插入多条记录:
+</p>
 <pre class="example">
 INSERT INTO 表名 (列1，列2 ...)  VALUES (val1, val2 ...), (val1, val2 ...)
-</pre>
-</li>
+</pre></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-11" class="outline-3">
-<h3 id="sec-1-11">DELETE(删)</h3>
-<div class="outline-text-3" id="text-1-11">
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13">DELETE(删)</h3>
+<div class="outline-text-3" id="text-orgheadline13">
 <ul class="org-ul">
-<li>delete  from 表名称 where  列名称=值
-</li>
-<li>delete from  表名称    (删除所有行，但是保留表)
-</li>
-<li>delete * from 表名称   (删除所有行，但是保留表)
-</li>
-<li>truncate table 表名    (删除所有行,效率更高)
-</li>
+<li>delete  from 表名称 where  列名称=值</li>
+<li>delete from  表名称    (删除所有行，但是保留表)</li>
+<li>delete * from 表名称   (删除所有行，但是保留表)</li>
+<li>truncate table 表名    (删除所有行,效率更高)</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-12" class="outline-3">
-<h3 id="sec-1-12">UPDATE(改)</h3>
-<div class="outline-text-3" id="text-1-12">
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14">UPDATE(改)</h3>
+<div class="outline-text-3" id="text-orgheadline14">
 <p>
 更新数据表某一列或者多列(<b>特别要注意where子句</b>)
 </p>
@@ -683,9 +669,9 @@ UPDATE 表名 SET 列名=新值  WHERE 列名=某值
 </pre>
 </div>
 </div>
-<div id="outline-container-sec-1-13" class="outline-3">
-<h3 id="sec-1-13">CREATE TABLE</h3>
-<div class="outline-text-3" id="text-1-13">
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15">CREATE TABLE</h3>
+<div class="outline-text-3" id="text-orgheadline15">
 <p>
 创建表,基本语法:
 </p>
@@ -701,259 +687,252 @@ create  table  表名
 尽量指定NULL或者NOT NULL, 一般约束是可选的
 </p>
 </div>
-<div id="outline-container-sec-1-13-1" class="outline-4">
-<h4 id="sec-1-13-1">数据类型</h4>
-<div class="outline-text-4" id="text-1-13-1">
+<div id="outline-container-orgheadline16" class="outline-4">
+<h4 id="orgheadline16">数据类型</h4>
+<div class="outline-text-4" id="text-orgheadline16">
 <ol class="org-ol">
-<li>字符串类型
+<li><p>
+字符串类型
+</p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">CHAR</td>
-<td class="left">1~255个字符长度的定长字符串,长度必须创建时指定</td>
+<td class="org-left">CHAR</td>
+<td class="org-left">1~255个字符长度的定长字符串,长度必须创建时指定</td>
 </tr>
 
 <tr>
-<td class="left">ENUM</td>
-<td class="left">枚举,值只能是预定义集合中的某一个</td>
+<td class="org-left">ENUM</td>
+<td class="org-left">枚举,值只能是预定义集合中的某一个</td>
 </tr>
 
 <tr>
-<td class="left">LONGTEXT</td>
-<td class="left">&#xa0;</td>
+<td class="org-left">LONGTEXT</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="left">MEDIUMTEXT</td>
-<td class="left">&#xa0;</td>
+<td class="org-left">MEDIUMTEXT</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="left">SET</td>
-<td class="left">预定义集合中的0个或者多个串</td>
+<td class="org-left">SET</td>
+<td class="org-left">预定义集合中的0个或者多个串</td>
 </tr>
 
 <tr>
-<td class="left">TEXT</td>
-<td class="left">最长 64k 的变长字符串</td>
+<td class="org-left">TEXT</td>
+<td class="org-left">最长 64k 的变长字符串</td>
 </tr>
 
 <tr>
-<td class="left">TINYTEXT</td>
-<td class="left">&#xa0;</td>
+<td class="org-left">TINYTEXT</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="left">VARCHAR</td>
-<td class="left">长度可变,最长不超过255个字节</td>
+<td class="org-left">VARCHAR</td>
+<td class="org-left">长度可变,最长不超过255个字节</td>
 </tr>
 </tbody>
 </table>
 <p>
 用的较多的就是: CHAR, VARCHAR, TEXT. 在sql语句中对于字符串值要用引号.
+</p></li>
+<li><p>
+数值类型(如果确定为非负数,可以在类型前加 UNSIGNED)
 </p>
-</li>
-<li>数值类型(如果确定为非负数,可以在类型前加 UNSIGNED)
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">BIT</td>
-<td class="left">位字段, 1~64位</td>
+<td class="org-left">BIT</td>
+<td class="org-left">位字段, 1~64位</td>
 </tr>
 
 <tr>
-<td class="left">BIGINT</td>
-<td class="left">&#xa0;</td>
+<td class="org-left">BIGINT</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="left">BOOLEAN(或BOOL)</td>
-<td class="left">布尔(0或者1)</td>
+<td class="org-left">BOOLEAN(或BOOL)</td>
+<td class="org-left">布尔(0或者1)</td>
 </tr>
 
 <tr>
-<td class="left">DECIMAL(或DEC)</td>
-<td class="left">精度可变的浮点</td>
+<td class="org-left">DECIMAL(或DEC)</td>
+<td class="org-left">精度可变的浮点</td>
 </tr>
 
 <tr>
-<td class="left">DOUBLE</td>
-<td class="left">双精度浮点</td>
+<td class="org-left">DOUBLE</td>
+<td class="org-left">双精度浮点</td>
 </tr>
 
 <tr>
-<td class="left">FLOAT</td>
-<td class="left">单精度浮点</td>
+<td class="org-left">FLOAT</td>
+<td class="org-left">单精度浮点</td>
 </tr>
 
 <tr>
-<td class="left">INT(或INTEGER)</td>
-<td class="left">整数</td>
+<td class="org-left">INT(或INTEGER)</td>
+<td class="org-left">整数</td>
 </tr>
 
 <tr>
-<td class="left">MEDIUMINT</td>
-<td class="left">&#xa0;</td>
+<td class="org-left">MEDIUMINT</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="left">REAL</td>
-<td class="left">&#xa0;</td>
+<td class="org-left">REAL</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="left">SMALLINT</td>
-<td class="left">&#xa0;</td>
+<td class="org-left">SMALLINT</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 </tbody>
 </table>
 <p>
 用的较多的就是: INT, BOOLEAN, DOUBLE, FLOAT. 在sql中数值类型不要加引号.
+</p></li>
+<li><p>
+时间日期类型
 </p>
-</li>
-<li>时间日期类型
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">DATE</td>
-<td class="left">日期,格式为: YYYY-MM-DD</td>
+<td class="org-left">DATE</td>
+<td class="org-left">日期,格式为: YYYY-MM-DD</td>
 </tr>
 
 <tr>
-<td class="left">TIME</td>
-<td class="left">格式为: HH:MM:SS</td>
+<td class="org-left">TIME</td>
+<td class="org-left">格式为: HH:MM:SS</td>
 </tr>
 
 <tr>
-<td class="left">DATETIME</td>
-<td class="left">DATE和TIME的组合</td>
+<td class="org-left">DATETIME</td>
+<td class="org-left">DATE和TIME的组合</td>
 </tr>
 
 <tr>
-<td class="left">TIMESTAMP</td>
-<td class="left">功能和DATETIME相同,但范围较小</td>
+<td class="org-left">TIMESTAMP</td>
+<td class="org-left">功能和DATETIME相同,但范围较小</td>
 </tr>
 
 <tr>
-<td class="left">YEAR</td>
-<td class="left">年份,2位数字则范围是: 1970~2069, 4为数字则范围:1901~2155</td>
+<td class="org-left">YEAR</td>
+<td class="org-left">年份,2位数字则范围是: 1970~2069, 4为数字则范围:1901~2155</td>
 </tr>
 </tbody>
 </table>
 <p>
 用的较多的是 DATETIME, DATE, TIME这三个类型.
+</p></li>
+<li><p>
+二进制类型
 </p>
-</li>
-<li>二进制类型
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">BLOB</td>
-<td class="left">64kb</td>
+<td class="org-left">BLOB</td>
+<td class="org-left">64kb</td>
 </tr>
 
 <tr>
-<td class="left">MEDIUMBLOB</td>
-<td class="left">16mb</td>
+<td class="org-left">MEDIUMBLOB</td>
+<td class="org-left">16mb</td>
 </tr>
 
 <tr>
-<td class="left">LONGBLOB</td>
-<td class="left">4GB</td>
+<td class="org-left">LONGBLOB</td>
+<td class="org-left">4GB</td>
 </tr>
 
 <tr>
-<td class="left">TINYBLOB</td>
-<td class="left">255个字节</td>
+<td class="org-left">TINYBLOB</td>
+<td class="org-left">255个字节</td>
 </tr>
 </tbody>
 </table>
 <p>
 用的较多的就是: BLOB
-</p>
-</li>
+</p></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-1-13-2" class="outline-4">
-<h4 id="sec-1-13-2">约束</h4>
-<div class="outline-text-4" id="text-1-13-2">
+<div id="outline-container-orgheadline17" class="outline-4">
+<h4 id="orgheadline17">约束</h4>
+<div class="outline-text-4" id="text-orgheadline17">
 <ul class="org-ul">
-<li>NOT NULL: 应该紧挨着类型的后面.
-</li>
-<li>PRIMARY KEY：主键，不用再指定unique。
-</li>
+<li>NOT NULL: 应该紧挨着类型的后面.</li>
+<li>PRIMARY KEY：主键，不用再指定unique。</li>
 <li>UNIQUE：字段必须唯一, <b>但是字段可以为NULL</b>. 也就是说UNIQUE不会检查 NULL值.可
-以指定多个字段,也就是说规定指定字段的组合必须唯一.
-</li>
-<li>FOREIGN KEY:外键
-</li>
-<li>CHECK：值范围，eg：check（Id&gt;0）.
-</li>
-<li>DEFAULT: 默认值，default 'yangyu', <b>MySQL不接受函数作为默认值</b>.
-</li>
-<li>AUTO_INCREMENT：通常对主键。
-</li>
+以指定多个字段,也就是说规定指定字段的组合必须唯一.</li>
+<li>FOREIGN KEY:外键</li>
+<li>CHECK：值范围，eg：check（Id&gt;0）.</li>
+<li>DEFAULT: 默认值，default 'yangyu', <b>MySQL不接受函数作为默认值</b>.</li>
+<li>AUTO_INCREMENT：通常对主键。</li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-1-14" class="outline-3">
-<h3 id="sec-1-14">INDEX(索引)</h3>
-<div class="outline-text-3" id="text-1-14">
+<div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18">INDEX(索引)</h3>
+<div class="outline-text-3" id="text-orgheadline18">
 <ul class="org-ul">
-<li>创建索引：CREATE  INDEX  indexname ON  tablename (column [ASC|DESC], &#x2026;);
-</li>
-<li>删除索引：DROP INDEX indexname  ON tablename;
-</li>
+<li>创建索引：CREATE  INDEX  indexname ON  tablename (column [ASC|DESC], &#x2026;);</li>
+<li>删除索引：DROP INDEX indexname  ON tablename;</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-15" class="outline-3">
-<h3 id="sec-1-15">DROP</h3>
-<div class="outline-text-3" id="text-1-15">
+<div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19">DROP</h3>
+<div class="outline-text-3" id="text-orgheadline19">
 <ul class="org-ul">
-<li>删除表    : drop table 表名
-</li>
-<li>删除数据库: drop database 数据库名
-</li>
+<li>删除表    : drop table 表名</li>
+<li>删除数据库: drop database 数据库名</li>
 </ul>
 <pre class="example">
 DROP DATABASE|INDEX|PROCEDURE|TABLE|TRIGGER|USER|VIEW itemname;
 </pre>
 </div>
 </div>
-<div id="outline-container-sec-1-16" class="outline-3">
-<h3 id="sec-1-16">ALTER(修改表结构)</h3>
-<div class="outline-text-3" id="text-1-16">
+<div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20">ALTER(修改表结构)</h3>
+<div class="outline-text-3" id="text-orgheadline20">
 <pre class="example">
 ALTER TABLE tablename
 (
@@ -964,25 +943,28 @@ ALTER TABLE tablename
 );
 </pre>
 <ul class="org-ul">
-<li>增加列: alert  table  表名  add  列名  数据类型
+<li><p>
+增加列: alert  table  表名  add  列名  数据类型
+</p>
 <div class="org-src-container">
 
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">ALTER</span> <span style="color: #F0DFAF; font-weight: bold;">TABLE</span> <span style="color: #93E0E3;">vendors</span>
 <span style="color: #F0DFAF; font-weight: bold;">ADD</span> vend_phone <span style="color: #7CB8BB;">CHAR</span><span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">20</span><span style="color: #DCDCCC;">)</span>;
 </pre>
-</div>
-</li>
-<li>删除列: ALTER TABLE 表名 DROP column 列名
+</div></li>
+<li><p>
+删除列: ALTER TABLE 表名 DROP column 列名
+</p>
 <div class="org-src-container">
 
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">ALTER</span> <span style="color: #F0DFAF; font-weight: bold;">TABLE</span> <span style="color: #93E0E3;">vendors</span>
 <span style="color: #F0DFAF; font-weight: bold;">DROP</span> <span style="color: #F0DFAF; font-weight: bold;">COLUMN</span> vend_phone;
 </pre>
-</div>
-</li>
-<li>修改列: ALTER TABLE 表名 CHANGE COLUMN 列名 数据类型
-</li>
-<li>定义外键:
+</div></li>
+<li>修改列: ALTER TABLE 表名 CHANGE COLUMN 列名 数据类型</li>
+<li><p>
+定义外键:
+</p>
 <div class="org-src-container">
 
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">ALTER</span> <span style="color: #F0DFAF; font-weight: bold;">TABLE</span> <span style="color: #93E0E3;">products</span>
@@ -992,14 +974,13 @@ ALTER TABLE tablename
 </div>
 <p>
 从products.vend_id 到 vendors.vend_id的外键.
-</p>
-</li>
+</p></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-17" class="outline-3">
-<h3 id="sec-1-17">存储过程(MySQL 5.1)</h3>
-<div class="outline-text-3" id="text-1-17">
+<div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21">存储过程(MySQL 5.1)</h3>
+<div class="outline-text-3" id="text-orgheadline21">
 <p>
 可以看做是SQl语言中的自定义函数. 也就是把一系列的 SQL 语句打包成一个自定义函
 数,然后通过这个函数名来调用这一系列的SQL语句.
@@ -1046,9 +1027,9 @@ IN 代表输入参数, OUT代表输出参数.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-1-18" class="outline-3">
-<h3 id="sec-1-18">事务(transaction)</h3>
-<div class="outline-text-3" id="text-1-18">
+<div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22">事务(transaction)</h3>
+<div class="outline-text-3" id="text-orgheadline22">
 <p>
 MySQL的 <code>MySAIM</code> 存储引擎不支持事务, <code>InnoDB</code> 支持事务, MySQL5.5的默认引擎是
 InnoDB.
@@ -1072,38 +1053,34 @@ InnoDB.
 </p>
 </div>
 </div>
-<div id="outline-container-sec-1-19" class="outline-3">
-<h3 id="sec-1-19">从文件创建数据表</h3>
-<div class="outline-text-3" id="text-1-19">
+<div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23">从文件创建数据表</h3>
+<div class="outline-text-3" id="text-orgheadline23">
 <ul class="org-ul">
-<li>mysql –u -p root &lt; file.sql
-</li>
+<li>mysql –u -p root &lt; file.sql</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">数据库设计的三大范式：</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgheadline25" class="outline-2">
+<h2 id="orgheadline25">数据库设计的三大范式：</h2>
+<div class="outline-text-2" id="text-orgheadline25">
 <ul class="org-ul">
-<li>第一范式：字段不可分，
-</li>
+<li>第一范式：字段不可分，</li>
 <li>第二范式：有主键，非主键字段要依赖主键字段只要数据列里面的内容出现重复，就
-意味着应该将表拆分，拆分形成的表必须用外键关联起来。
-</li>
+意味着应该将表拆分，拆分形成的表必须用外键关联起来。</li>
 <li>第三范式：非主键字段不能相互依赖，也就是说表中的每一列必须与主键直接相关而
-不能间接相关。与主键没有直接关系的数据列必须清除（创建一个表来存放他们）。
-</li>
+不能间接相关。与主键没有直接关系的数据列必须清除（创建一个表来存放他们）。</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">数据库的常用模式</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">主扩展模式</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-orgheadline30" class="outline-2">
+<h2 id="orgheadline30">数据库的常用模式</h2>
+<div class="outline-text-2" id="text-orgheadline30">
+</div><div id="outline-container-orgheadline26" class="outline-3">
+<h3 id="orgheadline26">主扩展模式</h3>
+<div class="outline-text-3" id="text-orgheadline26">
 <p>
 比如说公司有不同类型的员工，如设计师，程序员，PM等，那么可以先建一个员工表，
 这个表存放所有类型的员工都有的属性，如姓名，性别，入职时间等等等，然后在设计
@@ -1111,21 +1088,21 @@ InnoDB.
 </p>
 </div>
 </div>
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2">主从模式</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-orgheadline27" class="outline-3">
+<h3 id="orgheadline27">主从模式</h3>
+<div class="outline-text-3" id="text-orgheadline27">
 <p>
 一张表的一条记录对应另一张表的多条记录。也就是一对多
 eg：论坛的板块表与帖子表就是这种关系，而帖子表与回复表也是这种关系
 </p>
 </div>
 </div>
-<div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3">名值模式</h3>
+<div id="outline-container-orgheadline28" class="outline-3">
+<h3 id="orgheadline28">名值模式</h3>
 </div>
-<div id="outline-container-sec-3-4" class="outline-3">
-<h3 id="sec-3-4">多对多模式</h3>
-<div class="outline-text-3" id="text-3-4">
+<div id="outline-container-orgheadline29" class="outline-3">
+<h3 id="orgheadline29">多对多模式</h3>
+<div class="outline-text-3" id="text-orgheadline29">
 <p>
 一本书可以有多个作者，一个作者也可以写多本书，所以书目信息表与作者信息表就是
 多对多关系，那么设计时通常是在加入一个关联表，也就是通过3个表来表示这种关系
@@ -1133,20 +1110,16 @@ eg：论坛的板块表与帖子表就是这种关系，而帖子表与回复表
 </div>
 </div>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">一些建议</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgheadline31" class="outline-2">
+<h2 id="orgheadline31">一些建议</h2>
+<div class="outline-text-2" id="text-orgheadline31">
 <ol class="org-ol">
-<li>LIKE 很慢, 所以一般情况下,最好使用 full text.
-</li>
-<li>绝不要检索比需求多的数据, 所以不要使用 SELECT * 这样的语句.
-</li>
+<li>LIKE 很慢, 所以一般情况下,最好使用 full text.</li>
+<li>绝不要检索比需求多的数据, 所以不要使用 SELECT * 这样的语句.</li>
 <li>如果where中有很多的 OR 条件, 那么使用 UNION将其分拆为多条 select 语句会看
-到明显的性能改善.
-</li>
+到明显的性能改善.</li>
 <li>在插入数据频繁的场景下, 应该删除外键, 在应用层面检查约束就可以了, 因为插入
-频繁时,外键会明显降低性能.
-</li>
+频繁时,外键会明显降低性能.</li>
 </ol>
 </div>
 </div>

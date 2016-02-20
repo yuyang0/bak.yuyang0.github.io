@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>python源代码解析</title>
-<!-- 2015-08-21 Fri 17:27 -->
+<!-- 2016-02-20 Sat 22:42 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>python源代码解析</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -169,33 +175,33 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">一些基本概念</a>
+<li><a href="#orgheadline1">一些基本概念</a>
 <ul>
-<li><a href="#sec-1-1">object</a></li>
-<li><a href="#sec-1-2">PyObject, PyVarObject</a></li>
-<li><a href="#sec-1-3">PyIntObject</a></li>
-<li><a href="#sec-1-4">PyStringObject</a></li>
-<li><a href="#sec-1-5">PuListObject</a></li>
+<li><a href="#orgheadline2">object</a></li>
+<li><a href="#orgheadline3">PyObject, PyVarObject</a></li>
+<li><a href="#orgheadline4">PyIntObject</a></li>
+<li><a href="#orgheadline5">PyStringObject</a></li>
+<li><a href="#orgheadline6">PuListObject</a></li>
 </ul>
 </li>
-<li><a href="#sec-2">referrence count</a>
+<li><a href="#orgheadline7">referrence count</a>
 <ul>
-<li><a href="#sec-2-1">调用者将引用传递给被调用者</a></li>
-<li><a href="#sec-2-2">被调用者返回一个引用给调用者</a></li>
+<li><a href="#orgheadline8">调用者将引用传递给被调用者</a></li>
+<li><a href="#orgheadline9">被调用者返回一个引用给调用者</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">GC</a>
+<li><a href="#orgheadline10">GC</a>
 <ul>
-<li><a href="#sec-3-1">引用计数</a></li>
-<li><a href="#sec-3-2">mark，sweep机制</a></li>
+<li><a href="#orgheadline11">引用计数</a></li>
+<li><a href="#orgheadline12">mark，sweep机制</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">一些基本概念</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">一些基本概念</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <p>
 python中一切都是对象, 类的实例是对象, 类本身是对象,类型也是对象,每一个对象都会有一个指向其type对象的指针,而
 其type对象指向一个type type, 而type type指向自己,这是2.7.5源代码的注释,说的很清楚
@@ -222,12 +228,12 @@ contains a pointer to itself!).
     &lt;type 'type'&gt;
 </pre>
 </div>
-<div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">object</h3>
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">object</h3>
 </div>
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">PyObject, PyVarObject</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">PyObject, PyVarObject</h3>
+<div class="outline-text-3" id="text-orgheadline3">
 <p>
 这是两类基本对象,前者可以看作是不可变对象比如整数等的基类,后者可以看作是可变对象比如list,dict等的基类,c实现
 等价于:
@@ -247,10 +253,11 @@ contains a pointer to itself!).
 </pre>
 </div>
 <ol class="org-ol">
-<li>ob_refcnt: 对象的引用计数
-</li>
-<li>ob_type: 一个type对象,包含了该对象的类型信息,ob_type中会有一系列的函数指针,这些函数指针的值随着类型的不
-同而不同,比如IntObject与StringObject的ob_type中的函数指针的值就不同,这个值是python实现多态的关键所在
+<li>ob_refcnt: 对象的引用计数</li>
+<li><p>
+ob_type: 一个type对象,包含了该对象的类型信息,ob_type中会有一系列的函数指针,这些函数指针的值随着类型的不
+      同而不同,比如IntObject与StringObject的ob_type中的函数指针的值就不同,这个值是python实现多态的关键所在
+</p>
 <div class="org-src-container">
 
 <pre class="src src-C"><span style="color: #7CB8BB;">void</span> <span style="color: #93E0E3;">Print</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">PyObject</span>* <span style="color: #DFAF8F;">object</span><span style="color: #DCDCCC;">)</span>
@@ -261,16 +268,14 @@ contains a pointer to itself!).
 </div>
 <p>
 不管是什么类型都可以正确的打印该对象(多态)
-</p>
-</li>
-<li>ob_size: 对可变对象,比如 list,该值指定这个对象包含的元素个数(不是内存空间的大小)
-</li>
+</p></li>
+<li>ob_size: 对可变对象,比如 list,该值指定这个对象包含的元素个数(不是内存空间的大小)</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3">PyIntObject</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">PyIntObject</h3>
+<div class="outline-text-3" id="text-orgheadline4">
 <p>
 PyIntObject是python内部用来代表整数对象的C struct
 </p>
@@ -290,9 +295,9 @@ PyIntObject是python内部用来代表整数对象的C struct
 </p>
 </div>
 </div>
-<div id="outline-container-sec-1-4" class="outline-3">
-<h3 id="sec-1-4">PyStringObject</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">PyStringObject</h3>
+<div class="outline-text-3" id="text-orgheadline5">
 <p>
 内部用来代表string对象的C struct
 </p>
@@ -327,9 +332,9 @@ ob_sval后面的内存就恰好是7个字节了.
 </p>
 </div>
 </div>
-<div id="outline-container-sec-1-5" class="outline-3">
-<h3 id="sec-1-5">PuListObject</h3>
-<div class="outline-text-3" id="text-1-5">
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6">PuListObject</h3>
+<div class="outline-text-3" id="text-orgheadline6">
 <div class="org-src-container">
 
 <pre class="src src-C"><span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #DCDCCC;">{</span>
@@ -359,45 +364,41 @@ ob_sval后面的内存就恰好是7个字节了.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">referrence count</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7">referrence count</h2>
+<div class="outline-text-2" id="text-orgheadline7">
 <p>
 每一个PyObject都有一个引用计数，在解释器内部必须处理好计数的增加与减少。首先
 弄明白下面几点：
 </p>
 <ol class="org-ol">
 <li>任何东西都不会拥有对象，它只会拥有引用（Nobody “owns” an object; however,
-you can own a reference to an object.）
-</li>
-<li>当引用不在需要时，引用的拥有者必须调用 <code>Py_DECREF</code> 来减少引用计数。
-</li>
+you can own a reference to an object.）</li>
+<li>当引用不在需要时，引用的拥有者必须调用 <code>Py_DECREF</code> 来减少引用计数。</li>
 </ol>
 <p>
 所以农明白谁是引用的拥有者是至关重要的，下面分两种情况讨论何时应该增加，何时
 应该减少引用计数：
 </p>
 </div>
-<div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">调用者将引用传递给被调用者</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8">调用者将引用传递给被调用者</h3>
+<div class="outline-text-3" id="text-orgheadline8">
 <p>
 假设调用者为A， 被调用者为B，A将一个对象obj作为参数传递给了B，那么这时的行为
 分为两种情况：
 </p>
 <ol class="org-ol">
 <li>绝大多数情况下，obj的引用仍然归A所有，所以该引用如果没有用了，那么A要调用
-<code>Py_DECREF</code> 。
-</li>
+<code>Py_DECREF</code> 。</li>
 <li>B将obj的引用(steal)偷走了，这种情况obj的引用归B所有，所以A不需要在调用
-<code>Py_DECREF</code> 了，这种情况比较少见，最常见的例子就是 <code>PyList_SetItem</code>,
-</li>
+<code>Py_DECREF</code> 了，这种情况比较少见，最常见的例子就是 <code>PyList_SetItem</code>,</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2">被调用者返回一个引用给调用者</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9">被调用者返回一个引用给调用者</h3>
+<div class="outline-text-3" id="text-orgheadline9">
 <p>
 假设调用者为A， 被调用者为B，B使用return语句将一个对象obj返回给了A，那么这时的行为
 分为两种情况：
@@ -408,13 +409,14 @@ you can own a reference to an object.）
 就获得了一个引用，所有创建新对象的函数都是这种情况，比如 <code>PyInt_FromLong,
       Py_BuildValue</code>. 所有 <code>PyObject_, PyNumber_, PySequence_ or PyMapping_</code> 开
 头的函数也是这种情况。特别要注意 <code>PySequence_GetItem</code> 与 <code>PyList_GetItem,
-      PyTuple_GetItem</code> 的区别，前者会增加返回对象的引用计数，后者不会增加。
-</li>
-<li>obj的引用不归A所有，这种情况叫A借(borrow)了一个引用, 最常见有这几个函数
+      PyTuple_GetItem</code> 的区别，前者会增加返回对象的引用计数，后者不会增加。</li>
+<li><p>
+obj的引用不归A所有，这种情况叫A借(borrow)了一个引用, 最常见有这几个函数
 <code>PyTuple_GetItem, PyList_GetItem, PyDict_GetItem, PyDict_GetItemString</code>,
 这几个函数都是从复合对象中获取元素，在这些函数返回前并没有对获得的元素对
 象调用 <code>Py_INCREF</code>, 所以调用者也就没有获得引用，这种情况非常容易出问题，
 必然要如下的代码：
+</p>
 <div class="org-src-container">
 
 <pre class="src src-python">void
@@ -435,15 +437,14 @@ bug<span style="color: #DCDCCC;">(</span>PyObject *<span style="color: #DCDCCC; 
 item放进位置1时，实际上item已经失效了。解决上面的bug的方法就是
 <code>PyList_SetItem</code> 之前对item调用 <code>Py_INCREF</code> 这样bug函数就获得了一个引用，
 当然这样做之后在函数的结尾要调用 <code>Py_DECREF</code>.
-</p>
-</li>
+</p></li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">GC</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline10" class="outline-2">
+<h2 id="orgheadline10">GC</h2>
+<div class="outline-text-2" id="text-orgheadline10">
 <p>
 python的GC有两套垃圾收集机制，引用计数，以及mark，sweep机制，引用计
 数在垃圾收集中扮演主要角色，但是引用计数有一个致命的缺点，那就是它无
@@ -451,9 +452,9 @@ python的GC有两套垃圾收集机制，引用计数，以及mark，sweep机制
 际上在python中mark，sweep机制也只能收集那些循环引用的垃圾对象。
 </p>
 </div>
-<div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">引用计数</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11">引用计数</h3>
+<div class="outline-text-3" id="text-orgheadline11">
 <p>
 每一个对象都会有一个 <code>ob_refcnt</code> 域，同时有两个宏 <code>Py_INCREF</code>
 <code>Py_DECREF</code> 用来减少和增加引用计数，其中 <code>Py_DECREF</code> 会检查引用计数
@@ -461,9 +462,9 @@ python的GC有两套垃圾收集机制，引用计数，以及mark，sweep机制
 </p>
 </div>
 </div>
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2">mark，sweep机制</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12">mark，sweep机制</h3>
+<div class="outline-text-3" id="text-orgheadline12">
 <p>
 该机制只能用来收集循环引用的垃圾对象，它的基本实现机制是这样的：
 </p>

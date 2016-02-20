@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>OpenCL笔记</title>
-<!-- 2015-11-20 Fri 15:50 -->
+<!-- 2016-02-20 Sat 22:43 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>OpenCL笔记</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -169,32 +175,32 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">configuration</a>
+<li><a href="#orgheadline5">configuration</a>
 <ul>
-<li><a href="#sec-1-1">Linux(ubuntu, mint)</a>
+<li><a href="#orgheadline3">Linux(ubuntu, mint)</a>
 <ul>
-<li><a href="#sec-1-1-1">nvidia gpu</a></li>
-<li><a href="#sec-1-1-2">ATI GPU</a></li>
+<li><a href="#orgheadline1">nvidia gpu</a></li>
+<li><a href="#orgheadline2">ATI GPU</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-2">windows(pyopencl)</a></li>
+<li><a href="#orgheadline4">windows(pyopencl)</a></li>
 </ul>
 </li>
-<li><a href="#sec-2">DATETYPES</a></li>
-<li><a href="#sec-3">图像类型中的坑</a></li>
-<li><a href="#sec-4">Optimazation</a></li>
+<li><a href="#orgheadline6">DATETYPES</a></li>
+<li><a href="#orgheadline7">图像类型中的坑</a></li>
+<li><a href="#orgheadline8">Optimization</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">configuration</h2>
-<div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">Linux(ubuntu, mint)</h3>
-<div class="outline-text-3" id="text-1-1">
-</div><div id="outline-container-sec-1-1-1" class="outline-4">
-<h4 id="sec-1-1-1">nvidia gpu</h4>
-<div class="outline-text-4" id="text-1-1-1">
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5">configuration</h2>
+<div class="outline-text-2" id="text-orgheadline5">
+</div><div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">Linux(ubuntu, mint)</h3>
+<div class="outline-text-3" id="text-orgheadline3">
+</div><div id="outline-container-orgheadline1" class="outline-4">
+<h4 id="orgheadline1">nvidia gpu</h4>
+<div class="outline-text-4" id="text-orgheadline1">
 <pre class="example">
 sudo apt-get install nvidia-cuda-toolkit nvidia-opencl-dev
 </pre>
@@ -203,83 +209,71 @@ restart the OS.
 </p>
 </div>
 </div>
-<div id="outline-container-sec-1-1-2" class="outline-4">
-<h4 id="sec-1-1-2">ATI GPU</h4>
-<div class="outline-text-4" id="text-1-1-2">
+<div id="outline-container-orgheadline2" class="outline-4">
+<h4 id="orgheadline2">ATI GPU</h4>
+<div class="outline-text-4" id="text-orgheadline2">
 <ol class="org-ol">
-<li>安装依赖包
+<li><p>
+安装依赖包
+</p>
 <pre class="example">
 sudo apt-get install dh-modaliases execstack debhelper dkms lib32gcc1
-</pre>
-</li>
-<li>安装驱动, 进入该<a href="http://support.amd.com/zh-cn/download">网址</a> 选择你的驱动类型，下载安装
-</li>
-<li>到<a href="http://developer.amd.com/tools-and-sdks/heterogeneous-computing/">官网</a> 安装APP SDK, CodeXL(debug tool).
-</li>
+</pre></li>
+<li>安装驱动, 进入该<a href="http://support.amd.com/zh-cn/download">网址</a> 选择你的驱动类型，下载安装</li>
+<li>到<a href="http://developer.amd.com/tools-and-sdks/heterogeneous-computing/">官网</a> 安装APP SDK, CodeXL(debug tool).</li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">windows(pyopencl)</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">windows(pyopencl)</h3>
+<div class="outline-text-3" id="text-orgheadline4">
 <ol class="org-ol">
-<li>安装Opencl, 这个比较简单，先装显卡驱动，在装APP SDK
-</li>
+<li>安装Opencl, 这个比较简单，先装显卡驱动，在装APP SDK</li>
 <li>先安装python环境
 <ul class="org-ul">
-<li>安装<a href="https://store.enthought.com/downloads/">Enthought Canopy</a>
-</li>
+<li>安装<a href="https://store.enthought.com/downloads/">Enthought Canopy</a></li>
 <li>接着是安装Numpy，boost_python, PyOpenCL这几个库，安装方法是去
 <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/">http://www.lfd.uci.edu/~gohlke/pythonlibs/</a> 上下载文件，然后在命令行使用
 <code>pip install wheel—name</code> 来安装，下载文件时注意python的版本一般选cp2.7以及
-windows的版本，64位就选amd64
-</li>
-<li>需要IDE，那么就下载一个pycharm
-</li>
-</ul>
-</li>
+windows的版本，64位就选amd64</li>
+<li>需要IDE，那么就下载一个pycharm</li>
+</ul></li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">DATETYPES</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6">DATETYPES</h2>
+<div class="outline-text-2" id="text-orgheadline6">
 <ol class="org-ol">
 <li>在kernel中，只能用C99的内置类型， 比如char，bool，int，float等等，但是这些
-内置类型都是指定了确切大小的。
-</li>
+内置类型都是指定了确切大小的。</li>
 <li>在host代码中，如果直接使用C语言的内置类型，那么类型的大小不确定，所以如果
 host创建的数据是要传送到kernel的，那么这种不确定会造成问题，正是出于这种原
 因 OpenCL定义了一系列以 <code>cl</code> 开头的类型，这种类型只能在host代码中使用，
 kernel中不能用，实际上在host代码中还有一种方法，就是使用C99的 <code>stdint.h</code>
-提供的类型，比如 <code>int32_t</code> 就是4个字节.
-</li>
+提供的类型，比如 <code>int32_t</code> 就是4个字节.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">图像类型中的坑</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7">图像类型中的坑</h2>
+<div class="outline-text-2" id="text-orgheadline7">
 <ol class="org-ol">
 <li>图像类型虽然支持CL_RGB 但是这个不支持每一个channel是8位的数据， 所以大多数
-时候你必须给RGB的数据添加一位，来让它变成rgba，这主要是出于对齐考虑
-</li>
+时候你必须给RGB的数据添加一位，来让它变成rgba，这主要是出于对齐考虑</li>
 <li>图像类型不能同时读写，所以你创建图像buffer时必须指定是只读还是只写。
-OpenCL2.0开始支持图像类型的可读可写.
-</li>
+OpenCL2.0开始支持图像类型的可读可写.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">Optimazation</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8">Optimization</h2>
+<div class="outline-text-2" id="text-orgheadline8">
 <ol class="org-ol">
-<li>work group 的大小最好是64的倍数
-</li>
-<li>使用local memory可以显著的提高性能
-</li>
+<li>work group 的大小最好是64的倍数</li>
+<li>使用local memory可以显著的提高性能</li>
 </ol>
 </div>
 </div>

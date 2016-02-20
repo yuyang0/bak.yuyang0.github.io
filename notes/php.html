@@ -3,24 +3,31 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>PHP笔记</title>
-<!-- 2015-11-20 Fri 15:44 -->
+<!-- 2016-02-20 Sat 22:43 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>PHP笔记</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
 <meta  name="keywords" content="php web" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -59,15 +66,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -137,6 +143,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "%LINEBREAKS" },
+                        webFont: "%FONT"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "%LINEBREAKS" },
+              font: "%FONT"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "%AUTONUMBER"},
+               MultLineWidth: "%MULTLINEWIDTH",
+               TagSide: "%TAGSIDE",
+               TagIndent: "%TAGINDENT"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -170,65 +198,66 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">php标记</a></li>
-<li><a href="#sec-2">变量</a>
+<li><a href="#orgheadline1">php标记</a></li>
+<li><a href="#orgheadline5">变量</a>
 <ul>
-<li><a href="#sec-2-1">变量</a></li>
-<li><a href="#sec-2-2">常量</a></li>
-<li><a href="#sec-2-3">作用域</a></li>
+<li><a href="#orgheadline2">变量</a></li>
+<li><a href="#orgheadline3">常量</a></li>
+<li><a href="#orgheadline4">作用域</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">操作符与控制结构</a>
+<li><a href="#orgheadline8">操作符与控制结构</a>
 <ul>
-<li><a href="#sec-3-1">操作符&#xa0;&#xa0;&#xa0;<span class="tag"><span class="operator">operator</span></span></a></li>
-<li><a href="#sec-3-2">控制结构</a></li>
+<li><a href="#orgheadline6">操作符&#xa0;&#xa0;&#xa0;<span class="tag"><span class="operator">operator</span></span></a></li>
+<li><a href="#orgheadline7">控制结构</a></li>
 </ul>
 </li>
-<li><a href="#sec-4">php数组</a>
+<li><a href="#orgheadline9">php数组</a>
 <ul>
-<li><a href="#sec-4-1">数组定义</a></li>
-<li><a href="#sec-4-2">数组的key</a></li>
-<li><a href="#sec-4-3">访问或者修改</a></li>
-<li><a href="#sec-4-4">循环访问</a></li>
-<li><a href="#sec-4-5">数组排序（原地改变数组）</a></li>
-<li><a href="#sec-4-6">其它数组函数</a></li>
+<li><a href="#orgheadline10">数组定义</a></li>
+<li><a href="#orgheadline11">数组的key</a></li>
+<li><a href="#orgheadline12">访问或者修改</a></li>
+<li><a href="#orgheadline13">循环访问</a></li>
+<li><a href="#orgheadline14">数组排序（原地改变数组）</a></li>
+<li><a href="#orgheadline15">其它数组函数</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">字符串处理函数</a>
+<li><a href="#orgheadline16">字符串处理函数</a>
 <ul>
-<li><a href="#sec-5-1">常规字符串处理函数</a></li>
-<li><a href="#sec-5-2">正则表达式函数</a></li>
+<li><a href="#orgheadline17">常规字符串处理函数</a></li>
+<li><a href="#orgheadline18">正则表达式函数</a></li>
 </ul>
 </li>
-<li><a href="#sec-6">文件</a></li>
-<li><a href="#sec-7">function</a>
+<li><a href="#orgheadline19">文件</a></li>
+<li><a href="#orgheadline24">function</a>
 <ul>
-<li><a href="#sec-7-1">定义</a></li>
-<li><a href="#sec-7-2">可变参数</a></li>
-<li><a href="#sec-7-3">引用</a></li>
-<li><a href="#sec-7-4">注意事项</a></li>
+<li><a href="#orgheadline20">定义</a></li>
+<li><a href="#orgheadline21">可变参数</a></li>
+<li><a href="#orgheadline22">引用</a></li>
+<li><a href="#orgheadline23">注意事项</a></li>
 </ul>
 </li>
-<li><a href="#sec-8">OOP</a></li>
-<li><a href="#sec-9">php与数据库（mysql）</a>
+<li><a href="#orgheadline25">OOP</a></li>
+<li><a href="#orgheadline28">php与数据库（mysql）</a>
 <ul>
-<li><a href="#sec-9-1">示例代码</a></li>
-<li><a href="#sec-9-2">解释</a></li>
+<li><a href="#orgheadline26">示例代码</a></li>
+<li><a href="#orgheadline27">解释</a></li>
 </ul>
 </li>
-<li><a href="#sec-10">其它技巧</a></li>
+<li><a href="#orgheadline29">其它技巧</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">php标记</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">php标记</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <ol class="org-ol">
 <li>&lt;?php ?&gt; 是推荐的写法, 如果是纯php代码文件,那么建议省略 ?&gt;标记, 这是为了
-防止php输出文件末尾空格
-</li>
-<li>在php文件中如果要输出大段的 HTML 文本, 那么应该跳出 &lt;?php ?&gt;, 这样比用
+防止php输出文件末尾空格</li>
+<li><p>
+在php文件中如果要输出大段的 HTML 文本, 那么应该跳出 &lt;?php ?&gt;, 这样比用
 echo 效率高, 但是当使用 if, foreach, for, while 这样的结构时应该用这样的语法:
+</p>
 <div class="org-src-container">
 
 <pre class="src src-php">&lt;?php if ($expression == true): ?&gt;
@@ -247,57 +276,48 @@ echo 效率高, 但是当使用 if, foreach, for, while 这样的结构时应该
 
 &lt;?php endforeach ?&gt;
 </pre>
-</div>
-</li>
+</div></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">变量</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">变量</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5">变量</h2>
+<div class="outline-text-2" id="text-orgheadline5">
+</div><div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">变量</h3>
+<div class="outline-text-3" id="text-orgheadline2">
 <ol class="org-ol">
-<li>变量必须要$符号，和perl类似.
-</li>
-<li>大小写：php的变量与常量区分大小写，而函数名，类名，方法名不区分大小写。
-</li>
+<li>变量必须要$符号，和perl类似.</li>
+<li>大小写：php的变量与常量区分大小写，而函数名，类名，方法名不区分大小写。</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2">常量</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">常量</h3>
+<div class="outline-text-3" id="text-orgheadline3">
 <ol class="org-ol">
 <li>常量用define定义，常量使用时不需要$符号，eg: define(“const_var”, 100),使
-用时直接用const_var不需要引号与$。
-</li>
+用时直接用const_var不需要引号与$。</li>
 <li>魔术常量
 <ul class="org-ul">
-<li><span class="underline"><span class="underline">LINE</span></span> : 当前的行数
-</li>
-<li><span class="underline"><span class="underline">FILE</span></span> : 当前脚本文件名的绝对路径
-</li>
-<li><span class="underline"><span class="underline">DIR</span></span>  : 当前脚本所在目录的绝对路径
-</li>
-</ul>
-</li>
+<li>__LINE__ : 当前的行数</li>
+<li>__FILE__ : 当前脚本文件名的绝对路径</li>
+<li>__DIR__  : 当前脚本所在目录的绝对路径</li>
+</ul></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3">作用域</h3>
-<div class="outline-text-3" id="text-2-3">
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">作用域</h3>
+<div class="outline-text-3" id="text-orgheadline4">
 <ol class="org-ol">
-<li>超全局变量
-</li>
-<li>常量：一旦声明在脚本内全局可用，函数内外可用
-</li>
-<li>全局变量，脚本内全局可用，但是函数内不可用，可用global关键词
-</li>
-<li>函数内静态变量，和C语言相似, 这其实就是一个closure,类似于下面的scheme代
+<li>超全局变量</li>
+<li>常量：一旦声明在脚本内全局可用，函数内外可用</li>
+<li>全局变量，脚本内全局可用，但是函数内不可用，可用global关键词</li>
+<li><p>
+函数内静态变量，和C语言相似, 这其实就是一个closure,类似于下面的scheme代
 码:
+</p>
 <div class="org-src-container">
 
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">test</span>
@@ -308,29 +328,27 @@ echo 效率高, 但是当使用 if, foreach, for, while 这样的结构时应该
 </div>
 <p>
 <code>i</code> 就可以看做是函数体的一个静态变量, 只可惜php设计的太糟糕.
-</p>
-</li>
-<li>函数局部变量和C语言相似
-</li>
+</p></li>
+<li>函数局部变量和C语言相似</li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">操作符与控制结构</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">操作符&#xa0;&#xa0;&#xa0;<span class="tag"><span class="operator">operator</span></span></h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8">操作符与控制结构</h2>
+<div class="outline-text-2" id="text-orgheadline8">
+</div><div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6">操作符&#xa0;&#xa0;&#xa0;<span class="tag"><span class="operator">operator</span></span></h3>
+<div class="outline-text-3" id="text-orgheadline6">
 <p>
 php的运算符基本和c语言类似。有一个===与==这个和js类似，一个类型与值都比较，
 一个只比较值。
 </p>
 </div>
 </div>
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2">控制结构</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7">控制结构</h3>
+<div class="outline-text-3" id="text-orgheadline7">
 <p>
 php的控制结构与C语言类似，if，switch，while，do…..while循环，for循环，多了
 一个foreach，foreach是专门用于数组的，break和continue的作用于C类似，还有一
@@ -339,21 +357,19 @@ php的控制结构与C语言类似，if，switch，while，do…..while循环，
 </div>
 </div>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">php数组</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9">php数组</h2>
+<div class="outline-text-2" id="text-orgheadline9">
 <p>
 php数组是一个强大的数据结构
 </p>
 </div>
-<div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1">数组定义</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10">数组定义</h3>
+<div class="outline-text-3" id="text-orgheadline10">
 <ul class="org-ul">
-<li>$arr = array（'a', 'b', 'c'）
-</li>
-<li>$arr = array(‘first’=&gt;’a‘，‘second’ =&gt; ‘b’, ‘third’ =&gt;’c’),
-</li>
+<li>$arr = array（'a', 'b', 'c'）</li>
+<li>$arr = array(‘first’=&gt;’a‘，‘second’ =&gt; ‘b’, ‘third’ =&gt;’c’),</li>
 </ul>
 <p>
 前一种的索引是0,1,2后者的索引是’first’,’second’,’third’，后一种方式和python
@@ -361,54 +377,49 @@ php数组是一个强大的数据结构
 </p>
 </div>
 </div>
-<div id="outline-container-sec-4-2" class="outline-3">
-<h3 id="sec-4-2">数组的key</h3>
-<div class="outline-text-3" id="text-4-2">
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11">数组的key</h3>
+<div class="outline-text-3" id="text-orgheadline11">
 <ol class="org-ol">
-<li>key只能为整数或者字符串
-</li>
-<li>如果key是float,那么四舍五入
-</li>
-<li>如果key是bool,那么true转为1, false转为0
-</li>
+<li>key只能为整数或者字符串</li>
+<li>如果key是float,那么四舍五入</li>
+<li>如果key是bool,那么true转为1, false转为0</li>
 <li>如果key是字符串,而且该字符串是一个有效的十进制数,那么转为整数,否则就保持
-原样, eg: "80" 会自动转为 80, 但是 "09" 则不会转为整数.
-</li>
+原样, eg: "80" 会自动转为 80, 但是 "09" 则不会转为整数.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-4-3" class="outline-3">
-<h3 id="sec-4-3">访问或者修改</h3>
-<div class="outline-text-3" id="text-4-3">
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12">访问或者修改</h3>
+<div class="outline-text-3" id="text-orgheadline12">
 <ul class="org-ul">
-<li>$arr[key] : 访问键为key的元素,如果不存在则返回错误
-</li>
-<li>$arr[key] = val : 修改键值为key的元素的值,如果不存在那么就新建
-</li>
+<li>$arr[key] : 访问键为key的元素,如果不存在则返回错误</li>
+<li>$arr[key] = val : 修改键值为key的元素的值,如果不存在那么就新建</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-4-4" class="outline-3">
-<h3 id="sec-4-4">循环访问</h3>
-<div class="outline-text-3" id="text-4-4">
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13">循环访问</h3>
+<div class="outline-text-3" id="text-orgheadline13">
 <ol class="org-ol">
-<li>foreach循环
+<li><p>
+foreach循环
+</p>
 <ul class="org-ul">
-<li>foreach（$arr as $value）,
-</li>
-<li>foreach($arr as $key=&gt;$value),
-</li>
+<li>foreach（$arr as $value）,</li>
+<li>foreach($arr as $key=&gt;$value),</li>
 </ul>
 <p>
 前一种方式只获得value，后一种获得key，value,foreach每次在运行之前都会将
 数组指针自动重置到数组开头，所以不需要使用reset函数。
-</p>
-</li>
+</p></li>
 <li>while循环
 while(list($key, $value) = each($arr))
 <ul class="org-ul">
-<li>each：返回数组中当前的 键／值对并将数组指针向前移动一步，each返回的也
+<li><p>
+each：返回数组中当前的 键／值对并将数组指针向前移动一步，each返回的也
 是一个数组
+</p>
 <div class="org-src-container">
 
 <pre class="src src-php">$arr = array(
@@ -420,36 +431,32 @@ $first_item = each($arr);
 $second_item = each($arr);
 /* $second_item = array(0 =&gt; "bb", 1 =&gt; "two", "key" =&gt; "bb", "value" =&gt; "two") */
 </pre>
-</div>
-</li>
-<li>list会将数组中索引为0,1,2…….对应的值依次赋给list的参数，比如说如果list
+</div></li>
+<li><p>
+list会将数组中索引为0,1,2…….对应的值依次赋给list的参数，比如说如果list
 有3个参数,那么对应的数组中必须存在以 0,1,2 为key的元素.但是该数组不一
 定是所有的key都是整数,也可能有些元素的key是字符串,比如下面的例子第4个
 元素的key就是字符串,这种循环方式需要使用reset函数, 该函数不仅在数组循
 环中有用,当函数使用数组返回多个值时也很有用.
+</p>
 <div class="org-src-container">
 
 <pre class="src src-php">$arr = array("aa", "bb", "cc", "hello" =&gt; "dd");
 list($a, $b, $c) = $arr; /* $a="aa", $b="bb", $c="cc"*/
 list($a, , $c) = $arr;   /* $a="aa", $c="cc" */
 </pre>
-</div>
-</li>
-</ul>
-</li>
+</div></li>
+</ul></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-4-5" class="outline-3">
-<h3 id="sec-4-5">数组排序（原地改变数组）</h3>
-<div class="outline-text-3" id="text-4-5">
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14">数组排序（原地改变数组）</h3>
+<div class="outline-text-3" id="text-orgheadline14">
 <ul class="org-ul">
-<li>sort（对普通数组排序 ，不要应用于字典数组，因为它返回的排序数组会抹掉原字典数组的key，而将它的key变为0,1,2……）
-</li>
-<li>asort（对字典数组的value排序）
-</li>
-<li>ksort（对字典数组的key排序），
-</li>
+<li>sort（对普通数组排序 ，不要应用于字典数组，因为它返回的排序数组会抹掉原字典数组的key，而将它的key变为0,1,2……）</li>
+<li>asort（对字典数组的value排序）</li>
+<li>ksort（对字典数组的key排序），</li>
 </ul>
 <p>
 对应的反向（降序）排序rsort，arsort，krsort。Shuffle（随机排序），array_reverse（反向排列）
@@ -457,158 +464,110 @@ list($a, , $c) = $arr;   /* $a="aa", $c="cc" */
 </div>
 </div>
 
-<div id="outline-container-sec-4-6" class="outline-3">
-<h3 id="sec-4-6">其它数组函数</h3>
-<div class="outline-text-3" id="text-4-6">
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15">其它数组函数</h3>
+<div class="outline-text-3" id="text-orgheadline15">
 <ul class="org-ul">
-<li>current（当前数组内部指针指向的元素，pos是current的别名）
-</li>
-<li>next（下一个元素的值）
-</li>
-<li>prev（前一个元素的值）
-</li>
-<li>end（内部指针重置到数组末尾，并返回末尾元素的值）
-</li>
-<li>reset（内部指针重置到开头，并返回开头元素的值
-</li>
+<li>current（当前数组内部指针指向的元素，pos是current的别名）</li>
+<li>next（下一个元素的值）</li>
+<li>prev（前一个元素的值）</li>
+<li>end（内部指针重置到数组末尾，并返回末尾元素的值）</li>
+<li>reset（内部指针重置到开头，并返回开头元素的值</li>
 
-<li>count，sizeof（都返回数组的元素个数）
-</li>
-<li>array_count_values（返回数组元素中各个值出现的频率）
-</li>
-<li>extract（创建一系列以数组的key为名称的变量，而且这些变量的值是对应的value）。
-</li>
-<li>array_slice: 取出数组的一部分.
-</li>
-<li>array_keys : 将数组的所有键作为一个数组返回.
-</li>
-<li>array_values: 将数组的所有值作为一个数组返回.
-</li>
-<li>in_array    : 一个值是否在数组中
-</li>
-<li>array_key_exists: 一个key是否在数组中.
-</li>
+<li>count，sizeof（都返回数组的元素个数）</li>
+<li>array_count_values（返回数组元素中各个值出现的频率）</li>
+<li>extract（创建一系列以数组的key为名称的变量，而且这些变量的值是对应的value）。</li>
+<li>array_slice: 取出数组的一部分.</li>
+<li>array_keys : 将数组的所有键作为一个数组返回.</li>
+<li>array_values: 将数组的所有值作为一个数组返回.</li>
+<li>in_array    : 一个值是否在数组中</li>
+<li>array_key_exists: 一个key是否在数组中.</li>
 
 <li>array_walk : 对数组的每个元素(<b>只是value,不包括key</b>)应用一个自定义函数, 和
-<code>scheme</code> 的 <code>for-each</code> 类似.
-</li>
-<li>array_filter : 和 <code>scheme</code> 中 <code>filter</code> 函数相似.
-</li>
-<li>array_map    : 和 <code>map</code> 相似.
-</li>
+<code>scheme</code> 的 <code>for-each</code> 类似.</li>
+<li>array_filter : 和 <code>scheme</code> 中 <code>filter</code> 函数相似.</li>
+<li>array_map    : 和 <code>map</code> 相似.</li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5">字符串处理函数</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgheadline16" class="outline-2">
+<h2 id="orgheadline16">字符串处理函数</h2>
+<div class="outline-text-2" id="text-orgheadline16">
 <p>
 不原地改变，而是返回一个新的结果字符串
 </p>
 </div>
-<div id="outline-container-sec-5-1" class="outline-3">
-<h3 id="sec-5-1">常规字符串处理函数</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17">常规字符串处理函数</h3>
+<div class="outline-text-3" id="text-orgheadline17">
 <ul class="org-ul">
-<li>trim(ltrim,rtrim(别名chop)：删除字符串的首尾两端的空格。ltrim只删除开头的空格，rtrim只删除结尾的空格。
-</li>
-<li>nl2br: 将字符串中的\n转换为,&lt;br /&gt;标签，这样可以在html中换行。
-</li>
-<li>printf,sprintf:格式化输出。
-</li>
-<li>strtolower（全部小写）,strtoupper（全部大写）,ucfirst（第一个字母大写）,ucwords（所有词的第一个字母大写）。
-</li>
-<li>addslashes，stripslashes:将引号，反斜杠，NULL字符字符转义，以免在存入数据库时被当做控制字符，前者是添加，后者是删除，前者在存入数据库前调用，后者在从数据库取出数据后调用。
-</li>
-<li>explode，implode（join）：前者分割字符串成数组，后者将数组合成字符串，都需要知道分隔符，join是implode的别名。
-</li>
-<li>strtok：一次只会返回分割得到的一个字符串，而不是像explode那样返回数组
-</li>
-<li>substr：指定开始与结尾来得到一个指定字符串的子字符串。
-</li>
-<li>字符串的比较：strcmp，strcasecmp（前者区分大小写，后者不区分，是字典序比较，故‘2‘&gt;’12’）,strnatcmp,strnatcasecmp(按自然序比较，故’12’&gt;’2’).
-</li>
-<li>strlen：字符串的长度。
-</li>
-<li>查找子字符串：strstr（strchr 是strstr的别名，strstr区分大小写，stristr不区分大小写,都返回子字符串第一次出现的位置到结尾形成的字符串），strrchr(返回子字符串最后一次出现的位置到结尾形成的字符串)
-</li>
-<li>查找子字符串的位置：strpos，strrpos
-</li>
-<li>替换子字符串：str_replace，substr_replace
-</li>
+<li>trim(ltrim,rtrim(别名chop)：删除字符串的首尾两端的空格。ltrim只删除开头的空格，rtrim只删除结尾的空格。</li>
+<li>nl2br: 将字符串中的\n转换为,&lt;br /&gt;标签，这样可以在html中换行。</li>
+<li>printf,sprintf:格式化输出。</li>
+<li>strtolower（全部小写）,strtoupper（全部大写）,ucfirst（第一个字母大写）,ucwords（所有词的第一个字母大写）。</li>
+<li>addslashes，stripslashes:将引号，反斜杠，NULL字符字符转义，以免在存入数据库时被当做控制字符，前者是添加，后者是删除，前者在存入数据库前调用，后者在从数据库取出数据后调用。</li>
+<li>explode，implode（join）：前者分割字符串成数组，后者将数组合成字符串，都需要知道分隔符，join是implode的别名。</li>
+<li>strtok：一次只会返回分割得到的一个字符串，而不是像explode那样返回数组</li>
+<li>substr：指定开始与结尾来得到一个指定字符串的子字符串。</li>
+<li>字符串的比较：strcmp，strcasecmp（前者区分大小写，后者不区分，是字典序比较，故‘2‘&gt;’12’）,strnatcmp,strnatcasecmp(按自然序比较，故’12’&gt;’2’).</li>
+<li>strlen：字符串的长度。</li>
+<li>查找子字符串：strstr（strchr 是strstr的别名，strstr区分大小写，stristr不区分大小写,都返回子字符串第一次出现的位置到结尾形成的字符串），strrchr(返回子字符串最后一次出现的位置到结尾形成的字符串)</li>
+<li>查找子字符串的位置：strpos，strrpos</li>
+<li>替换子字符串：str_replace，substr_replace</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-5-2" class="outline-3">
-<h3 id="sec-5-2">正则表达式函数</h3>
-<div class="outline-text-3" id="text-5-2">
+<div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18">正则表达式函数</h3>
+<div class="outline-text-3" id="text-orgheadline18">
 <ul class="org-ul">
-<li>ereg（eregi不区分大小写）：搜索一个匹配，可以使用子模式。
-</li>
-<li>ereg_replace,eregi_replace：替换
-</li>
-<li>split：用指定的模式将字符串分割为一个数组
+<li>ereg（eregi不区分大小写）：搜索一个匹配，可以使用子模式。</li>
+<li>ereg_replace,eregi_replace：替换</li>
+<li><p>
+split：用指定的模式将字符串分割为一个数组
+</p>
 
 <p>
 <b>以上的函数是POSIX正则表达式，而php5.3被废弃，全部采用perl兼容的正则表达式，主要函数如下：</b>
-</p>
-</li>
-<li>preg_match:搜索给定模式的一个匹配，可以将该匹配按子模式分割成数组返回，其中【0】是完整的匹配，【1】是第一个子模式的匹配，以此类推。
-</li>
-<li>preg_match_all：搜索所有给定模式的匹配，返回一个多维数组，该多维数组会包含所有的完整匹配以及子模式匹配，数组的组织形式由flag参数指定。
-</li>
-<li>preg_grep:搜索一个给定的数组
-</li>
-<li>preg_replace:替换。
-</li>
+</p></li>
+<li>preg_match:搜索给定模式的一个匹配，可以将该匹配按子模式分割成数组返回，其中【0】是完整的匹配，【1】是第一个子模式的匹配，以此类推。</li>
+<li>preg_match_all：搜索所有给定模式的匹配，返回一个多维数组，该多维数组会包含所有的完整匹配以及子模式匹配，数组的组织形式由flag参数指定。</li>
+<li>preg_grep:搜索一个给定的数组</li>
+<li>preg_replace:替换。</li>
 <li>preg_split:分割为数组。
-Perl正则表达式和POSISX表达式的区别：perl正则表达式的模式需要分隔符，分隔符放在pattern的开头和结尾，可以使/,#,~等，没有专门为区分大小写编写对应的函数，而是使用模式修饰符，模式修饰符放在pattern的分隔符的后面，主要有i（不区分大小写）s（点号匹配换行符）U逆转贪婪模式，perl从第一个合法匹配后停止，而且是贪婪模式。
-</li>
+Perl正则表达式和POSISX表达式的区别：perl正则表达式的模式需要分隔符，分隔符放在pattern的开头和结尾，可以使/,#,~等，没有专门为区分大小写编写对应的函数，而是使用模式修饰符，模式修饰符放在pattern的分隔符的后面，主要有i（不区分大小写）s（点号匹配换行符）U逆转贪婪模式，perl从第一个合法匹配后停止，而且是贪婪模式。</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6">文件</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-orgheadline19" class="outline-2">
+<h2 id="orgheadline19">文件</h2>
+<div class="outline-text-2" id="text-orgheadline19">
 <ul class="org-ul">
-<li>fopen：打开文件，为了移植性模式应该加上b。可以打开网络上的远程文件。
-</li>
-<li>fwrite（fputs是fwrite的别名）：写文件
-</li>
-<li>file_put_contents:可以在不使用fopen的情况下写入文件
-</li>
-<li>fgets,fgetss,fgetcsv:读取文件的一行数据，fgetss会去掉读出的行中的php与html标签，fgetcsv可以将读出的行分割为数组返回。
-</li>
-<li>readfile，file，fpassthru：读取整个文件。Readfile是向标准输出显示，file是读入一个数组。
-</li>
-<li>fgetc：读入一个字符，会显示EOF结束符，所以需要检查。
-</li>
-<li>fread：读入任意字节的字符串。
-</li>
-<li>file_get_contents：在不使用fopen的情况下直接从文件读。
-</li>
-<li>file_exists：文件是否存在。
-</li>
-<li>filesize：文件的大小。
-</li>
-<li>unlink：删除文件。
-</li>
-<li>rewind，fseek，ftell：rewind复位到文件开头，fseek文件中定位，ftell目前文件指针的位置。
-</li>
-<li>flock：文件锁定。
-</li>
+<li>fopen：打开文件，为了移植性模式应该加上b。可以打开网络上的远程文件。</li>
+<li>fwrite（fputs是fwrite的别名）：写文件</li>
+<li>file_put_contents:可以在不使用fopen的情况下写入文件</li>
+<li>fgets,fgetss,fgetcsv:读取文件的一行数据，fgetss会去掉读出的行中的php与html标签，fgetcsv可以将读出的行分割为数组返回。</li>
+<li>readfile，file，fpassthru：读取整个文件。Readfile是向标准输出显示，file是读入一个数组。</li>
+<li>fgetc：读入一个字符，会显示EOF结束符，所以需要检查。</li>
+<li>fread：读入任意字节的字符串。</li>
+<li>file_get_contents：在不使用fopen的情况下直接从文件读。</li>
+<li>file_exists：文件是否存在。</li>
+<li>filesize：文件的大小。</li>
+<li>unlink：删除文件。</li>
+<li>rewind，fseek，ftell：rewind复位到文件开头，fseek文件中定位，ftell目前文件指针的位置。</li>
+<li>flock：文件锁定。</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7">function</h2>
-<div class="outline-text-2" id="text-7">
-</div><div id="outline-container-sec-7-1" class="outline-3">
-<h3 id="sec-7-1">定义</h3>
-<div class="outline-text-3" id="text-7-1">
+<div id="outline-container-orgheadline24" class="outline-2">
+<h2 id="orgheadline24">function</h2>
+<div class="outline-text-2" id="text-orgheadline24">
+</div><div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20">定义</h3>
+<div class="outline-text-3" id="text-orgheadline20">
 <pre class="example">
 function  func_name($a, $b….)
 {
@@ -632,14 +591,15 @@ function foo($arg_1, $arg_2, /* ..., */ $arg_n)
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-2" class="outline-3">
-<h3 id="sec-7-2">可变参数</h3>
-<div class="outline-text-3" id="text-7-2">
+<div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21">可变参数</h3>
+<div class="outline-text-3" id="text-orgheadline21">
 <ol class="org-ol">
-<li>func_num_args() : 返回当前调用的参数个数
-</li>
-<li>func_get_arg(int $arg_num) : 返回单个参数, eg: func_get_arg(0) 返回当前
+<li>func_num_args() : 返回当前调用的参数个数</li>
+<li><p>
+func_get_arg(int $arg_num) : 返回单个参数, eg: func_get_arg(0) 返回当前
 调用地第一个参数.
+</p>
 <div class="org-src-container">
 
 <pre class="src src-php">&lt;?php
@@ -656,16 +616,14 @@ function foo()
 foo('first arg', 'second arg');
 ?&gt;
 </pre>
-</div>
-</li>
-<li>func_get_args : 以一个数组的形式返回当前调用的参数列表.
-</li>
+</div></li>
+<li>func_get_args : 以一个数组的形式返回当前调用的参数列表.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-7-3" class="outline-3">
-<h3 id="sec-7-3">引用</h3>
-<div class="outline-text-3" id="text-7-3">
+<div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22">引用</h3>
+<div class="outline-text-3" id="text-orgheadline22">
 <p>
 函数可以传递引用也可以返回引用,函数返回引用时必须在定义与调用的时候都加上&amp;，
 但是return语句不用加&amp;
@@ -694,29 +652,25 @@ $newref =&amp; returns_reference();
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-4" class="outline-3">
-<h3 id="sec-7-4">注意事项</h3>
-<div class="outline-text-3" id="text-7-4">
+<div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23">注意事项</h3>
+<div class="outline-text-3" id="text-orgheadline23">
 <ol class="org-ol">
 <li>php 的函数中要引用全局变量, 必须使用 global $varname; 来申明,否则php它会
-自动创建一个初始值为0的新变量 <b>bad design</b>.
-</li>
+自动创建一个初始值为0的新变量 <b>bad design</b>.</li>
 <li>php的函数可以看做是残缺的high order function. 可以将函数赋给一个变量,然
 后直接通过变量来调用.但是函数返回以及匿名函数就实现的比较糟糕,这也是
-<b>bad design</b>.
-</li>
+<b>bad design</b>.</li>
 <li>php中的函数与类都是全局作用域,可以一个函数内定义,而在外部调用, <b>bad
-design</b>
-</li>
-<li>php不支持函数重载,也不可能取消或者重定义已声明的函数
-</li>
+design</b></li>
+<li>php不支持函数重载,也不可能取消或者重定义已声明的函数</li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8">OOP</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-orgheadline25" class="outline-2">
+<h2 id="orgheadline25">OOP</h2>
+<div class="outline-text-2" id="text-orgheadline25">
 <p>
 示例代码:
 </p>
@@ -811,12 +765,12 @@ $object = new A() //实例化类
 </div>
 </div>
 </div>
-<div id="outline-container-sec-9" class="outline-2">
-<h2 id="sec-9">php与数据库（mysql）</h2>
-<div class="outline-text-2" id="text-9">
-</div><div id="outline-container-sec-9-1" class="outline-3">
-<h3 id="sec-9-1">示例代码</h3>
-<div class="outline-text-3" id="text-9-1">
+<div id="outline-container-orgheadline28" class="outline-2">
+<h2 id="orgheadline28">php与数据库（mysql）</h2>
+<div class="outline-text-2" id="text-orgheadline28">
+</div><div id="outline-container-orgheadline26" class="outline-3">
+<h3 id="orgheadline26">示例代码</h3>
+<div class="outline-text-3" id="text-orgheadline26">
 <div class="org-src-container">
 
 <pre class="src src-php">&lt;?php
@@ -857,9 +811,9 @@ $db-&gt;close();
 </p>
 </div>
 </div>
-<div id="outline-container-sec-9-2" class="outline-3">
-<h3 id="sec-9-2">解释</h3>
-<div class="outline-text-3" id="text-9-2">
+<div id="outline-container-orgheadline27" class="outline-3">
+<h3 id="orgheadline27">解释</h3>
+<div class="outline-text-3" id="text-orgheadline27">
 <p>
 php执行一次query时,如果是select 查询,那么会返回一个mysqli_result对象.如果是
 其它查询,那么成功就返回 True.
@@ -867,40 +821,36 @@ php执行一次query时,如果是select 查询,那么会返回一个mysqli_resul
 <ol class="org-ol">
 <li>mysqli_result:
 <ul class="org-ul">
-<li>$num_rows(属性): 结果集的记录条数
-</li>
-<li>fetch_assoc(方法): 将一条记录作为一个关联数组返回, 数组的key是数据表的
+<li>$num_rows(属性): 结果集的记录条数</li>
+<li><p>
+fetch_assoc(方法): 将一条记录作为一个关联数组返回, 数组的key是数据表的
 field name, 同时将记录指针移到下一条记录.可以用while了来循环读取.
+</p>
 <div class="org-src-container">
 
 <pre class="src src-php">while ($row = $result-&gt;fetch_assoc()) {
     printf ("%s (%s)\n", $row["Name"], $row["CountryCode"]);
 }
 </pre>
-</div>
-</li>
-</ul>
-</li>
+</div></li>
+</ul></li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-10" class="outline-2">
-<h2 id="sec-10">其它技巧</h2>
-<div class="outline-text-2" id="text-10">
+<div id="outline-container-orgheadline29" class="outline-2">
+<h2 id="orgheadline29">其它技巧</h2>
+<div class="outline-text-2" id="text-orgheadline29">
 <ol class="org-ol">
-<li>对字符串可以使用单，双引号的场合尽量使用单引号，因为使用双引号效率不高。
-</li>
-<li>可以在表达式前加 @ 来抑制错误.
-</li>
-<li>私有的变量与方法的名字应该以下划线开头.
-</li>
+<li>对字符串可以使用单，双引号的场合尽量使用单引号，因为使用双引号效率不高。</li>
+<li>可以在表达式前加 @ 来抑制错误.</li>
+<li>私有的变量与方法的名字应该以下划线开头.</li>
 <li>对于一个没有设置的变量直接用 <code>if</code> 会有错误，因此应该使用isset或者empty检
-查，推荐empty。
-</li>
-<li>show_source函数可以高亮显示程序代码。
-</li>
-<li>密码加密推荐使用crypt函数的blowfish算法，不推荐使用sha1,或者md5.
+查，推荐empty。</li>
+<li>show_source函数可以高亮显示程序代码。</li>
+<li><p>
+密码加密推荐使用crypt函数的blowfish算法，不推荐使用sha1,或者md5.
+</p>
 <div class="org-src-container">
 
 <pre class="src src-php">&lt;?php
@@ -910,23 +860,17 @@ if (crypt($user_input, $hash) == $hash) { /* use hash as the salt */
 }
 ?&gt;
 </pre>
-</div>
-</li>
-<li>生成一个唯一的字符串：uniqid函数。
-</li>
+</div></li>
+<li>生成一个唯一的字符串：uniqid函数。</li>
 <li>对于表单，在点击提交按钮之前$_POST中的索引是不存在的，所以这样调用
 $_POST['name']试图获得name输入框的值会报错，因为 'name' 索引不存在。这时
 调用isset和empty返回false与true，如果点击了提交按钮，但是用户没有在输入框
 中输入任何数据，那么$_POST['name']的值是空字符串，这时调用isset会返回true，
-所以最好调用empty函数。
-</li>
-<li>尽量使用字符串处理函数，而不要使用正则表达式，因为前者更快。
-</li>
-<li>__autoload($classname)需要自动加载的时候，定义这个函数。
-</li>
+所以最好调用empty函数。</li>
+<li>尽量使用字符串处理函数，而不要使用正则表达式，因为前者更快。</li>
+<li>__autoload($classname)需要自动加载的时候，定义这个函数。</li>
 <li>每一个成功的POST页面都应该重定向，因为如果不重定向，那么刷新该页面会造成
-POST数据重复提交。。
-</li>
+POST数据重复提交。。</li>
 </ol>
 </div>
 </div>

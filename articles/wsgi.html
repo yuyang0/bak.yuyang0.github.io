@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>wsgi</title>
-<!-- 2015-11-20 Fri 15:44 -->
+<!-- 2016-02-20 Sat 22:43 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>wsgi</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -165,9 +171,9 @@ for the JavaScript code in this tag.
 </div>
 <div id="content">
 <h1 class="title">wsgi</h1>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">wsgi (Python Web Server Gateway Interface)</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">wsgi (Python Web Server Gateway Interface)</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <p>
 简单的说wsgi是定义了一种规范，它可以使任何符合该规范的web应用(比如网站)都可
 以运行在任何符合该规范的web server上，就像插座与插头，要想插头插入插孔中，你
@@ -177,9 +183,9 @@ for the JavaScript code in this tag.
 server，该规范在<a href="http://www.python.org/dev/peps/pep-3333/">EPE 3333</a> 中说明
 </p>
 </div>
-<div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">The Application/Framework Side(web应用端)</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">The Application/Framework Side(web应用端)</h3>
+<div class="outline-text-3" id="text-orgheadline2">
 <p>
 这一端必须定义一个接受两个参数的可调用对象，可调用对象可以是函数，类方法，
 类以及一个包含__call__的类实例，下面是pep3333的示例代码：
@@ -217,9 +223,9 @@ server，该规范在<a href="http://www.python.org/dev/peps/pep-3333/">EPE 3333
 </p>
 </div>
 </div>
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">The Server/Gateway Side (web server端)</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">The Server/Gateway Side (web server端)</h3>
+<div class="outline-text-3" id="text-orgheadline3">
 <p>
 在server指定的代码会在每一次http请求时调用。它主要是environ以及一个名为
 start_response的函数传递给在web应用端定义的可调用对象，然后获得返回值
@@ -316,11 +322,9 @@ HTTP报文头是由web应用端调用start_response通过参数传递给server�
 <li>start_response: 必须接受HTTP报文的status行以及header列表作为参数,还有一
 个exec_info是可选参数,必须返回一个可调用对象(本例就是write函数),这个对象
 接受一个byte string,并且将该byte string发送给客户端(比如浏览器),这样在
-web应用端就可以可选的将内容写入客户度,本例的web应用端没有使用该功能
-</li>
+web应用端就可以可选的将内容写入客户度,本例的web应用端没有使用该功能</li>
 <li>environ 这只能是一个python字典,不能是字典的子类,这个字典包含了一个HTTP请
-求的所有基本信息,这是pep3333的详细<a href="http://www.python.org/dev/peps/pep-3333/#environ-variables">解释</a>
-</li>
+求的所有基本信息,这是pep3333的详细<a href="http://www.python.org/dev/peps/pep-3333/#environ-variables">解释</a></li>
 </ol>
 </div>
 </div>

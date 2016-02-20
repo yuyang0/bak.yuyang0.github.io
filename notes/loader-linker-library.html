@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>《程序员的自我修养》读书笔记</title>
-<!-- 2015-11-20 Fri 15:43 -->
+<!-- 2016-02-20 Sat 22:42 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>《程序员的自我修养》读书笔记</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -169,40 +175,32 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">同步手段</a></li>
+<li><a href="#orgheadline1">同步手段</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">同步手段</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">同步手段</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <ol class="org-ol">
 <li>原子操作： 竞争问题的产生很大原因是因为一条语句会编译成多条指令，
 因此这些指令可能只执行一半就被别的线程打断了，有点类似数据库的事
 物，所以如果一个操作可以确保是原子的，那么肯定不存在同步问题。
-windows有相应的API，linux可以参考内核中的代码。
-</li>
-<li>锁：
-</li>
+windows有相应的API，linux可以参考内核中的代码。</li>
+<li>锁：</li>
 <li>信号量(多元信号量)：n元信号量可以被n个线程获取，实际上内部有一个
 计数n，每当一个线程获取了信号量的时候，那么该计数减一，如果计数为
-0,那么线程就阻塞，类似的，如果一个线程释放信号量，那么计数就加一。
-</li>
+0,那么线程就阻塞，类似的，如果一个线程释放信号量，那么计数就加一。</li>
 <li>二元信号量：二元信号量只能被一个线程获取，是多元信号量的特例，内
-部计数为一
-</li>
+部计数为一</li>
 <li>互斥量： 互斥量的锁必须有一个线程获取，被同一个线程释放，而信号量
-可以由一个线程获取，被另一个线程释放。
-</li>
+可以由一个线程获取，被另一个线程释放。</li>
 <li>临界区： 和互斥量类似，不同之处是，临界区只在本进程可见，而互斥量
-与信号量对操作系统的所有进程都是可见的。
-</li>
-<li>读写锁：当数据读的次数远大于写的次数时，性能比其它同步方式更好。
-</li>
+与信号量对操作系统的所有进程都是可见的。</li>
+<li>读写锁：当数据读的次数远大于写的次数时，性能比其它同步方式更好。</li>
 <li>条件变量： 可以让许多线程等待同一个条件变量，然后唤醒条件变量，那
 么所有的进程就开始执行了。所以它相当于一个栅栏。把所有的线程关到
-栅栏外，然后把栅栏打开，所有的进程就都冲进来了。
-</li>
+栅栏外，然后把栅栏打开，所有的进程就都冲进来了。</li>
 </ol>
 </div>
 </div>

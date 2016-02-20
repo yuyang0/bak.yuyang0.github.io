@@ -3,24 +3,31 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>git/github学习笔记</title>
-<!-- 2015-11-20 Fri 15:44 -->
+<!-- 2016-02-20 Sat 22:43 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>git/github学习笔记</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
 <meta  name="keywords" content="git github" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -59,15 +66,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -170,122 +176,101 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">基本使用</a>
+<li><a href="#orgheadline3">基本使用</a>
 <ul>
-<li><a href="#sec-1-1">git的基本命令</a></li>
-<li><a href="#sec-1-2">git一般的工作过程是：</a></li>
+<li><a href="#orgheadline1">git的基本命令</a></li>
+<li><a href="#orgheadline2">git一般的工作过程是：</a></li>
 </ul>
 </li>
-<li><a href="#sec-2">git的原理</a>
+<li><a href="#orgheadline15">git的原理</a>
 <ul>
-<li><a href="#sec-2-1">工作区(work tree)</a></li>
-<li><a href="#sec-2-2">git的暂存区(index)</a></li>
-<li><a href="#sec-2-3">版本库</a></li>
-<li><a href="#sec-2-4">git diff</a></li>
-<li><a href="#sec-2-5">HEAD, master</a></li>
-<li><a href="#sec-2-6">git reset</a></li>
-<li><a href="#sec-2-7">git checkout</a></li>
-<li><a href="#sec-2-8">git分支</a>
+<li><a href="#orgheadline4">工作区(work tree)</a></li>
+<li><a href="#orgheadline5">git的暂存区(index)</a></li>
+<li><a href="#orgheadline6">版本库</a></li>
+<li><a href="#orgheadline7">git diff</a></li>
+<li><a href="#orgheadline8">HEAD, master</a></li>
+<li><a href="#orgheadline9">git reset</a></li>
+<li><a href="#orgheadline10">git checkout</a></li>
+<li><a href="#orgheadline14">git分支</a>
 <ul>
-<li><a href="#sec-2-8-1">创建分支</a></li>
-<li><a href="#sec-2-8-2">切换分支</a></li>
-<li><a href="#sec-2-8-3">合并分支</a></li>
+<li><a href="#orgheadline11">创建分支</a></li>
+<li><a href="#orgheadline12">切换分支</a></li>
+<li><a href="#orgheadline13">合并分支</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sec-3">git github</a></li>
-<li><a href="#sec-4">gitignore syntax</a></li>
+<li><a href="#orgheadline16">git github</a></li>
+<li><a href="#orgheadline17">gitignore syntax</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">基本使用</h2>
-<div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">git的基本命令</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">基本使用</h2>
+<div class="outline-text-2" id="text-orgheadline3">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1">git的基本命令</h3>
+<div class="outline-text-3" id="text-orgheadline1">
 <ul class="org-ul">
-<li>安装：sudo apt-get install git git-uid
-</li>
-<li>init：  git init（工作目录运行，会生成一个.git目录，里面会存放索引数据）
-</li>
+<li>安装：sudo apt-get install git git-uid</li>
+<li>init：  git init（工作目录运行，会生成一个.git目录，里面会存放索引数据）</li>
 <li>add:    git add(添加文件)
 git add . （添加所有）
-（只有添加了新文件时才需要git add，如果只是修改了或删除了文件，可以只执行git commit -a）
-</li>
+（只有添加了新文件时才需要git add，如果只是修改了或删除了文件，可以只执行git commit -a）</li>
 <li>commit: git commit(提交，一般调用add后只是在临时区，只有调用commit才会
 提交到git)
 git commit -m "comment"
-git commit -a           commit all
-</li>
+git commit -a           commit all</li>
 <li>clone:  git clone 只要有.git目录，那么就可以调用该命令来得到git管理的
 所有文件
 eg: git clone test.git dest\_dir/    git-&#x2014;&gt;dest\_dir
-    git clone 账户@IP:工作树路径 你的目录     远程github
-</li>
-<li>pull:  git pull（将远程分支拉到本地，然后和本地分支合并）
-</li>
-<li>push： git push（将本地分支推送远程仓库）
-</li>
+    git clone 账户@IP:工作树路径 你的目录     远程github</li>
+<li>pull:  git pull（将远程分支拉到本地，然后和本地分支合并）</li>
+<li>push： git push（将本地分支推送远程仓库）</li>
 <li>branch： 创建分支或者查看有哪些分支
 git branch             查看有哪些分支
 git branch TmpBranch  创建分支
-git branch -d TmpBranch 删除分支
-</li>
-<li>checkout：改变分支（git checkout TmpBranch)
-</li>
-<li>merge：将制定分支与当前分支合并(git merge TmpBranch 将TmpBranch与当前分支合并）
-</li>
+git branch -d TmpBranch 删除分支</li>
+<li>checkout：改变分支（git checkout TmpBranch)</li>
+<li>merge：将制定分支与当前分支合并(git merge TmpBranch 将TmpBranch与当前分支合并）</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">git一般的工作过程是：</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">git一般的工作过程是：</h3>
+<div class="outline-text-3" id="text-orgheadline2">
 <ol class="org-ol">
-<li>git pull(将远程分支与本地分支合并)
-</li>
-<li>git log（查看其他成员的更改）
-</li>
-<li>git branch (建一个本地分支）
-</li>
-<li>git checkout（进入本地分支）
-</li>
-<li>在该本地分支上进行修改
-</li>
-<li>git checkout（回到主分支）
-</li>
-<li>git merge （将分支上所做的工作合并到主分支）
-</li>
-<li>git branch -d （删除今天创建的分支）
-</li>
-<li>git pull（将远程仓库合并到本地仓库,很重要，因为今天可能别人修改了远程仓库）
-</li>
-<li>git push （将本地仓库合并到远程仓库）
-</li>
+<li>git pull(将远程分支与本地分支合并)</li>
+<li>git log（查看其他成员的更改）</li>
+<li>git branch (建一个本地分支）</li>
+<li>git checkout（进入本地分支）</li>
+<li>在该本地分支上进行修改</li>
+<li>git checkout（回到主分支）</li>
+<li>git merge （将分支上所做的工作合并到主分支）</li>
+<li>git branch -d （删除今天创建的分支）</li>
+<li>git pull（将远程仓库合并到本地仓库,很重要，因为今天可能别人修改了远程仓库）</li>
+<li>git push （将本地仓库合并到远程仓库）</li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">git的原理</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">工作区(work tree)</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-orgheadline15" class="outline-2">
+<h2 id="orgheadline15">git的原理</h2>
+<div class="outline-text-2" id="text-orgheadline15">
+</div><div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">工作区(work tree)</h3>
+<div class="outline-text-3" id="text-orgheadline4">
 <p>
 就是你本地的工作目录树
 </p>
 <ul class="org-ul">
-<li>git add :将工作区的文件提交到暂存区,暂存区的目录树会更新
-</li>
+<li>git add :将工作区的文件提交到暂存区,暂存区的目录树会更新</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2">git的暂存区(index)</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">git的暂存区(index)</h3>
+<div class="outline-text-3" id="text-orgheadline5">
 <p>
 暂存区可以看作一个目录树，暂存区的目录树和版本库的目录树是不同的，.git目录有一个index文件，这个文件包含了
 git所管理的目录中所有文件的大小以及修改时间，每一次你调用git status或者git diff这类命令时，git都会比较工作
@@ -294,48 +279,39 @@ git所管理的目录中所有文件的大小以及修改时间，每一次你�
 改index文件的相应条目的文件时间(因为虽然时间改变了，但文件内容没有改变)，这就是基本的工作流程了
 </p>
 <ul class="org-ul">
-<li>git commit: 将暂存区的文件提交到版本库
-</li>
+<li>git commit: 将暂存区的文件提交到版本库</li>
 <li>git reset HEAD : 暂存区的目录树会被当前分支的版本库目录树替换,所以任何未提交的更新都会丢弃,但工作区不受
-影响
-</li>
+影响</li>
 <li>git checkout 或者 git checkout &#x2013; &lt;file&gt; :用暂存区的全部或者部分文件来替换工作区的文件,所以这个操作会清
-除没有添加到暂存区的工作区改动, <b>危险操作</b>
-</li>
+除没有添加到暂存区的工作区改动, <b>危险操作</b></li>
 <li>git checkout HEAD 或者 git checkout HEAD &lt;file&gt; : 用HEAD指向的版本库分支的全部或者部分文件来替换暂存区与
-工作区的文件,所以这个操作会清除所有未提交的暂存区与工作区改动. <b>危险操作</b>
-</li>
-<li>git rm &#x2013;cached &lt;file&gt; : 直接删除暂存区中的文件,工作区不受影响
-</li>
-<li>git rm &lt;file&gt; : 会删除工作区与暂存区的指定文件
-</li>
+工作区的文件,所以这个操作会清除所有未提交的暂存区与工作区改动. <b>危险操作</b></li>
+<li>git rm &#x2013;cached &lt;file&gt; : 直接删除暂存区中的文件,工作区不受影响</li>
+<li>git rm &lt;file&gt; : 会删除工作区与暂存区的指定文件</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3">版本库</h3>
-<div class="outline-text-3" id="text-2-3">
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6">版本库</h3>
+<div class="outline-text-3" id="text-orgheadline6">
 <p>
 由git管理的分支代码的目录树，比如master分支，以及其它你自己创建的分支,当然操作时一般都只是当前分支的目录树
 </p>
 </div>
 </div>
-<div id="outline-container-sec-2-4" class="outline-3">
-<h3 id="sec-2-4">git diff</h3>
-<div class="outline-text-3" id="text-2-4">
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7">git diff</h3>
+<div class="outline-text-3" id="text-orgheadline7">
 <ul class="org-ul">
-<li>git diff : 工作区与暂存区比较
-</li>
-<li>git diff HEAD : 工作区与HEAD比较
-</li>
-<li>git diff &#x2013;cached : 暂存区与HEAD比较
-</li>
+<li>git diff : 工作区与暂存区比较</li>
+<li>git diff HEAD : 工作区与HEAD比较</li>
+<li>git diff &#x2013;cached : 暂存区与HEAD比较</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-2-5" class="outline-3">
-<h3 id="sec-2-5">HEAD, master</h3>
-<div class="outline-text-3" id="text-2-5">
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8">HEAD, master</h3>
+<div class="outline-text-3" id="text-orgheadline8">
 <p>
 HEAD(.git/HEAD)实际是一个指针,指向的是.git/refs/heads/branch-name文件, branch-name可以是master或者你自己创
 建的分支名,该文件实际指向的是该分支的最新的一次commit, 如果当前是master分支,那么这几个文件的内容应该是这
@@ -343,88 +319,71 @@ HEAD(.git/HEAD)实际是一个指针,指向的是.git/refs/heads/branch-name文�
 </p>
 <ul class="org-ul">
 <li>.git/HEAD : ".git/refs/heads/master" 如果用git checkout改变分支,那么master会变成相应的分支名,所以HEAD可
-以认为一直指向当前分支
-</li>
+以认为一直指向当前分支</li>
 <li>.git/refs/heads/master:  235fd887b9f85d44ce94e8d733b8814509c1d4e8 (master分支最新一次提交的id),通过
-git reset &#x2013;[hard|soft|mixed]可以重置该文件到指定的commit id,那么在你指定的commit id之后的提交就都会丢失.
-</li>
+git reset &#x2013;[hard|soft|mixed]可以重置该文件到指定的commit id,那么在你指定的commit id之后的提交就都会丢失.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-2-6" class="outline-3">
-<h3 id="sec-2-6">git reset</h3>
-<div class="outline-text-3" id="text-2-6">
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9">git reset</h3>
+<div class="outline-text-3" id="text-orgheadline9">
 <ol class="org-ol">
 <li>git reset [commit-id] &lt;path&gt; : 不影响工作区与版本库,只会用commit-id对应的版本库工作树替换暂存区的工作树,实
 际上相当于撤销先前的git add, 举几个例子:
 <ul class="org-ul">
-<li>git reset HEAD: 就是版本库中当前分支的最新一次提交的工作树替换暂存区的工作树
-</li>
-<li>git reset : 等价于 git reset HEAD
-</li>
-</ul>
-</li>
+<li>git reset HEAD: 就是版本库中当前分支的最新一次提交的工作树替换暂存区的工作树</li>
+<li>git reset : 等价于 git reset HEAD</li>
+</ul></li>
 <li>git reset &#x2013;hard [commit-id] : 会将版本库的引用重定向到commit-id,同时将暂存区与工作区的工作树都重置为
 commit-id对应的目录树, 所以commit-id之后所有的工作区,暂存区改动以及版本库提交都会删除, <b>该命令非常危险</b>
 举几个例子:
 <ul class="org-ul">
-<li>git reset &#x2013;hard HEAD^  : 重置HEAD到父提交, 当前提交的内容都会删除 <b>危险</b>
-</li>
-<li>git reset &#x2013;hard commit-id : 重置到commit-id指定的提交, commit-id之后的提交都会删除, <b>危险</b>
-</li>
-</ul>
-</li>
-<li>git reset &#x2013;soft [commit-id] : 只重置版本库的引用,但是不影响暂存区与工作区,用法和2类似
-</li>
-<li>git reset &#x2013;mixed [commit-id] : 重置版本库和暂存区,不改变工作区
-</li>
+<li>git reset &#x2013;hard HEAD^  : 重置HEAD到父提交, 当前提交的内容都会删除 <b>危险</b></li>
+<li>git reset &#x2013;hard commit-id : 重置到commit-id指定的提交, commit-id之后的提交都会删除, <b>危险</b></li>
+</ul></li>
+<li>git reset &#x2013;soft [commit-id] : 只重置版本库的引用,但是不影响暂存区与工作区,用法和2类似</li>
+<li>git reset &#x2013;mixed [commit-id] : 重置版本库和暂存区,不改变工作区</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2-7" class="outline-3">
-<h3 id="sec-2-7">git checkout</h3>
-<div class="outline-text-3" id="text-2-7">
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10">git checkout</h3>
+<div class="outline-text-3" id="text-orgheadline10">
 <p>
 该命令会影响工作区
 </p>
 </div>
 </div>
-<div id="outline-container-sec-2-8" class="outline-3">
-<h3 id="sec-2-8">git分支</h3>
-<div class="outline-text-3" id="text-2-8">
-</div><div id="outline-container-sec-2-8-1" class="outline-4">
-<h4 id="sec-2-8-1">创建分支</h4>
-<div class="outline-text-4" id="text-2-8-1">
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14">git分支</h3>
+<div class="outline-text-3" id="text-orgheadline14">
+</div><div id="outline-container-orgheadline11" class="outline-4">
+<h4 id="orgheadline11">创建分支</h4>
+<div class="outline-text-4" id="text-orgheadline11">
 <ul class="org-ul">
-<li>git branch : 显示所有分支,当前分支前会加*
-</li>
-<li>git branch new-branch : 创建新分支
-</li>
-<li>git branch new-br start-point: 创建新分支,并以start-point为起点初始化
-</li>
-<li>git branch -d br-name: 删除分支,如果分支上有没有合并到其他分支的提交,那么拒绝删除
-</li>
-<li>git branch -D br-name: 和上一个类似,但是会强制删除
-</li>
+<li>git branch : 显示所有分支,当前分支前会加*</li>
+<li>git branch new-branch : 创建新分支</li>
+<li>git branch new-br start-point: 创建新分支,并以start-point为起点初始化</li>
+<li>git branch -d br-name: 删除分支,如果分支上有没有合并到其他分支的提交,那么拒绝删除</li>
+<li>git branch -D br-name: 和上一个类似,但是会强制删除</li>
 <li>git branch -m old-name new-name : 将名为old-name的分支重命名为new-name,如果已存在名为new-name的分支,那
-么重命名失败
-</li>
-<li>git branch -M old-name new-name: 强制重命名
-</li>
+么重命名失败</li>
+<li>git branch -M old-name new-name: 强制重命名</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-2-8-2" class="outline-4">
-<h4 id="sec-2-8-2">切换分支</h4>
-<div class="outline-text-4" id="text-2-8-2">
+<div id="outline-container-orgheadline12" class="outline-4">
+<h4 id="orgheadline12">切换分支</h4>
+<div class="outline-text-4" id="text-orgheadline12">
 <p>
 git checkout new-br
 </p>
 </div>
 </div>
-<div id="outline-container-sec-2-8-3" class="outline-4">
-<h4 id="sec-2-8-3">合并分支</h4>
-<div class="outline-text-4" id="text-2-8-3">
+<div id="outline-container-orgheadline13" class="outline-4">
+<h4 id="orgheadline13">合并分支</h4>
+<div class="outline-text-4" id="text-orgheadline13">
 <p>
 git merge br-name: 将名为br-name的分支与但前分支合并
 </p>
@@ -432,60 +391,52 @@ git merge br-name: 将名为br-name的分支与但前分支合并
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">git github</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline16" class="outline-2">
+<h2 id="orgheadline16">git github</h2>
+<div class="outline-text-2" id="text-orgheadline16">
 <ol class="org-ol">
 <li>git remote add remoteName remoteUrl
 eg: git remote add origin git@github.com:youName/github-example.git
 只第一次新建了仓库时才需要运行，实际上是将本地的仓库与远程的仓库关联起来
-如果出错可以使用命令 git remote rm origin
-</li>
+如果出错可以使用命令 git remote rm origin</li>
 <li>git push origin master(将本地的仓库推送到远端）
 如果报错那么极有可能是远端仓库被别人提交过了，所以要先pull，与本地合并然后在提交
-git pull origin master
-</li>
+git pull origin master</li>
 <li>git pull -u origin master
-origin是远程分支的名字，master是本地分支的名字
-</li>
+origin是远程分支的名字，master是本地分支的名字</li>
 <li>子模块
 git submodule add 子模快url 本地的路径
 eg: git submodule add <a href="https://github.com/libevent/libevent.git">https://github.com/libevent/libevent.git</a> .dep/libevent
-当clone了一份包含子模快的仓库时，调用git submodule update &#x2013;init可以拉取那些子模快
-</li>
+当clone了一份包含子模快的仓库时，调用git submodule update &#x2013;init可以拉取那些子模快</li>
 <li>fork后合并原仓库的改变
 情景如下：我在github fork一个仓库（<a href="https://github.com/purcell/emacs.d.git">https://github.com/purcell/emacs.d.git</a> ）到我的的账户
          （<a href="https://github.com/yuyang0/emacs.d.git">https://github.com/yuyang0/emacs.d.git</a> ）然后我将这个fork仓库clone到本地，现在
          我要合并原仓库的改变。。
 first: git remote add purcell <a href="https://github.com/purcell/emacs.d.git">https://github.com/purcell/emacs.d.git</a>
 next: git pull purcell master (git fetch purcell, git merge purcell/master)
-next: git push origin master
-</li>
+next: git push origin master</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">gitignore syntax</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgheadline17" class="outline-2">
+<h2 id="orgheadline17">gitignore syntax</h2>
+<div class="outline-text-2" id="text-orgheadline17">
 <ul class="org-ul">
-<li>"#" ： 注释
-</li>
-<li>！   : 取反，即匹配模式的文件不忽略
-</li>
-<li>/   ： /结尾被当作目录，该目录的所有文件忽略
-</li>
+<li>"#" ： 注释</li>
+<li>！   : 取反，即匹配模式的文件不忽略</li>
+<li>/   ： /结尾被当作目录，该目录的所有文件忽略</li>
 <li>/   ： /开头则只忽略工作树根目录开始匹配eg：core/TODO与/core/TODO不
 同，前者只要文件路径包含core/TODO（如doc/core/TODO）即匹配，
-而后者则只匹配工作树根目录下的core文件夹的TODO文件
-</li>
-<li>glob模式：glob模式不同于正则表达式，等同于shell模式下的方式
+而后者则只匹配工作树根目录下的core文件夹的TODO文件</li>
+<li><p>
+glob模式：glob模式不同于正则表达式，等同于shell模式下的方式
+</p>
 <p class="verse">
 *：匹配任意字符<br  />
 ?: 匹配任意单个字符<br  />
 [abcd]: 匹配a b c d中的一个<br  />
 [a-z]: 匹配a-z之间的一个字符<br  />
-</p>
-</li>
+</p></li>
 </ul>
 </div>
 </div>

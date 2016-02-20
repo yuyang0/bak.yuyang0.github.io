@@ -3,24 +3,31 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Client-Side javascript</title>
-<!-- 2015-11-20 Fri 15:44 -->
+<!-- 2016-02-20 Sat 22:43 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Client-Side javascript</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
 <meta  name="keywords" content="javascript client" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -59,15 +66,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -170,87 +176,86 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">js运行方式</a></li>
-<li><a href="#sec-2">global window object</a>
+<li><a href="#orgheadline1">js运行方式</a></li>
+<li><a href="#orgheadline7">global window object</a>
 <ul>
-<li><a href="#sec-2-1">timers</a></li>
-<li><a href="#sec-2-2">window.location</a></li>
-<li><a href="#sec-2-3">window.history</a></li>
-<li><a href="#sec-2-4">window.navigator</a></li>
-<li><a href="#sec-2-5">window.document</a></li>
+<li><a href="#orgheadline2">timers</a></li>
+<li><a href="#orgheadline3">window.location</a></li>
+<li><a href="#orgheadline4">window.history</a></li>
+<li><a href="#orgheadline5">window.navigator</a></li>
+<li><a href="#orgheadline6">window.document</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">DOM</a>
+<li><a href="#orgheadline18">DOM</a>
 <ul>
-<li><a href="#sec-3-1">node</a>
+<li><a href="#orgheadline8">node</a>
 <ul>
-<li><a href="#sec-3-1-1">节点指针以及属性</a></li>
-<li><a href="#sec-3-1-2">node type</a></li>
-<li><a href="#sec-3-1-3">Element node's attribute</a></li>
-<li><a href="#sec-3-1-4">Element node's content</a></li>
+<li><a href="#orgheadline9">节点指针以及属性</a></li>
+<li><a href="#orgheadline10">node type</a></li>
+<li><a href="#orgheadline11">Element node's attribute</a></li>
+<li><a href="#orgheadline12">Element node's content</a></li>
 </ul>
 </li>
-<li><a href="#sec-3-2">选择DOM节点</a></li>
-<li><a href="#sec-3-3">创建新DOM节点</a></li>
-<li><a href="#sec-3-4">插入DOM节点</a></li>
-<li><a href="#sec-3-5">删除,替换DOM节点</a></li>
-<li><a href="#sec-3-6">位置,scroll</a></li>
+<li><a href="#orgheadline13">选择DOM节点</a></li>
+<li><a href="#orgheadline14">创建新DOM节点</a></li>
+<li><a href="#orgheadline15">插入DOM节点</a></li>
+<li><a href="#orgheadline16">删除,替换DOM节点</a></li>
+<li><a href="#orgheadline17">位置,scroll</a></li>
 </ul>
 </li>
-<li><a href="#sec-4">修改css</a>
+<li><a href="#orgheadline19">修改css</a>
 <ul>
-<li><a href="#sec-4-1">使用style属性来修改css</a></li>
-<li><a href="#sec-4-2">获取当前的样式</a></li>
-<li><a href="#sec-4-3">className</a></li>
+<li><a href="#orgheadline20">使用style属性来修改css</a></li>
+<li><a href="#orgheadline21">获取当前的样式</a></li>
+<li><a href="#orgheadline22">className</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">事件</a>
+<li><a href="#orgheadline35">事件</a>
 <ul>
-<li><a href="#sec-5-1">Event Object</a></li>
-<li><a href="#sec-5-2">常用事件类型</a>
+<li><a href="#orgheadline23">Event Object</a></li>
+<li><a href="#orgheadline29">常用事件类型</a>
 <ul>
-<li><a href="#sec-5-2-1">window的事件</a></li>
-<li><a href="#sec-5-2-2">UI事件</a></li>
-<li><a href="#sec-5-2-3">鼠标事件</a></li>
-<li><a href="#sec-5-2-4">键盘事件</a></li>
-<li><a href="#sec-5-2-5">表单事件</a></li>
+<li><a href="#orgheadline24">window的事件</a></li>
+<li><a href="#orgheadline25">UI事件</a></li>
+<li><a href="#orgheadline26">鼠标事件</a></li>
+<li><a href="#orgheadline27">键盘事件</a></li>
+<li><a href="#orgheadline28">表单事件</a></li>
 </ul>
 </li>
-<li><a href="#sec-5-3">Register Event Handler</a></li>
-<li><a href="#sec-5-4">Event Cancellation</a>
+<li><a href="#orgheadline30">Register Event Handler</a></li>
+<li><a href="#orgheadline33">Event Cancellation</a>
 <ul>
-<li><a href="#sec-5-4-1">阻止浏览器默认行为</a></li>
-<li><a href="#sec-5-4-2">阻止事件冒泡</a></li>
+<li><a href="#orgheadline31">阻止浏览器默认行为</a></li>
+<li><a href="#orgheadline32">阻止事件冒泡</a></li>
 </ul>
 </li>
-<li><a href="#sec-5-5">通用函数</a></li>
+<li><a href="#orgheadline34">通用函数</a></li>
 </ul>
 </li>
-<li><a href="#sec-6">ajax</a>
+<li><a href="#orgheadline41">ajax</a>
 <ul>
-<li><a href="#sec-6-1">Create XMLHttpRequest</a></li>
-<li><a href="#sec-6-2">open</a></li>
-<li><a href="#sec-6-3">send</a></li>
-<li><a href="#sec-6-4">Retrieving the Response</a></li>
-<li><a href="#sec-6-5">jsonp</a></li>
+<li><a href="#orgheadline36">Create XMLHttpRequest</a></li>
+<li><a href="#orgheadline37">open</a></li>
+<li><a href="#orgheadline38">send</a></li>
+<li><a href="#orgheadline39">Retrieving the Response</a></li>
+<li><a href="#orgheadline40">jsonp</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">js运行方式</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">js运行方式</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <ol class="org-ol">
-<li>&lt;script&gt;&#x2026;..&lt;/script&gt;内嵌
-</li>
-<li>&lt;script src="path-to-js-file"&gt; &lt;/script&gt; 外部js文件
-</li>
-<li>事件处理，比如button的 onclick, onmouseover等等
-</li>
+<li>&lt;script&gt;&#x2026;..&lt;/script&gt;内嵌</li>
+<li>&lt;script src="path-to-js-file"&gt; &lt;/script&gt; 外部js文件</li>
+<li>事件处理，比如button的 onclick, onmouseover等等</li>
 <li>javascript urls
 <ul class="org-ul">
-<li>任何能使用url的地方，比如 a 标签的href，form的action使用如下代码：
+<li><p>
+任何能使用url的地方，比如 a 标签的href，form的action使用如下代码：
+</p>
 <div class="org-src-container">
 
 <pre class="src src-html">&lt;<span style="color: #93E0E3;">a</span> <span style="color: #DFAF8F;">href</span>=<span style="color: #CC9393;">"javascript: alert('hello world');"</span>&gt;&lt;/<span style="color: #93E0E3;">a</span>&gt;
@@ -264,118 +269,94 @@ for the JavaScript code in this tag.
 
 <pre class="src src-html">&lt;<span style="color: #93E0E3;">a</span> <span style="color: #DFAF8F;">href</span>=<span style="color: #CC9393;">"javascript:void new Date().toLocaleTimeString();"</span>&gt;Check the time without overwriting the document&lt;/<span style="color: #93E0E3;">a</span>&gt;
 </pre>
-</div>
-</li>
-<li>Bookmarklets
+</div></li>
+<li><p>
+Bookmarklets
 加入书签，那么这段代码就相当于直接插入了当前页面，比如订阅到鲜果的书签：
+</p>
 <div class="org-src-container">
 
 <pre class="src src-js">javascript:window.open<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'http://xianguo.com/subscribe?url='</span>+encodeURIComponent<span style="color: #BFEBBF;">(</span>location.href<span style="color: #BFEBBF;">)</span>, <span style="color: #CC9393;">'xianguo'</span><span style="color: #DCDCCC;">)</span>;<span style="color: #F0DFAF; font-weight: bold;">void</span><span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">0</span><span style="color: #DCDCCC;">)</span>
 </pre>
-</div>
-</li>
-</ul>
-</li>
+</div></li>
+</ul></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">global window object</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">timers</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7">global window object</h2>
+<div class="outline-text-2" id="text-orgheadline7">
+</div><div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">timers</h3>
+<div class="outline-text-3" id="text-orgheadline2">
 <ol class="org-ol">
-<li>setTimeout(callback, timeout) : 只运行一次callback，返回值可以传递给clearTimeout来清除定时器
-</li>
-<li>clearTimeout()
-</li>
+<li>setTimeout(callback, timeout) : 只运行一次callback，返回值可以传递给clearTimeout来清除定时器</li>
+<li>clearTimeout()</li>
 <li>setInterval(callback, interval) : 每隔interval就运行一次callback,返回值可以传递给clearInterval来清除定
-时器
-</li>
-<li>clearInterval()
-</li>
+时器</li>
+<li>clearInterval()</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2">window.location</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">window.location</h3>
+<div class="outline-text-3" id="text-orgheadline3">
 <p>
 window.location指向一个Location object,这个object有一系列的属性,以
-<a href="http://www.oreilly.com:1234/catalog/search.html?q=JavaScript&m=10#results">http://www.oreilly.com:1234/catalog/search.html?q=JavaScript&m=10#results</a> 为例
+<a href="http://www.oreilly.com:1234/catalog/search.html?q=JavaScript&amp;m=10#results">http://www.oreilly.com:1234/catalog/search.html?q=JavaScript&amp;m=10#results</a> 为例
 </p>
 <ol class="org-ol">
-<li>href:         整个url,如果对该属性赋值,则可以重定向到新url
-</li>
-<li>protocal:     'http:'
-</li>
-<li>host:         'http://www.oreilly.com:1234'
-</li>
-<li>hostname:     'http://www.oreilly.com'
-</li>
-<li>port:         '1234' 是一个字符串,不是数字
-</li>
-<li>pathname:     '/catalog/search.html'
-</li>
-<li>search:       '?q=JavaScript&amp;m=10'
-</li>
-<li>hash:         '#results'   anchor part of url
-</li>
+<li>href:         整个url,如果对该属性赋值,则可以重定向到新url</li>
+<li>protocal:     'http:'</li>
+<li>host:         'http://www.oreilly.com:1234'</li>
+<li>hostname:     'http://www.oreilly.com'</li>
+<li>port:         '1234' 是一个字符串,不是数字</li>
+<li>pathname:     '/catalog/search.html'</li>
+<li>search:       '?q=JavaScript&amp;m=10'</li>
+<li>hash:         '#results'   anchor part of url</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3">window.history</h3>
-<div class="outline-text-3" id="text-2-3">
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">window.history</h3>
+<div class="outline-text-3" id="text-orgheadline4">
 <ol class="org-ol">
-<li>history.forward(): 前进
-</li>
-<li>history.back(): 后退
-</li>
-<li>history.go(2), history.go(-2) : 前进2个页面,后退两个页面
-</li>
+<li>history.forward(): 前进</li>
+<li>history.back(): 后退</li>
+<li>history.go(2), history.go(-2) : 前进2个页面,后退两个页面</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2-4" class="outline-3">
-<h3 id="sec-2-4">window.navigator</h3>
-<div class="outline-text-3" id="text-2-4">
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">window.navigator</h3>
+<div class="outline-text-3" id="text-orgheadline5">
 <ol class="org-ol">
-<li>appName:
-</li>
-<li>appVersion:
-</li>
-<li>userAgent:
-</li>
-<li>paltForm
-</li>
+<li>appName:</li>
+<li>appVersion:</li>
+<li>userAgent:</li>
+<li>paltForm</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2-5" class="outline-3">
-<h3 id="sec-2-5">window.document</h3>
-<div class="outline-text-3" id="text-2-5">
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6">window.document</h3>
+<div class="outline-text-3" id="text-orgheadline6">
 <ol class="org-ol">
 <li>referrer: 一个错误的拼写, 主要用来指示用户是从什么链接跳转到该文档, 可以
-用来防盗链, 和HTTP中referer类似
-</li>
-<li>cookie: 设置cookie
-</li>
-<li>title: text between <code>&lt;title&gt;</code> and <code>&lt;/title&gt;</code>.
-</li>
-<li>domain:
-</li>
+用来防盗链, 和HTTP中referer类似</li>
+<li>cookie: 设置cookie</li>
+<li>title: text between <code>&lt;title&gt;</code> and <code>&lt;/title&gt;</code>.</li>
+<li>domain:</li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">DOM</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">node</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-orgheadline18" class="outline-2">
+<h2 id="orgheadline18">DOM</h2>
+<div class="outline-text-2" id="text-orgheadline18">
+</div><div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8">node</h3>
+<div class="outline-text-3" id="text-orgheadline8">
 <p>
 node: DOM树中的一个节点, 以下面这段html为例:
 </p>
@@ -396,32 +377,23 @@ node: DOM树中的一个节点, 以下面这段html为例:
 <img src="static/img/DOM-tree.png" alt="DOM-tree.png" />
 </p>
 </div>
-<div id="outline-container-sec-3-1-1" class="outline-4">
-<h4 id="sec-3-1-1">节点指针以及属性</h4>
-<div class="outline-text-4" id="text-3-1-1">
+<div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9">节点指针以及属性</h4>
+<div class="outline-text-4" id="text-orgheadline9">
 <p>
 因为是树中的节点所以每个node对象都有以下的指针(以n代表一个node对象):
 </p>
 <ol class="org-ol">
-<li>n.parentNode: n的父节点对象
-</li>
-<li>n.previousSibling: n的前一个兄弟节点对象
-</li>
-<li>n.nextSibling: n的下一个兄弟节点对象
-</li>
-<li>n.firstChild: n的第一个子节点对象
-</li>
-<li>n.lastChild: n的最后一个子节点对象
-</li>
-<li>n.childNodes: 返回一个类数组结构,包含所有的子节点.
-</li>
+<li>n.parentNode: n的父节点对象</li>
+<li>n.previousSibling: n的前一个兄弟节点对象</li>
+<li>n.nextSibling: n的下一个兄弟节点对象</li>
+<li>n.firstChild: n的第一个子节点对象</li>
+<li>n.lastChild: n的最后一个子节点对象</li>
+<li>n.childNodes: 返回一个类数组结构,包含所有的子节点.</li>
 <li>n.firstElementChild: 第一个元素节点, 这在排除一些空格导致上的文本节点时
-特别有用
-</li>
-<li>n.lastElementChild:
-</li>
-<li>n.childElementCount: 子节点中元素节点的个数
-</li>
+特别有用</li>
+<li>n.lastElementChild:</li>
+<li>n.childElementCount: 子节点中元素节点的个数</li>
 </ol>
 
 <p>
@@ -430,36 +402,30 @@ node: DOM树中的一个节点, 以下面这段html为例:
 <ol class="org-ol">
 <li><b>nodeType</b>: The kind of node this is. Document nodes have the
 value 9. Element nodes have the value 1. Text nodes have the
-value 3. Comments nodes are 8 and Document- Fragment nodes are 11.
-</li>
-<li><b>nodeValue</b>: The textual content of a <b>Text</b> or <b>Comment</b> node.
-</li>
-<li><b>nodeName</b>: The tag name of an Element, converted to uppercase.
-</li>
+value 3. Comments nodes are 8 and Document- Fragment nodes are 11.</li>
+<li><b>nodeValue</b>: The textual content of a <b>Text</b> or <b>Comment</b> node.</li>
+<li><b>nodeName</b>: The tag name of an Element, converted to uppercase.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-3-1-2" class="outline-4">
-<h4 id="sec-3-1-2">node type</h4>
-<div class="outline-text-4" id="text-3-1-2">
+<div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10">node type</h4>
+<div class="outline-text-4" id="text-orgheadline10">
 <p>
 有三种节点类型:
 </p>
 <ul class="org-ul">
 <li>Document Node: 最上方的那个节点, 用来代表整个文档, 这种节点一份文档只有
-一个
-</li>
+一个</li>
 <li>Element Node: 用来代表html元素, 比如上图中的head节点就代表html中
-<code>&lt;head&gt;...&lt;/head&gt;</code>.
-</li>
-<li>Text Node: 代表文本,比如上例中 <code>Sample Document</code> 节点.
-</li>
+<code>&lt;head&gt;...&lt;/head&gt;</code>.</li>
+<li>Text Node: 代表文本,比如上例中 <code>Sample Document</code> 节点.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-3-1-3" class="outline-4">
-<h4 id="sec-3-1-3">Element node's attribute</h4>
-<div class="outline-text-4" id="text-3-1-3">
+<div id="outline-container-orgheadline11" class="outline-4">
+<h4 id="orgheadline11">Element node's attribute</h4>
+<div class="outline-text-4" id="text-orgheadline11">
 <p>
 element node代表一个html元素, 他可以直接获得以及设置该html元素的属性,假设f
 是一个form元素, 那么可以使用下面的代码:
@@ -475,10 +441,8 @@ f.method = <span style="color: #CC9393;">"POST"</span>                   <span s
 标准的html属性有效, 非标准的属性可以使用这两个函数来获取:
 </p>
 <ol class="org-ol">
-<li>getAttribute
-</li>
-<li>setAttribute
-</li>
+<li>getAttribute</li>
+<li>setAttribute</li>
 </ol>
 <p>
 比如在html5中可以给一个元素设置以 <code>data-</code> 作为前缀的属性, 比如 <code>data-id</code>,
@@ -489,63 +453,54 @@ f.method = <span style="color: #CC9393;">"POST"</span>                   <span s
 </p>
 </div>
 </div>
-<div id="outline-container-sec-3-1-4" class="outline-4">
-<h4 id="sec-3-1-4">Element node's content</h4>
-<div class="outline-text-4" id="text-3-1-4">
+<div id="outline-container-orgheadline12" class="outline-4">
+<h4 id="orgheadline12">Element node's content</h4>
+<div class="outline-text-4" id="text-orgheadline12">
 <ol class="org-ol">
-<li>innerHTML : 元素内的 html文本(不包含该元素本身的标签)
-</li>
+<li>innerHTML : 元素内的 html文本(不包含该元素本身的标签)</li>
 <li>textContent/innerText: 可以看作是innerHTML去掉所有的 HTML标签后得到的文
-本. IE没有定义textContent, firefox没有定义 innerText.
-</li>
-<li>outerHTML: 和innerHTML相同,但是它会包含该元素本身的标签
-</li>
+本. IE没有定义textContent, firefox没有定义 innerText.</li>
+<li>outerHTML: 和innerHTML相同,但是它会包含该元素本身的标签</li>
 </ol>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2">选择DOM节点</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13">选择DOM节点</h3>
+<div class="outline-text-3" id="text-orgheadline13">
 <ol class="org-ol">
-<li>document.getElementById: 返回单个DOM节点
-</li>
+<li>document.getElementById: 返回单个DOM节点</li>
 <li>document.getElementsByName: 根据name属性查找, 返回NodeList, 这是一个类数
-组对象, 只读.
-</li>
-<li>document.getElementsByTagName
-</li>
-<li>document.getElementsByClassName
-</li>
+组对象, 只读.</li>
+<li>document.getElementsByTagName</li>
+<li>document.getElementsByClassName</li>
 <li>document.querySelectorAll: 通过css selector来选择元素, 返回一个类数组结
-构
-</li>
+构</li>
 <li>document.querySelector: 和 querySelectorAll 类似,只是它值返回第一个匹配
-的对象, 如果没有匹配的那么返回 null.
-</li>
+的对象, 如果没有匹配的那么返回 null.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3">创建新DOM节点</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14">创建新DOM节点</h3>
+<div class="outline-text-3" id="text-orgheadline14">
 <ol class="org-ol">
-<li>document.createElement: 创建元素节点
+<li><p>
+document.createElement: 创建元素节点
+</p>
 <div class="org-src-container">
 
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">div</span> = document.createElement<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'div'</span><span style="color: #DCDCCC;">)</span>;
 </pre>
-</div>
-</li>
-<li>document.createTextNode: 创建文本节点
-</li>
+</div></li>
+<li>document.createTextNode: 创建文本节点</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-3-4" class="outline-3">
-<h3 id="sec-3-4">插入DOM节点</h3>
-<div class="outline-text-3" id="text-3-4">
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15">插入DOM节点</h3>
+<div class="outline-text-3" id="text-orgheadline15">
 <p>
 可以使用 <code>insertBefore</code> 与 <code>appendChild</code> 这两个节点方法
 </p>
@@ -575,9 +530,9 @@ parentElem.appendChild(nodeToInsert);
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3-5" class="outline-3">
-<h3 id="sec-3-5">删除,替换DOM节点</h3>
-<div class="outline-text-3" id="text-3-5">
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16">删除,替换DOM节点</h3>
+<div class="outline-text-3" id="text-orgheadline16">
 <p>
 删除节点可以用 <code>removeChild</code> 函数.
 </p>
@@ -602,9 +557,9 @@ NodeParent.removeChild(NodeToRemove);
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3-6" class="outline-3">
-<h3 id="sec-3-6">位置,scroll</h3>
-<div class="outline-text-3" id="text-3-6">
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17">位置,scroll</h3>
+<div class="outline-text-3" id="text-orgheadline17">
 <p>
 有两种坐标系统, 一种是 viewpoint coordinate, 一种是 document coordinate, 前
 者只考虑可见的窗口部分,也就是说坐标系的原点在窗口的左上角,也就是所谓的
@@ -620,7 +575,9 @@ documentY = viewpointY + scrollY
 scrollX, scrollY 代表滚动条滚动的距离.
 </p>
 <ol class="org-ol">
-<li>获得viewpoint坐标
+<li><p>
+获得viewpoint坐标
+</p>
 <div class="org-src-container">
 
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">box</span> = e.getBoundingClientRect<span style="color: #DCDCCC;">()</span>
@@ -641,9 +598,10 @@ e是一个DOM节点元素, 返回的那几个属性都可以为负值或者大�
 <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">w</span> = box.width || <span style="color: #DCDCCC;">(</span>box.right - box.left<span style="color: #DCDCCC;">)</span>; <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">width</span>
 <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">h</span> = box.height || <span style="color: #DCDCCC;">(</span>box.bottom - box.top<span style="color: #DCDCCC;">)</span>; <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">height</span>
 </pre>
-</div>
-</li>
-<li>获得滚动条的offset
+</div></li>
+<li><p>
+获得滚动条的offset
+</p>
 <div class="org-src-container">
 
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">getScrollOffsets</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">w</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
@@ -665,32 +623,28 @@ e是一个DOM节点元素, 返回的那几个属性都可以为负值或者大�
   <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #BFEBBF;">{</span> scrollX: d.body.scrollLeft, scrollY: d.body.scrollTop <span style="color: #BFEBBF;">}</span>;
 <span style="color: #DCDCCC;">}</span>
 </pre>
-</div>
-</li>
+</div></li>
 <li>scroll
 <ul class="org-ul">
 <li>scrollTo(aka scroll): window对象的方法, 指定x,y坐标, 浏览器就会滚动到
-对应位置
-</li>
-<li>scrollIntoView: 一个Dom 节点的方法, 可以将这个元素滚动到视图中来.
-</li>
-</ul>
-</li>
+对应位置</li>
+<li>scrollIntoView: 一个Dom 节点的方法, 可以将这个元素滚动到视图中来.</li>
+</ul></li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">修改css</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgheadline19" class="outline-2">
+<h2 id="orgheadline19">修改css</h2>
+<div class="outline-text-2" id="text-orgheadline19">
 <p>
 注意因为js中标识符中不能使用 - , 所以使用驼峰命名, 比如css的 <code>font-size</code> 在js
 中就用, <code>fontSize</code>.
 </p>
 </div>
-<div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1">使用style属性来修改css</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20">使用style属性来修改css</h3>
+<div class="outline-text-3" id="text-orgheadline20">
 <div class="org-src-container">
 
 <pre class="src src-js">e.style.position = <span style="color: #CC9393;">"absolute"</span>;
@@ -706,9 +660,9 @@ e.style.backgroundColor = <span style="color: #CC9393;">"#ffffff"</span>;
 </p>
 </div>
 </div>
-<div id="outline-container-sec-4-2" class="outline-3">
-<h3 id="sec-4-2">获取当前的样式</h3>
-<div class="outline-text-3" id="text-4-2">
+<div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21">获取当前的样式</h3>
+<div class="outline-text-3" id="text-orgheadline21">
 <p>
 返回当前应用在该元素上的某项css值.
 </p>
@@ -735,9 +689,9 @@ e.style.backgroundColor = <span style="color: #CC9393;">"#ffffff"</span>;
 </p>
 </div>
 </div>
-<div id="outline-container-sec-4-3" class="outline-3">
-<h3 id="sec-4-3">className</h3>
-<div class="outline-text-3" id="text-4-3">
+<div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22">className</h3>
+<div class="outline-text-3" id="text-orgheadline22">
 <p>
 通过className属性来修改HTML元素的 class属性, 之所以不用class这个词是因为它是
 js的关键字.
@@ -745,24 +699,20 @@ js的关键字.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5">事件</h2>
-<div class="outline-text-2" id="text-5">
-</div><div id="outline-container-sec-5-1" class="outline-3">
-<h3 id="sec-5-1">Event Object</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-orgheadline35" class="outline-2">
+<h2 id="orgheadline35">事件</h2>
+<div class="outline-text-2" id="text-orgheadline35">
+</div><div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23">Event Object</h3>
+<div class="outline-text-3" id="text-orgheadline23">
 <p>
 通用属性:
 </p>
 <ol class="org-ol">
-<li>type: 一个字符串,比如 'load', 'click', 'mouseover'等等.
-</li>
-<li>target/srcElement: 触发事件的DOM元素, 后者是IE
-</li>
-<li>stopPropagation()/cancelBubble: 阻止冒泡, 后者是IE
-</li>
-<li>preventDefault()/returnValue=false: 阻止默认行为, 后者是IE
-</li>
+<li>type: 一个字符串,比如 'load', 'click', 'mouseover'等等.</li>
+<li>target/srcElement: 触发事件的DOM元素, 后者是IE</li>
+<li>stopPropagation()/cancelBubble: 阻止冒泡, 后者是IE</li>
+<li>preventDefault()/returnValue=false: 阻止默认行为, 后者是IE</li>
 </ol>
 <p>
 还有一些事件有一些特别的属性:
@@ -770,98 +720,79 @@ js的关键字.
 <ol class="org-ol">
 <li>鼠标事件有以下几个比较重要的属性:
 <ul class="org-ul">
-<li>clientX, clientY: 鼠标在窗口中X, Y坐标, viewpoint coordinate.
-</li>
-<li>pageX, pageY : 鼠标相对于文档的x, Y坐标, document coordinate(IE中无效).
-</li>
-</ul>
-</li>
-<li>键盘事件有: ctrlKey, shiftKey, keyCode
-</li>
+<li>clientX, clientY: 鼠标在窗口中X, Y坐标, viewpoint coordinate.</li>
+<li>pageX, pageY : 鼠标相对于文档的x, Y坐标, document coordinate(IE中无效).</li>
+</ul></li>
+<li>键盘事件有: ctrlKey, shiftKey, keyCode</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-5-2" class="outline-3">
-<h3 id="sec-5-2">常用事件类型</h3>
-<div class="outline-text-3" id="text-5-2">
-</div><div id="outline-container-sec-5-2-1" class="outline-4">
-<h4 id="sec-5-2-1">window的事件</h4>
-<div class="outline-text-4" id="text-5-2-1">
+<div id="outline-container-orgheadline29" class="outline-3">
+<h3 id="orgheadline29">常用事件类型</h3>
+<div class="outline-text-3" id="text-orgheadline29">
+</div><div id="outline-container-orgheadline24" class="outline-4">
+<h4 id="orgheadline24">window的事件</h4>
+<div class="outline-text-4" id="text-orgheadline24">
 <ol class="org-ol">
-<li>load
-</li>
-<li>scroll
-</li>
+<li>load</li>
+<li>scroll</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-5-2-2" class="outline-4">
-<h4 id="sec-5-2-2">UI事件</h4>
-<div class="outline-text-4" id="text-5-2-2">
+<div id="outline-container-orgheadline25" class="outline-4">
+<h4 id="orgheadline25">UI事件</h4>
+<div class="outline-text-4" id="text-orgheadline25">
 <ol class="org-ol">
-<li>focus: element gains input focus
-</li>
-<li>blur: element loses input focus
-</li>
+<li>focus: element gains input focus</li>
+<li>blur: element loses input focus</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-5-2-3" class="outline-4">
-<h4 id="sec-5-2-3">鼠标事件</h4>
-<div class="outline-text-4" id="text-5-2-3">
+<div id="outline-container-orgheadline26" class="outline-4">
+<h4 id="orgheadline26">鼠标事件</h4>
+<div class="outline-text-4" id="text-orgheadline26">
 <ol class="org-ol">
-<li>click
-</li>
-<li>dblclick
-</li>
-<li>mouseover
-</li>
-<li>mouseout
-</li>
-<li>mousedown
-</li>
-<li>mouseup
-</li>
-<li>mousemove
-</li>
+<li>click</li>
+<li>dblclick</li>
+<li>mouseover</li>
+<li>mouseout</li>
+<li>mousedown</li>
+<li>mouseup</li>
+<li>mousemove</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-5-2-4" class="outline-4">
-<h4 id="sec-5-2-4">键盘事件</h4>
-<div class="outline-text-4" id="text-5-2-4">
+<div id="outline-container-orgheadline27" class="outline-4">
+<h4 id="orgheadline27">键盘事件</h4>
+<div class="outline-text-4" id="text-orgheadline27">
 <ul class="org-ul">
 <li>keydown/keypress: 二者是同义事件, 但是在阻止按键的默认行为时则只能用
-keypress, 当你按组合快捷键时, 它会触发多个该类事件.
-</li>
-<li>keyup
-</li>
+keypress, 当你按组合快捷键时, 它会触发多个该类事件.</li>
+<li>keyup</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-5-2-5" class="outline-4">
-<h4 id="sec-5-2-5">表单事件</h4>
-<div class="outline-text-4" id="text-5-2-5">
+<div id="outline-container-orgheadline28" class="outline-4">
+<h4 id="orgheadline28">表单事件</h4>
+<div class="outline-text-4" id="text-orgheadline28">
 <ol class="org-ol">
-<li>select: 选择了文本时触发
-</li>
+<li>select: 选择了文本时触发</li>
 <li>change: &lt;input type="text" /&gt;, &lt;input type="password" /&gt;, &lt;select&gt;,
 <code>&lt;textarea&gt;</code> 等的内容改变且失去焦点时触发. 如果是文本框,当然还有keypress
-事件.
-</li>
-<li>submit: 这是form对象的事件, 它在表单被提交时触发.
-</li>
-<li>reset
-</li>
+事件.</li>
+<li>submit: 这是form对象的事件, 它在表单被提交时触发.</li>
+<li>reset</li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5-3" class="outline-3">
-<h3 id="sec-5-3">Register Event Handler</h3>
-<div class="outline-text-3" id="text-5-3">
+<div id="outline-container-orgheadline30" class="outline-3">
+<h3 id="orgheadline30">Register Event Handler</h3>
+<div class="outline-text-3" id="text-orgheadline30">
 <ol class="org-ol">
-<li>onevent: 实际就是设置元素的html属性.基本代码模式如下:
+<li><p>
+onevent: 实际就是设置元素的html属性.基本代码模式如下:
+</p>
 <pre class="example">
 window.onload = function(evt){...};
 </pre>
@@ -869,42 +800,36 @@ window.onload = function(evt){...};
 这种方法有一些优缺点:
 </p>
 <ul class="org-ul">
-<li>优点: 事件处理函数中this被正确绑定到当前元素,同时这种方法兼容性很好
-</li>
+<li>优点: 事件处理函数中this被正确绑定到当前元素,同时这种方法兼容性很好</li>
 <li>缺点: 一个元素对一类事件只能绑定一个事件处理函数, 重复绑定会覆盖以前的
-绑定. 同时事件对象参数只在非IE浏览器有效(IE浏览器使用全局事件对象).
-</li>
-</ul>
-</li>
+绑定. 同时事件对象参数只在非IE浏览器有效(IE浏览器使用全局事件对象).</li>
+</ul></li>
 
-<li>addEventListener: 代码模式如下:
+<li><p>
+addEventListener: 代码模式如下:
+</p>
 <pre class="example">
 window.addEventListener('load', function(){...}, false);
 </pre>
 <ul class="org-ul">
 <li>优点: 可以绑定多个事件处理函数, this被正确绑定, event对象作为第一个参
-数传递给事件处理函数
-</li>
-<li>缺点: IE不支持
-</li>
-</ul>
-</li>
+数传递给事件处理函数</li>
+<li>缺点: IE不支持</li>
+</ul></li>
 
 <li>IE(attachEvent)
-在这种模式中, 如果要阻止浏览器的默认行为, 那么事件处理函数应该调用
-</li>
+在这种模式中, 如果要阻止浏览器的默认行为, 那么事件处理函数应该调用</li>
 
-<li>这是一个比较好的版本, 你可以从这里<a href="static/doc/add-event.js">下载</a>.
-</li>
+<li>这是一个比较好的版本, 你可以从这里<a href="static/doc/add-event.js">下载</a>.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-5-4" class="outline-3">
-<h3 id="sec-5-4">Event Cancellation</h3>
-<div class="outline-text-3" id="text-5-4">
-</div><div id="outline-container-sec-5-4-1" class="outline-4">
-<h4 id="sec-5-4-1">阻止浏览器默认行为</h4>
-<div class="outline-text-4" id="text-5-4-1">
+<div id="outline-container-orgheadline33" class="outline-3">
+<h3 id="orgheadline33">Event Cancellation</h3>
+<div class="outline-text-3" id="text-orgheadline33">
+</div><div id="outline-container-orgheadline31" class="outline-4">
+<h4 id="orgheadline31">阻止浏览器默认行为</h4>
+<div class="outline-text-4" id="text-orgheadline31">
 <p>
 如果是onevent这种模式注册的事件处理函数, 要阻止浏览器的默认行为, 那么事件处
 理函数应该返回false, 如果是addEventListener注册的事件处理函数, 要阻止浏览器
@@ -931,9 +856,9 @@ IE(attachEvent)注册的事件处理函数, 那么事件处理函数应该调用
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5-4-2" class="outline-4">
-<h4 id="sec-5-4-2">阻止事件冒泡</h4>
-<div class="outline-text-4" id="text-5-4-2">
+<div id="outline-container-orgheadline32" class="outline-4">
+<h4 id="orgheadline32">阻止事件冒泡</h4>
+<div class="outline-text-4" id="text-orgheadline32">
 <p>
 阻止事件冒泡, 如果event有stopPropagation, 那么调用该函数, 如果是IE, 设置
 cancelBubble设为true.
@@ -952,30 +877,31 @@ cancelBubble设为true.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5-5" class="outline-3">
-<h3 id="sec-5-5">通用函数</h3>
-<div class="outline-text-3" id="text-5-5">
+<div id="outline-container-orgheadline34" class="outline-3">
+<h3 id="orgheadline34">通用函数</h3>
+<div class="outline-text-3" id="text-orgheadline34">
 <ol class="org-ol">
-<li>获得事件处理函数中event对象(IE使用全局的event对象, 而非IE显式的传递event
+<li><p>
+获得事件处理函数中event对象(IE使用全局的event对象, 而非IE显式的传递event
 对象作为参数给事件处理函数)
+</p>
 <div class="org-src-container">
 
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">eventhanlder</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">evt</span><span style="color: #DCDCCC;">){</span>
   evt = evt || window.event;
 <span style="color: #DCDCCC;">}</span>
 </pre>
-</div>
-</li>
+</div></li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6">ajax</h2>
-<div class="outline-text-2" id="text-6">
-</div><div id="outline-container-sec-6-1" class="outline-3">
-<h3 id="sec-6-1">Create XMLHttpRequest</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-orgheadline41" class="outline-2">
+<h2 id="orgheadline41">ajax</h2>
+<div class="outline-text-2" id="text-orgheadline41">
+</div><div id="outline-container-orgheadline36" class="outline-3">
+<h3 id="orgheadline36">Create XMLHttpRequest</h3>
+<div class="outline-text-3" id="text-orgheadline36">
 <p>
 IE6没有标准的XMLHttpRequest构造函数, 可以使用以下代码模拟:
 </p>
@@ -1005,9 +931,9 @@ IE6没有标准的XMLHttpRequest构造函数, 可以使用以下代码模拟:
 </p>
 </div>
 </div>
-<div id="outline-container-sec-6-2" class="outline-3">
-<h3 id="sec-6-2">open</h3>
-<div class="outline-text-3" id="text-6-2">
+<div id="outline-container-orgheadline37" class="outline-3">
+<h3 id="orgheadline37">open</h3>
+<div class="outline-text-3" id="text-orgheadline37">
 <p>
 指定verb('GET', 'POST'), url, async(true为异步, false为同步).
 </p>
@@ -1028,18 +954,18 @@ req.open(verb, url [, async]);
 </p>
 </div>
 </div>
-<div id="outline-container-sec-6-3" class="outline-3">
-<h3 id="sec-6-3">send</h3>
-<div class="outline-text-3" id="text-6-3">
+<div id="outline-container-orgheadline38" class="outline-3">
+<h3 id="orgheadline38">send</h3>
+<div class="outline-text-3" id="text-orgheadline38">
 <p>
 <code>req.send(msg);</code>, 如果是 GET,那么msg为null, 如果是 POST, msg为你要传递的内
 容.
 </p>
 </div>
 </div>
-<div id="outline-container-sec-6-4" class="outline-3">
-<h3 id="sec-6-4">Retrieving the Response</h3>
-<div class="outline-text-3" id="text-6-4">
+<div id="outline-container-orgheadline39" class="outline-3">
+<h3 id="orgheadline39">Retrieving the Response</h3>
+<div class="outline-text-3" id="text-orgheadline39">
 <p>
 如果请求完成,那么XMLHttpRequest会有以下属性:
 </p>
@@ -1047,39 +973,39 @@ req.open(verb, url [, async]);
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">status</td>
-<td class="left">一个数值, 比如200, 404</td>
+<td class="org-left">status</td>
+<td class="org-left">一个数值, 比如200, 404</td>
 </tr>
 
 <tr>
-<td class="left">statusText</td>
-<td class="left">一个字符串,比如"OK", "Not Found"</td>
+<td class="org-left">statusText</td>
+<td class="org-left">一个字符串,比如"OK", "Not Found"</td>
 </tr>
 
 <tr>
-<td class="left">getResponseHeader()</td>
-<td class="left">获得HTTP头部</td>
+<td class="org-left">getResponseHeader()</td>
+<td class="org-left">获得HTTP头部</td>
 </tr>
 
 <tr>
-<td class="left">getAllResponseHeader()</td>
-<td class="left">&#xa0;</td>
+<td class="org-left">getAllResponseHeader()</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="left">responseText</td>
-<td class="left">文本</td>
+<td class="org-left">responseText</td>
+<td class="org-left">文本</td>
 </tr>
 
 <tr>
-<td class="left">responseXML</td>
-<td class="left">XML, 实际就是将文本解码成DOM树</td>
+<td class="org-left">responseXML</td>
+<td class="org-left">XML, 实际就是将文本解码成DOM树</td>
 </tr>
 </tbody>
 </table>
@@ -1092,48 +1018,48 @@ req.open(verb, url [, async]);
 <caption class="t-above"><span class="table-number">Table 1:</span> XMLHttpRequest readyState values</caption>
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">Constant</th>
-<th scope="col" class="right">Value</th>
-<th scope="col" class="left">Meaning</th>
+<th scope="col" class="org-left">Constant</th>
+<th scope="col" class="org-right">Value</th>
+<th scope="col" class="org-left">Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="left">UNSENT</td>
-<td class="right">0</td>
-<td class="left">open() has not been called yet</td>
+<td class="org-left">UNSENT</td>
+<td class="org-right">0</td>
+<td class="org-left">open() has not been called yet</td>
 </tr>
 
 <tr>
-<td class="left">OPENED`</td>
-<td class="right">1</td>
-<td class="left">open() has been called</td>
+<td class="org-left">OPENED`</td>
+<td class="org-right">1</td>
+<td class="org-left">open() has been called</td>
 </tr>
 
 <tr>
-<td class="left">HEADERS_RECEIVED</td>
-<td class="right">2</td>
-<td class="left">Headers have been received</td>
+<td class="org-left">HEADERS_RECEIVED</td>
+<td class="org-right">2</td>
+<td class="org-left">Headers have been received</td>
 </tr>
 
 <tr>
-<td class="left">LOADING</td>
-<td class="right">3</td>
-<td class="left">The response body is being received</td>
+<td class="org-left">LOADING</td>
+<td class="org-right">3</td>
+<td class="org-left">The response body is being received</td>
 </tr>
 
 <tr>
-<td class="left">DONE</td>
-<td class="right">4</td>
-<td class="left">The response is complete</td>
+<td class="org-left">DONE</td>
+<td class="org-right">4</td>
+<td class="org-left">The response is complete</td>
 </tr>
 </tbody>
 </table>
@@ -1176,9 +1102,9 @@ readyState的值比如下面这个函数:
 </p>
 </div>
 </div>
-<div id="outline-container-sec-6-5" class="outline-3">
-<h3 id="sec-6-5">jsonp</h3>
-<div class="outline-text-3" id="text-6-5">
+<div id="outline-container-orgheadline40" class="outline-3">
+<h3 id="orgheadline40">jsonp</h3>
+<div class="outline-text-3" id="text-orgheadline40">
 <p>
 实际就是创建一个 <code>&lt;script&gt;...&lt;/script&gt;</code> 节点, 然后将其插入文档, 这样浏览器会
 自动的发送一个http get请求,并且把请求得到的内容当做 js代码来执行. 根据这个原

@@ -3,24 +3,31 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>SICP笔记</title>
-<!-- 2015-11-20 Fri 15:44 -->
+<!-- 2016-02-20 Sat 22:43 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>SICP笔记</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
 <meta  name="keywords" content="SICP scheme" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -59,15 +66,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -170,72 +176,64 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">Chp 1</a>
+<li><a href="#orgheadline1">Chp 1</a>
 <ul>
-<li><a href="#sec-1-1">Some Concepts</a></li>
+<li><a href="#orgheadline2">Some Concepts</a></li>
 </ul>
 </li>
-<li><a href="#sec-2">Chp2 (Data Abstraction)</a>
+<li><a href="#orgheadline3">Chp2 (Data Abstraction)</a>
 <ul>
-<li><a href="#sec-2-1">Multiple Representation(2.4)</a></li>
-<li><a href="#sec-2-2">primitive element</a></li>
-<li><a href="#sec-2-3">some example in the book</a>
+<li><a href="#orgheadline4">Multiple Representation(2.4)</a></li>
+<li><a href="#orgheadline5">primitive element</a></li>
+<li><a href="#orgheadline8">some example in the book</a>
 <ul>
-<li><a href="#sec-2-3-1">GCD (greatest common divisors)</a></li>
-<li><a href="#sec-2-3-2">素数检查</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#sec-3">Chp3 (Modularity, Objects, and State)</a>
-<ul>
-<li><a href="#sec-3-1">object vs stream</a>
-<ul>
-<li><a href="#sec-3-1-1">object</a></li>
-<li><a href="#sec-3-1-2">stream</a></li>
+<li><a href="#orgheadline6">GCD (greatest common divisors)</a></li>
+<li><a href="#orgheadline7">素数检查</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sec-4">Chp4</a></li>
+<li><a href="#orgheadline9">Chp3 (Modularity, Objects, and State)</a>
+<ul>
+<li><a href="#orgheadline12">object vs stream</a>
+<ul>
+<li><a href="#orgheadline10">object</a></li>
+<li><a href="#orgheadline11">stream</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline13">Chp4</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Chp 1</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">Chp 1</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <ol class="org-ol">
 <li>a programming language must have some primitive procedures and primitive
 data, for example mathmatics operations(+ - * / and so on),and the
-numbers(primitive data).
-</li>
-<li>Nesting of combinations provides a means of combining operations.
-</li>
+numbers(primitive data).</li>
+<li>Nesting of combinations provides a means of combining operations.</li>
 <li>Definitions that associate names with values provide a limited means of
-abstraction
-</li>
+abstraction</li>
 </ol>
 <p>
 提供基本的数据与函数，然后通过嵌套来构建组合式以及复合函数，同时为复合
 函数或者组合式命名也给抽象带来了方便。
 </p>
 </div>
-<div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">Some Concepts</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">Some Concepts</h3>
+<div class="outline-text-3" id="text-orgheadline2">
 <ul class="org-ul">
-<li>正则序(CBN)：在计算过程中先代换，完全代换后在一次求值
-</li>
-<li>应用序(CBV)：在计算过程中先求值在代换
-</li>
+<li>正则序(CBN)：在计算过程中先代换，完全代换后在一次求值</li>
+<li>应用序(CBV)：在计算过程中先求值在代换</li>
 <li>二者的比较：正则序相对与应用序一般会有较多的重复运算，因为过程体中可以多
 次引用形参，那么正则序代换后就会多次求值，而应用序则是先求值在代换所以没
-有这个问题，对于应用序，每个过程的形式参数都会先求值在进入过程计算
-</li>
-<li>recursive procedure:语法上的递归
-</li>
-<li>recursive process:计算过程的递归
-</li>
+有这个问题，对于应用序，每个过程的形式参数都会先求值在进入过程计算</li>
+<li>recursive procedure:语法上的递归</li>
+<li>recursive process:计算过程的递归</li>
 </ul>
 <p>
 语法上递归的函数可能表示的是一个递归计算过程，如果程序设计语言支持尾递归优
@@ -243,84 +241,71 @@ abstraction
 支持尾递归优化，C不支持尾递归优化。
 </p>
 <ul class="org-ul">
-<li>高阶函数： 函数可以作为参数传递，可以作为结果返回。
-</li>
+<li>高阶函数： 函数可以作为参数传递，可以作为结果返回。</li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">Chp2 (Data Abstraction)</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">Chp2 (Data Abstraction)</h2>
+<div class="outline-text-2" id="text-orgheadline3">
 <p>
 当要构建一个抽象数据类型时,先应该想明白,数据类型应该提供哪些接口,这一般就是一
 些procedure,这些procedure根据作用不同可以分为三类:
 </p>
 <ol class="org-ol">
-<li>Constructor: 用来构建该数据类型
-</li>
-<li>extractor: 用来从该数据类型中抽取信息
-</li>
+<li>Constructor: 用来构建该数据类型</li>
+<li>extractor: 用来从该数据类型中抽取信息</li>
 <li>predictor: 用来判断该数据类型的变种,比如说你要构建lambda calculus 表达式的
 数据抽象,那么该数据类型要么是一个identifier,要么是一个 (lambda(x) body) 表
 达式,那么你就需要提供两个predictor(identifer?, lambda-exp?)来判断到底属于
-哪一种变种.
-</li>
+哪一种变种.</li>
 </ol>
 <p>
 对于有理数而言:
 </p>
 <ul class="org-ul">
-<li>make-rat : constructor 因为它是通过两个数来构建一个有理数
-</li>
-<li>numer: extractor 它是从一个有理数中抽取出分子这个信息
-</li>
-<li>denum: 而extractor 它是从一个有理数中抽取出分母这个信息
-</li>
+<li>make-rat : constructor 因为它是通过两个数来构建一个有理数</li>
+<li>numer: extractor 它是从一个有理数中抽取出分子这个信息</li>
+<li>denum: 而extractor 它是从一个有理数中抽取出分母这个信息</li>
 </ul>
 <p>
 因为只有一个变种,所以没有predictor
 </p>
 </div>
-<div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">Multiple Representation(2.4)</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">Multiple Representation(2.4)</h3>
+<div class="outline-text-3" id="text-orgheadline4">
 <p>
 when multiple representations of a data type needs to coexist in a
 system. there are three ways to do this.
 </p>
 <ol class="org-ol">
-<li>Tagged Data : Every representation use a unique tag
-</li>
+<li>Tagged Data : Every representation use a unique tag</li>
 <li>Data-Directed: Use a two dimensions(operations X type) table to dispatch
-the operation
-</li>
+the operation</li>
 <li>Message-Passing: Use the high order procedure to represent the data
-type.
-</li>
+type.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2">primitive element</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">primitive element</h3>
+<div class="outline-text-3" id="text-orgheadline5">
 <ul class="org-ul">
-<li>Numbers and arithmetic operations are primitive data and procedures.
-</li>
-<li>Nesting of combinations provides a means of combining operations.
-</li>
-<li>Definitions that associate names with values provide a limited means of abstraction.
-</li>
+<li>Numbers and arithmetic operations are primitive data and procedures.</li>
+<li>Nesting of combinations provides a means of combining operations.</li>
+<li>Definitions that associate names with values provide a limited means of abstraction.</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3">some example in the book</h3>
-<div class="outline-text-3" id="text-2-3">
-</div><div id="outline-container-sec-2-3-1" class="outline-4">
-<h4 id="sec-2-3-1">GCD (greatest common divisors)</h4>
-<div class="outline-text-4" id="text-2-3-1">
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8">some example in the book</h3>
+<div class="outline-text-3" id="text-orgheadline8">
+</div><div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6">GCD (greatest common divisors)</h4>
+<div class="outline-text-4" id="text-orgheadline6">
 <p>
 gcd(a, b) = gcd (b, r)        (r = a % b)
 </p>
@@ -332,29 +317,26 @@ gcd(a, b) = gcd (b, r)        (r = a % b)
 </p>
 </div>
 </div>
-<div id="outline-container-sec-2-3-2" class="outline-4">
-<h4 id="sec-2-3-2">素数检查</h4>
-<div class="outline-text-4" id="text-2-3-2">
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7">素数检查</h4>
+<div class="outline-text-4" id="text-orgheadline7">
 <ol class="org-ol">
-<li>在2～sqrt(x)之间遍历，如果找到一个因子则意味着x不是素数
-</li>
+<li>在2～sqrt(x)之间遍历，如果找到一个因子则意味着x不是素数</li>
 <li>费马小定律：
-如果n是素数，则a<sup>n</sup> % n = a % n  (a是小于n的任意正整数）
-</li>
+如果n是素数，则a<sup>n</sup> % n = a % n  (a是小于n的任意正整数）</li>
 <li>通过费马小定律的检查只是素数的必要条件而不是充分条件，存在能通过所
 有费马检查但却不是素数的数，但是这种数非常罕见，一般情况下对于数n如
 果它不是素数，那么对于小于n的数中大部分不能通过费马检查，因此其概率
-大于1/2，据此就可以构造概率算法
-</li>
+大于1/2，据此就可以构造概率算法</li>
 </ol>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">Chp3 (Modularity, Objects, and State)</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9">Chp3 (Modularity, Objects, and State)</h2>
+<div class="outline-text-2" id="text-orgheadline9">
 <p>
 A object is said to ``have state'' if its behavior is influenced by its
 history. We can characterize an object's state by one or more <code>state
@@ -365,12 +347,12 @@ the elapsed time in the computer, then we must have a way to construct
 computational objects whose behavior change as our program run.
 </p>
 </div>
-<div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">object vs stream</h3>
-<div class="outline-text-3" id="text-3-1">
-</div><div id="outline-container-sec-3-1-1" class="outline-4">
-<h4 id="sec-3-1-1">object</h4>
-<div class="outline-text-4" id="text-3-1-1">
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12">object vs stream</h3>
+<div class="outline-text-3" id="text-orgheadline12">
+</div><div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10">object</h4>
+<div class="outline-text-4" id="text-orgheadline10">
 <p>
 计算机程序在某种程度上都是为了模拟外部的物理世界,为了使程序模块化,我们可以为
 外部世界的每一个对象都构造一个计算对象,因为外部世界的对象有状态(state),所以我
@@ -382,9 +364,9 @@ computational objects whose behavior change as our program run.
 </p>
 </div>
 </div>
-<div id="outline-container-sec-3-1-2" class="outline-4">
-<h4 id="sec-3-1-2">stream</h4>
-<div class="outline-text-4" id="text-3-1-2">
+<div id="outline-container-orgheadline11" class="outline-4">
+<h4 id="orgheadline11">stream</h4>
+<div class="outline-text-4" id="text-orgheadline11">
 <p>
 object中通过赋值来改变对象的状态,如果我们从整体上看就会发现,每一次赋值不过是
 产生了流中的一个元素,但是流作为一个整体却是不变的,这样我们就可以去掉赋值
@@ -393,9 +375,9 @@ object中通过赋值来改变对象的状态,如果我们从整体上看就会�
 </div>
 </div>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">Chp4</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13">Chp4</h2>
+<div class="outline-text-2" id="text-orgheadline13">
 <p>
 任何一个程序都可以看做是一台抽象机器的描述,而解释器是一台特殊的机器,它能够模
 拟其它机器的行为,因此解释器可以看作是一台 <b>通用机器</b>. 现在假设用lisp实现了一

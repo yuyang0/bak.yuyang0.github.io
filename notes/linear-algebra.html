@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>线性代数</title>
-<!-- 2015-11-20 Fri 15:43 -->
+<!-- 2016-02-20 Sat 22:42 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>线性代数</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -136,48 +142,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script type="text/javascript">
-<!--/*--><![CDATA[/*><!--*/
+<script type="text/x-mathjax-config">
     MathJax.Hub.Config({
-        // Only one of the two following lines, depending on user settings
-        // First allows browser-native MathML display, second forces HTML/CSS
-            config: ["MMLorHTML.js"], jax: ["input/TeX"],
-        //  jax: ["input/TeX", "output/HTML-CSS"],
-        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
-                     "TeX/noUndefined.js"],
-        tex2jax: {
-            inlineMath: [ ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
-            skipTags: ["script","noscript","style","textarea","pre","code"],
-            ignoreClass: "tex2jax_ignore",
-            processEscapes: false,
-            processEnvironments: true,
-            preview: "TeX"
-        },
-        showProcessingMessages: true,
         displayAlign: "center",
         displayIndent: "2em",
 
-        "HTML-CSS": {
-             scale: 100,
-             availableFonts: ["STIX","TeX"],
-             preferredFont: "TeX",
-             webFont: "TeX",
-             imageFont: "TeX",
-             showMathMenu: true,
-        },
-        MMLorHTML: {
-             prefer: {
-                 MSIE:    "MML",
-                 Firefox: "MML",
-                 Opera:   "HTML",
-                 other:   "HTML"
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "%LINEBREAKS" },
+                        webFont: "%FONT"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "%LINEBREAKS" },
+              font: "%FONT"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "%AUTONUMBER"},
+               MultLineWidth: "%MULTLINEWIDTH",
+               TagSide: "%TAGSIDE",
+               TagIndent: "%TAGINDENT"
              }
-        }
-    });
-/*]]>*///-->
+});
 </script>
+<script type="text/javascript"
+        src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -211,83 +197,68 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">基本概念</a></li>
-<li><a href="#sec-2">Symbols</a></li>
-<li><a href="#sec-3">Concepts</a></li>
+<li><a href="#orgheadline1">基本概念</a></li>
+<li><a href="#orgheadline2">Symbols</a></li>
+<li><a href="#orgheadline3">Concepts</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">基本概念</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">基本概念</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <ol class="org-ol">
-<li>线性关系(linear relation): 源于一个很朴素的想法,如果x,y是线性关系,那么x增大或者缩小n倍,那么
+<li><p>
+线性关系(linear relation): 源于一个很朴素的想法,如果x,y是线性关系,那么x增大或者缩小n倍,那么
 y也应该增大或缩小n倍, 如果x1对应于y1, x2对应于y2, 那么x1+x2对应于y1+y2, 用
 数学语言表述就是:
+</p>
 <pre class="example">
 F(a * x1) = a * F(x1)   a是常数
 F(x1 + x2) = F(x1) + F(x2)
-</pre>
-</li>
+</pre></li>
 <li>线性操作(linear operation): 对 y=F(x) 而言, 我们可以这样看,x是输入, F是操
 作, 将 F 作用与输入 x 上得到输出y, 如果F是线性操作,那么y与x就成线性关系.
 很显然F应该是一个乘以常数的操作, 因为只有y=ax时, y与x才是线性关系.实际上我
 们可以推广到多维的情况y=a1x1+a2x2+a3x3, 那么y与(x1, x2, x3)^T 是线性关系, 那
-么(a1, a2, a3) 就是线性操作
-</li>
+么(a1, a2, a3) 就是线性操作</li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">Symbols</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Symbols</h2>
+<div class="outline-text-2" id="text-orgheadline2">
 <ol class="org-ol">
-<li>V : Vector space
-</li>
-<li>F : stands for either <b>R</b> or <b>C</b>.
-</li>
-<li>R : Real numbers
-</li>
-<li>C : Complex numbers
-</li>
+<li>V : Vector space</li>
+<li>F : stands for either <b>R</b> or <b>C</b>.</li>
+<li>R : Real numbers</li>
+<li>C : Complex numbers</li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">Concepts</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">Concepts</h2>
+<div class="outline-text-2" id="text-orgheadline3">
 <ol class="org-ol">
 <li>向量空间(\(V\)): 一个在 <b>加法</b> 以及 <b>标量乘法</b> 上 <b>闭合</b> 的集合, 并且该集合
 要满足以下性质:
 <ol class="org-ol">
-<li>交换律: 对所有的 \(u, v \in V\) 都有 \(u+v = v+u\).
-</li>
-<li>结合律: 对所有的 \(u, v, w \in V\) 都有 \((u+v) + w = u + (v+w)\)
-</li>
-<li>加法单位元: 存在一个元素 \(0 \in V\), 使得对所有的 \(v \in V\) 都有 \(v+0=v\)
-</li>
-<li>加法逆: 对所有的 \(v \in V\), 都存在 \(w \in V\) 使得 \(v + w = 0\).
-</li>
-<li>乘法单位元: 对所有的 \(v \in V\), 都有 \(1v = v\).
-</li>
+<li>交换律: 对所有的 \(u, v \in V\) 都有 \(u+v = v+u\).</li>
+<li>结合律: 对所有的 \(u, v, w \in V\) 都有 \((u+v) + w = u + (v+w)\)</li>
+<li>加法单位元: 存在一个元素 \(0 \in V\), 使得对所有的 \(v \in V\) 都有 \(v+0=v\)</li>
+<li>加法逆: 对所有的 \(v \in V\), 都存在 \(w \in V\) 使得 \(v + w = 0\).</li>
+<li>乘法单位元: 对所有的 \(v \in V\), 都有 \(1v = v\).</li>
 <li>分配性质: 对所有的 \(a, b \in F, u,v \in V\) 都有
-\(a(u+v) = au+av, (a+b)u = au + bu\)
-</li>
-</ol>
-</li>
+\(a(u+v) = au+av, (a+b)u = au + bu\)</li>
+</ol></li>
 <li>子空间(\(U\)):
 \(U\) 是 \(V\) 的子空间, 那么意味着: \(U \subseteq V\), 且:
 <ol class="org-ol">
-<li>\(0 \in U\)
-</li>
-<li>if \(u, v \in U\) then \(u+v \in V\)
-</li>
-<li>if \(a \in F, u \in U\) then \(au \in V\)
-</li>
-</ol>
-</li>
+<li>\(0 \in U\)</li>
+<li>if \(u, v \in U\) then \(u+v \in V\)</li>
+<li>if \(a \in F, u \in U\) then \(au \in V\)</li>
+</ol></li>
 </ol>
 </div>
 </div>

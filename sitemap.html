@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Sitemap</title>
-<!-- 2015-11-20 Fri 15:50 -->
+<!-- 2016-02-20 Sat 22:42 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sitemap</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -168,136 +174,73 @@ for the JavaScript code in this tag.
 <ul class="org-ul">
 <li>articles
 <ul class="org-ul">
-<li><a href="articles/continuation.html">Continuation</a>
-</li>
-<li><a href="articles/linux-c-garbled-characters.html">Linux平台C语言乱码</a>
-</li>
-<li><a href="articles/introduction-to-opencl.html">OpenCL介绍</a>
-</li>
-<li><a href="articles/gevent.html">gevent源码分析</a>
-</li>
-<li><a href="articles/python-descriptor.html">python Descriptor</a>
-</li>
-<li><a href="articles/defects-of-python.html">python的“缺点”</a>
-</li>
-<li><a href="articles/web-py-source-code.html">webpy源代码分析</a>
-</li>
-<li><a href="articles/wsgi.html">wsgi</a>
-</li>
-<li><a href="articles/org-mode-dropbox-blog.html">使用org-mode与dropbox搭建静态博客</a>
-</li>
-<li><a href="articles/concurrency.html">并发</a>
-</li>
-</ul>
-</li>
+<li><a href="articles/continuation.html">Continuation</a></li>
+<li><a href="articles/linux-c-garbled-characters.html">Linux平台C语言乱码</a></li>
+<li><a href="articles/introduction-to-opencl.html">OpenCL介绍</a></li>
+<li><a href="articles/tair-source-code.html">Tair源码分析</a></li>
+<li><a href="articles/gevent.html">gevent源码分析</a></li>
+<li><a href="articles/python-descriptor.html">python Descriptor</a></li>
+<li><a href="articles/defects-of-python.html">python的“缺点”</a></li>
+<li><a href="articles/web-py-source-code.html">webpy源代码分析</a></li>
+<li><a href="articles/wsgi.html">wsgi</a></li>
+<li><a href="articles/org-mode-dropbox-blog.html">使用org-mode与dropbox搭建静态博客</a></li>
+<li><a href="articles/concurrency.html">并发</a></li>
+</ul></li>
 <li>notes
 <ul class="org-ul">
-<li><a href="notes/apue.html">APUE</a>
-</li>
-<li><a href="notes/big-data.html">Big Data</a>
-</li>
-<li><a href="notes/client-javascript.html">Client-Side javascript</a>
-</li>
-<li><a href="notes/clojure.html">Clojure笔记</a>
-</li>
-<li><a href="notes/compiler.html">Compiler</a>
-</li>
-<li><a href="notes/c-dev-skills.html">C开发技巧</a>
-</li>
-<li><a href="notes/django.html">DJANGO笔记</a>
-</li>
-<li><a href="notes/database.html">Database</a>
-</li>
-<li><a href="notes/dpark.html">Dpark</a>
-</li>
-<li><a href="notes/emacs-lisp.html">Emacs Lisp</a>
-</li>
-<li><a href="notes/emacs.html">Emacs笔记</a>
-</li>
-<li><a href="notes/gdb.html">GDB</a>
-</li>
-<li><a href="notes/golang.html">Go语言</a>
-</li>
-<li><a href="notes/haskell.html">Haskell note</a>
-</li>
-<li><a href="notes/IT术语.html">IT术语</a>
-</li>
-<li><a href="notes/linux-kernel.html">Linux Kernel</a>
-</li>
-<li><a href="notes/lua.html">Lua</a>
-</li>
-<li><a href="notes/mesos.html">Mesos</a>
-</li>
-<li><a href="notes/sql.html">MySQL笔记</a>
-</li>
-<li><a href="notes/opencl.html">OpenCL笔记</a>
-</li>
-<li><a href="notes/php.html">PHP笔记</a>
-</li>
-<li><a href="notes/set-theory.html">SET THEORY</a>
-</li>
-<li><a href="notes/sicp.html">SICP笔记</a>
-</li>
-<li><a href="notes/EOPL.html">The Essential of Programming language</a>
-</li>
-<li><a href="notes/type-system.html">Type System</a>
-</li>
-<li><a href="notes/unp.html">UNIX网络编程</a>
-</li>
-<li><a href="notes/css.html">css笔记</a>
-</li>
-<li><a href="notes/git.html">git/github学习笔记</a>
-</li>
-<li><a href="notes/how-to-study.html">how to study</a>
-</li>
-<li><a href="notes/how-to-read-a-book.html">how-to-read-a-book</a>
-</li>
-<li><a href="notes/jquery.html">jQuery</a>
-</li>
-<li><a href="notes/java.html">java syntax note</a>
-</li>
-<li><a href="notes/javascript.html">javascript笔记</a>
-</li>
-<li><a href="notes/linux-note.html">linux笔记</a>
-</li>
-<li><a href="notes/nginx.html">nginx</a>
-</li>
-<li><a href="notes/python-source-code.html">python源代码解析</a>
-</li>
-<li><a href="notes/python-note.html">python笔记</a>
-</li>
-<li><a href="notes/ruby.html">ruby notes</a>
-</li>
-<li><a href="notes/scheme.html">scheme笔记</a>
-</li>
-<li><a href="notes/spacemacs.html">spacemacs笔记</a>
-</li>
-<li><a href="notes/loader-linker-library.html">《程序员的自我修养》读书笔记</a>
-</li>
-<li><a href="notes/乌合之众.html">乌合之众(古斯塔夫.勒庞 )</a>
-</li>
-<li><a href="notes/information-theory.html">信息论</a>
-</li>
-<li><a href="notes/investment.html">投资笔记</a>
-</li>
-<li><a href="notes/second-treatise-civil-government.html">政府论读书笔记</a>
-</li>
-<li><a href="notes/logic.html">数理逻辑</a>
-</li>
-<li><a href="notes/number-theory.html">数论</a>
-</li>
-<li><a href="notes/Probability.html">概率论与数理统计笔记</a>
-</li>
-<li><a href="notes/linear-algebra.html">线性代数</a>
-</li>
-<li><a href="notes/Theory-Computation.html">计算理论导引</a>
-</li>
-</ul>
-</li>
-<li><a href="index.html">Index Page</a>
-</li>
-<li><a href="tags.html">tags</a>
-</li>
+<li><a href="notes/apue.html">APUE</a></li>
+<li><a href="notes/big-data.html">Big Data</a></li>
+<li><a href="notes/client-javascript.html">Client-Side javascript</a></li>
+<li><a href="notes/clojure.html">Clojure笔记</a></li>
+<li><a href="notes/compiler.html">Compiler</a></li>
+<li><a href="notes/c-dev-skills.html">C开发技巧</a></li>
+<li><a href="notes/django.html">DJANGO笔记</a></li>
+<li><a href="notes/database.html">Database</a></li>
+<li><a href="notes/dpark.html">Dpark</a></li>
+<li><a href="notes/emacs-lisp.html">Emacs Lisp</a></li>
+<li><a href="notes/emacs.html">Emacs笔记</a></li>
+<li><a href="notes/gdb.html">GDB</a></li>
+<li><a href="notes/golang.html">Go语言</a></li>
+<li><a href="notes/haskell.html">Haskell note</a></li>
+<li><a href="notes/IT术语.html">IT术语</a></li>
+<li><a href="notes/linux-kernel.html">Linux Kernel</a></li>
+<li><a href="notes/lua.html">Lua</a></li>
+<li><a href="notes/mesos.html">Mesos</a></li>
+<li><a href="notes/sql.html">MySQL笔记</a></li>
+<li><a href="notes/opencl.html">OpenCL笔记</a></li>
+<li><a href="notes/php.html">PHP笔记</a></li>
+<li><a href="notes/set-theory.html">SET THEORY</a></li>
+<li><a href="notes/sicp.html">SICP笔记</a></li>
+<li><a href="notes/EOPL.html">The Essential of Programming language</a></li>
+<li><a href="notes/type-system.html">Type System</a></li>
+<li><a href="notes/unp.html">UNIX网络编程</a></li>
+<li><a href="notes/css.html">css笔记</a></li>
+<li><a href="notes/git.html">git/github学习笔记</a></li>
+<li><a href="notes/how-to-study.html">how to study</a></li>
+<li><a href="notes/how-to-read-a-book.html">how-to-read-a-book</a></li>
+<li><a href="notes/jquery.html">jQuery</a></li>
+<li><a href="notes/java.html">java syntax note</a></li>
+<li><a href="notes/javascript.html">javascript笔记</a></li>
+<li><a href="notes/linux-note.html">linux笔记</a></li>
+<li><a href="notes/nginx.html">nginx</a></li>
+<li><a href="notes/python-source-code.html">python源代码解析</a></li>
+<li><a href="notes/python-note.html">python笔记</a></li>
+<li><a href="notes/ruby.html">ruby notes</a></li>
+<li><a href="notes/scheme.html">scheme笔记</a></li>
+<li><a href="notes/spacemacs.html">spacemacs笔记</a></li>
+<li><a href="notes/loader-linker-library.html">《程序员的自我修养》读书笔记</a></li>
+<li><a href="notes/乌合之众.html">乌合之众(古斯塔夫.勒庞 )</a></li>
+<li><a href="notes/information-theory.html">信息论</a></li>
+<li><a href="notes/investment.html">投资笔记</a></li>
+<li><a href="notes/second-treatise-civil-government.html">政府论读书笔记</a></li>
+<li><a href="notes/logic.html">数理逻辑</a></li>
+<li><a href="notes/number-theory.html">数论</a></li>
+<li><a href="notes/Probability.html">概率论与数理统计笔记</a></li>
+<li><a href="notes/linear-algebra.html">线性代数</a></li>
+<li><a href="notes/Theory-Computation.html">计算理论导引</a></li>
+</ul></li>
+<li><a href="index.html">Index Page</a></li>
+<li><a href="tags.html">tags</a></li>
 </ul>
 </div>
 <div id="postamble" class="status">

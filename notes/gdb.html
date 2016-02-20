@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>GDB</title>
-<!-- 2015-11-20 Fri 15:44 -->
+<!-- 2016-02-20 Sat 22:43 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>GDB</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -169,19 +175,19 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">启动GDB</a></li>
-<li><a href="#sec-2">常用命令</a></li>
-<li><a href="#sec-3">常见问题解决</a>
+<li><a href="#orgheadline1">启动GDB</a></li>
+<li><a href="#orgheadline2">常用命令</a></li>
+<li><a href="#orgheadline4">常见问题解决</a>
 <ul>
-<li><a href="#sec-3-1">调试python</a></li>
+<li><a href="#orgheadline3">调试python</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">启动GDB</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">启动GDB</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <pre class="example">
 gdb prog                        # 1
 gdb prog core                   # 2
@@ -190,53 +196,40 @@ gdb -p 1234
 gdb --args gcc -O2 -c foo.c     # 4
 </pre>
 <ol class="org-ol">
-<li>直接启动gdb调试prog
-</li>
-<li>调试prog程序产生的core文件
-</li>
-<li>调试一个正在运行的进程, 使用 <code>-p</code> 参数可以让你忽略prog。
-</li>
-<li>使用&#x2013;args将参数传递给要调试的程序
-</li>
+<li>直接启动gdb调试prog</li>
+<li>调试prog程序产生的core文件</li>
+<li>调试一个正在运行的进程, 使用 <code>-p</code> 参数可以让你忽略prog。</li>
+<li>使用&#x2013;args将参数传递给要调试的程序</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">常用命令</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">常用命令</h2>
+<div class="outline-text-2" id="text-orgheadline2">
 <ol class="org-ol">
-<li>shell xxx：　执行shell命令， 比如 <code>shell ls</code> 就会显示当前目录的文件
-</li>
-<li>help： 显示帮助
-</li>
-<li>cd/pwd: 改变/打印当前的工作目录。
-</li>
+<li>shell xxx：　执行shell命令， 比如 <code>shell ls</code> 就会显示当前目录的文件</li>
+<li>help： 显示帮助</li>
+<li>cd/pwd: 改变/打印当前的工作目录。</li>
 <li>run(r)： 直接运行程序直到遇到第一个断点，如果没有断点，那么就运行到程序结
-束
-</li>
-<li>start: 和run的区别是该命令会停在main的入口处。。
-</li>
+束</li>
+<li>start: 和run的区别是该命令会停在main的入口处。。</li>
 <li>dir： 添加一个目录到gdb的source path， 该路径是用来查找源文件的，比如调试
 python时，如果你要进入python解释器的源码，那么你就要自己获得一份源码，同时
-使用dir命令将源码位置添加到source path。
-</li>
+使用dir命令将源码位置添加到source path。</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">常见问题解决</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">调试python</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4">常见问题解决</h2>
+<div class="outline-text-2" id="text-orgheadline4">
+</div><div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">调试python</h3>
+<div class="outline-text-3" id="text-orgheadline3">
 <ol class="org-ol">
-<li>获得一份python源码
-</li>
-<li>使用如下命令 <code>gdb -ex r --args python test.py</code> 运行脚本
-</li>
+<li>获得一份python源码</li>
+<li>使用如下命令 <code>gdb -ex r --args python test.py</code> 运行脚本</li>
 <li>使用dir命令将源码位置添加到source path： <code>dir /path/to/source/Python</code> 注
-意我们添加的目录是源码顶层目录下的python子目录。
-</li>
+意我们添加的目录是源码顶层目录下的python子目录。</li>
 </ol>
 </div>
 </div>

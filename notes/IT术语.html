@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>IT术语</title>
-<!-- 2015-11-20 Fri 15:44 -->
+<!-- 2016-02-20 Sat 22:43 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title></title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -164,78 +170,66 @@ for the JavaScript code in this tag.
     </div>
 </div>
 <div id="content">
-<h1 class="title">IT术语</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">IT术语</a>
+<li><a href="#orgheadline4">IT术语</a>
 <ul>
-<li><a href="#sec-1-1">透明的（transparent）</a></li>
-<li><a href="#sec-1-2">Expression</a></li>
-<li><a href="#sec-1-3">Statement</a></li>
+<li><a href="#orgheadline1">透明的（transparent）</a></li>
+<li><a href="#orgheadline2">Expression</a></li>
+<li><a href="#orgheadline3">Statement</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">IT术语</h2>
-<div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">透明的（transparent）</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4">IT术语</h2>
+<div class="outline-text-2" id="text-orgheadline4">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1">透明的（transparent）</h3>
+<div class="outline-text-3" id="text-orgheadline1">
 <p>
 透而不见，比如玻璃，所以说什么东西是透明的就是说其内部不可见，可以无视其实现，
 而生活中一般的意思是对内部一目了然，如透明度
 </p>
 </div>
 </div>
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">Expression</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">Expression</h3>
+<div class="outline-text-3" id="text-orgheadline2">
 <p>
-表达式一般会返回值, 但是不会有副作用(<a href="https://en.wikipedia.org/wiki/Side_effect_%2528computer_science%2529">side effect</a>), 表达式一般也会包含变量,常
+表达式一般会返回值, 但是不会有副作用(<a href="https://en.wikipedia.org/wiki/Side_effect_%28computer_science%29">side effect</a>), 表达式一般也会包含变量,常
 量,操作符,函数
 </p>
 </div>
 </div>
-<div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3">Statement</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">Statement</h3>
+<div class="outline-text-3" id="text-orgheadline3">
 <p>
-语句一般是不返回值的,他只会产生副作用(<a href="https://en.wikipedia.org/wiki/Side_effect_%2528computer_science%2529">side effect</a>), 常见的语句有
+语句一般是不返回值的,他只会产生副作用(<a href="https://en.wikipedia.org/wiki/Side_effect_%28computer_science%29">side effect</a>), 常见的语句有
 Simple statements
 </p>
 <ul class="org-ul">
-<li>assignment: A:= A + 5
-</li>
-<li>call: CLEARSCREEN()
-</li>
-<li>return: return 5;
-</li>
-<li>goto: goto 5
-</li>
-<li>assertion: assert(ptr != NULL);
-</li>
+<li>assignment: A:= A + 5</li>
+<li>call: CLEARSCREEN()</li>
+<li>return: return 5;</li>
+<li>goto: goto 5</li>
+<li>assertion: assert(ptr != NULL);</li>
 </ul>
 
 <p>
 Compound statements
 </p>
 <ul class="org-ul">
-<li><b>block</b> : begin integer NUMBER; WRITE('Number? '); READLN(NUMBER); A:= A*NUMBER end
-</li>
-<li><b>if-statement</b> : if A &gt; 3 then WRITELN(A) else WRITELN("NOT YET"); end
-</li>
-<li><b>switch-statement</b> : switch (c) { case 'a': alert(); break; case 'q': quit(); break; }
-</li>
-<li><b>while-loop</b> : while NOT EOF DO begin READLN end
-</li>
-<li><b>do-loop</b> : do { computation(&amp;i); } while (i &lt; 10);
-</li>
-<li><b>for-loop</b> : for A:=1 to 10 do WRITELN(A) end
-</li>
+<li><b>block</b> : begin integer NUMBER; WRITE('Number? '); READLN(NUMBER); A:= A*NUMBER end</li>
+<li><b>if-statement</b> : if A &gt; 3 then WRITELN(A) else WRITELN("NOT YET"); end</li>
+<li><b>switch-statement</b> : switch (c) { case 'a': alert(); break; case 'q': quit(); break; }</li>
+<li><b>while-loop</b> : while NOT EOF DO begin READLN end</li>
+<li><b>do-loop</b> : do { computation(&amp;i); } while (i &lt; 10);</li>
+<li><b>for-loop</b> : for A:=1 to 10 do WRITELN(A) end</li>
 </ul>
 </div>
 </div>

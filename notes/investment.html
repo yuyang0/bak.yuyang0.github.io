@@ -3,24 +3,31 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>投资笔记</title>
-<!-- 2015-11-20 Fri 15:43 -->
+<!-- 2016-02-20 Sat 22:42 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>投资笔记</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
 <meta  name="keywords" content="investment" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -59,15 +66,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -170,202 +176,167 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">投资原则</a></li>
-<li><a href="#sec-2">some advice</a></li>
-<li><a href="#sec-3">财务报表基础</a>
+<li><a href="#orgheadline1">投资原则</a></li>
+<li><a href="#orgheadline2">some advice</a></li>
+<li><a href="#orgheadline10">财务报表基础</a>
 <ul>
-<li><a href="#sec-3-1">资产负债表</a>
+<li><a href="#orgheadline3">资产负债表</a>
 <ul>
-<li><a href="#sec-3-1-1">资产(流动性高的排前面)</a></li>
-<li><a href="#sec-3-1-2">负债(偿还期限短的排前面)</a></li>
-<li><a href="#sec-3-1-3">所有者权益</a></li>
-<li><a href="#sec-3-1-4">一般的财务比率</a></li>
+<li><a href="#orgheadline4">资产(流动性高的排前面)</a></li>
+<li><a href="#orgheadline5">负债(偿还期限短的排前面)</a></li>
+<li><a href="#orgheadline6">所有者权益</a></li>
+<li><a href="#orgheadline7">一般的财务比率</a></li>
 </ul>
 </li>
-<li><a href="#sec-3-2">损益表(或利润表)</a></li>
-<li><a href="#sec-3-3">现金流量表</a></li>
+<li><a href="#orgheadline8">损益表(或利润表)</a></li>
+<li><a href="#orgheadline9">现金流量表</a></li>
 </ul>
 </li>
-<li><a href="#sec-4">常用的会计术语</a></li>
-<li><a href="#sec-5">分析公司的五个方面：</a>
+<li><a href="#orgheadline11">常用的会计术语</a></li>
+<li><a href="#orgheadline12">分析公司的五个方面：</a>
 <ul>
-<li><a href="#sec-5-1">成长性</a></li>
-<li><a href="#sec-5-2">收益性</a></li>
+<li><a href="#orgheadline13">成长性</a></li>
+<li><a href="#orgheadline14">收益性</a></li>
 </ul>
 </li>
-<li><a href="#sec-6">财务伪装</a>
+<li><a href="#orgheadline17">财务伪装</a>
 <ul>
-<li><a href="#sec-6-1">六个危险信号</a></li>
-<li><a href="#sec-6-2">七个缺陷</a></li>
+<li><a href="#orgheadline15">六个危险信号</a></li>
+<li><a href="#orgheadline16">七个缺陷</a></li>
 </ul>
 </li>
-<li><a href="#sec-7">财务英文词汇：</a></li>
+<li><a href="#orgheadline18">财务英文词汇：</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">投资原则</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">投资原则</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <ol class="org-ol">
-<li>做好功课
-</li>
+<li>做好功课</li>
 <li>寻找有强大竞争力的公司
-一家公司是如何使竞争者无路可走，从而保持高额的回报率
-</li>
-<li>拥有安全边际(至少25%，如果公司的前景没有参考，那么应该留得更大)
-</li>
-<li>长期持有
-</li>
-<li>知道何时卖出
-</li>
+一家公司是如何使竞争者无路可走，从而保持高额的回报率</li>
+<li>拥有安全边际(至少25%，如果公司的前景没有参考，那么应该留得更大)</li>
+<li>长期持有</li>
+<li>知道何时卖出</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">some advice</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">some advice</h2>
+<div class="outline-text-2" id="text-orgheadline2">
 <ol class="org-ol">
 <li>不要试图通过发现下一个微软公司而获得巨额收益。你应该关注于发现股价已低于估
 值的可靠的公司。所以不要预测市场上哪个小公司会成为大公司，而应该潜心的寻找
-那些股票价格远低于其价值的公司。
-</li>
+那些股票价格远低于其价值的公司。</li>
 <li>了解市场的历史能帮助你避免重复那些易犯的错误。如果人们试图使你确信“这次与
-以往不同”，不要理睬他们。
-</li>
+以往不同”，不要理睬他们。</li>
 <li>不要陷入“一个好产品将创造一个高质量公司”这样一个假设的陷阱里。在你被一项激
 动人心的技术或者一个极好的产品掏光口袋之前，确信你已经核实了该公司的商业模
-式。
-</li>
+式。</li>
 <li>不要害怕使用你的优势。买入的最好时机是当所有人都从一个特定种类的资产出逃的
 时候。牛市在悲观中诞生，在质疑中成长，在乐观中成熟，在兴奋中死亡，悲观中买
-进，在乐观中卖出，不要受他人意志的影响，虽然违背众人的意志很难。
-</li>
+进，在乐观中卖出，不要受他人意志的影响，虽然违背众人的意志很难。</li>
 <li>试图选择市场时机是一个傻瓜游戏。有足够的证据证明市场是不能选择时机的。减少
 投资风险的最佳路径是认真注意估值。不要寄希望于其他投资者会以高价接收你的盘，
 即使你买的是好公司股票也不要这样。博傻理论害死人，不要觉得自己不会是最后一
 个傻瓜，人的贪婪很容易让人成为最后一个傻瓜，所以不要跟风追逐一些正面消息泛
 滥，势头强劲的股票，记住好公司不一定是好股票，选股必须先对公司估值，当目前
-的股价低于其估值，且留有一定的安全边际时才值得投资。
-</li>
-<li>一个公司财务绩效的真实度量标准是现金流，而不是财务报告的每股盈利。
-</li>
+的股价低于其估值，且留有一定的安全边际时才值得投资。</li>
+<li>一个公司财务绩效的真实度量标准是现金流，而不是财务报告的每股盈利。</li>
 </ol>
 
 <p>
 <b>彼得林奇的成功投资</b>
 </p>
 <ul class="org-ul">
-<li>买普通股可以赚大钱也可以损失惨重，风险与收益并存。
-</li>
-<li>投资时向公司投资，而不是向市场投资。
-</li>
-<li>预测经济的变化趋势和市场与股价的短期走势没有意义
-</li>
-<li>不要管短期波动，股票的长期回报是可以预测，而且比长期债劵的回报要高
-</li>
-<li>股票投资选准一只股票就可以了，要善于发现那些还没有被专业投资机构发现的优质股票
-</li>
-<li>不做研究的投资就像不看牌玩扑克一样盲目
-</li>
+<li>买普通股可以赚大钱也可以损失惨重，风险与收益并存。</li>
+<li>投资时向公司投资，而不是向市场投资。</li>
+<li>预测经济的变化趋势和市场与股价的短期走势没有意义</li>
+<li>不要管短期波动，股票的长期回报是可以预测，而且比长期债劵的回报要高</li>
+<li>股票投资选准一只股票就可以了，要善于发现那些还没有被专业投资机构发现的优质股票</li>
+<li>不做研究的投资就像不看牌玩扑克一样盲目</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">财务报表基础</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">资产负债表</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-orgheadline10" class="outline-2">
+<h2 id="orgheadline10">财务报表基础</h2>
+<div class="outline-text-2" id="text-orgheadline10">
+</div><div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">资产负债表</h3>
+<div class="outline-text-3" id="text-orgheadline3">
 <p>
 资产负债表公司特定的时间点的资产与负债情况
 </p>
 </div>
-<div id="outline-container-sec-3-1-1" class="outline-4">
-<h4 id="sec-3-1-1">资产(流动性高的排前面)</h4>
-<div class="outline-text-4" id="text-3-1-1">
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4">资产(流动性高的排前面)</h4>
+<div class="outline-text-4" id="text-orgheadline4">
 <ol class="org-ol">
 <li>流动资产
 <ul class="org-ul">
-<li>现金和现金等价物，短期投资，
-</li>
+<li>现金和现金等价物，短期投资，</li>
 <li>应收账款:可以用应收账款与销售收入的增长速度比较来衡量公司的收款能力或者公司是否使用了一个宽松的信用条件,
 而且应该考察应收账款是否集中在少数客户手中,越集中风险越大.一般该项目还有一个 <b>坏账准备</b> 的条目,要注意检查
-坏账准备的准确性,可以和同行业的公司比较.
-</li>
+坏账准备的准确性,可以和同行业的公司比较.</li>
 <li>存货: 存货计算有两种方法,即先进先出,后进先出,之所以存在这两种情况是因为同一种产品,在不同的时间它的进货
 价格可能是不同的,所以这两种方法就是为了确定到底应该用什么时候的价格来计算存货价值.存货周转率可以使用销售
-成本除以平均存货水平，如果产品贬值快的话，那么存货周转率低是一个不好的兆头.
-</li>
-</ul>
-</li>
+成本除以平均存货水平，如果产品贬值快的话，那么存货周转率低是一个不好的兆头.</li>
+</ul></li>
 <li>非流动资产（
 <ul class="org-ul">
-<li>固定资产，
-</li>
-<li>投资（长期债劵，对其他公司的股票投资），无形资产）
-</li>
-</ul>
-</li>
+<li>固定资产，</li>
+<li>投资（长期债劵，对其他公司的股票投资），无形资产）</li>
+</ul></li>
 <li>无形资产
 <ul class="org-ul">
-<li>商誉: 收购其他公司时的溢价(收购价格与被收购公司的净账面价值(资产减去负债)的差值)，很可能会大幅减少
-</li>
-</ul>
-</li>
+<li>商誉: 收购其他公司时的溢价(收购价格与被收购公司的净账面价值(资产减去负债)的差值)，很可能会大幅减少</li>
+</ul></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-3-1-2" class="outline-4">
-<h4 id="sec-3-1-2">负债(偿还期限短的排前面)</h4>
-<div class="outline-text-4" id="text-3-1-2">
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5">负债(偿还期限短的排前面)</h4>
+<div class="outline-text-4" id="text-orgheadline5">
 <ol class="org-ol">
 <li>流动负债（期限短于一年必须以现金偿还的债务）
 <ul class="org-ul">
-<li>商业本票
-</li>
-<li>应付账款
-</li>
-<li>预计负债:应付利息,水电费,员工工资(大陆会单独列出)
-</li>
-<li>应计所得税
-</li>
-<li>一年内到期的中长期债务
-</li>
-</ul>
-</li>
-<li>非流动负债（一年或一年以上的借款，如公司发行的长期债券，银行的长期借款等）
-</li>
+<li>商业本票</li>
+<li>应付账款</li>
+<li>预计负债:应付利息,水电费,员工工资(大陆会单独列出)</li>
+<li>应计所得税</li>
+<li>一年内到期的中长期债务</li>
+</ul></li>
+<li>非流动负债（一年或一年以上的借款，如公司发行的长期债券，银行的长期借款等）</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-3-1-3" class="outline-4">
-<h4 id="sec-3-1-3">所有者权益</h4>
-<div class="outline-text-4" id="text-3-1-3">
+<div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6">所有者权益</h4>
+<div class="outline-text-4" id="text-orgheadline6">
 <p>
 总资产减去总负债，未分配利润（利润中没有被股东分红分出去的部分，是一个累计账户，包含多年的累计利润）
 </p>
 </div>
 </div>
-<div id="outline-container-sec-3-1-4" class="outline-4">
-<h4 id="sec-3-1-4">一般的财务比率</h4>
-<div class="outline-text-4" id="text-3-1-4">
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7">一般的财务比率</h4>
+<div class="outline-text-4" id="text-orgheadline7">
 <ul class="org-ul">
 <li>流动比率 = 流动资产 / 流动负债
 该比率一般要高于1,因为如果流动资产低于流动负债,那么公司短期内很有可能出现财务危机,
-但是这不是绝对的,对于有些公司,低的流动比率反而是更好的征兆
-</li>
+但是这不是绝对的,对于有些公司,低的流动比率反而是更好的征兆</li>
 <li>负债比率 = 总负债 / 总资产
 应该将企业与过去正常情况下的财务结构比较,看负债比率是否明显恶化,同时将公司与同行业公司比较,
-看公司的负债比率是否明显偏高, 同时要观察现金流量表,看是否能创造足够的现金来应付本金与利息
-</li>
+看公司的负债比率是否明显偏高, 同时要观察现金流量表,看是否能创造足够的现金来应付本金与利息</li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2">损益表(或利润表)</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8">损益表(或利润表)</h3>
+<div class="outline-text-3" id="text-orgheadline8">
 <p>
 损益表是公司一段时间里损失或者赚了多少会计利润（不同于现金利润）, 可以提供绩
 效评估的功能. 收入应满足2个条件: 服务或产品已经提供给顾客, 公司预期能够收回
@@ -373,63 +344,44 @@ for the JavaScript code in this tag.
 </p>
 <ul class="org-ul">
 <li><b>收入((净)销售收入)</b> :净销售＝销售收入－销售退回与折让－销售折扣,
-一个季度或者一年公司销售多少，有可能按照业务类型或者地域而单独列出。
-</li>
+一个季度或者一年公司销售多少，有可能按照业务类型或者地域而单独列出。</li>
 <li><b>销售成本</b>  :当期销售商品的进货成本,可能因为存货评价方式的不同而不同(先进先出,后进先出)
-是与直接创造收入有关的费用，大公司可能会将该科目分解为销售成本和服务成本。人工成本，原材料（制造商）或者货物批发价格（零售商）。
-</li>
-<li><b>毛利</b> :收入减去销售成本，不在损益表中。
-</li>
-<li><b>销售和管理费用</b> :营业费用，包括营销费用，管理人员工资，有时也包括研发费用，不过研发费用一般作为单独科目列出
-</li>
-<li><b>折旧和摊销</b> :公司购买一项资产，并打算使用一段时间，那么未来的几年里都要逐步的摊销这部分成本。
-</li>
-<li><b>非经营性损益</b> :公司会把它的的非常规营业的一次性费用与收益放在一起，如关闭一个工厂的费用或者卖出一个分部的收益，要重点考察，连续性的非经营性费用是管理层缺乏信心的一个标志，理想情况下，这个项目大部分时间应该是空白的。
-</li>
-<li><b>营业利润（营业收入）</b> :销售收入等于收入减去销售成本和全部营业费用，是公司在实际经营活动中赚取的利润，与之相对的是利息收益、一次性收益和其他一些非营业性项目。实际上，公司常常把非经营性费用（比如销账）算到营业利润中，营业利润是一个接近于真实的数字，用营业利润计算营业毛利润率，和同行业的公司比较
-</li>
-<li><b>利息收益／费用</b> :公司获得或者支出的利息
-</li>
-<li><b>赋税</b> :公司缴纳的所得税
-</li>
-<li><b>净利润</b> :税后利润
-</li>
-<li><b>股份数字</b> :基准（目前也就是这份报表的统计期内实际存在的平均股份数），稀释（包括实际存在的股份数与可转换为股票（但目前可能没有转换，包括股票期权和可转换债劵）的有价证劵的和），每股盈利（单独看没有太大的意义）
-</li>
+是与直接创造收入有关的费用，大公司可能会将该科目分解为销售成本和服务成本。人工成本，原材料（制造商）或者货物批发价格（零售商）。</li>
+<li><b>毛利</b> :收入减去销售成本，不在损益表中。</li>
+<li><b>销售和管理费用</b> :营业费用，包括营销费用，管理人员工资，有时也包括研发费用，不过研发费用一般作为单独科目列出</li>
+<li><b>折旧和摊销</b> :公司购买一项资产，并打算使用一段时间，那么未来的几年里都要逐步的摊销这部分成本。</li>
+<li><b>非经营性损益</b> :公司会把它的的非常规营业的一次性费用与收益放在一起，如关闭一个工厂的费用或者卖出一个分部的收益，要重点考察，连续性的非经营性费用是管理层缺乏信心的一个标志，理想情况下，这个项目大部分时间应该是空白的。</li>
+<li><b>营业利润（营业收入）</b> :销售收入等于收入减去销售成本和全部营业费用，是公司在实际经营活动中赚取的利润，与之相对的是利息收益、一次性收益和其他一些非营业性项目。实际上，公司常常把非经营性费用（比如销账）算到营业利润中，营业利润是一个接近于真实的数字，用营业利润计算营业毛利润率，和同行业的公司比较</li>
+<li><b>利息收益／费用</b> :公司获得或者支出的利息</li>
+<li><b>赋税</b> :公司缴纳的所得税</li>
+<li><b>净利润</b> :税后利润</li>
+<li><b>股份数字</b> :基准（目前也就是这份报表的统计期内实际存在的平均股份数），稀释（包括实际存在的股份数与可转换为股票（但目前可能没有转换，包括股票期权和可转换债劵）的有价证劵的和），每股盈利（单独看没有太大的意义）</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3">现金流量表</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9">现金流量表</h3>
+<div class="outline-text-3" id="text-orgheadline9">
 <p>
 现金流量表是记录全部流入流出公司现金的情况，包括经营活动发生的现金流量，投资活动发生的现金流量和筹集资金活动发生的现金流量。
 经营活动发生的现金流是需要重点关注的项目.
 现金流量表有两种编制方法：
 </p>
 <ol class="org-ol">
-<li>直接法: 将经营，筹资，投资活动带来的现金流一一列出
-</li>
+<li>直接法: 将经营，筹资，投资活动带来的现金流一一列出</li>
 <li>间接法: 对公司的净利润进行校正与调整，其校正过程如下：
 必须将折旧费用加回来
 必须将处理资产损失
 应收账款增加，则现金流量减少，存货增加则现金流量减少，应付账款增加则现金流量增加
 
 <ul class="org-ul">
-<li><b>净利润（净收益）</b> ：就是损益表的销售收入。
-</li>
-<li><b>折旧和摊销</b> ：这不是现金费用，应该与净利润相加
-</li>
-<li><b>员工股票计划的税收收益</b> ：员工执行期权会产生低税账单，公司可以从中获得收益但是这和股价的变化有很大的关系，因为股票价格下跌时员工是不会执行期权的。
-</li>
-<li><b>营运资本变动</b> ：从外部借钱，应收账款的变动，赊销，存货的增多或者减少都会导致营运资本的变动
-</li>
-<li><b>一次性费用</b> ：譬如说公司的重组费用，收购费用，这很多时候是非现金费用，计算时要加上来。
-</li>
-<li><b>经营活动现金净额</b> ：经营活动现金流量就是从净利润中加上或减去这个科目的结果
-</li>
-</ul>
-</li>
+<li><b>净利润（净收益）</b> ：就是损益表的销售收入。</li>
+<li><b>折旧和摊销</b> ：这不是现金费用，应该与净利润相加</li>
+<li><b>员工股票计划的税收收益</b> ：员工执行期权会产生低税账单，公司可以从中获得收益但是这和股价的变化有很大的关系，因为股票价格下跌时员工是不会执行期权的。</li>
+<li><b>营运资本变动</b> ：从外部借钱，应收账款的变动，赊销，存货的增多或者减少都会导致营运资本的变动</li>
+<li><b>一次性费用</b> ：譬如说公司的重组费用，收购费用，这很多时候是非现金费用，计算时要加上来。</li>
+<li><b>经营活动现金净额</b> ：经营活动现金流量就是从净利润中加上或减去这个科目的结果</li>
+</ul></li>
 </ol>
 <p>
 营收以及利润快速增长的公司如果发生财务危机，大部分情况是因为应收账款和存货大幅增长
@@ -447,68 +399,55 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">常用的会计术语</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11">常用的会计术语</h2>
+<div class="outline-text-2" id="text-orgheadline11">
 <p>
 会计利润：所有者支付除资本以外的所有要素报酬之后剩下的利润，会计利润必须要与收入和费用（包括折旧）尽可能的匹配。然而现金利润测算的是实际生意中流入流出了多少。
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5">分析公司的五个方面：</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12">分析公司的五个方面：</h2>
+<div class="outline-text-2" id="text-orgheadline12">
 <p>
 一个成功的投资者是购买一个好主意，而不是购买一个收购机器，如果不知道一个企业除掉收购之后的真实增长率是多少，那就不要买他的股票
 </p>
 </div>
-<div id="outline-container-sec-5-1" class="outline-3">
-<h3 id="sec-5-1">成长性</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13">成长性</h3>
+<div class="outline-text-3" id="text-orgheadline13">
 <ul class="org-ul">
-<li><b>成长性</b> ：销售增长主要来自于四个方面：销售更多的产品和服务，提高价格，销售新的产品和服务，收购别的公司。要特别弄清楚公司的成长来自于哪些方面，并且每一方面占得比重是多少，对于收购要特别注意。
-</li>
-<li><b>成长的质量</b> ：当公司的利润增长长期（5到10年）超过销售增长时，要明白公司是如何获得超额的利润的，通过削减成本可以提高利润率，但是不可持续，因为你不可能无休止的削减成本，特别是不适当的削减成本，少交税，回购股票对股东有利，可是也是短期的，是低质量的成长
-</li>
+<li><b>成长性</b> ：销售增长主要来自于四个方面：销售更多的产品和服务，提高价格，销售新的产品和服务，收购别的公司。要特别弄清楚公司的成长来自于哪些方面，并且每一方面占得比重是多少，对于收购要特别注意。</li>
+<li><b>成长的质量</b> ：当公司的利润增长长期（5到10年）超过销售增长时，要明白公司是如何获得超额的利润的，通过削减成本可以提高利润率，但是不可持续，因为你不可能无休止的削减成本，特别是不适当的削减成本，少交税，回购股票对股东有利，可是也是短期的，是低质量的成长</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-5-2" class="outline-3">
-<h3 id="sec-5-2">收益性</h3>
-<div class="outline-text-3" id="text-5-2">
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14">收益性</h3>
+<div class="outline-text-3" id="text-orgheadline14">
 <p>
 有两个评估指标：资本收益率和自由现金流量
 </p>
 <ul class="org-ul">
 <li>资产收益率（ROA  return on assert）：评估将资产转变成利润的效率
 <ol class="org-ol">
-<li>销售净利率 = 净利润/销售收入
-</li>
-<li>资产周转率 = 销售收入 / 资产
-</li>
-<li>资产收益率 = 销售净利率 * 资产周转率 = 净利润/资产
-</li>
-</ol>
-</li>
+<li>销售净利率 = 净利润/销售收入</li>
+<li>资产周转率 = 销售收入 / 资产</li>
+<li>资产收益率 = 销售净利率 * 资产周转率 = 净利润/资产</li>
+</ol></li>
 <li>净资产收益率（ROE）：反应的是公司使用所有者权益（资产 – 负债）的效率，评估的是使用股东的钱投资产生的回报的程度
 <ol class="org-ol">
-<li>财务杠杆比率 = 资产/ 所有者权益
-</li>
-<li>净资产收益率 = 资产收益率 * 财务杠杆比率 = 净利润 / 所有者权益
-</li>
-<li>财务杠杆比率是衡量一家公司的负债在总资产占得分量是大还是小，财务杠杆比率越高，意味着公司的负债比率越高。如果公司的业务很稳定，那么较高的负债对公司影响不大，但如果公司的业务不稳定或者是周期性的，那么高的财务杠杆比率会比较危险。非金融公司在没有过分的财务杠杆比率的前提下如果能取得10%的净资产收益率就是可以投资的。
-</li>
-</ol>
-</li>
+<li>财务杠杆比率 = 资产/ 所有者权益</li>
+<li>净资产收益率 = 资产收益率 * 财务杠杆比率 = 净利润 / 所有者权益</li>
+<li>财务杠杆比率是衡量一家公司的负债在总资产占得分量是大还是小，财务杠杆比率越高，意味着公司的负债比率越高。如果公司的业务很稳定，那么较高的负债对公司影响不大，但如果公司的业务不稳定或者是周期性的，那么高的财务杠杆比率会比较危险。非金融公司在没有过分的财务杠杆比率的前提下如果能取得10%的净资产收益率就是可以投资的。</li>
+</ol></li>
 <li>自由现金流（FCF）：
 <ol class="org-ol">
-<li>自由现金流 = 经营性现金流 – 资本性支出
-</li>
-<li>%5的销售收入转变成自由现金流是必要的。
-</li>
-</ol>
-</li>
+<li>自由现金流 = 经营性现金流 – 资本性支出</li>
+<li>%5的销售收入转变成自由现金流是必要的。</li>
+</ol></li>
 </ul>
 <p>
 拥有高的净资产收益率与高的自由现金流的公司值得投资
@@ -522,109 +461,74 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6">财务伪装</h2>
-<div class="outline-text-2" id="text-6">
-</div><div id="outline-container-sec-6-1" class="outline-3">
-<h3 id="sec-6-1">六个危险信号</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-orgheadline17" class="outline-2">
+<h2 id="orgheadline17">财务伪装</h2>
+<div class="outline-text-2" id="text-orgheadline17">
+</div><div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15">六个危险信号</h3>
+<div class="outline-text-3" id="text-orgheadline15">
 <ul class="org-ul">
-<li>衰退的现金流：如果公司净利润仍在大幅增长，可是经营性现金流却在粗略的同比例增长或者还有衰退，，那么就应该特别注意。
-</li>
-<li>连续的一次性费用：
-</li>
-<li>连续的收购：
-</li>
-<li>CFO或者审计师离开公司：频繁的更换审计师，或者CFO离奇的离开公司要特别注意，特别是当有公司会计账目丑闻传出时。
-</li>
-<li>没有收到货款的账单：相对于销售收入而言过快的应收账款增长
-</li>
-<li>变更赊销付款条件和应收账款：
-</li>
+<li>衰退的现金流：如果公司净利润仍在大幅增长，可是经营性现金流却在粗略的同比例增长或者还有衰退，，那么就应该特别注意。</li>
+<li>连续的一次性费用：</li>
+<li>连续的收购：</li>
+<li>CFO或者审计师离开公司：频繁的更换审计师，或者CFO离奇的离开公司要特别注意，特别是当有公司会计账目丑闻传出时。</li>
+<li>没有收到货款的账单：相对于销售收入而言过快的应收账款增长</li>
+<li>变更赊销付款条件和应收账款：</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-6-2" class="outline-3">
-<h3 id="sec-6-2">七个缺陷</h3>
-<div class="outline-text-3" id="text-6-2">
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16">七个缺陷</h3>
+<div class="outline-text-3" id="text-orgheadline16">
 <ul class="org-ul">
-<li>投资收益：试图将投资收益合并入营业利润来推高财务业绩。
-</li>
-<li>养老金缺陷：
-</li>
-<li>养老金补充：
-</li>
-<li>化为乌有的现金流：员工执行期权的税收收益过高的话是一个不好的现象，因为这和股价密切相关，所以这样的现金流随时可能化为乌有。所以对于现金流很充沛而且股价上涨很快的公司要分析有多少事来自员工执行期权的税收收益。
-</li>
-<li>存货增长过快：开拓新市场时存货暂时增长是正常的，但是如果一般情况下，存货的增长速度比销售收入的增长快，那是一个不好的情况，特别是存货贬值快的行业。
-</li>
-<li>不好的变更：如把固定资产的折旧年限加长，还有坏账准备金没有与应收账款同步增长，这些都有粉饰财务报表的嫌疑。
-</li>
-<li>费用化还是非费用化：某些费用公司可以将它资本化，也就是计入资产，这样隐藏了费用，也就粉饰了财务报表
-</li>
+<li>投资收益：试图将投资收益合并入营业利润来推高财务业绩。</li>
+<li>养老金缺陷：</li>
+<li>养老金补充：</li>
+<li>化为乌有的现金流：员工执行期权的税收收益过高的话是一个不好的现象，因为这和股价密切相关，所以这样的现金流随时可能化为乌有。所以对于现金流很充沛而且股价上涨很快的公司要分析有多少事来自员工执行期权的税收收益。</li>
+<li>存货增长过快：开拓新市场时存货暂时增长是正常的，但是如果一般情况下，存货的增长速度比销售收入的增长快，那是一个不好的情况，特别是存货贬值快的行业。</li>
+<li>不好的变更：如把固定资产的折旧年限加长，还有坏账准备金没有与应收账款同步增长，这些都有粉饰财务报表的嫌疑。</li>
+<li>费用化还是非费用化：某些费用公司可以将它资本化，也就是计入资产，这样隐藏了费用，也就粉饰了财务报表</li>
 </ul>
 <p>
 给公司估值
 </p>
 <ul class="org-ul">
-<li>市销率：是各种比率中最基础的，用每股的价格除以每股的销售收入，市销率有个比较大的弊端，就是不同的公司销售收入的价值不同，如零售公司的销售收入的价值就较低，因为其利润率低。
-</li>
-<li>市净率：把一只股票的市场价值和当期资产负债表的账面价值（也就是所有者权益或净资产）比较，对服务类公司不可靠，但是对金融类公司或者有巨额有形资产的公司则比较好
-</li>
-<li>市盈率：
-</li>
+<li>市销率：是各种比率中最基础的，用每股的价格除以每股的销售收入，市销率有个比较大的弊端，就是不同的公司销售收入的价值不同，如零售公司的销售收入的价值就较低，因为其利润率低。</li>
+<li>市净率：把一只股票的市场价值和当期资产负债表的账面价值（也就是所有者权益或净资产）比较，对服务类公司不可靠，但是对金融类公司或者有巨额有形资产的公司则比较好</li>
+<li>市盈率：</li>
 </ul>
 <p>
 巴菲特的投资策略：
 </p>
 <ul class="org-ul">
-<li>不理睬对经济大趋势的预测，也不理睬对股价走势的预测，只注重长期价值
-</li>
-<li>只买力所能及的股票，也就是对公司和公司所在的行业要足够的熟悉
-</li>
-<li>要找对待股东的钱像对待自己的钱一样认真的公司
-</li>
-<li>要详细的研究股票的竞争对手的前景，要看第一手的信息，不要看分析家的报告，因为那是二手的信息，但是分析不用过于精细
-</li>
-<li>一旦看重某种股票就要义无反顾的买（这点不是适合每一个人，一般人要控制风险，只将自己能够承担风险的资金投入进去，不是每一个人都能像巴菲特那样预测准确）
-</li>
+<li>不理睬对经济大趋势的预测，也不理睬对股价走势的预测，只注重长期价值</li>
+<li>只买力所能及的股票，也就是对公司和公司所在的行业要足够的熟悉</li>
+<li>要找对待股东的钱像对待自己的钱一样认真的公司</li>
+<li>要详细的研究股票的竞争对手的前景，要看第一手的信息，不要看分析家的报告，因为那是二手的信息，但是分析不用过于精细</li>
+<li>一旦看重某种股票就要义无反顾的买（这点不是适合每一个人，一般人要控制风险，只将自己能够承担风险的资金投入进去，不是每一个人都能像巴菲特那样预测准确）</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7">财务英文词汇：</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-orgheadline18" class="outline-2">
+<h2 id="orgheadline18">财务英文词汇：</h2>
+<div class="outline-text-2" id="text-orgheadline18">
 <ul class="org-ul">
-<li>ROE                      净资产收益率
-</li>
-<li>ROA                      资产收益率
-</li>
-<li>ROIC                     投入资本收益率
-</li>
-<li>Fixed assert             固定资产
-</li>
-<li>Non-current asset        非流动资产
-</li>
-<li>Current assert           流动资产
-</li>
-<li>Current Investment       短期投资
-</li>
-<li>Bank and Cash            货币现金
-</li>
-<li>Share capital            股本
-</li>
-<li>Profit before income tax 税前盈利
-</li>
-<li>Income tax               所得税
-</li>
-<li>Net profit               净利润
-</li>
-<li>Inventory                存货
-</li>
-<li>Balance sheet            资产负债表
-</li>
+<li>ROE                      净资产收益率</li>
+<li>ROA                      资产收益率</li>
+<li>ROIC                     投入资本收益率</li>
+<li>Fixed assert             固定资产</li>
+<li>Non-current asset        非流动资产</li>
+<li>Current assert           流动资产</li>
+<li>Current Investment       短期投资</li>
+<li>Bank and Cash            货币现金</li>
+<li>Share capital            股本</li>
+<li>Profit before income tax 税前盈利</li>
+<li>Income tax               所得税</li>
+<li>Net profit               净利润</li>
+<li>Inventory                存货</li>
+<li>Balance sheet            资产负债表</li>
 </ul>
 </div>
 </div>

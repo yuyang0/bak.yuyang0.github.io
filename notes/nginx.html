@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>nginx</title>
-<!-- 2015-11-20 Fri 15:44 -->
+<!-- 2016-02-20 Sat 22:43 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>nginx</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -169,60 +175,60 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">nginx的安装</a>
+<li><a href="#orgheadline4">nginx的安装</a>
 <ul>
-<li><a href="#sec-1-1">安装</a></li>
-<li><a href="#sec-1-2">重新编译安装</a></li>
-<li><a href="#sec-1-3">nginx的配置目录布局</a></li>
+<li><a href="#orgheadline1">安装</a></li>
+<li><a href="#orgheadline2">重新编译安装</a></li>
+<li><a href="#orgheadline3">nginx的配置目录布局</a></li>
 </ul>
 </li>
-<li><a href="#sec-2">nginx的基础知识</a>
+<li><a href="#orgheadline11">nginx的基础知识</a>
 <ul>
-<li><a href="#sec-2-1">基本术语</a></li>
-<li><a href="#sec-2-2">phase</a></li>
-<li><a href="#sec-2-3">phases与指令的关系</a></li>
-<li><a href="#sec-2-4">nginx如何匹配请求</a>
+<li><a href="#orgheadline5">基本术语</a></li>
+<li><a href="#orgheadline6">phase</a></li>
+<li><a href="#orgheadline7">phases与指令的关系</a></li>
+<li><a href="#orgheadline8">nginx如何匹配请求</a>
 <ul>
-<li><a href="#sec-2-4-1">匹配server块</a></li>
-<li><a href="#sec-2-4-2">匹配location</a></li>
+<li><a href="#orgheadline9">匹配server块</a></li>
+<li><a href="#orgheadline10">匹配location</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sec-3">nginx配置</a>
+<li><a href="#orgheadline12">nginx配置</a>
 <ul>
-<li><a href="#sec-3-1">最外层</a></li>
-<li><a href="#sec-3-2">events</a></li>
-<li><a href="#sec-3-3">http</a></li>
-<li><a href="#sec-3-4">server</a></li>
-<li><a href="#sec-3-5">location</a></li>
+<li><a href="#orgheadline13">最外层</a></li>
+<li><a href="#orgheadline14">events</a></li>
+<li><a href="#orgheadline15">http</a></li>
+<li><a href="#orgheadline16">server</a></li>
+<li><a href="#orgheadline17">location</a></li>
 </ul>
 </li>
-<li><a href="#sec-4">nginx的变量</a>
+<li><a href="#orgheadline18">nginx的变量</a>
 <ul>
-<li><a href="#sec-4-1">nginx的内置变量</a></li>
-<li><a href="#sec-4-2">常见的指令</a></li>
+<li><a href="#orgheadline19">nginx的内置变量</a></li>
+<li><a href="#orgheadline20">常见的指令</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">nginx常用模块</a>
+<li><a href="#orgheadline26">nginx常用模块</a>
 <ul>
-<li><a href="#sec-5-1">map(ngx_http_map_module)</a></li>
-<li><a href="#sec-5-2">GEO(ngx_http_geo_module)</a></li>
-<li><a href="#sec-5-3">Access(ngx_http_access_module)</a></li>
-<li><a href="#sec-5-4">Rewrite(ngx_http_rewrite_module)</a></li>
-<li><a href="#sec-5-5">Echo(ngx_http_echo_module)</a></li>
+<li><a href="#orgheadline21">map(ngx_http_map_module)</a></li>
+<li><a href="#orgheadline22">GEO(ngx_http_geo_module)</a></li>
+<li><a href="#orgheadline23">Access(ngx_http_access_module)</a></li>
+<li><a href="#orgheadline24">Rewrite(ngx_http_rewrite_module)</a></li>
+<li><a href="#orgheadline25">Echo(ngx_http_echo_module)</a></li>
 </ul>
 </li>
-<li><a href="#sec-6">nginx与lua</a>
+<li><a href="#orgheadline27">nginx与lua</a>
 <ul>
-<li><a href="#sec-6-1">安装</a></li>
-<li><a href="#sec-6-2">常用指令(nginx配置中使用)</a></li>
-<li><a href="#sec-6-3">lua中能使用的API</a></li>
-<li><a href="#sec-6-4">lua数据共享</a></li>
-<li><a href="#sec-6-5">lua socket</a>
+<li><a href="#orgheadline28">安装</a></li>
+<li><a href="#orgheadline29">常用指令(nginx配置中使用)</a></li>
+<li><a href="#orgheadline30">lua中能使用的API</a></li>
+<li><a href="#orgheadline31">lua数据共享</a></li>
+<li><a href="#orgheadline32">lua socket</a>
 <ul>
-<li><a href="#sec-6-5-1">TCP SOCKET</a></li>
-<li><a href="#sec-6-5-2">UDP SOCKET</a></li>
+<li><a href="#orgheadline33">TCP SOCKET</a></li>
+<li><a href="#orgheadline34">UDP SOCKET</a></li>
 </ul>
 </li>
 </ul>
@@ -230,22 +236,20 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">nginx的安装</h2>
-<div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">安装</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4">nginx的安装</h2>
+<div class="outline-text-2" id="text-orgheadline4">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1">安装</h3>
+<div class="outline-text-3" id="text-orgheadline1">
 <p>
 可以直接使用ubuntu仓库中的nginx,不过版本有点陈旧,下面说一说编译安装, 编译安
 装是非常典型的configure, make, make install模式, 我只说一说configure的常用选
 项.
 </p>
 <ol class="org-ol">
-<li>&#x2013;prefix: nginx的安装目录
-</li>
-<li>&#x2013;with-XXX_XXX: 需要开启的模块
-</li>
+<li>&#x2013;prefix: nginx的安装目录</li>
+<li>&#x2013;with-XXX_XXX: 需要开启的模块</li>
 </ol>
 <p>
 添加第三方模块,使用如下命令:
@@ -255,34 +259,32 @@ for the JavaScript code in this tag.
 </pre>
 </div>
 </div>
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">重新编译安装</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">重新编译安装</h3>
+<div class="outline-text-3" id="text-orgheadline2">
 <p>
 有时候我们发现nginx缺少模块,需要重新编译安装, 那么使用如下步骤:
 </p>
 <ol class="org-ol">
 <li>使用configure, make编译, 不要运行make install, 因为这是重新安装会覆盖掉我
-们的配置文件
-</li>
+们的配置文件</li>
 <li>将得到的nginx二进制程序直接覆盖旧版本的nginx程序,该程序一般在sbin目录,为
-了保险,你可以先备旧版的nginx程序.
-</li>
-<li>使用 <code>nginx -t</code> 测试nginx程序是否正确
-</li>
-<li>使用 <code>nginx -s reload</code> 来重载nginx.
-</li>
+了保险,你可以先备旧版的nginx程序.</li>
+<li>使用 <code>nginx -t</code> 测试nginx程序是否正确</li>
+<li>使用 <code>nginx -s reload</code> 来重载nginx.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3">nginx的配置目录布局</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">nginx的配置目录布局</h3>
+<div class="outline-text-3" id="text-orgheadline3">
 <p>
 使用ubuntu的apt安装的nginx的配置一般有如下的目录格式
 </p>
 <ol class="org-ol">
-<li>nginx.conf包含了基本的http配置，同时会有如下代码：
+<li><p>
+nginx.conf包含了基本的http配置，同时会有如下代码：
+</p>
 <pre class="example">
 http {
 
@@ -294,87 +296,67 @@ http {
 </pre>
 <p>
 可以看到它会包含conf.d 目录的配置，以及sites_enabled目录的所有配置
-</p>
-</li>
-<li>conf.d： 该目录的所有conf文件都会被包含
-</li>
+</p></li>
+<li>conf.d： 该目录的所有conf文件都会被包含</li>
 <li>sites-available: 这个目录的每一个文件应该配置一个server, 也就是一个虚拟机,
-其中有一个默认的配置default.
-</li>
+其中有一个默认的配置default.</li>
 <li>sites-enabled: 都是符号链接，指向sites-availabe目录的配置，通过这些符号链
-接你可以有选择的开启sites-availabe中的server。
-</li>
+接你可以有选择的开启sites-availabe中的server。</li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">nginx的基础知识</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">基本术语</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11">nginx的基础知识</h2>
+<div class="outline-text-2" id="text-orgheadline11">
+</div><div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">基本术语</h3>
+<div class="outline-text-3" id="text-orgheadline5">
 <ol class="org-ol">
-<li>upstream（上游）: 是指nginx后端的服务, 比如tornado, redis等等
-</li>
-<li>downstream(下游): 指浏览器, 或者其它向nginx请求服务的程序.
-</li>
-<li>主请求(main request): 由 HTTP 客户端从 Nginx 外部发起的请求.
-</li>
+<li>upstream（上游）: 是指nginx后端的服务, 比如tornado, redis等等</li>
+<li>downstream(下游): 指浏览器, 或者其它向nginx请求服务的程序.</li>
+<li>主请求(main request): 由 HTTP 客户端从 Nginx 外部发起的请求.</li>
 <li>子请求(subrequest): 由 Nginx 正在处理的请求在 Nginx 内部发起的一种级联请
-求, 子请求的变量是独立的, 和父请求互不干扰.
-</li>
+求, 子请求的变量是独立的, 和父请求互不干扰.</li>
 <li>内部跳转: 使用rewrite,echo_exec等指令执行的跳转, 它的作用原理是直接修改
 url, 然后跳回find config phase, 所以它就会使用修改后的url去匹配location,
-然后接着执行rewrite等一系列phase.
-</li>
+然后接着执行rewrite等一系列phase.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2">phase</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6">phase</h3>
+<div class="outline-text-3" id="text-orgheadline6">
 <p>
 一个http请求会依次经过如下11个phase:
 </p>
 <ol class="org-ol">
 <li>post read: 接收完请求头之后的第一个阶段,它位于uri重写之前, 实际上很少有
-模块会注册在该阶段,默认的情况下, 该阶段被跳过.
-</li>
+模块会注册在该阶段,默认的情况下, 该阶段被跳过.</li>
 <li>server rewrite: server级别的uri重写阶段, 如果set, rewrite等ngx_rewrite模
-      块的指令放在server内,但在location外,那么就运行于该阶段.
-</li>
+      块的指令放在server内,但在location外,那么就运行于该阶段.</li>
 <li>find config: 寻找location配置阶段,该阶段使用重写之后的uri来查找对应的
 location,值得注意的是该阶段可能会被执行多次,因为也可能有location级别的重
-写指令, <b>该阶段不允许模块注册</b>.
-</li>
+写指令, <b>该阶段不允许模块注册</b>.</li>
 <li>rewrite: location级别的uri重写阶段,该阶段执行location基本的重写指令,也
 可能会被执行多次. set, rewrite等指令如果放在location内部,那么就运行于该阶
-段.
-</li>
+段.</li>
 <li>post rewrite: location级别重写的后一阶段, 用来检查上阶段是否有使用rewrite
 指令来i进行uri重写, 如果有那么就跳回find configphase, 这就是一个内部跳转,
-<b>该阶段不允许模块注册</b>.
-</li>
+<b>该阶段不允许模块注册</b>.</li>
 <li>preaccess: 访问权限控制的前一阶段，该阶段在权限控制阶段之前，一般也用于访
-问控制，比如限制访问频率，链接数等；
-</li>
+问控制，比如限制访问频率，链接数等；</li>
 <li>access: 访问权限控制阶段, 比如基于ip黑白名单的权限控制, 基于用户名密码的
-权限控制等.
-</li>
+权限控制等.</li>
 <li>post access: 访问权限控制的后一阶段,该阶段根据权限控制阶段的执行结果进行
-相应处理. <b>该阶段不允许模块注册</b>.
-</li>
+相应处理. <b>该阶段不允许模块注册</b>.</li>
 <li>try files: try_files指令的处理阶段，如果没有配置try_files
-      指令，则该阶段被跳过,  <b>该阶段不允许模块注册</b>.
-</li>
+      指令，则该阶段被跳过,  <b>该阶段不允许模块注册</b>.</li>
 <li>content: 内容生成阶段, 该阶段产生响应, 并发送到客户端. 如果location中没有
 任何像echo,content_by_lua这样运行于content phase的指令,那么nginx会把当前
 请求的 URI 映射到文件系统的静态资源服务模块, 如果文件系统没有对应的文件那
-么返回404
-</li>
-<li>log: 日志记录阶段, 该阶段记录访问日志.
-</li>
+么返回404</li>
+<li>log: 日志记录阶段, 该阶段记录访问日志.</li>
 </ol>
 <p>
 还有一个特殊的phase: <b>body filter</b>, 严格的说它不是一个phase, 任何时候输出响应
@@ -383,9 +365,9 @@ location,值得注意的是该阶段可能会被执行多次,因为也可能有l
 </p>
 </div>
 </div>
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3">phases与指令的关系</h3>
-<div class="outline-text-3" id="text-2-3">
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7">phases与指令的关系</h3>
+<div class="outline-text-3" id="text-orgheadline7">
 <p>
 几乎所有的指令都与某一个phase相关联, 指令的实际执行顺序是这样决定的:
 </p>
@@ -393,93 +375,71 @@ location,值得注意的是该阶段可能会被执行多次,因为也可能有l
 <li>如果两条指令在不同的phase, 那么指令的执行顺序与phase的先后顺序相同, 比如
 set运行于rewrite phase, 而echo运行于content phase, 所以不论配置中set,
 echo的顺序如何, set必定在echo的前面执行. <b>建议书写配置时按照指令实际执行
-顺序来书写</b>.
-</li>
+顺序来书写</b>.</li>
 <li>如果两条指令运行于相同的phase, 那么它们的执行顺序就比较混乱了. 有几种情
 况:
 <ol class="org-ol">
 <li>有些指令是按照书写顺序来执行的, 比如set, set_unescape_uri, set_by_lua
-         等
-</li>
+         等</li>
 <li>绝大多数第三方模块只能运行于所属phase的结尾,所以内置模块的指令必定早于
 第三方模块指令的执行, 因此rewrite必定在rewrite_by_lua前面执行.
-set_by_lua之所以能和内置的set指令交叉执行,是因为使用了一些特殊技巧
-</li>
+set_by_lua之所以能和内置的set指令交叉执行,是因为使用了一些特殊技巧</li>
 <li>content phase只能注册一个处理器,所以不要同时使用不同模块的content指令,
 比如echo指令就不能与content_by_lua指令共存,而且同一模块的content指令能
-不能多次使用也是依模块而定, echo指令可以多次使用, content_by_lua就不行。
-</li>
-</ol>
-</li>
+不能多次使用也是依模块而定, echo指令可以多次使用, content_by_lua就不行。</li>
+</ol></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2-4" class="outline-3">
-<h3 id="sec-2-4">nginx如何匹配请求</h3>
-<div class="outline-text-3" id="text-2-4">
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8">nginx如何匹配请求</h3>
+<div class="outline-text-3" id="text-orgheadline8">
 <p>
 实际先匹配server块, 接着匹配该server块中的location.
 </p>
 </div>
-<div id="outline-container-sec-2-4-1" class="outline-4">
-<h4 id="sec-2-4-1">匹配server块</h4>
-<div class="outline-text-4" id="text-2-4-1">
+<div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9">匹配server块</h4>
+<div class="outline-text-4" id="text-orgheadline9">
 <ol class="org-ol">
 <li>匹配listen指令
 <ul class="org-ul">
 <li>每个server块的listen指令如果不完整, 比如缺少ip或者缺少port, 那么用默认
-值补充完整, ip的默认值是0:0:0:0, port的默认值是80.
-</li>
+值补充完整, ip的默认值是0:0:0:0, port的默认值是80.</li>
 <li>使用请求的ip与port来匹配server块的listen指令, 如果最后只有一个server匹
-配那么就使用该server处理请求, 如果有多个server那么就检查server_name指令.
-</li>
-</ul>
-</li>
+配那么就使用该server处理请求, 如果有多个server那么就检查server_name指令.</li>
+</ul></li>
 <li>匹配server_name指令（前提是有多个server的listen指令成功匹配请求的ip与
-       port）
+port）
 <ul class="org-ul">
-<li>获取请求的Host请求头
-</li>
-<li>先精确匹配, 如果匹配成功那么选择该server, 如果有多个那么选第一个
-</li>
+<li>获取请求的Host请求头</li>
+<li>先精确匹配, 如果匹配成功那么选择该server, 如果有多个那么选第一个</li>
 <li>匹配有*通配符 <b>前缀</b> 的server_name, 比如 <code>*.example.com</code>, 通配符必须
-在前面
-</li>
+在前面</li>
 <li>匹配有*通配符 <b>后缀</b> 的server_name, 比如 <code>www.example.*</code>, 通配符必须
-在后面
-</li>
-<li>正则匹配
-</li>
-<li>使用默认的server
-</li>
-</ul>
-</li>
+在后面</li>
+<li>正则匹配</li>
+<li>使用默认的server</li>
+</ul></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2-4-2" class="outline-4">
-<h4 id="sec-2-4-2">匹配location</h4>
-<div class="outline-text-4" id="text-2-4-2">
+<div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10">匹配location</h4>
+<div class="outline-text-4" id="text-orgheadline10">
 <p>
 实际上是根据location后面的url来匹配, 该rul会有一些前缀来标示url的类型(正则
 或者非正则, 非正则会区分是精确匹配或者前缀匹配, 正则规则又会区分大小写),
 具体的规则如下:
 </p>
 <ol class="org-ol">
-<li>无前缀: 匹配前缀(非正则)
-</li>
-<li>^~    : 匹配前缀, 如果有一个 正则规则也匹配这个uri,优先采用该规则(非正则)
-</li>
-<li>=     : 精确匹配, 也就是说要一模一样(优先级最高, 非正则)
-</li>
-<li>~     : 正则,区分大小写
-</li>
-<li>~*    : 正则, 不区分大小写
-</li>
-<li>!~    : 和 ~ 作用相反
-</li>
-<li>!~*   : 和 ~* 作用相反
-</li>
+<li>无前缀: 匹配前缀(非正则)</li>
+<li>^~    : 匹配前缀, 如果有一个 正则规则也匹配这个uri,优先采用该规则(非正则)</li>
+<li>=     : 精确匹配, 也就是说要一模一样(优先级最高, 非正则)</li>
+<li>~     : 正则,区分大小写</li>
+<li>~*    : 正则, 不区分大小写</li>
+<li>!~    : 和 ~ 作用相反</li>
+<li>!~*   : 和 ~* 作用相反</li>
 </ol>
 <p>
 匹配规则的优先级:
@@ -487,24 +447,19 @@ set_by_lua之所以能和内置的set指令交叉执行,是因为使用了一些
 <ol class="org-ol">
 <li>先进行非正则匹配
 <ul class="org-ul">
-<li>如果有 =前缀 规则匹配, 那么使用该规则, 如果没有那么看下一条
-</li>
-<li>如果最长前缀匹配的规则含有 ^~ 前缀, 那么使用该规则, 如果没有看下一条
-</li>
-<li>将最长前缀匹配的规则保存起来, 然后使用正则表达式来匹配
-</li>
-</ul>
-</li>
+<li>如果有 =前缀 规则匹配, 那么使用该规则, 如果没有那么看下一条</li>
+<li>如果最长前缀匹配的规则含有 ^~ 前缀, 那么使用该规则, 如果没有看下一条</li>
+<li>将最长前缀匹配的规则保存起来, 然后使用正则表达式来匹配</li>
+</ul></li>
 <li>正则匹配, 直接根据位置的从上到下来匹配,第一条匹配的规则会被使用, 如果没有
-匹配,那么就使用上面保存的最长匹配的非正则规则,如果该规则也不存在那么404.
-</li>
+匹配,那么就使用上面保存的最长匹配的非正则规则,如果该规则也不存在那么404.</li>
 </ol>
 <p>
 大体上你可以认为优先级是: =规则 &gt; ^~规则 &gt; 正则规则 &gt; 无前缀规则
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #DFAF8F;">location</span> = / <span style="color: #DCDCCC;">{}</span>                 <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">&#21482;&#21305;&#37197;/, &#19981;&#20250;&#21305;&#37197;/xxx</span>
+<pre class="src src-sh">location = / <span style="color: #DCDCCC;">{}</span>                 <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">&#21482;&#21305;&#37197;/, &#19981;&#20250;&#21305;&#37197;/xxx</span>
 location / <span style="color: #DCDCCC;">{}</span>
 location ^~ /images/ <span style="color: #DCDCCC;">{}</span>
 location ~* <span style="color: #CC9393;">\.</span><span style="color: #DCDCCC;">(</span>gif|jpg|jpeg<span style="color: #DCDCCC;">)</span>$ <span style="color: #DCDCCC;">{}</span> <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">&#21305;&#37197;&#25152;&#26377;&#22270;&#20687;&#25991;&#20214;</span>
@@ -514,9 +469,9 @@ location ~* <span style="color: #CC9393;">\.</span><span style="color: #DCDCCC;"
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">nginx配置</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12">nginx配置</h2>
+<div class="outline-text-2" id="text-orgheadline12">
 <p>
 nginx配置的基本结构是:
 </p>
@@ -545,44 +500,39 @@ http {
 }
 </pre>
 </div>
-<div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">最外层</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13">最外层</h3>
+<div class="outline-text-3" id="text-orgheadline13">
 <ol class="org-ol">
-<li>user: 指定worker进程的用户名以及用户组
-</li>
-<li>worker_processes: woker进程的数量,一般和CPU的核数一样
-</li>
-<li>worker_rlimit_nofile: worker进程能打开的文件描述符数量.
-</li>
+<li>user: 指定worker进程的用户名以及用户组</li>
+<li>worker_processes: woker进程的数量,一般和CPU的核数一样</li>
+<li>worker_rlimit_nofile: worker进程能打开的文件描述符数量.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2">events</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14">events</h3>
+<div class="outline-text-3" id="text-orgheadline14">
 <p>
 主要是配置事件相关
 </p>
 <ol class="org-ol">
-<li>worker_connections: 允许的连接数
-</li>
-<li>use epoll : 事件循环,linux一般是epoll.
-</li>
+<li>worker_connections: 允许的连接数</li>
+<li>use epoll : 事件循环,linux一般是epoll.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3">http</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15">http</h3>
+<div class="outline-text-3" id="text-orgheadline15">
 <p>
 一些http相关的配置
 </p>
 </div>
 </div>
-<div id="outline-container-sec-3-4" class="outline-3">
-<h3 id="sec-3-4">server</h3>
-<div class="outline-text-3" id="text-3-4">
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16">server</h3>
+<div class="outline-text-3" id="text-orgheadline16">
 <p>
 配置虚拟机, 最重要的是它的listen,server_name指令, 很多主机商就是用这种配置来
 用一台机器服务多个网站的,配置多个server块, 每一个块的server_name改为对应的域
@@ -590,9 +540,9 @@ http {
 </p>
 </div>
 </div>
-<div id="outline-container-sec-3-5" class="outline-3">
-<h3 id="sec-3-5">location</h3>
-<div class="outline-text-3" id="text-3-5">
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17">location</h3>
+<div class="outline-text-3" id="text-orgheadline17">
 <p>
 这个块主要是指定对特定url的操作, location后面有一个url参数, 该参数就是用来匹
 配http请求的url的,如果匹配成功,那么就执行对应的块中的指令.
@@ -600,9 +550,9 @@ http {
 </div>
 </div>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">nginx的变量</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgheadline18" class="outline-2">
+<h2 id="orgheadline18">nginx的变量</h2>
+<div class="outline-text-2" id="text-orgheadline18">
 <p>
 nginx变量是在nginx启动时创建, 而在请求中赋值的,变量在每一次请求中都有一个单独
 的副本(<b>子请求也会有单独的副本</b>), 同时变量的生命周期与请求绑定,与location块无
@@ -628,45 +578,40 @@ nginx变量是在nginx启动时创建, 而在请求中赋值的,变量在每一�
 访问/foo会得到hello, 因为你在/foo中对$a进行了赋值.
 </p>
 </div>
-<div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1">nginx的内置变量</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19">nginx的内置变量</h3>
+<div class="outline-text-3" id="text-orgheadline19">
 <ol class="org-ol">
-<li>$request_uri: 未解码的uri,包含query string
-</li>
-<li>$uri: 已解码的uri, 不包含query string
-</li>
+<li>$request_uri: 未解码的uri,包含query string</li>
+<li>$uri: 已解码的uri, 不包含query string</li>
 <li>$arg_XXX: 用来获得get传递的参数, 将XXX替换未参数名. 比如访问
 <code>http://localhost:8080/test?name=Tom&amp;class=3</code>, 那么$arg_name的值就是
-Tom.注意返回的值是未解码形式.
-</li>
-<li>$args:　请求中问号后面的部分, 也就是query string
-</li>
+Tom.注意返回的值是未解码形式.</li>
+<li>$args:　请求中问号后面的部分, 也就是query string</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-4-2" class="outline-3">
-<h3 id="sec-4-2">常见的指令</h3>
-<div class="outline-text-3" id="text-4-2">
+<div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20">常见的指令</h3>
+<div class="outline-text-3" id="text-orgheadline20">
 <ol class="org-ol">
-<li>set: 创建nginx变量并且赋值(rewrite phase)
-</li>
-<li>set_unescape_uri: 创建nginx变量,但是会将值解码后赋给该变量(rewrite phase)
-</li>
-<li>set_escape_uri: 创建nginx变量,但是会将值编码后赋给该变量(rewrite phase)
-</li>
+<li>set: 创建nginx变量并且赋值(rewrite phase)</li>
+<li>set_unescape_uri: 创建nginx变量,但是会将值解码后赋给该变量(rewrite phase)</li>
+<li>set_escape_uri: 创建nginx变量,但是会将值编码后赋给该变量(rewrite phase)</li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5">nginx常用模块</h2>
-<div class="outline-text-2" id="text-5">
-</div><div id="outline-container-sec-5-1" class="outline-3">
-<h3 id="sec-5-1">map(ngx_http_map_module)</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-orgheadline26" class="outline-2">
+<h2 id="orgheadline26">nginx常用模块</h2>
+<div class="outline-text-2" id="text-orgheadline26">
+</div><div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21">map(ngx_http_map_module)</h3>
+<div class="outline-text-3" id="text-orgheadline21">
 <ol class="org-ol">
-<li>map: <code>map string $variable { ... }</code>
+<li><p>
+map: <code>map string $variable { ... }</code>
+</p>
 <div class="org-src-container">
 
 <pre class="src src-sh">map $<span style="color: #DFAF8F;">http_user_agent</span> $<span style="color: #DFAF8F;">bad_client</span> <span style="color: #DCDCCC;">{</span>
@@ -681,14 +626,13 @@ Tom.注意返回的值是未解码形式.
 如果请求user_agent匹配baidu, 360, yandex特征,那么将bad_client变量设为1,默
 认为值0, 这样你可以在配置中使用 <code>if ($bad_client) { return 403; }</code> 来拦截
 这些机器人的访问.
-</p>
-</li>
+</p></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-5-2" class="outline-3">
-<h3 id="sec-5-2">GEO(ngx_http_geo_module)</h3>
-<div class="outline-text-3" id="text-5-2">
+<div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22">GEO(ngx_http_geo_module)</h3>
+<div class="outline-text-3" id="text-orgheadline22">
 <p>
 可以根据客户端的ip来设置变量的值, 只能放在http块中
 </p>
@@ -712,17 +656,15 @@ Tom.注意返回的值是未解码形式.
 </p>
 </div>
 </div>
-<div id="outline-container-sec-5-3" class="outline-3">
-<h3 id="sec-5-3">Access(ngx_http_access_module)</h3>
-<div class="outline-text-3" id="text-5-3">
+<div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23">Access(ngx_http_access_module)</h3>
+<div class="outline-text-3" id="text-orgheadline23">
 <p>
 用来对请求进行权限检查
 </p>
 <ol class="org-ol">
-<li>allow
-</li>
-<li>deny
-</li>
+<li>allow</li>
+<li>deny</li>
 </ol>
 <p>
 会书写顺序检查allow,deny指令，直到第一个匹配。如果有不同的模块也加入了检查比
@@ -730,25 +672,24 @@ Tom.注意返回的值是未解码形式.
 的值只能为all或者any。
 </p>
 <ul class="org-ul">
-<li>all： 必须通过所有access模块的检查（默认）
-</li>
-<li>any： 只要通过任何一个access模块的检查就好
-</li>
+<li>all： 必须通过所有access模块的检查（默认）</li>
+<li>any： 只要通过任何一个access模块的检查就好</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-5-4" class="outline-3">
-<h3 id="sec-5-4">Rewrite(ngx_http_rewrite_module)</h3>
-<div class="outline-text-3" id="text-5-4">
+<div id="outline-container-orgheadline24" class="outline-3">
+<h3 id="orgheadline24">Rewrite(ngx_http_rewrite_module)</h3>
+<div class="outline-text-3" id="text-orgheadline24">
 <p>
 该模块的指令如果放在server中,那么运行在server rewrite阶段, 如果放在location
 中,那么就运行在rewrite阶段
 </p>
 <ol class="org-ol">
-<li>set: 创建变量
-</li>
-<li>if: <code>if (condition) { ... }</code>, if是非常诡异的指令,能不用就尽量不用,一般来说
+<li>set: 创建变量</li>
+<li><p>
+if: <code>if (condition) { ... }</code>, if是非常诡异的指令,能不用就尽量不用,一般来说
 if只有在location中,并且在以下两种情况才100%正确:
+</p>
 <div class="org-src-container">
 
 <pre class="src src-sh"><span style="color: #F0DFAF; font-weight: bold;">if</span><span style="color: #DCDCCC;">(</span>condition<span style="color: #DCDCCC;">){</span>
@@ -760,10 +701,11 @@ if只有在location中,并且在以下两种情况才100%正确:
     rewrite xxx xxx             <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">must stay last in if block</span>
 <span style="color: #DCDCCC;">}</span>
 </pre>
-</div>
-</li>
+</div></li>
 
-<li>return: 原型如下
+<li><p>
+return: 原型如下
+</p>
 <pre class="example">
 return code [text];
 return code URL;
@@ -771,35 +713,31 @@ return URL;
 </pre>
 <p>
 直接终止请求, 返回相应的code,或者重定向到url(30X)
-</p>
-</li>
-<li>rewrite: 用来重写url
-</li>
+</p></li>
+<li>rewrite: 用来重写url</li>
 <li>break: 如果在if中,那么跳出if, 如果在location,那么忽略后面的Rewrite模块的
-指令,直接进入下一phase.
-</li>
+指令,直接进入下一phase.</li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-sec-5-5" class="outline-3">
-<h3 id="sec-5-5">Echo(ngx_http_echo_module)</h3>
-<div class="outline-text-3" id="text-5-5">
+<div id="outline-container-orgheadline25" class="outline-3">
+<h3 id="orgheadline25">Echo(ngx_http_echo_module)</h3>
+<div class="outline-text-3" id="text-orgheadline25">
 <p>
 这是第三方模块,提供了一些类似于shell的命令, 该模块的大部分指令运行于content
 phase. 常用的指令:
 </p>
 <ol class="org-ol">
-<li>echo: 输出内容到客户端(content phase)
-</li>
-<li>echo_exec: 执行内部跳转(类似于rewrite,不过运行于content phase)
-</li>
+<li>echo: 输出内容到客户端(content phase)</li>
+<li>echo_exec: 执行内部跳转(类似于rewrite,不过运行于content phase)</li>
 <li>echo_location: 执行一个子请求(HTTP GET), 将子请求的结果发送到client,有点类
 似于ngx_lua模块中的指令ngx.location.capture. 只是ngx.location.capture更灵
-活,因为它可以做后续处理,而不是直接将结果发送到client.
-</li>
-<li>echo_location_async: 和echo_location不过是异步的(HTTP GET), 也就是说主请
+活,因为它可以做后续处理,而不是直接将结果发送到client.</li>
+<li><p>
+echo_location_async: 和echo_location不过是异步的(HTTP GET), 也就是说主请
 求很有可能在子请求之前结束. 但是nginx会保证输出指令的执行顺序:
+</p>
 <div class="org-src-container">
 
 <pre class="src src-sh">location /main <span style="color: #DCDCCC;">{</span>
@@ -829,24 +767,23 @@ took 0.000 sec for total.
 </pre>
 <p>
 该指令有点类似于ngx_lua模块的ngx.location.capture_multi指令.
-</p>
-</li>
+</p></li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6">nginx与lua</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-orgheadline27" class="outline-2">
+<h2 id="orgheadline27">nginx与lua</h2>
+<div class="outline-text-2" id="text-orgheadline27">
 <p>
 将lua解释器嵌入到nginx, 使用lua可以比较轻松的实现一些业务逻辑, 这样就可以将
 nginx从一个单纯的http服务器变成一个web应用服务器,在配合nginx高效的IO模型,性能
 十分强大. 对于逻辑不复杂的业务直接使用lua在nginx这层实现是个不错的选择.
 </p>
 </div>
-<div id="outline-container-sec-6-1" class="outline-3">
-<h3 id="sec-6-1">安装</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-orgheadline28" class="outline-3">
+<h3 id="orgheadline28">安装</h3>
+<div class="outline-text-3" id="text-orgheadline28">
 <p>
 依赖于luajit,也可以使用lua, 不过luajit性能更好, ubuntu上可以使用如下命令安装
 </p>
@@ -860,62 +797,59 @@ nginx从一个单纯的http服务器变成一个web应用服务器,在配合ngin
 为它不是http模块, 这个模块会被 <code>set_by_lua</code> 指令用到.
 </p>
 <ol class="org-ol">
-<li>nginx安装
+<li><p>
+nginx安装
+</p>
 <div class="org-src-container">
 
 <pre class="src src-sh">./configure  --add-module=/path/to/ngx_lua <span style="color: #CC9393;">\</span>
              --add-module=/path/to/ngx_devel_kit
 </pre>
-</div>
-</li>
-<li>tengine上安装
+</div></li>
+<li><p>
+tengine上安装
+</p>
 <div class="org-src-container">
 
 <pre class="src src-sh">./configure  --with-http_lua_module <span style="color: #CC9393;">\</span>
              --add-module=/path/to/ngx_devel_kit
 </pre>
-</div>
-</li>
+</div></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-6-2" class="outline-3">
-<h3 id="sec-6-2">常用指令(nginx配置中使用)</h3>
-<div class="outline-text-3" id="text-6-2">
+<div id="outline-container-orgheadline29" class="outline-3">
+<h3 id="orgheadline29">常用指令(nginx配置中使用)</h3>
+<div class="outline-text-3" id="text-orgheadline29">
 <ol class="org-ol">
 <li>set_by_lua: 作用于rewrite phase, 和set指令类似, 只是值是由lua脚本产生的,
-该指令可以和set交叉运行
-</li>
+该指令可以和set交叉运行</li>
 <li>rewrite_by_lua: 作用于nginx的rewrite phase. 运行于rewrite phase的最后,
-ngx_rewrite模块的指令总是先于该指令.
-</li>
+ngx_rewrite模块的指令总是先于该指令.</li>
 <li>access_by_lua: 作用于nginx的access phase, 一般来说如果需要在请求开始之前
-做一些处理,比如检查请求合法性,可以使用这条命令
-</li>
-<li>content_by_lua: 作用于content phase, 是用来生成发送给客户端的内容的
-</li>
+做一些处理,比如检查请求合法性,可以使用这条命令</li>
+<li>content_by_lua: 作用于content phase, 是用来生成发送给客户端的内容的</li>
 <li>log_by_lua: 作用于log phase, 一般用来对请求做一些善后处理,记住在该指令之
-前nginx已经将内容发送到客户端.
-</li>
+前nginx已经将内容发送到客户端.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-6-3" class="outline-3">
-<h3 id="sec-6-3">lua中能使用的API</h3>
-<div class="outline-text-3" id="text-6-3">
+<div id="outline-container-orgheadline30" class="outline-3">
+<h3 id="orgheadline30">lua中能使用的API</h3>
+<div class="outline-text-3" id="text-orgheadline30">
 <p>
 ngx_lua暴露给lua的api都被放在ngx这个全局变量中,这是官方<a href="http://wiki.nginx.org/HttpLuaModule">文档</a> 其中比较常用的有
 这些,(<b>特别要注意这些api所在phase,这是使用任何nginx模块都需要特别注意的</b>)
 </p>
 <ol class="org-ol">
-<li>ngx.var.XXX: 所有nginx的变量都可以通过这种方式访问
-</li>
+<li>ngx.var.XXX: 所有nginx的变量都可以通过这种方式访问</li>
 <li>ngx.ctx: 这是一个表, 它的生命周期和请求绑定, 请求结束了,其中记录的数据也
-就无效了,经常用来在运行于不同的phase的lua脚本间传递数据.
-</li>
-<li>ngx.location.capture: 发起一个子请求, 一些场景很有用,比如说你对
+就无效了,经常用来在运行于不同的phase的lua脚本间传递数据.</li>
+<li><p>
+ngx.location.capture: 发起一个子请求, 一些场景很有用,比如说你对
 redis,mysql等服务进行了rest包装,而在一个请求中你想从多个服务中获得数据,就
 可以用这个api发送子请求
+</p>
 <pre class="example">
 location = /memc {
     internal;
@@ -933,9 +867,10 @@ location = /api {
 </pre>
 <p>
 在 <code>/api</code> 中你可以获得 <code>/mem</code> 的结果, 当然你可以接着获得其它服务的结果.
+</p></li>
+<li><p>
+ngx.location.capture_multi: 和capture类似,只是可以并发的发起多个子请求
 </p>
-</li>
-<li>ngx.location.capture_multi: 和capture类似,只是可以并发的发起多个子请求
 <pre class="example">
 location = /api {
     content_by_lua '
@@ -949,53 +884,40 @@ location = /api {
 </pre>
 <p>
 并发的发起三个子请求.
-</p>
-</li>
+</p></li>
 <li>ngx.status: 当前请求的response的HTTP状态码, 你可以修改状态码,但是前提是你
-必须在nginx将response发送给client之前修改
-</li>
-<li>ngx.req.XXX: 用来操作request的一系列api
-</li>
-<li>ngx.say: 每一条命令都有一个换行符
-</li>
-<li>ngx.print: 和say类似,没有换行符.
-</li>
-<li>ngx.log: 记录日志
-</li>
-<li>ngx.exec: 发起一个内部跳转(浏览器的url不改变), 类似于nginx的rewrite指令
-</li>
-<li>ngx.redirect: 发起一个浏览器跳转(30X, 浏览器的url会改变)
-</li>
-<li>ngx.exit(status_code): 直接退出请求
-</li>
-<li>ngx.re.XXX: 正则相关,标准lua本身是不支持正则的.
-</li>
+必须在nginx将response发送给client之前修改</li>
+<li>ngx.req.XXX: 用来操作request的一系列api</li>
+<li>ngx.say: 每一条命令都有一个换行符</li>
+<li>ngx.print: 和say类似,没有换行符.</li>
+<li>ngx.log: 记录日志</li>
+<li>ngx.exec: 发起一个内部跳转(浏览器的url不改变), 类似于nginx的rewrite指令</li>
+<li>ngx.redirect: 发起一个浏览器跳转(30X, 浏览器的url会改变)</li>
+<li>ngx.exit(status_code): 直接退出请求</li>
+<li>ngx.re.XXX: 正则相关,标准lua本身是不支持正则的.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-6-4" class="outline-3">
-<h3 id="sec-6-4">lua数据共享</h3>
-<div class="outline-text-3" id="text-6-4">
+<div id="outline-container-orgheadline31" class="outline-3">
+<h3 id="orgheadline31">lua数据共享</h3>
+<div class="outline-text-3" id="text-orgheadline31">
 <ol class="org-ol">
 <li>请求级别: 使用ngx.ctx, 它是一个table, 你可以使用它来在同一请求的不同的
-phase间传递数据
-</li>
+phase间传递数据</li>
 <li>worker进程级别: 可以创建一个lua模块,在模块内部创建一个表,因为lua解释器在
 worker进程启动后就常驻内存, 所以这个表在进程内部一直有效. 因此你可以使用
-这种方法在该进程处理的不同请求间共享数据.
-</li>
+这种方法在该进程处理的不同请求间共享数据.</li>
 <li>nginx级别: 因为nginx是多进程架构, 为了在多个worker进程间共享数据必须用到
 IPC机制, ngx_lua使用share memory实现了一个ngx.shared.DICT, 内部是使用自旋
 锁来避免竞争条件,该结构有get,set,incr,delete等api, 使用比较简单, 为了高效
 的利用此api, 数据的大小应该尽量一致,特别不同的数据应该用不同的dict存放,主要
-是为了减少碎片
-</li>
+是为了减少碎片</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-6-5" class="outline-3">
-<h3 id="sec-6-5">lua socket</h3>
-<div class="outline-text-3" id="text-6-5">
+<div id="outline-container-orgheadline32" class="outline-3">
+<h3 id="orgheadline32">lua socket</h3>
+<div class="outline-text-3" id="text-orgheadline32">
 <p>
 ngx_lua实现了一个socket库,它能以非阻塞的形式进行网络操作. 利用这个库我们可以
 直接访问upstream的服务,比如redis, memcache等, 也可以访问tornado这样的上游服
@@ -1004,13 +926,14 @@ rewrite_by_lua, access_by_lua, content_by_lua,ngx.timer中</b>, 该库的api分�
 类tcp和udp.
 </p>
 </div>
-<div id="outline-container-sec-6-5-1" class="outline-4">
-<h4 id="sec-6-5-1">TCP SOCKET</h4>
-<div class="outline-text-4" id="text-6-5-1">
+<div id="outline-container-orgheadline33" class="outline-4">
+<h4 id="orgheadline33">TCP SOCKET</h4>
+<div class="outline-text-4" id="text-orgheadline33">
 <ol class="org-ol">
-<li>创建tcp socket对象, 使用ngx.socket.tcp来创建, <code>local sock = ngx.socket.tcp()</code>
-</li>
-<li>connect: 可以使用hostname/ip, port, 也可以使用unix socket文件
+<li>创建tcp socket对象, 使用ngx.socket.tcp来创建, <code>local sock = ngx.socket.tcp()</code></li>
+<li><p>
+connect: 可以使用hostname/ip, port, 也可以使用unix socket文件
+</p>
 <div class="org-src-container">
 
 <pre class="src src-lua"><span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DFAF8F;">ok</span>, <span style="color: #DFAF8F;">err</span> = sock:connect<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"www.google.com"</span>, <span style="color: #BFEBBF;">80</span><span style="color: #DCDCCC;">)</span>
@@ -1026,25 +949,21 @@ rewrite_by_lua, access_by_lua, content_by_lua,ngx.timer中</b>, 该库的api分�
        8.8.8.8;</code>, dns常见的有这几个:
 </p>
 <ul class="org-ul">
-<li>google:  8.8.8.8
-</li>
-<li>alibaba: 223.5.5.5 或者 223.6.6.6
-</li>
-<li>114DNS:  114.114.114.114
-</li>
-</ul>
-</li>
-<li>send: 发送数据, 一定要先设置超时, 如果成功那么返回发送的数据量,如果失败
+<li>google:  8.8.8.8</li>
+<li>alibaba: 223.5.5.5 或者 223.6.6.6</li>
+<li>114DNS:  114.114.114.114</li>
+</ul></li>
+<li><p>
+send: 发送数据, 一定要先设置超时, 如果成功那么返回发送的数据量,如果失败
 那么返回nil,以及一个错误消息字符串, 出错时socket会自动关闭,无需手动清理
+</p>
 <div class="org-src-container">
 
 <pre class="src src-lua">sock:settimeout<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">1000</span><span style="color: #DCDCCC;">)</span>  <span style="color: #5F7F5F;">-- </span><span style="color: #7F9F7F;">one second timeout</span>
 <span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DFAF8F;">bytes</span>, <span style="color: #DFAF8F;">err</span> = sock:send<span style="color: #DCDCCC;">(</span>request<span style="color: #DCDCCC;">)</span>
 </pre>
-</div>
-</li>
-<li>receive
-</li>
+</div></li>
+<li>receive</li>
 </ol>
 <p>
 很常规的client编程模式,上述调用都是非阻塞的,它对使用者来说是透明的, 下面是
@@ -1063,8 +982,8 @@ ngx.say<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"succ
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-5-2" class="outline-4">
-<h4 id="sec-6-5-2">UDP SOCKET</h4>
+<div id="outline-container-orgheadline34" class="outline-4">
+<h4 id="orgheadline34">UDP SOCKET</h4>
 </div>
 </div>
 </div>

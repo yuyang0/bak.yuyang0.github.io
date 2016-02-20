@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <!-- 2016-02-20 Sat 22:43 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>并发</title>
+<title>Tair源码分析</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="fastdfs tfs" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -171,61 +170,93 @@ for the JavaScript code in this tag.
     </div>
 </div>
 <div id="content">
-<h1 class="title">并发</h1>
+<h1 class="title">Tair源码分析</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. CSP</a></li>
-<li><a href="#orgheadline2">2. Actor</a></li>
+<li><a href="#orgheadline4">Config Server</a>
+<ul>
+<li><a href="#orgheadline1">Conf_server_table_manager.[hpp|cpp]</a></li>
+<li><a href="#orgheadline2">Server_info[hpp|cpp]</a></li>
+<li><a href="#orgheadline3">Server_conf_thread.[hpp|cpp]</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline5">Data Server</a></li>
+<li><a href="#orgheadline6">Client</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> CSP</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4">Config Server</h2>
+<div class="outline-text-2" id="text-orgheadline4">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1">Conf_server_table_manager.[hpp|cpp]</h3>
+<div class="outline-text-3" id="text-orgheadline1">
 <p>
-CSP的执行实体是一个一个的process，这些process之间通过channel通信，代表语言是go，
-go语言中的goroutine就是执行实体，goroutine之间通过channel通信，注意go语言中
-channel是可以有缓冲区.
+这个文件实际上包含了一个Group的核心配置信息,在内部这些信息会mmap到一个文件, 这样
+当系统在运行的时候,我们可以根据这个文件来获得该Group的配置,这对debug非常有用. 该
+文件主要包含Conf_server_table_manager这个类
 </p>
-
+</div>
+</div>
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">Server_info[hpp|cpp]</h3>
+<div class="outline-text-3" id="text-orgheadline2">
 <p>
-CSP模型有这几个特点:
+这个文件主要包含server_info和node_info这两个类.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">server_info</span>
+<span style="color: #DCDCCC;">{</span>
+  <span style="color: #F0DFAF; font-weight: bold;">friend</span> <span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">node_info</span>;
+<span style="color: #F0DFAF; font-weight: bold;">public</span>:
+  <span style="color: #F0DFAF; font-weight: bold;">enum</span>
+    <span style="color: #BFEBBF;">{</span>
+      <span style="color: #DFAF8F;">ALIVE</span> = <span style="color: #BFEBBF;">0</span>,
+      <span style="color: #DFAF8F;">DOWN</span>,
+      <span style="color: #DFAF8F;">FORCE_DOWN</span>,
+    <span style="color: #BFEBBF;">}</span>;
+  <span style="color: #93E0E3;">server_info</span><span style="color: #BFEBBF;">()</span>;
+  ~<span style="color: #93E0E3;">server_info</span><span style="color: #BFEBBF;">()</span>;
+  <span style="color: #7CB8BB;">void</span> <span style="color: #93E0E3;">print</span><span style="color: #BFEBBF;">()</span>;
+<span style="color: #F0DFAF; font-weight: bold;">public</span>:
+  <span style="color: #7CB8BB;">uint64_t</span> <span style="color: #DFAF8F;">server_id</span>;        <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">ip + port</span>
+  <span style="color: #7CB8BB;">uint32_t</span> <span style="color: #DFAF8F;">last_time</span>;
+  <span style="color: #7CB8BB;">int8_t</span> <span style="color: #DFAF8F;">status</span>;                <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">0 - alive, 1 - down</span>
+  <span style="color: #7CB8BB;">group_info</span> *<span style="color: #DFAF8F;">group_info_data</span>;
+  <span style="color: #7CB8BB;">node_info</span> *<span style="color: #DFAF8F;">node_info_data</span>;
+<span style="color: #DCDCCC;">}</span>;
+</pre>
+</div>
+<p>
+可以看到server_info实际包含一台server的地址(server_id), 是否在线(status), 以及所
+属的group以及所属的node等信息. node_info其实只包含一个server_info指针, 它主要是
+用来实现后面的node_info_set类型.
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">Server_conf_thread.[hpp|cpp]</h3>
+<div class="outline-text-3" id="text-orgheadline3">
+<p>
+该文件主要实现了一个管理configserver配置的线程.
 </p>
 <ol class="org-ol">
-<li>process之间通过channel来通信, 注意channel是匿名的，任何process都可以向channel中
-读或者写，</li>
-<li>channel的读或者写都是同步的，也就是说，如果一个process向channel中写的时候没有
-process在读该channel那么该process就会阻塞，同理读的时候也一样</li>
+<li>load_config_server: 该函数主要是获取master的id(master_config_server_id)以及获
+得所有configserver组成的map(config_server_info_map)以及
+vector(config_server_info_list).</li>
+<li>run: 这个是线程的主执行函数</li>
 </ol>
-<p>
-下面是一个CSP模型的示意图：<img src="static/img/csp_illustration2.png" alt="csp_illustration2.png" />
-</p>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">2</span> Actor</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-Actor模型的执行实体是actor，每一个actor都有一个关联的mailbox，每个actor都可以读
-取自己的mailbox中的消息，任一actor都可以向其它actor的mailbox发送消息，这样不同的
-actor之间就可以通信了。Actor模型的代表语言是erlang。
-</p>
-
-<p>
-Actor模型的特点:
-</p>
-<ol class="org-ol">
-<li>actor通过mailbox通信，这种通信是点对点的，也就是说一个actor发送消息时必须指定
-要把消息发给哪一个actor的mailbox，这和CSP的channel的区别很大</li>
-<li>actor发送消息时是异步的，也就是说它不会阻塞，当然如果一个actor读它的mailbox,
-而这个时候mailbox中没有消息，那么该actor也是会阻塞的。</li>
-</ol>
-<p>
-下面是一个Actor模型的示意图：<img src="static/img/actor_illustration2.png" alt="actor_illustration2.png" />
-</p>
 </div>
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5">Data Server</h2>
+</div>
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6">Client</h2>
 </div>
 </div>
 <div id="postamble" class="status">

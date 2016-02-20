@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Lua</title>
-<!-- 2015-08-21 Fri 17:27 -->
+<!-- 2016-02-20 Sat 22:43 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lua</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -169,39 +175,39 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">table</a>
+<li><a href="#orgheadline1">table</a>
 <ul>
-<li><a href="#sec-1-1">初始化</a></li>
-<li><a href="#sec-1-2">遍历table</a></li>
+<li><a href="#orgheadline2">初始化</a></li>
+<li><a href="#orgheadline3">遍历table</a></li>
 </ul>
 </li>
-<li><a href="#sec-2">metatable</a>
+<li><a href="#orgheadline4">metatable</a>
 <ul>
-<li><a href="#sec-2-1">特殊方法</a></li>
+<li><a href="#orgheadline5">特殊方法</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">环境</a>
+<li><a href="#orgheadline8">环境</a>
 <ul>
-<li><a href="#sec-3-1">_ENV(lua5.2)</a></li>
-<li><a href="#sec-3-2">setfenv/getfenv</a></li>
+<li><a href="#orgheadline6">_ENV(lua5.2)</a></li>
+<li><a href="#orgheadline7">setfenv/getfenv</a></li>
 </ul>
 </li>
-<li><a href="#sec-4">OOP</a></li>
-<li><a href="#sec-5">package</a></li>
-<li><a href="#sec-6">一些注意事项</a></li>
+<li><a href="#orgheadline9">OOP</a></li>
+<li><a href="#orgheadline10">package</a></li>
+<li><a href="#orgheadline11">一些注意事项</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">table</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">table</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <p>
 实际上是一个hash表, 把python中dict与list杂揉到了一起,设计的并不好.
 </p>
 </div>
-<div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">初始化</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">初始化</h3>
+<div class="outline-text-3" id="text-orgheadline2">
 <div class="org-src-container">
 
 <pre class="src src-lua"><span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DFAF8F;">tbl</span> = <span style="color: #DCDCCC;">{</span>aa=<span style="color: #BFEBBF;">1</span>, bb=<span style="color: #BFEBBF;">2</span>, <span style="color: #CC9393;">"l1"</span>, <span style="color: #CC9393;">"l2"</span>, <span style="color: #CC9393;">"l3"</span><span style="color: #DCDCCC;">}</span>
@@ -232,9 +238,9 @@ table的数字key有这些：1,2,3,4,6,7, 那么#操作符会返回4, 因为中�
 </div>
 </div>
 </div>
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">遍历table</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">遍历table</h3>
+<div class="outline-text-3" id="text-orgheadline3">
 <p>
 pairs，ipairs都会返回一个迭代器，只是pairs会迭代所有的key，ipairs只会迭代数字key。
 所以为了方便起见，最好使用pairs
@@ -249,45 +255,39 @@ pairs，ipairs都会返回一个迭代器，只是pairs会迭代所有的key，i
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">metatable</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4">metatable</h2>
+<div class="outline-text-2" id="text-orgheadline4">
 <p>
 lua的每一个表或者userdata都可以有单独的元表, 其他类型的值则共享该类型的元表,
 比如说所有的整数都拥有一个相同的整数类型的元表, 我们一般对表的元表比较感兴趣.
 </p>
 </div>
-<div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">特殊方法</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">特殊方法</h3>
+<div class="outline-text-3" id="text-orgheadline5">
 <ol class="org-ol">
 <li>__index: <b>元表的__index属性可以为函数或者表</b>, 给定表tbl以及键key,获得
 value的流程如下:
 <ul class="org-ul">
-<li>tbl[key]: 如果为nil, 也就是说key不在tbl中, 那么看下面
-</li>
+<li>tbl[key]: 如果为nil, 也就是说key不在tbl中, 那么看下面</li>
 <li>检查tbl的元表, 如果有元表且元表有__index属性, 并且__index属性的值是函数
-        或者表,那么看下面, 否则返回nil
-</li>
-<li>如果__index属性是一个函数, 那么这样调用 __index(tbl, key)
-</li>
-<li>如果__index属性是一个表, 那么返回__index[key]
-</li>
-</ul>
-</li>
+        或者表,那么看下面, 否则返回nil</li>
+<li>如果__index属性是一个函数, 那么这样调用 __index(tbl, key)</li>
+<li>如果__index属性是一个表, 那么返回__index[key]</li>
+</ul></li>
 <li>__newindex: <b>元表的__newindex属性可以为函数或者表</b>,只有对表中不存在的
-index赋值时才会调用元表的__newindex方法.
-</li>
+index赋值时才会调用元表的__newindex方法.</li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">环境</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">_ENV(lua5.2)</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8">环境</h2>
+<div class="outline-text-2" id="text-orgheadline8">
+</div><div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6">_ENV(lua5.2)</h3>
+<div class="outline-text-3" id="text-orgheadline6">
 <p>
 lua将每一个chunk转换为一个匿名函数, 匿名函数中的自由变量(也就是全局变量)会转
 变为对表_ENV的引用,比如:
@@ -317,9 +317,9 @@ lua将每一个chunk转换为一个匿名函数, 匿名函数中的自由变量(
 </p>
 </div>
 </div>
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2">setfenv/getfenv</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7">setfenv/getfenv</h3>
+<div class="outline-text-3" id="text-orgheadline7">
 <p>
 __ENV机制是lua5.2引入的, 在luajit中也没有实现, setfenv实际上也可以设置函数的
 环境, 第一个参数是一个函数,也可以是数字,它代表当前栈上的函数,比如说1就代表目
@@ -328,9 +328,9 @@ __ENV机制是lua5.2引入的, 在luajit中也没有实现, setfenv实际上也�
 </div>
 </div>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">OOP</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9">OOP</h2>
+<div class="outline-text-2" id="text-orgheadline9">
 <p>
 可以使用表来模拟OOP的行为.
 </p>
@@ -368,17 +368,15 @@ __ENV机制是lua5.2引入的, 在luajit中也没有实现, setfenv实际上也�
 </p>
 </div>
 </div>
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5">package</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgheadline10" class="outline-2">
+<h2 id="orgheadline10">package</h2>
+<div class="outline-text-2" id="text-orgheadline10">
 <p>
 lua中比较好的package设施应该满足以下几点:
 </p>
 <ol class="org-ol">
-<li>不要因为漏写local而污染全局环境
-</li>
-<li>不要在每一个api前添加包名前缀
-</li>
+<li>不要因为漏写local而污染全局环境</li>
+<li>不要在每一个api前添加包名前缀</li>
 </ol>
 <p>
 推荐的做法如下:
@@ -427,22 +425,17 @@ lua中比较好的package设施应该满足以下几点:
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6">一些注意事项</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11">一些注意事项</h2>
+<div class="outline-text-2" id="text-orgheadline11">
 <ol class="org-ol">
 <li>chunk: chunk是lua执行代码的最小单位,一个chunk必定是一个block, 你可以认为
 chunk是最上层的block,一般来说一个文件中的所有lua代码是一个chunk, 在交互环
-境下每一行(前提是这一行是一个完整的语句)都是一个chunk
-</li>
-<li>list的下标从1开始
-</li>
-<li>lua的不等于是 ~=, 不是 !=
-</li>
-<li>lua没有++,&#x2013;以及+=, -= 这样的操作符,所以老老实实的写i=i+1
-</li>
-<li>lua的字符串拼接是 .. ,不是+, 它会自动将数字转换为字符串
-</li>
+境下每一行(前提是这一行是一个完整的语句)都是一个chunk</li>
+<li>list的下标从1开始</li>
+<li>lua的不等于是 ~=, 不是 !=</li>
+<li>lua没有++,&#x2013;以及+=, -= 这样的操作符,所以老老实实的写i=i+1</li>
+<li>lua的字符串拼接是 .. ,不是+, 它会自动将数字转换为字符串</li>
 </ol>
 </div>
 </div>

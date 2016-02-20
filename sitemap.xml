@@ -3,7 +3,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
       <loc>https://yuyang0.github.io/sitemap.html</loc>
-      <lastmod>2015-11-20</lastmod>
+      <lastmod>2016-02-20</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -26,8 +26,14 @@
       <priority>0.5</priority>
    </url>
 <url>
+      <loc>https://yuyang0.github.io/articles/tair-source-code.html</loc>
+      <lastmod>2015-12-11</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+<url>
       <loc>https://yuyang0.github.io/articles/gevent.html</loc>
-      <lastmod>2015-05-26</lastmod>
+      <lastmod>2015-11-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -39,7 +45,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/articles/defects-of-python.html</loc>
-      <lastmod>2015-04-18</lastmod>
+      <lastmod>2016-01-01</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -75,7 +81,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/big-data.html</loc>
-      <lastmod>2015-11-02</lastmod>
+      <lastmod>2015-12-26</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -141,7 +147,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/golang.html</loc>
-      <lastmod>2015-11-10</lastmod>
+      <lastmod>2015-12-11</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -171,7 +177,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/mesos.html</loc>
-      <lastmod>2015-10-12</lastmod>
+      <lastmod>2015-09-12</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -183,7 +189,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/opencl.html</loc>
-      <lastmod>2015-11-20</lastmod>
+      <lastmod>2015-12-11</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -219,7 +225,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/unp.html</loc>
-      <lastmod>2015-03-06</lastmod>
+      <lastmod>2016-02-20</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -249,7 +255,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/jquery.html</loc>
-      <lastmod>2015-01-06</lastmod>
+      <lastmod>2016-02-20</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -369,19 +375,19 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/index.html</loc>
-      <lastmod>2015-11-20</lastmod>
+      <lastmod>2015-11-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
 <url>
       <loc>https://yuyang0.github.io/sitemap.html</loc>
-      <lastmod>2015-11-20</lastmod>
+      <lastmod>2016-02-20</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
 <url>
       <loc>https://yuyang0.github.io/tags.html</loc>
-      <lastmod>2015-11-20</lastmod>
+      <lastmod>2016-02-20</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>

@@ -3,24 +3,31 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>jQuery</title>
-<!-- 2015-11-20 Fri 15:44 -->
+<!-- 2016-02-20 Sat 22:43 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>jQuery</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
 <meta  name="keywords" content="jquery javascript" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -59,15 +66,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -137,6 +143,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "%LINEBREAKS" },
+                        webFont: "%FONT"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "%LINEBREAKS" },
+              font: "%FONT"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "%AUTONUMBER"},
+               MultLineWidth: "%MULTLINEWIDTH",
+               TagSide: "%TAGSIDE",
+               TagIndent: "%TAGINDENT"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -170,66 +198,62 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">一些惯例以及基本常识</a></li>
-<li><a href="#sec-2">jquery selector</a>
+<li><a href="#orgheadline1">一些惯例以及基本常识</a></li>
+<li><a href="#orgheadline9">jquery selector</a>
 <ul>
-<li><a href="#sec-2-1">基本选择器</a></li>
-<li><a href="#sec-2-2">层次选择器</a></li>
-<li><a href="#sec-2-3">过滤选择器</a>
+<li><a href="#orgheadline2">基本选择器</a></li>
+<li><a href="#orgheadline3">层次选择器</a></li>
+<li><a href="#orgheadline8">过滤选择器</a>
 <ul>
-<li><a href="#sec-2-3-1">基本过滤选择器</a></li>
-<li><a href="#sec-2-3-2">内容过滤选择器</a></li>
-<li><a href="#sec-2-3-3">可见性</a></li>
-<li><a href="#sec-2-3-4">属性过滤选择器</a></li>
+<li><a href="#orgheadline4">基本过滤选择器</a></li>
+<li><a href="#orgheadline5">内容过滤选择器</a></li>
+<li><a href="#orgheadline6">可见性</a></li>
+<li><a href="#orgheadline7">属性过滤选择器</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sec-3">DOM操作</a></li>
-<li><a href="#sec-4">jquery事件</a></li>
-<li><a href="#sec-5">jquery动画</a></li>
-<li><a href="#sec-6">ajax</a></li>
-<li><a href="#sec-7">jquery常用插件</a></li>
+<li><a href="#orgheadline10">DOM操作</a></li>
+<li><a href="#orgheadline11">jquery事件</a></li>
+<li><a href="#orgheadline12">jquery动画</a></li>
+<li><a href="#orgheadline13">ajax</a></li>
+<li><a href="#orgheadline14">jquery常用插件</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">一些惯例以及基本常识</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">一些惯例以及基本常识</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <ol class="org-ol">
-<li>在jquery中 $ 就是jQuery的简写,故$.trim 就是jQuery.trim的等价表示
-</li>
-<li>$(function(&#x2026;){&#x2026;})是$(document).ready(function(&#x2026;){&#x2026;})的简写
-</li>
-<li>给超链接添加click事件时,应该返回false,因为这样浏览器会认为用户没有点击超链接,从而阻止浏览器跳转
-</li>
-<li>DOM元素与jquery元素(this是DOM对象, $(this)是jquery对象)前者是html文档的
+<li>在jquery中 \( 就是jQuery的简写,故\).trim 就是jQuery.trim的等价表示</li>
+<li>\((function(...){...})是\)(document).ready(function(&#x2026;){&#x2026;})的简写</li>
+<li>给超链接添加click事件时,应该返回false,因为这样浏览器会认为用户没有点击超链接,从而阻止浏览器跳转</li>
+<li><p>
+DOM元素与jquery元素(this是DOM对象, $(this)是jquery对象)前者是html文档的
 DOM树中的一个节点,可以使用getElementById得到,DOM对象可以使用 javascript
 的方法,比如innerHTML, 后者是jquery包装DOM元素后产生的对象, 只能使用
 jquery的方法比如.html(), .text()
+</p>
 
 <p>
 二者之间的相互转换:
 </p>
 <ol class="org-ol">
 <li>DOM =&gt; jquery : $jqueryObj = $(DOMObj) 直接用$包裹DOM对象即可转换为
-jquery对象
-</li>
-<li>query=&gt; DOM : DOMObj = $jqueryObj<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup> jquery对象是一个数组对象,一个
+jquery对象</li>
+<li>query=&gt; DOM : DOMObj = <code>$jqueryObj[0]</code>, jquery对象是一个数组对象,一个
 jquery对象可以包含多个DOM对象,所以可以通过index或者get(idx)来获得DOM
-对象
-</li>
-</ol>
-</li>
+对象</li>
+</ol></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">jquery selector</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">基本选择器</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9">jquery selector</h2>
+<div class="outline-text-2" id="text-orgheadline9">
+</div><div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">基本选择器</h3>
+<div class="outline-text-3" id="text-orgheadline2">
 <p>
 jQuery的基本语法是：$(selector).action(), 常用的选择器有：
 </p>
@@ -237,343 +261,339 @@ jQuery的基本语法是：$(selector).action(), 常用的选择器有：
 <caption class="t-above"><span class="table-number">Table 1:</span> 基本选择器</caption>
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">选择器</th>
-<th scope="col" class="left">描述</th>
-<th scope="col" class="left">返回</th>
-<th scope="col" class="left">示例</th>
+<th scope="col" class="org-left">选择器</th>
+<th scope="col" class="org-left">描述</th>
+<th scope="col" class="org-left">返回</th>
+<th scope="col" class="org-left">示例</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="left">#id</td>
-<td class="left">根据指定id匹配一个元素</td>
-<td class="left">单个元素</td>
-<td class="left">$("#test")</td>
+<td class="org-left">#id</td>
+<td class="org-left">根据指定id匹配一个元素</td>
+<td class="org-left">单个元素</td>
+<td class="org-left">$("#test")</td>
 </tr>
 
 <tr>
-<td class="left">.class</td>
-<td class="left">根据指定的类名匹配元素</td>
-<td class="left">集合元素</td>
-<td class="left">$(".test")</td>
+<td class="org-left">.class</td>
+<td class="org-left">根据指定的类名匹配元素</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$(".test")</td>
 </tr>
 
 <tr>
-<td class="left">element</td>
-<td class="left">根据元素名匹配元素</td>
-<td class="left">集合元素</td>
-<td class="left">$("p")</td>
+<td class="org-left">element</td>
+<td class="org-left">根据元素名匹配元素</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$("p")</td>
 </tr>
 
 <tr>
-<td class="left">*</td>
-<td class="left">匹配所有元素</td>
-<td class="left">集合元素</td>
-<td class="left">$("*")</td>
+<td class="org-left">*</td>
+<td class="org-left">匹配所有元素</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$("*")</td>
 </tr>
 
 <tr>
-<td class="left">selector1, selector2 &#x2026;</td>
-<td class="left">将每个选择器匹配到的元素合并到一起</td>
-<td class="left">集合元素</td>
-<td class="left">$("div, span, .myClass")</td>
+<td class="org-left">selector1, selector2 &#x2026;</td>
+<td class="org-left">将每个选择器匹配到的元素合并到一起</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$("div, span, .myClass")</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2">层次选择器</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">层次选择器</h3>
+<div class="outline-text-3" id="text-orgheadline3">
 <p>
 获取后代元素,子元素,兄弟元素,相邻元素等
 </p>
 <ol class="org-ol">
-<li>$('body div') : body中的所有div元素
-</li>
+<li>$('body div') : body中的所有div元素</li>
 <li>$('body &gt; div') : body的div子元素(注意只包括直接子元素,这是和前者的区别, 并不递归的包含,也就是子元素内
-div元素并不被该模式识别)
-</li>
-<li>$('.one + div') : class为one的元素的下一个div兄弟元素,可以用  $('.one').next('div')代替
-</li>
-<li>$('.one ~ div') : class为one的元素后的所有div兄弟元素, 可以用 $('.one').nextAll('div')代替
-</li>
+div元素并不被该模式识别)</li>
+<li>$('.one + div') : class为one的元素的下一个div兄弟元素,可以用  $('.one').next('div')代替</li>
+<li>$('.one ~ div') : class为one的元素后的所有div兄弟元素, 可以用 $('.one').nextAll('div')代替</li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3">过滤选择器</h3>
-<div class="outline-text-3" id="text-2-3">
-</div><div id="outline-container-sec-2-3-1" class="outline-4">
-<h4 id="sec-2-3-1">基本过滤选择器</h4>
-<div class="outline-text-4" id="text-2-3-1">
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8">过滤选择器</h3>
+<div class="outline-text-3" id="text-orgheadline8">
+</div><div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4">基本过滤选择器</h4>
+<div class="outline-text-4" id="text-orgheadline4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 2:</span> 基本过滤选择器</caption>
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">选择器</th>
-<th scope="col" class="left">描述</th>
-<th scope="col" class="left">返回</th>
-<th scope="col" class="left">示例</th>
+<th scope="col" class="org-left">选择器</th>
+<th scope="col" class="org-left">描述</th>
+<th scope="col" class="org-left">返回</th>
+<th scope="col" class="org-left">示例</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="left">:first</td>
-<td class="left">选取第一个元素</td>
-<td class="left">单个元素</td>
-<td class="left">$("div:first")</td>
+<td class="org-left">:first</td>
+<td class="org-left">选取第一个元素</td>
+<td class="org-left">单个元素</td>
+<td class="org-left">$("div:first")</td>
 </tr>
 
 <tr>
-<td class="left">:last</td>
-<td class="left">选取最后一个元素</td>
-<td class="left">单个元素</td>
-<td class="left">$("div:last")</td>
+<td class="org-left">:last</td>
+<td class="org-left">选取最后一个元素</td>
+<td class="org-left">单个元素</td>
+<td class="org-left">$("div:last")</td>
 </tr>
 
 <tr>
-<td class="left">:not(selector)</td>
-<td class="left">去除所有与给定选择器匹配的元素</td>
-<td class="left">集合元素</td>
-<td class="left">$("input:not(.myClass)")</td>
+<td class="org-left">:not(selector)</td>
+<td class="org-left">去除所有与给定选择器匹配的元素</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$("input:not(.myClass)")</td>
 </tr>
 
 <tr>
-<td class="left">:even</td>
-<td class="left">索引为偶数的所有元素(索引从0开始)</td>
-<td class="left">集合元素</td>
-<td class="left">$("input:even")</td>
+<td class="org-left">:even</td>
+<td class="org-left">索引为偶数的所有元素(索引从0开始)</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$("input:even")</td>
 </tr>
 
 <tr>
-<td class="left">:odd</td>
-<td class="left">索引为奇数的所有元素(索引从0开始)</td>
-<td class="left">集合元素</td>
-<td class="left">$("input:odd")</td>
+<td class="org-left">:odd</td>
+<td class="org-left">索引为奇数的所有元素(索引从0开始)</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$("input:odd")</td>
 </tr>
 
 <tr>
-<td class="left">:eq(index)</td>
-<td class="left">索引等于index的元素(索引从0开始)</td>
-<td class="left">单个元素</td>
-<td class="left">$("input:eq(1)")</td>
+<td class="org-left">:eq(index)</td>
+<td class="org-left">索引等于index的元素(索引从0开始)</td>
+<td class="org-left">单个元素</td>
+<td class="org-left">$("input:eq(1)")</td>
 </tr>
 
 <tr>
-<td class="left">:gt(index)</td>
-<td class="left">索引大于index的元素(索引从0开始)</td>
-<td class="left">集合元素</td>
-<td class="left">$("input:gt(1)")</td>
+<td class="org-left">:gt(index)</td>
+<td class="org-left">索引大于index的元素(索引从0开始)</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$("input:gt(1)")</td>
 </tr>
 
 <tr>
-<td class="left">:lt(index)</td>
-<td class="left">索引小于index的元素(索引从0开始)</td>
-<td class="left">集合元素</td>
-<td class="left">$("input:lt(1)")</td>
+<td class="org-left">:lt(index)</td>
+<td class="org-left">索引小于index的元素(索引从0开始)</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$("input:lt(1)")</td>
 </tr>
 
 <tr>
-<td class="left">:header</td>
-<td class="left">所有标题元素(h1~h6)</td>
-<td class="left">集合元素</td>
-<td class="left">$("header")</td>
+<td class="org-left">:header</td>
+<td class="org-left">所有标题元素(h1~h6)</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$("header")</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="outline-container-sec-2-3-2" class="outline-4">
-<h4 id="sec-2-3-2">内容过滤选择器</h4>
-<div class="outline-text-4" id="text-2-3-2">
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5">内容过滤选择器</h4>
+<div class="outline-text-4" id="text-orgheadline5">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 3:</span> 内容过滤选择器</caption>
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">选择器</th>
-<th scope="col" class="left">描述</th>
-<th scope="col" class="left">返回</th>
-<th scope="col" class="left">示例</th>
+<th scope="col" class="org-left">选择器</th>
+<th scope="col" class="org-left">描述</th>
+<th scope="col" class="org-left">返回</th>
+<th scope="col" class="org-left">示例</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="left">:contains(text)</td>
-<td class="left">选取含有文本内容为 text的元素</td>
-<td class="left">集合元素</td>
-<td class="left">$("div:contains('我')")</td>
+<td class="org-left">:contains(text)</td>
+<td class="org-left">选取含有文本内容为 text的元素</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$("div:contains('我')")</td>
 </tr>
 
 <tr>
-<td class="left">:empty</td>
-<td class="left">选取不含有子元素或者文本的空元素</td>
-<td class="left">集合元素</td>
-<td class="left">$("div:empty")</td>
+<td class="org-left">:empty</td>
+<td class="org-left">选取不含有子元素或者文本的空元素</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$("div:empty")</td>
 </tr>
 
 <tr>
-<td class="left">:has(selector)</td>
-<td class="left">选取含有选择器所匹配的元素的元素</td>
-<td class="left">集合元素</td>
-<td class="left">$("div:has(p)")</td>
+<td class="org-left">:has(selector)</td>
+<td class="org-left">选取含有选择器所匹配的元素的元素</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$("div:has(p)")</td>
 </tr>
 
 <tr>
-<td class="left">:parent</td>
-<td class="left">选取含有子元素或者文本的元素</td>
-<td class="left">集合元素</td>
-<td class="left">$("div:parent")含有子元素或文本的div元素</td>
+<td class="org-left">:parent</td>
+<td class="org-left">选取含有子元素或者文本的元素</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$("div:parent")含有子元素或文本的div元素</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-sec-2-3-3" class="outline-4">
-<h4 id="sec-2-3-3">可见性</h4>
-<div class="outline-text-4" id="text-2-3-3">
+<div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6">可见性</h4>
+<div class="outline-text-4" id="text-orgheadline6">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 4:</span> 可见性过滤选择器</caption>
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">选择器</th>
-<th scope="col" class="left">描述</th>
-<th scope="col" class="left">返回</th>
-<th scope="col" class="left">示例</th>
+<th scope="col" class="org-left">选择器</th>
+<th scope="col" class="org-left">描述</th>
+<th scope="col" class="org-left">返回</th>
+<th scope="col" class="org-left">示例</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="left">:hidden</td>
-<td class="left">选取所有隐藏的元素</td>
-<td class="left">集合元素</td>
-<td class="left">$(":hidden"), $("input:hidden")</td>
+<td class="org-left">:hidden</td>
+<td class="org-left">选取所有隐藏的元素</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$(":hidden"), $("input:hidden")</td>
 </tr>
 
 <tr>
-<td class="left">:visible</td>
-<td class="left">选取所有可见的元素</td>
-<td class="left">集合元素</td>
-<td class="left">$("div:visible")</td>
+<td class="org-left">:visible</td>
+<td class="org-left">选取所有可见的元素</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$("div:visible")</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="outline-container-sec-2-3-4" class="outline-4">
-<h4 id="sec-2-3-4">属性过滤选择器</h4>
-<div class="outline-text-4" id="text-2-3-4">
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7">属性过滤选择器</h4>
+<div class="outline-text-4" id="text-orgheadline7">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 5:</span> 属性过滤选择器</caption>
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">选择器</th>
-<th scope="col" class="left">描述</th>
-<th scope="col" class="left">返回</th>
-<th scope="col" class="left">示例</th>
+<th scope="col" class="org-left">选择器</th>
+<th scope="col" class="org-left">描述</th>
+<th scope="col" class="org-left">返回</th>
+<th scope="col" class="org-left">示例</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="left">[attribute]</td>
-<td class="left">含有attribute属性的元素</td>
-<td class="left">集合元素</td>
-<td class="left">$("div[id]")</td>
+<td class="org-left">[attribute]</td>
+<td class="org-left">含有attribute属性的元素</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$("div[id]")</td>
 </tr>
 
 <tr>
-<td class="left">[attribute=value]</td>
-<td class="left">attribute属性的值等于value的元素</td>
-<td class="left">集合元素</td>
-<td class="left">$("div[title=test]")</td>
+<td class="org-left">[attribute=value]</td>
+<td class="org-left">attribute属性的值等于value的元素</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$("div[title=test]")</td>
 </tr>
 
 <tr>
-<td class="left">[attribute!=value]</td>
-<td class="left">attribute属性的值不等于value的元素</td>
-<td class="left">集合元素</td>
-<td class="left">$("div[title!=test]")</td>
+<td class="org-left">[attribute!=value]</td>
+<td class="org-left">attribute属性的值不等于value的元素</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$("div[title!=test]")</td>
 </tr>
 
 <tr>
-<td class="left">[attribute^=value]</td>
-<td class="left">attribute属性的值以value开头的元素</td>
-<td class="left">集合元素</td>
-<td class="left">$("div[title^=test]")</td>
+<td class="org-left">[attribute^=value]</td>
+<td class="org-left">attribute属性的值以value开头的元素</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$("div[title^=test]")</td>
 </tr>
 
 <tr>
-<td class="left">[attribute$=value]</td>
-<td class="left">attribute属性的值以value结尾的元素</td>
-<td class="left">集合元素</td>
-<td class="left">$("div[title$=test]")</td>
+<td class="org-left">[attribute$=value]</td>
+<td class="org-left">attribute属性的值以value结尾的元素</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$("div[title$=test]")</td>
 </tr>
 
 <tr>
-<td class="left">[attribute*=value]</td>
-<td class="left">attribute属性的值含有value的元素</td>
-<td class="left">集合元素</td>
-<td class="left">$("div[title*=test]")</td>
+<td class="org-left">[attribute*=value]</td>
+<td class="org-left">attribute属性的值含有value的元素</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$("div[title*=test]")</td>
 </tr>
 
 <tr>
-<td class="left">[selector1][selector2]</td>
-<td class="left">复合选择器, 满足多个条件,是且的关系</td>
-<td class="left">集合元素</td>
-<td class="left">$("div[id][title$=test]")</td>
+<td class="org-left">[selector1][selector2]</td>
+<td class="org-left">复合选择器, 满足多个条件,是且的关系</td>
+<td class="org-left">集合元素</td>
+<td class="org-left">$("div[id][title$=test]")</td>
 </tr>
 </tbody>
 </table>
@@ -581,127 +601,87 @@ div元素并不被该模式识别)
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">DOM操作</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline10" class="outline-2">
+<h2 id="orgheadline10">DOM操作</h2>
+<div class="outline-text-2" id="text-orgheadline10">
 <ol class="org-ol">
-<li>创建节点: 使用 <code>$(...)</code>, 比如 <code>$('&lt;div&gt;some content&lt;/div&gt;')</code>.
-</li>
+<li>创建节点: 使用 <code>$(...)</code>, 比如 <code>$('&lt;div&gt;some content&lt;/div&gt;')</code>.</li>
 <li>插入节点 $(A).xxx(B) 其中xxx代替下面的方法，注意当A是元素集合时，那么B插
 入A时会将B插入每个A元素，反之亦然
 <ul class="org-ul">
-<li>append, appendTo : 前者是B作为最后一个子元素插入A中,后者相反,是A作为最后一个子元素插入B中
-</li>
-<li>prepend, prependTo : 前者是B作为第一个子元素插入A中,后者相反,是A作为第一个子元素插入B中
-</li>
-<li>after, insertAfter : 前者是B作为一个兄弟元素插入A之后,后者相反,是A作为一个兄弟元素插入B之后
-</li>
-<li>before, insertBefore : 前者是B作为一个兄弟元素插入A之前,后者相反,是A作为一个兄弟元素插入B之前
-</li>
-</ul>
-</li>
+<li>append, appendTo : 前者是B作为最后一个子元素插入A中,后者相反,是A作为最后一个子元素插入B中</li>
+<li>prepend, prependTo : 前者是B作为第一个子元素插入A中,后者相反,是A作为第一个子元素插入B中</li>
+<li>after, insertAfter : 前者是B作为一个兄弟元素插入A之后,后者相反,是A作为一个兄弟元素插入B之后</li>
+<li>before, insertBefore : 前者是B作为一个兄弟元素插入A之前,后者相反,是A作为一个兄弟元素插入B之前</li>
+</ul></li>
 <li>删除节点
 <ul class="org-ul">
-<li><code>.remove()</code> :删除节点(<code>A.remove()</code> 删除A)
-</li>
-<li><code>.empty()</code>  :清空节点内容(<code>A.empty()</code> 清空A,就是将innerHTML设为'')
-</li>
-</ul>
-</li>
+<li><code>.remove()</code> :删除节点(<code>A.remove()</code> 删除A)</li>
+<li><code>.empty()</code>  :清空节点内容(<code>A.empty()</code> 清空A,就是将innerHTML设为'')</li>
+</ul></li>
 <li>复制节点
 <ul class="org-ul">
-<li><code>.clone()</code> : 复制节点，如果.clone(true)会复制绑定的事件
-</li>
-</ul>
-</li>
+<li><code>.clone()</code> : 复制节点，如果.clone(true)会复制绑定的事件</li>
+</ul></li>
 <li>替换节点
 <ul class="org-ul">
-<li><code>.replaceWith</code>: <code>A.replaceWith(B)</code> 用B替换A中每个元素(A可能是一个元素集合)
-</li>
-<li><code>.replaceAll</code> : <code>A.replaceAll(B)</code>  用A替换B中每个元素(B可能是一个元素集合)
-</li>
-</ul>
-</li>
+<li><code>.replaceWith</code>: <code>A.replaceWith(B)</code> 用B替换A中每个元素(A可能是一个元素集合)</li>
+<li><code>.replaceAll</code> : <code>A.replaceAll(B)</code>  用A替换B中每个元素(B可能是一个元素集合)</li>
+</ul></li>
 <li>包裹节点
 <ul class="org-ul">
-<li>.wrap:   <code>$('strong').wrap('&lt;b&gt;&lt;/b&gt;')</code> 将所有的元素单独包裹
-</li>
-<li>.wrapAll: 将所有匹配的元素用一个元素来包裹
-</li>
-</ul>
-</li>
+<li>.wrap:   <code>$('strong').wrap('&lt;b&gt;&lt;/b&gt;')</code> 将所有的元素单独包裹</li>
+<li>.wrapAll: 将所有匹配的元素用一个元素来包裹</li>
+</ul></li>
 <li>属性操作
 <ul class="org-ul">
-<li><code>.attr(name[, val])</code> : 一个参数是获取，两个参数是设置
-</li>
-<li><code>.removeAttr(name)</code>  : 删除参数指定的属性
-</li>
-</ul>
-</li>
+<li><code>.attr(name[, val])</code> : 一个参数是获取，两个参数是设置</li>
+<li><code>.removeAttr(name)</code>  : 删除参数指定的属性</li>
+</ul></li>
 <li>样式操作： 样式实际就是class属性，所以可以通过.attr('class')来获得并进行操
 作，注意和css区别，css指定某一项css样式比如background-color，而这里指的是
 样式表中定义的类样式（css文件中以.开头样式规则）可是为了方便jquery提供了专
 门的api
 <ul class="org-ul">
-<li><code>.addClass(name)</code>    : 在class属性中添加一个样式
-</li>
-<li><code>.removeClass(name)</code> :
-</li>
-<li><code>.toggleClass(name)</code> : 在属性来回的切回，如果存在那就删除，如果不存在那就添加
-</li>
-</ul>
-</li>
+<li><code>.addClass(name)</code>    : 在class属性中添加一个样式</li>
+<li><code>.removeClass(name)</code> :</li>
+<li><code>.toggleClass(name)</code> : 在属性来回的切回，如果存在那就删除，如果不存在那就添加</li>
+</ul></li>
 <li>获得html，文本，值 （无参数是获取，一个参数是设置）
 <ul class="org-ul">
-<li><code>.html([val])</code>  : 注意是innerHTML (设置或者获取)
-</li>
-<li><code>.text([val])</code>  : 会去掉html标签,innerText或者textContent(设置或获取)
-</li>
-<li><code>.val([val])</code>   : 表单元素的值
-</li>
-</ul>
-</li>
+<li><code>.html([val])</code>  : 注意是innerHTML (设置或者获取)</li>
+<li><code>.text([val])</code>  : 会去掉html标签,innerText或者textContent(设置或获取)</li>
+<li><code>.val([val])</code>   : 表单元素的值</li>
+</ul></li>
 <li>遍历节点
 <ul class="org-ul">
-<li><code>.children()</code>  : 所有的子节点, <code>$(body).children()</code> body的所有子节点
-</li>
-<li><code>.next()</code>      : 紧挨着的下一个兄弟节点
-</li>
-<li><code>.prev()</code>      : 紧挨着的上一个兄弟节点
-</li>
-<li><code>.siblings()</code>  : 所有的兄弟节点
-</li>
-<li><code>.parent()</code>    : 父节点
-</li>
-</ul>
-</li>
+<li><code>.children()</code>  : 所有的子节点, <code>$(body).children()</code> body的所有子节点</li>
+<li><code>.next()</code>      : 紧挨着的下一个兄弟节点</li>
+<li><code>.prev()</code>      : 紧挨着的上一个兄弟节点</li>
+<li><code>.siblings()</code>  : 所有的兄弟节点</li>
+<li><code>.parent()</code>    : 父节点</li>
+</ul></li>
 <li>css-DOM
 <ul class="org-ul">
-<li><code>.css(name[, val])</code> : 获得和设置css属性
-</li>
-<li><code>.width([val])</code>   : 获得或者设置宽度值
-</li>
-<li><code>.height([val])</code>  : 获得或者设置高度值
-</li>
-<li><code>.offset()</code>       : 离窗口的距离(viewpoint), 返回{left: val1, top: val2}.
-</li>
+<li><code>.css(name[, val])</code> : 获得和设置css属性</li>
+<li><code>.width([val])</code>   : 获得或者设置宽度值</li>
+<li><code>.height([val])</code>  : 获得或者设置高度值</li>
+<li><code>.offset()</code>       : 离窗口的距离(viewpoint), 返回{left: val1, top: val2}.</li>
 <li><code>.position()</code>     : 获得相对于最近的设置了relative或者absolute的父节点
-的偏移. 返回{left: val1, top: val2}
-</li>
-<li><code>.offsetTop([val])</code>  : 获得或设置横滚动条相对于浏览器左边界的距离
-</li>
-<li><code>.offsetLeft([val])</code> : 获得或设置竖滚动条相对于浏览器顶部的距离
-</li>
-</ul>
-</li>
+的偏移. 返回{left: val1, top: val2}</li>
+<li><code>.offsetTop([val])</code>  : 获得或设置横滚动条相对于浏览器左边界的距离</li>
+<li><code>.offsetLeft([val])</code> : 获得或设置竖滚动条相对于浏览器顶部的距离</li>
+</ul></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">jquery事件</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11">jquery事件</h2>
+<div class="outline-text-2" id="text-orgheadline11">
 <ol class="org-ol">
-<li>.bind : 可以通过该方法将特定函数绑定到特定的事件上eg:
+<li><p>
+.bind : 可以通过该方法将特定函数绑定到特定的事件上eg:
+</p>
 <div class="org-src-container">
 
 <pre class="src src-javascript">$<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'div.li'</span><span style="color: #DCDCCC;">)</span>.bind<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'click'</span>, <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #BFEBBF;">(){</span>
@@ -711,26 +691,21 @@ div元素并不被该模式识别)
 </div>
 <p>
 同理可以绑定mouseover,mouseout,focus,blur等等,但因为有些事件很常用,所以jquery提供了简写方法
-</p>
-</li>
-<li>.click
-</li>
-<li>.mouseover, .mouseout
-</li>
+</p></li>
+<li>.click</li>
+<li>.mouseover, .mouseout</li>
 <li>合成事件: .hover 与.toggle是jquery的两个自定义事件
 <ul class="org-ul">
-<li>hover(enter, leave) : 鼠标进入时调用enter,鼠标离开时调用leave
-</li>
-<li>toggle(f1, f2, &#x2026; fN) : 模拟鼠标单击,第一次单击调用f1, 第N次单击调用fN,第N+1次调用f1
-</li>
+<li>hover(enter, leave) : 鼠标进入时调用enter,鼠标离开时调用leave</li>
+<li>toggle(f1, f2, &#x2026; fN) : 模拟鼠标单击,第一次单击调用f1, 第N次单击调用fN,第N+1次调用f1</li>
 <li>toggle()  :无参数调用时不是绑定click事件,而是使元素在显示与隐藏状态切换,也就是该元素已显示,那么调用
-toggle()就会隐藏该元素,如果该元素已隐藏,那么调用toggle()就会显示该元素,这和toggleClass类似
-</li>
-</ul>
-</li>
-<li>事件冒泡
+toggle()就会隐藏该元素,如果该元素已隐藏,那么调用toggle()就会显示该元素,这和toggleClass类似</li>
+</ul></li>
+<li><p>
+事件冒泡
 当元素嵌套，而且父元素也绑定了同一事件，那么会同时触发父元素的事件处理函数，为了阻止这种行为可以用一下
 代码：
+</p>
 <div class="org-src-container">
 
 <pre class="src src-javascript">$<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #BFEBBF;">(){</span>
@@ -751,99 +726,70 @@ toggle()就会隐藏该元素,如果该元素已隐藏,那么调用toggle()就�
 <p>
 给回调函数添加一个event参数，并且调用event.stopPropagation()方法，这样就可以阻止事件冒泡，也就是对sub的
 click不会触发sub的父元素的click事件，
-</p>
-</li>
+</p></li>
 <li>模拟事件(不是用户触发，而是通过js模拟触发)
 <ul class="org-ul">
-<li>.trigger: $('#btn').trigger('click) 触发click事件， 也可以直接$('#btn').click()
-</li>
-<li>传递数据： .trigger(type, [.data])
-</li>
-</ul>
-</li>
+<li>.trigger: \(('#btn').trigger('click) 触发click事件， 也可以直接\)('#btn').click()</li>
+<li>传递数据： .trigger(type, [.data])</li>
+</ul></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5">jquery动画</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12">jquery动画</h2>
+<div class="outline-text-2" id="text-orgheadline12">
 <ol class="org-ol">
 <li>.hide([speed]), .show([speed]), .toggle([speed]) : 显示，隐藏，如果指定speed，那么会渐变的改变元素的高
-度
-</li>
+度</li>
 <li>.fadeIn([speed]), fadeOut([speed]), .fadeToggle([speed])  :显示，隐藏，如果指定speed，那么会渐变的改变
-元素的透明度，直到元素消失或者显示，也就是动画过程中元素的高度是不变的
-</li>
-<li>slideUp， slideDown，slideToggle：滑动效果
-</li>
+元素的透明度，直到元素消失或者显示，也就是动画过程中元素的高度是不变的</li>
+<li>slideUp， slideDown，slideToggle：滑动效果</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6">ajax</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13">ajax</h2>
+<div class="outline-text-2" id="text-orgheadline13">
 <p>
 jquery ajax的回调函数的原型：
 </p>
 <ul class="org-ul">
-<li>.load: function callback(responseText, statusText, XMLHttpRequest)
-</li>
-<li>$.get, $.post, $.ajax: function callback(data, statusText)
-</li>
+<li>.load: function callback(responseText, statusText, XMLHttpRequest)</li>
+<li>$.get, $.post, $.ajax: function callback(data, statusText)</li>
 </ul>
 <p>
 其中textStatus可以是'success', 'error', 'notmodified', 'timeout'
 </p>
 
 <ul class="org-ul">
-<li>.load(url [, data] [, callback]) :将返回的html插入DOM元素中, callback无论请求成功与否都会调用
-</li>
+<li>.load(url [, data] [, callback]) :将返回的html插入DOM元素中, callback无论请求成功与否都会调用</li>
 <li>$.get(url [, data] [[, callback] [, type]) : type可以是"html"，"xml"，"json", callback只有在请求成功
-(http 200)时才调用
-</li>
-<li>$.post : 和$.get类似，只是通过post传送数据
-</li>
-<li>$.getScript, $.getJSON :前者可以用来加载js文件，后者用来获取json用来给回调函数操作
-</li>
-<li>$.ajax(options) :
-</li>
-<li>.serialize() :在form提交时可以直接序列化form内的数据填入data域，返回字符串
-</li>
-<li>.serializeArray() : 和serialize方法类似，不过不返回字符串，而是返回json数据
-</li>
-<li>$.param() : $.param({a:1, b:2, c:3}) ====&gt; a=1&amp;b=2&amp;c=3, 该方法是.serialize方法的核心
-</li>
+(http 200)时才调用</li>
+<li>\(.post : 和\).get类似，只是通过post传送数据</li>
+<li>$.getScript, $.getJSON :前者可以用来加载js文件，后者用来获取json用来给回调函数操作</li>
+<li>$.ajax(options) :</li>
+<li>.serialize() :在form提交时可以直接序列化form内的数据填入data域，返回字符串</li>
+<li>.serializeArray() : 和serialize方法类似，不过不返回字符串，而是返回json数据</li>
+<li>$.param() : $.param({a:1, b:2, c:3}) ====&gt; a=1&amp;b=2&amp;c=3, 该方法是.serialize方法的核心</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7">jquery常用插件</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-orgheadline14" class="outline-2">
+<h2 id="orgheadline14">jquery常用插件</h2>
+<div class="outline-text-2" id="text-orgheadline14">
 <ol class="org-ol">
 <li>jquery.form
-可以很方便的将你的form变成ajax版
-</li>
+可以很方便的将你的form变成ajax版</li>
 <li>jquery blockUI
-代替alert
-</li>
+代替alert</li>
 <li>jquery fancybox
-对于图片，可以弹出显示，效果很不错，而且还可以支持鼠标滚轮
-</li>
+对于图片，可以弹出显示，效果很不错，而且还可以支持鼠标滚轮</li>
 <li>jVectorMap
-可以用来显示地图,并且在地图上标注地点
-</li>
+可以用来显示地图,并且在地图上标注地点</li>
 </ol>
 </div>
 </div>
-<div id="footnotes">
-<h2 class="footnotes">Footnotes: </h2>
-<div id="text-footnotes">
-
-<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p>DEFINITION NOT FOUND.</p></div>
-
-
 </div>
-</div></div>
 <div id="postamble" class="status">
 <!-- 多说评论框 start -->
   <div id="duoshuo-id" class="ds-thread" data-thread-key="请将此处替换成文章在你的站点中的ID" data-title="请替换成文章的标题" data-url="请替换成文章的网址"></div>

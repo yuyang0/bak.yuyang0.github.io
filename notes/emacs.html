@@ -3,24 +3,31 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
 <head>
-<title>Emacs笔记</title>
-<!-- 2015-08-21 Fri 17:27 -->
+<!-- 2016-02-20 Sat 22:43 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Emacs笔记</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
 <meta  name="keywords" content="emacs" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -59,15 +66,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -138,6 +144,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "%LINEBREAKS" },
+                        webFont: "%FONT"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "%LINEBREAKS" },
+              font: "%FONT"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "%AUTONUMBER"},
+               MultLineWidth: "%MULTLINEWIDTH",
+               TagSide: "%TAGSIDE",
+               TagIndent: "%TAGINDENT"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -171,95 +199,95 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. emacs大杂烩</a>
+<li><a href="#orgheadline48">1. emacs大杂烩</a>
 <ul>
-<li><a href="#sec-1-1">1.1. 编译emacs24</a></li>
-<li><a href="#sec-1-2">1.2. emacs各种设置与注意事项</a>
+<li><a href="#orgheadline1">1.1. 编译emacs24</a></li>
+<li><a href="#orgheadline4">1.2. emacs各种设置与注意事项</a>
 <ul>
-<li><a href="#sec-1-2-1">1.2.1. emacs在英文系统的输入法问题</a></li>
-<li><a href="#sec-1-2-2">1.2.2. 交换Control<sub>L与Capslocks</sub></a></li>
+<li><a href="#orgheadline2">1.2.1. emacs在英文系统的输入法问题</a></li>
+<li><a href="#orgheadline3">1.2.2. 交换Control<sub>L与Capslocks</sub></a></li>
 </ul>
 </li>
-<li><a href="#sec-1-3">1.3. auto-complete&#xa0;&#xa0;&#xa0;<span class="tag"><span class="complete">complete</span></span></a></li>
-<li><a href="#sec-1-4">1.4. grep&#xa0;&#xa0;&#xa0;<span class="tag"><span class="grep">grep</span></span></a></li>
-<li><a href="#sec-1-5">1.5. isearch&#xa0;&#xa0;&#xa0;<span class="tag"><span class="isearch">isearch</span></span></a></li>
-<li><a href="#sec-1-6">1.6. dired&#xa0;&#xa0;&#xa0;<span class="tag"><span class="dired">dired</span></span></a>
+<li><a href="#orgheadline5">1.3. auto-complete&#xa0;&#xa0;&#xa0;<span class="tag"><span class="complete">complete</span></span></a></li>
+<li><a href="#orgheadline6">1.4. grep&#xa0;&#xa0;&#xa0;<span class="tag"><span class="grep">grep</span></span></a></li>
+<li><a href="#orgheadline7">1.5. isearch&#xa0;&#xa0;&#xa0;<span class="tag"><span class="isearch">isearch</span></span></a></li>
+<li><a href="#orgheadline9">1.6. dired&#xa0;&#xa0;&#xa0;<span class="tag"><span class="dired">dired</span></span></a>
 <ul>
-<li><a href="#sec-1-6-1">1.6.1. wdired(批量改名)</a></li>
+<li><a href="#orgheadline8">1.6.1. wdired(批量改名)</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-7">1.7. ibuffer的快捷键&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ibuffer">ibuffer</span></span></a></li>
-<li><a href="#sec-1-8">1.8. cua-mode以及矩形操作的快捷键&#xa0;&#xa0;&#xa0;<span class="tag"><span class="cua">cua</span></span></a></li>
-<li><a href="#sec-1-9">1.9. mutiple cursors多光标&#xa0;&#xa0;&#xa0;<span class="tag"><span class="multiple">multiple</span>&#xa0;<span class="cursor">cursor</span></span></a></li>
-<li><a href="#sec-1-10">1.10. ace-jump-mode&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ace">ace</span></span></a></li>
-<li><a href="#sec-1-11">1.11. expand region&#xa0;&#xa0;&#xa0;<span class="tag"><span class="expand">expand</span>&#xa0;<span class="region">region</span></span></a></li>
-<li><a href="#sec-1-12">1.12. paredit&#xa0;&#xa0;&#xa0;<span class="tag"><span class="paredit">paredit</span></span></a></li>
-<li><a href="#sec-1-13">1.13. ido(Interactively Do Things)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ido">ido</span></span></a>
+<li><a href="#orgheadline10">1.7. ibuffer的快捷键&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ibuffer">ibuffer</span></span></a></li>
+<li><a href="#orgheadline11">1.8. cua-mode以及矩形操作的快捷键&#xa0;&#xa0;&#xa0;<span class="tag"><span class="cua">cua</span></span></a></li>
+<li><a href="#orgheadline12">1.9. mutiple cursors多光标&#xa0;&#xa0;&#xa0;<span class="tag"><span class="multiple">multiple</span>&#xa0;<span class="cursor">cursor</span></span></a></li>
+<li><a href="#orgheadline13">1.10. ace-jump-mode&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ace">ace</span></span></a></li>
+<li><a href="#orgheadline14">1.11. expand region&#xa0;&#xa0;&#xa0;<span class="tag"><span class="expand">expand</span>&#xa0;<span class="region">region</span></span></a></li>
+<li><a href="#orgheadline15">1.12. paredit&#xa0;&#xa0;&#xa0;<span class="tag"><span class="paredit">paredit</span></span></a></li>
+<li><a href="#orgheadline18">1.13. ido(Interactively Do Things)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ido">ido</span></span></a>
 <ul>
-<li><a href="#sec-1-13-1">1.13.1. 用于编程的命令</a></li>
-<li><a href="#sec-1-13-2">1.13.2. smex&#xa0;&#xa0;&#xa0;<span class="tag"><span class="smex">smex</span></span></a></li>
+<li><a href="#orgheadline16">1.13.1. 用于编程的命令</a></li>
+<li><a href="#orgheadline17">1.13.2. smex&#xa0;&#xa0;&#xa0;<span class="tag"><span class="smex">smex</span></span></a></li>
 </ul>
 </li>
-<li><a href="#sec-1-14">1.14. helm(a good alternative to ido)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="helm">helm</span></span></a>
+<li><a href="#orgheadline23">1.14. helm(a good alternative to ido)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="helm">helm</span></span></a>
 <ul>
-<li><a href="#sec-1-14-1">1.14.1. 打开文件</a></li>
-<li><a href="#sec-1-14-2">1.14.2. ediff&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ediff">ediff</span></span></a></li>
-<li><a href="#sec-1-14-3">1.14.3. grep(increment grep)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="grep">grep</span></span></a></li>
-<li><a href="#sec-1-14-4">1.14.4. locate&#xa0;&#xa0;&#xa0;<span class="tag"><span class="locate">locate</span></span></a></li>
+<li><a href="#orgheadline19">1.14.1. 打开文件</a></li>
+<li><a href="#orgheadline20">1.14.2. ediff&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ediff">ediff</span></span></a></li>
+<li><a href="#orgheadline21">1.14.3. grep(increment grep)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="grep">grep</span></span></a></li>
+<li><a href="#orgheadline22">1.14.4. locate&#xa0;&#xa0;&#xa0;<span class="tag"><span class="locate">locate</span></span></a></li>
 </ul>
 </li>
-<li><a href="#sec-1-15">1.15. w3m&#xa0;&#xa0;&#xa0;<span class="tag"><span class="w3m">w3m</span>&#xa0;<span class="w3c">w3c</span></span></a></li>
-<li><a href="#sec-1-16">1.16. ansi-term&#xa0;&#xa0;&#xa0;<span class="tag"><span class="shell">shell</span>&#xa0;<span class="term">term</span></span></a></li>
-<li><a href="#sec-1-17">1.17. magit&#xa0;&#xa0;&#xa0;<span class="tag"><span class="magit">magit</span></span></a></li>
-<li><a href="#sec-1-18">1.18. 我设置的快捷键以及我常用的快捷键，函数&#xa0;&#xa0;&#xa0;<span class="tag"><span class="shortcut">shortcut</span></span></a></li>
-<li><a href="#sec-1-19">1.19. emacs导出pdf的中文支持&#xa0;&#xa0;&#xa0;<span class="tag"><span class="pdf">pdf</span>&#xa0;<span class="chinese">chinese</span></span></a></li>
-<li><a href="#sec-1-20">1.20. emacs的奇淫技巧&#xa0;&#xa0;&#xa0;<span class="tag"><span class="face">face</span></span></a></li>
-<li><a href="#sec-1-21">1.21. 我写的一些命令</a>
+<li><a href="#orgheadline24">1.15. w3m&#xa0;&#xa0;&#xa0;<span class="tag"><span class="w3m">w3m</span>&#xa0;<span class="w3c">w3c</span></span></a></li>
+<li><a href="#orgheadline25">1.16. ansi-term&#xa0;&#xa0;&#xa0;<span class="tag"><span class="shell">shell</span>&#xa0;<span class="term">term</span></span></a></li>
+<li><a href="#orgheadline26">1.17. magit&#xa0;&#xa0;&#xa0;<span class="tag"><span class="magit">magit</span></span></a></li>
+<li><a href="#orgheadline27">1.18. 我设置的快捷键以及我常用的快捷键，函数&#xa0;&#xa0;&#xa0;<span class="tag"><span class="shortcut">shortcut</span></span></a></li>
+<li><a href="#orgheadline28">1.19. emacs导出pdf的中文支持&#xa0;&#xa0;&#xa0;<span class="tag"><span class="pdf">pdf</span>&#xa0;<span class="chinese">chinese</span></span></a></li>
+<li><a href="#orgheadline29">1.20. emacs的奇淫技巧&#xa0;&#xa0;&#xa0;<span class="tag"><span class="face">face</span></span></a></li>
+<li><a href="#orgheadline31">1.21. 我写的一些命令</a>
 <ul>
-<li><a href="#sec-1-21-1">1.21.1. 短网址&#xa0;&#xa0;&#xa0;<span class="tag"><span class="dwz">dwz</span>&#xa0;<span class="tinyurl">tinyurl</span></span></a></li>
+<li><a href="#orgheadline30">1.21.1. 短网址&#xa0;&#xa0;&#xa0;<span class="tag"><span class="dwz">dwz</span>&#xa0;<span class="tinyurl">tinyurl</span></span></a></li>
 </ul>
 </li>
-<li><a href="#sec-1-22">1.22. elpa&#xa0;&#xa0;&#xa0;<span class="tag"><span class="elpa">elpa</span></span></a>
+<li><a href="#orgheadline33">1.22. elpa&#xa0;&#xa0;&#xa0;<span class="tag"><span class="elpa">elpa</span></span></a>
 <ul>
-<li><a href="#sec-1-22-1">1.22.1. proxy(goagent代理)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proxy">proxy</span></span></a></li>
+<li><a href="#orgheadline32">1.22.1. proxy(goagent代理)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proxy">proxy</span></span></a></li>
 </ul>
 </li>
-<li><a href="#sec-1-23">1.23. emacsclient&#xa0;&#xa0;&#xa0;<span class="tag"><span class="emacsclient">emacsclient</span>&#xa0;<span class="server">server</span></span></a></li>
-<li><a href="#sec-1-24">1.24. org-mode&#xa0;&#xa0;&#xa0;<span class="tag"><span class="org">org</span></span></a>
+<li><a href="#orgheadline34">1.23. emacsclient&#xa0;&#xa0;&#xa0;<span class="tag"><span class="emacsclient">emacsclient</span>&#xa0;<span class="server">server</span></span></a></li>
+<li><a href="#orgheadline47">1.24. org-mode&#xa0;&#xa0;&#xa0;<span class="tag"><span class="org">org</span></span></a>
 <ul>
-<li><a href="#sec-1-24-1">1.24.1. org-mode的快捷键与命令</a></li>
-<li><a href="#sec-1-24-2">1.24.2. org-mode的一些格式化语法</a></li>
-<li><a href="#sec-1-24-3">1.24.3. 表格</a></li>
-<li><a href="#sec-1-24-4">1.24.4. org-mode TODO list</a></li>
-<li><a href="#sec-1-24-5">1.24.5. org-mode 中的latex代码</a></li>
-<li><a href="#sec-1-24-6">1.24.6. org-mode中的latex代码的预览</a></li>
-<li><a href="#sec-1-24-7">1.24.7. org-mode中latex导出html时的设置</a></li>
-<li><a href="#sec-1-24-8">1.24.8. org-mode导出project以及html的注意事项</a></li>
-<li><a href="#sec-1-24-9">1.24.9. Babel</a></li>
-<li><a href="#sec-1-24-10">1.24.10. dot</a></li>
+<li><a href="#orgheadline35">1.24.1. org-mode的快捷键与命令</a></li>
+<li><a href="#orgheadline36">1.24.2. org-mode的一些格式化语法</a></li>
+<li><a href="#orgheadline39">1.24.3. 表格</a></li>
+<li><a href="#orgheadline40">1.24.4. org-mode TODO list</a></li>
+<li><a href="#orgheadline41">1.24.5. org-mode 中的latex代码</a></li>
+<li><a href="#orgheadline42">1.24.6. org-mode中的latex代码的预览</a></li>
+<li><a href="#orgheadline43">1.24.7. org-mode中latex导出html时的设置</a></li>
+<li><a href="#orgheadline44">1.24.8. org-mode导出project以及html的注意事项</a></li>
+<li><a href="#orgheadline45">1.24.9. Babel</a></li>
+<li><a href="#orgheadline46">1.24.10. dot</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sec-2">2. emacs让人困惑的问题</a>
+<li><a href="#orgheadline51">2. emacs让人困惑的问题</a>
 <ul>
-<li><a href="#sec-2-1">2.1. overwrite mode</a></li>
-<li><a href="#sec-2-2">2.2. whitespace-mode</a></li>
+<li><a href="#orgheadline49">2.1. overwrite mode</a></li>
+<li><a href="#orgheadline50">2.2. whitespace-mode</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> emacs大杂烩</h2>
+<div id="outline-container-orgheadline48" class="outline-2">
+<h2 id="orgheadline48"><span class="section-number-2">1</span> emacs大杂烩</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 这是我的emacs配置：<a href="https://github.com/yuyang0/emacs.d">https://github.com/yuyang0/emacs.d</a> ,我在<a href="https://github.com/purcell/emacs.d">purcell</a> 的配置的基础
 上添加了一些我自己的设置.
 </p>
 </div>
-<div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 编译emacs24</h3>
+<div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> 编译emacs24</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 去官方下载emacs24.4的包。
@@ -280,11 +308,11 @@ sudo make install
 </p>
 </div>
 </div>
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2"><span class="section-number-3">1.2</span> emacs各种设置与注意事项</h3>
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">1.2</span> emacs各种设置与注意事项</h3>
 <div class="outline-text-3" id="text-1-2">
-</div><div id="outline-container-sec-1-2-1" class="outline-4">
-<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> emacs在英文系统的输入法问题</h4>
+</div><div id="outline-container-orgheadline2" class="outline-4">
+<h4 id="orgheadline2"><span class="section-number-4">1.2.1</span> emacs在英文系统的输入法问题</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <pre class="example">
 mv /usr/bin/emacs /usr/bin/emacs.raw
@@ -302,8 +330,8 @@ gedit /usr/bin/emacs
 </div>
 </div>
 </div>
-<div id="outline-container-sec-1-2-2" class="outline-4">
-<h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> 交换Control<sub>L与Capslocks</sub></h4>
+<div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3"><span class="section-number-4">1.2.2</span> 交换Control<sub>L与Capslocks</sub></h4>
 <div class="outline-text-4" id="text-1-2-2">
 <p>
 通过 xev | grep 'keycode'得到键码，然后输入以下文件:
@@ -323,26 +351,21 @@ add Control = Control_R
 </div>
 </div>
 
-<div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3"><span class="section-number-3">1.3</span> auto-complete&#xa0;&#xa0;&#xa0;<span class="tag"><span class="complete">complete</span></span></h3>
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">1.3</span> auto-complete&#xa0;&#xa0;&#xa0;<span class="tag"><span class="complete">complete</span></span></h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 一个补全的包,实际可以看作是一个补全选项的展示界面,支持很多后端,这是<a href="http://cx4a.org/software/auto-complete/manual.html">文档</a>
 </p>
 <ol class="org-ol">
-<li>ac-trigger-commands: 一个变量用来指定启动自动补全的命令,默认是self-insert-command
-</li>
+<li>ac-trigger-commands: 一个变量用来指定启动自动补全的命令,默认是self-insert-command</li>
 <li>TAB(ac-expand):有几种行为:如果只有一个候选项,那么直接补全,如果有多个候选
 项而且候选项有相同的部分,那么补全相同的部分,如果不是以上两种情况,那么就
-在各个候选项上循环
-</li>
+在各个候选项上循环</li>
 <li>RET(ac-complete) : 会补全当前的候选项,如果该候选项有action(如yas),那么执
-行该action
-</li>
-<li>M-n(ac-next)
-</li>
-<li>M-p(ac-previous)
-</li>
+行该action</li>
+<li>M-n(ac-next)</li>
+<li>M-p(ac-previous)</li>
 </ol>
 <p>
 有用的变量:
@@ -350,49 +373,40 @@ add Control = Control_R
 <ol class="org-ol">
 <li>ac-auto-start: 如果设置为nil, 那么当运行ac-trigger-command中指定的命令时,不
 会启动自动补全,如果为正数值,那么只有但你输入的字符大于该值时才自动补全,比
-如 <code>(setq ac-auto-start 4)</code>,那么只有你输入了4个字符时才会启动自动补全
-</li>
+如 <code>(setq ac-auto-start 4)</code>,那么只有你输入了4个字符时才会启动自动补全</li>
 <li>ac-auto-show-menu: 自动弹出显示补全菜单,可以设为nil,或者一个数值(延迟妙
-数)
-</li>
-<li>ac-completing-map: 显示了补全菜单后的map,可以设置快捷键
-</li>
+数)</li>
+<li>ac-completing-map: 显示了补全菜单后的map,可以设置快捷键</li>
 <li>ac-dwim: dwim ⟶ do what I mean:一般设为nil
 -After selecting candidates, TAB will behave as RET
--TAB will behave as RET only on candidate remains
-</li>
+-TAB will behave as RET only on candidate remains</li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-sec-1-4" class="outline-3">
-<h3 id="sec-1-4"><span class="section-number-3">1.4</span> grep&#xa0;&#xa0;&#xa0;<span class="tag"><span class="grep">grep</span></span></h3>
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">1.4</span> grep&#xa0;&#xa0;&#xa0;<span class="tag"><span class="grep">grep</span></span></h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 如果是想搜索当前buffer，那么你可以是occur，如果你想搜索多个文件，那么可以使
 用grep，推荐两个命令
 </p>
 <ul class="org-ul">
-<li>lgrep：只会搜索当前目录(不搜索子目录)
-</li>
-<li>rgrep：它会递归搜索子目录
-</li>
+<li>lgrep：只会搜索当前目录(不搜索子目录)</li>
+<li>rgrep：它会递归搜索子目录</li>
 </ul>
 <p>
 wgrep包可以是emacs在grep buffer中直接修改文件内容
 </p>
 <ul class="org-ul">
-<li>C-c C-p: 在grep buffer中只要按该快捷键，就可以在grep buffer直接编辑文件
-</li>
-<li>C-c C-k: 放弃所有修改
-</li>
-<li>M-x wgrep-save-all-buffers
-</li>
+<li>C-c C-p: 在grep buffer中只要按该快捷键，就可以在grep buffer直接编辑文件</li>
+<li>C-c C-k: 放弃所有修改</li>
+<li>M-x wgrep-save-all-buffers</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-5" class="outline-3">
-<h3 id="sec-1-5"><span class="section-number-3">1.5</span> isearch&#xa0;&#xa0;&#xa0;<span class="tag"><span class="isearch">isearch</span></span></h3>
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">1.5</span> isearch&#xa0;&#xa0;&#xa0;<span class="tag"><span class="isearch">isearch</span></span></h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 Increment Search.当你搜索时,你每输入一个字符,它会实时的向你展示基于目前的输
@@ -401,8 +415,8 @@ C-x C-x:可以在isearch之后回到原来的位置
 </p>
 </div>
 </div>
-<div id="outline-container-sec-1-6" class="outline-3">
-<h3 id="sec-1-6"><span class="section-number-3">1.6</span> dired&#xa0;&#xa0;&#xa0;<span class="tag"><span class="dired">dired</span></span></h3>
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">1.6</span> dired&#xa0;&#xa0;&#xa0;<span class="tag"><span class="dired">dired</span></span></h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 dired是一个强大的文件管理器,dired的标记方式有很多种，如标记删除（D标记，用于
@@ -414,69 +428,40 @@ t将D标记修改为t标记，*c t *将t标记修改为*标记
 </p>
 
 <ul class="org-ul">
-<li>"#": 标记所有自动保存的文件（D标记）
-</li>
-<li>～：标记所有的备份文件（D标记）
-</li>
-<li>&amp;： 标记所有的垃圾文件(D标记)
-</li>
-<li>d: mark D标记
-</li>
-<li>x：执行删除
-</li>
+<li>"#": 标记所有自动保存的文件（D标记）</li>
+<li>～：标记所有的备份文件（D标记）</li>
+<li>&amp;： 标记所有的垃圾文件(D标记)</li>
+<li>d: mark D标记</li>
+<li>x：执行删除</li>
 
-<li>m: mark *标记
-</li>
-<li>t: 将所有*标记的文件变为未标记，所有未标记的变为*标记
-</li>
-<li>**：标记所有可执行文件
-</li>
-<li>*@：标记所有符号链接
-</li>
-<li>*s: 标记所有文件
-</li>
-<li>*/：标记所有目录（不包括. ..)
-</li>
-<li>%m or *%: 正则匹配文件名
-</li>
-<li>%g：正则匹配所有文件的内容
-</li>
-<li>u: unmark
-</li>
-<li>常用的文件操作：
-</li>
-<li>U: unmark all
-</li>
-<li>D: 立即删除
-</li>
-<li>R：rename
-</li>
-<li>C：copy
-</li>
-<li>A: 正则搜索
-</li>
-<li>Q：正则替换
-</li>
-<li>Z：解压文件
-</li>
-<li>L：把lisp文件加载进emacs
-</li>
-<li>B：byte compile
-</li>
-<li>O：chown
-</li>
-<li>G：chgrp
-</li>
-<li>M：chmod
-</li>
-<li>+：create a directory
-</li>
-<li>!: 可以显示打开文件的命令（对pdf等文件不要RET）
-</li>
+<li>m: mark *标记</li>
+<li>t: 将所有*标记的文件变为未标记，所有未标记的变为*标记</li>
+<li>**：标记所有可执行文件</li>
+<li>*@：标记所有符号链接</li>
+<li>*s: 标记所有文件</li>
+<li>*/：标记所有目录（不包括. ..)</li>
+<li>%m or *%: 正则匹配文件名</li>
+<li>%g：正则匹配所有文件的内容</li>
+<li>u: unmark</li>
+<li>常用的文件操作：</li>
+<li>U: unmark all</li>
+<li>D: 立即删除</li>
+<li>R：rename</li>
+<li>C：copy</li>
+<li>A: 正则搜索</li>
+<li>Q：正则替换</li>
+<li>Z：解压文件</li>
+<li>L：把lisp文件加载进emacs</li>
+<li>B：byte compile</li>
+<li>O：chown</li>
+<li>G：chgrp</li>
+<li>M：chmod</li>
+<li>+：create a directory</li>
+<li>!: 可以显示打开文件的命令（对pdf等文件不要RET）</li>
 </ul>
 </div>
-<div id="outline-container-sec-1-6-1" class="outline-4">
-<h4 id="sec-1-6-1"><span class="section-number-4">1.6.1</span> wdired(批量改名)</h4>
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8"><span class="section-number-4">1.6.1</span> wdired(批量改名)</h4>
 <div class="outline-text-4" id="text-1-6-1">
 <p>
 C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以像普
@@ -486,77 +471,51 @@ C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以�
 </div>
 </div>
 </div>
-<div id="outline-container-sec-1-7" class="outline-3">
-<h3 id="sec-1-7"><span class="section-number-3">1.7</span> ibuffer的快捷键&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ibuffer">ibuffer</span></span></h3>
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">1.7</span> ibuffer的快捷键&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ibuffer">ibuffer</span></span></h3>
 <div class="outline-text-3" id="text-1-7">
 <ul class="org-ul">
-<li>p：prev
-</li>
-<li>n: next
-</li>
-<li>m：mark
-</li>
-<li>u: unmark
-</li>
-<li>t: mark all
-</li>
-<li>**: unmark all
-</li>
-<li>x: kill the marked buffer or current buffer if no buffer marked
-</li>
-<li>S: save the marked buffer or current buffer if no buffer marked
-</li>
-<li>D: same as 'x'
-</li>
-<li>O: 在所有mark的buffer中正则搜索
-</li>
-<li>U: 在所有mark的buffer中替换
-</li>
-<li>Q: 在所有mark的buffer中query，replace
-</li>
-<li>/m: 按主模式过滤
-</li>
-<li>/n: 按名字过滤，可以只输入一部分
-</li>
-<li>//: 撤销过滤，全部显示
-</li>
-<li>/p: 多重过滤时撤销上一层过滤
-</li>
-<li>/f: 过滤filename，与/n类似
-</li>
+<li>p：prev</li>
+<li>n: next</li>
+<li>m：mark</li>
+<li>u: unmark</li>
+<li>t: mark all</li>
+<li>**: unmark all</li>
+<li>x: kill the marked buffer or current buffer if no buffer marked</li>
+<li>S: save the marked buffer or current buffer if no buffer marked</li>
+<li>D: same as 'x'</li>
+<li>O: 在所有mark的buffer中正则搜索</li>
+<li>U: 在所有mark的buffer中替换</li>
+<li>Q: 在所有mark的buffer中query，replace</li>
+<li>/m: 按主模式过滤</li>
+<li>/n: 按名字过滤，可以只输入一部分</li>
+<li>//: 撤销过滤，全部显示</li>
+<li>/p: 多重过滤时撤销上一层过滤</li>
+<li>/f: 过滤filename，与/n类似</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-8" class="outline-3">
-<h3 id="sec-1-8"><span class="section-number-3">1.8</span> cua-mode以及矩形操作的快捷键&#xa0;&#xa0;&#xa0;<span class="tag"><span class="cua">cua</span></span></h3>
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">1.8</span> cua-mode以及矩形操作的快捷键&#xa0;&#xa0;&#xa0;<span class="tag"><span class="cua">cua</span></span></h3>
 <div class="outline-text-3" id="text-1-8">
 <ul class="org-ul">
-<li>M-x cua-mode : enable cua-mode
-</li>
-<li>C-RET: 激活矩形操作，然后就可以常规移动光标来进行列编辑
-</li>
-<li>C-v  : past rectangle
-</li>
+<li>M-x cua-mode : enable cua-mode</li>
+<li>C-RET: 激活矩形操作，然后就可以常规移动光标来进行列编辑</li>
+<li>C-v  : past rectangle</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-9" class="outline-3">
-<h3 id="sec-1-9"><span class="section-number-3">1.9</span> mutiple cursors多光标&#xa0;&#xa0;&#xa0;<span class="tag"><span class="multiple">multiple</span>&#xa0;<span class="cursor">cursor</span></span></h3>
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">1.9</span> mutiple cursors多光标&#xa0;&#xa0;&#xa0;<span class="tag"><span class="multiple">multiple</span>&#xa0;<span class="cursor">cursor</span></span></h3>
 <div class="outline-text-3" id="text-1-9">
 <ol class="org-ol">
-<li>C-&lt;: mc/mark-previous-like-this
-</li>
-<li>C-&gt;: mc/mark-next-like-this
-</li>
-<li>C-c &lt;: mc/mark-all-like-this (上面三项功能以word为单位，必须先mark-word)
-</li>
+<li>C-&lt;: mc/mark-previous-like-this</li>
+<li>C-&gt;: mc/mark-next-like-this</li>
+<li>C-c &lt;: mc/mark-all-like-this (上面三项功能以word为单位，必须先mark-word)</li>
 
-<li>C-c c a:在所有行的开头加入光标
-</li>
-<li>C-c c e:在所有行的结尾加入光标
-</li>
-<li>C-c c c:在所有的行加入一个光标(上面的三项功能以行为单位，必须先mark数行)
-</li>
+<li>C-c c a:在所有行的开头加入光标</li>
+<li>C-c c e:在所有行的结尾加入光标</li>
+<li>C-c c c:在所有的行加入一个光标(上面的三项功能以行为单位，必须先mark数行)</li>
 </ol>
 <p>
 在multiple cursors中isearch是失效的,为了实现C-s, C-r增量搜索,有以下两种方法:
@@ -594,35 +553,32 @@ C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以�
 </p>
 </div>
 </div>
-<div id="outline-container-sec-1-10" class="outline-3">
-<h3 id="sec-1-10"><span class="section-number-3">1.10</span> ace-jump-mode&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ace">ace</span></span></h3>
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">1.10</span> ace-jump-mode&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ace">ace</span></span></h3>
 <div class="outline-text-3" id="text-1-10">
 <p>
 类似于火狐的vim插件，输入一个head char，就会在所有匹配的地方放入一个字母
 </p>
 <ol class="org-ol">
-<li>C-; ：ace-jump-char-mode
-</li>
-<li>C-: : ace-jump-word-mode
-</li>
+<li>C-; ：ace-jump-char-mode</li>
+<li>C-: : ace-jump-word-mode</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-1-11" class="outline-3">
-<h3 id="sec-1-11"><span class="section-number-3">1.11</span> expand region&#xa0;&#xa0;&#xa0;<span class="tag"><span class="expand">expand</span>&#xa0;<span class="region">region</span></span></h3>
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14"><span class="section-number-3">1.11</span> expand region&#xa0;&#xa0;&#xa0;<span class="tag"><span class="expand">expand</span>&#xa0;<span class="region">region</span></span></h3>
 <div class="outline-text-3" id="text-1-11">
 <p>
 这个包可以根据程序的语法结构来选定区域
 </p>
 <ul class="org-ul">
 <li>C-= : 不断的按该快捷键,会使选定的区域不断的扩展,而且只扩展到语法层面的父
-结构中,
-</li>
+结构中,</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-12" class="outline-3">
-<h3 id="sec-1-12"><span class="section-number-3">1.12</span> paredit&#xa0;&#xa0;&#xa0;<span class="tag"><span class="paredit">paredit</span></span></h3>
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15"><span class="section-number-3">1.12</span> paredit&#xa0;&#xa0;&#xa0;<span class="tag"><span class="paredit">paredit</span></span></h3>
 <div class="outline-text-3" id="text-1-12">
 <p>
 该模式下你不能直接编辑括号,而只能通过命令来调整程序结构,主要用于lisp编程
@@ -632,76 +588,55 @@ C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以�
 要操作sexp的左括号的前面</b>)在树中的位置向上提一层,比如对 <code>let</code> 中的sexp应用
 该命令,那么就可以直接删除 <code>(let ([] ...))</code> 因此该sexp在语法树中的位置就上
 升了一层,默认该命令会删除该sexp平级的兄弟sexp. 可以通过C-u来指定要将跟着的
-几个sexp提一层,默认是一个
-</li>
-<li>M-( : 会用新建() 将跟着光标的sexp包起来
-</li>
-<li>C-) C-&lt;right&gt; : 会将光标所在的当前表达式的紧挨着的兄弟表达式吞进来
-</li>
-<li>C-} C-&lt;left&gt; : 将当前sexp包含的最后一个sexp移出去, 可以看作是C-)的逆命令
-</li>
-<li>M-S : 将一个sexp分成两个sexp,效果就是在光标处添加 ")("
-</li>
+几个sexp提一层,默认是一个</li>
+<li>M-( : 会用新建() 将跟着光标的sexp包起来</li>
+<li>C-) C-&lt;right&gt; : 会将光标所在的当前表达式的紧挨着的兄弟表达式吞进来</li>
+<li>C-} C-&lt;left&gt; : 将当前sexp包含的最后一个sexp移出去, 可以看作是C-)的逆命令</li>
+<li>M-S : 将一个sexp分成两个sexp,效果就是在光标处添加 ")("</li>
 <li>M-J : 将两个sexp合并成一个sexp, 比如 <code>(a b) (c d)</code> 变成 <code>(a b c d)</code> 注意
-光标要放在两个sexp之间,上例中要放在 <code>(a b)</code> 与 <code>(c d)</code> 之间
-</li>
+光标要放在两个sexp之间,上例中要放在 <code>(a b)</code> 与 <code>(c d)</code> 之间</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-13" class="outline-3">
-<h3 id="sec-1-13"><span class="section-number-3">1.13</span> ido(Interactively Do Things)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ido">ido</span></span></h3>
+<div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18"><span class="section-number-3">1.13</span> ido(Interactively Do Things)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ido">ido</span></span></h3>
 <div class="outline-text-3" id="text-1-13">
 <p>
 使用 <code>C-x b</code> 来切换 <code>buffer</code>,或者使用 <code>C-x C-f</code> 来打开文件时,会自动在
 <code>minibuffer</code> 展示可能的补全项,下面是几个快捷键:
 </p>
 <ul class="org-ul">
-<li>C-s:后退
-</li>
-<li>C-r: 前进
-</li>
+<li>C-s:后退</li>
+<li>C-r: 前进</li>
 </ul>
 <p>
 当打开文件时(C-x C-f)时,有以下几个特殊的快捷键
 </p>
 <ul class="org-ul">
-<li>C-f: 进入emacs内置的find-file
-</li>
-<li>C-p: 会启动部分匹配，而前面是严格的前缀匹配
-</li>
-<li>C-t: 正则表达式匹配 eg:*.py$匹配所有python源文件
-</li>
-<li>C-d: 会使用 <code>dired</code> 打开当前目录
-</li>
-<li>C-j: 创建新文件(因为当前输入的字符有匹配项时,默认是打开匹配项)
-</li>
-<li>//: 进入根目录
-</li>
-<li>~/: 当前用户的家目录
-</li>
-<li>M-p: history中的前一条目录
-</li>
-<li>M-n: history中的后一条目录
-</li>
+<li>C-f: 进入emacs内置的find-file</li>
+<li>C-p: 会启动部分匹配，而前面是严格的前缀匹配</li>
+<li>C-t: 正则表达式匹配 eg:*.py$匹配所有python源文件</li>
+<li>C-d: 会使用 <code>dired</code> 打开当前目录</li>
+<li>C-j: 创建新文件(因为当前输入的字符有匹配项时,默认是打开匹配项)</li>
+<li>//: 进入根目录</li>
+<li>~/: 当前用户的家目录</li>
+<li>M-p: history中的前一条目录</li>
+<li>M-n: history中的后一条目录</li>
 </ul>
 </div>
-<div id="outline-container-sec-1-13-1" class="outline-4">
-<h4 id="sec-1-13-1"><span class="section-number-4">1.13.1</span> 用于编程的命令</h4>
+<div id="outline-container-orgheadline16" class="outline-4">
+<h4 id="orgheadline16"><span class="section-number-4">1.13.1</span> 用于编程的命令</h4>
 <div class="outline-text-4" id="text-1-13-1">
 <ul class="org-ul">
-<li>ido-read-file-name: 可以用来读取一个文件名
-</li>
-<li>ido-read-directory-name: 可以用于获得一个目录名
-</li>
-<li>idio-read-buffer: 可以用来获得一个buffer name
-</li>
-<li>ido-completion-read: 这是一个通用的补全命令,需要提供一个列表
-</li>
+<li>ido-read-file-name: 可以用来读取一个文件名</li>
+<li>ido-read-directory-name: 可以用于获得一个目录名</li>
+<li>idio-read-buffer: 可以用来获得一个buffer name</li>
+<li>ido-completion-read: 这是一个通用的补全命令,需要提供一个列表</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-13-2" class="outline-4">
-<h4 id="sec-1-13-2"><span class="section-number-4">1.13.2</span> smex&#xa0;&#xa0;&#xa0;<span class="tag"><span class="smex">smex</span></span></h4>
+<div id="outline-container-orgheadline17" class="outline-4">
+<h4 id="orgheadline17"><span class="section-number-4">1.13.2</span> smex&#xa0;&#xa0;&#xa0;<span class="tag"><span class="smex">smex</span></span></h4>
 <div class="outline-text-4" id="text-1-13-2">
 <p>
 构建于 <code>ido</code> 之上, 在你使用 M-x 运行命令时会提供自动补全
@@ -709,8 +644,8 @@ C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以�
 </div>
 </div>
 </div>
-<div id="outline-container-sec-1-14" class="outline-3">
-<h3 id="sec-1-14"><span class="section-number-3">1.14</span> helm(a good alternative to ido)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="helm">helm</span></span></h3>
+<div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23"><span class="section-number-3">1.14</span> helm(a good alternative to ido)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="helm">helm</span></span></h3>
 <div class="outline-text-3" id="text-1-14">
 <p>
 一个比较好的可以替换ido,smex的包,功能非常强大, 基本上emacs中出现选择的地方,
@@ -718,34 +653,27 @@ C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以�
 个重点功能
 </p>
 </div>
-<div id="outline-container-sec-1-14-1" class="outline-4">
-<h4 id="sec-1-14-1"><span class="section-number-4">1.14.1</span> 打开文件</h4>
+<div id="outline-container-orgheadline19" class="outline-4">
+<h4 id="orgheadline19"><span class="section-number-4">1.14.1</span> 打开文件</h4>
 <div class="outline-text-4" id="text-1-14-1">
 <ul class="org-ul">
 <li>TAB :打开Action buffer, 对每一个文件可以有许多动作, 比如copy, 比如用外部
-程序打开,那么这些操作都在这个action buffer中
-</li>
+程序打开,那么这些操作都在这个action buffer中</li>
 <li>C-z: 扩展当前的候选项, 比如你的当前候选项是一个目录, 那么C-z就会进入该目
-录,不要按 <code>Enter</code>, 因为那会以 <code>dired</code> 打开这个目录
-</li>
-<li>M-&lt;space&gt; : mark 当前的文件
-</li>
+录,不要按 <code>Enter</code>, 因为那会以 <code>dired</code> 打开这个目录</li>
+<li>M-&lt;space&gt; : mark 当前的文件</li>
 <li>C-&lt;backspace&gt;: 会禁止自动补全,这在创建新文件与新目录时特别有用(因为如果
 新的文件名与现在存在的文件名很相似的话,那么helm会自动补全为已存在的文件
-或目录,因此你也就无法创建新目录)
-</li>
+或目录,因此你也就无法创建新目录)</li>
 <li>新建目录: 在 <code>minibuffer</code> 中正常输入,只是最后要以 / 结尾, helm会提示创建
-新目录
-</li>
-<li>复制文件: 先mark文件,然后TAB 选择copy file, 选择目的地就好
-</li>
-<li>移动文件: 和复制文件类似
-</li>
+新目录</li>
+<li>复制文件: 先mark文件,然后TAB 选择copy file, 选择目的地就好</li>
+<li>移动文件: 和复制文件类似</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-14-2" class="outline-4">
-<h4 id="sec-1-14-2"><span class="section-number-4">1.14.2</span> ediff&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ediff">ediff</span></span></h4>
+<div id="outline-container-orgheadline20" class="outline-4">
+<h4 id="orgheadline20"><span class="section-number-4">1.14.2</span> ediff&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ediff">ediff</span></span></h4>
 <div class="outline-text-4" id="text-1-14-2">
 <p>
 第一个文件TAB上选择ediff action,自动弹出第二个helm-find-files选择第二个文
@@ -753,8 +681,8 @@ C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以�
 </p>
 </div>
 </div>
-<div id="outline-container-sec-1-14-3" class="outline-4">
-<h4 id="sec-1-14-3"><span class="section-number-4">1.14.3</span> grep(increment grep)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="grep">grep</span></span></h4>
+<div id="outline-container-orgheadline21" class="outline-4">
+<h4 id="orgheadline21"><span class="section-number-4">1.14.3</span> grep(increment grep)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="grep">grep</span></span></h4>
 <div class="outline-text-4" id="text-1-14-3">
 <p>
 <b>helm-do-grep</b> : helm中执行grep的命令,你也可以使用 helm-find-files然后TAB
@@ -762,8 +690,8 @@ C-x C-q : (wdired-change-to-wdired-mode) 进入wdired mode, 进入后就可以�
 </p>
 </div>
 </div>
-<div id="outline-container-sec-1-14-4" class="outline-4">
-<h4 id="sec-1-14-4"><span class="section-number-4">1.14.4</span> locate&#xa0;&#xa0;&#xa0;<span class="tag"><span class="locate">locate</span></span></h4>
+<div id="outline-container-orgheadline22" class="outline-4">
+<h4 id="orgheadline22"><span class="section-number-4">1.14.4</span> locate&#xa0;&#xa0;&#xa0;<span class="tag"><span class="locate">locate</span></span></h4>
 <div class="outline-text-4" id="text-1-14-4">
 <p>
 M-x helm-locate: 使用操作系统的locate所产生的数据库文件来搜索文件
@@ -771,8 +699,8 @@ M-x helm-locate: 使用操作系统的locate所产生的数据库文件来搜索
 </div>
 </div>
 </div>
-<div id="outline-container-sec-1-15" class="outline-3">
-<h3 id="sec-1-15"><span class="section-number-3">1.15</span> w3m&#xa0;&#xa0;&#xa0;<span class="tag"><span class="w3m">w3m</span>&#xa0;<span class="w3c">w3c</span></span></h3>
+<div id="outline-container-orgheadline24" class="outline-3">
+<h3 id="orgheadline24"><span class="section-number-3">1.15</span> w3m&#xa0;&#xa0;&#xa0;<span class="tag"><span class="w3m">w3m</span>&#xa0;<span class="w3c">w3c</span></span></h3>
 <div class="outline-text-3" id="text-1-15">
 <p>
 w3m 是一个文本浏览器，它不支持CSS与js，非常适合浏览文本很多的页面，以及避免
@@ -783,243 +711,162 @@ w3m 是一个文本浏览器，它不支持CSS与js，非常适合浏览文本�
 <b>links</b>
 </p>
 <ul class="org-ul">
-<li>g: Prompt for a url in minibuffer (w3m-browse-url)
-</li>
-<li>G: same as <b>g</b> excepte it open a new session(a new tab)
-</li>
-<li>R: reload the page
-</li>
-<li>S: search engion
-</li>
-<li>H: goto home page
-</li>
-<li>B: go back(history)
-</li>
-<li>N: go next(hostory)
-</li>
-<li>u: display the under the point in the echo area
-</li>
-<li>RET: Display the page pointed by the link under point (w3m-view-this-url)
-</li>
-<li>\[: move point to previous form
-</li>
-<li>\]: move point to next form
-</li>
-<li>TAB: move point to next link
-</li>
-<li>M-TAB, S-TAB: move point to previous link
-</li>
-<li>d: download thee url under the point
-</li>
-<li>M-d: Download the url
-</li>
+<li>g: Prompt for a url in minibuffer (w3m-browse-url)</li>
+<li>G: same as <b>g</b> excepte it open a new session(a new tab)</li>
+<li>R: reload the page</li>
+<li>S: search engion</li>
+<li>H: goto home page</li>
+<li>B: go back(history)</li>
+<li>N: go next(hostory)</li>
+<li>u: display the under the point in the echo area</li>
+<li>RET: Display the page pointed by the link under point (w3m-view-this-url)</li>
+<li>\[: move point to previous form</li>
+<li>\]: move point to next form</li>
+<li>TAB: move point to next link</li>
+<li>M-TAB, S-TAB: move point to previous link</li>
+<li>d: download thee url under the point</li>
+<li>M-d: Download the url</li>
 </ul>
 <p>
 <b>scroll</b>
 </p>
 <ul class="org-ul">
-<li>SPC: scroll downwards
-</li>
-<li>&gt;: scroll to the right
-</li>
-<li>&lt;: scroll to the left
-</li>
-<li>DEL: scroll upwards
-</li>
+<li>SPC: scroll downwards</li>
+<li>&gt;: scroll to the right</li>
+<li>&lt;: scroll to the left</li>
+<li>DEL: scroll upwards</li>
 </ul>
 <p>
 <b>bookmarks</b>
 </p>
 <ul class="org-ul">
-<li>v: show all bookmarks
-</li>
-<li>a: add current url to bookmarks
-</li>
-<li>M-a: Add the url under point to the bookmark.
-</li>
-<li>C-k: kill a bookmark
-</li>
-<li>E: edit bookmark
-</li>
+<li>v: show all bookmarks</li>
+<li>a: add current url to bookmarks</li>
+<li>M-a: Add the url under point to the bookmark.</li>
+<li>C-k: kill a bookmark</li>
+<li>E: edit bookmark</li>
 </ul>
 <p>
 <b>move in page</b>
 </p>
 <ul class="org-ul">
-<li>hjkl: like vim
-</li>
+<li>hjkl: like vim</li>
 </ul>
 <p>
 <b>switch tabs</b>
 </p>
 <ul class="org-ul">
-<li>C-c C-n: next tab
-</li>
-<li>C-c C-p: previous tab
-</li>
-<li>C-c C-t: new tab
-</li>
+<li>C-c C-n: next tab</li>
+<li>C-c C-p: previous tab</li>
+<li>C-c C-t: new tab</li>
 </ul>
 <p>
 <b>images</b>
 </p>
 <ul class="org-ul">
-<li>I: Display the image under point in the external viewer.
-</li>
-<li>M-i: Save the image under point to a file.
-</li>
-<li>t: Toggle the visibility of an image under point
-</li>
-<li>T: Toggle the visibility of all images
-</li>
-<li>M-T: turn off to display all images
-</li>
-<li>M-[: zoom in an image on the point
-</li>
-<li>M-]: zoom out an image on the point
-</li>
+<li>I: Display the image under point in the external viewer.</li>
+<li>M-i: Save the image under point to a file.</li>
+<li>t: Toggle the visibility of an image under point</li>
+<li>T: Toggle the visibility of all images</li>
+<li>M-T: turn off to display all images</li>
+<li>M-[: zoom in an image on the point</li>
+<li>M-]: zoom out an image on the point</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-16" class="outline-3">
-<h3 id="sec-1-16"><span class="section-number-3">1.16</span> ansi-term&#xa0;&#xa0;&#xa0;<span class="tag"><span class="shell">shell</span>&#xa0;<span class="term">term</span></span></h3>
+<div id="outline-container-orgheadline25" class="outline-3">
+<h3 id="orgheadline25"><span class="section-number-3">1.16</span> ansi-term&#xa0;&#xa0;&#xa0;<span class="tag"><span class="shell">shell</span>&#xa0;<span class="term">term</span></span></h3>
 <div class="outline-text-3" id="text-1-16">
 <p>
 终端模拟器,基本上terminal的所有功能.
 </p>
 <ul class="org-ul">
-<li>C-c C-j: 进入line mode， 可以复制
-</li>
-<li>C-c C-k: 回到character mod
-</li>
+<li>C-c C-j: 进入line mode， 可以复制</li>
+<li>C-c C-k: 回到character mod</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-17" class="outline-3">
-<h3 id="sec-1-17"><span class="section-number-3">1.17</span> magit&#xa0;&#xa0;&#xa0;<span class="tag"><span class="magit">magit</span></span></h3>
+<div id="outline-container-orgheadline26" class="outline-3">
+<h3 id="orgheadline26"><span class="section-number-3">1.17</span> magit&#xa0;&#xa0;&#xa0;<span class="tag"><span class="magit">magit</span></span></h3>
 <div class="outline-text-3" id="text-1-17">
 <p>
 一个git扩展,功能强大.这是一篇介绍<a href="http://www.masteringemacs.org/articles/2013/12/06/introduction-magit-emacs-mode-git/">文章</a>, 这是一份命令<a href="http://daemianmack.com/magit-cheatsheet.html">列表</a>
 </p>
 <ul class="org-ul">
-<li>M-x magit-status(我的快捷键 M-f12): 进入magit的buffer
-</li>
-<li>M-[1-4]: 其中我用 M-2 与 M-4,前者只显示文件,后者会显示diff
-</li>
+<li>M-x magit-status(我的快捷键 M-f12): 进入magit的buffer</li>
+<li>M-[1-4]: 其中我用 M-2 与 M-4,前者只显示文件,后者会显示diff</li>
 <li>1 2 3 4: 和上面类似,只是前面带M则会应用到所有的entry, 而单独按数字只会应用
-到当前的entry
-</li>
-<li>s : stage
-</li>
-<li>c : commit
-</li>
-<li>i : 将文件添加到.gitignore
-</li>
-<li>C-u i : 提示你输入要加入.gitignore的文件或者目录
-</li>
-<li>b : 切换到一个已存在的分支
-</li>
-<li>B : 创建并切换到新分支
-</li>
+到当前的entry</li>
+<li>s : stage</li>
+<li>c : commit</li>
+<li>i : 将文件添加到.gitignore</li>
+<li>C-u i : 提示你输入要加入.gitignore的文件或者目录</li>
+<li>b : 切换到一个已存在的分支</li>
+<li>B : 创建并切换到新分支</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-18" class="outline-3">
-<h3 id="sec-1-18"><span class="section-number-3">1.18</span> 我设置的快捷键以及我常用的快捷键，函数&#xa0;&#xa0;&#xa0;<span class="tag"><span class="shortcut">shortcut</span></span></h3>
+<div id="outline-container-orgheadline27" class="outline-3">
+<h3 id="orgheadline27"><span class="section-number-3">1.18</span> 我设置的快捷键以及我常用的快捷键，函数&#xa0;&#xa0;&#xa0;<span class="tag"><span class="shortcut">shortcut</span></span></h3>
 <div class="outline-text-3" id="text-1-18">
 <ul class="org-ul">
-<li>M-x browse-url: 通过浏览器打开当前url
-</li>
-<li>C-g C-/: redo
-</li>
-<li>C-x C-v: find-alternate-file(fresh buffer)
-</li>
-<li>C-x C-m: 替代M-x,按M很别扭
-</li>
-<li>M-c : capticalize-word
-</li>
-<li>M-u : upcase-word
-</li>
-<li>C-x C-u : upcase-region
-</li>
+<li>M-x browse-url: 通过浏览器打开当前url</li>
+<li>C-g C-/: redo</li>
+<li>C-x C-v: find-alternate-file(fresh buffer)</li>
+<li>C-x C-m: 替代M-x,按M很别扭</li>
+<li>M-c : capticalize-word</li>
+<li>M-u : upcase-word</li>
+<li>C-x C-u : upcase-region</li>
 
-<li>M-l : downcase-word
-</li>
-<li>C-x C-l: downcase-region
-</li>
+<li>M-l : downcase-word</li>
+<li>C-x C-l: downcase-region</li>
 
-<li>C-c p: 复制粘贴一行或者选中的region
-</li>
-<li>C-c j: 将当前行与上一行合并成一行
-</li>
-<li>M-up: Shift lines up
-</li>
-<li>M-down: Shift lines down
-</li>
+<li>C-c p: 复制粘贴一行或者选中的region</li>
+<li>C-c j: 将当前行与上一行合并成一行</li>
+<li>M-up: Shift lines up</li>
+<li>M-down: Shift lines down</li>
 <li>M-x occur: 创建一个新的buffer，然后将当前buffer，所有匹配regex的内容显示其
-中,进入该buffer，enter就可以跳转
-</li>
-<li>M-x imenu：可以根据类型跳转（变量，函数,include等等）
-</li>
-<li>C-k: kill the current line
-</li>
-<li>C-o: new line and indent,like the 'o' in vim
-</li>
+中,进入该buffer，enter就可以跳转</li>
+<li>M-x imenu：可以根据类型跳转（变量，函数,include等等）</li>
+<li>C-k: kill the current line</li>
+<li>C-o: new line and indent,like the 'o' in vim</li>
 
-<li>M-;: comment or uncomment the region
-</li>
+<li>M-;: comment or uncomment the region</li>
 <li>M-j: 这个在多行注释时,可以换行,换行时会在行首自动添加comment-prefix字符(C
-语言是*), 如果使用C-j或者RET就不会添加该字符
-</li>
+语言是*), 如果使用C-j或者RET就不会添加该字符</li>
 
-<li>C-/: undo (same as C-x u and C-_)
-</li>
-<li>C-c d: translate the word using sdcv
-</li>
+<li>C-/: undo (same as C-x u and C-_)</li>
+<li>C-c d: translate the word using sdcv</li>
 <li>C-c f: 迭代的搜索字符，eg：C-c f g会移到第一个g，在按g移到
-第二个g
-</li>
-<li>%  : jump to the matched parenthesis
-</li>
-<li>C-c -: fold the code
-</li>
-<li>C-c =: unfold the code
-</li>
-<li>C-M-f: 表达式的首部
-</li>
-<li>C-M-b:
-</li>
-<li>C-M-a: 函数的首部
-</li>
-<li>C-M-e：
-</li>
-<li>C-x backspace: 删除到行首
-</li>
-<li>C-M-h: 标记一个函数
-</li>
-<li>M-u: 一个字改为大写
-</li>
-<li>M-l：一个字改为小写
-</li>
-<li>C-x C-u：region to uppercase
-</li>
-<li>C-x C-l：区域小写
-</li>
-<li>C-t：将光标前后的字符交换
-</li>
-<li>C-x C-t: 光标所在行与上一行交换
-</li>
+第二个g</li>
+<li>%  : jump to the matched parenthesis</li>
+<li>C-c -: fold the code</li>
+<li>C-c =: unfold the code</li>
+<li>C-M-f: 表达式的首部</li>
+<li>C-M-b:</li>
+<li>C-M-a: 函数的首部</li>
+<li>C-M-e：</li>
+<li>C-x backspace: 删除到行首</li>
+<li>C-M-h: 标记一个函数</li>
+<li>M-u: 一个字改为大写</li>
+<li>M-l：一个字改为小写</li>
+<li>C-x C-u：region to uppercase</li>
+<li>C-x C-l：区域小写</li>
+<li>C-t：将光标前后的字符交换</li>
+<li>C-x C-t: 光标所在行与上一行交换</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-19" class="outline-3">
-<h3 id="sec-1-19"><span class="section-number-3">1.19</span> emacs导出pdf的中文支持&#xa0;&#xa0;&#xa0;<span class="tag"><span class="pdf">pdf</span>&#xa0;<span class="chinese">chinese</span></span></h3>
+<div id="outline-container-orgheadline28" class="outline-3">
+<h3 id="orgheadline28"><span class="section-number-3">1.19</span> emacs导出pdf的中文支持&#xa0;&#xa0;&#xa0;<span class="tag"><span class="pdf">pdf</span>&#xa0;<span class="chinese">chinese</span></span></h3>
 <div class="outline-text-3" id="text-1-19">
 <p>
 org-mode默认的导出系统对中文支持不好,我参考这篇<a href="http://yzprofile.me/2013/01/14/emacs-org-mode-xelatex.html">文章</a>, 将导出中文pdf的方法总结如下:
 </p>
 <ol class="org-ol">
-<li>安装textlive,如果是ubuntu,运行以下命令:
+<li><p>
+安装textlive,如果是ubuntu,运行以下命令:
+</p>
 <div class="org-src-container">
 
 <pre class="src src-sh">sudo apt-get install texlive texlive-xetex textlive-latex-extra
@@ -1027,9 +874,10 @@ org-mode默认的导出系统对中文支持不好,我参考这篇<a href="http:
 </div>
 <p>
 textlive-latex-extra一定要装,不装会有File `wrapfig.sty' not found.的错误
+</p></li>
+<li><p>
+在emacs配置文件中添加
 </p>
-</li>
-<li>在emacs配置文件中添加
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">org-mode &lt; 8.0</span>
@@ -1039,39 +887,34 @@ textlive-latex-extra一定要装,不装会有File `wrapfig.sty' not found.的错
 <span style="color: #DCDCCC;">(</span>setq org-latex-pdf-process '<span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">"xelatex -interaction nonstopmode %f"</span>
                               <span style="color: #CC9393;">"xelatex -interaction nonstopmode %f"</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
-</div>
-</li>
-<li>在org文档的开头部分添加:
+</div></li>
+<li><p>
+在org文档的开头部分添加:
+</p>
 <pre class="example">
 #+LATEX_HEADER: \usepackage{xeCJK}
 #+LATEX_HEADER: \setCJKmainfont{SimSun}
-</pre>
-</li>
-<li>找不到 【SMIKAI.TTF】字体的错误，参考这篇<a href="https://huxuan.org/2012/07/14/chinese-font-problem-of-ctex-in-texlive-under-linux/">文章</a>
-</li>
+</pre></li>
+<li>找不到 【SMIKAI.TTF】字体的错误，参考这篇<a href="https://huxuan.org/2012/07/14/chinese-font-problem-of-ctex-in-texlive-under-linux/">文章</a></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-1-20" class="outline-3">
-<h3 id="sec-1-20"><span class="section-number-3">1.20</span> emacs的奇淫技巧&#xa0;&#xa0;&#xa0;<span class="tag"><span class="face">face</span></span></h3>
+<div id="outline-container-orgheadline29" class="outline-3">
+<h3 id="orgheadline29"><span class="section-number-3">1.20</span> emacs的奇淫技巧&#xa0;&#xa0;&#xa0;<span class="tag"><span class="face">face</span></span></h3>
 <div class="outline-text-3" id="text-1-20">
 <ul class="org-ul">
-<li>M-x flush-lines RET ^$ RET :删除所有的空行（正则匹配）
-</li>
-<li>M-x list-faces-display: 显示faces，在很多需要颜色，字体样式的命令中需要face参数
-</li>
-<li>绑定快捷键时用C-h k查询得到的内容可以直接放在kbd后
-</li>
-<li>indent-region可以格式化所有的代码
-</li>
+<li>M-x flush-lines RET ^$ RET :删除所有的空行（正则匹配）</li>
+<li>M-x list-faces-display: 显示faces，在很多需要颜色，字体样式的命令中需要face参数</li>
+<li>绑定快捷键时用C-h k查询得到的内容可以直接放在kbd后</li>
+<li>indent-region可以格式化所有的代码</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-21" class="outline-3">
-<h3 id="sec-1-21"><span class="section-number-3">1.21</span> 我写的一些命令</h3>
+<div id="outline-container-orgheadline31" class="outline-3">
+<h3 id="orgheadline31"><span class="section-number-3">1.21</span> 我写的一些命令</h3>
 <div class="outline-text-3" id="text-1-21">
-</div><div id="outline-container-sec-1-21-1" class="outline-4">
-<h4 id="sec-1-21-1"><span class="section-number-4">1.21.1</span> 短网址&#xa0;&#xa0;&#xa0;<span class="tag"><span class="dwz">dwz</span>&#xa0;<span class="tinyurl">tinyurl</span></span></h4>
+</div><div id="outline-container-orgheadline30" class="outline-4">
+<h4 id="orgheadline30"><span class="section-number-4">1.21.1</span> 短网址&#xa0;&#xa0;&#xa0;<span class="tag"><span class="dwz">dwz</span>&#xa0;<span class="tinyurl">tinyurl</span></span></h4>
 <div class="outline-text-4" id="text-1-21-1">
 <p>
 使用百度的dwz.cn(之所以不用t.cn, 是因为它的api要求app key,比较麻烦)来缩短网
@@ -1112,11 +955,11 @@ dwz.cn,126.am,bit.ly,goo.gl.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-1-22" class="outline-3">
-<h3 id="sec-1-22"><span class="section-number-3">1.22</span> elpa&#xa0;&#xa0;&#xa0;<span class="tag"><span class="elpa">elpa</span></span></h3>
+<div id="outline-container-orgheadline33" class="outline-3">
+<h3 id="orgheadline33"><span class="section-number-3">1.22</span> elpa&#xa0;&#xa0;&#xa0;<span class="tag"><span class="elpa">elpa</span></span></h3>
 <div class="outline-text-3" id="text-1-22">
-</div><div id="outline-container-sec-1-22-1" class="outline-4">
-<h4 id="sec-1-22-1"><span class="section-number-4">1.22.1</span> proxy(goagent代理)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proxy">proxy</span></span></h4>
+</div><div id="outline-container-orgheadline32" class="outline-4">
+<h4 id="orgheadline32"><span class="section-number-4">1.22.1</span> proxy(goagent代理)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proxy">proxy</span></span></h4>
 <div class="outline-text-4" id="text-1-22-1">
 <div class="org-src-container">
 
@@ -1127,18 +970,16 @@ dwz.cn,126.am,bit.ly,goo.gl.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-1-23" class="outline-3">
-<h3 id="sec-1-23"><span class="section-number-3">1.23</span> emacsclient&#xa0;&#xa0;&#xa0;<span class="tag"><span class="emacsclient">emacsclient</span>&#xa0;<span class="server">server</span></span></h3>
+<div id="outline-container-orgheadline34" class="outline-3">
+<h3 id="orgheadline34"><span class="section-number-3">1.23</span> emacsclient&#xa0;&#xa0;&#xa0;<span class="tag"><span class="emacsclient">emacsclient</span>&#xa0;<span class="server">server</span></span></h3>
 <div class="outline-text-3" id="text-1-23">
 <p>
 使用emacs server配合emacsclient可以很大程度上解决emacs启动慢的烦恼,启动
 emaca server的方法有两种:
 </p>
 <ol class="org-ol">
-<li>shell 中运行 emacs &#x2013;daemon
-</li>
-<li>启动的emacs中运行 <code>(server-start)</code> 命令
-</li>
+<li>shell 中运行 emacs &#x2013;daemon</li>
+<li>启动的emacs中运行 <code>(server-start)</code> 命令</li>
 </ol>
 <p>
 我个人在桌面环境中喜欢第二种方法,也就是先打开一个emacs窗口作为server端,以后
@@ -1148,176 +989,137 @@ emaca server的方法有两种:
 <ol class="org-ol">
 <li>emacsclient创建frame来打开文件时,它创建一个server buffer,如果你在 Client
 Frame中编辑完成,使用C-x C-c来退出该 Client frame,那么该server buffer就会
-从server端删除,但server不会退出
-</li>
+从server端删除,但server不会退出</li>
 <li>如果你直接在server端的 Server Frame中编辑server buffer,如果编辑完成那么
 你可以按C-x # 来kill掉该buffer,同时也会让对应的emacsclient创建的 Client
-Frame退出
-</li>
+Frame退出</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-1-24" class="outline-3">
-<h3 id="sec-1-24"><span class="section-number-3">1.24</span> org-mode&#xa0;&#xa0;&#xa0;<span class="tag"><span class="org">org</span></span></h3>
+<div id="outline-container-orgheadline47" class="outline-3">
+<h3 id="orgheadline47"><span class="section-number-3">1.24</span> org-mode&#xa0;&#xa0;&#xa0;<span class="tag"><span class="org">org</span></span></h3>
 <div class="outline-text-3" id="text-1-24">
 <p>
 org-mode是一个神器,有许多强大的功能
 </p>
 </div>
-<div id="outline-container-sec-1-24-1" class="outline-4">
-<h4 id="sec-1-24-1"><span class="section-number-4">1.24.1</span> org-mode的快捷键与命令</h4>
+<div id="outline-container-orgheadline35" class="outline-4">
+<h4 id="orgheadline35"><span class="section-number-4">1.24.1</span> org-mode的快捷键与命令</h4>
 <div class="outline-text-4" id="text-1-24-1">
 <ul class="org-ul">
-<li>org-w3m-copy-for-org-mode: 在w3m中可以带链接，图片拷贝到org中（先选中region）
-</li>
-<li>tab，S-tab
-</li>
-<li>C-c C-n: next tiltle
-</li>
-<li>C-c C-p: prev tilte
-</li>
-<li>C-c C-f: 平级的上一个标题
-</li>
-<li>C-c C-b：平级的下一个标题
-</li>
-<li>C-c C-u：上一级标题：next
-</li>
-<li>M-RET : 插入同级标题
-</li>
-<li>M-S RET：插入一个同级的TODO标题
-</li>
-<li>M-LEFT/RIGHT: 标题升/降级
-</li>
-<li>M-S-LEFT/RIGHT：子树升/降级
-</li>
-<li>C-c*：将本行设置为标题
-</li>
-<li>C-c C-l: insert a link
-</li>
-<li>C-c C-o: open a link
-</li>
-<li>C-c C-c : 当在标题上时,可以用来插入标签
-</li>
-<li>C-c C-q : 为当前标题插入标签
-</li>
-<li>C-c \ : org-match-sparse-tree
-</li>
+<li>org-w3m-copy-for-org-mode: 在w3m中可以带链接，图片拷贝到org中（先选中region）</li>
+<li>tab，S-tab</li>
+<li>C-c C-n: next tiltle</li>
+<li>C-c C-p: prev tilte</li>
+<li>C-c C-f: 平级的上一个标题</li>
+<li>C-c C-b：平级的下一个标题</li>
+<li>C-c C-u：上一级标题：next</li>
+<li>M-RET : 插入同级标题</li>
+<li>M-S RET：插入一个同级的TODO标题</li>
+<li>M-LEFT/RIGHT: 标题升/降级</li>
+<li>M-S-LEFT/RIGHT：子树升/降级</li>
+<li>C-c*：将本行设置为标题</li>
+<li>C-c C-l: insert a link</li>
+<li>C-c C-o: open a link</li>
+<li>C-c C-c : 当在标题上时,可以用来插入标签</li>
+<li>C-c C-q : 为当前标题插入标签</li>
+<li>C-c \ : org-match-sparse-tree</li>
 </ul>
 <p>
 <b>内容元数据及其快捷键：</b>
 </p>
 <ul class="org-ul">
-<li>&lt;v tab: begin\<sub>verse</sub>   区域内换行
-</li>
-<li>&lt;s tab: begin\<sub>src</sub>     区域内为代码 按 *C-c C-'* 进入主模式编辑，在按退出
-</li>
-<li>&lt;e tab: begin\<sub>example</sub> 例子，每行以：开始
-</li>
-<li>&lt;q tab: begin\<sub>quote</sub>   区域左右都会留出缩进，用于引用
-</li>
-<li>&lt;c tab: begin\<sub>center</sub>  居中区域
-</li>
-<li>&lt;l tab: begin\<sub>latex</sub>
-</li>
-<li>&lt;h tab: begin\<sub>html</sub>    嵌入html
-</li>
-<li>&lt;a tab: begin\<sub>ascii</sub>
-</li>
+<li>&lt;v tab: begin\<sub>verse</sub>   区域内换行</li>
+<li>&lt;s tab: begin\<sub>src</sub>     区域内为代码 按 *C-c C-'* 进入主模式编辑，在按退出</li>
+<li>&lt;e tab: begin\<sub>example</sub> 例子，每行以：开始</li>
+<li>&lt;q tab: begin\<sub>quote</sub>   区域左右都会留出缩进，用于引用</li>
+<li>&lt;c tab: begin\<sub>center</sub>  居中区域</li>
+<li>&lt;l tab: begin\<sub>latex</sub></li>
+<li>&lt;h tab: begin\<sub>html</sub>    嵌入html</li>
+<li>&lt;a tab: begin\<sub>ascii</sub></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-1-24-2" class="outline-4">
-<h4 id="sec-1-24-2"><span class="section-number-4">1.24.2</span> org-mode的一些格式化语法</h4>
+<div id="outline-container-orgheadline36" class="outline-4">
+<h4 id="orgheadline36"><span class="section-number-4">1.24.2</span> org-mode的一些格式化语法</h4>
 <div class="outline-text-4" id="text-1-24-2">
 <ul class="org-ul">
-<li>链接: "【【link】【descripter】】"（用英文的方括号）
-</li>
-<li>org-mode能自动识别链接，如http，file等
-</li>
-<li>有序列表；1. 2. 3.
-</li>
-<li>无序列表：*，+，-开头都可以
-</li>
+<li>链接: "【【link】【descripter】】"（用英文的方括号）</li>
+<li>org-mode能自动识别链接，如http，file等</li>
+<li>有序列表；1. 2. 3.</li>
+<li>无序列表：*，+，-开头都可以</li>
 <li>注解的格式：方括号+数字，或者方括号+fn+数字
-C-c C-c可以在注解与正文之间跳转
-</li>
+C-c C-c可以在注解与正文之间跳转</li>
 </ul>
 <p>
 (下面的格式，开头结尾必须都是空格或标点)
 </p>
 <ul class="org-ul">
-<li>粗体(<b>): *粗体</b>
-</li>
-<li>斜体(<i>): /斜体</i>
-</li>
-<li>删除线(\+): <del>删除线</del>
-</li>
-<li>下划线(\_): <span class="underline">下划线</span>
-</li>
-<li>下标：H<sub>2</sub> O(会将\<sub>后的字符串加上下标，空格为截止符</sub>)
-</li>
-<li>上标：E=mc<sup>2</sup> (同上)
-</li>
+<li>粗体(<b>): *粗体</b></li>
+<li>斜体(<i>): /斜体</i></li>
+<li>删除线(\+): <del>删除线</del></li>
+<li>下划线(\_): <span class="underline">下划线</span></li>
+<li>下标：H<sub>2</sub> O(会将\<sub>后的字符串加上下标</sub>，空格为截止符)</li>
+<li>上标：E=mc<sup>2</sup> (同上)</li>
 <li>等宽字: <code>pair?</code> 或者 <code>pair?</code> 在文章中插入一小段代码或者变量时很有用(可以
-突出重点)
-</li>
+突出重点)</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-1-24-3" class="outline-4">
-<h4 id="sec-1-24-3"><span class="section-number-4">1.24.3</span> 表格</h4>
+<div id="outline-container-orgheadline39" class="outline-4">
+<h4 id="orgheadline39"><span class="section-number-4">1.24.3</span> 表格</h4>
 <div class="outline-text-4" id="text-1-24-3">
-</div><ol class="org-ol"><li><a id="sec-1-24-3-1" name="sec-1-24-3-1"></a>基本使用<br  /><div class="outline-text-5" id="text-1-24-3-1">
+</div><ol class="org-ol"><li><a id="orgheadline37"></a>基本使用<br  /><div class="outline-text-5" id="text-1-24-3-1">
 <p>
 在某一行的顶格输入‘|’，然后输入第一行第一列，在输入‘|’，接着第一行第二
 列，依次类推，完成后tab，会将当前行对齐并为你创造表格的下一行，tab和
 S-tab可以在表格中正向或者反向的移动，在表格的空白项中输入数字eg:&lt;6&gt;则
 限定为6个字符长，多余的部分会隐藏，用C-c C-c可以展开
 </p>
-</div>
-</li>
-<li><a id="sec-1-24-3-2" name="sec-1-24-3-2"></a>技巧<br  /><div class="outline-text-5" id="text-1-24-3-2">
+</div></li>
+<li><a id="orgheadline38"></a>技巧<br  /><div class="outline-text-5" id="text-1-24-3-2">
 <ol class="org-ol">
 <li>在表格的两行之间之间插入 |- 然后TAB, 可以在表格中插入一个|&#x2014;+&#x2014;+&#x2013;|类
-似的行,可以用于区分表头行与数据行
-</li>
-<li>表格内的公式运算
+似的行,可以用于区分表头行与数据行</li>
+<li><p>
+表格内的公式运算
+</p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="center" />
+<col  class="org-center" />
 
-<col  class="center" />
+<col  class="org-center" />
 
-<col  class="center" />
+<col  class="org-center" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="center">单价</th>
-<th scope="col" class="center">数量</th>
-<th scope="col" class="center">总价</th>
+<th scope="col" class="org-center">单价</th>
+<th scope="col" class="org-center">数量</th>
+<th scope="col" class="org-center">总价</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="center">2</td>
-<td class="center">2.5</td>
-<td class="center">5.</td>
+<td class="org-center">2</td>
+<td class="org-center">2.5</td>
+<td class="org-center">5.</td>
 </tr>
 
 <tr>
-<td class="center">3</td>
-<td class="center">3.5</td>
-<td class="center">10.5</td>
+<td class="org-center">3</td>
+<td class="org-center">3.5</td>
+<td class="org-center">10.5</td>
 </tr>
 
 <tr>
-<td class="center">4</td>
-<td class="center">4.5</td>
-<td class="center">18.</td>
+<td class="org-center">4</td>
+<td class="org-center">4.5</td>
+<td class="org-center">18.</td>
 </tr>
 </tbody>
 </table>
@@ -1325,22 +1127,20 @@ S-tab可以在表格中正向或者反向的移动，在表格的空白项中输
 <img src="static/img/org-table-formula.gif" alt="org-table-formula.gif" />
 注意$1 代表第一列, $2代表第二列, 一般表格会自动计算,如果要强制自动计算
 可以使用C-u C-c C-c或者M-x org-table-recalculate-buffer-tables
-</p>
-</li>
+</p></li>
 </ol>
+</div></li></ol>
 </div>
-</li></ol>
-</div>
-<div id="outline-container-sec-1-24-4" class="outline-4">
-<h4 id="sec-1-24-4"><span class="section-number-4">1.24.4</span> org-mode TODO list</h4>
+<div id="outline-container-orgheadline40" class="outline-4">
+<h4 id="orgheadline40"><span class="section-number-4">1.24.4</span> org-mode TODO list</h4>
 <div class="outline-text-4" id="text-1-24-4">
 <p>
 在一个标题上按shift+left/right，C-c C-t可以设置todo list的状态
 </p>
 </div>
 </div>
-<div id="outline-container-sec-1-24-5" class="outline-4">
-<h4 id="sec-1-24-5"><span class="section-number-4">1.24.5</span> org-mode 中的latex代码</h4>
+<div id="outline-container-orgheadline41" class="outline-4">
+<h4 id="orgheadline41"><span class="section-number-4">1.24.5</span> org-mode 中的latex代码</h4>
 <div class="outline-text-4" id="text-1-24-5">
 <p>
 为了在org-mode中高亮latex代码,同时使latex能在html以及pdf中都能生效,不要使用
@@ -1386,38 +1186,37 @@ $\lambda = np$     ==&gt; $与代码之间不要有空格,第二个$后要跟空
 </div>
 </div>
 
-<div id="outline-container-sec-1-24-6" class="outline-4">
-<h4 id="sec-1-24-6"><span class="section-number-4">1.24.6</span> org-mode中的latex代码的预览</h4>
+<div id="outline-container-orgheadline42" class="outline-4">
+<h4 id="orgheadline42"><span class="section-number-4">1.24.6</span> org-mode中的latex代码的预览</h4>
 <div class="outline-text-4" id="text-1-24-6">
 <p>
 org-mode中的latex代码可以预览,这是官方<a href="http://orgmode.org/worg/org-tutorials/org-latex-preview.html">文档</a>, 有以下几个快捷键与命令:
 </p>
 <ol class="org-ol">
-<li>C-c C-x C-l, 命令是org-preview-latex-fragment.
-</li>
-<li>C-u C-c C-x C-l: 预览该子树的所有latex代码
-</li>
-<li>C-u C-u C-c C-x C-l 预览当前buffer中的所有latex代码
-</li>
+<li>C-c C-x C-l, 命令是org-preview-latex-fragment.</li>
+<li>C-u C-c C-x C-l: 预览该子树的所有latex代码</li>
+<li>C-u C-u C-c C-x C-l 预览当前buffer中的所有latex代码</li>
 </ol>
 <p>
 latex代码预览的原理是先创建一个临时的tex文件, 然后调用latex程序来处理该tex文件生成dvi文件,然后根据dvipng或
 者imagemagick(convert)来生成png图片, 有几点注意事项:
 </p>
 <ol class="org-ol">
-<li>LATEX<sub>HEADER指定的内容会包含进临时的tex文件</sub>, 而 LATEX<sub>HEADER</sub><sub>EXTRA指定的内容则不会包含进临时tex文件</sub>
-</li>
-<li>有两种方法来预览latex代码: dvipng(默认) 和 imagemagick,可以通过如下代码设置
+<li>LATEX<sub>HEADER指定的内容会包含进临时的tex文件</sub>, 而 LATEX<sub>HEADER</sub><sub>EXTRA指定的内容则不会包含进临时tex文件</sub></li>
+<li><p>
+有两种方法来预览latex代码: dvipng(默认) 和 imagemagick,可以通过如下代码设置
+</p>
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span style="color: #DCDCCC;">(</span>setq org-latex-create-formula-image-program 'dvipng<span style="color: #DCDCCC;">)</span>
 <span style="color: #5F7F5F;">;;; </span><span style="color: #7F9F7F;">or</span>
 <span style="color: #DCDCCC;">(</span>setq org-latex-create-formula-image-program 'imagemagick<span style="color: #DCDCCC;">)</span>
 </pre>
-</div>
-</li>
-<li>dvipng会调用标准latex程序(比如latexpdf)来处理tex文件, 这情况下,建议加入额外的不能被标准latex处理的宏包
+</div></li>
+<li><p>
+dvipng会调用标准latex程序(比如latexpdf)来处理tex文件, 这情况下,建议加入额外的不能被标准latex处理的宏包
 (比如中文的xeCJK)时使用
+</p>
 <pre class="example">
 #+LATEX_HEADER_EXTRA: \usepackage{xeCJK}
 #+LATEX_HEADER_EXTRA: \setCJKmainfont{SimSun}
@@ -1431,19 +1230,19 @@ latex代码预览的原理是先创建一个临时的tex文件, 然后调用late
 </pre>
 <p>
 因为后者会将xeCJK包含在临时的tex文件中,而这个tex文件需要xetex来处理,所以在预览时会报错
-</p>
-</li>
+</p></li>
 <li>会调用org-latex-pdf-process 指定的程序来处理,这种情况不会出现3中的问题,可是据我测试,生成图片的速度比3慢,而
-且显示图片过大,所以推荐第三种方式
-</li>
+且显示图片过大,所以推荐第三种方式</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-1-24-7" class="outline-4">
-<h4 id="sec-1-24-7"><span class="section-number-4">1.24.7</span> org-mode中latex导出html时的设置</h4>
+<div id="outline-container-orgheadline43" class="outline-4">
+<h4 id="orgheadline43"><span class="section-number-4">1.24.7</span> org-mode中latex导出html时的设置</h4>
 <div class="outline-text-4" id="text-1-24-7">
 <ol class="org-ol">
-<li>使用MaxJax.js (推荐,默认)
+<li><p>
+使用MaxJax.js (推荐,默认)
+</p>
 <pre class="example">
 #+HTML_MATHJAX: align:"left" mathml:t path:"/MathJax/MathJax.js"
 </pre>
@@ -1463,9 +1262,10 @@ latex代码预览的原理是先创建一个临时的tex文件, 然后调用late
 </div>
 <p>
 这是全局的,如果要单个buffer那么就使用 HTML<sub>MATHJAX文件头</sub>
+</p></li>
+<li><p>
+将latex代码的处理结果导出成图片
 </p>
-</li>
-<li>将latex代码的处理结果导出成图片
 <pre class="example">
  #+OPTIONS: tex:dvipng
 or
@@ -1473,29 +1273,25 @@ or
 </pre>
 <p>
 注意系统中必须要安装dvipng, imagemagik
-</p>
-</li>
+</p></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-1-24-8" class="outline-4">
-<h4 id="sec-1-24-8"><span class="section-number-4">1.24.8</span> org-mode导出project以及html的注意事项</h4>
+<div id="outline-container-orgheadline44" class="outline-4">
+<h4 id="orgheadline44"><span class="section-number-4">1.24.8</span> org-mode导出project以及html的注意事项</h4>
 <div class="outline-text-4" id="text-1-24-8">
 <ol class="org-ol">
 <li>在文件中指定的 <code>#+HTML_HEAD #+HTML_HEAD_EXTRA</code> 会覆盖在
 <code>org-publish-project-alist</code> 中指定的 <code>:html-head :html-head-extra</code>.在配
 置中 :html-head只能出现一次, 多次出现则只有最后一次生效,因为实际是一个
-property list
-</li>
-<li><code>org-publish-project-alist</code> 的option <a href="http://orgmode.org/manual/Publishing-options.html#Publishing-options">文档</a>
-</li>
-<li>html 导出的<a href="http://orgmode.org/manual/HTML-export.html#HTML-export">文档</a>
-</li>
+property list</li>
+<li><code>org-publish-project-alist</code> 的option <a href="http://orgmode.org/manual/Publishing-options.html#Publishing-options">文档</a></li>
+<li>html 导出的<a href="http://orgmode.org/manual/HTML-export.html#HTML-export">文档</a></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-1-24-9" class="outline-4">
-<h4 id="sec-1-24-9"><span class="section-number-4">1.24.9</span> Babel</h4>
+<div id="outline-container-orgheadline45" class="outline-4">
+<h4 id="orgheadline45"><span class="section-number-4">1.24.9</span> Babel</h4>
 <div class="outline-text-4" id="text-1-24-9">
 <p>
 通过Babel,你可以直接在org-mode中运行各种编程语言的代码,每一个代码片段都组织为一个block,
@@ -1520,7 +1316,9 @@ property list
 #+end_src
 </pre>
 <ul class="org-ul">
-<li>name: 如果指定,那么最后得到结果就会赋给该变量,可以通过该变量将代码块的执行结果作为参数传递给其他代码块
+<li><p>
+name: 如果指定,那么最后得到结果就会赋给该变量,可以通过该变量将代码块的执行结果作为参数传递给其他代码块
+</p>
 <pre class="example">
 #+name: ret1
 #+BEGIN_SRC python :results output
@@ -1536,17 +1334,15 @@ echo $arg
 
 #+RESULTS:
 : hello world
-</pre>
-</li>
-<li>language: 代码的类型,eg: C, cpp, python, ruby
-</li>
+</pre></li>
+<li>language: 代码的类型,eg: C, cpp, python, ruby</li>
 <li>header-arguments: 头部参数,头部参数可以放在两个地方:代码块的上方以及&lt;language&gt;后,常用的头部参数:
 <ol class="org-ol">
-<li>:results output(捕捉输出), :results value (default,捕捉最后一个表达式的结果,代码块当做一个函数)
-</li>
-<li>:file aa.png (将输出存入文件,下面会加入链接,这对于输出是图片(eg:gunplot)时非常方便)
-</li>
-<li>:dir ~/Documents (将~/Documents 作为运行代码的进程的当前目录)
+<li>:results output(捕捉输出), :results value (default,捕捉最后一个表达式的结果,代码块当做一个函数)</li>
+<li>:file aa.png (将输出存入文件,下面会加入链接,这对于输出是图片(eg:gunplot)时非常方便)</li>
+<li><p>
+:dir ~/Documents (将~/Documents 作为运行代码的进程的当前目录)
+</p>
 <pre class="example">
 #+headers: :dir ~/Documents/blog
 #+BEGIN_SRC sh
@@ -1555,14 +1351,10 @@ echo $PWD
 
 #+RESULTS:
 : /home/yangyu/Documents/blog
-</pre>
-</li>
-<li>:var n=5 (传递一个变量n给code block,并且其值为5)
-</li>
-<li>:exports both (输出code与results), :exports code(默认), :exports results, :exports none
-</li>
-</ol>
-</li>
+</pre></li>
+<li>:var n=5 (传递一个变量n给code block,并且其值为5)</li>
+<li>:exports both (输出code与results), :exports code(默认), :exports results, :exports none</li>
+</ol></li>
 </ul>
 
 <p>
@@ -1571,8 +1363,8 @@ echo $PWD
 </div>
 </div>
 
-<div id="outline-container-sec-1-24-10" class="outline-4">
-<h4 id="sec-1-24-10"><span class="section-number-4">1.24.10</span> dot</h4>
+<div id="outline-container-orgheadline46" class="outline-4">
+<h4 id="orgheadline46"><span class="section-number-4">1.24.10</span> dot</h4>
 <div class="outline-text-4" id="text-1-24-10">
 <p>
 dot语言可以用来画流程图，和Babel结合起来非常方便，这是一份dot语言的<a href="static/doc/dotguide.pdf">guide</a>
@@ -1581,19 +1373,19 @@ dot语言可以用来画流程图，和Babel结合起来非常方便，这是一
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> emacs让人困惑的问题</h2>
+<div id="outline-container-orgheadline51" class="outline-2">
+<h2 id="orgheadline51"><span class="section-number-2">2</span> emacs让人困惑的问题</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1"><span class="section-number-3">2.1</span> overwrite mode</h3>
+</div><div id="outline-container-orgheadline49" class="outline-3">
+<h3 id="orgheadline49"><span class="section-number-3">2.1</span> overwrite mode</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 该mode打开的话，会替换光标后面的字符，而不是插入，非常令人不爽
 </p>
 </div>
 </div>
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2"><span class="section-number-3">2.2</span> whitespace-mode</h3>
+<div id="outline-container-orgheadline50" class="outline-3">
+<h3 id="orgheadline50"><span class="section-number-3">2.2</span> whitespace-mode</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 该mode打开后,默认会在所有的空格位置显示一个 . ,并且在行尾显示一个$, 可以使

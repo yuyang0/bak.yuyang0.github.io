@@ -3,24 +3,31 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>The Essential of Programming language</title>
-<!-- 2015-08-21 Fri 17:27 -->
+<!-- 2016-02-20 Sat 22:43 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Essential of Programming language</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
 <meta  name="keywords" content="EOPL programming-language  scheme intepreter" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -59,15 +66,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -137,48 +143,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script type="text/javascript">
-<!--/*--><![CDATA[/*><!--*/
+<script type="text/x-mathjax-config">
     MathJax.Hub.Config({
-        // Only one of the two following lines, depending on user settings
-        // First allows browser-native MathML display, second forces HTML/CSS
-            config: ["MMLorHTML.js"], jax: ["input/TeX"],
-        //  jax: ["input/TeX", "output/HTML-CSS"],
-        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
-                     "TeX/noUndefined.js"],
-        tex2jax: {
-            inlineMath: [ ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
-            skipTags: ["script","noscript","style","textarea","pre","code"],
-            ignoreClass: "tex2jax_ignore",
-            processEscapes: false,
-            processEnvironments: true,
-            preview: "TeX"
-        },
-        showProcessingMessages: true,
         displayAlign: "center",
         displayIndent: "2em",
 
-        "HTML-CSS": {
-             scale: 100,
-             availableFonts: ["STIX","TeX"],
-             preferredFont: "TeX",
-             webFont: "TeX",
-             imageFont: "TeX",
-             showMathMenu: true,
-        },
-        MMLorHTML: {
-             prefer: {
-                 MSIE:    "MML",
-                 Firefox: "MML",
-                 Opera:   "HTML",
-                 other:   "HTML"
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "%LINEBREAKS" },
+                        webFont: "%FONT"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "%LINEBREAKS" },
+              font: "%FONT"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "%AUTONUMBER"},
+               MultLineWidth: "%MULTLINEWIDTH",
+               TagSide: "%TAGSIDE",
+               TagIndent: "%TAGINDENT"
              }
-        }
-    });
-/*]]>*///-->
+});
 </script>
+<script type="text/javascript"
+        src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -212,105 +198,105 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">Preface</a></li>
-<li><a href="#sec-2">1. Inductive Sets and Data</a>
+<li><a href="#orgheadline1">Preface</a></li>
+<li><a href="#orgheadline14">1. Inductive Sets and Data</a>
 <ul>
-<li><a href="#sec-2-1">1.1</a>
+<li><a href="#orgheadline5">1.1</a>
 <ul>
-<li><a href="#sec-2-1-1">top-down definition</a></li>
-<li><a href="#sec-2-1-2">bottom-up definition</a></li>
-<li><a href="#sec-2-1-3">rules of inference</a></li>
+<li><a href="#orgheadline2">top-down definition</a></li>
+<li><a href="#orgheadline3">bottom-up definition</a></li>
+<li><a href="#orgheadline4">rules of inference</a></li>
 </ul>
 </li>
-<li><a href="#sec-2-2">1.2</a>
+<li><a href="#orgheadline13">1.2</a>
 <ul>
-<li><a href="#sec-2-2-1">用语法规则定义集合</a></li>
-<li><a href="#sec-2-2-2">The Smaller-Subproblem Principle</a>
+<li><a href="#orgheadline6">用语法规则定义集合</a></li>
+<li><a href="#orgheadline7">The Smaller-Subproblem Principle</a>
 <ul>
-<li><a href="#sec-2-2-2-1">nth-element</a></li>
-<li><a href="#sec-2-2-2-2">remove-first</a></li>
-<li><a href="#sec-2-2-2-3">occurs-free?</a></li>
-<li><a href="#sec-2-2-2-4">subst</a></li>
+<li><a href="#orgheadline8">nth-element</a></li>
+<li><a href="#orgheadline9">remove-first</a></li>
+<li><a href="#orgheadline10">occurs-free?</a></li>
+<li><a href="#orgheadline11">subst</a></li>
 </ul>
 </li>
-<li><a href="#sec-2-2-3">Follow the Grammar!</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#sec-3">2 Data Abstraction</a>
-<ul>
-<li><a href="#sec-3-1">2.3 Interfaces for Recursive Data Types</a></li>
-<li><a href="#sec-3-2">2.4 A Tool for Defining Recursive Data Types</a></li>
-</ul>
-</li>
-<li><a href="#sec-4">3 Expressions</a>
-<ul>
-<li><a href="#sec-4-1">Some Concepts</a></li>
-</ul>
-</li>
-<li><a href="#sec-5">4 State</a>
-<ul>
-<li><a href="#sec-5-1">返回值与副作用的区别</a></li>
-<li><a href="#sec-5-2">difference between binding and assignments</a></li>
-<li><a href="#sec-5-3">4.1 Computational Effects</a></li>
-<li><a href="#sec-5-4">4.5 Parameter Passing Variations</a>
-<ul>
-<li><a href="#sec-5-4-1">Natural Parameter Passing</a></li>
-<li><a href="#sec-5-4-2">Call By Reference</a></li>
-<li><a href="#sec-5-4-3">Call By Value(CBV)</a></li>
-<li><a href="#sec-5-4-4">Call By Name(CBN)</a></li>
-<li><a href="#sec-5-4-5">Call By Need</a></li>
+<li><a href="#orgheadline12">Follow the Grammar!</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sec-6">5 Continuation-Passing Interpreter</a>
+<li><a href="#orgheadline15">2 Data Abstraction</a>
 <ul>
-<li><a href="#sec-6-1">Serveral Concepts</a></li>
+<li><a href="#orgheadline16">2.3 Interfaces for Recursive Data Types</a></li>
+<li><a href="#orgheadline17">2.4 A Tool for Defining Recursive Data Types</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline18">3 Expressions</a>
+<ul>
+<li><a href="#orgheadline19">Some Concepts</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline29">4 State</a>
+<ul>
+<li><a href="#orgheadline20">返回值与副作用的区别</a></li>
+<li><a href="#orgheadline21">difference between binding and assignments</a></li>
+<li><a href="#orgheadline22">4.1 Computational Effects</a></li>
+<li><a href="#orgheadline28">4.5 Parameter Passing Variations</a>
+<ul>
+<li><a href="#orgheadline23">Natural Parameter Passing</a></li>
+<li><a href="#orgheadline24">Call By Reference</a></li>
+<li><a href="#orgheadline25">Call By Value(CBV)</a></li>
+<li><a href="#orgheadline26">Call By Name(CBN)</a></li>
+<li><a href="#orgheadline27">Call By Need</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline31">5 Continuation-Passing Interpreter</a>
+<ul>
+<li><a href="#orgheadline30">Serveral Concepts</a></li>
 </ul>
 </li>
 <li><a href="#lambda-calculus">lambda calculus</a>
 <ul>
-<li><a href="#sec-7-1">Terms</a></li>
-<li><a href="#sec-7-2">Relations</a></li>
-<li><a href="#sec-7-3">Normal Form</a></li>
-<li><a href="#sec-7-4">Evaluation Strategy</a></li>
-<li><a href="#sec-7-5">Church Encode</a>
+<li><a href="#orgheadline32">Terms</a></li>
+<li><a href="#orgheadline33">Relations</a></li>
+<li><a href="#orgheadline34">Normal Form</a></li>
+<li><a href="#orgheadline35">Evaluation Strategy</a></li>
+<li><a href="#orgheadline40">Church Encode</a>
 <ul>
-<li><a href="#sec-7-5-1">boolean</a></li>
-<li><a href="#sec-7-5-2">pair</a></li>
-<li><a href="#sec-7-5-3">number</a></li>
-<li><a href="#sec-7-5-4">list</a></li>
+<li><a href="#orgheadline36">boolean</a></li>
+<li><a href="#orgheadline37">pair</a></li>
+<li><a href="#orgheadline38">number</a></li>
+<li><a href="#orgheadline39">list</a></li>
 </ul>
 </li>
-<li><a href="#sec-7-6">Y Combinator</a></li>
-<li><a href="#sec-7-7">Theorems</a>
+<li><a href="#orgheadline41">Y Combinator</a></li>
+<li><a href="#orgheadline44">Theorems</a>
 <ul>
-<li><a href="#sec-7-7-1">Church-Rosser for =<sub>n</sub></a></li>
-<li><a href="#sec-7-7-2">Diamond Property for →→<sub>n</sub></a></li>
+<li><a href="#orgheadline42">Church-Rosser for =<sub>n</sub></a></li>
+<li><a href="#orgheadline43">Diamond Property for →→<sub>n</sub></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sec-8">ISWIM</a>
+<li><a href="#orgheadline46">ISWIM</a>
 <ul>
-<li><a href="#sec-8-1">terms</a></li>
-<li><a href="#sec-8-2">Values</a></li>
+<li><a href="#orgheadline47">terms</a></li>
+<li><a href="#orgheadline48">Values</a></li>
 </ul>
 </li>
-<li><a href="#sec-9">Standard reduction</a></li>
-<li><a href="#sec-10">Machines</a>
+<li><a href="#orgheadline49">Standard reduction</a></li>
+<li><a href="#orgheadline51">Machines</a>
 <ul>
-<li><a href="#sec-10-1">CC Machine</a></li>
+<li><a href="#orgheadline50">CC Machine</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Preface</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">Preface</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <blockquote>
 <p>
   Perhaps the whole distinction between program and programming language is a
@@ -320,47 +306,43 @@ programs in particular, but as creating new languages for each new application.
 </blockquote>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">1. Inductive Sets and Data</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">1.1</h3>
-<div class="outline-text-3" id="text-2-1">
-</div><div id="outline-container-sec-2-1-1" class="outline-4">
-<h4 id="sec-2-1-1">top-down definition</h4>
-<div class="outline-text-4" id="text-2-1-1">
+<div id="outline-container-orgheadline14" class="outline-2">
+<h2 id="orgheadline14">1. Inductive Sets and Data</h2>
+<div class="outline-text-2" id="text-orgheadline14">
+</div><div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">1.1</h3>
+<div class="outline-text-3" id="text-orgheadline5">
+</div><div id="outline-container-orgheadline2" class="outline-4">
+<h4 id="orgheadline2">top-down definition</h4>
+<div class="outline-text-4" id="text-orgheadline2">
 <p>
 自顶向下意味着从宏观的角度向微观细分
 A Scheme list is a list of integers if and only if either
 </p>
 <ol class="org-ol">
-<li>it is the empty list, or
-</li>
-<li>it is a pair whose car is an integer and whose cdr is a list of integers.
-</li>
+<li>it is the empty list, or</li>
+<li>it is a pair whose car is an integer and whose cdr is a list of integers.</li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-sec-2-1-2" class="outline-4">
-<h4 id="sec-2-1-2">bottom-up definition</h4>
-<div class="outline-text-4" id="text-2-1-2">
+<div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3">bottom-up definition</h4>
+<div class="outline-text-4" id="text-orgheadline3">
 <p>
 自底向上意味着从微观的角度向宏观归纳
 The set List-of-Int is the smallest set of Scheme lists satisfying the
 following two properties:
 </p>
 <ol class="org-ol">
-<li>() ∈ List-of-Int, and
-</li>
-<li>if n ∈ Int and l ∈ List-of-Int, then (n . l) ∈ List-of-Int.
-</li>
+<li>() ∈ List-of-Int, and</li>
+<li>if n ∈ Int and l ∈ List-of-Int, then (n . l) ∈ List-of-Int.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2-1-3" class="outline-4">
-<h4 id="sec-2-1-3">rules of inference</h4>
-<div class="outline-text-4" id="text-2-1-3">
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4">rules of inference</h4>
+<div class="outline-text-4" id="text-orgheadline4">
 \begin{align}
   () \in List-of-Int  \\
   \frac {n \in Int \quad l \in List-of-Int} {(n . l) \in List-of-Int}
@@ -369,12 +351,12 @@ following two properties:
 </div>
 </div>
 
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2">1.2</h3>
-<div class="outline-text-3" id="text-2-2">
-</div><div id="outline-container-sec-2-2-1" class="outline-4">
-<h4 id="sec-2-2-1">用语法规则定义集合</h4>
-<div class="outline-text-4" id="text-2-2-1">
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13">1.2</h3>
+<div class="outline-text-3" id="text-orgheadline13">
+</div><div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6">用语法规则定义集合</h4>
+<div class="outline-text-4" id="text-orgheadline6">
 \begin{align}
   List-of-Int &::= ()  \\
               &::= (Int . List-of-Int)
@@ -389,17 +371,17 @@ following two properties:
 </div>
 </div>
 
-<div id="outline-container-sec-2-2-2" class="outline-4">
-<h4 id="sec-2-2-2">The Smaller-Subproblem Principle</h4>
-<div class="outline-text-4" id="text-2-2-2">
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7">The Smaller-Subproblem Principle</h4>
+<div class="outline-text-4" id="text-orgheadline7">
 <p>
 If we can reduce a problem to a smaller subproblem, we can call the
 procedure that solves the problem to solve the subproblem.
 </p>
 </div>
-<div id="outline-container-sec-2-2-2-1" class="outline-5">
-<h5 id="sec-2-2-2-1">nth-element</h5>
-<div class="outline-text-5" id="text-2-2-2-1">
+<div id="outline-container-orgheadline8" class="outline-5">
+<h5 id="orgheadline8">nth-element</h5>
+<div class="outline-text-5" id="text-orgheadline8">
 <div class="org-src-container">
 
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">nth-element</span>
@@ -417,9 +399,9 @@ procedure that solves the problem to solve the subproblem.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2-2-2-2" class="outline-5">
-<h5 id="sec-2-2-2-2">remove-first</h5>
-<div class="outline-text-5" id="text-2-2-2-2">
+<div id="outline-container-orgheadline9" class="outline-5">
+<h5 id="orgheadline9">remove-first</h5>
+<div class="outline-text-5" id="text-orgheadline9">
 <div class="org-src-container">
 
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">remove-first</span>
@@ -433,12 +415,12 @@ procedure that solves the problem to solve the subproblem.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2-2-2-3" class="outline-5">
-<h5 id="sec-2-2-2-3">occurs-free?</h5>
+<div id="outline-container-orgheadline10" class="outline-5">
+<h5 id="orgheadline10">occurs-free?</h5>
 </div>
-<div id="outline-container-sec-2-2-2-4" class="outline-5">
-<h5 id="sec-2-2-2-4">subst</h5>
-<div class="outline-text-5" id="text-2-2-2-4">
+<div id="outline-container-orgheadline11" class="outline-5">
+<h5 id="orgheadline11">subst</h5>
+<div class="outline-text-5" id="text-orgheadline11">
 <div class="org-src-container">
 
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">subst</span>
@@ -449,9 +431,9 @@ procedure that solves the problem to solve the subproblem.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2-2-3" class="outline-4">
-<h4 id="sec-2-2-3">Follow the Grammar!</h4>
-<div class="outline-text-4" id="text-2-2-3">
+<div id="outline-container-orgheadline12" class="outline-4">
+<h4 id="orgheadline12">Follow the Grammar!</h4>
+<div class="outline-text-4" id="text-orgheadline12">
 <p>
 When defining a procedure that operates on inductively defined data, the
 structure of the program should be patterned after the structure of the
@@ -464,41 +446,36 @@ data.
 <ol class="org-ol">
 <li>Write one procedure for each nonterminal in the grammar. The procedure
 will be responsible for handling the data corresponding to that
-nonterminal, and nothing else.
-</li>
+nonterminal, and nothing else.</li>
 <li>In each procedure, write one alternative for each production correspond-
 ing to that nonterminal. You may need additional case structure, but
 this will get you started. For each nonterminal that appears in the
 right-hand side, write a recursive call to the procedure for that
-nonterminal.
-</li>
+nonterminal.</li>
 </ol>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">2 Data Abstraction</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline15" class="outline-2">
+<h2 id="orgheadline15">2 Data Abstraction</h2>
+<div class="outline-text-2" id="text-orgheadline15">
 <p>
 \(\lceil v \rceil\) 代表数据 <code>v</code> 的实现
 </p>
 </div>
 
-<div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">2.3 Interfaces for Recursive Data Types</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16">2.3 Interfaces for Recursive Data Types</h3>
+<div class="outline-text-3" id="text-orgheadline16">
 <p>
 Designing an interface for a recursive data type:
 </p>
 <ol class="org-ol">
-<li>Include one constructor for each kind of data in the data type.
-</li>
-<li>Include one predicate for each kind of data in the data type.
-</li>
+<li>Include one constructor for each kind of data in the data type.</li>
+<li>Include one predicate for each kind of data in the data type.</li>
 <li>Include one extractor for each piece of data passed to a constructor of
-the data type.
-</li>
+the data type.</li>
 </ol>
 <p>
 举个例子, 比如lambda calculus的语法定义是这样:
@@ -515,44 +492,30 @@ the data type.
 <ol class="org-ol">
 <li>Constructor
 <ul class="org-ul">
-<li>var-exp : Var → Lc-exp
-</li>
-<li>lambda-exp : Var × Lc-exp → Lc-exp
-</li>
-<li>app-exp : Lc-exp × Lc-exp → Lc-exp
-</li>
-</ul>
-</li>
+<li>var-exp : Var → Lc-exp</li>
+<li>lambda-exp : Var × Lc-exp → Lc-exp</li>
+<li>app-exp : Lc-exp × Lc-exp → Lc-exp</li>
+</ul></li>
 <li>Predicates
 <ul class="org-ul">
-<li>var-exp? : Lc-exp → Bool
-</li>
-<li>lambda-exp? : Lc-exp → Bool
-</li>
-<li>app-exp? : Lc-exp → Bool
-</li>
-</ul>
-</li>
+<li>var-exp? : Lc-exp → Bool</li>
+<li>lambda-exp? : Lc-exp → Bool</li>
+<li>app-exp? : Lc-exp → Bool</li>
+</ul></li>
 <li>Extractors
 <ul class="org-ul">
-<li><b>var-exp-&gt;var</b> :Lc-exp → Var
-</li>
-<li><b>lambda-exp-&gt;bound-var</b> :Lc-exp → Var
-</li>
-<li><b>lambda-exp-&gt;body</b> :Lc-exp → Lc-exp
-</li>
-<li><b>app-exp-&gt;rator</b> :Lc-exp → Lc-exp
-</li>
-<li><b>app-exp-&gt;rand</b> :Lc-exp → Lc-exp
-</li>
-</ul>
-</li>
+<li><b>var-exp-&gt;var</b> :Lc-exp → Var</li>
+<li><b>lambda-exp-&gt;bound-var</b> :Lc-exp → Var</li>
+<li><b>lambda-exp-&gt;body</b> :Lc-exp → Lc-exp</li>
+<li><b>app-exp-&gt;rator</b> :Lc-exp → Lc-exp</li>
+<li><b>app-exp-&gt;rand</b> :Lc-exp → Lc-exp</li>
+</ul></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2">2.4 A Tool for Defining Recursive Data Types</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17">2.4 A Tool for Defining Recursive Data Types</h3>
+<div class="outline-text-3" id="text-orgheadline17">
 <p>
 使用define-datatype来自动的定义一个递归数据类型(<b>接口</b>),以lambda calculus的
 语法定义为例子
@@ -597,56 +560,46 @@ predicate:Lc-exp?.然后可以使用cases来使用上述定义:
 </div>
 </div>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">3 Expressions</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgheadline18" class="outline-2">
+<h2 id="orgheadline18">3 Expressions</h2>
+<div class="outline-text-2" id="text-orgheadline18">
 <p>
 本章的目的实际就是用scheme来写一个program来解释执行EOPL中let语言的AST,其实就
 是写一个解释器,只是这个解释器直接接受AST,而不是字符串
 </p>
 </div>
-<div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1">Some Concepts</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19">Some Concepts</h3>
+<div class="outline-text-3" id="text-orgheadline19">
 <ol class="org-ol">
 <li>AST(aka: abstract syntax tree or just syntax tree): 抽象语法树,和Concrete
 syntax tree(aka parse tree)像对应,AST不包含一些细节, 比如一个if表达式,在
 AST就不会包含 if这样的关键词,因此无论你使用 if(..){..} 还是 if &#x2026; then
-&#x2026; fi, 还是其他,它们的AST都是一样的
-</li>
-<li>scanning: 根据词法规则将字符串切分为一个一个的token
-</li>
-<li>parsing: 根据语法规则将scanning生成的token生成一个AST
-</li>
-<li>expressed value: 表达式的值
-</li>
-<li>denoted value: 变量所代表的值
-</li>
+&#x2026; fi, 还是其他,它们的AST都是一样的</li>
+<li>scanning: 根据词法规则将字符串切分为一个一个的token</li>
+<li>parsing: 根据语法规则将scanning生成的token生成一个AST</li>
+<li>expressed value: 表达式的值</li>
+<li>denoted value: 变量所代表的值</li>
 <li>变量的声明与引用(declaration reference): lambda的形参是声明,let内的参数是
-声明
-</li>
-<li>作用域(scope): 一个变量起作用的部分就是变量的作用域
-</li>
+声明</li>
+<li>作用域(scope): 一个变量起作用的部分就是变量的作用域</li>
 <li>lexical depth: 词法深度,用来表示一个变量的引用与该变量声明之间的作用域的
-个数,以0为开始
-</li>
+个数,以0为开始</li>
 <li>identifiers: a identifier is a string of characters,typically letters or
 digits,that refer to an entity,all identifiers are names,but not all
-names are identifiers.
-</li>
-<li>name:
-</li>
+names are identifiers.</li>
+<li>name:</li>
 </ol>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5">4 State</h2>
-<div class="outline-text-2" id="text-5">
-</div><div id="outline-container-sec-5-1" class="outline-3">
-<h3 id="sec-5-1">返回值与副作用的区别</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-orgheadline29" class="outline-2">
+<h2 id="orgheadline29">4 State</h2>
+<div class="outline-text-2" id="text-orgheadline29">
+</div><div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20">返回值与副作用的区别</h3>
+<div class="outline-text-3" id="text-orgheadline20">
 <p>
    What’s the difference between producing a value and producing an effect?  An
 effect is <b>global</b>: it is seen by the entire computation. An effect affects the
@@ -654,27 +607,24 @@ entire computation (pun intended).
 </p>
 </div>
 </div>
-<div id="outline-container-sec-5-2" class="outline-3">
-<h3 id="sec-5-2">difference between binding and assignments</h3>
-<div class="outline-text-3" id="text-5-2">
+<div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21">difference between binding and assignments</h3>
+<div class="outline-text-3" id="text-orgheadline21">
 <p>
 binding is local, but variable assignment is potentially global.
 </p>
 </div>
 </div>
-<div id="outline-container-sec-5-3" class="outline-3">
-<h3 id="sec-5-3">4.1 Computational Effects</h3>
-<div class="outline-text-3" id="text-5-3">
+<div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22">4.1 Computational Effects</h3>
+<div class="outline-text-3" id="text-orgheadline22">
 <p>
 计算机内存可以抽象为一个 Map: locations ⟶ storable values
 </p>
 <ol class="org-ol">
-<li>reference: 引用,(left value) A data structure represent location
-</li>
-<li>location: 包含reference指向的数据
-</li>
-<li>variable: One can think variable is same as location.
-</li>
+<li>reference: 引用,(left value) A data structure represent location</li>
+<li>location: 包含reference指向的数据</li>
+<li>variable: One can think variable is same as location.</li>
 </ol>
 <p>
 二者的可以这样类比:reference可以看作是url,而location可以看作是文件,文件包含
@@ -688,21 +638,21 @@ binding is local, but variable assignment is potentially global.
 </div>
 </div>
 
-<div id="outline-container-sec-5-4" class="outline-3">
-<h3 id="sec-5-4">4.5 Parameter Passing Variations</h3>
-<div class="outline-text-3" id="text-5-4">
-</div><div id="outline-container-sec-5-4-1" class="outline-4">
-<h4 id="sec-5-4-1">Natural Parameter Passing</h4>
-<div class="outline-text-4" id="text-5-4-1">
+<div id="outline-container-orgheadline28" class="outline-3">
+<h3 id="orgheadline28">4.5 Parameter Passing Variations</h3>
+<div class="outline-text-3" id="text-orgheadline28">
+</div><div id="outline-container-orgheadline23" class="outline-4">
+<h4 id="orgheadline23">Natural Parameter Passing</h4>
+<div class="outline-text-4" id="text-orgheadline23">
 <p>
 The denoted value is same as the expressed value of the actual
 parameter.like the LET language
 </p>
 </div>
 </div>
-<div id="outline-container-sec-5-4-2" class="outline-4">
-<h4 id="sec-5-4-2">Call By Reference</h4>
-<div class="outline-text-4" id="text-5-4-2">
+<div id="outline-container-orgheadline24" class="outline-4">
+<h4 id="orgheadline24">Call By Reference</h4>
+<div class="outline-text-4" id="text-orgheadline24">
 <p>
 The Formal Parameter is associated with the same reference of the Actual
 Parameter. so if you change the value of formal parameter, the value of
@@ -716,9 +666,9 @@ actual parameter also changes.
 </div>
 </div>
 
-<div id="outline-container-sec-5-4-3" class="outline-4">
-<h4 id="sec-5-4-3">Call By Value(CBV)</h4>
-<div class="outline-text-4" id="text-5-4-3">
+<div id="outline-container-orgheadline25" class="outline-4">
+<h4 id="orgheadline25">Call By Value(CBV)</h4>
+<div class="outline-text-4" id="text-orgheadline25">
 <p>
 The denoted value is a reference to a location containning the expressed
 value of the actual parameter.
@@ -731,39 +681,36 @@ value of the actual parameter.
 </div>
 </div>
 
-<div id="outline-container-sec-5-4-4" class="outline-4">
-<h4 id="sec-5-4-4">Call By Name(CBN)</h4>
+<div id="outline-container-orgheadline26" class="outline-4">
+<h4 id="orgheadline26">Call By Name(CBN)</h4>
 </div>
-<div id="outline-container-sec-5-4-5" class="outline-4">
-<h4 id="sec-5-4-5">Call By Need</h4>
+<div id="outline-container-orgheadline27" class="outline-4">
+<h4 id="orgheadline27">Call By Need</h4>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6">5 Continuation-Passing Interpreter</h2>
-<div class="outline-text-2" id="text-6">
-</div><div id="outline-container-sec-6-1" class="outline-3">
-<h3 id="sec-6-1">Serveral Concepts</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-orgheadline31" class="outline-2">
+<h2 id="orgheadline31">5 Continuation-Passing Interpreter</h2>
+<div class="outline-text-2" id="text-orgheadline31">
+</div><div id="outline-container-orgheadline30" class="outline-3">
+<h3 id="orgheadline30">Serveral Concepts</h3>
+<div class="outline-text-3" id="text-orgheadline30">
 <ol class="org-ol">
 <li>Context: According to wikipedia, A task context is the minimal set of
-data used by this task at the point it has been interrupted
-</li>
-<li>Data Context: Environment is the abstraction of Data Context
-</li>
-<li>Control Context: Continuation is the abstraction of Control Contextp
-</li>
+data used by this task at the point it has been interrupted</li>
+<li>Data Context: Environment is the abstraction of Data Context</li>
+<li>Control Context: Continuation is the abstraction of Control Contextp</li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-lambda-calculus" class="outline-2">
-<h2 id="lambda-calculus"><a id="sec-7" name="sec-7"></a>lambda calculus</h2>
+<div id="outline-container-orgheadline45" class="outline-2">
+<h2 id="lambda-calculus"><a id="orgheadline45"></a>lambda calculus</h2>
 <div class="outline-text-2" id="text-lambda-calculus">
 </div>
-<div id="outline-container-sec-7-1" class="outline-3">
-<h3 id="sec-7-1">Terms</h3>
-<div class="outline-text-3" id="text-7-1">
+<div id="outline-container-orgheadline32" class="outline-3">
+<h3 id="orgheadline32">Terms</h3>
+<div class="outline-text-3" id="text-orgheadline32">
 <p>
 The set of lambda-calculus expressions can be defined with following
 grammar:
@@ -778,24 +725,27 @@ grammar:
 </div>
 </div>
 
-<div id="outline-container-sec-7-2" class="outline-3">
-<h3 id="sec-7-2">Relations</h3>
-<div class="outline-text-3" id="text-7-2">
+<div id="outline-container-orgheadline33" class="outline-3">
+<h3 id="orgheadline33">Relations</h3>
+<div class="outline-text-3" id="text-orgheadline33">
 <ol class="org-ol">
-<li>FV: a relation(function) that maps a lambda calculus expression to a set
+<li><p>
+FV: a relation(function) that maps a lambda calculus expression to a set
 free variables.
+</p>
 \begin{eqnarray*}
   FV(X) &=& \{ X \}  \\
   FV( (\lambda X.M) ) &=& FV(M) / \{X \}  \\
   FV( (M_1 M_2) ) &=& FV(M_1) \cup FV(M_2)  \\
 
-\end{eqnarray*}
-</li>
+\end{eqnarray*}</li>
 
-<li>\(\_[\_ \leftarrow \_]\): a relation that maps a source expression, a
+<li><p>
+\(\_[\_ \leftarrow \_]\): a relation that maps a source expression, a
 variable, and an argument expression to a target expression. The target
 expression is the same as the source expression, except that free
 instances of the variable are replaced by the argument expression:
+</p>
 
 \begin{eqnarray*}
   X_1[X_1 \leftarrow M]       &=& M     \\
@@ -807,50 +757,41 @@ instances of the variable are replaced by the argument expression:
                                              X_3 \notin FV(M_2) \\
   (M_1 M_2)[X \leftarrow M_3]      &=& (M_1[X \leftarrow M_3] M_2[X \leftarrow M_3])\\
 
-\end{eqnarray*}
-</li>
+\end{eqnarray*}</li>
 
 <li>&alpha; conversion: a relation that maps a expression to another expression
-with formal argument changed.
-</li>
-<li>&beta; reduction: the main reduction relation, encoding function application
-</li>
+with formal argument changed.</li>
+<li>&beta; reduction: the main reduction relation, encoding function application</li>
 
-<li>&eta; equivalence
+<li><p>
+&eta; equivalence
+</p>
 \begin{eqnarray*}
   (\lambda X. M)        &\alpha&   (\lambda Y.M[X \leftarrow Y])   &where\ Y \notin FV(M) \\
   ((\lambda X.M_1) M2)   &\beta&    M_1[X \leftarrow M_2]         & \\
   (\lambda X.(M X))     &\eta&     M                              &where\ X \notin FV(M)  \\
-\end{eqnarray*}
-</li>
+\end{eqnarray*}</li>
 
-<li>\(n = \alpha \cup \beta \cup \eta\)
-</li>
+<li>\(n = \alpha \cup \beta \cup \eta\)</li>
 <li>\(\rightarrow_n^\alpha, \rightarrow_n^\beta, \rightarrow_n^\eta\) is the
-compatiable closure of &alpha;, &beta;, &eta;.
-</li>
+compatiable closure of &alpha;, &beta;, &eta;.</li>
 <li>\(\twoheadrightarrow_n^\alpha, \twoheadrightarrow_n^\beta,
       \twoheadrightarrow_n^\eta\) is the flexive-transitive closure of
-\(\rightarrow_n^\alpha, \rightarrow_n^\beta, \rightarrow_n^\eta\).
-</li>
+\(\rightarrow_n^\alpha, \rightarrow_n^\beta, \rightarrow_n^\eta\).</li>
 <li>\(=_n^\alpha, =_n^\beta, =_n^\eta\) is the symmetric closure of
 \(\twoheadrightarrow_n^\alpha, \twoheadrightarrow_n^\beta,
       \twoheadrightarrow_n^\eta\), and the equivalence closure
-\(\rightarrow_n^\alpha, \rightarrow_n^\beta, \rightarrow_n^\eta\).
-</li>
-<li>\(\rightarrow_n\): the compatiable closure of <b>n</b>.
-</li>
-<li>\(\twoheadrightarrow_n\): the reflexive-transitive closure of &rarr;<sub>n</sub>.
-</li>
+\(\rightarrow_n^\alpha, \rightarrow_n^\beta, \rightarrow_n^\eta\).</li>
+<li>\(\rightarrow_n\): the compatiable closure of <b>n</b>.</li>
+<li>\(\twoheadrightarrow_n\): the reflexive-transitive closure of &rarr;<sub>n</sub>.</li>
 <li>=<sub>n</sub>: the symmetric closure of \(\twoheadrightarrow_n\), equivalence closure
-of \(\rightarrow_n\).
-</li>
+of \(\rightarrow_n\).</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-7-3" class="outline-3">
-<h3 id="sec-7-3">Normal Form</h3>
-<div class="outline-text-3" id="text-7-3">
+<div id="outline-container-orgheadline34" class="outline-3">
+<h3 id="orgheadline34">Normal Form</h3>
+<div class="outline-text-3" id="text-orgheadline34">
 <p>
 An expression is in normal form if it cann't be reduced by
 \(\rightarrow_n^\beta\) or \(\rightarrow_n^\eta\).
@@ -868,31 +809,27 @@ don't have normal form.
 </p>
 </div>
 </div>
-<div id="outline-container-sec-7-4" class="outline-3">
-<h3 id="sec-7-4">Evaluation Strategy</h3>
-<div class="outline-text-3" id="text-7-4">
+<div id="outline-container-orgheadline35" class="outline-3">
+<h3 id="orgheadline35">Evaluation Strategy</h3>
+<div class="outline-text-3" id="text-orgheadline35">
 <ol class="org-ol">
-<li>full beta reduction: Any redex may be reduced at any time.
-</li>
+<li>full beta reduction: Any redex may be reduced at any time.</li>
 <li>Normal Order Strategy: The leftmoast outermost is always reduced
-first.This Strategy can reduce the redex in the body of a function.
-</li>
+first.This Strategy can reduce the redex in the body of a function.</li>
 <li>Call By Name Strategy: Like Normal Order, but allows no reduction in the
-body of function. <b>Call by Need</b> is optimizing version of Call by Name.
-</li>
+body of function. <b>Call by Need</b> is optimizing version of Call by Name.</li>
 <li>Call by Value Strategy: Only Outermost redexs are reduced and where a
 redex is reduced only when its right hand side has already been reduced
-to a value.
-</li>
+to a value.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-7-5" class="outline-3">
-<h3 id="sec-7-5">Church Encode</h3>
-<div class="outline-text-3" id="text-7-5">
-</div><div id="outline-container-sec-7-5-1" class="outline-4">
-<h4 id="sec-7-5-1">boolean</h4>
-<div class="outline-text-4" id="text-7-5-1">
+<div id="outline-container-orgheadline40" class="outline-3">
+<h3 id="orgheadline40">Church Encode</h3>
+<div class="outline-text-3" id="text-orgheadline40">
+</div><div id="outline-container-orgheadline36" class="outline-4">
+<h4 id="orgheadline36">boolean</h4>
+<div class="outline-text-4" id="text-orgheadline36">
 \begin{eqnarray*}
   true &=& \lambda t. \lambda f.t   \\
   false &=& \lambda t.\lambda f.f    \\
@@ -908,9 +845,9 @@ lambda calculus is call by name. so ``if'' can be implemented as a function.
 </p>
 </div>
 </div>
-<div id="outline-container-sec-7-5-2" class="outline-4">
-<h4 id="sec-7-5-2">pair</h4>
-<div class="outline-text-4" id="text-7-5-2">
+<div id="outline-container-orgheadline37" class="outline-4">
+<h4 id="orgheadline37">pair</h4>
+<div class="outline-text-4" id="text-orgheadline37">
 \begin{eqnarray*}
   mkpair &=& \lambda m.\lambda n. \lambda b. b\ m\ n   \\
   fst &=& \lambda p. p \ true   \\
@@ -922,9 +859,9 @@ b is true or false
 </p>
 </div>
 </div>
-<div id="outline-container-sec-7-5-3" class="outline-4">
-<h4 id="sec-7-5-3">number</h4>
-<div class="outline-text-4" id="text-7-5-3">
+<div id="outline-container-orgheadline38" class="outline-4">
+<h4 id="orgheadline38">number</h4>
+<div class="outline-text-4" id="text-orgheadline38">
 \begin{eqnarray*}
   zero &=& \lambda s.\lambda z. z     \\
   one &=& \lambda s.\lambda z.s\ z     \\
@@ -947,9 +884,9 @@ b is true or false
 </p>
 </div>
 </div>
-<div id="outline-container-sec-7-5-4" class="outline-4">
-<h4 id="sec-7-5-4">list</h4>
-<div class="outline-text-4" id="text-7-5-4">
+<div id="outline-container-orgheadline39" class="outline-4">
+<h4 id="orgheadline39">list</h4>
+<div class="outline-text-4" id="text-orgheadline39">
 \begin{eqnarray*}
   [x, y, z] &=& \lambda c.\lambda n. (c\ x\ (c\ y\ (c\ z\ n)))         \\
   nil &=& \lambda c.\lambda n. n                       \\
@@ -965,9 +902,9 @@ b is true or false
 </div>
 </div>
 
-<div id="outline-container-sec-7-6" class="outline-3">
-<h3 id="sec-7-6">Y Combinator</h3>
-<div class="outline-text-3" id="text-7-6">
+<div id="outline-container-orgheadline41" class="outline-3">
+<h3 id="orgheadline41">Y Combinator</h3>
+<div class="outline-text-3" id="text-orgheadline41">
 <p>
 假设要在lambda calculus中构造递归函数mul,那么最直观的想法就是:
 </p>
@@ -1043,21 +980,21 @@ href="http://www.slideshare.net/yinwang0" target="_blank">Ian
 Wang</a></strong> </div>
 </div>
 </div>
-<div id="outline-container-sec-7-7" class="outline-3">
-<h3 id="sec-7-7">Theorems</h3>
-<div class="outline-text-3" id="text-7-7">
-</div><div id="outline-container-sec-7-7-1" class="outline-4">
-<h4 id="sec-7-7-1">Church-Rosser for =<sub>n</sub></h4>
-<div class="outline-text-4" id="text-7-7-1">
+<div id="outline-container-orgheadline44" class="outline-3">
+<h3 id="orgheadline44">Theorems</h3>
+<div class="outline-text-3" id="text-orgheadline44">
+</div><div id="outline-container-orgheadline42" class="outline-4">
+<h4 id="orgheadline42">Church-Rosser for =<sub>n</sub></h4>
+<div class="outline-text-4" id="text-orgheadline42">
 <p>
 if M =<sub>n</sub> N, then there exists an L such that \(M \twoheadrightarrow_n L\) and
 \(N \twoheadrightarrow_n L\).
 </p>
 </div>
 </div>
-<div id="outline-container-sec-7-7-2" class="outline-4">
-<h4 id="sec-7-7-2">Diamond Property for →→<sub>n</sub></h4>
-<div class="outline-text-4" id="text-7-7-2">
+<div id="outline-container-orgheadline43" class="outline-4">
+<h4 id="orgheadline43">Diamond Property for →→<sub>n</sub></h4>
+<div class="outline-text-4" id="text-orgheadline43">
 <p>
 if \(L \twoheadrightarrow_n M\) and \(L \twoheadrightarrow_n N\) then there
 exists an expression L1 such that \(M \twoheadrightarrow_n L1\) and \(N
@@ -1073,18 +1010,18 @@ exists an expression L1 such that \(M \twoheadrightarrow_n L1\) and \(N
 </div>
 </div>
 
-<div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8">ISWIM</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-orgheadline46" class="outline-2">
+<h2 id="orgheadline46">ISWIM</h2>
+<div class="outline-text-2" id="text-orgheadline46">
 <p>
 The difference between ISWIM and lambda calculus is that ISWIM uses Call By
 Value evaluation strategy and it also contains some constants and primitive
 operations.
 </p>
 </div>
-<div id="outline-container-sec-8-1" class="outline-3">
-<h3 id="sec-8-1">terms</h3>
-<div class="outline-text-3" id="text-8-1">
+<div id="outline-container-orgheadline47" class="outline-3">
+<h3 id="orgheadline47">terms</h3>
+<div class="outline-text-3" id="text-orgheadline47">
 \begin{eqnarray*}
     M, N, L, K  &=&  X      \\
                 &|&  (\lambda X.M )  \\
@@ -1098,9 +1035,9 @@ operations.
 </div>
 </div>
 
-<div id="outline-container-sec-8-2" class="outline-3">
-<h3 id="sec-8-2">Values</h3>
-<div class="outline-text-3" id="text-8-2">
+<div id="outline-container-orgheadline48" class="outline-3">
+<h3 id="orgheadline48">Values</h3>
+<div class="outline-text-3" id="text-orgheadline48">
 \begin{eqnarray*}
     V,U,W   &=&  b                     &\textrm{;constant}  \\
             &|&  X                     &\textrm{;variable}  \\
@@ -1110,27 +1047,25 @@ operations.
 </div>
 </div>
 
-<div id="outline-container-sec-9" class="outline-2">
-<h2 id="sec-9">Standard reduction</h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-orgheadline49" class="outline-2">
+<h2 id="orgheadline49">Standard reduction</h2>
+<div class="outline-text-2" id="text-orgheadline49">
 <ol class="org-ol">
 <li>If the expression is an application and all components are values, then,
 if the expression is a redex, it is the next redex to be reduced; if not,
-the program cannot have a value.
-</li>
+the program cannot have a value.</li>
 <li>If the program is an application such that at least one of its
 sub-expressions is not a value, pick the leftmost non-value and search for
-a redex in there.
-</li>
+a redex in there.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-10" class="outline-2">
-<h2 id="sec-10">Machines</h2>
-<div class="outline-text-2" id="text-10">
-</div><div id="outline-container-sec-10-1" class="outline-3">
-<h3 id="sec-10-1">CC Machine</h3>
-<div class="outline-text-3" id="text-10-1">
+<div id="outline-container-orgheadline51" class="outline-2">
+<h2 id="orgheadline51">Machines</h2>
+<div class="outline-text-2" id="text-orgheadline51">
+</div><div id="outline-container-orgheadline50" class="outline-3">
+<h3 id="orgheadline50">CC Machine</h3>
+<div class="outline-text-3" id="text-orgheadline50">
 \begin{eqnarray*}
   \left\langle \left( M N \right), E \right\rangle  &
   \mapsto_{cc} & \left\langle M, E \left[ \left( \left[  \right] N
