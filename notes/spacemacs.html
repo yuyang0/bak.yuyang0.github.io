@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
 <head>
-<!-- 2016-02-22 Mon 20:57 -->
+<!-- 2016-02-28 Sun 21:11 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>spacemacs笔记</title>
@@ -183,7 +183,7 @@ for the JavaScript code in this tag.
 <li><a href="#orgheadline2">1.2. visual mode</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline17">2. spacemacs键绑定</a>
+<li><a href="#orgheadline18">2. spacemacs键绑定</a>
 <ul>
 <li><a href="#orgheadline4">2.1. 文本相关(SPC x)</a></li>
 <li><a href="#orgheadline5">2.2. 文件相关(SPC f)</a></li>
@@ -197,7 +197,8 @@ for the JavaScript code in this tag.
 <li><a href="#orgheadline13">2.10. Line</a></li>
 <li><a href="#orgheadline14">2.11. Comment</a></li>
 <li><a href="#orgheadline15">2.12. smartparens</a></li>
-<li><a href="#orgheadline16">2.13. 其他：</a></li>
+<li><a href="#orgheadline16">2.13. iedit</a></li>
+<li><a href="#orgheadline17">2.14. 其他：</a></li>
 </ul>
 </li>
 </ul>
@@ -249,8 +250,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline17" class="outline-2">
-<h2 id="orgheadline17"><span class="section-number-2">2</span> spacemacs键绑定</h2>
+<div id="outline-container-orgheadline18" class="outline-2">
+<h2 id="orgheadline18"><span class="section-number-2">2</span> spacemacs键绑定</h2>
 <div class="outline-text-2" id="text-2">
 </div><div id="outline-container-orgheadline4" class="outline-3">
 <h3 id="orgheadline4"><span class="section-number-3">2.1</span> 文本相关(SPC x)</h3>
@@ -373,8 +374,28 @@ for the JavaScript code in this tag.
 </div>
 </div>
 <div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16"><span class="section-number-3">2.13</span> 其他：</h3>
+<h3 id="orgheadline16"><span class="section-number-3">2.13</span> iedit</h3>
 <div class="outline-text-3" id="text-2-13">
+<p>
+可以用来进行多行编辑，因为evil mode和multiple cursor不兼容，所以目前只能用它
+使用流程：
+</p>
+<ol class="org-ol">
+<li>选定文本</li>
+<li>切换到iedit state: <code>SPC s e</code>, 这样其它位置和你选定的文本一样的就会被高亮</li>
+<li>限制你要编辑的范围, 默认是整个buffer: F(当前函数), J(向下增加一行）, K(向上增加一行)</li>
+<li>编辑，可以使用 <code>i</code> <code>a</code> 这样的命令进入编辑模式编辑，也可以直接使用 <code>D</code> <code>U</code>
+   <code>C-U</code> 来删除，大写，小写文本。</li>
+</ol>
+<p>
+举个例子，比如要将本行以及接下来的3行的 <code>aa</code> 替换为 <code>bb</code>
+选定 <code>aa</code> 接着 <code>SPC s e</code>, 接着限制范围 <code>J J J</code>, 接编辑 <code>aa</code> 为 <code>bb</code> 完成后 ESC，ESC
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17"><span class="section-number-3">2.14</span> 其他：</h3>
+<div class="outline-text-3" id="text-2-14">
 <ol class="org-ol">
 <li>SPC i j: 在当前行的下面插入一个空行</li>
 <li>SPC i k: 在当前行的上面插入一个空行</li>
