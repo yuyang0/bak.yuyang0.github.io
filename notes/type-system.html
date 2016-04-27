@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-28 Sun 21:11 -->
+<!-- 2016-04-27 Wed 15:29 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Type System</title>
@@ -164,7 +164,7 @@ for the JavaScript code in this tag.
 });
 </script>
 <script type="text/javascript"
-        src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        src="http://cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -321,9 +321,9 @@ resulting term is also well typed.</li>
 The type of a function should describe the type of the argument and the
 type of the function body.
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \frac{\Gamma , x:T_1 \vdash t:T_2}{\Gamma \vdash \lambda x . t :T_1 \rightarrow T_2}
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 One can think &rarr; as a type constructor which consumes two types and
@@ -674,16 +674,16 @@ S &lt;: T means S is the subtype of T, One can think S is a subset of T.
 <p>
 The subtype rule of function type is as follows:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \frac{T_1 <: S_1 \qquad S_2 <: T_2}{S_1 \rightarrow S_2 <: T_1 \rightarrow T_2}
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 the inverse Lemma:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \frac{S_1 \rightarrow S_2 <: T_1 \rightarrow T_2}{T_1 <: S_1 \qquad S_2 <: T_2}
-\end{displaymath}
+\end{eqnarray*}
 </div>
 </div>
 
@@ -696,9 +696,9 @@ the inverse Lemma:
 <div id="outline-container-orgheadline24" class="outline-3">
 <h3 id="orgheadline24">reference</h3>
 <div class="outline-text-3" id="text-orgheadline24">
-\begin{displaymath}
+\begin{eqnarray*}
   \frac{S_1 <: T_1 \qquad T_1 <: S_1}{Ref\ S_1 <: Ref \ T_1}
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 since reference can be used for reading and writing, so S<sub>1</sub> and T<sub>1</sub> should
@@ -771,16 +771,16 @@ value作出反应, 对type我们也可以采用类似的方法.用&Lambda; 来�
 definition可以对多个type作出反应,以swap函数为例,它会交换一个pair中first与
 second位置的元素, swap的定义如下:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   swap = \Lambda \alpha . \Lambda \beta . \lambda p : (\alpha \times \beta) . \langle snd \  p , fst \  p \rangle
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 该函数的type如下:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \vdash swap : (\forall \alpha . (\forall \beta . ((\alpha \times \beta) \rightarrow (\beta \times \alpha))))
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 如果要交换的pair的type是 \(bool \times int\), 那么就可以将这两个type应用到
@@ -790,16 +790,16 @@ swap上,也就是 \(swap[bool][int]\) 这样就可以得到类型正确的swap�
 <p>
 在比如说 identity 函数
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   id = \Lambda \alpha . \lambda x: \alpha . x
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 identity函数的类型就是
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \vdash id : (\forall \alpha. (\alpha \rightarrow \alpha))
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 前面说过,STLC实际上限制了 untyped lambda calculus的表达能力, STLC不能编码
@@ -857,9 +857,9 @@ An number list is either
 what is the type of the number list? The \(List_{num}\) must obey the
 following equation:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   List_{num} = (bool + (num \times List_{num}))
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 but like the recusive function, you can't reference the type itself when
@@ -868,18 +868,18 @@ equation. but we can use the same skill like we define the recusive
 function: we can define tfix(the type fix combinator), so the \(List_{num}\)
 can define like this:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   List_{num} \dot{=}_{} tfix(\forall \alpha .(bool + (num \times \alpha)))
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 by convention a <code>tfix</code> an its following &forall; are collapsed together to a
 single &mu;, &mu; is a explicit recursive operator for types. one can
 think &mu; is like letrec.
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   List_{num} \dot{=}_{} \mu \alpha(bool + (num \times \alpha))
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 a type constructed by &mu; is a <b>recursive type</b>.
@@ -889,9 +889,9 @@ a type constructed by &mu; is a <b>recursive type</b>.
 <div id="outline-container-orgheadline36" class="outline-3">
 <h3 id="orgheadline36">fix combinator</h3>
 <div class="outline-text-3" id="text-orgheadline36">
-\begin{displaymath}
+\begin{eqnarray*}
   fix_T = \lambda f:T \rightarrow T.(\lambda x:(\mu A.A \rightarrow T) .f (x\ x)) (\lambda x:(\mu A.A \rightarrow T). f (x\ x))
-\end{displaymath}
+\end{eqnarray*}
 </div>
 </div>
 
@@ -904,11 +904,11 @@ each use of a constructor to create a value implies a <code>fold</code>, and eac
 of a constructor in a pattern match implies <code>unfold</code>. The type rules for
 <code>fold</code> and <code>unfold</code> is as follows:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \frac{\Gamma \vdash M:T[A \leftarrow (\mu A.T)]}{\Gamma \vdash (fold \ M) : (\mu A.T)}
   \qquad
   \frac{\Gamma \vdash M:(\mu A.T)}{\Gamma \vdash (unfold \ M) : T[A \leftarrow (\mu A.T)]}
-\end{displaymath}
+\end{eqnarray*}
 
 \begin{eqnarray}
   List_\tau &\dot{=}& \mu \alpha . (bool + (\tau \times \alpha)) \\

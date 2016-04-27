@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-28 Sun 21:11 -->
+<!-- 2016-04-27 Wed 15:11 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>UNIX网络编程</title>
@@ -175,60 +175,152 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline6">协议相关</a>
+<li><a href="#orgheadline12">协议相关</a>
 <ul>
-<li><a href="#orgheadline5">TCP</a>
+<li><a href="#orgheadline6">IP</a>
 <ul>
-<li><a href="#orgheadline1">协议详解</a></li>
-<li><a href="#orgheadline2">三步握手</a></li>
-<li><a href="#orgheadline3">连接关闭</a></li>
-<li><a href="#orgheadline4">状态变化</a></li>
+<li><a href="#orgheadline1">Pcket Structure</a></li>
+<li><a href="#orgheadline2">IP地址的分级和组成</a></li>
+<li><a href="#orgheadline3">子网</a></li>
+<li><a href="#orgheadline4">NAT</a></li>
+<li><a href="#orgheadline5">DHCP</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline11">TCP</a>
+<ul>
+<li><a href="#orgheadline7">协议详解</a></li>
+<li><a href="#orgheadline8">三步握手</a></li>
+<li><a href="#orgheadline9">连接关闭</a></li>
+<li><a href="#orgheadline10">状态变化</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline7">网络设备</a></li>
-<li><a href="#orgheadline8">socket地址相关</a>
+<li><a href="#orgheadline13">网络设备</a></li>
+<li><a href="#orgheadline14">socket地址相关</a>
 <ul>
-<li><a href="#orgheadline9">常用代码</a></li>
+<li><a href="#orgheadline15">常用代码</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline14">基本socket API</a>
+<li><a href="#orgheadline20">基本socket API</a>
 <ul>
-<li><a href="#orgheadline10">connect</a></li>
-<li><a href="#orgheadline11">bind</a></li>
-<li><a href="#orgheadline12">listen</a></li>
-<li><a href="#orgheadline13">socket读写api</a></li>
+<li><a href="#orgheadline16">connect</a></li>
+<li><a href="#orgheadline17">bind</a></li>
+<li><a href="#orgheadline18">listen</a></li>
+<li><a href="#orgheadline19">socket读写api</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline15">socket options</a>
+<li><a href="#orgheadline21">socket options</a>
 <ul>
-<li><a href="#orgheadline16">SO_KEEPALIVE</a></li>
-<li><a href="#orgheadline17">SO_LINGER</a></li>
-<li><a href="#orgheadline18">SO_RCVBUF/SO_SNDBUF</a></li>
-<li><a href="#orgheadline19">SO_RCVLOWAT/SO_SNDLOWAT</a></li>
-<li><a href="#orgheadline20">SO_REUSEADDR/SO_REUSEPORT</a></li>
+<li><a href="#orgheadline22">SO_KEEPALIVE</a></li>
+<li><a href="#orgheadline23">SO_LINGER</a></li>
+<li><a href="#orgheadline24">SO_RCVBUF/SO_SNDBUF</a></li>
+<li><a href="#orgheadline25">SO_RCVLOWAT/SO_SNDLOWAT</a></li>
+<li><a href="#orgheadline26">SO_REUSEADDR/SO_REUSEPORT</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline24">编程技巧</a>
+<li><a href="#orgheadline30">编程技巧</a>
 <ul>
-<li><a href="#orgheadline21">一些情形下tcp socket的行为</a></li>
-<li><a href="#orgheadline22">异步非阻塞</a></li>
-<li><a href="#orgheadline23">raw socket</a></li>
+<li><a href="#orgheadline27">一些情形下tcp socket的行为</a></li>
+<li><a href="#orgheadline28">异步非阻塞</a></li>
+<li><a href="#orgheadline29">raw socket</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6">协议相关</h2>
-<div class="outline-text-2" id="text-orgheadline6">
-</div><div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">TCP</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12">协议相关</h2>
+<div class="outline-text-2" id="text-orgheadline12">
+</div><div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6">IP</h3>
+<div class="outline-text-3" id="text-orgheadline6">
 </div><div id="outline-container-orgheadline1" class="outline-4">
-<h4 id="orgheadline1">协议详解</h4>
+<h4 id="orgheadline1">Pcket Structure</h4>
 <div class="outline-text-4" id="text-orgheadline1">
+<pre class="example">
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|Version|  IHL  |Type of Service|          Total Length         |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|         Identification        |Flags|      Fragment Offset    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|  Time to Live |    Protocol   |         Header Checksum       |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Source Address                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Destination Address                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Options                    |    Padding    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</pre>
+<ol class="org-ol">
+<li>Version:</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgheadline2" class="outline-4">
+<h4 id="orgheadline2">IP地址的分级和组成</h4>
+<div class="outline-text-4" id="text-orgheadline2">
+<ol class="org-ol">
+<li>A类(0开头)     0.xx.xx.xx ~ 127.xx.xx.xx</li>
+<li>B类(10开头)    128.xx.xx.xx ~ 191.xx.xx.xx</li>
+<li>C类(110开头)   192.xx.xx.xx ~ 223.xx.xx.xx</li>
+<li>D类(1110开头)  224.xx.xx.xx ~ 239.xx.xx.xx</li>
+<li>E类(1111开头)  240.xx.xx.xx ~ 255.xx.xx.xx</li>
+</ol>
+
+<p>
+为了局域网组网方便,有一部分IP是私有,也就是说带有这些ip的ip包是不会出现在公网上的,这
+些ip只应该出现私有网络内部.
+</p>
+
+<ul class="org-ul">
+<li>A类：10.0.0.0    - 10.255.255.255  (10.0.0.0/8)</li>
+<li>B类：172.16.0.0  - 172.31.255.255  (172.16.0.0/12)</li>
+<li>C类：192.168.0.0 - 192.168.255.255 (192.168.0.0/16)</li>
+</ul>
+
+<p>
+loopback网段: 127.0.0.0/8
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3">子网</h4>
+<div class="outline-text-4" id="text-orgheadline3">
+<p>
+ip地址被分为NET ID和HOST ID, 如果ip地址的NET ID相同那么就处于同一子网, 也就可以
+使用链路层设备直接通信.
+</p>
+<ul class="org-ul">
+<li>子网掩码: 用来指定ip的哪些位是NET ID, 比如说 <code>255.255.255.0</code> 就是说IP的前24位
+是NET ID, <code>255.240.0.0</code> 就是说前12位是NET ID. 所以 <code>192.168.0.0/255.255.255.0</code>
+实际上就是指定了一个网段, 也可以用CIDR <code>192.168.0.0/24</code>, 后面的数字代表前24位是NET ID.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4">NAT</h4>
+<div class="outline-text-4" id="text-orgheadline4">
+<p>
+Network Address Translation, 主要是用来自动转换IP地址, 这样一个私有网络的所有计
+算机就可以共用一个public ip来上网. 它是使用ip和port来识别包的.
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5">DHCP</h4>
+</div>
+</div>
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11">TCP</h3>
+<div class="outline-text-3" id="text-orgheadline11">
+</div><div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7">协议详解</h4>
+<div class="outline-text-4" id="text-orgheadline7">
 <p>
 tcp的头部格式
 </p>
@@ -291,9 +383,9 @@ Acknowledgment Number字段就是a+b. <b>只有ACK标志为1时该字段才有�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-4">
-<h4 id="orgheadline2">三步握手</h4>
-<div class="outline-text-4" id="text-orgheadline2">
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8">三步握手</h4>
+<div class="outline-text-4" id="text-orgheadline8">
 <p>
 如下图所示:
 <img src="static/img/tcp-three-way-handshake.png" alt="tcp-three-way-handshake.png" />
@@ -307,9 +399,9 @@ Acknowledgement Number设为J+1.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-4">
-<h4 id="orgheadline3">连接关闭</h4>
-<div class="outline-text-4" id="text-orgheadline3">
+<div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9">连接关闭</h4>
+<div class="outline-text-4" id="text-orgheadline9">
 <p>
 如下图所示
 <img src="static/img/tcp-terminate.png" alt="tcp-terminate.png" />
@@ -317,9 +409,9 @@ Acknowledgement Number设为J+1.</li>
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4">状态变化</h4>
-<div class="outline-text-4" id="text-orgheadline4">
+<div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10">状态变化</h4>
+<div class="outline-text-4" id="text-orgheadline10">
 <p>
 如下图所示
 <img src="static/img/tcp-state-change.png" alt="tcp-state-change.png" />
@@ -347,9 +439,9 @@ TIME_WAIT状态,并保持该状态2SML(1-4分钟), 该状态存在的原因是:
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-2">
-<h2 id="orgheadline7">网络设备</h2>
-<div class="outline-text-2" id="text-orgheadline7">
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13">网络设备</h2>
+<div class="outline-text-2" id="text-orgheadline13">
 <ol class="org-ol">
 <li>集线器(HUB): 工作于第二层,基本已被淘汰, 目前基本用交换机, HUB最大的问题是当它接收到一个数据包后,
 它会向所有连接到该hub的主机广播, 这样会造成一大堆无用流量. 这主要是因为HUB内部没有交换机内部的那种MAC地址表.</li>
@@ -366,9 +458,9 @@ TIME_WAIT状态,并保持该状态2SML(1-4分钟), 该状态存在的原因是:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-2">
-<h2 id="orgheadline8">socket地址相关</h2>
-<div class="outline-text-2" id="text-orgheadline8">
+<div id="outline-container-orgheadline14" class="outline-2">
+<h2 id="orgheadline14">socket地址相关</h2>
+<div class="outline-text-2" id="text-orgheadline14">
 <p>
 有一个通用地址结构 <code>struct sockaddr_in</code>, bind, connect这样的API中都是使用这个
 结构, 其它的地址结构必须类型转换为该结构. ipv6又定义了一个新的通用地址结构
@@ -463,9 +555,9 @@ uint32_t ntohl(uint32_t net32bitvalue) ;
 </p></li>
 </ol>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">常用代码</h3>
-<div class="outline-text-3" id="text-orgheadline9">
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15">常用代码</h3>
+<div class="outline-text-3" id="text-orgheadline15">
 <ol class="org-ol">
 <li><p>
 客户端
@@ -498,12 +590,12 @@ servaddr.sin_addr.s_addr = htonl<span style="color: #DCDCCC;">(</span>INADDR_ANY
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-2">
-<h2 id="orgheadline14">基本socket API</h2>
-<div class="outline-text-2" id="text-orgheadline14">
-</div><div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">connect</h3>
-<div class="outline-text-3" id="text-orgheadline10">
+<div id="outline-container-orgheadline20" class="outline-2">
+<h2 id="orgheadline20">基本socket API</h2>
+<div class="outline-text-2" id="text-orgheadline20">
+</div><div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16">connect</h3>
+<div class="outline-text-3" id="text-orgheadline16">
 <p>
 客户端使用该api建立连接,它可能返回以下错误:
 </p>
@@ -518,12 +610,12 @@ servaddr.sin_addr.s_addr = htonl<span style="color: #DCDCCC;">(</span>INADDR_ANY
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11">bind</h3>
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17">bind</h3>
 </div>
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12">listen</h3>
-<div class="outline-text-3" id="text-orgheadline12">
+<div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18">listen</h3>
+<div class="outline-text-3" id="text-orgheadline18">
 <p>
 原型:
 </p>
@@ -548,9 +640,9 @@ SYN/ACK包.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13">socket读写api</h3>
-<div class="outline-text-3" id="text-orgheadline13">
+<div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19">socket读写api</h3>
+<div class="outline-text-3" id="text-orgheadline19">
 <ol class="org-ol">
 <li>对于面向连接的socket(TCP), 有以下两组api, recv/send以及read/write, 前者比
 后者多了一个flag参数, 当使用flag=0来调用recv, send时,他的行为和read,write
@@ -603,9 +695,9 @@ socket上的send调用会阻塞,非阻塞的send调用会返回EAGAIN或者EWOUL
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline15" class="outline-2">
-<h2 id="orgheadline15">socket options</h2>
-<div class="outline-text-2" id="text-orgheadline15">
+<div id="outline-container-orgheadline21" class="outline-2">
+<h2 id="orgheadline21">socket options</h2>
+<div class="outline-text-2" id="text-orgheadline21">
 <p>
 使用下面的两个系统调用来获取以及设置socket选项
 </p>
@@ -618,9 +710,9 @@ int setsockopt(int sockfd, int level, int optname, const void *optval socklen_t 
 注意optval对于不同的选项是不同的值,所以你要optlen参数来通知获得optval的长度.
 </p>
 </div>
-<div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16">SO_KEEPALIVE</h3>
-<div class="outline-text-3" id="text-orgheadline16">
+<div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22">SO_KEEPALIVE</h3>
+<div class="outline-text-3" id="text-orgheadline22">
 <p>
 如果socket设置了该选项, 那么当一个连接有两个小时没有交换数据了(这意味着程序
 阻塞在某个系统调用上), 那么就会向对方发送一个keep-alive probe, 实际就是一个
@@ -629,9 +721,9 @@ tcp报文. 如果这个报文收到了正常的ACK,那么就什么也不做,如�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17">SO_LINGER</h3>
-<div class="outline-text-3" id="text-orgheadline17">
+<div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23">SO_LINGER</h3>
+<div class="outline-text-3" id="text-orgheadline23">
 <p>
 对面向连接的协议有效, 所以对UDP该选项无用, 该选项是用来改变socket调用close时的行
 为.默认如果你调用close,那么close会立即返回,但是如果send buffer有数据,那么系统会
@@ -639,18 +731,18 @@ tcp报文. 如果这个报文收到了正常的ACK,那么就什么也不做,如�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-3">
-<h3 id="orgheadline18">SO_RCVBUF/SO_SNDBUF</h3>
-<div class="outline-text-3" id="text-orgheadline18">
+<div id="outline-container-orgheadline24" class="outline-3">
+<h3 id="orgheadline24">SO_RCVBUF/SO_SNDBUF</h3>
+<div class="outline-text-3" id="text-orgheadline24">
 <p>
 修改socket的send buffer以及receive buffer的大小. <b>这两个选项必须在connect与
 listen之前设置</b>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline19" class="outline-3">
-<h3 id="orgheadline19">SO_RCVLOWAT/SO_SNDLOWAT</h3>
-<div class="outline-text-3" id="text-orgheadline19">
+<div id="outline-container-orgheadline25" class="outline-3">
+<h3 id="orgheadline25">SO_RCVLOWAT/SO_SNDLOWAT</h3>
+<div class="outline-text-3" id="text-orgheadline25">
 <p>
 低水位标志,用来判断一个socket是否可读或者可写, 如果接受缓冲区的数据量大于
 SO_RCVLOWAT(默认为1)那么可读, 如果发送缓冲区的空闲空间大于SO_SNDLOWAT(默认通常为
@@ -658,21 +750,21 @@ SO_RCVLOWAT(默认为1)那么可读, 如果发送缓冲区的空闲空间大于S
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20">SO_REUSEADDR/SO_REUSEPORT</h3>
-<div class="outline-text-3" id="text-orgheadline20">
+<div id="outline-container-orgheadline26" class="outline-3">
+<h3 id="orgheadline26">SO_REUSEADDR/SO_REUSEPORT</h3>
+<div class="outline-text-3" id="text-orgheadline26">
 <p>
 主要是避免重启服务器程序时的address already in use的错误.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline24" class="outline-2">
-<h2 id="orgheadline24">编程技巧</h2>
-<div class="outline-text-2" id="text-orgheadline24">
-</div><div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21">一些情形下tcp socket的行为</h3>
-<div class="outline-text-3" id="text-orgheadline21">
+<div id="outline-container-orgheadline30" class="outline-2">
+<h2 id="orgheadline30">编程技巧</h2>
+<div class="outline-text-2" id="text-orgheadline30">
+</div><div id="outline-container-orgheadline27" class="outline-3">
+<h3 id="orgheadline27">一些情形下tcp socket的行为</h3>
+<div class="outline-text-3" id="text-orgheadline27">
 <ul class="org-ul">
 <li>server端的进程终止了,这时client端向socket写则会收到RST报文, 如果你接着向这个
 socket写入数据,那么会收到SIGPIPE信号.如果你忽略了该信号,那么write会返回EPIPE
@@ -722,9 +814,9 @@ udp则并没有发送缓冲区，因为udp是unreliable的，它无连接，所�
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline22" class="outline-3">
-<h3 id="orgheadline22">异步非阻塞</h3>
-<div class="outline-text-3" id="text-orgheadline22">
+<div id="outline-container-orgheadline28" class="outline-3">
+<h3 id="orgheadline28">异步非阻塞</h3>
+<div class="outline-text-3" id="text-orgheadline28">
 <ol class="org-ol">
 <li><p>
 <code>connect</code>: 在调用之前将socket设置为非阻塞, 那么connect可能会出错, 那么这时候
@@ -772,9 +864,9 @@ errlen = <span style="color: #F0DFAF; font-weight: bold;">sizeof</span><span sty
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline23" class="outline-3">
-<h3 id="orgheadline23">raw socket</h3>
-<div class="outline-text-3" id="text-orgheadline23">
+<div id="outline-container-orgheadline29" class="outline-3">
+<h3 id="orgheadline29">raw socket</h3>
+<div class="outline-text-3" id="text-orgheadline29">
 <p>
 raw socket 是用来获取IP报文的, 但是内核不会把所有的报文都发给raw socket.
 </p>

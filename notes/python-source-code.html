@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-28 Sun 21:11 -->
+<!-- 2016-04-27 Wed 15:11 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>python源代码解析</title>
@@ -377,7 +377,7 @@ you can own a reference to an object.）</li>
 <li>当引用不在需要时，引用的拥有者必须调用 <code>Py_DECREF</code> 来减少引用计数。</li>
 </ol>
 <p>
-所以农明白谁是引用的拥有者是至关重要的，下面分两种情况讨论何时应该增加，何时
+所以弄明白谁是引用的拥有者是至关重要的，下面分两种情况讨论何时应该增加，何时
 应该减少引用计数：
 </p>
 </div>
@@ -407,9 +407,9 @@ you can own a reference to an object.）</li>
 <li>obj的引用归A所有，所以如果该引用没有用了，必须调用 <code>Py_DECREF</code>, 这是最常
 见的情况。这些函数在返回引用时一般都对引用调用了 <code>Py_INCREF</code>, 所以调用者
 就获得了一个引用，所有创建新对象的函数都是这种情况，比如 <code>PyInt_FromLong,
-      Py_BuildValue</code>. 所有 <code>PyObject_, PyNumber_, PySequence_ or PyMapping_</code> 开
+   Py_BuildValue</code>. 所有 <code>PyObject_, PyNumber_, PySequence_ or PyMapping_</code> 开
 头的函数也是这种情况。特别要注意 <code>PySequence_GetItem</code> 与 <code>PyList_GetItem,
-      PyTuple_GetItem</code> 的区别，前者会增加返回对象的引用计数，后者不会增加。</li>
+   PyTuple_GetItem</code> 的区别，前者会增加返回对象的引用计数，后者不会增加。</li>
 <li><p>
 obj的引用不归A所有，这种情况叫A借(borrow)了一个引用, 最常见有这几个函数
 <code>PyTuple_GetItem, PyList_GetItem, PyDict_GetItem, PyDict_GetItemString</code>,

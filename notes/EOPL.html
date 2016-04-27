@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-28 Sun 21:11 -->
+<!-- 2016-04-27 Wed 15:29 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>The Essential of Programming language</title>
@@ -164,7 +164,7 @@ for the JavaScript code in this tag.
 });
 </script>
 <script type="text/javascript"
-        src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        src="http://cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -800,9 +800,9 @@ An expression is in normal form if it cann't be reduced by
 <p>
 not every lambda calculus expression has a normal form. for example:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \Omega = ((\lambda x.x \ x) (\lambda x.x \ x))
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 don't have normal form.
@@ -908,17 +908,17 @@ b is true or false
 <p>
 假设要在lambda calculus中构造递归函数mul,那么最直观的想法就是:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   mult = \lambda n.\lambda m.if\ (iszero\ n)\ 0\ (add\ m\ (mult\ (sub1\ n)\ m))
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 可是上述构造是不合法的,因为你不能在函数体引用你正在定义的函数, 所以函数体不
 能有 <code>mult</code>:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   mkmult0 = \lambda t.\lambda n.\lambda m.if\ (iszero\ n)\ 0\ (add\ m\ (t\ (sub1\ n)\ m))
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 假设我们已经构造出了mult,那么 (mkmult0 mult) 就是mult了, 可是实际上我们没有
@@ -927,18 +927,18 @@ b is true or false
 到 mkmult0 来得到 mult.
 </p>
 
-\begin{displaymath}
+\begin{eqnarray*}
   mkmult1 = \lambda t.\lambda n.\lambda m.if\ (iszero\ n)\ 0\ (add\ m\ ((t\ t)\ (sub1\ n)\ m))
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 (mkmult1 mkmult1)就是mult了,这就是一个定义递归函数的常用方法了,可是这个方法
 比较笨拙,因为我们每一次调用必须将mkmult1应用于自身.更好的做法应该是能将自我
 应用的部分提取出来,现在我们假设有一个 <code>mk</code> 函数
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   mk = \lambda t.t\ (mk\ t)
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 这个函数可以构造出mult: (mk mkmult0),可是 <code>mk</code> 的定义是递归的也犯了最开始定
@@ -952,18 +952,18 @@ b is true or false
 <p>
 因此我们得到了一个很重要的性质:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   (mkmult0\ (mk\ mkmult0)) = (mk\ mkmult0)
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 那么 <code>(mk mkmult0)</code> 产生的函数就是 <code>mkmult0</code> 的不动点,而 <code>mk</code> 就是不动点算子,也
 就是说将 <code>mk</code> 作用于一个函数就可以得到该函数的不动点, Y Combinator是一个更常
 用的不动点算子:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   Y = \lambda f.(\lambda x.f\ (x\ x))\ (\lambda x.f\ (x\ x))
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 这是一个Y combinator的推导过程(slideshare需翻墙):

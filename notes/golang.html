@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-28 Sun 21:11 -->
+<!-- 2016-04-27 Wed 15:12 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Go语言</title>
@@ -206,11 +206,15 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#orgheadline21">内置函数</a></li>
 <li><a href="#orgheadline22">go工程管理</a></li>
-<li><a href="#orgheadline23">Cgo</a>
+<li><a href="#orgheadline23">reflect</a></li>
+<li><a href="#orgheadline27">Cgo</a>
 <ul>
-<li><a href="#orgheadline24">go中引用C</a></li>
+<li><a href="#orgheadline24">注意事项(高能预警)</a></li>
+<li><a href="#orgheadline25">类型转换</a></li>
+<li><a href="#orgheadline26">go中引用C</a></li>
 </ul>
 </li>
+<li><a href="#orgheadline28">Tips(best practice)</a></li>
 </ul>
 </div>
 </div>
@@ -609,23 +613,118 @@ aString := anything.<span style="color: #DCDCCC;">(</span><span style="color: #7
 </div>
 </div>
 <div id="outline-container-orgheadline23" class="outline-2">
-<h2 id="orgheadline23">Cgo</h2>
+<h2 id="orgheadline23">reflect</h2>
 <div class="outline-text-2" id="text-orgheadline23">
 <p>
-go可以很方便的和C语言交互，为了相互调用必须对数据类型进行转换，也就是在C的类型和
-go的类型之间相互转换。
+这个是go语言的发射机制,它主要是用来获取interface下面值的type与value的, reflect包
+有两个类型Type和Value.
 </p>
+<ol class="org-ol">
+<li>Type: 这个是用来代表值的类型的</li>
+<li>Value: 这个是用来代表值的.</li>
+</ol>
 </div>
-<div id="outline-container-orgheadline24" class="outline-3">
-<h3 id="orgheadline24">go中引用C</h3>
+</div>
+<div id="outline-container-orgheadline27" class="outline-2">
+<h2 id="orgheadline27">Cgo</h2>
+<div class="outline-text-2" id="text-orgheadline27">
+</div><div id="outline-container-orgheadline24" class="outline-3">
+<h3 id="orgheadline24">注意事项(高能预警)</h3>
 <div class="outline-text-3" id="text-orgheadline24">
+<ol class="org-ol">
+<li>import "C" 的上面不能有空行, 也就说这一行要和注释紧挨着.</li>
+<li>cgo不支持调用C语言中可变参数的函数, 所以你不能调用 <code>C.printf</code> 这类的函数</li>
+<li><p>
+cgo创建结构体时一般会有对齐,所以在初始化结构体时要注意, 必须显式的指定值对应的name.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">package</span> main
+
+<span style="color: #5F7F5F;">/*</span>
+<span style="color: #7F9F7F;">   #include &lt;stdlib.h&gt;</span>
+<span style="color: #7F9F7F;">   struct  {</span>
+<span style="color: #7F9F7F;">       char *name;</span>
+<span style="color: #7F9F7F;">       int age;</span>
+<span style="color: #7F9F7F;">       int height;</span>
+<span style="color: #7F9F7F;">   }person_t;</span>
+<span style="color: #7F9F7F;">*/</span>
+<span style="color: #F0DFAF; font-weight: bold;">import</span> <span style="color: #CC9393;">"C"</span>
+
+<span style="color: #F0DFAF; font-weight: bold;">type</span> <span style="color: #7CB8BB;">Person</span> <span style="color: #7CB8BB;">C.person_t</span>
+
+<span style="color: #F0DFAF; font-weight: bold;">func</span> <span style="color: #93E0E3;">main</span><span style="color: #DCDCCC;">()</span> <span style="color: #DCDCCC;">{</span>
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">error: too few values in struct initializer</span>
+  p1 := <span style="color: #7CB8BB;">Person</span><span style="color: #BFEBBF;">{</span>C.<span style="color: #93E0E3;">CString</span><span style="color: #D0BF8F;">(</span><span style="color: #CC9393;">"Giorgis"</span><span style="color: #D0BF8F;">)</span>, <span style="color: #BFEBBF;">30</span>, <span style="color: #BFEBBF;">6</span><span style="color: #BFEBBF;">}</span>
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">correct</span>
+  p2 := <span style="color: #7CB8BB;">Person</span><span style="color: #BFEBBF;">{</span>name:C.<span style="color: #93E0E3;">CString</span><span style="color: #D0BF8F;">(</span><span style="color: #CC9393;">"Giorgis"</span><span style="color: #D0BF8F;">)</span>, age:<span style="color: #BFEBBF;">30</span>, height:<span style="color: #BFEBBF;">6</span><span style="color: #BFEBBF;">}</span>
+<span style="color: #DCDCCC;">}</span>
+</pre>
+</div>
+<p>
+p1因为对齐的存在会编译报错.
+</p></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgheadline25" class="outline-3">
+<h3 id="orgheadline25">类型转换</h3>
+<div class="outline-text-3" id="text-orgheadline25">
+<p>
+go可以很方便的和C语言交互，为了相互调用必须对数据类型进行转换，也就是在C的类型和
+go的类型之间相互转换。整数字面值不需要使用C.int转换，所以在需要使用C.int的地方可
+以直接使用1,2,3等，nil和NULL也不需要转换, 也就是说需要NULL的c函数可以直接给它传
+递nil, 一个C函数如果返回NULL, 也可以让它与nil直接比较, 但是字符串字面值需要转换。
+</p>
+<pre class="example">
+bool --&gt; C.bool
+char --&gt;  C.char --&gt;  byte
+signed char --&gt;  C.schar --&gt;  int8
+unsigned char --&gt;  C.uchar --&gt;  uint8
+short int --&gt;  C.short --&gt;  int16
+short unsigned int --&gt;  C.ushort --&gt;  uint16
+int --&gt;  C.int --&gt;  int
+unsigned int --&gt;  C.uint --&gt;  uint32
+long int --&gt;  C.long --&gt;  int32 or int64
+long unsigned int --&gt;  C.ulong --&gt;  uint32 or uint64
+long long int --&gt;  C.longlong --&gt;  int64
+long long unsigned int --&gt;  C.ulonglong --&gt;  uint64
+float --&gt;  C.float --&gt;  float32
+double --&gt;  C.double --&gt;  float64
+void * -&gt; unsafe.Pointer
+</pre>
+<p>
+<b>特别注意指针</b>, 因为golang类型系统的关系,指针转换基本都必须先转换成
+<code>unsafe.Pointer</code>, 然后在将该指针转换成你想要的指针,要将go指针转换为c指针(*int
+&#x2013;&gt; *C.int) 需要这样的代码
+</p>
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">var</span> ig int = <span style="color: #BFEBBF;">1</span>
+<span style="color: #DCDCCC;">(</span>*C.int<span style="color: #DCDCCC;">)(</span>unsafe.<span style="color: #93E0E3;">Pointer</span><span style="color: #BFEBBF;">(</span>&amp;ig<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+</pre>
+</div>
+<p>
+对于C中需要void*的场景,只需要将指针转换成 <code>unsafe.Pointer</code> 就好, 所以对于 <code>free</code> 应该这样调用
+</p>
+<div class="org-src-container">
+
+<pre class="src src-go">gs := <span style="color: #CC9393;">"hello world"</span>
+cs := C.<span style="color: #93E0E3;">CString</span><span style="color: #DCDCCC;">(</span>gs<span style="color: #DCDCCC;">)</span>
+C.<span style="color: #93E0E3;">free</span><span style="color: #DCDCCC;">(</span>unsafe.<span style="color: #93E0E3;">Pointer</span><span style="color: #BFEBBF;">(</span>cs<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline26" class="outline-3">
+<h3 id="orgheadline26">go中引用C</h3>
+<div class="outline-text-3" id="text-orgheadline26">
 <p>
 C中的名称都可以使用“C”这个“包”访问到
 </p>
 <ol class="org-ol">
 <li><p>
-类型：C.int, C.float, *C.int 代表C中的int，foat以及int*，对于string因为C的原
-因需要特殊处理
+类型：C.int, C.float, *C.int 代表C中的int，foat以及int*，
 </p>
 <div class="org-src-container">
 
@@ -661,9 +760,155 @@ C中的名称都可以使用“C”这个“包”访问到
 </pre>
 </div></li>
 
-<li>函数：可以直接引用，C.printf, C.sqrt 等等</li>
+<li><p>
+string对于string因为C的原因需要特殊处理, C string是不会被GC回收的，所以你要调
+用 <code>defer C.free(unsafe.Pointer(x))</code> 来回收内存
+</p>
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">package</span> main
+
+<span style="color: #5F7F5F;">/*</span>
+<span style="color: #7F9F7F;">    #include &lt;stdlib.h&gt;</span>
+<span style="color: #7F9F7F;">    char* cstring = "C string example";</span>
+<span style="color: #7F9F7F;">*/</span>
+<span style="color: #F0DFAF; font-weight: bold;">import</span> <span style="color: #CC9393;">"C"</span>
+<span style="color: #F0DFAF; font-weight: bold;">import</span> <span style="color: #DCDCCC;">(</span>
+  <span style="color: #CC9393;">"fmt"</span>
+  <span style="color: #CC9393;">"unsafe"</span>
+<span style="color: #DCDCCC;">)</span>
+
+<span style="color: #F0DFAF; font-weight: bold;">func</span> <span style="color: #93E0E3;">main</span><span style="color: #DCDCCC;">()</span> <span style="color: #DCDCCC;">{</span>
+
+  <span style="color: #F0DFAF; font-weight: bold;">var</span> gstring string = <span style="color: #CC9393;">"Go string example"</span>
+
+  <span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">Go to C String, Output: *C.char</span>
+  cs := C.<span style="color: #93E0E3;">CString</span><span style="color: #BFEBBF;">(</span>gstring<span style="color: #BFEBBF;">)</span>
+  <span style="color: #F0DFAF; font-weight: bold;">defer</span> C.<span style="color: #93E0E3;">free</span><span style="color: #BFEBBF;">(</span>unsafe.<span style="color: #93E0E3;">Pointer</span><span style="color: #D0BF8F;">(</span>cs<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  fmt.<span style="color: #93E0E3;">Println</span><span style="color: #BFEBBF;">(</span>cs<span style="color: #BFEBBF;">)</span>
+
+  <span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">C to Go String, Output: string</span>
+  gs := C.<span style="color: #93E0E3;">GoString</span><span style="color: #BFEBBF;">(</span>C.cstring<span style="color: #BFEBBF;">)</span>
+  fmt.<span style="color: #93E0E3;">Println</span><span style="color: #BFEBBF;">(</span>gs<span style="color: #BFEBBF;">)</span>
+
+  <span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">C string, length to Go string</span>
+  gs2 := C.<span style="color: #93E0E3;">GoStringN</span><span style="color: #BFEBBF;">(</span>C.cstring, <span style="color: #D0BF8F;">(</span>C.int<span style="color: #D0BF8F;">)(</span><span style="color: #DCDCCC; font-weight: bold;">len</span><span style="color: #93E0E3;">(</span>gs<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  fmt.<span style="color: #93E0E3;">Println</span><span style="color: #BFEBBF;">(</span>gs2<span style="color: #BFEBBF;">)</span>
+
+<span style="color: #DCDCCC;">}</span>
+</pre>
+</div></li>
+<li><p>
+函数：可以直接引用，C.printf, C.sqrt 等等, 只是你需要将参数转换成C的形式, 当
+调用C函数,你可以返回多个值,一个是C函数的返回值,一个根据errno封装的error对象,
+这在调用一些系统调用时非常有用.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-go">n, err := C.<span style="color: #93E0E3;">sqrt</span><span style="color: #DCDCCC;">(</span>-<span style="color: #BFEBBF;">1</span><span style="color: #DCDCCC;">)</span>
+_, err := C.<span style="color: #93E0E3;">voidFunc</span><span style="color: #DCDCCC;">()</span>
+</pre>
+</div>
+<p>
+即便是C中的void函数也可以返回两个值, 当然这种情况下第一个值是没有意义的.
+</p></li>
+<li><p>
+struct
+看代码
+</p>
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">package</span> main
+
+<span style="color: #5F7F5F;">/*</span>
+<span style="color: #7F9F7F;">    #include &lt;stdlib.h&gt;</span>
+<span style="color: #7F9F7F;">    struct Person {</span>
+<span style="color: #7F9F7F;">        char *name;</span>
+<span style="color: #7F9F7F;">        int age;</span>
+<span style="color: #7F9F7F;">        int height;</span>
+<span style="color: #7F9F7F;">        int weight;</span>
+<span style="color: #7F9F7F;">    };</span>
+<span style="color: #7F9F7F;">*/</span>
+<span style="color: #F0DFAF; font-weight: bold;">import</span> <span style="color: #CC9393;">"C"</span>
+<span style="color: #F0DFAF; font-weight: bold;">import</span> <span style="color: #CC9393;">"fmt"</span>
+
+<span style="color: #F0DFAF; font-weight: bold;">type</span> <span style="color: #7CB8BB;">p</span> <span style="color: #7CB8BB;">C.struct_Person</span>
+
+<span style="color: #F0DFAF; font-weight: bold;">func</span> <span style="color: #93E0E3;">main</span><span style="color: #DCDCCC;">()</span> <span style="color: #DCDCCC;">{</span>
+
+  person := <span style="color: #7CB8BB;">p</span><span style="color: #BFEBBF;">{</span>C.<span style="color: #93E0E3;">CString</span><span style="color: #D0BF8F;">(</span><span style="color: #CC9393;">"Giorgis"</span><span style="color: #D0BF8F;">)</span>, <span style="color: #BFEBBF;">30</span>, <span style="color: #BFEBBF;">6</span>, <span style="color: #BFEBBF;">175</span><span style="color: #BFEBBF;">}</span>
+  fmt.<span style="color: #93E0E3;">Println</span><span style="color: #BFEBBF;">(</span>person<span style="color: #BFEBBF;">)</span>
+  fmt.<span style="color: #93E0E3;">Println</span><span style="color: #BFEBBF;">(</span>C.<span style="color: #93E0E3;">GoString</span><span style="color: #D0BF8F;">(</span>person.name<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  fmt.<span style="color: #93E0E3;">Println</span><span style="color: #BFEBBF;">(</span>person.age<span style="color: #BFEBBF;">)</span>
+  fmt.<span style="color: #93E0E3;">Println</span><span style="color: #BFEBBF;">(</span>person.height<span style="color: #BFEBBF;">)</span>
+  fmt.<span style="color: #93E0E3;">Println</span><span style="color: #BFEBBF;">(</span>person.weight<span style="color: #BFEBBF;">)</span>
+<span style="color: #DCDCCC;">}</span>
+</pre>
+</div></li>
 </ol>
 </div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline28" class="outline-2">
+<h2 id="orgheadline28">Tips(best practice)</h2>
+<div class="outline-text-2" id="text-orgheadline28">
+<ol class="org-ol">
+<li><p>
+处理错误时避免多重嵌套，先处理错误的情况
+</p>
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">if</span> err != <span style="color: #BFEBBF;">nil</span> <span style="color: #DCDCCC;">{</span>
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">handle error</span>
+<span style="color: #DCDCCC;">}</span>
+<span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">do soamething</span>
+</pre>
+</div></li>
+<li>尽量避免重复，可以定义一些一次性的类型来更好的组织代码</li>
+<li><p>
+使用type switch来处理type cast
+</p>
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">switch</span> x := v.<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">type</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
+<span style="color: #F0DFAF; font-weight: bold;">case</span> string:
+  fmt.<span style="color: #93E0E3;">Printf</span><span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">"%s"</span>, x<span style="color: #BFEBBF;">)</span>
+<span style="color: #F0DFAF; font-weight: bold;">case</span> int64:
+  fmt.<span style="color: #93E0E3;">Print</span><span style="color: #BFEBBF;">(</span>x<span style="color: #BFEBBF;">)</span>
+<span style="color: #DCDCCC;">}</span>
+</pre>
+</div></li>
+<li><p>
+命名应该尽可能的短小，比如：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">package</span>  db
+<span style="color: #F0DFAF; font-weight: bold;">type</span> <span style="color: #7CB8BB;">DB</span> <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #DCDCCC;">{</span>
+<span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">some fields</span>
+<span style="color: #DCDCCC;">}</span>
+
+<span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">good</span>
+<span style="color: #F0DFAF; font-weight: bold;">func</span> <span style="color: #93E0E3;">New</span><span style="color: #DCDCCC;">()</span> *<span style="color: #7CB8BB;">DB</span> <span style="color: #DCDCCC;">{</span>
+
+<span style="color: #DCDCCC;">}</span>
+<span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">bad</span>
+<span style="color: #F0DFAF; font-weight: bold;">func</span> <span style="color: #93E0E3;">NewDB</span><span style="color: #DCDCCC;">()</span> *<span style="color: #7CB8BB;">DB</span> <span style="color: #DCDCCC;">{</span>
+
+<span style="color: #DCDCCC;">}</span>
+</pre>
+</div>
+<p>
+因为有包名，所以就不需要在New后面加个DB的后缀了。
+</p></li>
+<li>大型的包最好组织成多个文件，这样可以使文档以及测试更模块化。</li>
+<li>在库以及API中间尽量不要使用并发，应该让调用者来决定是否需要在单独的goroutine中运行</li>
+<li>尽量使用channel或者一个带有channel的类型来在goroutine之间来通信。</li>
+<li>避免goroutine泄露，也就说goroutine永久的block，一直不退出，这实际上也是一种资
+源泄露，通过buffered channel或者quit channel可以避免。quit channel是更通用的
+做法</li>
+</ol>
 </div>
 </div>
 </div>

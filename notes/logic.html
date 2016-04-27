@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-28 Sun 21:11 -->
+<!-- 2016-04-27 Wed 15:24 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>数理逻辑</title>
@@ -164,7 +164,7 @@ for the JavaScript code in this tag.
 });
 </script>
 <script type="text/javascript"
-        src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        src="http://cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -559,10 +559,10 @@ grammar:
 <p>
 哥德尔的不完全性定理的证明实际就是构造一个类似说谎者悖论的公式
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
        \neg \ \exists a: \exists a': \textrm{TNT-PROOF-PAIR}
 \{a, a'\} \land \textrm{ARITHMOQUINE}\{a'', a'\}
-     \end{displaymath}
+     \end{eqnarray*}
 </div>
 </div>
 </div>
@@ -766,17 +766,17 @@ A 与 B有相同的真值.</li>
 <li><p>
 重言蕴含的基本意义
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \Sigma;\alpha \vDash \beta \quad \textrm{iff} \quad \Sigma \vDash (\alpha \rightarrow \beta)
-\end{displaymath}</li>
+\end{eqnarray*}</li>
 
 <li>&alpha;, &beta; 是重言等价的  <b>iff</b>  \(\vDash (\alpha \leftrightarrow \beta)\)</li>
 <li><p>
 对于任意的合式公式B
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \{A, \neg B\} \vDash B
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 上式实际就是 \(A \rightarrow (\neg A) \rightarrow B\), 很显然是重言式.
@@ -901,9 +901,9 @@ x<sub>n</sub>&gt;, 那么对任意\(i \leq n\) 它至少满足以下三个条件
 <p>
 C<sub>n</sub> 是所有长度为 n 的构造序列的最后一个元素组成的集合, 那么 C<sub>1</sub>=B,
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   C_1 \subseteq C_2 \subseteq C_3 \subseteq ...
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 \(C_* = \bigcup_n C_n\)
@@ -1076,9 +1076,9 @@ term ::= 0<br  />
 原子公式: 没有使用逻辑联接符以及量词符号的合式公式, 原子公式相当于命题逻
 辑中命题符号的作用.
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   Pt_1 t_2...t_n
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 其中P是 n元谓词符号, t<sub>n</sub> 是项
@@ -1132,16 +1132,16 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 <li><p>
 假言推理: 从公式 \(\alpha, \alpha \rightarrow \beta\) 可以推出 &beta;.
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \frac{\alpha, \alpha \rightarrow \beta}{\beta}
-\end{displaymath}</li>
+\end{eqnarray*}</li>
 
 <li><p>
 理论(theory): 逻辑蕴含意义下封闭的 <b>句子</b> 集合.
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   T \vDash \sigma \rightarrow \sigma \in T
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 注意仅仅指句子
@@ -1252,9 +1252,9 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 <p>
 结构有时候可以非形式的写成一行,比如下面:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \mathfrak{A} = (\mathbb{N}; \le, S, 0)
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 依次指定了论域, 谓词, 函数, 常数
@@ -1279,16 +1279,16 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 那么定义对于 \(\mathfrak{A}\), s 满足 \(\varphi\) 的含义(也就是使 \(\varphi\) 为
 真)是:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \vDash_\mathfrak{A} \varphi[s]
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 还有一种表示方法:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \vDash_\mathfrak{A} \varphi \lVert a_1, ..., a_k\rVert
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 上面的意思是说 \(\varphi\) 中自由出现的变量为 \(v_1, ..., v_k\), 那么为这些自由
@@ -1305,16 +1305,16 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 <p>
 <code>s</code> 是一个变量到论域的函数(V 是变量的集合):
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   s: V \rightarrow |\mathfrak{A}|
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 项可以如下定义:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \overset{-}{s} : T \rightarrow |\mathfrak{A}|
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 \(\overset{-}{s}\) 的递归定义如下:
@@ -1325,9 +1325,9 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 <li><p>
 如果 t<sub>1</sub>, t<sub>2</sub>&#x2026; t<sub>n</sub> 是项, f是一个n元函数符号,那么:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \overset{-}{s}(f t_1t_2...t_n) = f^\mathfrak{A}(\overset{-}{s}(t_1), \overset{-}{s}(t_2)...\overset{-}{s}(t_n))
-\end{displaymath}</li>
+\end{eqnarray*}</li>
 </ol>
 </div>
 </div>
@@ -1343,16 +1343,16 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 <li><p>
 对等于符号而言:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \vDash_\mathfrak{A} \ = t_1t_2[s] \quad \textrm{iff} \quad \overset{-}{s}(t_1)=\overset{-}{s}(t_2)
-\end{displaymath}</li>
+\end{eqnarray*}</li>
 
 <li><p>
 对n元谓词符号 P:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \vDash_\mathfrak{A} Pt_1 ... t_n[s]  \quad \textrm{iff} \quad \langle \overset{-}{s}(t_1) ... \overset{-}{s}(t_n) \rangle \in P^\mathfrak{A}
-\end{displaymath}</li>
+\end{eqnarray*}</li>
 </ol>
 </div>
 </div>
@@ -1365,16 +1365,16 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 <li><p>
 对 \(\lnot\) 逻辑符号
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \vDash_\mathfrak{A} \lnot \varphi[s] \quad \textrm{iff} \quad \nvDash_\mathfrak{A} \varphi[s]
-\end{displaymath}</li>
+\end{eqnarray*}</li>
 
 <li><p>
 对 &rarr; 逻辑符号而言:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \vDash_\mathfrak{A} (\varphi \rightarrow \psi)[s] \quad \textrm{iff} \quad \vDash_\mathfrak{A} \varphi[s] \ \rightarrow \ \vDash_\mathfrak{A}\psi[s]
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 也就是说, \(\nvDash_\mathfrak{A} \varphi[s]\) 或者 \(\vDash_\mathfrak{A}
@@ -1383,19 +1383,19 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 <li><p>
 对 &forall; 量词符号而言:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \vDash_\mathfrak{A} \forall x \varphi[s] \quad \textrm{iff} \quad \forall d \in |\mathfrak{A}|(\vDash_\mathfrak{A} \varphi[s(x|d)])
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其定义如下:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   s (x|d)(y) = \left\{ \begin{array}{ll}
       d    & \textrm{if $y=x$} \\
       s(y) & \textrm{if $y \ne x$}
       \end{array} \right.
-\end{displaymath}</li>
+\end{eqnarray*}</li>
 </ol>
 </div>
 </div>
@@ -1427,16 +1427,16 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 <li><p>
 某个类中每个对象都有某种属性:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \forall v(\_ \rightarrow \_)
-\end{displaymath}</li>
+\end{eqnarray*}</li>
 
 <li><p>
 某个类中某些对象有某个属性:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \exists v(\_ \land \_)
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 假设A代表是"是苹果", B代表"是烂的", 那么:
@@ -1483,16 +1483,16 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 <li><p>
 一个重要的结论:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
 \Gamma;\alpha \vDash \varphi \quad \textrm{iff} \quad \Gamma \vDash (\alpha \rightarrow \varphi)
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 这个结论也有这样的形式:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \{a_1, a_2, ..., a_n\} \vDash \varphi \quad \textrm{iff} \quad \vDash (a_1 \rightarrow a_2 \rightarrow ... \rightarrow a_n)
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 上述转换从直观角度不言而喻.
@@ -1500,16 +1500,16 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 <li><p>
 根据紧致性定理, 必存在
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \{\gamma_1, \gamma_2, ..., \gamma_n\} \subseteq \Gamma
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 使得如果 \(\Gamma \vDash \varphi\), 那么:
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \vDash \gamma_1 \rightarrow \gamma_2 \rightarrow ... \rightarrow \gamma_n \rightarrow \varphi
-\end{displaymath}</li>
+\end{eqnarray*}</li>
 </ol>
 </div>
 </div>
@@ -1526,17 +1526,17 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 <li><p>
 对谓词
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \langle a_1, ..., a_k\rangle \in P^\mathfrak{A} \quad \textrm{iff} \quad
   \langle h(a_1), ..., h(a_k)\rangle \in P^\mathfrak{B}
-\end{displaymath}</li>
+\end{eqnarray*}</li>
 
 <li><p>
 对函数
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   h(f^\mathfrak{A}(a_1, ..., a_k)) = f^\mathfrak{B}(h(a_1), ..., h(a_k)))
-\end{displaymath}</li>
+\end{eqnarray*}</li>
 </ol>
 
 <p>
@@ -1632,9 +1632,9 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 <li><p>
 \(\vDash, \vdash\) 的关系
 </p>
-\begin{displaymath}
+\begin{eqnarray*}
   \Gamma \vdash \varphi \quad \textrm{iff} \quad \Gamma \cup \Lambda \vDash \varphi
-\end{displaymath}
+\end{eqnarray*}
 
 <p>
 <b>proof</b>: 正向: 归纳法, 反向: 紧致性定理

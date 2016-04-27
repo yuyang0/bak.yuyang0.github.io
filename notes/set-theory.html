@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-28 Sun 21:11 -->
+<!-- 2016-04-27 Wed 15:12 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>SET THEORY</title>
@@ -164,7 +164,7 @@ for the JavaScript code in this tag.
 });
 </script>
 <script type="text/javascript"
-        src="http://cdn.bootcss.com/mathjax/2.4.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        src="http://cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -339,9 +339,9 @@ d 的第五位不同于 r(5) 的第五位<br  />
 于P，那么P是自吞的，而根据P的性质，P只包含不自吞的集合，所以最后 \(P
    \rightarrow \lnot P，\lnot P \rightarrow P\).
 </p>
-\begin{displaymath}
+\begin{eqnarray}
   P = \{x| x \notin x \}
-\end{displaymath}
+\end{eqnarray}
 </div>
 </div>
 </div>
@@ -360,9 +360,9 @@ d 的第五位不同于 r(5) 的第五位<br  />
 <p>
 判断2个集合是否相等
 </p>
-\begin{displaymath}
+\begin{eqnarray}
   \forall A \forall B[\forall x(x \in A \iff x \in B) \Rightarrow A=B]
-\end{displaymath}
+\end{eqnarray}
 </div>
 </div>
 
@@ -372,16 +372,16 @@ d 的第五位不同于 r(5) 的第五位<br  />
 <p>
 存在一个唯一的空集
 </p>
-\begin{displaymath}
+\begin{eqnarray}
   \exists B \forall x \ x \notin B
-\end{displaymath}
+\end{eqnarray}
 
 <p>
 identical form:
 </p>
-\begin{displaymath}
+\begin{eqnarray}
   \exists B \forall x[x \in B \iff x \ne x]
-\end{displaymath}
+\end{eqnarray}
 </div>
 </div>
 
@@ -392,9 +392,9 @@ identical form:
 For any set u and v, {u, v} is the pair set whose only members are u and
 v.
 </p>
-\begin{displaymath}
+\begin{eqnarray}
   \forall u \forall v \exists B \forall x(x \in B \iff x=u \ \lor \ x=v)
-\end{displaymath}
+\end{eqnarray}
 </div>
 </div>
 
@@ -404,9 +404,9 @@ v.
 <p>
 对于任意集合A，存在一个集合B，恰好以A的一切子集为元素
 </p>
-\begin{displaymath}
+\begin{eqnarray}
   \forall A \exists B (x \in B \iff x \subseteq A)
-\end{displaymath}
+\end{eqnarray}
 
 <p>
 some propertyies of Power set:
@@ -422,9 +422,9 @@ some propertyies of Power set:
 <p>
 a &cup; c is the set whose member belong to a or c
 </p>
-\begin{displaymath}
+\begin{eqnarray}
   \forall a \forall b \exists B \forall x(x \in B \iff x \in a \ or \ x \in b)
-\end{displaymath}
+\end{eqnarray}
 
 <p>
 the axiom above is the <b>preliminary form</b> of Union axiom.
@@ -468,18 +468,18 @@ formula __ is, the set B is subset of c
 <p>
 <b>proof</b>: if A is a set, we will construct a set not belonging to A
 </p>
-\begin{displaymath}
+\begin{eqnarray}
   B = \{x \in A | x \notin x \}
-\end{displaymath}
+\end{eqnarray}
 
 <p>
 According to the subset axiom, if A is a set then B exists.and according
 to the construction rule of B:
 </p>
 
-\begin{displaymath}
+\begin{eqnarray}
   B \in B \iff B \in A \ and \ B \notin B
-\end{displaymath}
+\end{eqnarray}
 
 <p>
 then if B &isin; A, we get \(B \in B \iff B \notin B\), this is a
@@ -513,16 +513,16 @@ x \in \bigcap A   &\iff (\forall b \in A) x \in b
 <li><p>
 (relative complement)差集
 </p>
-\begin{displaymath}
+\begin{eqnarray}
   \forall a \forall c \exists B \forall x(x \in B \iff x \in a \ and \ x \notin c)
-\end{displaymath}
+\end{eqnarray}
 
 <p>
 identical form:
 </p>
-\begin{displaymath}
+\begin{eqnarray}
   a - c = \{x| x \in a \ and \ x \notin c \}
-\end{displaymath}</li>
+\end{eqnarray}</li>
 </ol>
 </div>
 </div>
@@ -548,9 +548,9 @@ R.
 <p>
 There exists an inductice set:
 </p>
-\begin{displaymath}
+\begin{eqnarray}
   (\exists A)[\emptyset \in A \ and \ (\forall a \in A) a^+ \in A]
-\end{displaymath}
+\end{eqnarray}
 </div>
 </div>
 </div>
@@ -803,9 +803,9 @@ study: the axiomatic approch and the constructive approch.
 <li><p>
 transitive set: A set <code>A</code> is said to be transitive set iff
 </p>
-\begin{displaymath}
+\begin{eqnarray}
   x \in a \in A \rightarrow x \in A
-\end{displaymath}</li>
+\end{eqnarray}</li>
 </ol>
 </div>
 </div>
@@ -834,24 +834,24 @@ so the natural number has folllowing properties:
 <p>
 <b>Definition</b>: for any set A, its successor \(a^+\) is defined by
 </p>
-\begin{displaymath}
+\begin{eqnarray}
   a^+ = a \cup \{a\}
-\end{displaymath}
+\end{eqnarray}
 
 <p>
 then:
 </p>
-\begin{displaymath}
+\begin{eqnarray}
   0=\emptyset,\quad 1=\emptyset^+, \quad 2=\emptyset^{++},\quad 3=\emptyset^{+++}
-\end{displaymath}
+\end{eqnarray}
 
 <p>
 A set is said to be inductive iff \(\emptyset \in A\) and it is "closed under
 successor". ie
 </p>
-\begin{displaymath}
+\begin{eqnarray}
   \forall a(a \in A \Rightarrow a^+ \in A)
-\end{displaymath}
+\end{eqnarray}
 </div>
 </div>
 
@@ -891,9 +891,9 @@ requirement that S be one-to-one rules out the system of Fig
 <p>
 <b>Theorem</b>: if &sigma; is defined by:
 </p>
-\begin{displaymath}
+\begin{eqnarray}
   \sigma = \{\langle n, n^+ \rangle| n \in \omega \}
-\end{displaymath}
+\end{eqnarray}
 
 <p>
 \(\langle \omega, \sigma, 0 \rangle\) is a Peano system
@@ -917,16 +917,16 @@ requirement that S be one-to-one rules out the system of Fig
 let A be a set, a &isin; A and \(F: A \rightarrow A\). Then there exists a unique
 function \(h: \omega \rightarrow A\) such that
 </p>
-\begin{displaymath}
+\begin{eqnarray}
   h(0) = a,
-\end{displaymath}
+\end{eqnarray}
 
 <p>
 and for every n in &omega;,
 </p>
-\begin{displaymath}
+\begin{eqnarray}
   h(n^+) = F(h(n)).
-\end{displaymath}
+\end{eqnarray}
 
 <p>
 <b>Theorem</b> Let \(\langle N, S, e \rangle\) be a Peano system, Then \(\langle
@@ -934,16 +934,16 @@ and for every n in &omega;,
 there is a function h mapping &omega; one-to-one onto N in a way that
 preserves that successor operation
 </p>
-\begin{displaymath}
+\begin{eqnarray}
   h(\sigma(n)) = S(h(n))
-\end{displaymath}
+\end{eqnarray}
 
 <p>
 and the zero element
 </p>
-\begin{displaymath}
+\begin{eqnarray}
   h(0) = e
-\end{displaymath}
+\end{eqnarray}
 
 <p>
 Intuitively, this theorem implies that h(0)=e, h(1)=S(e), h(2)=S(S(e)),

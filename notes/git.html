@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-28 Sun 21:11 -->
+<!-- 2016-04-27 Wed 15:11 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>git/github学习笔记</title>
@@ -405,9 +405,12 @@ git pull origin master</li>
 <li>git pull -u origin master
 origin是远程分支的名字，master是本地分支的名字</li>
 <li>子模块
-git submodule add 子模快url 本地的路径
-eg: git submodule add <a href="https://github.com/libevent/libevent.git">https://github.com/libevent/libevent.git</a> .dep/libevent
-当clone了一份包含子模快的仓库时，调用git submodule update &#x2013;init可以拉取那些子模快</li>
+<ul class="org-ul">
+<li>添加子模块: <code>git submodule add repo-url local-path</code></li>
+<li>clone子模块: <code>git clone --recursive repo-url</code>, 如果不指定recursive，那么clone后需要初始化 <code>git submodule update --init --recursive</code></li>
+<li>更新： <code>git submodule update</code></li>
+<li>删除： ubmodule的删除稍微麻烦点：首先，要在“.gitmodules”文件中删除相应配置信息。然后，执行“git rm –cached ”命令将子模块所在的文件从git中删除。</li>
+</ul></li>
 <li>fork后合并原仓库的改变
 情景如下：我在github fork一个仓库（<a href="https://github.com/purcell/emacs.d.git">https://github.com/purcell/emacs.d.git</a> ）到我的的账户
          （<a href="https://github.com/yuyang0/emacs.d.git">https://github.com/yuyang0/emacs.d.git</a> ）然后我将这个fork仓库clone到本地，现在

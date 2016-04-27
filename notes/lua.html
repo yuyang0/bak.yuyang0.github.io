@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-02-28 Sun 21:11 -->
+<!-- 2016-04-27 Wed 15:12 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lua</title>
@@ -362,9 +362,10 @@ __ENV机制是lua5.2引入的, 在luajit中也没有实现, setfenv实际上也�
 </pre>
 </div>
 <p>
-在new中创建一个表o, 同时将o的metatable设为self(也就是Account), 这样o中不存在的
-属性都会去Account表中找. 同时注意冒号是一个语法糖, 也就是说 <code>o:deposite(100)</code>
-等价于 <code>o.deposite(o, 100)</code>,
+在new中创建一个表o, 同时将o的metatable设为self(也就是Account), 同时设置
+self的__index属性, 这样o中不存在的属性都会去Account表中找. 若是新对象没有指定
+balance值,那么Account中的balance会新对象的默认值. 同时注意冒号是一个语法糖, 也
+就是说 <code>o:deposite(100)=等价于 =o.deposite(o, 100)</code>,
 </p>
 </div>
 </div>
@@ -389,13 +390,13 @@ lua中比较好的package设施应该满足以下几点:
 <span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DFAF8F;">ngx</span> = ngx
 <span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DCDCCC; font-weight: bold;">setmetatable</span> = <span style="color: #DCDCCC; font-weight: bold;">setmetatable</span>
 
-<span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DFAF8F;">P</span> = <span style="color: #DCDCCC;">{}</span>
-<span style="color: #5F7F5F;">-- </span><span style="color: #7F9F7F;">&#20462;&#25913;&#24403;&#21069;chunk&#30340;&#21311;&#21517;&#20989;&#25968;&#30340;&#29615;&#22659;&#20026;P, &#36825;&#26679;&#35813;chunk&#30340;&#25152;&#26377;&#20840;&#23616;&#21464;&#37327;&#37117;&#20250;&#21464;&#25104;P&#30340;&#20803;&#32032;</span>
+<span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DFAF8F;">_M</span> = <span style="color: #DCDCCC;">{}</span>
+<span style="color: #5F7F5F;">-- </span><span style="color: #7F9F7F;">&#20462;&#25913;&#24403;&#21069;chunk&#30340;&#21311;&#21517;&#20989;&#25968;&#30340;&#29615;&#22659;&#20026;_M, &#36825;&#26679;&#35813;chunk&#30340;&#25152;&#26377;&#20840;&#23616;&#21464;&#37327;&#37117;&#20250;&#21464;&#25104;_M&#30340;&#20803;&#32032;</span>
 <span style="color: #5F7F5F;">-- </span><span style="color: #7F9F7F;">&#36825;&#26679;&#21487;&#20197;&#36991;&#20813;&#28431;&#25481;local&#23548;&#33268;&#30340;&#20989;&#25968;&#21464;&#25104;&#20840;&#23616;&#20989;&#25968;&#30340;&#38382;&#39064;.</span>
 <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #DCDCCC; font-weight: bold;">setfenv</span> <span style="color: #F0DFAF; font-weight: bold;">then</span>                 <span style="color: #5F7F5F;">-- </span><span style="color: #7F9F7F;">for lua5.1 and luajit</span>
-   <span style="color: #DCDCCC; font-weight: bold;">setfenv</span><span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">1</span>, P<span style="color: #DCDCCC;">)</span>
+   <span style="color: #DCDCCC; font-weight: bold;">setfenv</span><span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">1</span>, _M<span style="color: #DCDCCC;">)</span>
 <span style="color: #F0DFAF; font-weight: bold;">elseif</span> _ENV <span style="color: #F0DFAF; font-weight: bold;">then</span>                <span style="color: #5F7F5F;">-- </span><span style="color: #7F9F7F;">for lua5.2 or newer</span>
-   _ENV = P
+   _ENV = _M
 <span style="color: #F0DFAF; font-weight: bold;">else</span>
    <span style="color: #DCDCCC; font-weight: bold;">error</span><span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"both setfenv and _ENV are nil..."</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #F0DFAF; font-weight: bold;">end</span>
@@ -418,9 +419,9 @@ lua中比较好的package设施应该满足以下几点:
                 <span style="color: #F0DFAF; font-weight: bold;">end</span><span style="color: #BFEBBF;">)</span>,
 <span style="color: #DCDCCC;">}</span>
 
-<span style="color: #DCDCCC; font-weight: bold;">setmetatable</span><span style="color: #DCDCCC;">(</span>P, module_mt<span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC; font-weight: bold;">setmetatable</span><span style="color: #DCDCCC;">(</span>_M, module_mt<span style="color: #DCDCCC;">)</span>
 
-<span style="color: #F0DFAF; font-weight: bold;">return</span> P
+<span style="color: #F0DFAF; font-weight: bold;">return</span> _M
 </pre>
 </div>
 </div>
