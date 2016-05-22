@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-04-27 Wed 15:20 -->
+<!-- 2016-05-22 Sun 22:23 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>概率论与数理统计笔记</title>
@@ -210,15 +210,16 @@ for the JavaScript code in this tag.
 <li><a href="#orgheadline8">全概率公式与贝叶斯公式</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline16">随机变量的概率</a>
+<li><a href="#orgheadline17">随机变量的概率</a>
 <ul>
 <li><a href="#orgheadline10">随机变量</a></li>
-<li><a href="#orgheadline15">离散性随机变量</a>
+<li><a href="#orgheadline16">离散性随机变量</a>
 <ul>
-<li><a href="#orgheadline11">概率函数</a></li>
-<li><a href="#orgheadline12">概率分布函数</a></li>
-<li><a href="#orgheadline13">离散性随机变量的几个分布</a></li>
-<li><a href="#orgheadline14">连续性随机变量的几个分布</a></li>
+<li><a href="#orgheadline11">累积分布函数(CDF)</a></li>
+<li><a href="#orgheadline12">概率质量函数(PMF)</a></li>
+<li><a href="#orgheadline13">概率密度函数(PDF)</a></li>
+<li><a href="#orgheadline14">离散性随机变量的几个分布</a></li>
+<li><a href="#orgheadline15">连续性随机变量的几个分布</a></li>
 </ul>
 </li>
 </ul>
@@ -365,59 +366,98 @@ P(B|A)=P(AB)/P(A) 而 P(AB)=P(A|B)P(B)
 </div>
 </div>
 
-<div id="outline-container-orgheadline16" class="outline-2">
-<h2 id="orgheadline16">随机变量的概率</h2>
-<div class="outline-text-2" id="text-orgheadline16">
+<div id="outline-container-orgheadline17" class="outline-2">
+<h2 id="orgheadline17">随机变量的概率</h2>
+<div class="outline-text-2" id="text-orgheadline17">
 </div><div id="outline-container-orgheadline10" class="outline-3">
 <h3 id="orgheadline10">随机变量</h3>
 <div class="outline-text-3" id="text-orgheadline10">
 <p>
-和函数中自变量的含义类似,随机变量可以取不同的值,而随机变量能取的所有值也会组成一个全集Ω, 与古典概率不同的
-是每一个值对应的概率可以是不同的,而古典概率中全集Ω中每一个元素对应一个基本事件,而每个基本事件的概率是均等
-的.
+随机变量是一个映射(函数)：
+</p>
+\begin{equation}
+  X:\Omega \rightarrow \mathbb{R}
+\end{equation}
+
+<p>
+也就是说每一个基本事件都会映射为一个实数。这样每一个实数相应的也会有一个概率。因
+为有些实数有多个基本事件映射到，而有些根本没有基本事件映射到，这样实数之间的概率
+就是不同的。
+</p>
+
+<p>
 随机变量分为离散性随机变量和连续性随机变量
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15">离散性随机变量</h3>
-<div class="outline-text-3" id="text-orgheadline15">
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16">离散性随机变量</h3>
+<div class="outline-text-3" id="text-orgheadline16">
 </div><div id="outline-container-orgheadline11" class="outline-4">
-<h4 id="orgheadline11">概率函数</h4>
+<h4 id="orgheadline11">累积分布函数(CDF)</h4>
 <div class="outline-text-4" id="text-orgheadline11">
+\begin{equation}
+  F_X(x) = \mathbb{P}(X \leq x)
+\end{equation}
+
+<p>
+\(F_X(x)\) 所有小于等于x的取值的概率的和,对离散型以及连续型随机变量都有效。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline12" class="outline-4">
+<h4 id="orgheadline12">概率质量函数(PMF)</h4>
+<div class="outline-text-4" id="text-orgheadline12">
+<p>
+概率质量函数（probability function or probability mass function)只对 <b>离散型随机
+变量</b> 有有意义
+</p>
+\begin{eqnarray*}
+  f_X(x) = \mathbb{P}(X=x)&  \\
+  F_X(x) = \mathbb{P}(X \leq x) &= \sum_{x_i \leq x} f_X(x_i)
+\end{eqnarray*}
+
 <p>
 f(x) = x这点的概率
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-4">
-<h4 id="orgheadline12">概率分布函数</h4>
-<div class="outline-text-4" id="text-orgheadline12">
+<div id="outline-container-orgheadline13" class="outline-4">
+<h4 id="orgheadline13">概率密度函数(PDF)</h4>
+<div class="outline-text-4" id="text-orgheadline13">
 <p>
-F(x) = 所有小于等于x 的变量的和
+概率密度函数(probability density function)只对连续型随机变量有意义。
+</p>
+\begin{eqnarray*}
+  \mathbb{P}(a \lt X \lt b) &= \int_a^bf_X(x)dx \\
+  F_X(x) &= \int_{-\infty}^xf_X(x)dt
+\end{eqnarray*}
+
+<p>
+PDF和PMF的区别是： PDF只有取积分才是概率，单点的函数值并不是概率。
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-4">
-<h4 id="orgheadline13">离散性随机变量的几个分布</h4>
-<div class="outline-text-4" id="text-orgheadline13">
+<div id="outline-container-orgheadline14" class="outline-4">
+<h4 id="orgheadline14">离散性随机变量的几个分布</h4>
+<div class="outline-text-4" id="text-orgheadline14">
 <ol class="org-ol">
 <li><p>
 二项分布 : 放回抽样,如果事件A在一次试验中发生的概率为p, 把这个试验独立的重复n次, 以X记A在这n次试验中发
 生的次数, 那么有下式
 </p>
 \begin{equation}
-  P(X=i)=b(i, n, p) = \mathrm{C}_n^i p^i (1-p)^{n-i}
+  P(X=i)=b(i, n, p) = {n \choose i} p^i (1-p)^{n-i}
 \end{equation}
 
 <p>
 记号为 B(n, p)
 </p></li>
 <li><p>
-泊松分布(Poisson distribution): 很重要的离散性分布,一般出现在表示一定时间或者空间内出现的事件个数这种场
-合,它可以看作是二项分布极限得到的,当二项分布的np不太大时,可以近似为泊松分布
+泊松分布(Poisson distribution): 很重要的离散性分布,一般出现在表示 <b>一定时间或
+者空间内出现的事件个数这种场合</b>,它可以看作是二项分布极限得到的,当二项分布的np
+不太大时,可以近似为泊松分布
 </p>
-
 \begin{equation}
   P(X=i) = \frac{e^{-\lambda}\lambda^i} {i!}
 \end{equation}
@@ -439,7 +479,7 @@ F(x) = 所有小于等于x 的变量的和
 p又很小, 但是 &lambda;=np 适中,于是 p=&lambda;/n ,根据二项分布:
 </p>
 \begin{equation}
-  P(X=i) = \mathrm{C}_n^i \frac{\lambda}{n}^i
+  P(X=i) = {n \choose i} \frac{\lambda}{n}^i
   (1 - \frac{\lambda}{n})^{n-i}
 \end{equation}
 <p>
@@ -487,16 +527,16 @@ p又很小, 但是 &lambda;=np 适中,于是 p=&lambda;/n ,根据二项分布:
 </p>
 
 \begin{equation}
-  P(X=m) = \frac{\mathrm{C}_M^m \mathrm{C}_{N-M} ^{n-m}} {\mathrm{C}_N^n}
+  P(X=m) = \frac{{M \choose m} {{N-M} \choose {n-m}}} {N \choose n}
 \end{equation}</li>
 
 <li>负二项分布 :</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-4">
-<h4 id="orgheadline14">连续性随机变量的几个分布</h4>
-<div class="outline-text-4" id="text-orgheadline14">
+<div id="outline-container-orgheadline15" class="outline-4">
+<h4 id="orgheadline15">连续性随机变量的几个分布</h4>
+<div class="outline-text-4" id="text-orgheadline15">
 <ol class="org-ol">
 <li><p>
 正态分布[Normal distribution](高斯分布[Gaussian distribution])

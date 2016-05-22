@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-04-27 Wed 15:12 -->
+<!-- 2016-05-22 Sun 22:24 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>python的“缺点”</title>
@@ -176,27 +176,23 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">类型系统</a>
+<li><a href="#orgheadline1">类型系统</a></li>
+<li><a href="#orgheadline2">缩进</a></li>
+<li><a href="#orgheadline3">高阶函数(high order function)</a>
 <ul>
-<li><a href="#orgheadline2">我对程序语言的理解过程</a></li>
+<li><a href="#orgheadline9">基本概念</a>
+<ul>
+<li><a href="#orgheadline4">环境（environment）</a></li>
+<li><a href="#orgheadline5">声明</a></li>
+<li><a href="#orgheadline6">赋值</a></li>
+<li><a href="#orgheadline7">作用域</a></li>
+<li><a href="#orgheadline8">python的作用域规则</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline3">缩进</a></li>
-<li><a href="#orgheadline4">高阶函数(high order function)</a>
-<ul>
-<li><a href="#orgheadline10">基本概念</a>
-<ul>
-<li><a href="#orgheadline5">环境（environment）</a></li>
-<li><a href="#orgheadline6">声明</a></li>
-<li><a href="#orgheadline7">赋值</a></li>
-<li><a href="#orgheadline8">作用域</a></li>
-<li><a href="#orgheadline9">python的作用域规则</a></li>
+<li><a href="#orgheadline10">python的设计失误</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline11">python的设计失误</a></li>
-</ul>
-</li>
-<li><a href="#orgheadline12">GIL</a></li>
+<li><a href="#orgheadline11">GIL</a></li>
 </ul>
 </div>
 </div>
@@ -262,25 +258,14 @@ pycharm我也可以很轻松的让它出错。</li>
 但是这种做法静态类型系统是不允许的（当然这是所有动态语言的问题 ）。还有很多这
 样的例子。静态类型系统实际上是限制了程序语言的灵活性以及表达力，但这是值得的，
 因为它去掉的基本都是一些不必要的灵活性，而且去掉这些灵活性之后可以让程序更严
-谨，实际上现在已经有e人在着手向python中添加静态类型，各位可以看看这篇<a href="https://quip.com/r69HA9GhGa7J">文章</a> 。
+谨，实际上现在已经有人在着手向python中添加静态类型，各位可以看看这篇<a href="https://quip.com/r69HA9GhGa7J">文章</a> 。
 有意了解更多类型知识的童鞋可以看看types and programming languages这本书。
 </p>
 </div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">我对程序语言的理解过程</h3>
-<div class="outline-text-3" id="text-orgheadline2">
-<ol class="org-ol">
-<li>C，我学的第一门语言是C，似乎大多数人都是，没办法学校教的，那时候很菜，没
-有比较，所以没有鉴别，糊里糊涂的在学。</li>
-<li>python，</li>
-<li>scheme，haskell，ML</li>
-</ol>
 </div>
-</div>
-</div>
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">缩进</h2>
-<div class="outline-text-2" id="text-orgheadline3">
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">缩进</h2>
+<div class="outline-text-2" id="text-orgheadline2">
 <p>
 python强制缩进是一个明智的选择，它使得代码的可读性有了质的飞跃，但是它使用空
 格这样的不可见字符来标示一个块的结束，我认为不是什么很好的选择。ruby社区有一
@@ -313,13 +298,14 @@ python强制缩进是一个明智的选择，它使得代码的可读性有了�
 好检查，可是对于复杂的函数这种bug很不好排查。如果有明确的块界定符，比如说
 end，}，那么就根本不会有这种低级的问题.
 </p></li>
-<li><b>无法使用编辑器来自动格式化代码</b>, 这是一个很大的问题,当你从网上拷贝一段别
-人的代码后,你必须小心翼翼的来确保代码的缩进正确, 编辑器是无法自动格式化像
-python这类语言的代码的, 这不是因为编辑器不够强大，而是本质上不可能实现，
-所以python的代码我们必须手动来格式化，这是很机械的工作，可是因为python的
-设计失误，我们无法把它交给机器来做，曾经我因为习惯在emacs中写python代码时总
-是喜欢运行代码自动格式化的命令，可是每一次都弄得一团糟，幸好可以撤销，否则
-我真的只能撞墙。后来我就直接在配置中把python的格式化命令去掉了</li>
+<li><b>无法使用编辑器来自动格式化代码</b>, 这是一个很大的问题,当你从网上拷贝一段别人
+的代码后,你必须小心翼翼的来确保代码的缩进正确, 编辑器是无法自动格式化像
+python这类语言的代码的, 这不是因为编辑器不够强大，而是本质上不可能实现，所
+以python的代码我们必须手动来格式化，这是很机械的工作，可是因为python的设计
+失误，我们无法把它交给机器来做，曾经我因为写其他语言代码的习惯, 所以在emacs
+中写python代码时总是喜欢运行代码自动格式化的命令，可是每一次都弄得一团糟，
+最后不得不在配置中把python的格式化命令去掉了, 所以对于python的这种语法虽然
+看上去很简洁，但是我不认为是一个好的设计。</li>
 <li><p>
 <b>无法实现一个完备的匿名函数</b>,python的缩进方式除了导致第三方工具无法自动格
 式化代码这个问题外，还有一个很大的问题，那就是python无法实现一个功能完备的
@@ -346,9 +332,9 @@ python这类语言的代码的, 这不是因为编辑器不够强大，而是本
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4">高阶函数(high order function)</h2>
-<div class="outline-text-2" id="text-orgheadline4">
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">高阶函数(high order function)</h2>
+<div class="outline-text-2" id="text-orgheadline3">
 <p>
 高阶函数实际就是说函数可以作为值传递，也可以作为值返回，也就是说函数
 是语言的第一类对象(first class objecte). 可以这么说，一个语言如果它
@@ -427,12 +413,12 @@ python这类语言的代码的, 这不是因为编辑器不够强大，而是本
 些地方没做对，开始之前先解释一些概念。
 </p>
 </div>
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">基本概念</h3>
-<div class="outline-text-3" id="text-orgheadline10">
-</div><div id="outline-container-orgheadline5" class="outline-4">
-<h4 id="orgheadline5">环境（environment）</h4>
-<div class="outline-text-4" id="text-orgheadline5">
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9">基本概念</h3>
+<div class="outline-text-3" id="text-orgheadline9">
+</div><div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4">环境（environment）</h4>
+<div class="outline-text-4" id="text-orgheadline4">
 <p>
 如果你写过解释器，那么你一定遇到过这个东西，简单的说环境就是用来跟踪在程序
  的执行过程中，每一个标识符都绑定到什么值，所以从逻辑上它就是一个
@@ -477,36 +463,36 @@ python这类语言的代码的, 这不是因为编辑器不够强大，而是本
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6">声明</h4>
-<div class="outline-text-4" id="text-orgheadline6">
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5">声明</h4>
+<div class="outline-text-4" id="text-orgheadline5">
 <p>
 实际就是在当前变量所在作用域创建一个key/value对, 注意实际上是调用=bind= 方
 法. 前提是该变量没有在当前作用域中绑定.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7">赋值</h4>
-<div class="outline-text-4" id="text-orgheadline7">
+<div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6">赋值</h4>
+<div class="outline-text-4" id="text-orgheadline6">
 <p>
 改变作用域中变量的值,如果当前作用域中没有该变量,那么就父作用域中找,
  如果该变量不存在那么出错. 实际上该动作就是 <code>set</code> 方法.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-4">
-<h4 id="orgheadline8">作用域</h4>
-<div class="outline-text-4" id="text-orgheadline8">
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7">作用域</h4>
+<div class="outline-text-4" id="text-orgheadline7">
 <p>
 每当进入一个新的作用域，那么解释器就会创建一个scope对象，该对象的
  parent指针会指向当前的scope对象，从而构成一个链式的作用域。
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-4">
-<h4 id="orgheadline9">python的作用域规则</h4>
-<div class="outline-text-4" id="text-orgheadline9">
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8">python的作用域规则</h4>
+<div class="outline-text-4" id="text-orgheadline8">
 <p>
 python有一个内置作用域，这个作用域的所有绑定是在任何地方都可见的。python的内
 置函数以及内置异常都是在内置作用域中. 可以使用如下代码来查看内置作用域有哪些
@@ -525,14 +511,15 @@ python有一个内置作用域，这个作用域的所有绑定是在任何地�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11">python的设计失误</h3>
-<div class="outline-text-3" id="text-orgheadline11">
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10">python的设计失误</h3>
+<div class="outline-text-3" id="text-orgheadline10">
 <p>
-python有一个巨大的设计失误就是没有明确的区分变量的声明与赋值，也就是说python
-的赋值有两种语义：当前作用域不存在该变量时，它会在作用域中创建该绑定，如果已
-存在，那么它就会修改该绑定的值，这种混淆的行为严重的损伤了语言的表达能力，同
-时也让程序更容易出错，因为变量会自动创建。
+python有一个巨大的设计失误就是没有明确的区分变量的 <b>声明</b> 与 <b>赋值</b>,也就是说
+python的"="有两种语义：当前作用域不存在该变量时，它会在作用域中创建该绑定，如果
+已存在，那么它就会修改该绑定的值，这种混淆的行为严重的损伤了语言的表达能力，同时
+也让程序更容易出错，因为变量会自动创建, 一个打字错误可能就会造成bug，而在需要明
+确声明变量的语言中，这种错误是可以被编译器或者解释器检测出来的。
 </p>
 
 <p>
@@ -580,20 +567,20 @@ assignment). 这其中有一些很细微的区别. 在inner中i=i+1会在当前�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-2">
-<h2 id="orgheadline12">GIL</h2>
-<div class="outline-text-2" id="text-orgheadline12">
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11">GIL</h2>
+<div class="outline-text-2" id="text-orgheadline11">
 <p>
 这是python被广为诟病的一个东西，与其说它是语言本身的问题，还不如说它是官方的C
 语言实现的问题，JPython以及pypy都没有这个问题。简单的说GIL是一个全局锁，GIL的
 存在简化了解释器的实现，但是代价是python的多线程变成了“伪多线程”，也就是说
 python的多线程程序任一时刻只能运行一个单一的线程，它无法有效的运用多核CPU的优
 势。因此对于使用python编写的CPU密集型的程序，你不要指望通过多线程来提高性能，
-多线程只会让这类程序的性能变得更糟。IO密集型的程序影响应该是不大的，这也是为
-什么tornado这样的库能够工作的很好的原因。但是对于分布式系统GIL已经变成了一个
-比较大的问题，比如说最近很火的Spark框架，很多测试都显示比hadoop快很多，豆瓣用
-python实现了一个类似的框架Dpark，江湖传言还没有hadoop跑的快，GIL的存在抵消了
-架构上的优势。
+多线程只会让这类程序的性能变得更糟。IO密集型的程序影响应该是不大的，这也是为什
+么tornado这样的库能够工作的很好的原因。所以很多时候为了利用多核，你必须使用多
+进程，而多进程之间共享数据的代价是比多线程高的多的，也麻烦的多。而且对于分布式
+系统GIL已经变成了一个比较大的问题,只是也为python语言的特点，所以大多数时候都不
+会将其作为分布式系统的实现语言，所以在分布式系统领域还不是什么大问题。
 </p>
 </div>
 </div>

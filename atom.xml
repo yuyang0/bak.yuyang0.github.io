@@ -4,7 +4,7 @@
   <title></title>
   <link href="https://yuyang0.github.io/"/>
   <link type="application/atom+xml" rel="self" href="/atom.xml"/>
-  <updated>Wed Apr 27 15:28:48 2016</updated>
+  <updated>Sun May 22 22:23:11 2016</updated>
   <id>https://yuyang0.github.io/</id>
   <author>
     <name>Yu Yang</name>
@@ -14,7 +14,7 @@
     <id>sitemap.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/sitemap.html"/>
     <title>Sitemap</title>
-    <updated> 2016-04-27</updated>
+    <updated> 2016-05-22</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -84,7 +84,7 @@
     <id>defects-of-python.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/articles/defects-of-python.html"/>
     <title>python的“缺点”</title>
-    <updated> 2016-01-01</updated>
+    <updated> 2016-05-19</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -145,6 +145,16 @@
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/big-data.html"/>
     <title>Big Data</title>
     <updated> 2015-12-26</updated>
+    <author>
+      <name>Yu Yang</name>
+      <uri>https://yuyang0.github.io/</uri>
+    </author>
+    <content type="html"> </content>
+  </entry><entry>
+    <id>cuda.org</id>
+    <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/cuda.html"/>
+    <title>CUDA笔记</title>
+    <updated> 2016-05-19</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -604,7 +614,7 @@
     <id>Probability.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/Probability.html"/>
     <title>概率论与数理统计笔记</title>
-    <updated> 2016-04-27</updated>
+    <updated> 2016-05-21</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -644,7 +654,7 @@
     <id>sitemap.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/sitemap.html"/>
     <title>Sitemap</title>
-    <updated> 2016-04-27</updated>
+    <updated> 2016-05-22</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -654,7 +664,7 @@
     <id>tags.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/tags.html"/>
     <title>tags</title>
-    <updated> 2016-04-27</updated>
+    <updated> 2016-02-28</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
