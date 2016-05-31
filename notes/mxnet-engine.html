@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-05-31 Tue 17:43 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>MXNET Dependency Engine</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Yu Yang" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="static/css/main.css"/>
+<link rel="shortcut icon" href="static/img/favicon.ico" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="header">
+      <div class="inner">
+        <h1 id="site-title"><a href="/"> 编码者言 </a></h1>
+        <div>
+          <a href="###" id="site-nav-btn">菜单</a>
+          <ul id="site-nav" class="vertical-nav mobi-hid">
+            <li> <a href="/">Home</a></li>
+            <li> <a href="/about.html">About</a></li>
+
+            <li> <a href="/tags.html">Tags</a></li>
+
+            <li> <a href="/atom.xml">RSS</a></li>
+          </ul>
+
+          <form id="site-search" method="get" action="https://google.com/search">
+            <input type="hidden" name="q" value="site:yuyang0.github.io" />
+            <input type="text" name="q" placeholder="Search..." />
+            <button class="btn-search" type="submit">Search</button>
+          </form>
+          <div style="clear:both;"> </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div id="content">
+<h1 class="title">MXNET Dependency Engine</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">基本背景知识</a></li>
+<li><a href="#orgheadline2">Op</a></li>
+<li><a href="#orgheadline3">Var</a>
+<ul>
+<li><a href="#orgheadline4">类图</a></li>
+<li><a href="#orgheadline5">理解Var的队列</a></li>
+<li><a href="#orgheadline6">添加读依赖</a></li>
+<li><a href="#orgheadline7">添加写依赖</a></li>
+<li><a href="#orgheadline8">读依赖完成</a></li>
+<li><a href="#orgheadline9">写依赖完成</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline10">Engine</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">基本背景知识</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<p>
+MXNET中有一个依赖引擎，这个引擎是用来分析计算过程的依赖关系，把不依赖的计算并行
+化，以达到提高性能的目的。它的基本原理可以看官方的<a href="https://mxnet-bing.readthedocs.io/en/latest/system/note_engine.html">文档</a>。 简单的说就是给每一个对
+象打上一个tag，这个tag叫做Var，每一个计算(op)都会依赖一个或者多个Var，依赖有两种
+类型：写依赖和读依赖。依赖引擎为每一个Var都维护一个队列，然后根据op的依赖关系向
+队列中添加ReadDependency和WriteDependency，当各个依赖完成后要更新队列的状态。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Op</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+<p>
+Op实际上是用来代表计算过程以及它依赖的var，先来看看它的uml类图。
+</p>
+
+<div class="figure">
+<p><img src="static/img/opr-class-uml.png" alt="opr-class-uml.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">Var</h2>
+<div class="outline-text-2" id="text-orgheadline3">
+<p>
+var可以看做是一个tag，用来标示每一个对象的，这样Op对对象的依赖可以简化成对var的
+依赖，这样就可以构建出一个不依赖于具体的对象的通用的依赖引擎。Var是依赖引擎的关键。
+</p>
+</div>
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">类图</h3>
+<div class="outline-text-3" id="text-orgheadline4">
+
+<div class="figure">
+<p><img src="static/img/threaded-var-class-uml.png" alt="threaded-var-class-uml.png" />
+</p>
+</div>
+
+<p>
+Var只是一个基类，用来统一类型系统的，主要的工作在ThreadedVar中，每一个对象都会有
+一个由VersionedVarBlock所组成的链表，这个链表就是一个FIFO队列。 <code>head_</code> 指向的是
+队列的尾部, 实际是一个哨兵(空对象)， <code>head_</code> 这个命名有误导性, <code>pending_write_</code>
+指向的是最"老"的写依赖，如果没有写依赖，那么就指向 <code>nullptr</code>, 根据依赖引擎的特点，
+它实际上指向的是队列的头部， ThreadedVar的那四个方法就是来操作这个队列的。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">理解Var的队列</h3>
+<div class="outline-text-3" id="text-orgheadline5">
+
+<div class="figure">
+<p><img src="static/img/threaded-var-queue1.png" alt="threaded-var-queue1.png" />
+</p>
+</div>
+
+
+
+<div class="figure">
+<p><img src="static/img/threaded-var-queue2.png" alt="threaded-var-queue2.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6">添加读依赖</h3>
+<div class="outline-text-3" id="text-orgheadline6">
+<p>
+代码主要在 <code>src/engine/Threaded_engine.cc</code> 的 <code>AppendReadDependency</code> 中。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #F0DFAF; font-weight: bold;">inline</span> <span style="color: #7CB8BB;">void</span> <span style="color: #BFEBBF;">ThreadedVar</span>::<span style="color: #93E0E3;">AppendReadDependency</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">OprBlock</span>* <span style="color: #DFAF8F;">opr_block</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #BFEBBF;">std</span>::<span style="color: #7CB8BB;">lock_guard</span><span style="color: #BFEBBF;">&lt;</span><span style="color: #BFEBBF;">std</span>::mutex<span style="color: #BFEBBF;">&gt;</span> <span style="color: #DFAF8F;">lock</span><span style="color: #BFEBBF;">{</span>m_<span style="color: #BFEBBF;">}</span>;
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>pending_write_ == nullptr<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+        <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">invariant: is_ready_to_read()</span>
+        CHECK_GE<span style="color: #D0BF8F;">(</span>num_pending_reads_, <span style="color: #BFEBBF;">0</span><span style="color: #D0BF8F;">)</span>;
+        <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">STATE CHANGE</span>
+        ++num_pending_reads_;
+        <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">decrease wait counter</span>
+        opr_block-&gt;decr_wait<span style="color: #D0BF8F;">()</span>;
+    <span style="color: #BFEBBF;">}</span> <span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #BFEBBF;">{</span>
+        <span style="color: #F0DFAF; font-weight: bold;">auto</span>&amp;&amp; <span style="color: #DFAF8F;">new_var_block</span> = <span style="color: #BFEBBF;">VersionedVarBlock</span>::New<span style="color: #D0BF8F;">()</span>;
+        assert<span style="color: #D0BF8F;">(</span>head_-&gt;next == nullptr<span style="color: #D0BF8F;">)</span>;
+        assert<span style="color: #D0BF8F;">(</span>head_-&gt;trigger == nullptr<span style="color: #D0BF8F;">)</span>;
+        assert<span style="color: #D0BF8F;">(</span>head_-&gt;write == <span style="color: #BFEBBF;">false</span><span style="color: #D0BF8F;">)</span>;
+        <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">append things to next.</span>
+        head_-&gt;next = new_var_block;
+        head_-&gt;trigger = opr_block;
+        head_ = new_var_block;
+    <span style="color: #BFEBBF;">}</span>
+<span style="color: #DCDCCC;">}</span>
+</pre>
+</div>
+<p>
+代码的基本思路是这样的：检查队列中有没有写依赖，这分两种情况：
+</p>
+<ol class="org-ol">
+<li>如果没有写依赖，那么意味着，目前该Var没有依赖在执行，或者说只有读依赖在执行，
+所以这个新的读依赖可以直接执行，那么它没有必要添加到队列中，只需要更新
+<code>num_pending_reads_</code> 就好，当然因为该op可能还依赖别的var，所以你只能调用
+<code>decr_wait</code> ，只有当wait减为0的时候，才能开始运行。这部分代码在engine的push中。</li>
+<li>如果有写依赖，那么读依赖必须在写依赖的后面执行，所以需要把读依赖添加到队列的
+尾部。记住 <code>head_</code> 永远指向一个空的哨兵对象。</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7">添加写依赖</h3>
+<div class="outline-text-3" id="text-orgheadline7">
+<p>
+代码主要在 <code>src/engine/Threaded_engine.cc</code> 的 <code>AppendWriteDependency</code> 中。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #F0DFAF; font-weight: bold;">inline</span> <span style="color: #7CB8BB;">void</span> <span style="color: #BFEBBF;">ThreadedVar</span>::<span style="color: #93E0E3;">AppendWriteDependency</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">OprBlock</span>* <span style="color: #DFAF8F;">opr_block</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #F0DFAF; font-weight: bold;">auto</span>&amp;&amp; <span style="color: #DFAF8F;">new_var_block</span> = <span style="color: #BFEBBF;">VersionedVarBlock</span>::New<span style="color: #BFEBBF;">()</span>;
+    <span style="color: #BFEBBF;">std</span>::<span style="color: #7CB8BB;">lock_guard</span><span style="color: #BFEBBF;">&lt;</span><span style="color: #BFEBBF;">std</span>::mutex<span style="color: #BFEBBF;">&gt;</span> <span style="color: #DFAF8F;">lock</span><span style="color: #BFEBBF;">{</span>m_<span style="color: #BFEBBF;">}</span>;
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">invariant.</span>
+    assert<span style="color: #BFEBBF;">(</span>head_-&gt;next == nullptr<span style="color: #BFEBBF;">)</span>;
+    assert<span style="color: #BFEBBF;">(</span>head_-&gt;trigger == nullptr<span style="color: #BFEBBF;">)</span>;
+    assert<span style="color: #BFEBBF;">(</span>head_-&gt;write == <span style="color: #BFEBBF;">false</span><span style="color: #BFEBBF;">)</span>;
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">attach to head.</span>
+    head_-&gt;next = new_var_block;
+    head_-&gt;trigger = opr_block;
+    head_-&gt;write = <span style="color: #BFEBBF;">true</span>;
+
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">check if it is ready to write</span>
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>pending_write_ == nullptr<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+        <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">invariant: is_ready_to_read()</span>
+        pending_write_ = head_;
+        CHECK_GE<span style="color: #D0BF8F;">(</span>num_pending_reads_, <span style="color: #BFEBBF;">0</span><span style="color: #D0BF8F;">)</span>;
+        <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>num_pending_reads_ == <span style="color: #BFEBBF;">0</span><span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
+            <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">STATE CHANGE</span>
+            opr_block-&gt;decr_wait<span style="color: #93E0E3;">()</span>;
+            num_pending_reads_ = kWriteTriggered;
+        <span style="color: #D0BF8F;">}</span>
+    <span style="color: #BFEBBF;">}</span> <span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #BFEBBF;">{</span>
+        CHECK_NE<span style="color: #D0BF8F;">(</span>num_pending_reads_, <span style="color: #BFEBBF;">0</span><span style="color: #D0BF8F;">)</span>;
+    <span style="color: #BFEBBF;">}</span>
+    head_ = new_var_block;
+<span style="color: #DCDCCC;">}</span>
+</pre>
+</div>
+<p>
+代码的基本思路是这样的： 将该Op放入队列的尾部，接着检查该Op的依赖有没有就绪，这
+要检查Var有没有写依赖(pending_read_==nullptr)和读依赖(num_pending_read_==0)的Op
+正在执行，只有二者都没有时，才能开始运行，当然你依然要检查该Op对其他的Var的依赖
+有没有就绪。需要注意的一点是，即便Op的Var写依赖就绪，该Op也不会从队列中移除，只
+有该Op执行完成后才会被移除，这在CompleteWriteDependency中实现。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8">读依赖完成</h3>
+<div class="outline-text-3" id="text-orgheadline8">
+<p>
+代码主要在 <code>src/engine/Threaded_engine.cc</code> 的 <code>CompleteReadDependency</code> 中。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #F0DFAF; font-weight: bold;">template</span> <span style="color: #DCDCCC;">&lt;</span><span style="color: #F0DFAF; font-weight: bold;">typename</span> <span style="color: #7CB8BB;">Dispatcher</span><span style="color: #DCDCCC;">&gt;</span>
+<span style="color: #F0DFAF; font-weight: bold;">inline</span> <span style="color: #7CB8BB;">void</span> <span style="color: #BFEBBF;">ThreadedVar</span>::<span style="color: #93E0E3;">CompleteReadDependency</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">Dispatcher</span> <span style="color: #DFAF8F;">dispatcher</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #7CB8BB;">OprBlock</span> *<span style="color: #DFAF8F;">trigger</span> = nullptr;
+    <span style="color: #BFEBBF;">{</span>
+        <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">this is lock scope</span>
+        <span style="color: #BFEBBF;">std</span>::<span style="color: #7CB8BB;">lock_guard</span><span style="color: #D0BF8F;">&lt;</span><span style="color: #BFEBBF;">std</span>::mutex<span style="color: #D0BF8F;">&gt;</span> <span style="color: #DFAF8F;">lock</span><span style="color: #D0BF8F;">{</span>m_<span style="color: #D0BF8F;">}</span>;
+        CHECK_GT<span style="color: #D0BF8F;">(</span>num_pending_reads_, <span style="color: #BFEBBF;">0</span><span style="color: #D0BF8F;">)</span>;
+
+        <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>--num_pending_reads_ == <span style="color: #BFEBBF;">0</span><span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
+            <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #93E0E3;">(</span>pending_write_ != nullptr<span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">{</span>
+                <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">STATE CHANGE</span>
+                trigger = pending_write_-&gt;trigger;
+                num_pending_reads_ = kWriteTriggered;
+            <span style="color: #93E0E3;">}</span>
+        <span style="color: #D0BF8F;">}</span>
+    <span style="color: #BFEBBF;">}</span>
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>trigger != nullptr &amp;&amp; trigger-&gt;decr_wait<span style="color: #D0BF8F;">()</span> == <span style="color: #BFEBBF;">0</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+        dispatcher<span style="color: #D0BF8F;">(</span>trigger<span style="color: #D0BF8F;">)</span>;
+    <span style="color: #BFEBBF;">}</span>
+<span style="color: #DCDCCC;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9">写依赖完成</h3>
+<div class="outline-text-3" id="text-orgheadline9">
+<p>
+代码主要在 <code>src/engine/Threaded_engine.cc</code> 的 <code>CompleteWriteDependency</code> 中。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #F0DFAF; font-weight: bold;">template</span> <span style="color: #DCDCCC;">&lt;</span><span style="color: #F0DFAF; font-weight: bold;">typename</span> <span style="color: #7CB8BB;">Dispatcher</span><span style="color: #DCDCCC;">&gt;</span>
+<span style="color: #F0DFAF; font-weight: bold;">inline</span> <span style="color: #7CB8BB;">bool</span> <span style="color: #BFEBBF;">ThreadedVar</span>::<span style="color: #93E0E3;">CompleteWriteDependency</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">Dispatcher</span> <span style="color: #DFAF8F;">dispatcher</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">this is lock scope</span>
+  <span style="color: #7CB8BB;">VersionedVarBlock</span> *<span style="color: #DFAF8F;">old_pending_write</span>, *<span style="color: #DFAF8F;">end_of_read_chain</span>;
+  <span style="color: #7CB8BB;">OprBlock</span>* <span style="color: #DFAF8F;">trigger_write</span> = nullptr;
+  <span style="color: #BFEBBF;">{</span>
+    <span style="color: #BFEBBF;">std</span>::<span style="color: #7CB8BB;">lock_guard</span><span style="color: #D0BF8F;">&lt;</span><span style="color: #BFEBBF;">std</span>::mutex<span style="color: #D0BF8F;">&gt;</span> <span style="color: #DFAF8F;">lock</span><span style="color: #D0BF8F;">{</span>m_<span style="color: #D0BF8F;">}</span>;
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">invariants</span>
+    assert<span style="color: #D0BF8F;">(</span>head_-&gt;next == nullptr<span style="color: #D0BF8F;">)</span>;
+    assert<span style="color: #D0BF8F;">(</span>pending_write_ != nullptr<span style="color: #D0BF8F;">)</span>;
+    CHECK_EQ<span style="color: #D0BF8F;">(</span>num_pending_reads_, kWriteTriggered<span style="color: #D0BF8F;">)</span>;
+
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">really delete</span>
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>to_delete_<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
+      <span style="color: #7CB8BB;">VersionedVarBlock</span> *<span style="color: #DFAF8F;">head</span> = pending_write_-&gt;next;
+      <span style="color: #BFEBBF;">VersionedVarBlock</span>::Delete<span style="color: #93E0E3;">(</span>pending_write_<span style="color: #93E0E3;">)</span>;
+      assert<span style="color: #93E0E3;">(</span>head_ == head<span style="color: #93E0E3;">)</span>;
+      <span style="color: #BFEBBF;">VersionedVarBlock</span>::Delete<span style="color: #93E0E3;">(</span>head<span style="color: #93E0E3;">)</span>;
+      <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #BFEBBF;">true</span>;
+    <span style="color: #D0BF8F;">}</span>
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">detach pending write</span>
+    old_pending_write = pending_write_;
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">search for chains to trigger</span>
+    end_of_read_chain = old_pending_write-&gt;next;
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">reset to 0 pending reads</span>
+    num_pending_reads_ = <span style="color: #BFEBBF;">0</span>;
+    <span style="color: #F0DFAF; font-weight: bold;">while</span> <span style="color: #D0BF8F;">(</span>end_of_read_chain != head_ &amp;&amp;
+           end_of_read_chain-&gt;write == <span style="color: #BFEBBF;">false</span><span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
+      ++num_pending_reads_;
+      end_of_read_chain = end_of_read_chain-&gt;next;
+    <span style="color: #D0BF8F;">}</span>
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>end_of_read_chain == head_<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
+      pending_write_ = nullptr;
+    <span style="color: #D0BF8F;">}</span> <span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #D0BF8F;">{</span>
+      <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">check if there is pending reads, if not trigger write</span>
+      assert<span style="color: #93E0E3;">(</span>end_of_read_chain-&gt;write == <span style="color: #BFEBBF;">true</span><span style="color: #93E0E3;">)</span>;
+      pending_write_ = end_of_read_chain;
+      <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #93E0E3;">(</span>num_pending_reads_ == <span style="color: #BFEBBF;">0</span><span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">{</span>
+        <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">mark write as already actived in this var</span>
+        num_pending_reads_ = kWriteTriggered;
+        trigger_write = end_of_read_chain-&gt;trigger;
+      <span style="color: #93E0E3;">}</span>
+    <span style="color: #D0BF8F;">}</span>
+  <span style="color: #BFEBBF;">}</span>
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">This is outside of lock scope</span>
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Be very carful, pending_write_ and num_pending_reads_</span>
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">can change now, do not reply ont the two variables.</span>
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">The linked list \in [old_pending_write, end_of_read_chain)</span>
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">is already detached from this Var.</span>
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">So it is safe to modify these</span>
+  <span style="color: #7CB8BB;">VersionedVarBlock</span> *<span style="color: #DFAF8F;">cur_head</span> = old_pending_write-&gt;next;
+  <span style="color: #BFEBBF;">VersionedVarBlock</span>::Delete<span style="color: #BFEBBF;">(</span>old_pending_write<span style="color: #BFEBBF;">)</span>;
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">dispatch all the events</span>
+  <span style="color: #F0DFAF; font-weight: bold;">while</span> <span style="color: #BFEBBF;">(</span>cur_head != end_of_read_chain<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>cur_head-&gt;trigger-&gt;decr_wait<span style="color: #93E0E3;">()</span> == <span style="color: #BFEBBF;">0</span><span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
+      dispatcher<span style="color: #93E0E3;">(</span>cur_head-&gt;trigger<span style="color: #93E0E3;">)</span>;
+    <span style="color: #D0BF8F;">}</span>
+    <span style="color: #F0DFAF; font-weight: bold;">auto</span> <span style="color: #7CB8BB;">prev</span> = cur_head;
+    cur_head = cur_head-&gt;next;
+    assert<span style="color: #D0BF8F;">(</span>cur_head != nullptr<span style="color: #D0BF8F;">)</span>;
+    <span style="color: #BFEBBF;">VersionedVarBlock</span>::Delete<span style="color: #D0BF8F;">(</span>prev<span style="color: #D0BF8F;">)</span>;
+  <span style="color: #BFEBBF;">}</span>
+  <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>trigger_write != nullptr &amp;&amp; trigger_write-&gt;decr_wait<span style="color: #D0BF8F;">()</span> == <span style="color: #BFEBBF;">0</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+    dispatcher<span style="color: #D0BF8F;">(</span>trigger_write<span style="color: #D0BF8F;">)</span>;
+  <span style="color: #BFEBBF;">}</span>
+  <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #BFEBBF;">false</span>;
+<span style="color: #DCDCCC;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline10" class="outline-2">
+<h2 id="orgheadline10">Engine</h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<!-- 多说评论框 start -->
+  <div id="duoshuo-id" class="ds-thread" data-thread-key="请将此处替换成文章在你的站点中的ID" data-title="请替换成文章的标题" data-url="请替换成文章的网址"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+   var url = window.location.pathname;
+   var duoshuo_identifier = url.substring(url.lastIndexOf('/')+1);
+   if (!!! duoshuo_identifier) {
+     duoshuo_identifier = "index.html";
+   }
+   var title = document.title;
+   var ele = document.getElementById("duoshuo-id");
+   ele.setAttribute("data-thread-key", duoshuo_identifier);
+   ele.setAttribute("data-title", title);
+   ele.setAttribute("data-url", url);
+
+</script>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yuyang0"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementById('postamble')
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end --><!-- begin footer -->
+<div id="footer">
+  <ul class="links vertical-nav">
+    <li><a href="/sitemap.xml">Sitemap</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    <li><a href="/about.html">About Me</a></li>
+    <li><a class="back-to-top" href="#">Back to Top</a></li>
+  </ul>
+  <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
+  <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+	window.jQuery || document.write('<script src="static/js/jquery-2.0.0.min.js"><\/script>');
+	</script>
+<script type="text/javascript" src="static/js/custom.js"></script>
+<!-- end footer -->
+</div>
+</body>
+</html>

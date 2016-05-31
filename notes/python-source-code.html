@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-05-22 Sun 22:23 -->
+<!-- 2016-05-31 Tue 17:43 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>python源代码解析</title>
@@ -188,12 +188,13 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#orgheadline8">调用者将引用传递给被调用者</a></li>
 <li><a href="#orgheadline9">被调用者返回一个引用给调用者</a></li>
+<li><a href="#orgheadline10">常见函数引用处理</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline10">GC</a>
+<li><a href="#orgheadline11">GC</a>
 <ul>
-<li><a href="#orgheadline11">引用计数</a></li>
-<li><a href="#orgheadline12">mark，sweep机制</a></li>
+<li><a href="#orgheadline12">引用计数</a></li>
+<li><a href="#orgheadline13">mark，sweep机制</a></li>
 </ul>
 </li>
 </ul>
@@ -391,7 +392,7 @@ you can own a reference to an object.）</li>
 <ol class="org-ol">
 <li>绝大多数情况下，obj的引用仍然归A所有，所以该引用如果没有用了，那么A要调用
 <code>Py_DECREF</code> 。</li>
-<li>B将obj的引用(steal)偷走了，这种情况obj的引用归B所有，所以A不需要在调用
+<li>B将obj的引用 <b>偷(steal)</b> 走了，这种情况obj的引用归B所有，所以A不需要在调用
 <code>Py_DECREF</code> 了，这种情况比较少见，最常见的例子就是 <code>PyList_SetItem</code>,</li>
 </ol>
 </div>
@@ -404,28 +405,29 @@ you can own a reference to an object.）</li>
 分为两种情况：
 </p>
 <ol class="org-ol">
-<li>obj的引用归A所有，所以如果该引用没有用了，必须调用 <code>Py_DECREF</code>, 这是最常
-见的情况。这些函数在返回引用时一般都对引用调用了 <code>Py_INCREF</code>, 所以调用者
-就获得了一个引用，所有创建新对象的函数都是这种情况，比如 <code>PyInt_FromLong,
-   Py_BuildValue</code>. 所有 <code>PyObject_, PyNumber_, PySequence_ or PyMapping_</code> 开
-头的函数也是这种情况。特别要注意 <code>PySequence_GetItem</code> 与 <code>PyList_GetItem,
-   PyTuple_GetItem</code> 的区别，前者会增加返回对象的引用计数，后者不会增加。</li>
+<li>obj的引用归A所有，这种情况叫 <b>A receive a new reference</b>,所以如果该引用没有用
+了，调用者A必须调用 <code>Py_DECREF</code>, 这是最常见的情况。这些函数在返回引用时一般都
+对引用调用了 <code>Py_INCREF</code>, 所以调用者就获得了一个引用，所有创建新对象的函数都
+是这种情况，比如 <code>PyInt_FromLong, Py_BuildValue</code>. 所有 <code>PyObject_, PyNumber_,
+   PySequence_ or PyMapping_</code> 开头的函数也是这种情况。特别要注意
+<code>PySequence_GetItem</code> 与 <code>PyList_GetItem, PyTuple_GetItem</code> 的区别，前者会增加
+返回对象的引用计数，后者不会增加。</li>
 <li><p>
-obj的引用不归A所有，这种情况叫A借(borrow)了一个引用, 最常见有这几个函数
-<code>PyTuple_GetItem, PyList_GetItem, PyDict_GetItem, PyDict_GetItemString</code>,
-这几个函数都是从复合对象中获取元素，在这些函数返回前并没有对获得的元素对
-象调用 <code>Py_INCREF</code>, 所以调用者也就没有获得引用，这种情况非常容易出问题，
-必然要如下的代码：
+obj的引用不归A所有，这种情况叫A <b>借(borrow)</b> 了一个引用, 最常见有这几个函数
+<code>PyTuple_GetItem, PyList_GetItem, PyDict_GetItem, PyDict_GetItemString</code>,这几
+个函数都是从复合对象中获取元素，在这些函数返回前并没有对获得的元素对象调用
+<code>Py_INCREF</code>, 所以调用者也就没有获得引用，这种情况非常容易出问题，必然要如下的
+代码：
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python">void
-bug<span style="color: #DCDCCC;">(</span>PyObject *<span style="color: #DCDCCC; font-weight: bold;">list</span><span style="color: #DCDCCC;">)</span>
+<pre class="src src-c"><span style="color: #7CB8BB;">void</span>
+<span style="color: #93E0E3;">bug</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">PyObject</span> *<span style="color: #DFAF8F;">list</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #DCDCCC;">{</span>
-    PyObject *item = PyList_GetItem<span style="color: #BFEBBF;">(</span><span style="color: #DCDCCC; font-weight: bold;">list</span>, <span style="color: #BFEBBF;">0</span><span style="color: #BFEBBF;">)</span>;
+    <span style="color: #7CB8BB;">PyObject</span> *<span style="color: #DFAF8F;">item</span> = PyList_GetItem<span style="color: #BFEBBF;">(</span>list, <span style="color: #BFEBBF;">0</span><span style="color: #BFEBBF;">)</span>;
 
-    PyList_SetItem<span style="color: #BFEBBF;">(</span><span style="color: #DCDCCC; font-weight: bold;">list</span>, <span style="color: #BFEBBF;">1</span>, PyInt_FromLong<span style="color: #D0BF8F;">(</span><span style="color: #BFEBBF;">0L</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>;
-    PyObject_Print<span style="color: #BFEBBF;">(</span>item, stdout, <span style="color: #BFEBBF;">0</span><span style="color: #BFEBBF;">)</span>; /* BUG! */
+    PyList_SetItem<span style="color: #BFEBBF;">(</span>list, <span style="color: #BFEBBF;">1</span>, PyInt_FromLong<span style="color: #D0BF8F;">(</span><span style="color: #BFEBBF;">0L</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>;
+    PyObject_Print<span style="color: #BFEBBF;">(</span>item, stdout, <span style="color: #BFEBBF;">0</span><span style="color: #BFEBBF;">)</span>; <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">BUG! </span><span style="color: #5F7F5F;">*/</span>
 <span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
@@ -441,30 +443,44 @@ item放进位置1时，实际上item已经失效了。解决上面的bug的方�
 </ol>
 </div>
 </div>
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10">常见函数引用处理</h3>
+<div class="outline-text-3" id="text-orgheadline10">
+<ol class="org-ol">
+<li><code>PyTuple_GetItem, PyList_GetItem, PyDict_GetItem, PyDict_GetItemString</code> 这些
+函数在返回之前都没有增加返回对象的引用计数</li>
+<li><code>PyList_SetItem, PyTupe_SetItem</code> 是steal reference，也就是说在这些函数内部没
+有增加引用计数，所以调用者不能减少对象的引用计数</li>
+<li><code>PySet_Add</code> 的函数内部会增加引用计数，所以它和 <code>PyList_SetItem</code> 之流不同。</li>
+<li><code>PyObject_, PyNumber_, PySequence_, PyMapping_</code> 这些函数和 <code>PyTuple_GetItem</code>
+   不同，它们会增加返回对象的引用计数。</li>
+</ol>
 </div>
-<div id="outline-container-orgheadline10" class="outline-2">
-<h2 id="orgheadline10">GC</h2>
-<div class="outline-text-2" id="text-orgheadline10">
+</div>
+</div>
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11">GC</h2>
+<div class="outline-text-2" id="text-orgheadline11">
 <p>
-python的GC有两套垃圾收集机制，引用计数，以及mark，sweep机制，引用计
-数在垃圾收集中扮演主要角色，但是引用计数有一个致命的缺点，那就是它无
-法处理循环引用的问题，而mark，sweep就是用来处理循环引用的垃圾对象,实
-际上在python中mark，sweep机制也只能收集那些循环引用的垃圾对象。
+python的GC有两套垃圾收集机制，引用计数，以及mark，sweep机制，引用计数在垃圾收集
+中扮演主要角色，但是引用计数有一个致命的缺点，那就是它无法处理循环引用的问题，而
+mark，sweep就是用来处理循环引用的垃圾对象,实际上在python中mark，sweep机制也只能
+收集那些循环引用的垃圾对象。
 </p>
-</div>
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11">引用计数</h3>
-<div class="outline-text-3" id="text-orgheadline11">
-<p>
-每一个对象都会有一个 <code>ob_refcnt</code> 域，同时有两个宏 <code>Py_INCREF</code>
-<code>Py_DECREF</code> 用来减少和增加引用计数，其中 <code>Py_DECREF</code> 会检查引用计数
-是否为0，如果为0那么就会回收该对象
-</p>
-</div>
 </div>
 <div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12">mark，sweep机制</h3>
+<h3 id="orgheadline12">引用计数</h3>
 <div class="outline-text-3" id="text-orgheadline12">
+<p>
+每一个对象都会有一个 <code>ob_refcnt</code> 域，同时有两个宏 <code>Py_INCREF</code> <code>Py_DECREF</code> 用来减
+少和增加引用计数，其中 <code>Py_DECREF</code> 会检查引用计数是否为0，如果为0那么就会回收该
+对象
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13">mark，sweep机制</h3>
+<div class="outline-text-3" id="text-orgheadline13">
 <p>
 该机制只能用来收集循环引用的垃圾对象，它的基本实现机制是这样的：
 </p>
