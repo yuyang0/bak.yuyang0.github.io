@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-05-31 Tue 17:43 -->
+<!-- 2016-06-01 Wed 20:20 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>MXNET Dependency Engine</title>
@@ -187,7 +187,11 @@ for the JavaScript code in this tag.
 <li><a href="#orgheadline9">写依赖完成</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline10">Engine</a></li>
+<li><a href="#orgheadline10">Engine</a>
+<ul>
+<li><a href="#orgheadline11">总结</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -214,9 +218,19 @@ Op实际上是用来代表计算过程以及它依赖的var，先来看看它的
 <p><img src="static/img/opr-class-uml.png" alt="opr-class-uml.png" />
 </p>
 </div>
-</div>
-</div>
 
+<p>
+上面一些比较重要的属性如下：
+</p>
+<ol class="org-ol">
+<li>fn： op实际要执行的函数</li>
+<li>const_vars, mutable_vars: 依赖的var列表（读和写）。</li>
+<li>wait: 当前还没有就绪的var的个数，它的初始值是
+<code>len(const_vars)+len(mutable_vars)</code>, 每一个依赖就绪那么就会调用 <code>dec_wait</code> 将
+该值减一，如果该值为0，那么所有的依赖都已就绪，那么可以丢到执行引擎执行了。</li>
+</ol>
+</div>
+</div>
 <div id="outline-container-orgheadline3" class="outline-2">
 <h2 id="orgheadline3">Var</h2>
 <div class="outline-text-2" id="text-orgheadline3">
@@ -235,29 +249,80 @@ var可以看做是一个tag，用来标示每一个对象的，这样Op对对象
 </div>
 
 <p>
-Var只是一个基类，用来统一类型系统的，主要的工作在ThreadedVar中，每一个对象都会有
-一个由VersionedVarBlock所组成的链表，这个链表就是一个FIFO队列。 <code>head_</code> 指向的是
-队列的尾部, 实际是一个哨兵(空对象)， <code>head_</code> 这个命名有误导性, <code>pending_write_</code>
-指向的是最"老"的写依赖，如果没有写依赖，那么就指向 <code>nullptr</code>, 根据依赖引擎的特点，
-它实际上指向的是队列的头部， ThreadedVar的那四个方法就是来操作这个队列的。
+<b>声明：下文说到执行时，意思是Op的当前var的依赖已经就绪，因为一个op可以依赖多个
+var，如果其他的Var没有就绪，那么这时op可能并没有实际运行</b>
+</p>
+
+<p>
+Var只是一个基类，用来统一类型系统的，主要的工作在 <code>ThreadedVar</code> 中，每一个对象都
+会有一个由 <code>VersionedVarBlock</code> 所组成的链表，这个链表就是一个FIFO队列。 <code>head_</code>
+指向的是队列的尾部, 实际是一个哨兵(空对象)， <code>head_</code> 这个命名有误导性,
+<code>pending_write_</code> 指向的是最"老"的写依赖，如果没有写依赖，那么就指向 <code>nullptr</code>,
+根据依赖引擎的特点，它实际上指向的是队列的头部， <code>ThreadedVar</code> 的那四个方法就是
+来操作这个队列的。
+</p>
+
+<ol class="org-ol">
+<li>num_pending_reads_: 代表当前正在执行(还没有执行完)的读依赖的个数</li>
+<li>pending_write_: 代表队列中最“老”的写依赖, 它一直指向队列的头部。</li>
+<li>head_: 队列的尾部。</li>
+</ol>
+
+<p>
+需要注意的是，正在执行的读依赖是不在队列中的，但是正在执行的写依赖是在队列中的。
 </p>
 </div>
 </div>
+
 <div id="outline-container-orgheadline5" class="outline-3">
 <h3 id="orgheadline5">理解Var的队列</h3>
 <div class="outline-text-3" id="text-orgheadline5">
+<p>
+var的队列是依赖引擎的核心，下面我们来分析下各种情况下，如何修改队列的状态。
+</p>
+<ol class="org-ol">
+<li>添加读依赖: 如果前面没有写依赖，那么直接运行, 否则就插入队列的尾部(head_那一端)</li>
+<li>添加写依赖： 直接将依赖插入队列的尾部，并检查是不是写就绪(既没有读依赖也没有
+写依赖在运行),如果是写就绪，那么就运行该依赖。</li>
+<li>读依赖完成</li>
+<li>写依赖完成</li>
+</ol>
 
 <div class="figure">
 <p><img src="static/img/threaded-var-queue1.png" alt="threaded-var-queue1.png" />
 </p>
 </div>
 
+<p>
+上图中w1写依赖正在执行。
+</p>
+
+<p>
+<img src="static/img/threaded-var-queue2.png" alt="threaded-var-queue2.png" />
+写依赖w1完成将自己移出队列，并执行写依赖w2
+</p>
 
 
 <div class="figure">
-<p><img src="static/img/threaded-var-queue2.png" alt="threaded-var-queue2.png" />
+<p><img src="static/img/threaded-var-queue3.png" alt="threaded-var-queue3.png" />
 </p>
 </div>
+
+<p>
+写依赖w2完成后将自己移出队列，接着并行的执行读依赖r1，r2，记住正在执行的读依赖是被移出队列的，
+它们的数目使用 <code>num_pending_reads_</code> 跟踪的
+</p>
+
+
+<div class="figure">
+<p><img src="static/img/threaded-var-queue4.png" alt="threaded-var-queue4.png" />
+</p>
+</div>
+
+<p>
+每一个读依赖完成都会将 <code>num_pending_reads_</code> 减一，如果减为了0，那么就意味着所有
+的读依赖都完成了，当r1，r2都完成后，接着执行w3写依赖。
+</p>
 </div>
 </div>
 <div id="outline-container-orgheadline6" class="outline-3">
@@ -379,6 +444,11 @@ Var只是一个基类，用来统一类型系统的，主要的工作在Threaded
 <span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
+<p>
+该部分代码会在一个op运算完成后调用，代码逻辑是比较简单的，先更新
+<code>num_pending_read_</code>, 更新后如果该值为0，那么就意味着，所有的读依赖都已经执行完成,
+这样就检查队列，若是存在写依赖，那么该写依赖就可以执行了(前提是依赖的其他var也都就绪了)。
+</p>
 </div>
 </div>
 <div id="outline-container-orgheadline9" class="outline-3">
@@ -458,11 +528,150 @@ Var只是一个基类，用来统一类型系统的，主要的工作在Threaded
 <span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
+<p>
+和读依赖完成类似，只是写依赖的后面可能跟着多个读依赖，所以需要遍历链表直到发现下
+一个写依赖，找到之后如果是读依赖，那么直接并行的运行，如果是写依赖直接运行就好。
+</p>
 </div>
 </div>
 </div>
 <div id="outline-container-orgheadline10" class="outline-2">
 <h2 id="orgheadline10">Engine</h2>
+<div class="outline-text-2" id="text-orgheadline10">
+<p>
+Engine是总的调用接口。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #7CB8BB;">void</span> <span style="color: #BFEBBF;">ThreadedEngine</span>::<span style="color: #93E0E3;">Push</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">OprHandle</span> <span style="color: #DFAF8F;">op</span>, <span style="color: #7CB8BB;">Context</span> <span style="color: #DFAF8F;">exec_ctx</span>, <span style="color: #7CB8BB;">int</span> <span style="color: #DFAF8F;">priority</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #7CB8BB;">ThreadedOpr</span>* <span style="color: #DFAF8F;">threaded_opr</span> = <span style="color: #BFEBBF;">ThreadedOpr</span>::CastFromBase<span style="color: #BFEBBF;">(</span>op<span style="color: #BFEBBF;">)</span>;
+    <span style="color: #7CB8BB;">OprBlock</span>* <span style="color: #DFAF8F;">opr_block</span> = <span style="color: #BFEBBF;">OprBlock</span>::New<span style="color: #BFEBBF;">()</span>;
+    opr_block-&gt;opr = threaded_opr;
+
+    opr_block-&gt;wait.store<span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">static_cast</span>&lt;<span style="color: #7CB8BB;">int</span>&gt;<span style="color: #D0BF8F;">(</span>
+                              threaded_opr-&gt;const_vars.size<span style="color: #93E0E3;">()</span> +
+                              threaded_opr-&gt;mutable_vars.size<span style="color: #93E0E3;">()</span> + <span style="color: #BFEBBF;">1</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>;
+    opr_block-&gt;ctx = exec_ctx;
+    opr_block-&gt;priority = priority;
+    ++pending_;
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Add read dependencies.</span>
+    <span style="color: #F0DFAF; font-weight: bold;">for</span> <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">auto</span>&amp;&amp; <span style="color: #DFAF8F;">i</span> : threaded_opr-&gt;const_vars<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+        i-&gt;AppendReadDependency<span style="color: #D0BF8F;">(</span>opr_block<span style="color: #D0BF8F;">)</span>;
+    <span style="color: #BFEBBF;">}</span>
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Add write dependencies.</span>
+    <span style="color: #F0DFAF; font-weight: bold;">for</span> <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">auto</span>&amp;&amp; <span style="color: #DFAF8F;">i</span> : threaded_opr-&gt;mutable_vars<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+        i-&gt;AppendWriteDependency<span style="color: #D0BF8F;">(</span>opr_block<span style="color: #D0BF8F;">)</span>;
+    <span style="color: #BFEBBF;">}</span>
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>opr_block-&gt;decr_wait<span style="color: #D0BF8F;">()</span> == <span style="color: #BFEBBF;">0</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+        <span style="color: #F0DFAF; font-weight: bold;">this</span>-&gt;PushToExecute<span style="color: #D0BF8F;">(</span>opr_block, <span style="color: #BFEBBF;">true</span><span style="color: #D0BF8F;">)</span>;
+    <span style="color: #BFEBBF;">}</span>
+<span style="color: #DCDCCC;">}</span>
+</pre>
+</div>
+<p>
+代码是比较清楚的，主要是 <code>AppendReadDependency</code> 和 <code>AppendWriteDependency</code> 的部
+分，实际上就是把op加到它所依赖的Var的队列中, 最后检查wait是不是为0，如果为0，那
+么意味着所有依赖都已经就绪，可以直接扔到执行引擎上执行了(PushToExecute),对于不同
+的执行引擎, <code>PushToExecute</code> 的实现是不一样的。最终都会执行 <code>ExecuteOprBlock</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #7CB8BB;">void</span> <span style="color: #93E0E3;">ExecuteOprBlock</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">RunContext</span> <span style="color: #DFAF8F;">run_ctx</span>, <span style="color: #7CB8BB;">OprBlock</span> *<span style="color: #DFAF8F;">opr_block</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #7CB8BB;">ThreadedOpr</span>* <span style="color: #DFAF8F;">threaded_opr</span> = opr_block-&gt;opr;
+    <span style="color: #7CB8BB;">CallbackOnComplete</span> <span style="color: #DFAF8F;">callback</span> = <span style="color: #F0DFAF; font-weight: bold;">this</span>-&gt;CreateCallback<span style="color: #BFEBBF;">(</span>
+        <span style="color: #BFEBBF;">ThreadedEngine</span>::OnCompleteStatic, threaded_opr<span style="color: #BFEBBF;">)</span>;
+    <span style="color: #7CB8BB;">bool</span> <span style="color: #DFAF8F;">debug_info</span> = <span style="color: #BFEBBF;">(</span>engine_info_ &amp;&amp; debug_push_opr_ == opr_block<span style="color: #BFEBBF;">)</span>;
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">!</span>shutdown_phase_<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+      <span style="color: #F0DFAF; font-weight: bold;">try</span> <span style="color: #D0BF8F;">{</span>
+        threaded_opr-&gt;fn<span style="color: #93E0E3;">(</span>run_ctx, callback<span style="color: #93E0E3;">)</span>;
+      <span style="color: #D0BF8F;">}</span> <span style="color: #F0DFAF; font-weight: bold;">catch</span><span style="color: #D0BF8F;">(</span><span style="color: #BFEBBF;">dmlc</span>::Error &amp;e<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
+        <span style="color: #BFEBBF;">std</span>::<span style="color: #7CB8BB;">string</span> <span style="color: #DFAF8F;">what</span> = e.what<span style="color: #93E0E3;">()</span>;
+      <span style="color: #D0BF8F;">}</span>
+    <span style="color: #BFEBBF;">}</span> <span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #BFEBBF;">{</span>
+      callback<span style="color: #D0BF8F;">()</span>;
+    <span style="color: #BFEBBF;">}</span>
+
+    <span style="color: #BFEBBF;">OprBlock</span>::Delete<span style="color: #BFEBBF;">(</span>opr_block<span style="color: #BFEBBF;">)</span>;
+  <span style="color: #DCDCCC;">}</span>
+</pre>
+</div>
+<p>
+上述代码实际就是执行op中的函数，同时在结束的时候运行 <code>OnCompleteStatic</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #7CB8BB;">void</span> <span style="color: #BFEBBF;">ThreadedEngine</span>::<span style="color: #93E0E3;">OnCompleteStatic</span><span style="color: #DCDCCC;">(</span>
+    <span style="color: #7CB8BB;">Engine</span> *<span style="color: #DFAF8F;">engine</span>, <span style="color: #7CB8BB;">void</span> *<span style="color: #DFAF8F;">threaded_opr</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
+  <span style="color: #F0DFAF; font-weight: bold;">static_cast</span>&lt;ThreadedEngine*&gt;<span style="color: #BFEBBF;">(</span>engine<span style="color: #BFEBBF;">)</span>-&gt;OnComplete<span style="color: #BFEBBF;">(</span>
+      <span style="color: #F0DFAF; font-weight: bold;">static_cast</span>&lt;ThreadedOpr*&gt;<span style="color: #D0BF8F;">(</span>threaded_opr<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>;
+<span style="color: #DCDCCC;">}</span>
+</pre>
+</div>
+<p>
+显然， <code>OnCompleteStatic</code> 就是执行 OnComplete。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #F0DFAF; font-weight: bold;">inline</span> <span style="color: #7CB8BB;">void</span> <span style="color: #BFEBBF;">ThreadedEngine</span>::<span style="color: #93E0E3;">OnComplete</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">ThreadedOpr</span>* <span style="color: #DFAF8F;">threaded_opr</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Mark complete for read variables</span>
+  <span style="color: #F0DFAF; font-weight: bold;">for</span> <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">auto</span>&amp;&amp; <span style="color: #DFAF8F;">i</span> : threaded_opr-&gt;const_vars<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+    i-&gt;CompleteReadDependency<span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">[</span><span style="color: #F0DFAF; font-weight: bold;">this</span><span style="color: #93E0E3;">](</span>OprBlock* opr<span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">{</span>
+        <span style="color: #F0DFAF; font-weight: bold;">this</span>-&gt;PushToExecute<span style="color: #9FC59F;">(</span>opr, <span style="color: #BFEBBF;">false</span><span style="color: #9FC59F;">)</span>;
+      <span style="color: #93E0E3;">}</span><span style="color: #D0BF8F;">)</span>;
+  <span style="color: #BFEBBF;">}</span>
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Mark complete for write variables.</span>
+  <span style="color: #F0DFAF; font-weight: bold;">for</span> <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">auto</span>&amp;&amp; <span style="color: #DFAF8F;">i</span> : threaded_opr-&gt;mutable_vars<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+    <span style="color: #7CB8BB;">bool</span> <span style="color: #DFAF8F;">debug_info</span> = <span style="color: #D0BF8F;">(</span>engine_info_ &amp;&amp; debug_wait_var_ == i<span style="color: #D0BF8F;">)</span>;
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>debug_info<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
+      LOG<span style="color: #93E0E3;">(</span>INFO<span style="color: #93E0E3;">)</span> &lt;&lt; <span style="color: #CC9393;">"Complete write dep for "</span> &lt;&lt; i;
+    <span style="color: #D0BF8F;">}</span>
+    <span style="color: #7CB8BB;">bool</span> <span style="color: #DFAF8F;">to_delete</span> = i-&gt;CompleteWriteDependency<span style="color: #D0BF8F;">(</span>
+        <span style="color: #93E0E3;">[</span><span style="color: #F0DFAF; font-weight: bold;">this</span>, debug_info<span style="color: #93E0E3;">](</span>OprBlock* opr<span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">{</span>
+          <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #9FC59F;">(</span>debug_info<span style="color: #9FC59F;">)</span> <span style="color: #9FC59F;">{</span>
+            LOG<span style="color: #94BFF3;">(</span>INFO<span style="color: #94BFF3;">)</span> &lt;&lt; <span style="color: #CC9393;">"PushToExecute "</span> &lt;&lt; opr;
+            debug_push_opr_ = opr;
+          <span style="color: #9FC59F;">}</span>
+          <span style="color: #F0DFAF; font-weight: bold;">this</span>-&gt;PushToExecute<span style="color: #9FC59F;">(</span>opr, <span style="color: #BFEBBF;">false</span><span style="color: #9FC59F;">)</span>;
+          <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #9FC59F;">(</span>debug_info<span style="color: #9FC59F;">)</span> <span style="color: #9FC59F;">{</span>
+            LOG<span style="color: #94BFF3;">(</span>INFO<span style="color: #94BFF3;">)</span> &lt;&lt; <span style="color: #CC9393;">"Fin PushToExecute "</span> &lt;&lt; opr;
+          <span style="color: #9FC59F;">}</span>
+        <span style="color: #93E0E3;">}</span><span style="color: #D0BF8F;">)</span>;
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>to_delete<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
+      <span style="color: #BFEBBF;">ThreadedVar</span>::Delete<span style="color: #93E0E3;">(</span>i<span style="color: #93E0E3;">)</span>;
+    <span style="color: #D0BF8F;">}</span>
+  <span style="color: #BFEBBF;">}</span>
+  <span style="color: #7CB8BB;">int</span> <span style="color: #DFAF8F;">npending</span>;
+  <span style="color: #BFEBBF;">{</span>
+    <span style="color: #BFEBBF;">std</span>::<span style="color: #7CB8BB;">unique_lock</span><span style="color: #D0BF8F;">&lt;</span><span style="color: #BFEBBF;">std</span>::mutex<span style="color: #D0BF8F;">&gt;</span> <span style="color: #DFAF8F;">lock</span><span style="color: #D0BF8F;">{</span>finished_m_<span style="color: #D0BF8F;">}</span>;
+    npending = --pending_;
+  <span style="color: #BFEBBF;">}</span>
+  CHECK_GE<span style="color: #BFEBBF;">(</span>npending, <span style="color: #BFEBBF;">0</span><span style="color: #BFEBBF;">)</span>;
+  <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>npending == <span style="color: #BFEBBF;">0</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">no need to grab lock when notify.</span>
+    finished_cv_.notify_all<span style="color: #D0BF8F;">()</span>;
+  <span style="color: #BFEBBF;">}</span>
+
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">delte operator if it is temperory</span>
+  <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>threaded_opr-&gt;temporary<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+    <span style="color: #BFEBBF;">ThreadedOpr</span>::Delete<span style="color: #D0BF8F;">(</span>threaded_opr<span style="color: #D0BF8F;">)</span>;
+  <span style="color: #BFEBBF;">}</span>
+<span style="color: #DCDCCC;">}</span>
+</pre>
+</div>
+<p>
+这个函数实际上就是Op完成后用来更新Var的队列的，在内部会调用每一个读依赖的
+<code>CompleteReadDependency</code> 以及写依赖的 <code>CompleteWriteDependency</code>
+</p>
+</div>
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11">总结</h3>
+<div class="outline-text-3" id="text-orgheadline11">
+<p>
+通过 <code>Push</code> 将Op的各种依赖加入相应的Var的队列，并且当依赖都满足的时候将op丢入执
+行引擎执行，当执行引擎完成后，调用 <code>Complete</code> 系列的函数来更新Var的队列。
+</p>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
