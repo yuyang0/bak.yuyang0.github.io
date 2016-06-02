@@ -4,7 +4,7 @@
   <title></title>
   <link href="https://yuyang0.github.io/"/>
   <link type="application/atom+xml" rel="self" href="/atom.xml"/>
-  <updated>Wed Jun  1 20:20:08 2016</updated>
+  <updated>Thu Jun  2 11:05:18 2016</updated>
   <id>https://yuyang0.github.io/</id>
   <author>
     <name>Yu Yang</name>
@@ -14,7 +14,7 @@
     <id>sitemap.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/sitemap.html"/>
     <title>Sitemap</title>
-    <updated> 2016-06-01</updated>
+    <updated> 2016-06-02</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -324,7 +324,7 @@
     <id>mxnet-engine.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/mxnet-engine.html"/>
     <title>MXNET Dependency Engine</title>
-    <updated> 2016-06-01</updated>
+    <updated> 2016-06-02</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -654,7 +654,7 @@
     <id>Theory-Computation.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/notes/Theory-Computation.html"/>
     <title>计算理论导引</title>
-    <updated> 2015-01-06</updated>
+    <updated> 2016-05-31</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -674,7 +674,7 @@
     <id>sitemap.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/sitemap.html"/>
     <title>Sitemap</title>
-    <updated> 2016-06-01</updated>
+    <updated> 2016-06-02</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
@@ -684,7 +684,7 @@
     <id>tags.org</id>
     <link type="text/html" rel="alternate" href="https://yuyang0.github.io/tags.html"/>
     <title>tags</title>
-    <updated> 2016-05-22</updated>
+    <updated> 2016-05-31</updated>
     <author>
       <name>Yu Yang</name>
       <uri>https://yuyang0.github.io/</uri>
