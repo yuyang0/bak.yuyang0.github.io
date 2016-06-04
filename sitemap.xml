@@ -3,7 +3,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
       <loc>https://yuyang0.github.io/sitemap.html</loc>
-      <lastmod>2016-06-02</lastmod>
+      <lastmod>2016-06-04</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -14,8 +14,20 @@
       <priority>0.5</priority>
    </url>
 <url>
+      <loc>https://yuyang0.github.io/articles/dpark.html</loc>
+      <lastmod>2016-06-04</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+<url>
       <loc>https://yuyang0.github.io/articles/linux-c-garbled-characters.html</loc>
       <lastmod>2013-06-12</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+<url>
+      <loc>https://yuyang0.github.io/articles/mxnet-engine.html</loc>
+      <lastmod>2016-06-04</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -134,12 +146,6 @@
       <priority>0.5</priority>
    </url>
 <url>
-      <loc>https://yuyang0.github.io/notes/dpark.html</loc>
-      <lastmod>2015-09-03</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-<url>
       <loc>https://yuyang0.github.io/notes/emacs-lisp.html</loc>
       <lastmod>2015-01-06</lastmod>
       <changefreq>weekly</changefreq>
@@ -184,12 +190,6 @@
 <url>
       <loc>https://yuyang0.github.io/notes/lua.html</loc>
       <lastmod>2016-04-09</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-<url>
-      <loc>https://yuyang0.github.io/notes/mxnet-engine.html</loc>
-      <lastmod>2016-06-02</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -387,25 +387,25 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/Theory-Computation.html</loc>
-      <lastmod>2016-05-31</lastmod>
+      <lastmod>2015-01-06</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
 <url>
       <loc>https://yuyang0.github.io/index.html</loc>
-      <lastmod>2016-05-31</lastmod>
+      <lastmod>2016-06-04</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
 <url>
       <loc>https://yuyang0.github.io/sitemap.html</loc>
-      <lastmod>2016-06-02</lastmod>
+      <lastmod>2016-06-04</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
 <url>
       <loc>https://yuyang0.github.io/tags.html</loc>
-      <lastmod>2016-05-31</lastmod>
+      <lastmod>2016-06-04</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
