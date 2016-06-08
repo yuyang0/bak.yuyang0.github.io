@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-06-08 Wed 15:23 -->
+<!-- 2016-06-08 Wed 15:33 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>使用org-mode与dropbox搭建静态博客</title>
@@ -312,36 +312,35 @@ org-html-publish-to-html换成org-publish-org-to-html.最后还需要一个css,�
 </div>
 </div>
 <div id="postamble" class="status">
-<!-- 多说评论框 start -->
-  <div id="duoshuo-id" class="ds-thread" data-thread-key="请将此处替换成文章在你的站点中的ID" data-title="请替换成文章的标题" data-url="请替换成文章的网址"></div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-   var url = window.location.pathname;
-   var duoshuo_identifier = url.substring(url.lastIndexOf('/')+1);
-   if (!!! duoshuo_identifier) {
-     duoshuo_identifier = "index.html";
-   }
-   var title = document.title;
-   var ele = document.getElementById("duoshuo-id");
-   ele.setAttribute("data-thread-key", duoshuo_identifier);
-   ele.setAttribute("data-title", title);
-   ele.setAttribute("data-url", url);
+<div id="disqus_comment">
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
 
+    var disqus_config = function () {
+        var url_path = window.location.pathname;
+        var disqus_identifier = url_path.substring(url_path.lastIndexOf('/')+1);
+
+        this.page.url = window.location.href;
+        this.page.identifier = disqus_identifier;
+        // this.page.title = document.title;
+    };
+
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+
+        s.src = '//yuyang.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"yuyang0"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementById('postamble')
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-  </script>
-<!-- 多说公共JS代码 end --><!-- begin footer -->
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+<!-- begin footer -->
 <div id="footer">
   <ul class="links vertical-nav">
     <li><a href="/sitemap.xml">Sitemap</a></li>
