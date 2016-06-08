@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-06-08 Wed 15:32 -->
+<!-- 2016-06-08 Wed 15:59 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>数理逻辑</title>
@@ -164,7 +164,7 @@ for the JavaScript code in this tag.
 });
 </script>
 <script type="text/javascript"
-        src="http://cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -1674,8 +1674,10 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
     var disqus_config = function () {
         var url_path = window.location.pathname;
         var disqus_identifier = url_path.substring(url_path.lastIndexOf('/')+1);
+        disqus_identifier? disqus_identifier: 'index';
 
-        this.page.url = window.location.href;
+        var full_url = window.location.href.replace(/^http:/, 'https:');
+        this.page.url = full_url;
         this.page.identifier = disqus_identifier;
         // this.page.title = document.title;
     };
@@ -1702,7 +1704,7 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
   <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
   <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
 </div>
-<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
 <script type="text/javascript">
 	window.jQuery || document.write('<script src="static/js/jquery-2.0.0.min.js"><\/script>');
 	</script>
