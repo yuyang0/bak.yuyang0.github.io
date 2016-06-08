@@ -176,22 +176,36 @@
             </div>
         </div>
         <div id="postamble" class="status">
-            <!-- 多说评论框 start -->
-            <div class="ds-thread" data-thread-key="about.html" data-title="关于我" data-url="/about.html"></div>
-            <!-- 多说评论框 end -->
-            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-            <script type="text/javascript">
-             var duoshuoQuery = {short_name:"yuyang0"};
-	           (function() {
-	               var ds = document.createElement('script');
-	               ds.type = 'text/javascript';ds.async = true;
-	               ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-	               ds.charset = 'UTF-8';
-	               (document.getElementsByTagName('head')[0]
-	             || document.getElementsByTagName('body')[0]).appendChild(ds);
-	           })();
-            </script>
-            <!-- 多说公共JS代码 end -->
+            <div id="disqus_comment">
+                <div id="disqus_thread"></div>
+                <script>
+                 /**
+                  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+                  */
+
+                 var disqus_config = function () {
+                     var url_path = window.location.pathname;
+                     var disqus_identifier = url_path.substring(url_path.lastIndexOf('/')+1);
+                     disqus_identifier? disqus_identifier: 'index';
+
+                     var full_url = window.location.href.replace(/^http:/, 'https:');
+                     this.page.url = full_url;
+                     this.page.identifier = disqus_identifier;
+                     // this.page.title = document.title;
+                 };
+
+                 (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+                     var d = document, s = d.createElement('script');
+
+                     s.src = '//yuyang.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+                     s.setAttribute('data-timestamp', +new Date());
+                     (d.head || d.body).appendChild(s);
+                 })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
 
             <!-- begin footer -->
             <div id="footer">
