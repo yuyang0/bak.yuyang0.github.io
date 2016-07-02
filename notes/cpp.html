@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-06-09 Thu 21:15 -->
+<!-- 2016-07-02 Sat 22:26 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>CPP Note</title>
@@ -175,27 +175,191 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">Class</a>
+<li><a href="#orgheadline11">OOP</a>
 <ul>
-<li><a href="#orgheadline2">构造函数</a></li>
+<li><a href="#orgheadline3">类</a>
+<ul>
+<li><a href="#orgheadline1">构造函数</a></li>
+<li><a href="#orgheadline2">tips</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline10">拷贝控制</a>
+<ul>
+<li><a href="#orgheadline4">concepts</a></li>
+<li><a href="#orgheadline5">拷贝构造函数</a></li>
+<li><a href="#orgheadline6">拷贝赋值运算符</a></li>
+<li><a href="#orgheadline7">移动构造函数</a></li>
+<li><a href="#orgheadline8">移动赋值运算符</a></li>
+<li><a href="#orgheadline9">析构函数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline12">STL</a></li>
+<li><a href="#orgheadline13">Template</a></li>
+<li><a href="#orgheadline15">Code Style</a>
+<ul>
+<li><a href="#orgheadline14">命名规范</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline17">Profile/Debug</a>
+<ul>
+<li><a href="#orgheadline16">gperftools</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Class</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11">OOP</h2>
+<div class="outline-text-2" id="text-orgheadline11">
+</div><div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">类</h3>
+<div class="outline-text-3" id="text-orgheadline3">
+</div><div id="outline-container-orgheadline1" class="outline-4">
+<h4 id="orgheadline1">构造函数</h4>
+<div class="outline-text-4" id="text-orgheadline1">
+<p>
+默认构造函数只有当你没有定义构造函数的时候才会自动生成，一旦你一提供了构造函数，
+   那么你也应该提供默认的构造函数。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline2" class="outline-4">
+<h4 id="orgheadline2">tips</h4>
+<div class="outline-text-4" id="text-orgheadline2">
 <ol class="org-ol">
 <li>如果所有的类成员都是public的，那么使用struct，否则使用class。</li>
+<li>仿函数(重载 operate())使用struct。</li>
 </ol>
 </div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">构造函数</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+</div>
+</div>
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10">拷贝控制</h3>
+<div class="outline-text-3" id="text-orgheadline10">
+</div><div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4">concepts</h4>
+<div class="outline-text-4" id="text-orgheadline4">
 <ol class="org-ol">
-<li>默认构造函数只有当你没有定义构造函数的时候才会自动生成，一旦你一提供了构造函
-数，那么你也应该提供默认的构造函数。</li>
+<li>直接初始化：</li>
+<li><p>
+拷贝初始化：一般使用等号的都是拷贝初始化。而且在下列场景也会有拷贝初始化
+</p>
+<ul class="org-ul">
+<li>将一个对象作为实参传递给非引用类型的形参</li>
+<li>从一个返回类型为非引用类型的函数返回一个对象</li>
+<li>标准库容器初始化或者调用insert或push时。</li>
+</ul>
+<p>
+拷贝初始化是使用拷贝构造函数实现的。
+</p></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5">拷贝构造函数</h4>
+<div class="outline-text-4" id="text-orgheadline5">
+<pre class="example">
+class_name ( const class_name &amp; ) {...}       (1)
+class_name ( const class_name &amp; ) = default;  (2)
+class_name ( const class_name &amp; ) = delete;   (3)
+</pre>
+</div>
+</div>
+<div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6">拷贝赋值运算符</h4>
+</div>
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7">移动构造函数</h4>
+</div>
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8">移动赋值运算符</h4>
+</div>
+<div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9">析构函数</h4>
+<div class="outline-text-4" id="text-orgheadline9">
+<p>
+析构函数包含一个函数体和一个析构部分，首先执行函数体，接着就销毁所有的成员，成员
+按初始化顺序的逆序销毁。 <b>析构部分是隐式的</b>.
+</p>
+
+<p>
+不要在函数体中销毁成员, 因为这是析构部分的任务，有一个例外是指针成员，析构部分不
+会对指针调用delete，所以你可能需要在析构函数体中delete。智能指针实际上是类，它有
+析构函数，所以析构部分可以很好的处理他，在函数体中你不用操心。
+</p>
+
+<p>
+调用析构函数的场景：
+</p>
+<ol class="org-ol">
+<li>变量离开作用域被销毁</li>
+<li>当一个对象被销毁时，其成员也会被销毁</li>
+<li>容器被销毁或者调用erase，clear，之类的函数删除元素时，被删除的元素都会被析构</li>
+<li>对指针进行delete，那么它指向的对象会被析构。</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12">STL</h2>
+</div>
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13">Template</h2>
+</div>
+<div id="outline-container-orgheadline15" class="outline-2">
+<h2 id="orgheadline15">Code Style</h2>
+<div class="outline-text-2" id="text-orgheadline15">
+</div><div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14">命名规范</h3>
+<div class="outline-text-3" id="text-orgheadline14">
+<ol class="org-ol">
+<li><b>类型命名</b> (类，结构体，枚举)使用驼峰命名,每个单词首字母均大写, 不包含下划线</li>
+<li><b>变量名</b> 一律小写, 单词之间用下划线连接. 类的成员变量以下划线结尾, 但结构体的就不用</li>
+<li><b>常量命名</b> 驼峰命名，在前面加 k 前缀， eg: <code>kDaysInAWeek</code>.</li>
+<li><b>函数命名</b> 常规函数使用驼峰命名，getter/setter函数必须和类成员名字匹配， 如果
+类有一个 <code>field_</code> 的成员，那么getter和setter分别为： <code>field()</code> 和
+<code>set_field</code>.</li>
+<li>namespace用小写字母命名, 并基于项目名称和目录结构</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline17" class="outline-2">
+<h2 id="orgheadline17">Profile/Debug</h2>
+<div class="outline-text-2" id="text-orgheadline17">
+</div><div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16">gperftools</h3>
+<div class="outline-text-3" id="text-orgheadline16">
+<ol class="org-ol">
+<li><p>
+install
+</p>
+<pre class="example">
+sudo apt-get install google-perftools libgoogle-perftools-dev
+go get github.com/google/pprof
+</pre></li>
+<li><p>
+cpu profile
+</p>
+<pre class="example">
+LD_PRELOAD=/usr/lib/libprofiler.so CPUPROFILE=cpu_profile ./prog
+</pre></li>
+<li><p>
+heap profile
+</p>
+<pre class="example">
+LD_PRELOAD=/usr/lib/libtcmalloc.so HEAPPROFILE=heap_profile ./cbmc
+</pre></li>
+<li><p>
+visualization
+</p>
+<pre class="example">
+pprof --gv cpu_profile cbmc
+</pre></li>
 </ol>
 </div>
 </div>
