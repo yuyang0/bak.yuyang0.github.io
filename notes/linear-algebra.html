@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-06-09 Thu 21:14 -->
+<!-- 2016-09-03 Sat 18:05 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>线性代数</title>
@@ -197,15 +197,50 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">基本概念</a></li>
-<li><a href="#orgheadline2">Symbols</a></li>
-<li><a href="#orgheadline3">Concepts</a></li>
+<li><a href="#orgheadline1">Symbols</a></li>
+<li><a href="#orgheadline2">Concepts</a></li>
+<li><a href="#orgheadline3">线性方程组</a></li>
+<li><a href="#orgheadline5">向量空间</a>
+<ul>
+<li><a href="#orgheadline4">四个子空间</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline7">正交</a>
+<ul>
+<li><a href="#orgheadline6">投影与最小二乘</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline12">行列式</a>
+<ul>
+<li><a href="#orgheadline8">几何性质</a></li>
+<li><a href="#orgheadline9">Property</a></li>
+<li><a href="#orgheadline10">计算方法</a></li>
+<li><a href="#orgheadline11">克拉默法则</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline13">特征值与特征向量</a>
+<ul>
+<li><a href="#orgheadline14">Definition</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 <div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">基本概念</h2>
+<h2 id="orgheadline1">Symbols</h2>
 <div class="outline-text-2" id="text-orgheadline1">
+<ol class="org-ol">
+<li>V : Vector space</li>
+<li>F : stands for either <b>R</b> or <b>C</b>.</li>
+<li>R : Real numbers</li>
+<li>C : Complex numbers</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Concepts</h2>
+<div class="outline-text-2" id="text-orgheadline2">
 <ol class="org-ol">
 <li><p>
 线性关系(linear relation): 源于一个很朴素的想法,如果x,y是线性关系,那么x增大或者缩小n倍,那么
@@ -221,26 +256,28 @@ F(x1 + x2) = F(x1) + F(x2)
 很显然F应该是一个乘以常数的操作, 因为只有y=ax时, y与x才是线性关系.实际上我
 们可以推广到多维的情况y=a1x1+a2x2+a3x3, 那么y与(x1, x2, x3)^T 是线性关系, 那
 么(a1, a2, a3) 就是线性操作</li>
-</ol>
-</div>
+<li>逆矩阵(非奇异矩阵)</li>
+<li>投影矩阵</li>
+<li><p>
+相似矩阵
+</p>
+\begin{equation*}
+  T_1 = P^{-1}T_2P
+\end{equation*}
+
+<p>
+相似矩阵描述的实际是同一个线性变换在不同的基下面的表示
+</p>
+
+<div class="figure">
+<p><img src="static/img/similar-matrix.png" alt="similar-matrix.png" />
+</p>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">Symbols</h2>
-<div class="outline-text-2" id="text-orgheadline2">
-<ol class="org-ol">
-<li>V : Vector space</li>
-<li>F : stands for either <b>R</b> or <b>C</b>.</li>
-<li>R : Real numbers</li>
-<li>C : Complex numbers</li>
-</ol>
-</div>
-</div>
+<p>
+T1是坐标系 I下的变换，而T2是坐标系P下面的变换, 依次将 \(P,T2,P^{-1}\) 应用到A就会得到B。
+</p></li>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">Concepts</h2>
-<div class="outline-text-2" id="text-orgheadline3">
-<ol class="org-ol">
 <li>向量空间(\(V\)): 一个在 <b>加法</b> 以及 <b>标量乘法</b> 上 <b>闭合</b> 的集合, 并且该集合
 要满足以下性质:
 <ol class="org-ol">
@@ -252,14 +289,169 @@ F(x1 + x2) = F(x1) + F(x2)
 <li>分配性质: 对所有的 \(a, b \in F, u,v \in V\) 都有
 \(a(u+v) = au+av, (a+b)u = au + bu\)</li>
 </ol></li>
-<li>子空间(\(U\)):
-\(U\) 是 \(V\) 的子空间, 那么意味着: \(U \subseteq V\), 且:
+<li>子空间(\(U\)): \(U\) 是 \(V\) 的子空间, 那么意味着: \(U \subseteq V\), 且在加法以及标
+量乘法上闭合:
 <ol class="org-ol">
 <li>\(0 \in U\)</li>
-<li>if \(u, v \in U\) then \(u+v \in V\)</li>
-<li>if \(a \in F, u \in U\) then \(au \in V\)</li>
+<li>if \(u, v \in U\) then \(u+v \in U\)</li>
+<li>if \(a \in F, u \in U\) then \(au \in U\)</li>
 </ol></li>
 </ol>
+</div>
+</div>
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">线性方程组</h2>
+</div>
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5">向量空间</h2>
+<div class="outline-text-2" id="text-orgheadline5">
+</div><div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">四个子空间</h3>
+</div>
+</div>
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7">正交</h2>
+<div class="outline-text-2" id="text-orgheadline7">
+</div><div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6">投影与最小二乘</h3>
+<div class="outline-text-3" id="text-orgheadline6">
+\begin{equation*}
+  P = A(A^TA)^{-1}A^T
+\end{equation*}
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12">行列式</h2>
+<div class="outline-text-2" id="text-orgheadline12">
+</div><div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8">几何性质</h3>
+<div class="outline-text-3" id="text-orgheadline8">
+<ol class="org-ol">
+<li>二维时是2个矩阵列向量组成的平行四边形的面积</li>
+<li>三维时是3个矩阵列向量组成的立方体的体积</li>
+<li>高维你可以想象成某种高维体积</li>
+</ol>
+
+<p>
+很多行列式的性质都可以从几何上获得直观的解释。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9">Property</h3>
+<div class="outline-text-3" id="text-orgheadline9">
+<ol class="org-ol">
+<li>\(det(I) = 1\)</li>
+<li>交换两行，那么行列式的值变号</li>
+<li>\begin{eqnarray*}
+  \begin{vmatrix}
+    ta & tb  \\
+    c  & d
+  \end{vmatrix}
+  & = &
+  t
+  \begin{vmatrix}
+    a & b \\
+    c & d
+  \end{vmatrix} \\
+
+  \begin{vmatrix}
+    a + a' & b+b'  \\
+    c & d
+  \end{vmatrix}
+  & = &
+  \begin{vmatrix}
+    a & b  \\
+    c & d
+  \end{vmatrix}
+  +
+  \begin{vmatrix}
+    a' & b'  \\
+    c & d
+  \end{vmatrix}
+
+\end{eqnarray*}</li>
+
+<li>三角矩阵行列式等于对角线上元素的乘积.</li>
+<li>\(det(AB)=det(A)det(B)\)</li>
+<li>\(det(A^T)=det(A)\)</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10">计算方法</h3>
+<div class="outline-text-3" id="text-orgheadline10">
+<ol class="org-ol">
+<li>将矩阵行归约成梯形形式，主元的乘积就是行列式(三角矩阵的行列式等于对角线元素的
+乘积), 如果交换了行，那么要添加适当的正负号.(<b>计算机使用这种方法计算行列式</b>)</li>
+<li>n! 个项的加法(\(a_{1\alpha}, a_{2\beta}, a_{3\gamma}, ... a_{n\omega}\)), 从每
+一行每一列中取一个元素,也就是说 \(\alpha, \beta, \gamma ... \omega\) 必须不一样。</li>
+<li>代数余子式: 某一行(列) 的元素乘以其对应的代数余子式然后相加。
+<ul class="org-ul">
+<li>余子式：\(M_{ij}\) 是指去掉第i行以及第j列后的矩阵组成的行列式</li>
+<li>代数余子式: \(C_{ij} = (-1)^{i+j}M_{ij}\)</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11">克拉默法则</h3>
+<div class="outline-text-3" id="text-orgheadline11">
+<ol class="org-ol">
+<li>逆矩阵： \(A^{-1} = \frac{1}{det(A)} C^T\) , 其中C是代数余子式组成的矩阵。</li>
+<li><p>
+克拉默法则： 求解 \(Ax=b\).
+</p>
+\begin{equation*}
+  \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix}
+  =
+  \frac{1}{det(A)}\begin{bmatrix} det(B_1) \\ det(B_2) \\ \vdots \\ det(B_n) \end{bmatrix}
+\end{equation*}
+
+<p>
+其中 \(B_n\) 是A的第n列替换为b后得到的。
+</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13">特征值与特征向量</h2>
+<div class="outline-text-2" id="text-orgheadline13">
+<p>
+特征值和特征向量只对方阵有意义，主要是用来简化计算的，通过将任意的向量向特征向量
+的方向做分解可以大大的简化计算
+</p>
+</div>
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14">Definition</h3>
+<div class="outline-text-3" id="text-orgheadline14">
+\begin{equation*}
+  Ax = \lambda x
+\end{equation*}
+
+<p>
+x就是特征向量,\(\lambda\) 就是特征值, 他们可以使用下式来计算
+</p>
+\begin{equation*}
+  det(A-\lambda I) = 0
+\end{equation*}
+
+<p>
+这个式子就是特征方程
+</p>
+
+\begin{equation*}
+  S^{-1}AS = \Lambda
+  A^n = S \Lambda^n S^{-1}
+\end{equation*}
+
+<p>
+\(S\) 是A的特征向量组成的矩阵， \(\Lambda\) 是特征值组成的对角矩阵。
+</p>
+</div>
 </div>
 </div>
 </div>

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
+<!-- 2016-09-03 Sat 18:07 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>并发</title>
+<title>MXNET Symbol系统</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="fastdfs tfs" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -171,61 +170,117 @@ for the JavaScript code in this tag.
     </div>
 </div>
 <div id="content">
-<h1 class="title">并发</h1>
+<h1 class="title">MXNET Symbol系统</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. CSP</a></li>
-<li><a href="#orgheadline2">2. Actor</a></li>
+<li><a href="#orgheadline1">背景知识</a></li>
+<li><a href="#orgheadline2">Symbol</a>
+<ul>
+<li><a href="#orgheadline3">类图</a>
+<ul>
+<li><a href="#orgheadline4">Symbol</a></li>
+<li><a href="#orgheadline5">Node</a></li>
+<li><a href="#orgheadline6">DataEntry</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline7">StaticGraph</a>
+<ul>
+<li><a href="#orgheadline8">类图</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline9">Executor</a></li>
 </ul>
 </div>
 </div>
 <div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> CSP</h2>
-<div class="outline-text-2" id="text-1">
+<h2 id="orgheadline1">背景知识</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <p>
-CSP的执行实体是一个一个的process，这些process之间通过channel通信，代表语言是go，
-go语言中的goroutine就是执行实体，goroutine之间通过channel通信，注意go语言中
-channel是可以有缓冲区.
-</p>
-
-<p>
-CSP模型有这几个特点:
+Mxnet是需要手工构建计算图的。mxnet的基本运行流程是这样的:
 </p>
 <ol class="org-ol">
-<li>process之间通过channel来通信, 注意channel是匿名的，任何process都可以向channel中
-读或者写，</li>
-<li>channel的读或者写都是同步的，也就是说，如果一个process向channel中写的时候没有
-process在读该channel那么该process就会阻塞，同理读的时候也一样</li>
+<li>通过Symbol的API来构建一个Compute Graph</li>
+<li>通过调用 <code>GraphExecutor::Bind</code> 静态函数来获得一个executor对象。</li>
+<li>通过调用executor对象的 <code>forward</code> 和 <code>backward</code> 来进行迭代</li>
 </ol>
-<p>
-下面是一个CSP模型的示意图：<img src="static/img/csp_illustration2.png" alt="csp_illustration2.png" />
-</p>
 </div>
 </div>
 <div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">2</span> Actor</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="orgheadline2">Symbol</h2>
+<div class="outline-text-2" id="text-orgheadline2">
 <p>
-Actor模型的执行实体是actor，每一个actor都有一个关联的mailbox，每个actor都可以读
-取自己的mailbox中的消息，任一actor都可以向其它actor的mailbox发送消息，这样不同的
-actor之间就可以通信了。Actor模型的代表语言是erlang。
-</p>
-
-<p>
-Actor模型的特点:
-</p>
-<ol class="org-ol">
-<li>actor通过mailbox通信，这种通信是点对点的，也就是说一个actor发送消息时必须指定
-要把消息发给哪一个actor的mailbox，这和CSP的channel的区别很大</li>
-<li>actor发送消息时是异步的，也就是说它不会阻塞，当然如果一个actor读它的mailbox,
-而这个时候mailbox中没有消息，那么该actor也是会阻塞的。</li>
-</ol>
-<p>
-下面是一个Actor模型的示意图：<img src="static/img/actor_illustration2.png" alt="actor_illustration2.png" />
+Symbol就是用来构造计算图的。它主要是提供面向用户的接口, 通过Symbol使用者可以构建
+一个计算图，当真正要计算的时候，会转换成StaticGraph。
 </p>
 </div>
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">类图</h3>
+<div class="outline-text-3" id="text-orgheadline3">
+
+<div class="figure">
+<p><img src="static/img/symbol-class-uml.png" alt="symbol-class-uml.png" />
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4">Symbol</h4>
+<div class="outline-text-4" id="text-orgheadline4">
+<ol class="org-ol">
+<li><code>heads_</code>: 实际代表的是Node的op的输出，有几个输出就有几个元素，这些DataEntry对
+象的source指向同一个Noe实例，index会递增。有一个例外就是通过Group得到symbol，
+该symbol实际上是将各被group的symbol的heads_直接合并得到的。</li>
+<li>三个静态方法都是用来创建Symbol的，分别是创建变量，从op中创建symbol以及将多个
+symbol group成一个。</li>
+<li>Compose是将输入的symbol作为inputs组合进当前的symbol。</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5">Node</h4>
+<div class="outline-text-4" id="text-orgheadline5">
+<p>
+这个是最核心的对象，最重要的属性是inputs，通过inputs就将不同的symbol串起来了。其
+它的属性都是很直观的。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6">DataEntry</h4>
+<div class="outline-text-4" id="text-orgheadline6">
+<p>
+这个对象主要是用来代表输出，source代表是哪个Node的op的输出，index代表是第几个输
+出。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7">StaticGraph</h2>
+<div class="outline-text-2" id="text-orgheadline7">
+<p>
+这实际上也是计算图，它是被mxnet内部使用的，它可以和Symbol进行相互转换，Symbol是
+面向用户的接口，所以更灵活，StaticGraph是内部使用，所以更好优化。
+</p>
+</div>
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8">类图</h3>
+<div class="outline-text-3" id="text-orgheadline8">
+
+<div class="figure">
+<p><img src="static/img/static-graph-class-uml.png" alt="static-graph-class-uml.png" />
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9">Executor</h2>
 </div>
 </div>
 <div id="postamble" class="status">

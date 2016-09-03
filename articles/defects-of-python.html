@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-06-09 Thu 21:15 -->
+<!-- 2016-09-03 Sat 18:06 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>python的“缺点”</title>
@@ -178,7 +178,7 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#orgheadline1">类型系统</a></li>
 <li><a href="#orgheadline2">缩进</a></li>
-<li><a href="#orgheadline3">高阶函数(high order function)</a>
+<li><a href="#orgheadline3">变量的定义与赋值</a>
 <ul>
 <li><a href="#orgheadline9">基本概念</a>
 <ul>
@@ -333,84 +333,10 @@ python这类语言的代码的, 这不是因为编辑器不够强大，而是本
 </div>
 </div>
 <div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">高阶函数(high order function)</h2>
+<h2 id="orgheadline3">变量的定义与赋值</h2>
 <div class="outline-text-2" id="text-orgheadline3">
 <p>
-高阶函数实际就是说函数可以作为值传递，也可以作为值返回，也就是说函数
-是语言的第一类对象(first class objecte). 可以这么说，一个语言如果它
-正确的实现了高阶函数在配合静态作用域，那么它的表达能力就超过了目前几
-乎所有主流语言。好吧，有些人可能会说这种语言（如scheme，haskell）没
-有OOP，实际上高阶函数可以很简单的就实现OOP，请看SICP(英文版190页)中
-的一段代码：
-</p>
-<div class="org-src-container">
-
-<pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #BFEBBF;">(</span><span style="color: #93E0E3;">make-account</span> balance<span style="color: #BFEBBF;">)</span>
-  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">withdraw</span> amount<span style="color: #D0BF8F;">)</span>
-    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #93E0E3;">(</span>&gt;= balance amount<span style="color: #93E0E3;">)</span>
-        <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">begin</span> <span style="color: #9FC59F;">(</span>set! balance <span style="color: #94BFF3;">(</span>- balance amount<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
-               balance<span style="color: #93E0E3;">)</span>
-        <span style="color: #CC9393;">"Insufficient funds"</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
-  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">deposit</span> amount<span style="color: #D0BF8F;">)</span>
-    <span style="color: #D0BF8F;">(</span>set! balance <span style="color: #93E0E3;">(</span>+ balance amount<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
-    balance<span style="color: #BFEBBF;">)</span>
-  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">dispatch</span> m<span style="color: #D0BF8F;">)</span>
-    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span> <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>eq? m 'withdraw<span style="color: #9FC59F;">)</span> withdraw<span style="color: #93E0E3;">)</span>
-          <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>eq? m 'deposit<span style="color: #9FC59F;">)</span> deposit<span style="color: #93E0E3;">)</span>
-          <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #9FC59F;">(</span>error <span style="color: #CC9393;">"Unknown request -- MAKE-ACCOUNT"</span>
-                       m<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
-  dispatch<span style="color: #DCDCCC;">)</span>
-</pre>
-</div>
-<p>
-上面代码的JS版本应该是这样：
-</p>
-<div class="org-src-container">
-
-<pre class="src src-javascript"><span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">make_account</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">balance</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
-  <span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">withdraw</span><span style="color: #BFEBBF;">(</span><span style="color: #DFAF8F;">amount</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
-    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>balance &gt;= amount<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
-      balance = balance - amount;
-      <span style="color: #F0DFAF; font-weight: bold;">return</span> balance;
-    <span style="color: #D0BF8F;">}</span> <span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #D0BF8F;">{</span>
-      <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #CC9393;">"Insufficient funds"</span>;
-    <span style="color: #D0BF8F;">}</span>
-  <span style="color: #BFEBBF;">}</span>
-
-  <span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">deposit</span><span style="color: #BFEBBF;">(</span><span style="color: #DFAF8F;">amount</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
-    balance += amount;
-    <span style="color: #F0DFAF; font-weight: bold;">return</span> balance;
-  <span style="color: #BFEBBF;">}</span>
-
-  <span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">dispatch</span><span style="color: #BFEBBF;">(</span><span style="color: #DFAF8F;">method</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
-    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>method === <span style="color: #CC9393;">"withdraw"</span><span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
-      <span style="color: #F0DFAF; font-weight: bold;">return</span> withdraw;
-    <span style="color: #D0BF8F;">}</span> <span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>method == <span style="color: #CC9393;">"deposit"</span><span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
-      <span style="color: #F0DFAF; font-weight: bold;">return</span> deposit;
-    <span style="color: #D0BF8F;">}</span> <span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #D0BF8F;">{</span>
-      <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #CC9393;">"error Unkown request..."</span>;
-    <span style="color: #D0BF8F;">}</span>
-  <span style="color: #BFEBBF;">}</span>
-  <span style="color: #F0DFAF; font-weight: bold;">return</span> dispatch;
-<span style="color: #DCDCCC;">}</span>
-</pre>
-</div>
-<p>
-之所以使用js是怕各位对scheme不熟悉，上面的代码实际就是实现了银行账号这个类，
-你可能会说我根本没有看到OOP的影子啊，请不要急，且听我细细道来
-</p>
-<div class="org-src-container">
-
-<pre class="src src-javascript"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">account</span> = make_account<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">100</span><span style="color: #DCDCCC;">)</span>; <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#21019;&#24314;&#19968;&#20010;&#26377;100&#22359;&#38065;&#30340;&#36134;&#21495;&#23545;&#35937;</span>
-<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">(</span>account <span style="color: #CC9393;">"withdraw"</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">50</span><span style="color: #DCDCCC;">)</span>;       <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#21462;50&#22359;&#38065;,&#20320;&#29087;&#24713;&#30340;&#35821;&#27861;&#21487;&#33021;&#26159;:accout.withdraw(50)</span>
-<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">(</span>account <span style="color: #CC9393;">"deposit"</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">50</span><span style="color: #DCDCCC;">)</span>;          <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#23384;50&#22359;&#38065;,&#20320;&#29087;&#24713;&#30340;&#35821;&#27861;&#21487;&#33021;&#26159;:account.deposit(50)</span>
-</pre>
-</div>
-<p>
-你们可以对比下，虽然语法不同，可是实际上上面的代码已经把OOP的核心语义表达出来
-了，所以OOP不是什么强大的工具，高阶函数可以轻松的实现它，很可惜python没有把高
-阶函数完全做对。估计只做对了八成。对于高阶函数与静态作用域我来说一说python那
-些地方没做对，开始之前先解释一些概念。
+python中不区分变量的定义与赋值，这也是一个设计失误
 </p>
 </div>
 <div id="outline-container-orgheadline9" class="outline-3">
@@ -519,13 +445,13 @@ python有一个巨大的设计失误就是没有明确的区分变量的 <b>声�
 python的"="有两种语义：当前作用域不存在该变量时，它会在作用域中创建该绑定，如果
 已存在，那么它就会修改该绑定的值，这种混淆的行为严重的损伤了语言的表达能力，同时
 也让程序更容易出错，因为变量会自动创建, 一个打字错误可能就会造成bug，而在需要明
-确声明变量的语言中，这种错误是可以被编译器或者解释器检测出来的。
-</p>
-
-<p>
-比如我们要实现这样一个函数，该函数第一次调用返回1,第二次调用返回2,第n次调用返
-回n。如果用C语言实现我们可以使用静态变量，如果我们使用javascript实现呢？可能
-需要像下面这样的代码：
+确声明变量的语言中，这种错误是可以被编译器或者解释器检测出来的。同时python的这种
+设计也让程序不可能自然的修改父作用域，父父作用域..的变量，因为你一旦使用“=”那
+么就会在当前作用域创建新变量，所以python不得不引入global这样丑陋的关键词，然而这
+只能访问到最外层的全局作用域，处于中间的作用域它仍然无能为力。下面举个例子,比如
+我们要实现这样一个函数，该函数第一次调用返回1,第二次调用返回2,第n次调用返回n。如
+果用C语言实现我们可以使用静态变量，如果我们使用javascript实现呢？可能需要像下面
+这样的代码：
 </p>
 <div class="org-src-container">
 
@@ -579,7 +505,7 @@ python的多线程程序任一时刻只能运行一个单一的线程，它无�
 多线程只会让这类程序的性能变得更糟。IO密集型的程序影响应该是不大的，这也是为什
 么tornado这样的库能够工作的很好的原因。所以很多时候为了利用多核，你必须使用多
 进程，而多进程之间共享数据的代价是比多线程高的多的，也麻烦的多。而且对于分布式
-系统GIL已经变成了一个比较大的问题,只是也为python语言的特点，所以大多数时候都不
+系统GIL已经变成了一个比较大的问题,只是因为python语言的特点，所以大多数时候都不
 会将其作为分布式系统的实现语言，所以在分布式系统领域还不是什么大问题。
 </p>
 </div>

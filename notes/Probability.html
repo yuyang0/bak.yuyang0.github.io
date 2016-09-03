@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-07-02 Sat 22:25 -->
+<!-- 2016-09-03 Sat 18:05 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>概率论与数理统计笔记</title>
@@ -275,9 +275,9 @@ C = AB</li>
 <li><p>
 A<sub>1</sub>, A<sub>2</sub>,&#x2026;, A<sub>n</sub> 是互斥事件
 </p>
-\begin{eqnarray}
+\begin{equation*}
   P(\cup_iA_i) = \sum_i P(A_i)
-\end{eqnarray}</li>
+\end{equation*}</li>
 </ol>
 </div>
 </div>
@@ -377,9 +377,9 @@ P(B|A)=P(AB)/P(A) 而 P(AB)=P(A|B)P(B)
 <p>
 随机变量是一个映射(函数)：
 </p>
-\begin{equation}
+\begin{equation*}
   X:\Omega \rightarrow \mathbb{R}
-\end{equation}
+\end{equation*}
 
 <p>
 也就是说每一个基本事件都会映射为一个实数。这样每一个实数相应的也会有一个概率。因
@@ -398,9 +398,12 @@ P(B|A)=P(AB)/P(A) 而 P(AB)=P(A|B)P(B)
 </div><div id="outline-container-orgheadline11" class="outline-4">
 <h4 id="orgheadline11">累积分布函数(CDF)</h4>
 <div class="outline-text-4" id="text-orgheadline11">
-\begin{equation}
+<p>
+累积概率分布Cumulative distribution function
+</p>
+\begin{equation*}
   F_X(x) = \mathbb{P}(X \leq x)
-\end{equation}
+\end{equation*}
 
 <p>
 \(F_X(x)\) 所有小于等于x的取值的概率的和,对离散型以及连续型随机变量都有效。
@@ -526,16 +529,23 @@ p又很小, 但是 &lambda;=np 适中,于是 p=&lambda;/n ,根据二项分布:
 
 <li><p>
 超几何分布 : 不放回抽样,
+总数为N的产品中抽出n个样本，其中有m个废品的概率:
 </p>
-
 \begin{equation}
   P(X=m) = \frac{{M \choose m} {{N-M} \choose {n-m}}} {N \choose n}
 \end{equation}</li>
 
-<li>负二项分布 :</li>
+<li><p>
+负二项分布 :
+放回抽样，抽到废品的概率为p，则抽到r个废品时合格品的个数为i的概率为：
+</p>
+\begin{equation}
+  P(X=i) = {{i+r-1} \choose {r-1}} p^r (1-p)^i
+\end{equation}</li>
 </ol>
 </div>
 </div>
+
 <div id="outline-container-orgheadline15" class="outline-4">
 <h4 id="orgheadline15">连续性随机变量的几个分布</h4>
 <div class="outline-text-4" id="text-orgheadline15">
@@ -547,6 +557,8 @@ p又很小, 但是 &lambda;=np 适中,于是 p=&lambda;/n ,根据二项分布:
   f(x)=(\sqrt{2\pi} \delta)^{-1} e^{-\frac{(x-\mu)^2}{2\delta^2}},
   \qquad -\infty < x < \infty
 \end{equation}</li>
+
+<li>指数分布</li>
 </ol>
 </div>
 </div>

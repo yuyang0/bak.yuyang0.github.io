@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-06-09 Thu 21:15 -->
+<!-- 2016-09-03 Sat 18:06 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>UNIX网络编程</title>
@@ -443,18 +443,22 @@ TIME_WAIT状态,并保持该状态2SML(1-4分钟), 该状态存在的原因是:
 <h2 id="orgheadline13">网络设备</h2>
 <div class="outline-text-2" id="text-orgheadline13">
 <ol class="org-ol">
-<li>集线器(HUB): 工作于第二层,基本已被淘汰, 目前基本用交换机, HUB最大的问题是当它接收到一个数据包后,
-它会向所有连接到该hub的主机广播, 这样会造成一大堆无用流量. 这主要是因为HUB内部没有交换机内部的那种MAC地址表.</li>
+<li>集线器(HUB): 工作于第二层,基本已被淘汰, 目前基本用交换机, HUB最大的问题是当它
+接收到一个数据包后,它会向所有连接到该hub的主机广播, 这样会造成一大堆无用流量.
+这主要是因为HUB内部没有交换机内部的那种MAC地址表.</li>
 <li>网桥: 也基本被淘汰.</li>
 <li>交换机
 <ul class="org-ul">
-<li>二层交换机: 用来将链路层数据包发给相应的主机或者网络设备, 内部有个MAC地址表,
-交换机会根据各个端口接受数据包的源MAC地址来自动的更新该表.因为这个表的存在,
-交换机不用像HUB一样广播,它可以点对点的发送,所以效率要高得多.</li>
+<li>二层交换机: 用来将链路层数据包发给相应的主机或者网络设备, 内部有个MAC地址表,交
+换机会根据各个端口接受数据包的源MAC地址来自动的更新该表.因为这个表的存在,交
+换机不用像HUB一样广播,它可以点对点的发送,所以效率要高得多.</li>
 <li>三层交换机</li>
 <li>四层交换机</li>
 </ul></li>
 <li>路由器</li>
+<li>家用路由器：名字有误导性，实际上相当于一个交换机加上路由器以及防火墙。插在Lan
+口上的电脑以及无线连接的设备就像连在交换机上组网，同时它又是一个路由器，一边
+是局域网一边是公网,同时要用到 <b>NAT</b> ，因为需要将局域网ip转换成公网ip。</li>
 </ol>
 </div>
 </div>

@@ -3,7 +3,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
       <loc>https://yuyang0.github.io/sitemap.html</loc>
-      <lastmod>2016-07-02</lastmod>
+      <lastmod>2016-09-03</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -28,6 +28,12 @@
 <url>
       <loc>https://yuyang0.github.io/articles/mxnet-engine.html</loc>
       <lastmod>2016-06-09</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+<url>
+      <loc>https://yuyang0.github.io/articles/mxnet-symbolic.html</loc>
+      <lastmod>2016-08-09</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -57,7 +63,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/articles/defects-of-python.html</loc>
-      <lastmod>2016-06-09</lastmod>
+      <lastmod>2016-08-30</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -99,13 +105,13 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/cpp.html</loc>
-      <lastmod>2016-07-01</lastmod>
+      <lastmod>2016-07-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/cuda.html</loc>
-      <lastmod>2016-06-09</lastmod>
+      <lastmod>2016-05-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -165,7 +171,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/golang.html</loc>
-      <lastmod>2016-06-09</lastmod>
+      <lastmod>2016-08-21</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -243,7 +249,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/unp.html</loc>
-      <lastmod>2016-06-09</lastmod>
+      <lastmod>2016-09-01</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -381,7 +387,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/linear-algebra.html</loc>
-      <lastmod>2016-06-09</lastmod>
+      <lastmod>2016-08-11</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -393,19 +399,19 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/index.html</loc>
-      <lastmod>2016-06-09</lastmod>
+      <lastmod>2016-09-03</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
 <url>
       <loc>https://yuyang0.github.io/sitemap.html</loc>
-      <lastmod>2016-07-02</lastmod>
+      <lastmod>2016-09-03</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
 <url>
       <loc>https://yuyang0.github.io/tags.html</loc>
-      <lastmod>2016-06-10</lastmod>
+      <lastmod>2016-06-09</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>

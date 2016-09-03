@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-06-09 Thu 21:15 -->
+<!-- 2016-09-03 Sat 18:06 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Go语言</title>
@@ -264,8 +264,8 @@ m<span style="color: #DCDCCC;">[</span><span style="color: #CC9393;">"aa"</span>
 <div class="outline-text-2" id="text-orgheadline3">
 <p>
 go引用提供了很多基本类型，这些基本类型分为两类：值类型和引用类型。 <b>map，channel，
-slice,interface, function，method，其它的包括array，struct都是值类型</b>. 这两种类
-型的不同在函数调用时会表现出不同。
+slice,interface, function，method是引用类型，其它的包括array，struct都是值类型</b>.
+这两种类型的不同在函数调用时会表现出不同。
 </p>
 </div>
 <div id="outline-container-orgheadline4" class="outline-3">
@@ -474,12 +474,16 @@ slice3 := <span style="color: #DCDCCC; font-weight: bold;">make</span><span styl
 slice3 := <span style="color: #DCDCCC; font-weight: bold;">make</span><span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">[]</span><span style="color: #7CB8BB;">int</span>, <span style="color: #BFEBBF;">5</span>, <span style="color: #BFEBBF;">10</span><span style="color: #DCDCCC;">)</span>    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">5&#20010;&#20803;&#32032;&#30340;&#20999;&#29255;&#65292;&#37117;&#21021;&#22987;&#21270;&#20026;0,&#21516;&#26102;&#39044;&#30041;10&#20010;&#20803;&#32032;&#30340;&#31354;&#38388;</span>
 newSlice := <span style="color: #DCDCCC; font-weight: bold;">append</span><span style="color: #DCDCCC;">(</span>slice1, <span style="color: #BFEBBF;">8</span>, <span style="color: #BFEBBF;">9</span>, <span style="color: #BFEBBF;">10</span><span style="color: #DCDCCC;">)</span>
 newSlice := <span style="color: #DCDCCC; font-weight: bold;">append</span><span style="color: #DCDCCC;">(</span>slice1, slice2...<span style="color: #DCDCCC;">)</span>
+
+<span style="color: #F0DFAF; font-weight: bold;">for</span> idx, val := <span style="color: #F0DFAF; font-weight: bold;">range</span> slice <span style="color: #DCDCCC;">{</span>     <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#36941;&#21382;</span>
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">do something</span>
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
 可以通过切片语法从字符串，数组，切片来创建切片，语法是python切片语法的子集，记住
 是左闭右开就是了。 <b>特别要注意make函数的第二个参数，该参数指定了slice的初始长度，
-也就是调用len返回的值,所以你创建新的slice时，这个值应为0</b>.
+也就是调用len返回的值,所以你创建新的空slice时，这个值应为0</b>.
 </p>
 </div>
 </div>
@@ -526,7 +530,11 @@ channel是goroutine之间的通信方式, 它是线程安全的,但是要注意,
   <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">channel is closed.</span>
 <span style="color: #DCDCCC;">}</span>
 </pre>
-</div></li>
+</div>
+<p>
+如果channel没有关闭，而且也没有元素可读，那么上面的代码会 <b>阻塞</b>.要不阻塞的测
+试，只能使用带default的select。
+</p></li>
 <li>使用range遍历一个channel的时候, 如果channel已经关闭,那么range会终止.</li>
 <li><p>
 channel的超时
@@ -541,6 +549,22 @@ channel的超时
 <span style="color: #DCDCCC;">}</span>
 </pre>
 </div></li>
+<li><p>
+quit channel是通知goroutine退出的最佳方式，在需要退出的时候close掉channel，这
+样任何goroutine只要使用这样的代码测试就可以了
+</p>
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">select</span> <span style="color: #DCDCCC;">{</span>
+<span style="color: #F0DFAF; font-weight: bold;">case</span> &lt;- quitChan:
+  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">quit</span>
+<span style="color: #F0DFAF; font-weight: bold;">default</span>:
+<span style="color: #DCDCCC;">}</span>
+</pre>
+</div>
+<p>
+关闭的channel上调用任意多次 <code>&lt;-</code> 都不会阻塞，所以不要使用带buffer的channel。
+</p></li>
 </ol>
 </div>
 </div>
@@ -584,7 +608,7 @@ aString := anything.<span style="color: #DCDCCC;">(</span><span style="color: #7
 <h2 id="orgheadline21">内置函数</h2>
 <div class="outline-text-2" id="text-orgheadline21">
 <ol class="org-ol">
-<li>append： 添加元素到切片</li>
+<li>append： 添加元素到切片, 使用 <code>aa=append(aa, ele)</code> 的语法。</li>
 <li>close： 关闭通道</li>
 <li>make：用来创建slice，map，channel。可以指定长度和容量</li>
 <li>delete：从map中删除项</li>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-07-02 Sat 22:26 -->
+<!-- 2016-09-03 Sat 18:06 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>CPP Note</title>
@@ -202,9 +202,14 @@ for the JavaScript code in this tag.
 <li><a href="#orgheadline14">命名规范</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline17">Profile/Debug</a>
+<li><a href="#orgheadline19">杂七杂八</a>
 <ul>
-<li><a href="#orgheadline16">gperftools</a></li>
+<li><a href="#orgheadline16">Mix C and C++</a></li>
+<li><a href="#orgheadline18">Profile/Debug</a>
+<ul>
+<li><a href="#orgheadline17">gperftools</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -221,7 +226,7 @@ for the JavaScript code in this tag.
 <div class="outline-text-4" id="text-orgheadline1">
 <p>
 默认构造函数只有当你没有定义构造函数的时候才会自动生成，一旦你一提供了构造函数，
-   那么你也应该提供默认的构造函数。
+那么你也应该提供默认的构造函数。
 </p>
 </div>
 </div>
@@ -328,12 +333,45 @@ class_name ( const class_name &amp; ) = delete;   (3)
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline17" class="outline-2">
-<h2 id="orgheadline17">Profile/Debug</h2>
-<div class="outline-text-2" id="text-orgheadline17">
+<div id="outline-container-orgheadline19" class="outline-2">
+<h2 id="orgheadline19">杂七杂八</h2>
+<div class="outline-text-2" id="text-orgheadline19">
 </div><div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16">gperftools</h3>
+<h3 id="orgheadline16">Mix C and C++</h3>
 <div class="outline-text-3" id="text-orgheadline16">
+<p>
+主要是通过 =extern "C"= 来实现，他主要是用来抑制C++的名称混淆(name mangle)的。
+</p>
+
+<ol class="org-ol">
+<li><p>
+c调用C++的库：常规的做法时是提供一个wrapper，你应该在C++中提供一个头文件
+(c_api.h), 这个头文件要严格按照C的语法编写，同时在需要C调用的函数前应该添加上
+=extern "C"=, 因为这个头文件会同时被C编译器和C++编译器调用，所以需要如下的代
+码：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #94BFF3;">#ifdef</span> __cplusplus
+<span style="color: #94BFF3;">#define</span> <span style="color: #DFAF8F;">EXTERN_C</span> <span style="color: #F0DFAF; font-weight: bold;">extern</span> <span style="color: #CC9393;">"C"</span>
+<span style="color: #94BFF3;">#endif</span>
+</pre>
+</div>
+<p>
+有了头文件，你接着需要在一个C++文件中(eg:c_api.cpp)实现头文件中定义的这些函数。
+注意实现时是否加上 =extern "C"= 是可选的。
+</p></li>
+<li>C++中调用C库： 你只需要通过 <code>extern "C" void c_func()</code> 来声明就好，接着你就可
+以调用 <code>c_func</code> 了。</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18">Profile/Debug</h3>
+<div class="outline-text-3" id="text-orgheadline18">
+</div><div id="outline-container-orgheadline17" class="outline-4">
+<h4 id="orgheadline17">gperftools</h4>
+<div class="outline-text-4" id="text-orgheadline17">
 <ol class="org-ol">
 <li><p>
 install
@@ -361,6 +399,7 @@ visualization
 pprof --gv cpu_profile cbmc
 </pre></li>
 </ol>
+</div>
 </div>
 </div>
 </div>
