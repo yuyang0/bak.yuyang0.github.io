@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The Essential of Programming language</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="EOPL programming-language  scheme intepreter" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="EOPL programming-language  scheme intepreter" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -198,123 +283,123 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">Preface</a></li>
-<li><a href="#orgheadline14">1. Inductive Sets and Data</a>
+<li><a href="#org6a04fca">Preface</a></li>
+<li><a href="#org35b4666">1. Inductive Sets and Data</a>
 <ul>
-<li><a href="#orgheadline5">1.1</a>
+<li><a href="#org0cc79d3">1.1</a>
 <ul>
-<li><a href="#orgheadline2">top-down definition</a></li>
-<li><a href="#orgheadline3">bottom-up definition</a></li>
-<li><a href="#orgheadline4">rules of inference</a></li>
+<li><a href="#orgf492449">top-down definition</a></li>
+<li><a href="#org86779f1">bottom-up definition</a></li>
+<li><a href="#org34c4675">rules of inference</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline13">1.2</a>
+<li><a href="#org6576f9a">1.2</a>
 <ul>
-<li><a href="#orgheadline6">用语法规则定义集合</a></li>
-<li><a href="#orgheadline7">The Smaller-Subproblem Principle</a>
+<li><a href="#org661b2f8">用语法规则定义集合</a></li>
+<li><a href="#orgeecf3a4">The Smaller-Subproblem Principle</a>
 <ul>
-<li><a href="#orgheadline8">nth-element</a></li>
-<li><a href="#orgheadline9">remove-first</a></li>
-<li><a href="#orgheadline10">occurs-free?</a></li>
-<li><a href="#orgheadline11">subst</a></li>
+<li><a href="#org78808ed">nth-element</a></li>
+<li><a href="#orgeeb9179">remove-first</a></li>
+<li><a href="#orgff06c72">occurs-free?</a></li>
+<li><a href="#org7a900b0">subst</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline12">Follow the Grammar!</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgheadline15">2 Data Abstraction</a>
-<ul>
-<li><a href="#orgheadline16">2.3 Interfaces for Recursive Data Types</a></li>
-<li><a href="#orgheadline17">2.4 A Tool for Defining Recursive Data Types</a></li>
-</ul>
-</li>
-<li><a href="#orgheadline18">3 Expressions</a>
-<ul>
-<li><a href="#orgheadline19">Some Concepts</a></li>
-</ul>
-</li>
-<li><a href="#orgheadline29">4 State</a>
-<ul>
-<li><a href="#orgheadline20">返回值与副作用的区别</a></li>
-<li><a href="#orgheadline21">difference between binding and assignments</a></li>
-<li><a href="#orgheadline22">4.1 Computational Effects</a></li>
-<li><a href="#orgheadline28">4.5 Parameter Passing Variations</a>
-<ul>
-<li><a href="#orgheadline23">Natural Parameter Passing</a></li>
-<li><a href="#orgheadline24">Call By Reference</a></li>
-<li><a href="#orgheadline25">Call By Value(CBV)</a></li>
-<li><a href="#orgheadline26">Call By Name(CBN)</a></li>
-<li><a href="#orgheadline27">Call By Need</a></li>
+<li><a href="#org98254e9">Follow the Grammar!</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline31">5 Continuation-Passing Interpreter</a>
+<li><a href="#orgd9b9c9d">2 Data Abstraction</a>
 <ul>
-<li><a href="#orgheadline30">Serveral Concepts</a></li>
+<li><a href="#org8b42bdc">2.3 Interfaces for Recursive Data Types</a></li>
+<li><a href="#org99e7c6d">2.4 A Tool for Defining Recursive Data Types</a></li>
+</ul>
+</li>
+<li><a href="#org22b9c47">3 Expressions</a>
+<ul>
+<li><a href="#orgc4f1443">Some Concepts</a></li>
+</ul>
+</li>
+<li><a href="#org5cac355">4 State</a>
+<ul>
+<li><a href="#orgf19c581">返回值与副作用的区别</a></li>
+<li><a href="#org83f9c40">difference between binding and assignments</a></li>
+<li><a href="#org6ecd80b">4.1 Computational Effects</a></li>
+<li><a href="#org107f95c">4.5 Parameter Passing Variations</a>
+<ul>
+<li><a href="#orgaced9c4">Natural Parameter Passing</a></li>
+<li><a href="#orgf8f1f72">Call By Reference</a></li>
+<li><a href="#orge09a4b4">Call By Value(CBV)</a></li>
+<li><a href="#org5113c64">Call By Name(CBN)</a></li>
+<li><a href="#orgc9d2799">Call By Need</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgf0dc877">5 Continuation-Passing Interpreter</a>
+<ul>
+<li><a href="#org7fa4a54">Serveral Concepts</a></li>
 </ul>
 </li>
 <li><a href="#lambda-calculus">lambda calculus</a>
 <ul>
-<li><a href="#orgheadline32">Terms</a></li>
-<li><a href="#orgheadline33">Relations</a></li>
-<li><a href="#orgheadline34">Normal Form</a></li>
-<li><a href="#orgheadline35">Evaluation Strategy</a></li>
-<li><a href="#orgheadline40">Church Encode</a>
+<li><a href="#orgd5cf41a">Terms</a></li>
+<li><a href="#org1bf3412">Relations</a></li>
+<li><a href="#orgc1d7f5a">Normal Form</a></li>
+<li><a href="#orgacce698">Evaluation Strategy</a></li>
+<li><a href="#orgb311516">Church Encode</a>
 <ul>
-<li><a href="#orgheadline36">boolean</a></li>
-<li><a href="#orgheadline37">pair</a></li>
-<li><a href="#orgheadline38">number</a></li>
-<li><a href="#orgheadline39">list</a></li>
+<li><a href="#org9a9653d">boolean</a></li>
+<li><a href="#org01737e1">pair</a></li>
+<li><a href="#org380c7be">number</a></li>
+<li><a href="#org83826bb">list</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline41">Y Combinator</a></li>
-<li><a href="#orgheadline44">Theorems</a>
+<li><a href="#orga2e8cb6">Y Combinator</a></li>
+<li><a href="#orgadd2a57">Theorems</a>
 <ul>
-<li><a href="#orgheadline42">Church-Rosser for =<sub>n</sub></a></li>
-<li><a href="#orgheadline43">Diamond Property for →→<sub>n</sub></a></li>
+<li><a href="#org3f6b264">Church-Rosser for =<sub>n</sub></a></li>
+<li><a href="#org2515884">Diamond Property for →→<sub>n</sub></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline46">ISWIM</a>
+<li><a href="#orgb6830f1">ISWIM</a>
 <ul>
-<li><a href="#orgheadline47">terms</a></li>
-<li><a href="#orgheadline48">Values</a></li>
+<li><a href="#orgd9b43b4">terms</a></li>
+<li><a href="#orga27868c">Values</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline49">Standard reduction</a></li>
-<li><a href="#orgheadline51">Machines</a>
+<li><a href="#orge49e4ad">Standard reduction</a></li>
+<li><a href="#org13a3098">Machines</a>
 <ul>
-<li><a href="#orgheadline50">CC Machine</a></li>
+<li><a href="#org90d671e">CC Machine</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Preface</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-org6a04fca" class="outline-2">
+<h2 id="org6a04fca">Preface</h2>
+<div class="outline-text-2" id="text-org6a04fca">
 <blockquote>
 <p>
-  Perhaps the whole distinction between program and programming language is a
+Perhaps the whole distinction between program and programming language is a
 misleading idea, and future programmers will see themselves not as writing
 programs in particular, but as creating new languages for each new application.
 </p>
 </blockquote>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-2">
-<h2 id="orgheadline14">1. Inductive Sets and Data</h2>
-<div class="outline-text-2" id="text-orgheadline14">
-</div><div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">1.1</h3>
-<div class="outline-text-3" id="text-orgheadline5">
-</div><div id="outline-container-orgheadline2" class="outline-4">
-<h4 id="orgheadline2">top-down definition</h4>
-<div class="outline-text-4" id="text-orgheadline2">
+<div id="outline-container-org35b4666" class="outline-2">
+<h2 id="org35b4666">1. Inductive Sets and Data</h2>
+<div class="outline-text-2" id="text-org35b4666">
+</div><div id="outline-container-org0cc79d3" class="outline-3">
+<h3 id="org0cc79d3">1.1</h3>
+<div class="outline-text-3" id="text-org0cc79d3">
+</div><div id="outline-container-orgf492449" class="outline-4">
+<h4 id="orgf492449">top-down definition</h4>
+<div class="outline-text-4" id="text-orgf492449">
 <p>
 自顶向下意味着从宏观的角度向微观细分
 A Scheme list is a list of integers if and only if either
@@ -326,9 +411,9 @@ A Scheme list is a list of integers if and only if either
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-4">
-<h4 id="orgheadline3">bottom-up definition</h4>
-<div class="outline-text-4" id="text-orgheadline3">
+<div id="outline-container-org86779f1" class="outline-4">
+<h4 id="org86779f1">bottom-up definition</h4>
+<div class="outline-text-4" id="text-org86779f1">
 <p>
 自底向上意味着从微观的角度向宏观归纳
 The set List-of-Int is the smallest set of Scheme lists satisfying the
@@ -340,9 +425,9 @@ following two properties:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4">rules of inference</h4>
-<div class="outline-text-4" id="text-orgheadline4">
+<div id="outline-container-org34c4675" class="outline-4">
+<h4 id="org34c4675">rules of inference</h4>
+<div class="outline-text-4" id="text-org34c4675">
 \begin{align}
   () \in List-of-Int  \\
   \frac {n \in Int \quad l \in List-of-Int} {(n . l) \in List-of-Int}
@@ -351,12 +436,12 @@ following two properties:
 </div>
 </div>
 
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13">1.2</h3>
-<div class="outline-text-3" id="text-orgheadline13">
-</div><div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6">用语法规则定义集合</h4>
-<div class="outline-text-4" id="text-orgheadline6">
+<div id="outline-container-org6576f9a" class="outline-3">
+<h3 id="org6576f9a">1.2</h3>
+<div class="outline-text-3" id="text-org6576f9a">
+</div><div id="outline-container-org661b2f8" class="outline-4">
+<h4 id="org661b2f8">用语法规则定义集合</h4>
+<div class="outline-text-4" id="text-org661b2f8">
 \begin{align}
   List-of-Int &::= ()  \\
               &::= (Int . List-of-Int)
@@ -371,19 +456,18 @@ following two properties:
 </div>
 </div>
 
-<div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7">The Smaller-Subproblem Principle</h4>
-<div class="outline-text-4" id="text-orgheadline7">
+<div id="outline-container-orgeecf3a4" class="outline-4">
+<h4 id="orgeecf3a4">The Smaller-Subproblem Principle</h4>
+<div class="outline-text-4" id="text-orgeecf3a4">
 <p>
 If we can reduce a problem to a smaller subproblem, we can call the
 procedure that solves the problem to solve the subproblem.
 </p>
 </div>
-<div id="outline-container-orgheadline8" class="outline-5">
-<h5 id="orgheadline8">nth-element</h5>
-<div class="outline-text-5" id="text-orgheadline8">
+<div id="outline-container-org78808ed" class="outline-5">
+<h5 id="org78808ed">nth-element</h5>
+<div class="outline-text-5" id="text-org78808ed">
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">nth-element</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>lst n<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #93E0E3;">(</span>null? lst<span style="color: #93E0E3;">)</span>
@@ -399,11 +483,10 @@ procedure that solves the problem to solve the subproblem.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-5">
-<h5 id="orgheadline9">remove-first</h5>
-<div class="outline-text-5" id="text-orgheadline9">
+<div id="outline-container-orgeeb9179" class="outline-5">
+<h5 id="orgeeb9179">remove-first</h5>
+<div class="outline-text-5" id="text-orgeeb9179">
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">remove-first</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>s los<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #93E0E3;">(</span>null? los<span style="color: #93E0E3;">)</span>
@@ -415,14 +498,13 @@ procedure that solves the problem to solve the subproblem.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-5">
-<h5 id="orgheadline10">occurs-free?</h5>
+<div id="outline-container-orgff06c72" class="outline-5">
+<h5 id="orgff06c72">occurs-free?</h5>
 </div>
-<div id="outline-container-orgheadline11" class="outline-5">
-<h5 id="orgheadline11">subst</h5>
-<div class="outline-text-5" id="text-orgheadline11">
+<div id="outline-container-org7a900b0" class="outline-5">
+<h5 id="org7a900b0">subst</h5>
+<div class="outline-text-5" id="text-org7a900b0">
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">subst</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>new old slist<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">()</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
@@ -431,9 +513,9 @@ procedure that solves the problem to solve the subproblem.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-4">
-<h4 id="orgheadline12">Follow the Grammar!</h4>
-<div class="outline-text-4" id="text-orgheadline12">
+<div id="outline-container-org98254e9" class="outline-4">
+<h4 id="org98254e9">Follow the Grammar!</h4>
+<div class="outline-text-4" id="text-org98254e9">
 <p>
 When defining a procedure that operates on inductively defined data, the
 structure of the program should be patterned after the structure of the
@@ -457,17 +539,17 @@ nonterminal.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline15" class="outline-2">
-<h2 id="orgheadline15">2 Data Abstraction</h2>
-<div class="outline-text-2" id="text-orgheadline15">
+<div id="outline-container-orgd9b9c9d" class="outline-2">
+<h2 id="orgd9b9c9d">2 Data Abstraction</h2>
+<div class="outline-text-2" id="text-orgd9b9c9d">
 <p>
 \(\lceil v \rceil\) 代表数据 <code>v</code> 的实现
 </p>
 </div>
 
-<div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16">2.3 Interfaces for Recursive Data Types</h3>
-<div class="outline-text-3" id="text-orgheadline16">
+<div id="outline-container-org8b42bdc" class="outline-3">
+<h3 id="org8b42bdc">2.3 Interfaces for Recursive Data Types</h3>
+<div class="outline-text-3" id="text-org8b42bdc">
 <p>
 Designing an interface for a recursive data type:
 </p>
@@ -513,15 +595,14 @@ the data type.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17">2.4 A Tool for Defining Recursive Data Types</h3>
-<div class="outline-text-3" id="text-orgheadline17">
+<div id="outline-container-org99e7c6d" class="outline-3">
+<h3 id="org99e7c6d">2.4 A Tool for Defining Recursive Data Types</h3>
+<div class="outline-text-3" id="text-org99e7c6d">
 <p>
 使用define-datatype来自动的定义一个递归数据类型(<b>接口</b>),以lambda calculus的
 语法定义为例子
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>define-datatype lc-exp lc-exp?
   <span style="color: #BFEBBF;">(</span>var-exp
    <span style="color: #D0BF8F;">(</span>var identifier?<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
@@ -538,7 +619,6 @@ the data type.</li>
 predicate:Lc-exp?.然后可以使用cases来使用上述定义:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">occurs-free?</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>search-var exp<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span>cases lc-exp exp
@@ -560,17 +640,17 @@ predicate:Lc-exp?.然后可以使用cases来使用上述定义:
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-2">
-<h2 id="orgheadline18">3 Expressions</h2>
-<div class="outline-text-2" id="text-orgheadline18">
+<div id="outline-container-org22b9c47" class="outline-2">
+<h2 id="org22b9c47">3 Expressions</h2>
+<div class="outline-text-2" id="text-org22b9c47">
 <p>
 本章的目的实际就是用scheme来写一个program来解释执行EOPL中let语言的AST,其实就
 是写一个解释器,只是这个解释器直接接受AST,而不是字符串
 </p>
 </div>
-<div id="outline-container-orgheadline19" class="outline-3">
-<h3 id="orgheadline19">Some Concepts</h3>
-<div class="outline-text-3" id="text-orgheadline19">
+<div id="outline-container-orgc4f1443" class="outline-3">
+<h3 id="orgc4f1443">Some Concepts</h3>
+<div class="outline-text-3" id="text-orgc4f1443">
 <ol class="org-ol">
 <li>AST(aka: abstract syntax tree or just syntax tree): 抽象语法树,和Concrete
 syntax tree(aka parse tree)像对应,AST不包含一些细节, 比如一个if表达式,在
@@ -594,30 +674,30 @@ names are identifiers.</li>
 </div>
 </div>
 
-<div id="outline-container-orgheadline29" class="outline-2">
-<h2 id="orgheadline29">4 State</h2>
-<div class="outline-text-2" id="text-orgheadline29">
-</div><div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20">返回值与副作用的区别</h3>
-<div class="outline-text-3" id="text-orgheadline20">
+<div id="outline-container-org5cac355" class="outline-2">
+<h2 id="org5cac355">4 State</h2>
+<div class="outline-text-2" id="text-org5cac355">
+</div><div id="outline-container-orgf19c581" class="outline-3">
+<h3 id="orgf19c581">返回值与副作用的区别</h3>
+<div class="outline-text-3" id="text-orgf19c581">
 <p>
-   What’s the difference between producing a value and producing an effect?  An
+What’s the difference between producing a value and producing an effect?  An
 effect is <b>global</b>: it is seen by the entire computation. An effect affects the
 entire computation (pun intended).
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21">difference between binding and assignments</h3>
-<div class="outline-text-3" id="text-orgheadline21">
+<div id="outline-container-org83f9c40" class="outline-3">
+<h3 id="org83f9c40">difference between binding and assignments</h3>
+<div class="outline-text-3" id="text-org83f9c40">
 <p>
 binding is local, but variable assignment is potentially global.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline22" class="outline-3">
-<h3 id="orgheadline22">4.1 Computational Effects</h3>
-<div class="outline-text-3" id="text-orgheadline22">
+<div id="outline-container-org6ecd80b" class="outline-3">
+<h3 id="org6ecd80b">4.1 Computational Effects</h3>
+<div class="outline-text-3" id="text-org6ecd80b">
 <p>
 计算机内存可以抽象为一个 Map: locations ⟶ storable values
 </p>
@@ -638,21 +718,21 @@ binding is local, but variable assignment is potentially global.
 </div>
 </div>
 
-<div id="outline-container-orgheadline28" class="outline-3">
-<h3 id="orgheadline28">4.5 Parameter Passing Variations</h3>
-<div class="outline-text-3" id="text-orgheadline28">
-</div><div id="outline-container-orgheadline23" class="outline-4">
-<h4 id="orgheadline23">Natural Parameter Passing</h4>
-<div class="outline-text-4" id="text-orgheadline23">
+<div id="outline-container-org107f95c" class="outline-3">
+<h3 id="org107f95c">4.5 Parameter Passing Variations</h3>
+<div class="outline-text-3" id="text-org107f95c">
+</div><div id="outline-container-orgaced9c4" class="outline-4">
+<h4 id="orgaced9c4">Natural Parameter Passing</h4>
+<div class="outline-text-4" id="text-orgaced9c4">
 <p>
 The denoted value is same as the expressed value of the actual
 parameter.like the LET language
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline24" class="outline-4">
-<h4 id="orgheadline24">Call By Reference</h4>
-<div class="outline-text-4" id="text-orgheadline24">
+<div id="outline-container-orgf8f1f72" class="outline-4">
+<h4 id="orgf8f1f72">Call By Reference</h4>
+<div class="outline-text-4" id="text-orgf8f1f72">
 <p>
 The Formal Parameter is associated with the same reference of the Actual
 Parameter. so if you change the value of formal parameter, the value of
@@ -666,9 +746,9 @@ actual parameter also changes.
 </div>
 </div>
 
-<div id="outline-container-orgheadline25" class="outline-4">
-<h4 id="orgheadline25">Call By Value(CBV)</h4>
-<div class="outline-text-4" id="text-orgheadline25">
+<div id="outline-container-orge09a4b4" class="outline-4">
+<h4 id="orge09a4b4">Call By Value(CBV)</h4>
+<div class="outline-text-4" id="text-orge09a4b4">
 <p>
 The denoted value is a reference to a location containning the expressed
 value of the actual parameter.
@@ -681,20 +761,20 @@ value of the actual parameter.
 </div>
 </div>
 
-<div id="outline-container-orgheadline26" class="outline-4">
-<h4 id="orgheadline26">Call By Name(CBN)</h4>
+<div id="outline-container-org5113c64" class="outline-4">
+<h4 id="org5113c64">Call By Name(CBN)</h4>
 </div>
-<div id="outline-container-orgheadline27" class="outline-4">
-<h4 id="orgheadline27">Call By Need</h4>
+<div id="outline-container-orgc9d2799" class="outline-4">
+<h4 id="orgc9d2799">Call By Need</h4>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline31" class="outline-2">
-<h2 id="orgheadline31">5 Continuation-Passing Interpreter</h2>
-<div class="outline-text-2" id="text-orgheadline31">
-</div><div id="outline-container-orgheadline30" class="outline-3">
-<h3 id="orgheadline30">Serveral Concepts</h3>
-<div class="outline-text-3" id="text-orgheadline30">
+<div id="outline-container-orgf0dc877" class="outline-2">
+<h2 id="orgf0dc877">5 Continuation-Passing Interpreter</h2>
+<div class="outline-text-2" id="text-orgf0dc877">
+</div><div id="outline-container-org7fa4a54" class="outline-3">
+<h3 id="org7fa4a54">Serveral Concepts</h3>
+<div class="outline-text-3" id="text-org7fa4a54">
 <ol class="org-ol">
 <li>Context: According to wikipedia, A task context is the minimal set of
 data used by this task at the point it has been interrupted</li>
@@ -704,13 +784,13 @@ data used by this task at the point it has been interrupted</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline45" class="outline-2">
-<h2 id="lambda-calculus"><a id="orgheadline45"></a>lambda calculus</h2>
+<div id="outline-container-org2a1c603" class="outline-2">
+<h2 id="lambda-calculus"><a id="org2a1c603"></a>lambda calculus</h2>
 <div class="outline-text-2" id="text-lambda-calculus">
 </div>
-<div id="outline-container-orgheadline32" class="outline-3">
-<h3 id="orgheadline32">Terms</h3>
-<div class="outline-text-3" id="text-orgheadline32">
+<div id="outline-container-orgd5cf41a" class="outline-3">
+<h3 id="orgd5cf41a">Terms</h3>
+<div class="outline-text-3" id="text-orgd5cf41a">
 <p>
 The set of lambda-calculus expressions can be defined with following
 grammar:
@@ -725,9 +805,9 @@ grammar:
 </div>
 </div>
 
-<div id="outline-container-orgheadline33" class="outline-3">
-<h3 id="orgheadline33">Relations</h3>
-<div class="outline-text-3" id="text-orgheadline33">
+<div id="outline-container-org1bf3412" class="outline-3">
+<h3 id="org1bf3412">Relations</h3>
+<div class="outline-text-3" id="text-org1bf3412">
 <ol class="org-ol">
 <li><p>
 FV: a relation(function) that maps a lambda calculus expression to a set
@@ -789,9 +869,9 @@ of \(\rightarrow_n\).</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline34" class="outline-3">
-<h3 id="orgheadline34">Normal Form</h3>
-<div class="outline-text-3" id="text-orgheadline34">
+<div id="outline-container-orgc1d7f5a" class="outline-3">
+<h3 id="orgc1d7f5a">Normal Form</h3>
+<div class="outline-text-3" id="text-orgc1d7f5a">
 <p>
 An expression is in normal form if it cann't be reduced by
 \(\rightarrow_n^\beta\) or \(\rightarrow_n^\eta\).
@@ -809,9 +889,9 @@ don't have normal form.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline35" class="outline-3">
-<h3 id="orgheadline35">Evaluation Strategy</h3>
-<div class="outline-text-3" id="text-orgheadline35">
+<div id="outline-container-orgacce698" class="outline-3">
+<h3 id="orgacce698">Evaluation Strategy</h3>
+<div class="outline-text-3" id="text-orgacce698">
 <ol class="org-ol">
 <li>full beta reduction: Any redex may be reduced at any time.</li>
 <li>Normal Order Strategy: The leftmoast outermost is always reduced
@@ -824,12 +904,12 @@ to a value.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline40" class="outline-3">
-<h3 id="orgheadline40">Church Encode</h3>
-<div class="outline-text-3" id="text-orgheadline40">
-</div><div id="outline-container-orgheadline36" class="outline-4">
-<h4 id="orgheadline36">boolean</h4>
-<div class="outline-text-4" id="text-orgheadline36">
+<div id="outline-container-orgb311516" class="outline-3">
+<h3 id="orgb311516">Church Encode</h3>
+<div class="outline-text-3" id="text-orgb311516">
+</div><div id="outline-container-org9a9653d" class="outline-4">
+<h4 id="org9a9653d">boolean</h4>
+<div class="outline-text-4" id="text-org9a9653d">
 \begin{eqnarray*}
   true &=& \lambda t. \lambda f.t   \\
   false &=& \lambda t.\lambda f.f    \\
@@ -845,9 +925,9 @@ lambda calculus is call by name. so ``if'' can be implemented as a function.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline37" class="outline-4">
-<h4 id="orgheadline37">pair</h4>
-<div class="outline-text-4" id="text-orgheadline37">
+<div id="outline-container-org01737e1" class="outline-4">
+<h4 id="org01737e1">pair</h4>
+<div class="outline-text-4" id="text-org01737e1">
 \begin{eqnarray*}
   mkpair &=& \lambda m.\lambda n. \lambda b. b\ m\ n   \\
   fst &=& \lambda p. p \ true   \\
@@ -859,9 +939,9 @@ b is true or false
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline38" class="outline-4">
-<h4 id="orgheadline38">number</h4>
-<div class="outline-text-4" id="text-orgheadline38">
+<div id="outline-container-org380c7be" class="outline-4">
+<h4 id="org380c7be">number</h4>
+<div class="outline-text-4" id="text-org380c7be">
 \begin{eqnarray*}
   zero &=& \lambda s.\lambda z. z     \\
   one &=& \lambda s.\lambda z.s\ z     \\
@@ -884,9 +964,9 @@ b is true or false
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline39" class="outline-4">
-<h4 id="orgheadline39">list</h4>
-<div class="outline-text-4" id="text-orgheadline39">
+<div id="outline-container-org83826bb" class="outline-4">
+<h4 id="org83826bb">list</h4>
+<div class="outline-text-4" id="text-org83826bb">
 \begin{eqnarray*}
   [x, y, z] &=& \lambda c.\lambda n. (c\ x\ (c\ y\ (c\ z\ n)))         \\
   nil &=& \lambda c.\lambda n. n                       \\
@@ -902,9 +982,9 @@ b is true or false
 </div>
 </div>
 
-<div id="outline-container-orgheadline41" class="outline-3">
-<h3 id="orgheadline41">Y Combinator</h3>
-<div class="outline-text-3" id="text-orgheadline41">
+<div id="outline-container-orga2e8cb6" class="outline-3">
+<h3 id="orga2e8cb6">Y Combinator</h3>
+<div class="outline-text-3" id="text-orga2e8cb6">
 <p>
 假设要在lambda calculus中构造递归函数mul,那么最直观的想法就是:
 </p>
@@ -968,33 +1048,38 @@ b is true or false
 <p>
 这是一个Y combinator的推导过程(slideshare需翻墙):
 </p>
-<iframe src="http://www.slideshare.net/slideshow/embed_code/12319464"
+<div class="HTML">
+<p>
+&lt;iframe src="<a href="http://www.slideshare.net/slideshow/embed_code/12319464">http://www.slideshare.net/slideshow/embed_code/12319464</a>"
 width="427" height="356" frameborder="0" marginwidth="0" marginheight="0"
 scrolling="no" style="border:1px solid #CCC;border-width:1px 1px
-0;margin-bottom:5px" allowfullscreen> </iframe> <div
-style="margin-bottom:5px"> <strong> <a
-href="https://www.slideshare.net/yinwang0/reinventing-the-ycombinator"
-title="Reinventing the Y combinator" target="_blank">Reinventing the Y
-combinator</a> </strong> from <strong><a
-href="http://www.slideshare.net/yinwang0" target="_blank">Ian
-Wang</a></strong> </div>
+0;margin-bottom:5px" allowfullscreen&gt; &lt;/iframe&gt; &lt;div
+style="margin-bottom:5px"&gt; &lt;strong&gt; &lt;a
+href="<a href="https://www.slideshare.net/yinwang0/reinventing-the-ycombinator">https://www.slideshare.net/yinwang0/reinventing-the-ycombinator</a>"
+title="Reinventing the Y combinator" target="<sub>blank</sub>"&gt;Reinventing the Y
+combinator&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a
+href="<a href="http://www.slideshare.net/yinwang0">http://www.slideshare.net/yinwang0</a>" target="<sub>blank</sub>"&gt;Ian
+Wang&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
+</p>
+
 </div>
 </div>
-<div id="outline-container-orgheadline44" class="outline-3">
-<h3 id="orgheadline44">Theorems</h3>
-<div class="outline-text-3" id="text-orgheadline44">
-</div><div id="outline-container-orgheadline42" class="outline-4">
-<h4 id="orgheadline42">Church-Rosser for =<sub>n</sub></h4>
-<div class="outline-text-4" id="text-orgheadline42">
+</div>
+<div id="outline-container-orgadd2a57" class="outline-3">
+<h3 id="orgadd2a57">Theorems</h3>
+<div class="outline-text-3" id="text-orgadd2a57">
+</div><div id="outline-container-org3f6b264" class="outline-4">
+<h4 id="org3f6b264">Church-Rosser for =<sub>n</sub></h4>
+<div class="outline-text-4" id="text-org3f6b264">
 <p>
 if M =<sub>n</sub> N, then there exists an L such that \(M \twoheadrightarrow_n L\) and
 \(N \twoheadrightarrow_n L\).
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline43" class="outline-4">
-<h4 id="orgheadline43">Diamond Property for →→<sub>n</sub></h4>
-<div class="outline-text-4" id="text-orgheadline43">
+<div id="outline-container-org2515884" class="outline-4">
+<h4 id="org2515884">Diamond Property for →→<sub>n</sub></h4>
+<div class="outline-text-4" id="text-org2515884">
 <p>
 if \(L \twoheadrightarrow_n M\) and \(L \twoheadrightarrow_n N\) then there
 exists an expression L1 such that \(M \twoheadrightarrow_n L1\) and \(N
@@ -1010,18 +1095,18 @@ exists an expression L1 such that \(M \twoheadrightarrow_n L1\) and \(N
 </div>
 </div>
 
-<div id="outline-container-orgheadline46" class="outline-2">
-<h2 id="orgheadline46">ISWIM</h2>
-<div class="outline-text-2" id="text-orgheadline46">
+<div id="outline-container-orgb6830f1" class="outline-2">
+<h2 id="orgb6830f1">ISWIM</h2>
+<div class="outline-text-2" id="text-orgb6830f1">
 <p>
 The difference between ISWIM and lambda calculus is that ISWIM uses Call By
 Value evaluation strategy and it also contains some constants and primitive
 operations.
 </p>
 </div>
-<div id="outline-container-orgheadline47" class="outline-3">
-<h3 id="orgheadline47">terms</h3>
-<div class="outline-text-3" id="text-orgheadline47">
+<div id="outline-container-orgd9b43b4" class="outline-3">
+<h3 id="orgd9b43b4">terms</h3>
+<div class="outline-text-3" id="text-orgd9b43b4">
 \begin{eqnarray*}
     M, N, L, K  &=&  X      \\
                 &|&  (\lambda X.M )  \\
@@ -1035,9 +1120,9 @@ operations.
 </div>
 </div>
 
-<div id="outline-container-orgheadline48" class="outline-3">
-<h3 id="orgheadline48">Values</h3>
-<div class="outline-text-3" id="text-orgheadline48">
+<div id="outline-container-orga27868c" class="outline-3">
+<h3 id="orga27868c">Values</h3>
+<div class="outline-text-3" id="text-orga27868c">
 \begin{eqnarray*}
     V,U,W   &=&  b                     &\textrm{;constant}  \\
             &|&  X                     &\textrm{;variable}  \\
@@ -1047,9 +1132,9 @@ operations.
 </div>
 </div>
 
-<div id="outline-container-orgheadline49" class="outline-2">
-<h2 id="orgheadline49">Standard reduction</h2>
-<div class="outline-text-2" id="text-orgheadline49">
+<div id="outline-container-orge49e4ad" class="outline-2">
+<h2 id="orge49e4ad">Standard reduction</h2>
+<div class="outline-text-2" id="text-orge49e4ad">
 <ol class="org-ol">
 <li>If the expression is an application and all components are values, then,
 if the expression is a redex, it is the next redex to be reduced; if not,
@@ -1060,12 +1145,12 @@ a redex in there.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline51" class="outline-2">
-<h2 id="orgheadline51">Machines</h2>
-<div class="outline-text-2" id="text-orgheadline51">
-</div><div id="outline-container-orgheadline50" class="outline-3">
-<h3 id="orgheadline50">CC Machine</h3>
-<div class="outline-text-3" id="text-orgheadline50">
+<div id="outline-container-org13a3098" class="outline-2">
+<h2 id="org13a3098">Machines</h2>
+<div class="outline-text-2" id="text-org13a3098">
+</div><div id="outline-container-org90d671e" class="outline-3">
+<h3 id="org90d671e">CC Machine</h3>
+<div class="outline-text-3" id="text-org90d671e">
 \begin{eqnarray*}
   \left\langle \left( M N \right), E \right\rangle  &
   \mapsto_{cc} & \left\langle M, E \left[ \left( \left[  \right] N

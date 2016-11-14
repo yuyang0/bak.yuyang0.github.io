@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:09 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>python的“缺点”</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="python defect" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="python defect" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -176,35 +261,34 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">类型系统</a></li>
-<li><a href="#orgheadline2">缩进</a></li>
-<li><a href="#orgheadline3">变量的定义与赋值</a>
+<li><a href="#org4408531">类型系统</a></li>
+<li><a href="#org060464e">缩进</a></li>
+<li><a href="#org4ed4f4c">变量的定义与赋值</a>
 <ul>
-<li><a href="#orgheadline9">基本概念</a>
+<li><a href="#orgab0ea0c">基本概念</a>
 <ul>
-<li><a href="#orgheadline4">环境（environment）</a></li>
-<li><a href="#orgheadline5">声明</a></li>
-<li><a href="#orgheadline6">赋值</a></li>
-<li><a href="#orgheadline7">作用域</a></li>
-<li><a href="#orgheadline8">python的作用域规则</a></li>
+<li><a href="#org7db506f">环境（environment）</a></li>
+<li><a href="#orgdd6401c">声明</a></li>
+<li><a href="#org5eeec9b">赋值</a></li>
+<li><a href="#org2332431">作用域</a></li>
+<li><a href="#org700b239">python的作用域规则</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline10">python的设计失误</a></li>
+<li><a href="#org666c561">python的设计失误</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline11">GIL</a></li>
+<li><a href="#org15d36f8">GIL</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">类型系统</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-org4408531" class="outline-2">
+<h2 id="org4408531">类型系统</h2>
+<div class="outline-text-2" id="text-org4408531">
 <p>
 python是一个动态类型的语言，它只能进行动态类型检查，所谓动态类型检查，实际就
 是说，python只有在运行时会进行类型检查,比如说这样的代码：
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">add1</span><span style="color: #DCDCCC;">(</span>x<span style="color: #DCDCCC;">)</span>:
     <span style="color: #F0DFAF; font-weight: bold;">return</span> x + <span style="color: #BFEBBF;">1</span>
 
@@ -249,7 +333,6 @@ pycharm我也可以很轻松的让它出错。</li>
 说python允许一个变量绑定到不同类型的值，比如下面的代码：
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #DFAF8F;">aa</span> = <span style="color: #BFEBBF;">1</span>
 <span style="color: #DFAF8F;">aa</span> = <span style="color: #CC9393;">'hello'</span>
 </pre>
@@ -263,9 +346,9 @@ pycharm我也可以很轻松的让它出错。</li>
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">缩进</h2>
-<div class="outline-text-2" id="text-orgheadline2">
+<div id="outline-container-org060464e" class="outline-2">
+<h2 id="org060464e">缩进</h2>
+<div class="outline-text-2" id="text-org060464e">
 <p>
 python强制缩进是一个明智的选择，它使得代码的可读性有了质的飞跃，但是它使用空
 格这样的不可见字符来标示一个块的结束，我认为不是什么很好的选择。ruby社区有一
@@ -278,7 +361,6 @@ python强制缩进是一个明智的选择，它使得代码的可读性有了�
 <b>更容易出错</b>
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">sum</span><span style="color: #DCDCCC;">(</span>ls<span style="color: #DCDCCC;">)</span>:
     <span style="color: #DFAF8F;">ret</span> = <span style="color: #BFEBBF;">0</span>
     <span style="color: #F0DFAF; font-weight: bold;">for</span> i <span style="color: #F0DFAF; font-weight: bold;">in</span> ls:
@@ -313,7 +395,6 @@ python这类语言的代码的, 这不是因为编辑器不够强大，而是本
 的例子，比如python的列表解析：
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #DCDCCC;">[</span>i+<span style="color: #BFEBBF;">1</span> <span style="color: #F0DFAF; font-weight: bold;">for</span> i <span style="color: #F0DFAF; font-weight: bold;">in</span> <span style="color: #DCDCCC; font-weight: bold;">range</span><span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">10</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">]</span>
 <span style="color: #DCDCCC; font-weight: bold;">map</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> i: i+<span style="color: #BFEBBF;">1</span>, <span style="color: #DCDCCC; font-weight: bold;">range</span><span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">10</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
@@ -332,19 +413,19 @@ python这类语言的代码的, 这不是因为编辑器不够强大，而是本
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">变量的定义与赋值</h2>
-<div class="outline-text-2" id="text-orgheadline3">
+<div id="outline-container-org4ed4f4c" class="outline-2">
+<h2 id="org4ed4f4c">变量的定义与赋值</h2>
+<div class="outline-text-2" id="text-org4ed4f4c">
 <p>
 python中不区分变量的定义与赋值，这也是一个设计失误
 </p>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">基本概念</h3>
-<div class="outline-text-3" id="text-orgheadline9">
-</div><div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4">环境（environment）</h4>
-<div class="outline-text-4" id="text-orgheadline4">
+<div id="outline-container-orgab0ea0c" class="outline-3">
+<h3 id="orgab0ea0c">基本概念</h3>
+<div class="outline-text-3" id="text-orgab0ea0c">
+</div><div id="outline-container-org7db506f" class="outline-4">
+<h4 id="org7db506f">环境（environment）</h4>
+<div class="outline-text-4" id="text-org7db506f">
 <p>
 如果你写过解释器，那么你一定遇到过这个东西，简单的说环境就是用来跟踪在程序
  的执行过程中，每一个标识符都绑定到什么值，所以从逻辑上它就是一个
@@ -352,7 +433,6 @@ python中不区分变量的定义与赋值，这也是一个设计失误
  下面来看一个简单的实现
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Scope</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__init__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, parent=<span style="color: #BFEBBF;">None</span><span style="color: #DCDCCC;">)</span>:
         <span style="color: #F0DFAF; font-weight: bold;">self</span>.table = <span style="color: #DCDCCC;">{}</span>
@@ -389,43 +469,42 @@ python中不区分变量的定义与赋值，这也是一个设计失误
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-4">
-<h4 id="orgheadline5">声明</h4>
-<div class="outline-text-4" id="text-orgheadline5">
+<div id="outline-container-orgdd6401c" class="outline-4">
+<h4 id="orgdd6401c">声明</h4>
+<div class="outline-text-4" id="text-orgdd6401c">
 <p>
 实际就是在当前变量所在作用域创建一个key/value对, 注意实际上是调用=bind= 方
 法. 前提是该变量没有在当前作用域中绑定.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6">赋值</h4>
-<div class="outline-text-4" id="text-orgheadline6">
+<div id="outline-container-org5eeec9b" class="outline-4">
+<h4 id="org5eeec9b">赋值</h4>
+<div class="outline-text-4" id="text-org5eeec9b">
 <p>
 改变作用域中变量的值,如果当前作用域中没有该变量,那么就父作用域中找,
  如果该变量不存在那么出错. 实际上该动作就是 <code>set</code> 方法.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7">作用域</h4>
-<div class="outline-text-4" id="text-orgheadline7">
+<div id="outline-container-org2332431" class="outline-4">
+<h4 id="org2332431">作用域</h4>
+<div class="outline-text-4" id="text-org2332431">
 <p>
 每当进入一个新的作用域，那么解释器就会创建一个scope对象，该对象的
  parent指针会指向当前的scope对象，从而构成一个链式的作用域。
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-4">
-<h4 id="orgheadline8">python的作用域规则</h4>
-<div class="outline-text-4" id="text-orgheadline8">
+<div id="outline-container-org700b239" class="outline-4">
+<h4 id="org700b239">python的作用域规则</h4>
+<div class="outline-text-4" id="text-org700b239">
 <p>
 python有一个内置作用域，这个作用域的所有绑定是在任何地方都可见的。python的内
 置函数以及内置异常都是在内置作用域中. 可以使用如下代码来查看内置作用域有哪些
 绑定
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">import</span> __builtin__
 <span style="color: #F0DFAF; font-weight: bold;">print</span> <span style="color: #DCDCCC; font-weight: bold;">dir</span><span style="color: #DCDCCC;">(</span>__builtin__<span style="color: #DCDCCC;">)</span>
 </pre>
@@ -437,9 +516,9 @@ python有一个内置作用域，这个作用域的所有绑定是在任何地�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">python的设计失误</h3>
-<div class="outline-text-3" id="text-orgheadline10">
+<div id="outline-container-org666c561" class="outline-3">
+<h3 id="org666c561">python的设计失误</h3>
+<div class="outline-text-3" id="text-org666c561">
 <p>
 python有一个巨大的设计失误就是没有明确的区分变量的 <b>声明</b> 与 <b>赋值</b>,也就是说
 python的"="有两种语义：当前作用域不存在该变量时，它会在作用域中创建该绑定，如果
@@ -454,7 +533,6 @@ python的"="有两种语义：当前作用域不存在该变量时，它会在�
 这样的代码：
 </p>
 <div class="org-src-container">
-
 <pre class="src src-javascript"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">succ</span> = <span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #BFEBBF;">(){</span>
     <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">i</span> = <span style="color: #BFEBBF;">0</span>;
     <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">inner</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #D0BF8F;">(){</span>
@@ -469,7 +547,6 @@ python的"="有两种语义：当前作用域不存在该变量时，它会在�
 那我们如何用python来实现呢？你可能会很自然的写出这样的代码：
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">temp</span><span style="color: #DCDCCC;">()</span>:
     <span style="color: #DFAF8F;">i</span> = <span style="color: #BFEBBF;">0</span>
 
@@ -493,9 +570,9 @@ assignment). 这其中有一些很细微的区别. 在inner中i=i+1会在当前�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-2">
-<h2 id="orgheadline11">GIL</h2>
-<div class="outline-text-2" id="text-orgheadline11">
+<div id="outline-container-org15d36f8" class="outline-2">
+<h2 id="org15d36f8">GIL</h2>
+<div class="outline-text-2" id="text-org15d36f8">
 <p>
 这是python被广为诟病的一个东西，与其说它是语言本身的问题，还不如说它是官方的C
 语言实现的问题，JPython以及pypy都没有这个问题。简单的说GIL是一个全局锁，GIL的

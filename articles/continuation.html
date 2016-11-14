@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-06-09 Thu 21:16 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:09 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Continuation</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="continuation" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="continuation" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -176,24 +261,24 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">continuation</a>
+<li><a href="#org008f2db">continuation</a>
 <ul>
-<li><a href="#orgheadline2">call/cc, let/cc</a></li>
-<li><a href="#orgheadline3">应用</a></li>
+<li><a href="#org6234c76">call/cc, let/cc</a></li>
+<li><a href="#orgd7d70bb">应用</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline4">CPS</a>
+<li><a href="#org549f69d">CPS</a>
 <ul>
-<li><a href="#orgheadline5">自动CPS转换</a></li>
-<li><a href="#orgheadline6">CPS的应用</a></li>
+<li><a href="#orgdf0d8a6">自动CPS转换</a></li>
+<li><a href="#org49c100b">CPS的应用</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">continuation</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-org008f2db" class="outline-2">
+<h2 id="org008f2db">continuation</h2>
+<div class="outline-text-2" id="text-org008f2db">
 <p>
 这是一份关于continuation的<a href="http://www.cs.unm.edu/~williams/cs491/appcont.pdf">文档</a>, 将continuation讲的非常清楚,我简要的总结下我的理解:
 先说几个概念与符号:
@@ -209,7 +294,6 @@ procedure就是 <code>k^</code> , 还有 <code>lambda</code> 是用来构建普�
 部分)下面举个例子:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">k</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>x y<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span>+ x y<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
@@ -229,7 +313,6 @@ procedure就是 <code>k^</code> , 还有 <code>lambda</code> 是用来构建普�
 scheme的 call/cc
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>+ <span style="color: #BFEBBF;">2</span> <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">call/cc</span>
       <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #93E0E3;">(</span>k^<span style="color: #93E0E3;">)</span>
         <span style="color: #93E0E3;">(</span>* <span style="color: #BFEBBF;">5</span> <span style="color: #9FC59F;">(</span>k^ <span style="color: #BFEBBF;">4</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
@@ -241,7 +324,6 @@ scheme的 call/cc
 <code>continuation</code>,在上例中,它的定义可以大致认为是这样的:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>lambda^ <span style="color: #BFEBBF;">(</span>v<span style="color: #BFEBBF;">)</span>
          <span style="color: #BFEBBF;">(</span>+ <span style="color: #BFEBBF;">2</span> v<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
@@ -250,7 +332,6 @@ scheme的 call/cc
 因为上例直接返回最顶层,所以可以直接这样
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #BFEBBF;">(</span>v<span style="color: #BFEBBF;">)</span>
   <span style="color: #BFEBBF;">(</span>+ <span style="color: #BFEBBF;">2</span> v<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
@@ -269,14 +350,13 @@ data context.</li>
 我们就说q是一个尾调用, 尾调用是不会增加栈的, 因为它本质上就是一个goto语句.</li>
 </ol>
 </div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">call/cc, let/cc</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+<div id="outline-container-org6234c76" class="outline-3">
+<h3 id="org6234c76">call/cc, let/cc</h3>
+<div class="outline-text-3" id="text-org6234c76">
 <p>
-<code>call/cc</code> <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>是 <code>call-with-current-continuation</code> 的缩写. 它的基本形式是这样的:
+<code>call/cc</code> [1]是 <code>call-with-current-continuation</code> 的缩写. 它的基本形式是这样的:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">call/cc</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>k<span style="color: #D0BF8F;">)</span>                           <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">k is the continuation</span>
     <span style="color: #D0BF8F;">(</span>* <span style="color: #BFEBBF;">5</span> <span style="color: #93E0E3;">(</span>k <span style="color: #BFEBBF;">4</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
@@ -287,7 +367,6 @@ data context.</li>
 <code>let/cc</code> 可以看做是 <code>call/cc</code> 的一种简写:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>let/cc k                               <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">k is the continuation</span>
         body<span style="color: #DCDCCC;">)</span>
 <span style="color: #5F7F5F;">;;; </span><span style="color: #7F9F7F;">identical</span>
@@ -303,7 +382,6 @@ data context.</li>
 前面的 (* 5), 所以不要以为是返回 20. 下面在举几个例子:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">call/cc</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>k<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span>* <span style="color: #BFEBBF;">5</span> <span style="color: #BFEBBF;">4</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>                           <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">return 20</span>
@@ -325,7 +403,6 @@ data context.</li>
 再来看一个比较不好懂的例子
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">call/cc</span> <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>k<span style="color: #9FC59F;">)</span> k<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
   <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #93E0E3;">(</span>x<span style="color: #93E0E3;">)</span> x<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span> <span style="color: #CC9393;">"HEY!"</span><span style="color: #DCDCCC;">)</span>
 </pre>
@@ -336,7 +413,6 @@ data context.</li>
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #BFEBBF;">(</span>val<span style="color: #BFEBBF;">)</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">(</span>val
     <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>x<span style="color: #9FC59F;">)</span> x<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span> <span style="color: #CC9393;">"HEY!"</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
@@ -349,15 +425,14 @@ escape procedure,所以上面的表达式又等价于 <code>(cont (lambda(x) x))
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">应用</h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-orgd7d70bb" class="outline-3">
+<h3 id="orgd7d70bb">应用</h3>
+<div class="outline-text-3" id="text-orgd7d70bb">
 <ol class="org-ol">
 <li><p>
 BREAK与RESUME, 通过BREAK来暂停, 通过RESUME来从暂停的位置启动.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">BREAK</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>message<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">call/cc</span> <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>k^<span style="color: #9FC59F;">)</span>
@@ -377,7 +452,6 @@ exceptions
 下面是一个示例代码:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #BFEBBF;">(</span><span style="color: #93E0E3;">always-fail</span> n<span style="color: #BFEBBF;">)</span>
     <span style="color: #BFEBBF;">(</span>with-handlers <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">[</span>even? <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #94BFF3;">(</span>v<span style="color: #94BFF3;">)</span> 'even<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span>
                     <span style="color: #93E0E3;">[</span>positive? <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #94BFF3;">(</span>v<span style="color: #94BFF3;">)</span> 'positive<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span><span style="color: #D0BF8F;">)</span>
@@ -389,7 +463,6 @@ exceptions
 let/cc中, 调用raise实际就是调用continuation
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">convert</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>exp<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span>match exp
@@ -417,7 +490,6 @@ let/cc中, 调用raise实际就是调用continuation
 如下面的代码:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>convert '<span style="color: #BFEBBF;">(</span>with-handlers <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">[</span>even? <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #94BFF3;">(</span>v<span style="color: #94BFF3;">)</span> 'even<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span>
                           <span style="color: #93E0E3;">[</span>positive? <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #94BFF3;">(</span>v<span style="color: #94BFF3;">)</span> 'positive<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span><span style="color: #D0BF8F;">)</span>
                          <span style="color: #BFEBBF;">1</span>
@@ -439,9 +511,9 @@ let/cc中, 调用raise实际就是调用continuation
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4">CPS</h2>
-<div class="outline-text-2" id="text-orgheadline4">
+<div id="outline-container-org549f69d" class="outline-2">
+<h2 id="org549f69d">CPS</h2>
+<div class="outline-text-2" id="text-org549f69d">
 <p>
 <a href="http://en.wikipedia.org/wiki/Continuation-passing_style">CPS</a>(continuation passing style). 核心就是每一个函数都会带一个额外的参数
 (continuation),前面说了continuation代表的是the rest of computation, 因此这
@@ -449,14 +521,13 @@ let/cc中, 调用raise实际就是调用continuation
 方式编写的函数最后都会使用函数的计算结果来调用你传递的那个continuation.
 </p>
 </div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">自动CPS转换</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-orgdf0d8a6" class="outline-3">
+<h3 id="orgdf0d8a6">自动CPS转换</h3>
+<div class="outline-text-3" id="text-orgdf0d8a6">
 <p>
 一个自动进行CPS转换的宏
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-syntax</span> <span style="color: #DFAF8F;">CPS</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">syntax-rules</span> <span style="color: #D0BF8F;">()</span>
     <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_ <span style="color: #9FC59F;">(</span>+ e1 e2<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>          <span style="color: #5F7F5F;">; </span><span style="color: #7F9F7F;">other binary operators(- * / etc) are similar to +</span>
@@ -507,7 +578,6 @@ continuation</li>
 转换:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #BFEBBF;">(</span>k^<span style="color: #BFEBBF;">)</span>
   <span style="color: #BFEBBF;">(</span>k^ <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #93E0E3;">(</span>x<span style="color: #93E0E3;">)</span> x<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
@@ -517,7 +587,6 @@ continuation</li>
 以:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #BFEBBF;">(</span>k^<span style="color: #BFEBBF;">)</span>
   <span style="color: #BFEBBF;">(</span>k^ <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #93E0E3;">(</span>x dyn-k<span style="color: #93E0E3;">)</span>
         <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #94BFF3;">(</span>k<span style="color: #94BFF3;">)</span> <span style="color: #94BFF3;">(</span>k x<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
@@ -535,9 +604,9 @@ continuation</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">CPS的应用</h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-org49c100b" class="outline-3">
+<h3 id="org49c100b">CPS的应用</h3>
+<div class="outline-text-3" id="text-org49c100b">
 <p>
 如果将一个解释器转换为CPS形式, 那么就可以很容易的实现像 scheme中call/cc,
 let/cc这样可以获得当前continuation的结构, 因为解释器的continuation代表的解
@@ -548,17 +617,7 @@ continuation.
 </div>
 </div>
 </div>
-<div id="footnotes">
-<h2 class="footnotes">Footnotes: </h2>
-<div id="text-footnotes">
-
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
-<a href="https://www.wikiwand.com/en/Call-with-current-continuation">wikipedia: Call-with-current-continuation</a>
-</p></div></div>
-
-
 </div>
-</div></div>
 <div id="postamble" class="status">
 <div id="disqus_comment">
 <div id="disqus_thread"></div>

@@ -6,10 +6,9 @@
 <!-- 2016-11-14 Mon 23:08 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>SICP笔记</title>
+<title></title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Yu Yang" />
-<meta name="keywords" content="SICP scheme" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -256,223 +255,81 @@ for the JavaScript code in this tag.
     </div>
 </div>
 <div id="content">
-<h1 class="title">SICP笔记</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge4604b5">Chp 1</a>
+<li><a href="#org3d74678">IT术语</a>
 <ul>
-<li><a href="#org0b0bf47">Some Concepts</a></li>
+<li><a href="#org7a06f10">透明的（transparent）</a></li>
+<li><a href="#orgd2413fc">Expression</a></li>
+<li><a href="#orgd5cfbb9">Statement</a></li>
 </ul>
 </li>
-<li><a href="#org836542e">Chp2 (Data Abstraction)</a>
-<ul>
-<li><a href="#org4c58338">Multiple Representation(2.4)</a></li>
-<li><a href="#orgf4f3a34">primitive element</a></li>
-<li><a href="#org5b1ab53">some example in the book</a>
-<ul>
-<li><a href="#org6a94e1a">GCD (greatest common divisors)</a></li>
-<li><a href="#orgc3cd29a">素数检查</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgab16c77">Chp3 (Modularity, Objects, and State)</a>
-<ul>
-<li><a href="#orgb24d93e">object vs stream</a>
-<ul>
-<li><a href="#orgcf9c900">object</a></li>
-<li><a href="#orge627d61">stream</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org677adfe">Chp4</a></li>
+<li><a href="#orgbe4d93d">容量估计</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge4604b5" class="outline-2">
-<h2 id="orge4604b5">Chp 1</h2>
-<div class="outline-text-2" id="text-orge4604b5">
-<ol class="org-ol">
-<li>a programming language must have some primitive procedures and primitive
-data, for example mathmatics operations(+ - * / and so on),and the
-numbers(primitive data).</li>
-<li>Nesting of combinations provides a means of combining operations.</li>
-<li>Definitions that associate names with values provide a limited means of
-abstraction</li>
-</ol>
+<div id="outline-container-org3d74678" class="outline-2">
+<h2 id="org3d74678">IT术语</h2>
+<div class="outline-text-2" id="text-org3d74678">
+</div><div id="outline-container-org7a06f10" class="outline-3">
+<h3 id="org7a06f10">透明的（transparent）</h3>
+<div class="outline-text-3" id="text-org7a06f10">
 <p>
-提供基本的数据与函数，然后通过嵌套来构建组合式以及复合函数，同时为复合
-函数或者组合式命名也给抽象带来了方便。
+透而不见，比如玻璃，所以说什么东西是透明的就是说其内部不可见，可以无视其实现，
+而生活中一般的意思是对内部一目了然，如透明度
 </p>
 </div>
-<div id="outline-container-org0b0bf47" class="outline-3">
-<h3 id="org0b0bf47">Some Concepts</h3>
-<div class="outline-text-3" id="text-org0b0bf47">
-<ul class="org-ul">
-<li>正则序(CBN)：在计算过程中先代换，完全代换后在一次求值</li>
-<li>应用序(CBV)：在计算过程中先求值在代换</li>
-<li>二者的比较：正则序相对与应用序一般会有较多的重复运算，因为过程体中可以多
-次引用形参，那么正则序代换后就会多次求值，而应用序则是先求值在代换所以没
-有这个问题，对于应用序，每个过程的形式参数都会先求值在进入过程计算</li>
-<li>recursive procedure:语法上的递归</li>
-<li>recursive process:计算过程的递归</li>
-</ul>
+</div>
+<div id="outline-container-orgd2413fc" class="outline-3">
+<h3 id="orgd2413fc">Expression</h3>
+<div class="outline-text-3" id="text-orgd2413fc">
 <p>
-语法上递归的函数可能表示的是一个递归计算过程，如果程序设计语言支持尾递归优
-化，那么可以获得和循环相同的效率，本质上说，循环结构都只是语法糖衣，scheme
-支持尾递归优化，C不支持尾递归优化。
+表达式一般会返回值, 但是不会有副作用(<a href="https://en.wikipedia.org/wiki/Side_effect_%28computer_science%29">side effect</a>), 表达式一般也会包含变量,常
+量,操作符,函数
+</p>
+</div>
+</div>
+<div id="outline-container-orgd5cfbb9" class="outline-3">
+<h3 id="orgd5cfbb9">Statement</h3>
+<div class="outline-text-3" id="text-orgd5cfbb9">
+<p>
+语句一般是不返回值的,他只会产生副作用(<a href="https://en.wikipedia.org/wiki/Side_effect_%28computer_science%29">side effect</a>), 常见的语句有
+Simple statements
 </p>
 <ul class="org-ul">
-<li>高阶函数： 函数可以作为参数传递，可以作为结果返回。</li>
+<li>assignment: A:= A + 5</li>
+<li>call: CLEARSCREEN()</li>
+<li>return: return 5;</li>
+<li>goto: goto 5</li>
+<li>assertion: assert(ptr != NULL);</li>
 </ul>
-</div>
-</div>
-</div>
-<div id="outline-container-org836542e" class="outline-2">
-<h2 id="org836542e">Chp2 (Data Abstraction)</h2>
-<div class="outline-text-2" id="text-org836542e">
-<p>
-当要构建一个抽象数据类型时,先应该想明白,数据类型应该提供哪些接口,这一般就是一
-些procedure,这些procedure根据作用不同可以分为三类:
-</p>
-<ol class="org-ol">
-<li>Constructor: 用来构建该数据类型</li>
-<li>extractor: 用来从该数据类型中抽取信息</li>
-<li>predictor: 用来判断该数据类型的变种,比如说你要构建lambda calculus 表达式的
-数据抽象,那么该数据类型要么是一个identifier,要么是一个 (lambda(x) body) 表
-达式,那么你就需要提供两个predictor(identifer?, lambda-exp?)来判断到底属于
-哪一种变种.</li>
-</ol>
-<p>
-对于有理数而言:
-</p>
-<ul class="org-ul">
-<li>make-rat : constructor 因为它是通过两个数来构建一个有理数</li>
-<li>numer: extractor 它是从一个有理数中抽取出分子这个信息</li>
-<li>denum: 而extractor 它是从一个有理数中抽取出分母这个信息</li>
-</ul>
-<p>
-因为只有一个变种,所以没有predictor
-</p>
-</div>
-<div id="outline-container-org4c58338" class="outline-3">
-<h3 id="org4c58338">Multiple Representation(2.4)</h3>
-<div class="outline-text-3" id="text-org4c58338">
-<p>
-when multiple representations of a data type needs to coexist in a
-system. there are three ways to do this.
-</p>
-<ol class="org-ol">
-<li>Tagged Data : Every representation use a unique tag</li>
-<li>Data-Directed: Use a two dimensions(operations X type) table to dispatch
-the operation</li>
-<li>Message-Passing: Use the high order procedure to represent the data
-type.</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-orgf4f3a34" class="outline-3">
-<h3 id="orgf4f3a34">primitive element</h3>
-<div class="outline-text-3" id="text-orgf4f3a34">
-<ul class="org-ul">
-<li>Numbers and arithmetic operations are primitive data and procedures.</li>
-<li>Nesting of combinations provides a means of combining operations.</li>
-<li>Definitions that associate names with values provide a limited means of abstraction.</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-org5b1ab53" class="outline-3">
-<h3 id="org5b1ab53">some example in the book</h3>
-<div class="outline-text-3" id="text-org5b1ab53">
-</div><div id="outline-container-org6a94e1a" class="outline-4">
-<h4 id="org6a94e1a">GCD (greatest common divisors)</h4>
-<div class="outline-text-4" id="text-org6a94e1a">
-<p>
-gcd(a, b) = gcd (b, r)        (r = a % b)
-</p>
 
 <p>
-证明：设a&gt;b且 a = kb + r 其中k = a/b, r = a % b都为整数
-      若存在一个数m被a，b整除，则m也能被（kb + r）整除，又m能被kb整除，
-      所以必能被r整除
+Compound statements
 </p>
-</div>
-</div>
-<div id="outline-container-orgc3cd29a" class="outline-4">
-<h4 id="orgc3cd29a">素数检查</h4>
-<div class="outline-text-4" id="text-orgc3cd29a">
-<ol class="org-ol">
-<li>在2～sqrt(x)之间遍历，如果找到一个因子则意味着x不是素数</li>
-<li>费马小定律：
-如果n是素数，则a<sup>n</sup> % n = a % n  (a是小于n的任意正整数）</li>
-<li>通过费马小定律的检查只是素数的必要条件而不是充分条件，存在能通过所
-有费马检查但却不是素数的数，但是这种数非常罕见，一般情况下对于数n如
-果它不是素数，那么对于小于n的数中大部分不能通过费马检查，因此其概率
-大于1/2，据此就可以构造概率算法</li>
-</ol>
+<ul class="org-ul">
+<li><b>block</b> : begin integer NUMBER; WRITE('Number? '); READLN(NUMBER); A:= A*NUMBER end</li>
+<li><b>if-statement</b> : if A &gt; 3 then WRITELN(A) else WRITELN("NOT YET"); end</li>
+<li><b>switch-statement</b> : switch (c) { case 'a': alert(); break; case 'q': quit(); break; }</li>
+<li><b>while-loop</b> : while NOT EOF DO begin READLN end</li>
+<li><b>do-loop</b> : do { computation(&amp;i); } while (i &lt; 10);</li>
+<li><b>for-loop</b> : for A:=1 to 10 do WRITELN(A) end</li>
+</ul>
 </div>
 </div>
 </div>
-</div>
-
-<div id="outline-container-orgab16c77" class="outline-2">
-<h2 id="orgab16c77">Chp3 (Modularity, Objects, and State)</h2>
-<div class="outline-text-2" id="text-orgab16c77">
-<p>
-A object is said to ``have state'' if its behavior is influenced by its
-history. We can characterize an object's state by one or more <code>state
-  variables</code>, Since the states of objects in the system being modeled change
-over time, the state variables of the corresponding computational objects
-must also change.  If we choose to model the flow of time in the system by
-the elapsed time in the computer, then we must have a way to construct
-computational objects whose behavior change as our program run.
-</p>
-</div>
-<div id="outline-container-orgb24d93e" class="outline-3">
-<h3 id="orgb24d93e">object vs stream</h3>
-<div class="outline-text-3" id="text-orgb24d93e">
-</div><div id="outline-container-orgcf9c900" class="outline-4">
-<h4 id="orgcf9c900">object</h4>
-<div class="outline-text-4" id="text-orgcf9c900">
-<p>
-计算机程序在某种程度上都是为了模拟外部的物理世界,为了使程序模块化,我们可以为
-外部世界的每一个对象都构造一个计算对象,因为外部世界的对象有状态(state),所以我
-们的计算对象也就需要状态(state variable),因为外部对象的状态会随着时间的流逝而
-改变,所以我们的计算对象的状态也就需要改变,为此我们引入赋值表达式(assignment),
-但是赋值的引入会产生令人困扰的复杂性,比如它使得替换模型失效.从而需要引入环境
-模型,它使得程序必须非常注重语句的顺序,因为对象是可变的,在不同的地方你必须提供
-该对象的正确版本,这就使得顺序变得很重要
-</p>
-</div>
-</div>
-<div id="outline-container-orge627d61" class="outline-4">
-<h4 id="orge627d61">stream</h4>
-<div class="outline-text-4" id="text-orge627d61">
-<p>
-object中通过赋值来改变对象的状态,如果我们从整体上看就会发现,每一次赋值不过是
-产生了流中的一个元素,但是流作为一个整体却是不变的,这样我们就可以去掉赋值
-</p>
-</div>
-</div>
-</div>
-</div>
-<div id="outline-container-org677adfe" class="outline-2">
-<h2 id="org677adfe">Chp4</h2>
-<div class="outline-text-2" id="text-org677adfe">
-<p>
-任何一个程序都可以看做是一台抽象机器的描述,而解释器是一台特殊的机器,它能够模
-拟其它机器的行为,因此解释器可以看作是一台 <b>通用机器</b>. 现在假设用lisp实现了一
-个lisp 解释器, 那么这个解释器就可以模拟任何用lisp程序描述的机器,假设我现在给
-该解释器送入一个lisp程序,而这个lisp程序实际是一个C语言的解释器,那么原来的lisp
-解释器就可以模拟所有的用C语言描述的机器. 这里的深刻思想是: <b>任一解释器都可以
-模拟其它的解释器</b>, 因此原则上什么可以计算的概念就 <b>与语言或者计算机无关</b>. 通
-用图灵机(元图灵机)实际就是一个解释器,它可以模拟图灵机的程序, 也就是说以一个图
-灵机程序作为输入, 任何一个"有效过程" 都可以描述为图灵机的一个程序.
-</p>
+<div id="outline-container-orgbe4d93d" class="outline-2">
+<h2 id="orgbe4d93d">容量估计</h2>
+<div class="outline-text-2" id="text-orgbe4d93d">
+<ul class="org-ul">
+<li>【步骤一：评估总访问量】 -&gt; 询问业务、产品、运营</li>
+<li>【步骤二：评估平均访问量QPS】-&gt; 除以时间，一天算4w秒</li>
+<li>【步骤三：评估高峰QPS】 -&gt; 根据业务曲线图来</li>
+<li>【步骤四：评估系统、单机极限QPS】 -&gt; 压测很重要</li>
+<li>【步骤五：根据线上冗余度回答两个问题】 -&gt; 估计冗余度与线上冗余度差值</li>
+</ul>
 </div>
 </div>
 </div>

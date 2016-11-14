@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>javascript笔记</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="javascript syntax" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="javascript syntax" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -176,83 +261,83 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">javascript文档</a></li>
-<li><a href="#orgheadline9">基本类型</a>
+<li><a href="#orge56f09f">javascript文档</a></li>
+<li><a href="#orgb35033b">基本类型</a>
 <ul>
-<li><a href="#orgheadline2">type的基本常识</a></li>
-<li><a href="#orgheadline3">数字</a>
+<li><a href="#orgb7b4f1e">type的基本常识</a></li>
+<li><a href="#org7c03c99">数字</a>
 <ul>
-<li><a href="#orgheadline4">日期</a></li>
+<li><a href="#orga3f395a">日期</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline5">字符串</a>
+<li><a href="#org65bd15c">字符串</a>
 <ul>
-<li><a href="#orgheadline6">常见字符串处理函数</a></li>
+<li><a href="#org64266d6">常见字符串处理函数</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline7">bool</a></li>
-<li><a href="#orgheadline8">undefined与null</a></li>
+<li><a href="#org837e951">bool</a></li>
+<li><a href="#org65ae32f">undefined与null</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline15">正则表达式</a>
+<li><a href="#orgb5ebd92">正则表达式</a>
 <ul>
-<li><a href="#orgheadline10">Create RegExp Object</a></li>
-<li><a href="#orgheadline11">flags</a></li>
-<li><a href="#orgheadline12">group</a></li>
-<li><a href="#orgheadline13">RegExp method</a></li>
-<li><a href="#orgheadline14">String method</a></li>
+<li><a href="#orgde06d05">Create RegExp Object</a></li>
+<li><a href="#orgb585516">flags</a></li>
+<li><a href="#org26b4558">group</a></li>
+<li><a href="#org0addeb9">RegExp method</a></li>
+<li><a href="#org5d4e46d">String method</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline19">Array</a>
+<li><a href="#org156eb74">Array</a>
 <ul>
-<li><a href="#orgheadline16">定义</a></li>
-<li><a href="#orgheadline17">遍历数组</a></li>
-<li><a href="#orgheadline18">数组方法</a></li>
+<li><a href="#org9a756c6">定义</a></li>
+<li><a href="#org1678343">遍历数组</a></li>
+<li><a href="#org9e32749">数组方法</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline23">objects(对象)</a>
+<li><a href="#org967a910">objects(对象)</a>
 <ul>
-<li><a href="#orgheadline20">基本解释</a></li>
-<li><a href="#orgheadline21">原型</a></li>
-<li><a href="#orgheadline22">json</a></li>
+<li><a href="#orgaa379de">基本解释</a></li>
+<li><a href="#orgc9bedee">原型</a></li>
+<li><a href="#org65fd17c">json</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline24">control flow</a></li>
-<li><a href="#orgheadline25">function</a>
+<li><a href="#orgbcb3d72">control flow</a></li>
+<li><a href="#org779cb31">function</a>
 <ul>
-<li><a href="#orgheadline26">definition</a></li>
-<li><a href="#orgheadline31">四种调用方式</a>
+<li><a href="#org39ffd00">definition</a></li>
+<li><a href="#org12b466c">四种调用方式</a>
 <ul>
-<li><a href="#orgheadline27">method调用模式</a></li>
-<li><a href="#orgheadline28">函数调用模式</a></li>
-<li><a href="#orgheadline29">构造器调用模式(不推荐)</a></li>
-<li><a href="#orgheadline30">apply调用模式</a></li>
+<li><a href="#org834a8c3">method调用模式</a></li>
+<li><a href="#org65256de">函数调用模式</a></li>
+<li><a href="#org24854b9">构造器调用模式(不推荐)</a></li>
+<li><a href="#org90ed88c">apply调用模式</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline32">基本特性</a></li>
-<li><a href="#orgheadline33">作用域</a></li>
-<li><a href="#orgheadline34">给类型增加方法</a></li>
-<li><a href="#orgheadline35">内置的函数</a></li>
+<li><a href="#org2a3e916">基本特性</a></li>
+<li><a href="#org7fa7a1f">作用域</a></li>
+<li><a href="#org4e27cce">给类型增加方法</a></li>
+<li><a href="#org6c494d2">内置的函数</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline36">一些js技巧</a></li>
+<li><a href="#org0e529ab">一些js技巧</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">javascript文档</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-orge56f09f" class="outline-2">
+<h2 id="orge56f09f">javascript文档</h2>
+<div class="outline-text-2" id="text-orge56f09f">
 <p>
 几份不错的文档：<a href="http://bonsaiden.github.io/JavaScript-Garden/">JavaScript Garden</a> ,火狐开发者社区的js <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide?redirectlocale=en-US&amp;redirectslug=JavaScript%2FGuide">tutorial</a>
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-2">
-<h2 id="orgheadline9">基本类型</h2>
-<div class="outline-text-2" id="text-orgheadline9">
-</div><div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">type的基本常识</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+<div id="outline-container-orgb35033b" class="outline-2">
+<h2 id="orgb35033b">基本类型</h2>
+<div class="outline-text-2" id="text-orgb35033b">
+</div><div id="outline-container-orgb7b4f1e" class="outline-3">
+<h3 id="orgb7b4f1e">type的基本常识</h3>
+<div class="outline-text-3" id="text-orgb7b4f1e">
 <ol class="org-ol">
 <li>数字, 字符串, boolean, null, undefined是js的基本类型，它们不是object, 其
 它所有的值都是object, 数字, 字符串, bookean这三种类型有对应的包装对象
@@ -266,14 +351,13 @@ parseInt不同)</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">数字</h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-org7c03c99" class="outline-3">
+<h3 id="org7c03c99">数字</h3>
+<div class="outline-text-3" id="text-org7c03c99">
 <p>
 不区分整数与浮点数
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">x</span> = <span style="color: #BFEBBF;">2</span>;
 <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">x</span> = <span style="color: #BFEBBF;">2</span>.<span style="color: #BFEBBF;">22</span>;
 </pre>
@@ -282,7 +366,6 @@ parseInt不同)</li>
 有一些数学函数，用来处理数字：
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js">Math.pow<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">2</span>,<span style="color: #BFEBBF;">53</span><span style="color: #DCDCCC;">)</span>         <span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">=&gt; 9007199254740992: 2 to the power 53</span>
 Math.round<span style="color: #DCDCCC;">(</span>.<span style="color: #BFEBBF;">6</span><span style="color: #DCDCCC;">)</span>         <span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">=&gt; 1.0: round to the nearest integer</span>
 Math.ceil<span style="color: #DCDCCC;">(</span>.<span style="color: #BFEBBF;">6</span><span style="color: #DCDCCC;">)</span>         <span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">=&gt; 1.0: round up to an integer</span>
@@ -303,11 +386,10 @@ Math.exp<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">3</s
 </pre>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4">日期</h4>
-<div class="outline-text-4" id="text-orgheadline4">
+<div id="outline-container-orga3f395a" class="outline-4">
+<h4 id="orga3f395a">日期</h4>
+<div class="outline-text-4" id="text-orga3f395a">
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">then</span> = <span style="color: #F0DFAF; font-weight: bold;">new</span> <span style="color: #7CB8BB;">Date</span><span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">2010</span>, <span style="color: #BFEBBF;">0</span>, <span style="color: #BFEBBF;">1</span><span style="color: #DCDCCC;">)</span>; <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">The 1st day of the 1st month of 2010</span>
 <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">later</span> = <span style="color: #F0DFAF; font-weight: bold;">new</span> <span style="color: #7CB8BB;">Date</span><span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">2010</span>, <span style="color: #BFEBBF;">0</span>, <span style="color: #BFEBBF;">1</span>, <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Same day, at 5:10:30pm, local time</span>
                      <span style="color: #BFEBBF;">17</span>, <span style="color: #BFEBBF;">10</span>, <span style="color: #BFEBBF;">30</span><span style="color: #DCDCCC;">)</span>;
@@ -331,14 +413,13 @@ later.toISOString<span style="color: #DCDCCC;">()</span>   <span style="color: #
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">字符串</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-org65bd15c" class="outline-3">
+<h3 id="org65bd15c">字符串</h3>
+<div class="outline-text-3" id="text-org65bd15c">
 <p>
 字符串使用单引号或者双引号,建议使用单引号,因为这样可以更好的和html配合
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">x</span> = <span style="color: #CC9393;">'hello world'</span>; <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#23383;&#31526;&#20018;&#21333;&#21452;&#24341;&#21495;&#31561;&#20215;</span>
 <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">x</span> = <span style="color: #CC9393;">"hello world"</span>;
 </pre>
@@ -349,11 +430,10 @@ point使用utf-16编码后有3个字节，那么使用length时该字符就是2�
 而不是以逻辑上的字符为基础的
 </p>
 </div>
-<div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6">常见字符串处理函数</h4>
-<div class="outline-text-4" id="text-orgheadline6">
+<div id="outline-container-org64266d6" class="outline-4">
+<h4 id="org64266d6">常见字符串处理函数</h4>
+<div class="outline-text-4" id="text-org64266d6">
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">s</span> = <span style="color: #CC9393;">"hello, world"</span>     <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">=&gt; 3: position of first "l" at or after 3</span>
 s.length             <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">12, the length of string(this is property, not method)</span>
 
@@ -374,9 +454,9 @@ s.toUpperCase<span style="color: #DCDCCC;">()</span>       <span style="color: #
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7">bool</h3>
-<div class="outline-text-3" id="text-orgheadline7">
+<div id="outline-container-org837e951" class="outline-3">
+<h3 id="org837e951">bool</h3>
+<div class="outline-text-3" id="text-org837e951">
 <p>
 只能为true或者false,以下的值会自动转换为false：
 </p>
@@ -394,21 +474,21 @@ s.toUpperCase<span style="color: #DCDCCC;">()</span>       <span style="color: #
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">undefined与null</h3>
-<div class="outline-text-3" id="text-orgheadline8">
+<div id="outline-container-org65ae32f" class="outline-3">
+<h3 id="org65ae32f">undefined与null</h3>
+<div class="outline-text-3" id="text-org65ae32f">
 <p>
 前者表示没有定义，后者表示变量的值为空，eg：var x;(x为undefined)
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline15" class="outline-2">
-<h2 id="orgheadline15">正则表达式</h2>
-<div class="outline-text-2" id="text-orgheadline15">
-</div><div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">Create RegExp Object</h3>
-<div class="outline-text-3" id="text-orgheadline10">
+<div id="outline-container-orgb5ebd92" class="outline-2">
+<h2 id="orgb5ebd92">正则表达式</h2>
+<div class="outline-text-2" id="text-orgb5ebd92">
+</div><div id="outline-container-orgde06d05" class="outline-3">
+<h3 id="orgde06d05">Create RegExp Object</h3>
+<div class="outline-text-3" id="text-orgde06d05">
 <p>
 正则表示式是对象(RegExp对象), 有两种定义方法:
 </p>
@@ -421,9 +501,9 @@ s.toUpperCase<span style="color: #DCDCCC;">()</span>       <span style="color: #
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11">flags</h3>
-<div class="outline-text-3" id="text-orgheadline11">
+<div id="outline-container-orgb585516" class="outline-3">
+<h3 id="orgb585516">flags</h3>
+<div class="outline-text-3" id="text-orgb585516">
 <p>
 正则表达式可以指定标志, 比如 <code>/../g</code>, <code>/../i</code>.
 </p>
@@ -433,9 +513,9 @@ s.toUpperCase<span style="color: #DCDCCC;">()</span>       <span style="color: #
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12">group</h3>
-<div class="outline-text-3" id="text-orgheadline12">
+<div id="outline-container-org26b4558" class="outline-3">
+<h3 id="org26b4558">group</h3>
+<div class="outline-text-3" id="text-org26b4558">
 <p>
 正则表达式可以分组. 分组有以下几类:
 </p>
@@ -448,9 +528,9 @@ s.toUpperCase<span style="color: #DCDCCC;">()</span>       <span style="color: #
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13">RegExp method</h3>
-<div class="outline-text-3" id="text-orgheadline13">
+<div id="outline-container-org0addeb9" class="outline-3">
+<h3 id="org0addeb9">RegExp method</h3>
+<div class="outline-text-3" id="text-org0addeb9">
 <p>
 这是regexp的方法
 </p>
@@ -461,9 +541,9 @@ s.toUpperCase<span style="color: #DCDCCC;">()</span>       <span style="color: #
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">String method</h3>
-<div class="outline-text-3" id="text-orgheadline14">
+<div id="outline-container-org5d4e46d" class="outline-3">
+<h3 id="org5d4e46d">String method</h3>
+<div class="outline-text-3" id="text-org5d4e46d">
 <p>
 这是字符串的方法
 </p>
@@ -473,7 +553,6 @@ s.toUpperCase<span style="color: #DCDCCC;">()</span>       <span style="color: #
 那么返回 -1, 全局模式对search无用.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">s</span> = <span style="color: #CC9393;">"JavaScript is fun"</span>;
 s.search<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">/script/</span>i<span style="color: #DCDCCC;">)</span> <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Returns 4</span>
 s.search<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">/a(.)a/</span><span style="color: #DCDCCC;">)</span>   <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Returns 1</span>
@@ -490,7 +569,6 @@ s.search<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">/a(.
 配的字符串.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js">text.replace<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">/javascript/</span>i, <span style="color: #CC9393;">"JavaScript"</span><span style="color: #DCDCCC;">)</span>;
 <span style="color: #CC9393;">"Doe, John"</span>.replace<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">/(\w+)\s*,\s*(\w+)/</span>, <span style="color: #CC9393;">"$2 $1"</span><span style="color: #DCDCCC;">)</span>; <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">=&gt; "John Doe"</span>
 </pre>
@@ -505,7 +583,6 @@ s.search<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">/a(.
 接下来的元素是所有的捕获型分组, 具体可以看下面的例子.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">regexp has 'g' attribute</span>
 <span style="color: #CC9393;">"1 plus 2 equals 3"</span>.match<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">/\d+/</span>g<span style="color: #DCDCCC;">)</span>  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">=&gt; ["1", "2", "3"]</span>
 
@@ -527,7 +604,6 @@ s.search<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">/a(.
 <li><code>.split(regexp)</code>:</li>
 </ol>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #CC9393;">"123,456,789"</span>.split<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">","</span><span style="color: #DCDCCC;">)</span>;          <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">=&gt; ['123', '456', '789']</span>
 <span style="color: #CC9393;">"1, 2, 3, 4, 5"</span>.split<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">/\s*,\s*/</span><span style="color: #DCDCCC;">)</span>; <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">=&gt; ["1","2","3","4","5"]</span>
 </pre>
@@ -538,19 +614,18 @@ s.search<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">/a(.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline19" class="outline-2">
-<h2 id="orgheadline19">Array</h2>
-<div class="outline-text-2" id="text-orgheadline19">
-</div><div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16">定义</h3>
-<div class="outline-text-3" id="text-orgheadline16">
+<div id="outline-container-org156eb74" class="outline-2">
+<h2 id="org156eb74">Array</h2>
+<div class="outline-text-2" id="text-org156eb74">
+</div><div id="outline-container-org9a756c6" class="outline-3">
+<h3 id="org9a756c6">定义</h3>
+<div class="outline-text-3" id="text-org9a756c6">
 <p>
 定义数组可以使用两种方法: Array与[],但是推荐[],因为像 new Array(3)这样的代
 码，它会返回一个空数组，可是却将这个数组的length设置为3,这是一个令人困惑的
 特性
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #DCDCCC;">[</span><span style="color: #BFEBBF;">1</span>, <span style="color: #BFEBBF;">2</span>, <span style="color: #BFEBBF;">3</span><span style="color: #DCDCCC;">]</span>; <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#32467;&#26524;: [1, 2, 3]</span>
 <span style="color: #F0DFAF; font-weight: bold;">new</span> <span style="color: #7CB8BB;">Array</span><span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">1</span>, <span style="color: #BFEBBF;">2</span>, <span style="color: #BFEBBF;">3</span><span style="color: #DCDCCC;">)</span>; <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#32467;&#26524;: [1, 2, 3]</span>
 
@@ -565,14 +640,13 @@ s.search<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">/a(.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17">遍历数组</h3>
-<div class="outline-text-3" id="text-orgheadline17">
+<div id="outline-container-org1678343" class="outline-3">
+<h3 id="org1678343">遍历数组</h3>
+<div class="outline-text-3" id="text-org1678343">
 <p>
 不要使用for&#x2026;in, 而要使用如下代码:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">list</span> = <span style="color: #DCDCCC;">[</span><span style="color: #BFEBBF;">1</span>, <span style="color: #BFEBBF;">2</span>, <span style="color: #BFEBBF;">3</span>, <span style="color: #BFEBBF;">4</span>, <span style="color: #BFEBBF;">5</span>, ...... <span style="color: #BFEBBF;">100000000</span><span style="color: #DCDCCC;">]</span>;
 <span style="color: #F0DFAF; font-weight: bold;">for</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">i</span> = <span style="color: #BFEBBF;">0</span>, <span style="color: #DFAF8F;">l</span> = list.length; i &lt; l; i++<span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
     console.log<span style="color: #BFEBBF;">(</span>list<span style="color: #D0BF8F;">[</span>i<span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span>;
@@ -584,9 +658,9 @@ s.search<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">/a(.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-3">
-<h3 id="orgheadline18">数组方法</h3>
-<div class="outline-text-3" id="text-orgheadline18">
+<div id="outline-container-org9e32749" class="outline-3">
+<h3 id="org9e32749">数组方法</h3>
+<div class="outline-text-3" id="text-org9e32749">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -662,12 +736,12 @@ s.search<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">/a(.
 </div>
 </div>
 
-<div id="outline-container-orgheadline23" class="outline-2">
-<h2 id="orgheadline23">objects(对象)</h2>
-<div class="outline-text-2" id="text-orgheadline23">
-</div><div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20">基本解释</h3>
-<div class="outline-text-3" id="text-orgheadline20">
+<div id="outline-container-org967a910" class="outline-2">
+<h2 id="org967a910">objects(对象)</h2>
+<div class="outline-text-2" id="text-org967a910">
+</div><div id="outline-container-orgaa379de" class="outline-3">
+<h3 id="orgaa379de">基本解释</h3>
+<div class="outline-text-3" id="text-orgaa379de">
 <p>
 object有点类似于关联数组, js中除了数字，字符串，bool，null，undefined之外都
 是对象，数组，函数等等都是对象，对象有属性名，与属性值，数组的属性名是一些小
@@ -675,7 +749,6 @@ object有点类似于关联数组, js中除了数字，字符串，bool，null�
 下:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">foo</span> = <span style="color: #DCDCCC;">{</span>
   name: <span style="color: #CC9393;">'Kitten'</span>,
   age : <span style="color: #BFEBBF;">12</span>
@@ -698,9 +771,9 @@ foo<span style="color: #DCDCCC;">[</span><span style="color: #CC9393;">'1234'</s
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21">原型</h3>
-<div class="outline-text-3" id="text-orgheadline21">
+<div id="outline-container-orgc9bedee" class="outline-3">
+<h3 id="orgc9bedee">原型</h3>
+<div class="outline-text-3" id="text-orgc9bedee">
 <p>
 对象对属性名的搜索有一定的规则, 一般情况下通过字面值构建的对象都会与
 Object.prototype链接，也就是以Object.prototype为原型,所以如果一个属性在对象
@@ -709,7 +782,6 @@ Object.prototype链接，也就是以Object.prototype为原型,所以如果一�
 以给指定一个对象的原型,比如下面这个函数:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">typeof</span> Object.beget !== <span style="color: #CC9393;">'function'</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
   Object.beget = <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #BFEBBF;">(</span><span style="color: #DFAF8F;">o</span><span style="color: #BFEBBF;">){</span>
     <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">F</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #D0BF8F;">(){}</span>;
@@ -724,9 +796,9 @@ Object.beget 会返回一个新对象, 这个对象会以调用者指定的 o �
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline22" class="outline-3">
-<h3 id="orgheadline22">json</h3>
-<div class="outline-text-3" id="text-orgheadline22">
+<div id="outline-container-org65fd17c" class="outline-3">
+<h3 id="org65fd17c">json</h3>
+<div class="outline-text-3" id="text-org65fd17c">
 <ol class="org-ol">
 <li>JSON.stringify: 将一个对象转换为字符串(serialize)</li>
 <li>JSON.parse: 将一个字符串转换为对象.</li>
@@ -734,9 +806,9 @@ Object.beget 会返回一个新对象, 这个对象会以调用者指定的 o �
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline24" class="outline-2">
-<h2 id="orgheadline24">control flow</h2>
-<div class="outline-text-2" id="text-orgheadline24">
+<div id="outline-container-orgbcb3d72" class="outline-2">
+<h2 id="orgbcb3d72">control flow</h2>
+<div class="outline-text-2" id="text-orgbcb3d72">
 <p>
 基本和C语言类似，while，for，do&#x2026;while，if&#x2026;else if&#x2026;else,switch&#x2026;case, break, continue都和C语言差不多，
 break,continue和C语言有个区别就是后面可以跟一个label，break后面跟label那么它就不是终止最内层循环，而是终止
@@ -744,7 +816,6 @@ label指定的循环，eg：
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">x</span> = <span style="color: #BFEBBF;">0</span>;
 <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">z</span> = <span style="color: #BFEBBF;">0</span>
 labelCancelLoops: <span style="color: #F0DFAF; font-weight: bold;">while</span> <span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">true</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
@@ -775,9 +846,9 @@ break labelCancelLoops会终止最外层那个循环，continue后面跟label也
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline25" class="outline-2">
-<h2 id="orgheadline25">function</h2>
-<div class="outline-text-2" id="text-orgheadline25">
+<div id="outline-container-org779cb31" class="outline-2">
+<h2 id="org779cb31">function</h2>
+<div class="outline-text-2" id="text-org779cb31">
 <p>
 函数也是对象, 每一个函数对象都会链接到 Function.prototype对象上, 也就是以
 Function.prototype对象为原型,而Function.prototype又会链接到 Object.prototype
@@ -785,11 +856,10 @@ Function.prototype对象为原型,而Function.prototype又会链接到 Object.pr
 这个属性 但是这个属性和函数对象本身没关系.
 </p>
 </div>
-<div id="outline-container-orgheadline26" class="outline-3">
-<h3 id="orgheadline26">definition</h3>
-<div class="outline-text-3" id="text-orgheadline26">
+<div id="outline-container-org39ffd00" class="outline-3">
+<h3 id="org39ffd00">definition</h3>
+<div class="outline-text-3" id="text-org39ffd00">
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">square</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">number</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
   <span style="color: #F0DFAF; font-weight: bold;">return</span> number * number;
 <span style="color: #DCDCCC;">}</span>
@@ -801,14 +871,13 @@ Function.prototype对象为原型,而Function.prototype又会链接到 Object.pr
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline31" class="outline-3">
-<h3 id="orgheadline31">四种调用方式</h3>
-<div class="outline-text-3" id="text-orgheadline31">
-</div><div id="outline-container-orgheadline27" class="outline-4">
-<h4 id="orgheadline27">method调用模式</h4>
-<div class="outline-text-4" id="text-orgheadline27">
+<div id="outline-container-org12b466c" class="outline-3">
+<h3 id="org12b466c">四种调用方式</h3>
+<div class="outline-text-3" id="text-org12b466c">
+</div><div id="outline-container-org834a8c3" class="outline-4">
+<h4 id="org834a8c3">method调用模式</h4>
+<div class="outline-text-4" id="text-org834a8c3">
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">myObject</span> = <span style="color: #DCDCCC;">{</span>
   value: <span style="color: #BFEBBF;">0</span>,
   <span style="color: #93E0E3;">increment</span>: <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #BFEBBF;">(</span><span style="color: #DFAF8F;">inc</span><span style="color: #BFEBBF;">){</span>
@@ -824,24 +893,23 @@ myObject.increment<span style="color: #DCDCCC;">(</span><span style="color: #BFE
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline28" class="outline-4">
-<h4 id="orgheadline28">函数调用模式</h4>
-<div class="outline-text-4" id="text-orgheadline28">
+<div id="outline-container-org65256de" class="outline-4">
+<h4 id="org65256de">函数调用模式</h4>
+<div class="outline-text-4" id="text-org65256de">
 <p>
 普通的函数调用: 比如 <code>var sum = add(3, 4);</code>, 在这种调用方式中, 在函数内部
 (add) this会被绑定到全局对象也就是 window对象
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline29" class="outline-4">
-<h4 id="orgheadline29">构造器调用模式(不推荐)</h4>
-<div class="outline-text-4" id="text-orgheadline29">
+<div id="outline-container-org24854b9" class="outline-4">
+<h4 id="org24854b9">构造器调用模式(不推荐)</h4>
+<div class="outline-text-4" id="text-org24854b9">
 <p>
 实际是对OOP的一种不必要且蹩脚的模拟, 很晦涩难懂, 这种调用方式是使用 new 操
 作符来调用. 这样调用时函数会有截然不同的行为.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">Quo</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">string</span><span style="color: #DCDCCC;">){</span>
   <span style="color: #BFEBBF;">this</span>.status = string;
 <span style="color: #DCDCCC;">}</span>;
@@ -871,15 +939,14 @@ return语句, 但是一旦明确的使用了return, 那么最后的结果就是r
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline30" class="outline-4">
-<h4 id="orgheadline30">apply调用模式</h4>
-<div class="outline-text-4" id="text-orgheadline30">
+<div id="outline-container-org90ed88c" class="outline-4">
+<h4 id="org90ed88c">apply调用模式</h4>
+<div class="outline-text-4" id="text-org90ed88c">
 <p>
 每一个函数都有一个apply方法, 该方法接受2个参数, 第一个参数是传递给 this的,
 第二个参数是一个参数数组, 和lisp的apply有点类似
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">arr</span> = <span style="color: #DCDCCC;">[</span><span style="color: #BFEBBF;">1</span>, <span style="color: #BFEBBF;">2</span><span style="color: #DCDCCC;">]</span>;
 <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">sum</span> = add.apply<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">null</span>, arr<span style="color: #DCDCCC;">)</span>; <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">sum is 3</span>
 </pre>
@@ -890,16 +957,15 @@ return语句, 但是一旦明确的使用了return, 那么最后的结果就是r
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline32" class="outline-3">
-<h3 id="orgheadline32">基本特性</h3>
-<div class="outline-text-3" id="text-orgheadline32">
+<div id="outline-container-org2a3e916" class="outline-3">
+<h3 id="org2a3e916">基本特性</h3>
+<div class="outline-text-3" id="text-org2a3e916">
 <p>
 js的函数是first class object，所以它可以作为参数传递，也可以作为返回值返回，
 支持闭包与匿名函数，使用词法作用域, 它的很多地方借鉴了lisp的特性，下面是一些
 示例代码：
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"> <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">define a function if num==0</span>
  <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">myFunc</span>;
  <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #DCDCCC;">(</span>num == <span style="color: #BFEBBF;">0</span><span style="color: #DCDCCC;">){</span>
@@ -923,9 +989,9 @@ myPet<span style="color: #DCDCCC;">()</span>;                            <span s
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline33" class="outline-3">
-<h3 id="orgheadline33">作用域</h3>
-<div class="outline-text-3" id="text-orgheadline33">
+<div id="outline-container-org7fa7a1f" class="outline-3">
+<h3 id="org7fa7a1f">作用域</h3>
+<div class="outline-text-3" id="text-org7fa7a1f">
 <ol class="org-ol">
 <li><code>var</code> 用来声明变量, 每一个变量都应该先声明, 后使用.</li>
 <li>如果省略了 <code>var</code> 那么会创建一个全局变量, 不要省略var是一个好的做法, 而且
@@ -935,7 +1001,6 @@ myPet<span style="color: #DCDCCC;">()</span>;                            <span s
 <li>其它规则和lisp类似</li>
 </ol>
 <div class="org-src-container">
-
 <pre class="src src-js">scope = <span style="color: #CC9393;">"global"</span>;         <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Declare a global variable, even without var.</span>
 <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">scope2</span> = <span style="color: #CC9393;">"global"</span>;    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Declare another global variable.</span>
 
@@ -958,11 +1023,10 @@ js的作用域设计的比 python好, 因为变量需要声明, 所以就可以�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline34" class="outline-3">
-<h3 id="orgheadline34">给类型增加方法</h3>
-<div class="outline-text-3" id="text-orgheadline34">
+<div id="outline-container-org4e27cce" class="outline-3">
+<h3 id="org4e27cce">给类型增加方法</h3>
+<div class="outline-text-3" id="text-org4e27cce">
 <div class="org-src-container">
-
 <pre class="src src-js">Function.<span style="color: #BFEBBF;">prototype</span>.method = <span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">name</span>, <span style="color: #DFAF8F;">func</span><span style="color: #DCDCCC;">){</span>
   <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>!<span style="color: #BFEBBF;">this</span>.<span style="color: #BFEBBF;">prototype</span><span style="color: #D0BF8F;">[</span>name<span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
     <span style="color: #BFEBBF;">this</span>.<span style="color: #BFEBBF;">prototype</span><span style="color: #D0BF8F;">[</span>name<span style="color: #D0BF8F;">]</span> = func;
@@ -974,7 +1038,6 @@ js的作用域设计的比 python好, 因为变量需要声明, 所以就可以�
 给 String 增加 trim方法:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js">String.method<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'trim'</span>, <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #BFEBBF;">(){</span>
   <span style="color: #BFEBBF;">this</span>.replace<span style="color: #D0BF8F;">(</span><span style="color: #CC9393;">/^\s+|\s+$/</span>g, <span style="color: #CC9393;">''</span><span style="color: #D0BF8F;">)</span>;
 <span style="color: #BFEBBF;">}</span><span style="color: #DCDCCC;">)</span>;
@@ -982,9 +1045,9 @@ js的作用域设计的比 python好, 因为变量需要声明, 所以就可以�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline35" class="outline-3">
-<h3 id="orgheadline35">内置的函数</h3>
-<div class="outline-text-3" id="text-orgheadline35">
+<div id="outline-container-org6c494d2" class="outline-3">
+<h3 id="org6c494d2">内置的函数</h3>
+<div class="outline-text-3" id="text-org6c494d2">
 <ol class="org-ol">
 <li>eval:运行js代码, 不推荐使用.</li>
 <li>isFinite: test a number if it is a finite number</li>
@@ -994,9 +1057,9 @@ js的作用域设计的比 python好, 因为变量需要声明, 所以就可以�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline36" class="outline-2">
-<h2 id="orgheadline36">一些js技巧</h2>
-<div class="outline-text-2" id="text-orgheadline36">
+<div id="outline-container-org0e529ab" class="outline-2">
+<h2 id="org0e529ab">一些js技巧</h2>
+<div class="outline-text-2" id="text-org0e529ab">
 <ol class="org-ol">
 <li>在每个应用中仅创建一个全局的对象,然后将所有的函数都变成这个全局对象的属性,
 减少与其它应用程序或者类库产生相互影响的可能性.</li>
@@ -1010,7 +1073,6 @@ js的作用域设计的比 python好, 因为变量需要声明, 所以就可以�
 函数的声明应该用:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">foo</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #DCDCCC;">(){</span>...<span style="color: #DCDCCC;">}</span>;
 </pre>
 </div>
@@ -1018,7 +1080,6 @@ js的作用域设计的比 python好, 因为变量需要声明, 所以就可以�
 而不是
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">foo</span><span style="color: #DCDCCC;">(){</span>...<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>

@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:09 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>webpy源代码分析</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="webpy 源码分析" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="webpy 源码分析" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -172,9 +257,9 @@ for the JavaScript code in this tag.
 </div>
 <div id="content">
 <h1 class="title">webpy源代码分析</h1>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">缘起</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-orgaf73aca" class="outline-2">
+<h2 id="orgaf73aca">缘起</h2>
+<div class="outline-text-2" id="text-orgaf73aca">
 <p>
 最近一直学习web开发方面的东西，个人是python的死忠，所以自然的也就开始玩python的web开发框架，可是对于我这种爱
 钻牛角尖的人来说，仅仅使用是不够的，我必须要搞清楚它是怎么运行的，因此也就有了分析python web框架源码的念头，
@@ -183,9 +268,9 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">一 源码分析要有所取舍</h2>
-<div class="outline-text-2" id="text-orgheadline2">
+<div id="outline-container-orgdf3a9e4" class="outline-2">
+<h2 id="orgdf3a9e4">一 源码分析要有所取舍</h2>
+<div class="outline-text-2" id="text-orgdf3a9e4">
 <p>
 web开发目前已经变得很专业，专业的同义词其实就是很复杂，web相关的东西一个月也说不完，因此源码分析的时候我们必
 须有所取舍，要抓住实质性的东西，因为只有这些东西才能帮你更好的理解web开发，理解python web框架，实际上web开发
@@ -199,14 +284,13 @@ session等等一些特性，但是就实质而言这些东西都不是必须。�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">一次web请求的从生到死</h2>
-<div class="outline-text-2" id="text-orgheadline3">
+<div id="outline-container-orgfac8910" class="outline-2">
+<h2 id="orgfac8910">一次web请求的从生到死</h2>
+<div class="outline-text-2" id="text-orgfac8910">
 <p>
 先上源码：
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">import</span> web
 
 <span style="color: #DFAF8F;">urls</span> = <span style="color: #DCDCCC;">(</span>
@@ -230,17 +314,16 @@ session等等一些特性，但是就实质而言这些东西都不是必须。�
 生到死的全过程，来详尽的分析与这一过程相关的代码
 </p>
 </div>
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">准备</h3>
-<div class="outline-text-3" id="text-orgheadline6">
-</div><div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4">程序的初始化</h4>
-<div class="outline-text-4" id="text-orgheadline4">
+<div id="outline-container-orgfece8e2" class="outline-3">
+<h3 id="orgfece8e2">准备</h3>
+<div class="outline-text-3" id="text-orgfece8e2">
+</div><div id="outline-container-orgc054798" class="outline-4">
+<h4 id="orgc054798">程序的初始化</h4>
+<div class="outline-text-4" id="text-orgc054798">
 <p>
 回到上面的代码，我们来看看代码的初始化，最核心的也就是app，由
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #DFAF8F;">app</span> = web.application<span style="color: #DCDCCC;">(</span>urls, <span style="color: #DCDCCC; font-weight: bold;">globals</span><span style="color: #BFEBBF;">()</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
@@ -248,7 +331,6 @@ session等等一些特性，但是就实质而言这些东西都不是必须。�
 可知app是一个application类实例，我们来看一下application类实例的初始化代码
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__init__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, mapping=<span style="color: #BFEBBF;">()</span>, fvars=<span style="color: #BFEBBF;">{}</span>, autoreload=<span style="color: #BFEBBF;">None</span><span style="color: #DCDCCC;">)</span>:
     ...
     <span style="color: #F0DFAF; font-weight: bold;">self</span>.init_mapping<span style="color: #DCDCCC;">(</span>mapping<span style="color: #DCDCCC;">)</span>
@@ -264,7 +346,6 @@ session等等一些特性，但是就实质而言这些东西都不是必须。�
 关键是其中的init_mapping, 我们可以看看它的代码
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">init_mapping</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, mapping<span style="color: #DCDCCC;">)</span>:
     <span style="color: #F0DFAF; font-weight: bold;">self</span>.mapping = <span style="color: #DCDCCC; font-weight: bold;">list</span><span style="color: #DCDCCC;">(</span>utils.group<span style="color: #BFEBBF;">(</span>mapping, <span style="color: #BFEBBF;">2</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
@@ -276,9 +357,9 @@ list(utils.group(mapping, 2))的作用就是将mapping切割为2个元素一组�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-4">
-<h4 id="orgheadline5">wsgi</h4>
-<div class="outline-text-4" id="text-orgheadline5">
+<div id="outline-container-orgd58e882" class="outline-4">
+<h4 id="orgd58e882">wsgi</h4>
+<div class="outline-text-4" id="text-orgd58e882">
 <p>
 wsgi是一种规范，它对框架的要求就是：必须定义一个接受两个参数的可调用对象，可调用对象可以是函数，类方法，类
 以及一个包含__call__的类实例，这两个参数分别为environ，start_response, 前者是一个字典，该字典会包含许多有
@@ -286,7 +367,6 @@ wsgi是一种规范，它对框架的要求就是：必须定义一个接受两�
 一个迭代对象,详细内容可以看我写的这份<a href="wsgi.html">文档</a>。 下面来看看web.py中wsgi相关的代码.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">run</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, *middleware<span style="color: #DCDCCC;">)</span>:
     <span style="color: #F0DFAF; font-weight: bold;">return</span> wsgi.runwsgi<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>.wsgifunc<span style="color: #BFEBBF;">(</span>*middleware<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
@@ -296,7 +376,6 @@ wsgi是一种规范，它对框架的要求就是：必须定义一个接受两�
 它的代码:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">wsgifunc</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, *middleware<span style="color: #DCDCCC;">)</span>:
     ....
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">wsgi</span><span style="color: #DCDCCC;">(</span>env, start_resp<span style="color: #DCDCCC;">)</span>:
@@ -336,7 +415,6 @@ wsgi是一种规范，它对框架的要求就是：必须定义一个接受两�
 load : 这个函数的代码大体如下:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">load</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, env<span style="color: #DCDCCC;">)</span>:
     <span style="color: #CC9393;">"""Initializes ctx using env."""</span>
     <span style="color: #DFAF8F;">ctx</span> = web.ctx
@@ -360,14 +438,14 @@ web.ctx可以看作是一个字典对象(threadeddict),只是这个对象不仅�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7">接受web请求</h3>
+<div id="outline-container-orgb66edee" class="outline-3">
+<h3 id="orgb66edee">接受web请求</h3>
 </div>
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">处理web请求</h3>
+<div id="outline-container-org38207bd" class="outline-3">
+<h3 id="org38207bd">处理web请求</h3>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">返回response</h3>
+<div id="outline-container-org6d9b27d" class="outline-3">
+<h3 id="org6d9b27d">返回response</h3>
 </div>
 </div>
 </div>

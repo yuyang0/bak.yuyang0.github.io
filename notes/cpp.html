@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:09 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>CPP Note</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,6 +176,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -175,39 +260,39 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline11">OOP</a>
+<li><a href="#org592667d">OOP</a>
 <ul>
-<li><a href="#orgheadline3">类</a>
+<li><a href="#org478cb5d">类</a>
 <ul>
-<li><a href="#orgheadline1">构造函数</a></li>
-<li><a href="#orgheadline2">tips</a></li>
+<li><a href="#orgfa03d95">构造函数</a></li>
+<li><a href="#org51df8a1">tips</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline10">拷贝控制</a>
+<li><a href="#orga4b1872">拷贝控制</a>
 <ul>
-<li><a href="#orgheadline4">concepts</a></li>
-<li><a href="#orgheadline5">拷贝构造函数</a></li>
-<li><a href="#orgheadline6">拷贝赋值运算符</a></li>
-<li><a href="#orgheadline7">移动构造函数</a></li>
-<li><a href="#orgheadline8">移动赋值运算符</a></li>
-<li><a href="#orgheadline9">析构函数</a></li>
+<li><a href="#org476a814">concepts</a></li>
+<li><a href="#org59d9a71">拷贝构造函数</a></li>
+<li><a href="#org854145e">拷贝赋值运算符</a></li>
+<li><a href="#org68b743a">移动构造函数</a></li>
+<li><a href="#orgd54ea11">移动赋值运算符</a></li>
+<li><a href="#org02788cb">析构函数</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline12">STL</a></li>
-<li><a href="#orgheadline13">Template</a></li>
-<li><a href="#orgheadline15">Code Style</a>
+<li><a href="#orgd52f65d">STL</a></li>
+<li><a href="#orgd84262a">Template</a></li>
+<li><a href="#orgba1148a">Code Style</a>
 <ul>
-<li><a href="#orgheadline14">命名规范</a></li>
+<li><a href="#org3d60259">命名规范</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline19">杂七杂八</a>
+<li><a href="#org7469aad">杂七杂八</a>
 <ul>
-<li><a href="#orgheadline16">Mix C and C++</a></li>
-<li><a href="#orgheadline18">Profile/Debug</a>
+<li><a href="#org3308ad9">Mix C and C++</a></li>
+<li><a href="#org6db59af">Profile/Debug</a>
 <ul>
-<li><a href="#orgheadline17">gperftools</a></li>
+<li><a href="#org31c84ca">gperftools</a></li>
 </ul>
 </li>
 </ul>
@@ -215,24 +300,24 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-2">
-<h2 id="orgheadline11">OOP</h2>
-<div class="outline-text-2" id="text-orgheadline11">
-</div><div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">类</h3>
-<div class="outline-text-3" id="text-orgheadline3">
-</div><div id="outline-container-orgheadline1" class="outline-4">
-<h4 id="orgheadline1">构造函数</h4>
-<div class="outline-text-4" id="text-orgheadline1">
+<div id="outline-container-org592667d" class="outline-2">
+<h2 id="org592667d">OOP</h2>
+<div class="outline-text-2" id="text-org592667d">
+</div><div id="outline-container-org478cb5d" class="outline-3">
+<h3 id="org478cb5d">类</h3>
+<div class="outline-text-3" id="text-org478cb5d">
+</div><div id="outline-container-orgfa03d95" class="outline-4">
+<h4 id="orgfa03d95">构造函数</h4>
+<div class="outline-text-4" id="text-orgfa03d95">
 <p>
 默认构造函数只有当你没有定义构造函数的时候才会自动生成，一旦你一提供了构造函数，
 那么你也应该提供默认的构造函数。
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-4">
-<h4 id="orgheadline2">tips</h4>
-<div class="outline-text-4" id="text-orgheadline2">
+<div id="outline-container-org51df8a1" class="outline-4">
+<h4 id="org51df8a1">tips</h4>
+<div class="outline-text-4" id="text-org51df8a1">
 <ol class="org-ol">
 <li>如果所有的类成员都是public的，那么使用struct，否则使用class。</li>
 <li>仿函数(重载 operate())使用struct。</li>
@@ -240,12 +325,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">拷贝控制</h3>
-<div class="outline-text-3" id="text-orgheadline10">
-</div><div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4">concepts</h4>
-<div class="outline-text-4" id="text-orgheadline4">
+<div id="outline-container-orga4b1872" class="outline-3">
+<h3 id="orga4b1872">拷贝控制</h3>
+<div class="outline-text-3" id="text-orga4b1872">
+</div><div id="outline-container-org476a814" class="outline-4">
+<h4 id="org476a814">concepts</h4>
+<div class="outline-text-4" id="text-org476a814">
 <ol class="org-ol">
 <li>直接初始化：</li>
 <li><p>
@@ -262,9 +347,9 @@ for the JavaScript code in this tag.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-4">
-<h4 id="orgheadline5">拷贝构造函数</h4>
-<div class="outline-text-4" id="text-orgheadline5">
+<div id="outline-container-org59d9a71" class="outline-4">
+<h4 id="org59d9a71">拷贝构造函数</h4>
+<div class="outline-text-4" id="text-org59d9a71">
 <pre class="example">
 class_name ( const class_name &amp; ) {...}       (1)
 class_name ( const class_name &amp; ) = default;  (2)
@@ -272,18 +357,18 @@ class_name ( const class_name &amp; ) = delete;   (3)
 </pre>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6">拷贝赋值运算符</h4>
+<div id="outline-container-org854145e" class="outline-4">
+<h4 id="org854145e">拷贝赋值运算符</h4>
 </div>
-<div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7">移动构造函数</h4>
+<div id="outline-container-org68b743a" class="outline-4">
+<h4 id="org68b743a">移动构造函数</h4>
 </div>
-<div id="outline-container-orgheadline8" class="outline-4">
-<h4 id="orgheadline8">移动赋值运算符</h4>
+<div id="outline-container-orgd54ea11" class="outline-4">
+<h4 id="orgd54ea11">移动赋值运算符</h4>
 </div>
-<div id="outline-container-orgheadline9" class="outline-4">
-<h4 id="orgheadline9">析构函数</h4>
-<div class="outline-text-4" id="text-orgheadline9">
+<div id="outline-container-org02788cb" class="outline-4">
+<h4 id="org02788cb">析构函数</h4>
+<div class="outline-text-4" id="text-org02788cb">
 <p>
 析构函数包含一个函数体和一个析构部分，首先执行函数体，接着就销毁所有的成员，成员
 按初始化顺序的逆序销毁。 <b>析构部分是隐式的</b>.
@@ -309,18 +394,18 @@ class_name ( const class_name &amp; ) = delete;   (3)
 </div>
 </div>
 
-<div id="outline-container-orgheadline12" class="outline-2">
-<h2 id="orgheadline12">STL</h2>
+<div id="outline-container-orgd52f65d" class="outline-2">
+<h2 id="orgd52f65d">STL</h2>
 </div>
-<div id="outline-container-orgheadline13" class="outline-2">
-<h2 id="orgheadline13">Template</h2>
+<div id="outline-container-orgd84262a" class="outline-2">
+<h2 id="orgd84262a">Template</h2>
 </div>
-<div id="outline-container-orgheadline15" class="outline-2">
-<h2 id="orgheadline15">Code Style</h2>
-<div class="outline-text-2" id="text-orgheadline15">
-</div><div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">命名规范</h3>
-<div class="outline-text-3" id="text-orgheadline14">
+<div id="outline-container-orgba1148a" class="outline-2">
+<h2 id="orgba1148a">Code Style</h2>
+<div class="outline-text-2" id="text-orgba1148a">
+</div><div id="outline-container-org3d60259" class="outline-3">
+<h3 id="org3d60259">命名规范</h3>
+<div class="outline-text-3" id="text-org3d60259">
 <ol class="org-ol">
 <li><b>类型命名</b> (类，结构体，枚举)使用驼峰命名,每个单词首字母均大写, 不包含下划线</li>
 <li><b>变量名</b> 一律小写, 单词之间用下划线连接. 类的成员变量以下划线结尾, 但结构体的就不用</li>
@@ -333,25 +418,24 @@ class_name ( const class_name &amp; ) = delete;   (3)
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline19" class="outline-2">
-<h2 id="orgheadline19">杂七杂八</h2>
-<div class="outline-text-2" id="text-orgheadline19">
-</div><div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16">Mix C and C++</h3>
-<div class="outline-text-3" id="text-orgheadline16">
+<div id="outline-container-org7469aad" class="outline-2">
+<h2 id="org7469aad">杂七杂八</h2>
+<div class="outline-text-2" id="text-org7469aad">
+</div><div id="outline-container-org3308ad9" class="outline-3">
+<h3 id="org3308ad9">Mix C and C++</h3>
+<div class="outline-text-3" id="text-org3308ad9">
 <p>
-主要是通过 =extern "C"= 来实现，他主要是用来抑制C++的名称混淆(name mangle)的。
+主要是通过 <code>extern "C"</code> 来实现，他主要是用来抑制C++的名称混淆(name mangle)的。
 </p>
 
 <ol class="org-ol">
 <li><p>
 c调用C++的库：常规的做法时是提供一个wrapper，你应该在C++中提供一个头文件
 (c_api.h), 这个头文件要严格按照C的语法编写，同时在需要C调用的函数前应该添加上
-=extern "C"=, 因为这个头文件会同时被C编译器和C++编译器调用，所以需要如下的代
+<code>extern "C"</code>, 因为这个头文件会同时被C编译器和C++编译器调用，所以需要如下的代
 码：
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #94BFF3;">#ifdef</span> __cplusplus
 <span style="color: #94BFF3;">#define</span> <span style="color: #DFAF8F;">EXTERN_C</span> <span style="color: #F0DFAF; font-weight: bold;">extern</span> <span style="color: #CC9393;">"C"</span>
 <span style="color: #94BFF3;">#endif</span>
@@ -359,19 +443,19 @@ c调用C++的库：常规的做法时是提供一个wrapper，你应该在C++中
 </div>
 <p>
 有了头文件，你接着需要在一个C++文件中(eg:c_api.cpp)实现头文件中定义的这些函数。
-注意实现时是否加上 =extern "C"= 是可选的。
+注意实现时是否加上 <code>extern "C"</code> 是可选的。
 </p></li>
 <li>C++中调用C库： 你只需要通过 <code>extern "C" void c_func()</code> 来声明就好，接着你就可
 以调用 <code>c_func</code> 了。</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-3">
-<h3 id="orgheadline18">Profile/Debug</h3>
-<div class="outline-text-3" id="text-orgheadline18">
-</div><div id="outline-container-orgheadline17" class="outline-4">
-<h4 id="orgheadline17">gperftools</h4>
-<div class="outline-text-4" id="text-orgheadline17">
+<div id="outline-container-org6db59af" class="outline-3">
+<h3 id="org6db59af">Profile/Debug</h3>
+<div class="outline-text-3" id="text-org6db59af">
+</div><div id="outline-container-org31c84ca" class="outline-4">
+<h4 id="org31c84ca">gperftools</h4>
+<div class="outline-text-4" id="text-org31c84ca">
 <ol class="org-ol">
 <li><p>
 install

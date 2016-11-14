@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs Lisp</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="emacs lisp" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="emacs lisp" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -199,53 +284,53 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline8">elisp基本语法</a>
+<li><a href="#org9ccec88">elisp基本语法</a>
 <ul>
-<li><a href="#orgheadline1">help</a></li>
-<li><a href="#orgheadline2">control flow</a></li>
-<li><a href="#orgheadline3">let&#xa0;&#xa0;&#xa0;<span class="tag"><span class="let">let</span></span></a></li>
-<li><a href="#orgheadline4">function</a></li>
-<li><a href="#orgheadline5">lists</a>
+<li><a href="#orge9278d1">help</a></li>
+<li><a href="#orga3a769f">control flow</a></li>
+<li><a href="#orgb7a0f6c">let&#xa0;&#xa0;&#xa0;<span class="tag"><span class="let">let</span></span></a></li>
+<li><a href="#org3c9eef8">function</a></li>
+<li><a href="#orgfe75804">lists</a>
 <ul>
-<li><a href="#orgheadline6">Associate List</a></li>
-<li><a href="#orgheadline7">property list</a></li>
+<li><a href="#org575bb8d">Associate List</a></li>
+<li><a href="#orgf4be3cc">property list</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline18">常用的函数</a>
+<li><a href="#org05ef46d">常用的函数</a>
 <ul>
-<li><a href="#orgheadline9">字符串操作</a></li>
-<li><a href="#orgheadline10">Regex</a></li>
-<li><a href="#orgheadline11">buffer相关：&#xa0;&#xa0;&#xa0;<span class="tag"><span class="buffer">buffer</span></span></a>
+<li><a href="#org6e00301">字符串操作</a></li>
+<li><a href="#orgc64b3f7">Regex</a></li>
+<li><a href="#orgeb33be3">buffer相关：&#xa0;&#xa0;&#xa0;<span class="tag"><span class="buffer">buffer</span></span></a>
 <ul>
-<li><a href="#orgheadline12">buffer content相关</a></li>
-<li><a href="#orgheadline13">buffer中移动以及光标相关&#xa0;&#xa0;&#xa0;<span class="tag"><span class="point">point</span></span></a></li>
+<li><a href="#org590667a">buffer content相关</a></li>
+<li><a href="#org6725041">buffer中移动以及光标相关&#xa0;&#xa0;&#xa0;<span class="tag"><span class="point">point</span></span></a></li>
 </ul>
 </li>
-<li><a href="#orgheadline14">file相关&#xa0;&#xa0;&#xa0;<span class="tag"><span class="file">file</span></span></a></li>
-<li><a href="#orgheadline15">other useful function</a></li>
-<li><a href="#orgheadline16"><b>useful variable</b></a></li>
-<li><a href="#orgheadline17">useful code snippet</a></li>
+<li><a href="#orgcd8a93b">file相关&#xa0;&#xa0;&#xa0;<span class="tag"><span class="file">file</span></span></a></li>
+<li><a href="#orgea0a988">other useful function</a></li>
+<li><a href="#org0f21209"><b>useful variable</b></a></li>
+<li><a href="#org3db5988">useful code snippet</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline19">interactive&#xa0;&#xa0;&#xa0;<span class="tag"><span class="interactive">interactive</span></span></a></li>
-<li><a href="#orgheadline20">autoload&#xa0;&#xa0;&#xa0;<span class="tag"><span class="autoload">autoload</span></span></a></li>
-<li><a href="#orgheadline23">define mode(minor mode or major mode)</a>
+<li><a href="#orgf599acc">interactive&#xa0;&#xa0;&#xa0;<span class="tag"><span class="interactive">interactive</span></span></a></li>
+<li><a href="#orgf3c98db">autoload&#xa0;&#xa0;&#xa0;<span class="tag"><span class="autoload">autoload</span></span></a></li>
+<li><a href="#org819f761">define mode(minor mode or major mode)</a>
 <ul>
-<li><a href="#orgheadline21">keymap</a></li>
-<li><a href="#orgheadline22">minor mode</a></li>
+<li><a href="#orgadf8229">keymap</a></li>
+<li><a href="#orgae97fab">minor mode</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-2">
-<h2 id="orgheadline8">elisp基本语法</h2>
-<div class="outline-text-2" id="text-orgheadline8">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1">help</h3>
-<div class="outline-text-3" id="text-orgheadline1">
+<div id="outline-container-org9ccec88" class="outline-2">
+<h2 id="org9ccec88">elisp基本语法</h2>
+<div class="outline-text-2" id="text-org9ccec88">
+</div><div id="outline-container-orge9278d1" class="outline-3">
+<h3 id="orge9278d1">help</h3>
+<div class="outline-text-3" id="text-orge9278d1">
 <ul class="org-ul">
 <li>M-x apropos (find symbol)</li>
 <li>C-h k(descripte key)</li>
@@ -254,15 +339,14 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">control flow</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+<div id="outline-container-orga3a769f" class="outline-3">
+<h3 id="orga3a769f">control flow</h3>
+<div class="outline-text-3" id="text-orga3a769f">
 <ol class="org-ol">
 <li><p>
 <code>if</code>
 </p>
 <div class="org-src-container">
-
 <pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> test
 a
 b<span style="color: #DCDCCC;">)</span>
@@ -273,7 +357,6 @@ b<span style="color: #DCDCCC;">)</span>
 <code>when</code>
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">when</span> condition a b c<span style="color: #DCDCCC;">)</span>
 <span style="color: #5F7F5F;">;;; </span><span style="color: #7F9F7F;">equivalent</span>
 <span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> condition <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">progn</span> a b c<span style="color: #BFEBBF;">)</span> nil<span style="color: #DCDCCC;">)</span>
@@ -283,7 +366,6 @@ b<span style="color: #DCDCCC;">)</span>
 <code>unless</code>
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">unless</span> condition a b c<span style="color: #DCDCCC;">)</span>
 <span style="color: #5F7F5F;">;;;</span><span style="color: #7F9F7F;">equvalent</span>
 <span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> condition nil <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">progn</span> a b c<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
@@ -291,10 +373,9 @@ b<span style="color: #DCDCCC;">)</span>
 </div></li>
 <li><p>
 <code>cond</code>
-       和scheme类似:
+和scheme类似:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">(</span>numberp x<span style="color: #D0BF8F;">)</span> x<span style="color: #BFEBBF;">)</span>
       <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">(</span>stringp x<span style="color: #D0BF8F;">)</span> x<span style="color: #BFEBBF;">)</span>
       <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">(</span>bufferp x<span style="color: #D0BF8F;">)</span>
@@ -311,13 +392,12 @@ return the value of the last argument whose value is non-nil.
 eg: (or nil nil 3 2 1) return 3 (not t)
 so (if a a b) is identical to (or a b)</li>
 <li><code>while</code>
-       <b>Special Form</b>: while condition forms&#x2026;</li>
+<b>Special Form</b>: while condition forms&#x2026;</li>
 <li><p>
 <code>dolist</code>
-       <b>Macro</b>: dolist (var list [result]) body&#x2026;
+<b>Macro</b>: dolist (var list [result]) body&#x2026;
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">reverse</span> <span style="color: #BFEBBF;">(</span>list<span style="color: #BFEBBF;">)</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span>value<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">dolist</span> <span style="color: #93E0E3;">(</span>elt list value<span style="color: #93E0E3;">)</span>
@@ -328,7 +408,6 @@ so (if a a b) is identical to (or a b)</li>
 <code>dotimes</code>
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">dotimes</span> <span style="color: #BFEBBF;">(</span>i <span style="color: #BFEBBF;">100</span><span style="color: #BFEBBF;">)</span>
             <span style="color: #BFEBBF;">(</span>insert <span style="color: #CC9393;">"I will not obey absurd orders\n"</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
@@ -336,14 +415,13 @@ so (if a a b) is identical to (or a b)</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">let&#xa0;&#xa0;&#xa0;<span class="tag"><span class="let">let</span></span></h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-orgb7a0f6c" class="outline-3">
+<h3 id="orgb7a0f6c">let&#xa0;&#xa0;&#xa0;<span class="tag"><span class="let">let</span></span></h3>
+<div class="outline-text-3" id="text-orgb7a0f6c">
 <p>
 <code>let</code>, <code>let*</code>, <code>letrec</code> 的作用语法与scheme类似
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">(</span>val1 value1<span style="color: #D0BF8F;">)</span>
       <span style="color: #D0BF8F;">(</span>val2 value2<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
   body<span style="color: #DCDCCC;">)</span>
@@ -351,9 +429,9 @@ so (if a a b) is identical to (or a b)</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">function</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-org3c9eef8" class="outline-3">
+<h3 id="org3c9eef8">function</h3>
+<div class="outline-text-3" id="text-org3c9eef8">
 <pre class="example">
 (defun func-name (a b &amp;optional c d &amp;rest e) body)
 </pre>
@@ -375,7 +453,6 @@ optional代表参数可选, rest代表可变参数, 如果有那么会是一个�
 参数传递给function
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp"><span style="color: #DCDCCC;">(</span>setq f 'list<span style="color: #DCDCCC;">)</span>
 <span style="color: #DCDCCC;">(</span>apply f 'a 'b '<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>                  <span style="color: #5F7F5F;">; </span><span style="color: #7F9F7F;">(a b 1 2)</span>
 <span style="color: #DCDCCC;">(</span>funcall f 'a 'b '<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>                <span style="color: #5F7F5F;">; </span><span style="color: #7F9F7F;">(a b (1 2))</span>
@@ -385,9 +462,9 @@ optional代表参数可选, rest代表可变参数, 如果有那么会是一个�
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">lists</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-orgfe75804" class="outline-3">
+<h3 id="orgfe75804">lists</h3>
+<div class="outline-text-3" id="text-orgfe75804">
 <ul class="org-ul">
 <li><code>null</code>: 测试list是否为空</li>
 <li><code>listp</code>: 是否为list</li>
@@ -415,9 +492,9 @@ optional代表参数可选, rest代表可变参数, 如果有那么会是一个�
 <li><code>add-to-list</code>: 和push类似</li>
 </ul>
 </div>
-<div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6">Associate List</h4>
-<div class="outline-text-4" id="text-orgheadline6">
+<div id="outline-container-org575bb8d" class="outline-4">
+<h4 id="org575bb8d">Associate List</h4>
+<div class="outline-text-4" id="text-org575bb8d">
 <pre class="example">
 ((key1 . value1 )
 (key2 . value2 )
@@ -429,11 +506,10 @@ optional代表参数可选, rest代表可变参数, 如果有那么会是一个�
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7">property list</h4>
-<div class="outline-text-4" id="text-orgheadline7">
+<div id="outline-container-orgf4be3cc" class="outline-4">
+<h4 id="orgf4be3cc">property list</h4>
+<div class="outline-text-4" id="text-orgf4be3cc">
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp"><span style="color: #DCDCCC;">(</span>setq alist '<span style="color: #BFEBBF;">(</span><span style="color: #DCDCCC; font-weight: bold;">:publish-dir</span> <span style="color: #CC9393;">"~/Documents"</span> <span style="color: #DCDCCC; font-weight: bold;">:base-dir</span> <span style="color: #CC9393;">"~/Documents/note"</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #DCDCCC;">(</span>plist-get alist <span style="color: #DCDCCC; font-weight: bold;">:base-dir</span><span style="color: #DCDCCC;">)</span>
 </pre>
@@ -442,12 +518,12 @@ optional代表参数可选, rest代表可变参数, 如果有那么会是一个�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-2">
-<h2 id="orgheadline18">常用的函数</h2>
-<div class="outline-text-2" id="text-orgheadline18">
-</div><div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">字符串操作</h3>
-<div class="outline-text-3" id="text-orgheadline9">
+<div id="outline-container-org05ef46d" class="outline-2">
+<h2 id="org05ef46d">常用的函数</h2>
+<div class="outline-text-2" id="text-org05ef46d">
+</div><div id="outline-container-org6e00301" class="outline-3">
+<h3 id="org6e00301">字符串操作</h3>
+<div class="outline-text-3" id="text-org6e00301">
 <ul class="org-ul">
 <li><code>length</code>: (length "abc")   &#x2013;&gt; return 3</li>
 <li><code>substring</code>: (substring "hello world" 1 3) &#x2013;&gt; return "ell"</li>
@@ -457,7 +533,6 @@ optional代表参数可选, rest代表可变参数, 如果有那么会是一个�
 the regex in str
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp"><span style="color: #DCDCCC;">(</span>setq mystr <span style="color: #CC9393;">"The quick fox jumped quickly."</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #DCDCCC;">(</span>string-match <span style="color: #CC9393;">"</span><span style="color: #7F9F7F; font-weight: bold;">\\</span><span style="color: #F0DFAF; font-weight: bold;">(</span><span style="color: #CC9393;">qu</span><span style="color: #7F9F7F; font-weight: bold;">\\</span><span style="color: #F0DFAF; font-weight: bold;">)</span><span style="color: #7F9F7F; font-weight: bold;">\\</span><span style="color: #F0DFAF; font-weight: bold;">(</span><span style="color: #CC9393;">ick</span><span style="color: #7F9F7F; font-weight: bold;">\\</span><span style="color: #F0DFAF; font-weight: bold;">)</span><span style="color: #CC9393;">"</span>
                    mystr<span style="color: #DCDCCC;">)</span>   <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">=&gt;&#21103;&#20316;&#29992;&#65306;&#23558;&#21305;&#37197;&#32467;&#26524;&#23384;&#20648;&#21040;match-data&#20013;</span>
@@ -470,9 +545,9 @@ the regex in str
 </div>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">Regex</h3>
-<div class="outline-text-3" id="text-orgheadline10">
+<div id="outline-container-orgc64b3f7" class="outline-3">
+<h3 id="orgc64b3f7">Regex</h3>
+<div class="outline-text-3" id="text-orgc64b3f7">
 <ol class="org-ol">
 <li>用来匹配字符串时 ^匹配字符串的开头, $匹配字符串的结尾, 用来匹配buffer中的
 内容时, ^匹配一行的开头, $匹配一行的结尾.</li>
@@ -488,9 +563,9 @@ the regex in str
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11">buffer相关：&#xa0;&#xa0;&#xa0;<span class="tag"><span class="buffer">buffer</span></span></h3>
-<div class="outline-text-3" id="text-orgheadline11">
+<div id="outline-container-orgeb33be3" class="outline-3">
+<h3 id="orgeb33be3">buffer相关：&#xa0;&#xa0;&#xa0;<span class="tag"><span class="buffer">buffer</span></span></h3>
+<div class="outline-text-3" id="text-orgeb33be3">
 <ul class="org-ul">
 <li><code>buffer-name</code>: (buffer-name)</li>
 <li><code>buffer-file-name</code>: (buffer-file-name) &#x2013;&gt; full name</li>
@@ -502,9 +577,9 @@ BUFFER-ORNAME指定的buffer设为当前buffer, body运行完后会恢复原先�
 常用*</li>
 </ul>
 </div>
-<div id="outline-container-orgheadline12" class="outline-4">
-<h4 id="orgheadline12">buffer content相关</h4>
-<div class="outline-text-4" id="text-orgheadline12">
+<div id="outline-container-org590667a" class="outline-4">
+<h4 id="org590667a">buffer content相关</h4>
+<div class="outline-text-4" id="text-org590667a">
 <ul class="org-ul">
 <li>增: <code>insert</code></li>
 <li>删: <code>delete-char</code>, <code>delete-region</code> 等等一系列的delet函数</li>
@@ -516,9 +591,9 @@ BUFFER-ORNAME指定的buffer设为当前buffer, body运行完后会恢复原先�
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-4">
-<h4 id="orgheadline13">buffer中移动以及光标相关&#xa0;&#xa0;&#xa0;<span class="tag"><span class="point">point</span></span></h4>
-<div class="outline-text-4" id="text-orgheadline13">
+<div id="outline-container-org6725041" class="outline-4">
+<h4 id="org6725041">buffer中移动以及光标相关&#xa0;&#xa0;&#xa0;<span class="tag"><span class="point">point</span></span></h4>
+<div class="outline-text-4" id="text-org6725041">
 <ul class="org-ul">
 <li><code>point</code> :(point)</li>
 <li><code>point-max</code> :(point-max) &#x2013;&gt;  一般返回buffer-end,但是如果指定了Narrowing,
@@ -558,9 +633,9 @@ body中如何改变point,执行完成后都会回到执行save-excursion之前�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">file相关&#xa0;&#xa0;&#xa0;<span class="tag"><span class="file">file</span></span></h3>
-<div class="outline-text-3" id="text-orgheadline14">
+<div id="outline-container-orgcd8a93b" class="outline-3">
+<h3 id="orgcd8a93b">file相关&#xa0;&#xa0;&#xa0;<span class="tag"><span class="file">file</span></span></h3>
+<div class="outline-text-3" id="text-orgcd8a93b">
 <ul class="org-ul">
 <li><code>find-file</code>: (find-file path)  ;;open a file</li>
 <li><code>write-file</code>: (write-file path) ;;save the file</li>
@@ -576,9 +651,9 @@ body中如何改变point,执行完成后都会回到执行save-excursion之前�
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15">other useful function</h3>
-<div class="outline-text-3" id="text-orgheadline15">
+<div id="outline-container-orgea0a988" class="outline-3">
+<h3 id="orgea0a988">other useful function</h3>
+<div class="outline-text-3" id="text-orgea0a988">
 <ul class="org-ul">
 <li><code>save-excursive</code>: 保存并恢复当前point</li>
 <li><code>interactive</code>:</li>
@@ -586,7 +661,6 @@ body中如何改变point,执行完成后都会回到执行save-excursion之前�
 <code>thing-at-point</code>:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp"><span style="color: #DCDCCC;">(</span>thing-at-point 'word<span style="color: #DCDCCC;">)</span>
 <span style="color: #DCDCCC;">(</span>thing-at-point 'sexp<span style="color: #DCDCCC;">)</span>
 <span style="color: #DCDCCC;">(</span>thing-at-point 'url<span style="color: #DCDCCC;">)</span>
@@ -601,24 +675,23 @@ pair &#x2013;&gt; (start . end) , 这个pair 的car是左边界,cdr是右边界<
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16"><b>useful variable</b></h3>
-<div class="outline-text-3" id="text-orgheadline16">
+<div id="outline-container-org0f21209" class="outline-3">
+<h3 id="org0f21209"><b>useful variable</b></h3>
+<div class="outline-text-3" id="text-org0f21209">
 <ul class="org-ul">
 <li><code>mark-active</code>: 现在一般用 <code>region-active-p</code> 代替</li>
 <li><code>last-command</code>: 最后一条命令</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17">useful code snippet</h3>
-<div class="outline-text-3" id="text-orgheadline17">
+<div id="outline-container-org3db5988" class="outline-3">
+<h3 id="org3db5988">useful code snippet</h3>
+<div class="outline-text-3" id="text-org3db5988">
 <ol class="org-ol">
 <li><p>
 test if a mode(major or minor) is on (flymake-mode as an example)
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>and <span style="color: #D0BF8F;">(</span>boundp 'flymake-mode<span style="color: #D0BF8F;">)</span> flymake-mode<span style="color: #BFEBBF;">)</span>
     <span style="color: #BFEBBF;">(</span>message <span style="color: #CC9393;">"flymake-mode is on"</span><span style="color: #BFEBBF;">)</span>
   <span style="color: #BFEBBF;">(</span>message <span style="color: #CC9393;">"flymake-mode is off"</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
@@ -629,7 +702,6 @@ setting keybinding for specified mode
 <b>there are two way</b>, the first is <b>eval-after-load</b>
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp"><span style="color: #DCDCCC;">(</span>eval-after-load <span style="color: #CC9393;">"org"</span>
   '<span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">progn</span>
      <span style="color: #D0BF8F;">(</span>define-key org-mode-map <span style="color: #93E0E3;">(</span>kbd <span style="color: #CC9393;">"&lt;C-M-return&gt;"</span><span style="color: #93E0E3;">)</span> 'org-insert-heading-respect-content<span style="color: #D0BF8F;">)</span>
@@ -642,7 +714,6 @@ setting keybinding for specified mode
 the second way is <b>add-hook</b>
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">my-org-settngs</span> <span style="color: #BFEBBF;">()</span>
     <span style="color: #BFEBBF;">(</span>flyspell-mode <span style="color: #BFEBBF;">1</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #DCDCCC;">(</span>add-hook 'org-mode-hook 'my-org-settngs<span style="color: #DCDCCC;">)</span>
@@ -663,9 +734,9 @@ minor mode 的map</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline19" class="outline-2">
-<h2 id="orgheadline19">interactive&#xa0;&#xa0;&#xa0;<span class="tag"><span class="interactive">interactive</span></span></h2>
-<div class="outline-text-2" id="text-orgheadline19">
+<div id="outline-container-orgf599acc" class="outline-2">
+<h2 id="orgf599acc">interactive&#xa0;&#xa0;&#xa0;<span class="tag"><span class="interactive">interactive</span></span></h2>
+<div class="outline-text-2" id="text-orgf599acc">
 <p>
 emacs中交互式运行的命令都需要在函数体的最上方加上(interactive
 arg-descriptor), arg-descriptor最后会解析成参数从递给该命令, arg-descriptor
@@ -710,7 +781,6 @@ nil, 后面不能跟提示字符串,因为参数来自C-u而不是minibuffer</li
 <code>read-string</code> 这样的函数从minibuffer中读入字符串
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp"><span style="color: #DCDCCC;">(</span>interactive <span style="color: #BFEBBF;">(</span>list
               <span style="color: #D0BF8F;">(</span>read-string <span style="color: #93E0E3;">(</span>format <span style="color: #CC9393;">"word (%s): "</span> <span style="color: #9FC59F;">(</span>thing-at-point 'word<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
                            nil nil <span style="color: #93E0E3;">(</span>thing-at-point 'word<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
@@ -730,9 +800,9 @@ read-string prompt &amp;optional initial history default inherit-input-method
 </div>
 </div>
 
-<div id="outline-container-orgheadline20" class="outline-2">
-<h2 id="orgheadline20">autoload&#xa0;&#xa0;&#xa0;<span class="tag"><span class="autoload">autoload</span></span></h2>
-<div class="outline-text-2" id="text-orgheadline20">
+<div id="outline-container-orgf3c98db" class="outline-2">
+<h2 id="orgf3c98db">autoload&#xa0;&#xa0;&#xa0;<span class="tag"><span class="autoload">autoload</span></span></h2>
+<div class="outline-text-2" id="text-orgf3c98db">
 <p>
 使用autoload可以使一个函数或者命令只在调用时才加载进来,这样可以加快emacs的
 启动时间,使用autoload有两种方法:
@@ -758,7 +828,6 @@ autoload function filename &amp;optional docstring interactive type
 使用魔法注释
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp"><span style="color: #5F7F5F;">;;;</span><span style="color: #7F9F7F;">###</span><span style="color: #D0BF8F; font-weight: bold;">autoload</span>
 <span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">doctor</span> <span style="color: #BFEBBF;">()</span>
   <span style="color: #9FC59F;">"Switch to *doctor* buffer and start giving psychotherapy."</span>
@@ -781,18 +850,17 @@ yasnippet-autoloads.el(所有的package.el管理的包的 -autoloads.el文件)�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline23" class="outline-2">
-<h2 id="orgheadline23">define mode(minor mode or major mode)</h2>
-<div class="outline-text-2" id="text-orgheadline23">
-</div><div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21">keymap</h3>
-<div class="outline-text-3" id="text-orgheadline21">
+<div id="outline-container-org819f761" class="outline-2">
+<h2 id="org819f761">define mode(minor mode or major mode)</h2>
+<div class="outline-text-2" id="text-org819f761">
+</div><div id="outline-container-orgadf8229" class="outline-3">
+<h3 id="orgadf8229">keymap</h3>
+<div class="outline-text-3" id="text-orgadf8229">
 <p>
 定义一个mode的时候,通常会用到keymap,keymap规定了该mode下的键映射,可以用如
 下的代码来创建一个keymap:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defvar</span> <span style="color: #DFAF8F;">prelude-mode-map</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>map <span style="color: #9FC59F;">(</span>make-sparse-keymap<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span>define-key map <span style="color: #93E0E3;">(</span>kbd <span style="color: #CC9393;">"C-c o"</span><span style="color: #93E0E3;">)</span> 'prelude-open-with<span style="color: #D0BF8F;">)</span>
@@ -807,9 +875,9 @@ yasnippet-autoloads.el(所有的package.el管理的包的 -autoloads.el文件)�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline22" class="outline-3">
-<h3 id="orgheadline22">minor mode</h3>
-<div class="outline-text-3" id="text-orgheadline22">
+<div id="outline-container-orgae97fab" class="outline-3">
+<h3 id="orgae97fab">minor mode</h3>
+<div class="outline-text-3" id="text-orgae97fab">
 <p>
 创建一个minor mode,需要经过以下几个步骤:
 </p>
@@ -826,7 +894,6 @@ yasnippet-autoloads.el(所有的package.el管理的包的 -autoloads.el文件)�
 mode
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-minor-mode</span> <span style="color: #93E0E3;">prelude-mode</span>
   <span style="color: #9FC59F;">"Minor mode to consolidate Emacs Prelude extensions.</span>
 

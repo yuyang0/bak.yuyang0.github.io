@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>java syntax note</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,6 +176,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -175,65 +260,65 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline2">tools</a>
+<li><a href="#org2aa2638">tools</a>
 <ul>
-<li><a href="#orgheadline1">run program</a></li>
+<li><a href="#orgaeee9a0">run program</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline3">OOP</a>
+<li><a href="#orgaa06f19">OOP</a>
 <ul>
-<li><a href="#orgheadline4">package</a></li>
-<li><a href="#orgheadline5">继承</a>
+<li><a href="#org24a8ed4">package</a></li>
+<li><a href="#orgcb04119">继承</a>
 <ul>
-<li><a href="#orgheadline6">类型转换</a></li>
-<li><a href="#orgheadline7">Object</a></li>
+<li><a href="#org0fbaa86">类型转换</a></li>
+<li><a href="#org71df1e4">Object</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline8">抽象类</a></li>
-<li><a href="#orgheadline9">反射(Reflection)</a></li>
-<li><a href="#orgheadline10">接口(interface)</a></li>
+<li><a href="#orgd756532">抽象类</a></li>
+<li><a href="#org995e08b">反射(Reflection)</a></li>
+<li><a href="#org8afddf8">接口(interface)</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline11">杂七杂八</a></li>
-<li><a href="#orgheadline12">exception(异常)</a>
+<li><a href="#org01b2544">杂七杂八</a></li>
+<li><a href="#orgbe4d936">exception(异常)</a>
 <ul>
-<li><a href="#orgheadline13">异常使用的建议</a></li>
+<li><a href="#orgd48e8ad">异常使用的建议</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline14">日志</a>
+<li><a href="#orgbe9e202">日志</a>
 <ul>
-<li><a href="#orgheadline15">使用建议</a></li>
+<li><a href="#orgf096635">使用建议</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline26">java标准库</a>
+<li><a href="#orgf3d09db">java标准库</a>
 <ul>
-<li><a href="#orgheadline20">java.lang(默认导入)</a>
+<li><a href="#org3ac894e">java.lang(默认导入)</a>
 <ul>
-<li><a href="#orgheadline16">java.lang.String(字符串)</a></li>
-<li><a href="#orgheadline17">java.lang.StringBuilder</a></li>
-<li><a href="#orgheadline18">java.lang.Math</a></li>
-<li><a href="#orgheadline19">java.lang.System</a></li>
+<li><a href="#org56cccf7">java.lang.String(字符串)</a></li>
+<li><a href="#org76a6029">java.lang.StringBuilder</a></li>
+<li><a href="#org6baea6e">java.lang.Math</a></li>
+<li><a href="#org6cfbcd8">java.lang.System</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline24">java.util</a>
+<li><a href="#orgf638e78">java.util</a>
 <ul>
-<li><a href="#orgheadline21">java.util.Date(Time)</a></li>
-<li><a href="#orgheadline22">java.util.GregorianCalendar(日历)</a></li>
-<li><a href="#orgheadline23">java.util.ArrayList</a></li>
+<li><a href="#orgfb0238e">java.util.Date(Time)</a></li>
+<li><a href="#org1914b0e">java.util.GregorianCalendar(日历)</a></li>
+<li><a href="#org5eb113f">java.util.ArrayList</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline25">java集合</a></li>
+<li><a href="#org163439f">java集合</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">tools</h2>
-<div class="outline-text-2" id="text-orgheadline2">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1">run program</h3>
-<div class="outline-text-3" id="text-orgheadline1">
+<div id="outline-container-org2aa2638" class="outline-2">
+<h2 id="org2aa2638">tools</h2>
+<div class="outline-text-2" id="text-org2aa2638">
+</div><div id="outline-container-orgaeee9a0" class="outline-3">
+<h3 id="orgaeee9a0">run program</h3>
+<div class="outline-text-3" id="text-orgaeee9a0">
 <ol class="org-ol">
 <li><p>
 in Terminal
@@ -246,21 +331,20 @@ java welcome
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">OOP</h2>
-<div class="outline-text-2" id="text-orgheadline3">
+<div id="outline-container-orgaa06f19" class="outline-2">
+<h2 id="orgaa06f19">OOP</h2>
+<div class="outline-text-2" id="text-orgaa06f19">
 <p>
 OOP编程范式最核心的三大概念：继承，封装，多态。
 </p>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">package</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-org24a8ed4" class="outline-3">
+<h3 id="org24a8ed4">package</h3>
+<div class="outline-text-3" id="text-org24a8ed4">
 <p>
 建议使用域名的逆序来命名包, 比如有一个域名: example.com, 那么你就可以使用
 </p>
 <div class="org-src-container">
-
 <pre class="src src-java"><span style="color: #F0DFAF; font-weight: bold;">package</span> com.example.<span style="color: #BFEBBF;">testcode</span>
 </pre>
 </div>
@@ -270,14 +354,13 @@ com/example/testcode/目录中.使用IDE可以很轻松的做到这一点.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">继承</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-orgcb04119" class="outline-3">
+<h3 id="orgcb04119">继承</h3>
+<div class="outline-text-3" id="text-orgcb04119">
 <p>
 java的所有继承都是公有继承,使用 <code>extends</code> 关键字.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-java"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Employee</span><span style="color: #DCDCCC;">{</span>
         <span style="color: #F0DFAF; font-weight: bold;">public</span> <span style="color: #93E0E3;">Employee</span><span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">String</span> <span style="color: #DFAF8F;">name</span>, <span style="color: #7CB8BB;">double</span> <span style="color: #DFAF8F;">salary</span><span style="color: #BFEBBF;">){</span>
                 <span style="color: #F0DFAF; font-weight: bold;">this</span>.name = name;
@@ -322,16 +405,15 @@ java的所有继承都是公有继承,使用 <code>extends</code> 关键字.
 有两个作用:一个是调用父类的方法,一个是调用父类的构造方法
 </p>
 </div>
-<div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6">类型转换</h4>
-<div class="outline-text-4" id="text-orgheadline6">
+<div id="outline-container-org0fbaa86" class="outline-4">
+<h4 id="org0fbaa86">类型转换</h4>
+<div class="outline-text-4" id="text-org0fbaa86">
 <ol class="org-ol">
 <li><p>
 子类变量可以直接赋给父类变量,这样父类变量调用方法时会使用动态绑定,比如
 如下代码:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-java"><span style="color: #7CB8BB;">Employee</span> <span style="color: #DFAF8F;">e</span> = <span style="color: #F0DFAF; font-weight: bold;">new</span> <span style="color: #7CB8BB;">Manager</span><span style="color: #DCDCCC;">(</span>...<span style="color: #DCDCCC;">)</span>;
 e.getSalary<span style="color: #DCDCCC;">()</span>;
 </pre>
@@ -349,7 +431,6 @@ e.getSalary<span style="color: #DCDCCC;">()</span>;
 的子类, 那么:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-java"><span style="color: #7CB8BB;">Employee</span> <span style="color: #DFAF8F;">e</span> = <span style="color: #F0DFAF; font-weight: bold;">new</span> <span style="color: #7CB8BB;">Manager</span><span style="color: #DCDCCC;">(</span>...<span style="color: #DCDCCC;">)</span>;
 <span style="color: #F0DFAF; font-weight: bold;">if</span><span style="color: #DCDCCC;">(</span>e <span style="color: #F0DFAF; font-weight: bold;">instanceof</span> Manager<span style="color: #DCDCCC;">){</span>
     <span style="color: #7CB8BB;">Manager</span> <span style="color: #DFAF8F;">m</span> = <span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">Manager</span><span style="color: #BFEBBF;">)</span> e;
@@ -362,9 +443,9 @@ e.getSalary<span style="color: #DCDCCC;">()</span>;
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7">Object</h4>
-<div class="outline-text-4" id="text-orgheadline7">
+<div id="outline-container-org71df1e4" class="outline-4">
+<h4 id="org71df1e4">Object</h4>
+<div class="outline-text-4" id="text-org71df1e4">
 <p>
 Object是所有类的超类,该类有有一些方法建议每一个类都重载:
 </p>
@@ -374,7 +455,6 @@ equals方法: 用来检测一个对象是否等于另一个对象,下面是一�
 式:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-java"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Employee</span><span style="color: #DCDCCC;">{</span>
     ....
     <span style="color: #F0DFAF; font-weight: bold;">public</span> bool equals<span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">Object</span> <span style="color: #DFAF8F;">otherObject</span><span style="color: #BFEBBF;">){</span>
@@ -408,16 +488,15 @@ equals方法: 用来检测一个对象是否等于另一个对象,下面是一�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">抽象类</h3>
-<div class="outline-text-3" id="text-orgheadline8">
+<div id="outline-container-orgd756532" class="outline-3">
+<h3 id="orgd756532">抽象类</h3>
+<div class="outline-text-3" id="text-orgd756532">
 <p>
 抽象类不能实例化,它主要是用来被其它类继承的,实际上起的是一个占位的角色,大多
 数时候,抽象类只会包含一系列的抽象方法,但是抽象类是可以包含实例域与普通的类
 方法的,下面的代码展示了抽象类的用法.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-java"><span style="color: #F0DFAF; font-weight: bold;">abstract</span> <span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Person</span><span style="color: #DCDCCC;">{</span>
     <span style="color: #F0DFAF; font-weight: bold;">public</span> <span style="color: #93E0E3;">Person</span><span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">String</span> <span style="color: #DFAF8F;">name</span><span style="color: #BFEBBF;">){</span>
         <span style="color: #F0DFAF; font-weight: bold;">this</span>.name = name;
@@ -437,9 +516,9 @@ equals方法: 用来检测一个对象是否等于另一个对象,下面是一�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">反射(Reflection)</h3>
-<div class="outline-text-3" id="text-orgheadline9">
+<div id="outline-container-org995e08b" class="outline-3">
+<h3 id="org995e08b">反射(Reflection)</h3>
+<div class="outline-text-3" id="text-org995e08b">
 <p>
 虚拟机为每一个类型都维护了一个Class对象, 要获得Class对象有以下几种方法:
 </p>
@@ -453,7 +532,6 @@ Class对象.</li>
 如果知道类的字符串表示, 那么可以使用 forName来获得Class 对象, 比如:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-java"><span style="color: #7CB8BB;">Class</span> <span style="color: #DFAF8F;">cl</span> = Class.forName<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"java.util.Date"</span><span style="color: #DCDCCC;">)</span>;
 </pre>
 </div></li>
@@ -468,7 +546,6 @@ newInstance 获取一个新的实例,注意返回的是Object类型, 所以你�
 转换
 </p>
 <div class="org-src-container">
-
 <pre class="src src-java"><span style="color: #7CB8BB;">Class</span> <span style="color: #DFAF8F;">cl</span> = Class.forName<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"java.util.Date"</span><span style="color: #DCDCCC;">)</span>;
 <span style="color: #7CB8BB;">Object</span> <span style="color: #DFAF8F;">m</span> = cl.newInstance<span style="color: #DCDCCC;">()</span>;
 <span style="color: #7CB8BB;">Date</span> <span style="color: #DFAF8F;">d</span> = <span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">Date</span><span style="color: #DCDCCC;">)</span> m;
@@ -477,15 +554,14 @@ newInstance 获取一个新的实例,注意返回的是Object类型, 所以你�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">接口(interface)</h3>
-<div class="outline-text-3" id="text-orgheadline10">
+<div id="outline-container-org8afddf8" class="outline-3">
+<h3 id="org8afddf8">接口(interface)</h3>
+<div class="outline-text-3" id="text-org8afddf8">
 <ol class="org-ol">
 <li><p>
 定义
 </p>
 <div class="org-src-container">
-
 <pre class="src src-java"><span style="color: #F0DFAF; font-weight: bold;">public</span> <span style="color: #F0DFAF; font-weight: bold;">interface</span> <span style="color: #7CB8BB;">Comparable</span><span style="color: #DCDCCC;">&lt;</span><span style="color: #7CB8BB;">T</span><span style="color: #DCDCCC;">&gt;{</span>
     <span style="color: #7CB8BB;">int</span> <span style="color: #93E0E3;">CompareTo</span><span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">T</span> <span style="color: #DFAF8F;">otherObject</span><span style="color: #BFEBBF;">)</span>;
 <span style="color: #DCDCCC;">}</span>
@@ -498,7 +574,6 @@ interface中的方法自动为public.
 实现接口
 </p>
 <div class="org-src-container">
-
 <pre class="src src-java"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Employee</span> <span style="color: #F0DFAF; font-weight: bold;">implements</span> <span style="color: #7CB8BB;">Comparable</span><span style="color: #DCDCCC;">&lt;</span><span style="color: #7CB8BB;">Employee</span><span style="color: #DCDCCC;">&gt;{</span>
     <span style="color: #F0DFAF; font-weight: bold;">public</span> <span style="color: #7CB8BB;">int</span> <span style="color: #93E0E3;">compareTo</span><span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">Employee</span> <span style="color: #DFAF8F;">other</span><span style="color: #BFEBBF;">){</span>
         ...
@@ -515,7 +590,6 @@ interface中的方法自动为public.
 实现了该接口.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-java">x = <span style="color: #F0DFAF; font-weight: bold;">new</span> <span style="color: #7CB8BB;">Comparable</span><span style="color: #DCDCCC;">()</span>;            <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#38169;&#35823;&#35821;&#27861;</span>
 
 <span style="color: #7CB8BB;">Comparable</span> <span style="color: #DFAF8F;">x</span>;
@@ -528,9 +602,9 @@ interface中的方法自动为public.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-2">
-<h2 id="orgheadline11">杂七杂八</h2>
-<div class="outline-text-2" id="text-orgheadline11">
+<div id="outline-container-org01b2544" class="outline-2">
+<h2 id="org01b2544">杂七杂八</h2>
+<div class="outline-text-2" id="text-org01b2544">
 <ol class="org-ol">
 <li>java提供了八种基本类型(byte,short,int,long,char,boolean,float,double)这些类型
 不是对象，但是java提供了包装对象，并且在适当的地方会自动的装箱和拆箱
@@ -540,9 +614,9 @@ interface中的方法自动为public.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-2">
-<h2 id="orgheadline12">exception(异常)</h2>
-<div class="outline-text-2" id="text-orgheadline12">
+<div id="outline-container-orgbe4d936" class="outline-2">
+<h2 id="orgbe4d936">exception(异常)</h2>
+<div class="outline-text-2" id="text-orgbe4d936">
 
 <div class="figure">
 <p><img src="static/img/exceptions.png" alt="exceptions.png" />
@@ -571,7 +645,6 @@ IOException是所有不属于RuntimeException的异常,这类异常应该通过t
 的例子:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-java"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">MyAnimation</span><span style="color: #DCDCCC;">{</span>
     ...
     <span style="color: #F0DFAF; font-weight: bold;">public</span> Image loadImage<span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">String</span> <span style="color: #DFAF8F;">s</span><span style="color: #BFEBBF;">)</span> <span style="color: #F0DFAF; font-weight: bold;">throws</span> <span style="color: #7CB8BB;">EOFException</span>, <span style="color: #7CB8BB;">MalformatURLException</span><span style="color: #BFEBBF;">{</span>
@@ -586,7 +659,6 @@ loadImage有可能抛出两个异常,如果一个方法没有声明 throws语句
 处理的基本代码是这样的:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-java"><span style="color: #F0DFAF; font-weight: bold;">try</span><span style="color: #DCDCCC;">{</span>
     ...
 <span style="color: #DCDCCC;">}</span>
@@ -606,9 +678,9 @@ loadImage有可能抛出两个异常,如果一个方法没有声明 throws语句
 以用来清理资源
 </p>
 </div>
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13">异常使用的建议</h3>
-<div class="outline-text-3" id="text-orgheadline13">
+<div id="outline-container-orgd48e8ad" class="outline-3">
+<h3 id="orgd48e8ad">异常使用的建议</h3>
+<div class="outline-text-3" id="text-orgd48e8ad">
 <ol class="org-ol">
 <li>如果一个方法中调用了一个能够抛出异常的方法,那么这时候有两个选择,一是如果
 目前能够处理该异常, 那么就使用try catch来捕获该异常.二是将该异常传递给该
@@ -624,9 +696,9 @@ loadImage有可能抛出两个异常,如果一个方法没有声明 throws语句
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-2">
-<h2 id="orgheadline14">日志</h2>
-<div class="outline-text-2" id="text-orgheadline14">
+<div id="outline-container-orgbe9e202" class="outline-2">
+<h2 id="orgbe9e202">日志</h2>
+<div class="outline-text-2" id="text-orgbe9e202">
 <ol class="org-ol">
 <li>获得logger, 主要是使用 Logger类的 getLogger工厂方法, 该方法只有在logger
 不存在时才创建</li>
@@ -664,7 +736,6 @@ handler也有自己的level,只有日志级别高于等于handler的level时,han
 个方法需要你显式的指定日志级别.</li>
 </ol>
 <div class="org-src-container">
-
 <pre class="src src-java"><span style="color: #7CB8BB;">Logger</span> <span style="color: #DFAF8F;">logger</span> = Logger.getLogger<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"com.mycompany.myapp"</span><span style="color: #DCDCCC;">)</span>;
 logger.setLevel<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">Level</span>.FINE<span style="color: #DCDCCC;">)</span>;
 logger.setUseParentHandler<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">false</span><span style="color: #DCDCCC;">)</span>; <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#38450;&#27490;&#26085;&#24535;&#36865;&#20837; &#29238;logger,&#22240;&#20026;&#36825;&#26679;&#20250;&#37325;&#22797;</span>
@@ -674,15 +745,14 @@ logger.addHandler<span style="color: #DCDCCC;">(</span>hd<span style="color: #DC
 </pre>
 </div>
 </div>
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15">使用建议</h3>
-<div class="outline-text-3" id="text-orgheadline15">
+<div id="outline-container-orgf096635" class="outline-3">
+<h3 id="orgf096635">使用建议</h3>
+<div class="outline-text-3" id="text-orgf096635">
 <ol class="org-ol">
 <li><p>
 将logger 命名为与主应用程序包一样的名字.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-java"><span style="color: #7CB8BB;">Logger</span> <span style="color: #DFAF8F;">logger</span> = Logger.getLogger<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"com.mycompany.myproj"</span><span style="color: #DCDCCC;">)</span>;
 </pre>
 </div>
@@ -690,7 +760,6 @@ logger.addHandler<span style="color: #DCDCCC;">(</span>hd<span style="color: #DC
 同时为了方便可以将logger添加进类的静态域中
 </p>
 <div class="org-src-container">
-
 <pre class="src src-java"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">MyClass</span><span style="color: #DCDCCC;">{</span>
     ...
     <span style="color: #F0DFAF; font-weight: bold;">private</span> <span style="color: #F0DFAF; font-weight: bold;">static</span> <span style="color: #F0DFAF; font-weight: bold;">final</span> Logger = Logger.getLogger<span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">"com.mycompany.myproj"</span><span style="color: #BFEBBF;">)</span>;
@@ -703,15 +772,15 @@ logger.addHandler<span style="color: #DCDCCC;">(</span>hd<span style="color: #DC
 </div>
 </div>
 
-<div id="outline-container-orgheadline26" class="outline-2">
-<h2 id="orgheadline26">java标准库</h2>
-<div class="outline-text-2" id="text-orgheadline26">
-</div><div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20">java.lang(默认导入)</h3>
-<div class="outline-text-3" id="text-orgheadline20">
-</div><div id="outline-container-orgheadline16" class="outline-4">
-<h4 id="orgheadline16">java.lang.String(字符串)</h4>
-<div class="outline-text-4" id="text-orgheadline16">
+<div id="outline-container-orgf3d09db" class="outline-2">
+<h2 id="orgf3d09db">java标准库</h2>
+<div class="outline-text-2" id="text-orgf3d09db">
+</div><div id="outline-container-org3ac894e" class="outline-3">
+<h3 id="org3ac894e">java.lang(默认导入)</h3>
+<div class="outline-text-3" id="text-org3ac894e">
+</div><div id="outline-container-org56cccf7" class="outline-4">
+<h4 id="org56cccf7">java.lang.String(字符串)</h4>
+<div class="outline-text-4" id="text-org56cccf7">
 <p>
 字符串是不可变的.所以修改会返回一个新的字符串
 </p>
@@ -728,7 +797,6 @@ logger.addHandler<span style="color: #DCDCCC;">(</span>hd<span style="color: #DC
 <li>format: 静态方法</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-java"><span style="color: #7CB8BB;">String</span> <span style="color: #DFAF8F;">s1</span> = <span style="color: #CC9393;">"aaaa"</span>;
 <span style="color: #7CB8BB;">String</span> <span style="color: #DFAF8F;">s2</span> = s1 + <span style="color: #CC9393;">"bbbb"</span>;        <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">s2 = "aaaabbbb"</span>
 <span style="color: #7CB8BB;">int</span> <span style="color: #DFAF8F;">len</span> = s2.length<span style="color: #DCDCCC;">()</span>;    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">len = 8</span>
@@ -737,14 +805,13 @@ logger.addHandler<span style="color: #DCDCCC;">(</span>hd<span style="color: #DC
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline17" class="outline-4">
-<h4 id="orgheadline17">java.lang.StringBuilder</h4>
-<div class="outline-text-4" id="text-orgheadline17">
+<div id="outline-container-org76a6029" class="outline-4">
+<h4 id="org76a6029">java.lang.StringBuilder</h4>
+<div class="outline-text-4" id="text-org76a6029">
 <p>
 该类表示的字符串可变,主要是为了效率考虑
 </p>
 <div class="org-src-container">
-
 <pre class="src src-java"><span style="color: #7CB8BB;">StringBuider</span> <span style="color: #DFAF8F;">builder</span> = <span style="color: #F0DFAF; font-weight: bold;">new</span> <span style="color: #7CB8BB;">StringBuider</span><span style="color: #DCDCCC;">()</span>;
 builder.append<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"hello"</span><span style="color: #DCDCCC;">)</span>;
 builder.append<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">' '</span><span style="color: #DCDCCC;">)</span>;
@@ -753,9 +820,9 @@ builder.append<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-4">
-<h4 id="orgheadline18">java.lang.Math</h4>
-<div class="outline-text-4" id="text-orgheadline18">
+<div id="outline-container-org6baea6e" class="outline-4">
+<h4 id="org6baea6e">java.lang.Math</h4>
+<div class="outline-text-4" id="text-org6baea6e">
 <p>
 各种数学函数以及变量, 都是静态函数以及变量
 </p>
@@ -766,26 +833,26 @@ builder.append<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline19" class="outline-4">
-<h4 id="orgheadline19">java.lang.System</h4>
+<div id="outline-container-org6cfbcd8" class="outline-4">
+<h4 id="org6cfbcd8">java.lang.System</h4>
 </div>
 </div>
-<div id="outline-container-orgheadline24" class="outline-3">
-<h3 id="orgheadline24">java.util</h3>
-<div class="outline-text-3" id="text-orgheadline24">
-</div><div id="outline-container-orgheadline21" class="outline-4">
-<h4 id="orgheadline21">java.util.Date(Time)</h4>
+<div id="outline-container-orgf638e78" class="outline-3">
+<h3 id="orgf638e78">java.util</h3>
+<div class="outline-text-3" id="text-orgf638e78">
+</div><div id="outline-container-orgfb0238e" class="outline-4">
+<h4 id="orgfb0238e">java.util.Date(Time)</h4>
 </div>
-<div id="outline-container-orgheadline22" class="outline-4">
-<h4 id="orgheadline22">java.util.GregorianCalendar(日历)</h4>
+<div id="outline-container-org1914b0e" class="outline-4">
+<h4 id="org1914b0e">java.util.GregorianCalendar(日历)</h4>
 </div>
-<div id="outline-container-orgheadline23" class="outline-4">
-<h4 id="orgheadline23">java.util.ArrayList</h4>
+<div id="outline-container-org5eb113f" class="outline-4">
+<h4 id="org5eb113f">java.util.ArrayList</h4>
 </div>
 </div>
-<div id="outline-container-orgheadline25" class="outline-3">
-<h3 id="orgheadline25">java集合</h3>
-<div class="outline-text-3" id="text-orgheadline25">
+<div id="outline-container-org163439f" class="outline-3">
+<h3 id="org163439f">java集合</h3>
+<div class="outline-text-3" id="text-org163439f">
 <p>
 java的集合大体上分为Set，List，Map三类。集合类型的元素必须是引用类型，而不能是基
 本类型，但是一般java会自动装箱

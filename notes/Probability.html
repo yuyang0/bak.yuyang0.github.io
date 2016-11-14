@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:05 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>概率论与数理统计笔记</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="Probability 概率论 统计 mathematics" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="Probability 概率论 统计 mathematics" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -198,28 +283,28 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline9">事件的概率</a>
+<li><a href="#org3c1cc86">事件的概率</a>
 <ul>
-<li><a href="#orgheadline1">concepts</a></li>
-<li><a href="#orgheadline2">古典概率</a></li>
-<li><a href="#orgheadline3">概率的公理化定义</a></li>
-<li><a href="#orgheadline4">事件</a></li>
-<li><a href="#orgheadline5">加法定律</a></li>
-<li><a href="#orgheadline6">条件概率(后验概率)</a></li>
-<li><a href="#orgheadline7">独立事件与乘法定律</a></li>
-<li><a href="#orgheadline8">全概率公式与贝叶斯公式</a></li>
+<li><a href="#orgdb72e36">concepts</a></li>
+<li><a href="#org78daf87">古典概率</a></li>
+<li><a href="#org8c206da">概率的公理化定义</a></li>
+<li><a href="#orgb66ebd5">事件</a></li>
+<li><a href="#orgbc6cfd0">加法定律</a></li>
+<li><a href="#orgf1693c9">条件概率(后验概率)</a></li>
+<li><a href="#org53c1d2e">独立事件与乘法定律</a></li>
+<li><a href="#org82323c2">全概率公式与贝叶斯公式</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline17">随机变量的概率</a>
+<li><a href="#orgedaa8d3">随机变量的概率</a>
 <ul>
-<li><a href="#orgheadline10">随机变量</a></li>
-<li><a href="#orgheadline16">离散性随机变量</a>
+<li><a href="#org50c31c9">随机变量</a></li>
+<li><a href="#orgbc95960">离散性随机变量</a>
 <ul>
-<li><a href="#orgheadline11">累积分布函数(CDF)</a></li>
-<li><a href="#orgheadline12">概率质量函数(PMF)</a></li>
-<li><a href="#orgheadline13">概率密度函数(PDF)</a></li>
-<li><a href="#orgheadline14">离散性随机变量的几个分布</a></li>
-<li><a href="#orgheadline15">连续性随机变量的几个分布</a></li>
+<li><a href="#org85422a1">累积分布函数(CDF)</a></li>
+<li><a href="#orgcb762bc">概率质量函数(PMF)</a></li>
+<li><a href="#org92d527f">概率密度函数(PDF)</a></li>
+<li><a href="#orgb3f1a49">离散性随机变量的几个分布</a></li>
+<li><a href="#org23272b5">连续性随机变量的几个分布</a></li>
 </ul>
 </li>
 </ul>
@@ -227,12 +312,12 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-2">
-<h2 id="orgheadline9">事件的概率</h2>
-<div class="outline-text-2" id="text-orgheadline9">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1">concepts</h3>
-<div class="outline-text-3" id="text-orgheadline1">
+<div id="outline-container-org3c1cc86" class="outline-2">
+<h2 id="org3c1cc86">事件的概率</h2>
+<div class="outline-text-2" id="text-org3c1cc86">
+</div><div id="outline-container-orgdb72e36" class="outline-3">
+<h3 id="orgdb72e36">concepts</h3>
+<div class="outline-text-3" id="text-orgdb72e36">
 <ol class="org-ol">
 <li>样本空间(Sample space) \(\Omega\):一个试验所有的结果组成的集合, 比如试验为
 掷骰子1次,得到的点数, 那么样本空间就为{1, 2, 3, 4, 5, 6}</li>
@@ -254,17 +339,17 @@ C = AB</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">古典概率</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+<div id="outline-container-org78daf87" class="outline-3">
+<h3 id="org78daf87">古典概率</h3>
+<div class="outline-text-3" id="text-org78daf87">
 <p>
 全部试验结果已知并且等可能的情况下才可以应用古典概率,古典概率一般是使用排列组合来求解.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">概率的公理化定义</h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-org8c206da" class="outline-3">
+<h3 id="org8c206da">概率的公理化定义</h3>
+<div class="outline-text-3" id="text-org8c206da">
 <p>
 所有的试验结果定义一个全集 \(\Omega\), 所有的事件组成一个集合 \(\mathcal{F}\),
 任何定义于该集合上的事件都是它的子集
@@ -282,9 +367,9 @@ A<sub>1</sub>, A<sub>2</sub>,&#x2026;, A<sub>n</sub> 是互斥事件
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">事件</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-orgb66ebd5" class="outline-3">
+<h3 id="orgb66ebd5">事件</h3>
+<div class="outline-text-3" id="text-orgb66ebd5">
 <p>
 一个事件可以看作是实验或者观察的一个结果：
 </p>
@@ -298,18 +383,18 @@ A<sub>1</sub>, A<sub>2</sub>,&#x2026;, A<sub>n</sub> 是互斥事件
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">加法定律</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-orgbc6cfd0" class="outline-3">
+<h3 id="orgbc6cfd0">加法定律</h3>
+<div class="outline-text-3" id="text-orgbc6cfd0">
 <p>
 对于n个互斥事件A1, A2, &#x2026; An
 P(A1 + A2 + &#x2026; + An) = P(A1) + P(A2) + &#x2026; P(An)
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">条件概率(后验概率)</h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-orgf1693c9" class="outline-3">
+<h3 id="orgf1693c9">条件概率(后验概率)</h3>
+<div class="outline-text-3" id="text-orgf1693c9">
 <p>
 有两个事件A与B,在确定B发生的条件下,A发生的概率(也就是A的条件概率,也称为A的 <b>后验概率</b>)
 </p>
@@ -323,9 +408,9 @@ P(A1 + A2 + &#x2026; + An) = P(A1) + P(A2) + &#x2026; P(An)
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7">独立事件与乘法定律</h3>
-<div class="outline-text-3" id="text-orgheadline7">
+<div id="outline-container-org53c1d2e" class="outline-3">
+<h3 id="org53c1d2e">独立事件与乘法定律</h3>
+<div class="outline-text-3" id="text-org53c1d2e">
 <blockquote>
 <p>
 如果事件B发生对事件A发生的概率无影响，那么A,B就是独立事件。。
@@ -342,9 +427,9 @@ P(AB) = P(A) P(B)              ==&gt;乘法定律,独立事件积的概率等于
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">全概率公式与贝叶斯公式</h3>
-<div class="outline-text-3" id="text-orgheadline8">
+<div id="outline-container-org82323c2" class="outline-3">
+<h3 id="org82323c2">全概率公式与贝叶斯公式</h3>
+<div class="outline-text-3" id="text-org82323c2">
 <blockquote>
 <p>
 B1, B2,&#x2026;Bn是一个完备事件群,也就是说它们的和事件是必然事件且两两互斥,也就是和事件的概率为1.
@@ -368,12 +453,12 @@ P(B|A)=P(AB)/P(A) 而 P(AB)=P(A|B)P(B)
 </div>
 </div>
 
-<div id="outline-container-orgheadline17" class="outline-2">
-<h2 id="orgheadline17">随机变量的概率</h2>
-<div class="outline-text-2" id="text-orgheadline17">
-</div><div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">随机变量</h3>
-<div class="outline-text-3" id="text-orgheadline10">
+<div id="outline-container-orgedaa8d3" class="outline-2">
+<h2 id="orgedaa8d3">随机变量的概率</h2>
+<div class="outline-text-2" id="text-orgedaa8d3">
+</div><div id="outline-container-org50c31c9" class="outline-3">
+<h3 id="org50c31c9">随机变量</h3>
+<div class="outline-text-3" id="text-org50c31c9">
 <p>
 随机变量是一个映射(函数)：
 </p>
@@ -392,12 +477,12 @@ P(B|A)=P(AB)/P(A) 而 P(AB)=P(A|B)P(B)
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16">离散性随机变量</h3>
-<div class="outline-text-3" id="text-orgheadline16">
-</div><div id="outline-container-orgheadline11" class="outline-4">
-<h4 id="orgheadline11">累积分布函数(CDF)</h4>
-<div class="outline-text-4" id="text-orgheadline11">
+<div id="outline-container-orgbc95960" class="outline-3">
+<h3 id="orgbc95960">离散性随机变量</h3>
+<div class="outline-text-3" id="text-orgbc95960">
+</div><div id="outline-container-org85422a1" class="outline-4">
+<h4 id="org85422a1">累积分布函数(CDF)</h4>
+<div class="outline-text-4" id="text-org85422a1">
 <p>
 累积概率分布Cumulative distribution function
 </p>
@@ -410,9 +495,9 @@ P(B|A)=P(AB)/P(A) 而 P(AB)=P(A|B)P(B)
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-4">
-<h4 id="orgheadline12">概率质量函数(PMF)</h4>
-<div class="outline-text-4" id="text-orgheadline12">
+<div id="outline-container-orgcb762bc" class="outline-4">
+<h4 id="orgcb762bc">概率质量函数(PMF)</h4>
+<div class="outline-text-4" id="text-orgcb762bc">
 <p>
 概率质量函数（probability function or probability mass function)只对 <b>离散型随机
 变量</b> 有有意义
@@ -427,9 +512,9 @@ f(x) = x这点的概率
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-4">
-<h4 id="orgheadline13">概率密度函数(PDF)</h4>
-<div class="outline-text-4" id="text-orgheadline13">
+<div id="outline-container-org92d527f" class="outline-4">
+<h4 id="org92d527f">概率密度函数(PDF)</h4>
+<div class="outline-text-4" id="text-org92d527f">
 <p>
 概率密度函数(probability density function)只对连续型随机变量有意义。
 </p>
@@ -443,9 +528,9 @@ PDF和PMF的区别是： PDF只有取积分才是概率，单点的函数值并�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-4">
-<h4 id="orgheadline14">离散性随机变量的几个分布</h4>
-<div class="outline-text-4" id="text-orgheadline14">
+<div id="outline-container-orgb3f1a49" class="outline-4">
+<h4 id="orgb3f1a49">离散性随机变量的几个分布</h4>
+<div class="outline-text-4" id="text-orgb3f1a49">
 <ol class="org-ol">
 <li><p>
 二项分布 : 放回抽样,如果事件A在一次试验中发生的概率为p, 把这个试验独立的重复n次, 以X记A在这n次试验中发
@@ -546,9 +631,9 @@ p又很小, 但是 &lambda;=np 适中,于是 p=&lambda;/n ,根据二项分布:
 </div>
 </div>
 
-<div id="outline-container-orgheadline15" class="outline-4">
-<h4 id="orgheadline15">连续性随机变量的几个分布</h4>
-<div class="outline-text-4" id="text-orgheadline15">
+<div id="outline-container-org23272b5" class="outline-4">
+<h4 id="org23272b5">连续性随机变量的几个分布</h4>
+<div class="outline-text-4" id="text-org23272b5">
 <ol class="org-ol">
 <li><p>
 正态分布[Normal distribution](高斯分布[Gaussian distribution])

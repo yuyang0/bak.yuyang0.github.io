@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:09 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Clojure笔记</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="clojure lisp java" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="clojure lisp java" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -198,65 +283,65 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline13">Clojure Forms</a>
+<li><a href="#orgc12ef87">Clojure Forms</a>
 <ul>
-<li><a href="#orgheadline1">Boolean</a></li>
-<li><a href="#orgheadline2">Nil</a></li>
-<li><a href="#orgheadline3">Character</a></li>
-<li><a href="#orgheadline4">Number</a></li>
-<li><a href="#orgheadline5">Symbol</a></li>
-<li><a href="#orgheadline6">String</a>
+<li><a href="#org6c72c43">Boolean</a></li>
+<li><a href="#orgc71a52b">Nil</a></li>
+<li><a href="#orgaaa6c8f">Character</a></li>
+<li><a href="#orgb6523f0">Number</a></li>
+<li><a href="#orgc39b65a">Symbol</a></li>
+<li><a href="#org842edb9">String</a>
 <ul>
-<li><a href="#orgheadline7">regex&#xa0;&#xa0;&#xa0;<span class="tag"><span class="regex">regex</span></span></a></li>
+<li><a href="#org9c97a5f">regex&#xa0;&#xa0;&#xa0;<span class="tag"><span class="regex">regex</span></span></a></li>
 </ul>
 </li>
-<li><a href="#orgheadline8">KeyWord</a></li>
-<li><a href="#orgheadline9">List</a></li>
-<li><a href="#orgheadline10">Vector</a></li>
-<li><a href="#orgheadline11">Map</a></li>
-<li><a href="#orgheadline12">Set</a></li>
+<li><a href="#orgfabf41f">KeyWord</a></li>
+<li><a href="#orgc9c3bef">List</a></li>
+<li><a href="#org4ef92d0">Vector</a></li>
+<li><a href="#org6d7e1ac">Map</a></li>
+<li><a href="#orgf0e5efe">Set</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline14">seq operation</a>
+<li><a href="#orgcf07734">seq operation</a>
 <ul>
-<li><a href="#orgheadline15">seq library</a></li>
+<li><a href="#orgd4802eb">seq library</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline23">基本语法</a>
+<li><a href="#org934cc6e">基本语法</a>
 <ul>
-<li><a href="#orgheadline16">function definition</a></li>
-<li><a href="#orgheadline21">基本控制结构</a>
+<li><a href="#orgc8019d3">function definition</a></li>
+<li><a href="#org234c160">基本控制结构</a>
 <ul>
-<li><a href="#orgheadline17">if</a></li>
-<li><a href="#orgheadline18">cond</a></li>
-<li><a href="#orgheadline19">let</a></li>
-<li><a href="#orgheadline20">letfn</a></li>
+<li><a href="#orgdf45116">if</a></li>
+<li><a href="#orgf567783">cond</a></li>
+<li><a href="#org816b560">let</a></li>
+<li><a href="#org0b59ec0">letfn</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline22">模块与namespace</a></li>
+<li><a href="#org873929a">模块与namespace</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline26">State</a>
+<li><a href="#orgf33cc54">State</a>
 <ul>
-<li><a href="#orgheadline24">ref</a></li>
-<li><a href="#orgheadline25">atom</a></li>
+<li><a href="#orgc91a1da">ref</a></li>
+<li><a href="#org50f70c2">atom</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline28">Macro</a>
+<li><a href="#orga3ea549">Macro</a>
 <ul>
-<li><a href="#orgheadline27">几个简写</a></li>
+<li><a href="#org9532bbc">几个简写</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline29">调用java</a></li>
+<li><a href="#orgcd48b26">调用java</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-2">
-<h2 id="orgheadline13">Clojure Forms</h2>
-<div class="outline-text-2" id="text-orgheadline13">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1">Boolean</h3>
-<div class="outline-text-3" id="text-orgheadline1">
+<div id="outline-container-orgc12ef87" class="outline-2">
+<h2 id="orgc12ef87">Clojure Forms</h2>
+<div class="outline-text-2" id="text-orgc12ef87">
+</div><div id="outline-container-org6c72c43" class="outline-3">
+<h3 id="org6c72c43">Boolean</h3>
+<div class="outline-text-3" id="text-org6c72c43">
 <ul class="org-ul">
 <li>typical value: true, false</li>
 <li>useful function:
@@ -268,25 +353,25 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">Nil</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+<div id="outline-container-orgc71a52b" class="outline-3">
+<h3 id="orgc71a52b">Nil</h3>
+<div class="outline-text-3" id="text-orgc71a52b">
 <ul class="org-ul">
 <li>typical value: nil 只有false与nil会被计算为false,其它的都为true</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">Character</h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-orgaaa6c8f" class="outline-3">
+<h3 id="orgaaa6c8f">Character</h3>
+<div class="outline-text-3" id="text-orgaaa6c8f">
 <ul class="org-ul">
 <li>typical value: \a \b \c &#x2026;</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">Number</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-orgb6523f0" class="outline-3">
+<h3 id="orgb6523f0">Number</h3>
+<div class="outline-text-3" id="text-orgb6523f0">
 <ul class="org-ul">
 <li>typical value: 1 2</li>
 <li>useful function:
@@ -301,17 +386,17 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">Symbol</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-orgc39b65a" class="outline-3">
+<h3 id="orgc39b65a">Symbol</h3>
+<div class="outline-text-3" id="text-orgc39b65a">
 <ul class="org-ul">
 <li>typical value: user/foo</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">String</h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-org842edb9" class="outline-3">
+<h3 id="org842edb9">String</h3>
+<div class="outline-text-3" id="text-org842edb9">
 <ul class="org-ul">
 <li>typical value: "hello"</li>
 <li>useful function:
@@ -323,9 +408,9 @@ for the JavaScript code in this tag.
 </ol></li>
 </ul>
 </div>
-<div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7">regex&#xa0;&#xa0;&#xa0;<span class="tag"><span class="regex">regex</span></span></h4>
-<div class="outline-text-4" id="text-orgheadline7">
+<div id="outline-container-org9c97a5f" class="outline-4">
+<h4 id="org9c97a5f">regex&#xa0;&#xa0;&#xa0;<span class="tag"><span class="regex">regex</span></span></h4>
+<div class="outline-text-4" id="text-org9c97a5f">
 <ol class="org-ol">
 <li>re-pattern:创建一个正则表达式, <code>(re-pattern "[abcd]")</code> 等价于
 #"[abcd]",</li>
@@ -333,50 +418,50 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">KeyWord</h3>
-<div class="outline-text-3" id="text-orgheadline8">
+<div id="outline-container-orgfabf41f" class="outline-3">
+<h3 id="orgfabf41f">KeyWord</h3>
+<div class="outline-text-3" id="text-orgfabf41f">
 <ul class="org-ul">
 <li>typical value: :tag :doc</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">List</h3>
-<div class="outline-text-3" id="text-orgheadline9">
+<div id="outline-container-orgc9c3bef" class="outline-3">
+<h3 id="orgc9c3bef">List</h3>
+<div class="outline-text-3" id="text-orgc9c3bef">
 <ul class="org-ul">
 <li>typical value: (+ 1 3) (println "foo")</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">Vector</h3>
-<div class="outline-text-3" id="text-orgheadline10">
+<div id="outline-container-org4ef92d0" class="outline-3">
+<h3 id="org4ef92d0">Vector</h3>
+<div class="outline-text-3" id="text-org4ef92d0">
 <ul class="org-ul">
 <li>typical value: [1 2 3]</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11">Map</h3>
-<div class="outline-text-3" id="text-orgheadline11">
+<div id="outline-container-org6d7e1ac" class="outline-3">
+<h3 id="org6d7e1ac">Map</h3>
+<div class="outline-text-3" id="text-org6d7e1ac">
 <ul class="org-ul">
 <li>typical value: {:key1 val1, :key2 val2 &#x2026;} {"Lisp" "McCarthy" "Clojure" "Hickey"}</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12">Set</h3>
-<div class="outline-text-3" id="text-orgheadline12">
+<div id="outline-container-orgf0e5efe" class="outline-3">
+<h3 id="orgf0e5efe">Set</h3>
+<div class="outline-text-3" id="text-orgf0e5efe">
 <ul class="org-ul">
 <li>typical value: #{:val1 :val2 &#x2026;}</li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-2">
-<h2 id="orgheadline14">seq operation</h2>
-<div class="outline-text-2" id="text-orgheadline14">
+<div id="outline-container-orgcf07734" class="outline-2">
+<h2 id="orgcf07734">seq operation</h2>
+<div class="outline-text-2" id="text-orgcf07734">
 <p>
 clojure的sequence都是不可变的.
 </p>
@@ -388,9 +473,9 @@ clojure的sequence都是不可变的.
 <li>into: 将后一个seq插入到前一个seq,对list是插入最前面,对vector是插入最后面</li>
 </ul>
 </div>
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15">seq library</h3>
-<div class="outline-text-3" id="text-orgheadline15">
+<div id="outline-container-orgd4802eb" class="outline-3">
+<h3 id="orgd4802eb">seq library</h3>
+<div class="outline-text-3" id="text-orgd4802eb">
 <p>
 下面的函数对任何类型的sequence都有效, 而且这些操作除极少数外基本都返回 lazy
 sequence.
@@ -402,7 +487,6 @@ sequence.
 range: (range start? end step?)
 </p>
 <div class="org-src-container">
-
 <pre class="src src-clojure">(range 5)
 ;;=&gt; (0 1 2 3 4)
 </pre>
@@ -459,12 +543,12 @@ interpose:
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline23" class="outline-2">
-<h2 id="orgheadline23">基本语法</h2>
-<div class="outline-text-2" id="text-orgheadline23">
-</div><div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16">function definition</h3>
-<div class="outline-text-3" id="text-orgheadline16">
+<div id="outline-container-org934cc6e" class="outline-2">
+<h2 id="org934cc6e">基本语法</h2>
+<div class="outline-text-2" id="text-org934cc6e">
+</div><div id="outline-container-orgc8019d3" class="outline-3">
+<h3 id="orgc8019d3">function definition</h3>
+<div class="outline-text-3" id="text-orgc8019d3">
 <ol class="org-ol">
 <li>匿名函数(fn)
 <code>(fn [x y] (+ x y))</code> 创建一个匿名函数, <code>fn</code> 和 <code>lambda</code> 类似,fn还有一个简
@@ -473,7 +557,6 @@ interpose:
 def: 可以将一个匿名函数与一个name关联起来,和 <code>scheme</code> 中的 <code>define</code> 类似
 </p>
 <div class="org-src-container">
-
 <pre class="src src-clojure">(def my-add (fn [x y] (+ x y)))
 </pre>
 </div></li>
@@ -481,7 +564,6 @@ def: 可以将一个匿名函数与一个name关联起来,和 <code>scheme</code
 defn: 是def 与 fn 的简写
 </p>
 <div class="org-src-container">
-
 <pre class="src src-clojure">(defn my-add [x y] (+ x y))
 </pre>
 </div></li>
@@ -489,7 +571,6 @@ defn: 是def 与 fn 的简写
 参数的解构
 </p>
 <div class="org-src-container">
-
 <pre class="src src-clojure">(defn my-add [x y [a b]]
   (+ x y a b))
 (my-add 1 2 [3 4])
@@ -501,7 +582,6 @@ Arities(可以看做是函数多态)
 根据参数的不同而执行不同的动作
 </p>
 <div class="org-src-container">
-
 <pre class="src src-clojure">(defn square-or-multiply
   "squares a single argument, multiplies two arguments"
   ([] 0)
@@ -517,7 +597,6 @@ Arities(可以看做是函数多态)
 确的使用 <code>recur</code> 这个关键词,而不是函数名
 </p>
 <div class="org-src-container">
-
 <pre class="src src-clojure">(defn my-add [x y]
   (if (zero? x)
     y
@@ -536,7 +615,6 @@ Arities(可以看做是函数多态)
 loop:和 <code>recur</code> 配合可以实现和循环类似的效果
 </p>
 <div class="org-src-container">
-
 <pre class="src src-clojure">(loop [i 10 j 10]
   (if (zero? i)
     j
@@ -547,7 +625,6 @@ loop:和 <code>recur</code> 配合可以实现和循环类似的效果
 和scheme中使用 let 创建一个函数很相似
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #93E0E3;">loop</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span>i <span style="color: #BFEBBF;">10</span><span style="color: #D0BF8F;">]</span> <span style="color: #D0BF8F;">[</span>j <span style="color: #BFEBBF;">10</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>zero? i<span style="color: #D0BF8F;">)</span>
       j
@@ -559,7 +636,6 @@ curry
 只提供部分参数给函数,比如我们可以这样定义 <code>add3</code>
 </p>
 <div class="org-src-container">
-
 <pre class="src src-clojure">(def add3 (partial + 3))
 (add3 4)
 ;=&gt; 7
@@ -572,25 +648,25 @@ partial 接受有一个函数以及部分参数,返回一个函数
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21">基本控制结构</h3>
-<div class="outline-text-3" id="text-orgheadline21">
-</div><div id="outline-container-orgheadline17" class="outline-4">
-<h4 id="orgheadline17">if</h4>
+<div id="outline-container-org234c160" class="outline-3">
+<h3 id="org234c160">基本控制结构</h3>
+<div class="outline-text-3" id="text-org234c160">
+</div><div id="outline-container-orgdf45116" class="outline-4">
+<h4 id="orgdf45116">if</h4>
 </div>
-<div id="outline-container-orgheadline18" class="outline-4">
-<h4 id="orgheadline18">cond</h4>
+<div id="outline-container-orgf567783" class="outline-4">
+<h4 id="orgf567783">cond</h4>
 </div>
-<div id="outline-container-orgheadline19" class="outline-4">
-<h4 id="orgheadline19">let</h4>
+<div id="outline-container-org816b560" class="outline-4">
+<h4 id="org816b560">let</h4>
 </div>
-<div id="outline-container-orgheadline20" class="outline-4">
-<h4 id="orgheadline20">letfn</h4>
+<div id="outline-container-org0b59ec0" class="outline-4">
+<h4 id="org0b59ec0">letfn</h4>
 </div>
 </div>
-<div id="outline-container-orgheadline22" class="outline-3">
-<h3 id="orgheadline22">模块与namespace</h3>
-<div class="outline-text-3" id="text-orgheadline22">
+<div id="outline-container-org873929a" class="outline-3">
+<h3 id="org873929a">模块与namespace</h3>
+<div class="outline-text-3" id="text-org873929a">
 <ol class="org-ol">
 <li>require: 导入clojure模块</li>
 <li>use: 导入clojure模块,与require的区别是,use会将指定模块的名字导入当前的
@@ -600,7 +676,6 @@ namespace,所以在引用时就不需要添加模块名作为前缀,而require�
 import: 导入java的类
 </p>
 <div class="org-src-container">
-
 <pre class="src src-clojure">(import 'java.util.Date)
 ; (new Date)
 (import '(java.util.regex Pattern Matcher))
@@ -612,7 +687,6 @@ ns:创建一个命名空间,ns是一个宏,所以后面的参数不需要quote,�
 require,use,import是以keyword的形式给出
 </p>
 <div class="org-src-container">
-
 <pre class="src src-clojure">(ns com.example.library
   (:require [clojure.contrib.sql :as sql])
   (:use (com.example one two))
@@ -624,12 +698,12 @@ require,use,import是以keyword的形式给出
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline26" class="outline-2">
-<h2 id="orgheadline26">State</h2>
-<div class="outline-text-2" id="text-orgheadline26">
-</div><div id="outline-container-orgheadline24" class="outline-3">
-<h3 id="orgheadline24">ref</h3>
-<div class="outline-text-3" id="text-orgheadline24">
+<div id="outline-container-orgf33cc54" class="outline-2">
+<h2 id="orgf33cc54">State</h2>
+<div class="outline-text-2" id="text-orgf33cc54">
+</div><div id="outline-container-orgc91a1da" class="outline-3">
+<h3 id="orgc91a1da">ref</h3>
+<div class="outline-text-3" id="text-orgc91a1da">
 <ol class="org-ol">
 <li>ref</li>
 <li>deref(@)</li>
@@ -640,7 +714,6 @@ dosync: 被dosync包裹的表达式要么全部执行成功,要么都不执行,�
 实现了ACID.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-clojure">(def current-track (ref "Venus, the Bringer of Peace"))
 ;; -&gt; #'user/current-track
 (def current-composer (ref "Holst"))
@@ -656,7 +729,6 @@ alter : <code>(alter ref update-fn &amp; args...)</code>, <code>@ref</code> 作�
 可以看作是dosync,ref-set,deref的简写
 </p>
 <div class="org-src-container">
-
 <pre class="src src-clojure">(def message (ref ()))
 (defn navie-add-message [msg]
   (dosync (ref-set message (cons msg (deref message)))))
@@ -668,9 +740,9 @@ alter : <code>(alter ref update-fn &amp; args...)</code>, <code>@ref</code> 作�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline25" class="outline-3">
-<h3 id="orgheadline25">atom</h3>
-<div class="outline-text-3" id="text-orgheadline25">
+<div id="outline-container-org50f70c2" class="outline-3">
+<h3 id="org50f70c2">atom</h3>
+<div class="outline-text-3" id="text-org50f70c2">
 <p>
 atom和ref很类似,但是atom当你仅仅只是需要原子的更新单个值时,使用更简便.
 </p>
@@ -683,12 +755,12 @@ atom和ref很类似,但是atom当你仅仅只是需要原子的更新单个值�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline28" class="outline-2">
-<h2 id="orgheadline28">Macro</h2>
-<div class="outline-text-2" id="text-orgheadline28">
-</div><div id="outline-container-orgheadline27" class="outline-3">
-<h3 id="orgheadline27">几个简写</h3>
-<div class="outline-text-3" id="text-orgheadline27">
+<div id="outline-container-orga3ea549" class="outline-2">
+<h2 id="orga3ea549">Macro</h2>
+<div class="outline-text-2" id="text-orga3ea549">
+</div><div id="outline-container-org9532bbc" class="outline-3">
+<h3 id="org9532bbc">几个简写</h3>
+<div class="outline-text-3" id="text-org9532bbc">
 <ol class="org-ol">
 <li>反引号(`) : 和scheme相同</li>
 <li>~, ~@ 和scheme的 , ,@ 的含义相同,之所以用 ~ 是因为clojure中 , 与空格等价</li>
@@ -697,7 +769,6 @@ id# :在一个标识符背后加上 # 意味着生成一个唯一的symbol, 比�
 能就是 foo_004 可以看作是let与gensym的等价物,这在避免符号捕捉时很有用.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-clojure">(defmacro and
   ([] true)
   ([x] x)
@@ -715,9 +786,9 @@ id# :在一个标识符背后加上 # 意味着生成一个唯一的symbol, 比�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline29" class="outline-2">
-<h2 id="orgheadline29">调用java</h2>
-<div class="outline-text-2" id="text-orgheadline29">
+<div id="outline-container-orgcd48b26" class="outline-2">
+<h2 id="orgcd48b26">调用java</h2>
+<div class="outline-text-2" id="text-orgcd48b26">
 <ol class="org-ol">
 <li>new : 创建一个对象. <code>(new String)</code></li>
 <li>. : <code>(. target name &amp; args)</code></li>
@@ -731,7 +802,6 @@ id# :在一个标识符背后加上 # 意味着生成一个唯一的symbol, 比�
 ClassName/field: 只对静态变量或者方法有效
 </p>
 <div class="org-src-container">
-
 <pre class="src src-clojure">Integer/MIN_VALUE
 ; =&gt; -2147483648
 (Integer/parseInt "101")
@@ -744,7 +814,6 @@ ClassName/field: 只对静态变量或者方法有效
 map,filter这类函数
 </p>
 <div class="org-src-container">
-
 <pre class="src src-clojure">(map #(.toUpperCase %) ["one" "two" "three"])
 ; =&gt; ("ONE" "TWO" "THREE")
 </pre>

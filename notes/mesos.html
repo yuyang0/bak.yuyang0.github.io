@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mesos</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,6 +176,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -175,50 +260,50 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">Mesos架构</a></li>
-<li><a href="#orgheadline2">mesos framework</a></li>
-<li><a href="#orgheadline5">Protocol</a>
+<li><a href="#orgbf33c46">Mesos架构</a></li>
+<li><a href="#org8d654cd">mesos framework</a></li>
+<li><a href="#org1a23aba">Protocol</a>
 <ul>
-<li><a href="#orgheadline3">Scheduler &lt;==&gt; master</a></li>
-<li><a href="#orgheadline4">Master &lt;==&gt; Slave</a></li>
+<li><a href="#org1f0982e">Scheduler &lt;==&gt; master</a></li>
+<li><a href="#orgc3da06e">Master &lt;==&gt; Slave</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline9">代码细节</a>
+<li><a href="#org9ef3961">代码细节</a>
 <ul>
-<li><a href="#orgheadline6">Driver</a></li>
-<li><a href="#orgheadline8">master.cpp</a>
+<li><a href="#org58b52a5">Driver</a></li>
+<li><a href="#org4751bea">master.cpp</a>
 <ul>
-<li><a href="#orgheadline7">Framework</a></li>
+<li><a href="#orgf9f6253">Framework</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline10">编写mesos framework(py)</a>
+<li><a href="#org6d01990">编写mesos framework(py)</a>
 <ul>
-<li><a href="#orgheadline11">API</a></li>
-<li><a href="#orgheadline13">基本概念与常识</a>
+<li><a href="#org4c8adfa">API</a></li>
+<li><a href="#orgd40b428">基本概念与常识</a>
 <ul>
-<li><a href="#orgheadline12">四个类</a></li>
+<li><a href="#org89b46b3">四个类</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline14">准备</a></li>
+<li><a href="#org18fbe48">准备</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Mesos架构</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-orgbf33c46" class="outline-2">
+<h2 id="orgbf33c46">Mesos架构</h2>
+<div class="outline-text-2" id="text-orgbf33c46">
 <p>
 mesos的基本架构是这样的：
 <img src="static/img/mesos-architecture.jpg" alt="mesos-architecture.jpg" />
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">mesos framework</h2>
-<div class="outline-text-2" id="text-orgheadline2">
+<div id="outline-container-org8d654cd" class="outline-2">
+<h2 id="org8d654cd">mesos framework</h2>
+<div class="outline-text-2" id="text-org8d654cd">
 <p>
 mesos上运行的应用都叫framework，framework分为两部分：
 </p>
@@ -245,12 +330,12 @@ executor，framework 的executor会启动这两个task，因为1个CPU和1 GB的
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5">Protocol</h2>
-<div class="outline-text-2" id="text-orgheadline5">
-</div><div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">Scheduler &lt;==&gt; master</h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-org1a23aba" class="outline-2">
+<h2 id="org1a23aba">Protocol</h2>
+<div class="outline-text-2" id="text-org1a23aba">
+</div><div id="outline-container-org1f0982e" class="outline-3">
+<h3 id="org1f0982e">Scheduler &lt;==&gt; master</h3>
+<div class="outline-text-3" id="text-org1f0982e">
 <ol class="org-ol">
 <li>Sched &#x2014;&gt; Mst:   FrameworkRegisterMessage</li>
 <li>Sched &#x2014;&gt; Mst:   UnregisterFrameworkMessage</li>
@@ -272,28 +357,28 @@ executor，framework 的executor会启动这两个task，因为1个CPU和1 GB的
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">Master &lt;==&gt; Slave</h3>
+<div id="outline-container-orgc3da06e" class="outline-3">
+<h3 id="orgc3da06e">Master &lt;==&gt; Slave</h3>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-2">
-<h2 id="orgheadline9">代码细节</h2>
-<div class="outline-text-2" id="text-orgheadline9">
-</div><div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">Driver</h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-org9ef3961" class="outline-2">
+<h2 id="org9ef3961">代码细节</h2>
+<div class="outline-text-2" id="text-org9ef3961">
+</div><div id="outline-container-org58b52a5" class="outline-3">
+<h3 id="org58b52a5">Driver</h3>
+<div class="outline-text-3" id="text-org58b52a5">
 <p>
 以scheduler为例
 python/native ==&gt; scshed/sched.cpp的MesosSchedulerDriver。
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">master.cpp</h3>
-<div class="outline-text-3" id="text-orgheadline8">
-</div><div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7">Framework</h4>
-<div class="outline-text-4" id="text-orgheadline7">
+<div id="outline-container-org4751bea" class="outline-3">
+<h3 id="org4751bea">master.cpp</h3>
+<div class="outline-text-3" id="text-org4751bea">
+</div><div id="outline-container-orgf9f6253" class="outline-4">
+<h4 id="orgf9f6253">Framework</h4>
+<div class="outline-text-4" id="text-orgf9f6253">
 <p>
 这个类是用来表示一个framework的，由如下属性：
 </p>
@@ -309,16 +394,16 @@ python/native ==&gt; scshed/sched.cpp的MesosSchedulerDriver。
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-2">
-<h2 id="orgheadline10">编写mesos framework(py)</h2>
-<div class="outline-text-2" id="text-orgheadline10">
+<div id="outline-container-org6d01990" class="outline-2">
+<h2 id="org6d01990">编写mesos framework(py)</h2>
+<div class="outline-text-2" id="text-org6d01990">
 <p>
 mesos原生的提供了python，C++，java的api。我们以python为例来看看如何写framework。
 </p>
 </div>
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11">API</h3>
-<div class="outline-text-3" id="text-orgheadline11">
+<div id="outline-container-org4c8adfa" class="outline-3">
+<h3 id="org4c8adfa">API</h3>
+<div class="outline-text-3" id="text-org4c8adfa">
 <p>
 mesos目前提供的API是这样的，基于HTTP
 </p>
@@ -336,12 +421,12 @@ mesos1.0会引入一系列的http API。
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13">基本概念与常识</h3>
-<div class="outline-text-3" id="text-orgheadline13">
-</div><div id="outline-container-orgheadline12" class="outline-4">
-<h4 id="orgheadline12">四个类</h4>
-<div class="outline-text-4" id="text-orgheadline12">
+<div id="outline-container-orgd40b428" class="outline-3">
+<h3 id="orgd40b428">基本概念与常识</h3>
+<div class="outline-text-3" id="text-orgd40b428">
+</div><div id="outline-container-org89b46b3" class="outline-4">
+<h4 id="org89b46b3">四个类</h4>
+<div class="outline-text-4" id="text-org89b46b3">
 <ol class="org-ol">
 <li>Scheduler</li>
 <li>SchedulerDriver</li>
@@ -351,9 +436,9 @@ mesos1.0会引入一系列的http API。
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">准备</h3>
-<div class="outline-text-3" id="text-orgheadline14">
+<div id="outline-container-org18fbe48" class="outline-3">
+<h3 id="org18fbe48">准备</h3>
+<div class="outline-text-3" id="text-org18fbe48">
 <p>
 用python写framework需要这样几个东西：
 </p>

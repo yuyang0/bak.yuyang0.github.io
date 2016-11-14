@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:05 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>数理逻辑</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="logic mathematics" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="logic mathematics" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -198,107 +283,107 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline15">形式系统</a>
+<li><a href="#orgcd77850">形式系统</a>
 <ul>
-<li><a href="#orgheadline8">concepts</a>
+<li><a href="#org4d3a660">concepts</a>
 <ul>
-<li><a href="#orgheadline1">Consistency</a></li>
-<li><a href="#orgheadline2">Completeness</a></li>
-<li><a href="#orgheadline3">判定</a></li>
-<li><a href="#orgheadline4">Decision procedure</a></li>
-<li><a href="#orgheadline5">同构</a></li>
-<li><a href="#orgheadline6">递归, 递归可枚举</a></li>
-<li><a href="#orgheadline7">logic system</a></li>
+<li><a href="#org8b8d9c6">Consistency</a></li>
+<li><a href="#org9335bed">Completeness</a></li>
+<li><a href="#org677bbe8">判定</a></li>
+<li><a href="#orga3112ba">Decision procedure</a></li>
+<li><a href="#org79c43a2">同构</a></li>
+<li><a href="#org9c8e723">递归, 递归可枚举</a></li>
+<li><a href="#org45dc79d">logic system</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline9">Definition</a></li>
-<li><a href="#orgheadline13">examples</a>
+<li><a href="#org6168d1e">Definition</a></li>
+<li><a href="#orgecb3ffb">examples</a>
 <ul>
-<li><a href="#orgheadline10">pq形式系统</a></li>
-<li><a href="#orgheadline11">Propositon logic</a></li>
-<li><a href="#orgheadline12">数论系统</a></li>
+<li><a href="#org318f48e">pq形式系统</a></li>
+<li><a href="#orga417edd">Propositon logic</a></li>
+<li><a href="#org60eb982">数论系统</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline14">哥德尔不完全性定理</a></li>
+<li><a href="#org36dc085">哥德尔不完全性定理</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline29">Propositon logic</a>
+<li><a href="#org31bc8f8">Propositon logic</a>
 <ul>
-<li><a href="#orgheadline16">concepts</a></li>
-<li><a href="#orgheadline20">形式语言</a>
+<li><a href="#org8b34fab">concepts</a></li>
+<li><a href="#orgb017547">形式语言</a>
 <ul>
-<li><a href="#orgheadline17">符号集</a></li>
-<li><a href="#orgheadline18">语法规则(wff)</a></li>
-<li><a href="#orgheadline19">解释</a></li>
+<li><a href="#orgc852153">符号集</a></li>
+<li><a href="#org714df26">语法规则(wff)</a></li>
+<li><a href="#orgefcb51e">解释</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline21">真值指派</a></li>
-<li><a href="#orgheadline22">重言蕴含</a>
+<li><a href="#org5b733b9">真值指派</a></li>
+<li><a href="#orgbb02b8f">重言蕴含</a>
 <ul>
-<li><a href="#orgheadline23">典型的重言式</a></li>
+<li><a href="#org64781a1">典型的重言式</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline27">归纳与递归</a>
+<li><a href="#org81d5ac5">归纳与递归</a>
 <ul>
-<li><a href="#orgheadline24">concepts</a></li>
-<li><a href="#orgheadline25">归纳</a></li>
-<li><a href="#orgheadline26">递归定理</a></li>
+<li><a href="#org84a913d">concepts</a></li>
+<li><a href="#orgb14f067">归纳</a></li>
+<li><a href="#orgbd3bed6">递归定理</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline28">命题联结词</a></li>
+<li><a href="#org45c944b">命题联结词</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline50">一阶逻辑</a>
+<li><a href="#org19d44b9">一阶逻辑</a>
 <ul>
-<li><a href="#orgheadline30">concepts</a></li>
-<li><a href="#orgheadline34">形式语言</a>
+<li><a href="#orgff596de">concepts</a></li>
+<li><a href="#org6777e47">形式语言</a>
 <ul>
-<li><a href="#orgheadline31">符号集</a></li>
-<li><a href="#orgheadline32">语法规则</a></li>
-<li><a href="#orgheadline33">解释</a></li>
+<li><a href="#orgdfa2678">符号集</a></li>
+<li><a href="#org275e185">语法规则</a></li>
+<li><a href="#orgf89e5b4">解释</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline41">真值</a>
+<li><a href="#org0f8e6a0">真值</a>
 <ul>
-<li><a href="#orgheadline35">满足</a>
+<li><a href="#org21d4759">满足</a>
 <ul>
-<li><a href="#orgheadline36">项(term)</a></li>
-<li><a href="#orgheadline37">原子公式</a></li>
-<li><a href="#orgheadline38">其它合式公式</a></li>
+<li><a href="#org04c9618">项(term)</a></li>
+<li><a href="#org9e272b4">原子公式</a></li>
+<li><a href="#org1f5e7ca">其它合式公式</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline39">缩写</a></li>
-<li><a href="#orgheadline40">一阶语言的例子</a></li>
+<li><a href="#org24cd552">缩写</a></li>
+<li><a href="#orga165447">一阶语言的例子</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline42">逻辑蕴含</a>
+<li><a href="#orge7788fa">逻辑蕴含</a>
 <ul>
-<li><a href="#orgheadline43">examples</a></li>
-<li><a href="#orgheadline44">几个结论</a></li>
+<li><a href="#orgadd906b">examples</a></li>
+<li><a href="#org6edcb66">几个结论</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline45">同态(homomorphism)</a></li>
-<li><a href="#orgheadline46">演绎计算</a>
+<li><a href="#org7312059">同态(homomorphism)</a></li>
+<li><a href="#orgef2a9b9">演绎计算</a>
 <ul>
-<li><a href="#orgheadline47">逻辑公理集</a></li>
-<li><a href="#orgheadline48">原理,定理</a></li>
+<li><a href="#orgc25aef8">逻辑公理集</a></li>
+<li><a href="#orgb004dfd">原理,定理</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline49">一致性与完备性</a></li>
+<li><a href="#orgf8e75ba">一致性与完备性</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline15" class="outline-2">
-<h2 id="orgheadline15">形式系统</h2>
-<div class="outline-text-2" id="text-orgheadline15">
-</div><div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">concepts</h3>
-<div class="outline-text-3" id="text-orgheadline8">
-</div><div id="outline-container-orgheadline1" class="outline-4">
-<h4 id="orgheadline1">Consistency</h4>
-<div class="outline-text-4" id="text-orgheadline1">
+<div id="outline-container-orgcd77850" class="outline-2">
+<h2 id="orgcd77850">形式系统</h2>
+<div class="outline-text-2" id="text-orgcd77850">
+</div><div id="outline-container-org4d3a660" class="outline-3">
+<h3 id="org4d3a660">concepts</h3>
+<div class="outline-text-3" id="text-org4d3a660">
+</div><div id="outline-container-org8b8d9c6" class="outline-4">
+<h4 id="org8b8d9c6">Consistency</h4>
+<div class="outline-text-4" id="text-org8b8d9c6">
 <p>
 形式系统的一致性就是说系统没有矛盾, 从语法上说, P 与 &not; P 不能在系统中都可
 证, 从语义上说存在一种解释满足所有的定理, 也就是说使定理为真(也就是真陈述),
@@ -321,9 +406,9 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-4">
-<h4 id="orgheadline2">Completeness</h4>
-<div class="outline-text-4" id="text-orgheadline2">
+<div id="outline-container-org9335bed" class="outline-4">
+<h4 id="org9335bed">Completeness</h4>
+<div class="outline-text-4" id="text-org9335bed">
 <p>
 <b>完全性</b>: 所有真的(在某个想象的世界里)且可表示成系统的 wff 的陈述都是该形式
 系统的定理.
@@ -335,17 +420,17 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-4">
-<h4 id="orgheadline3">判定</h4>
-<div class="outline-text-4" id="text-orgheadline3">
+<div id="outline-container-org677bbe8" class="outline-4">
+<h4 id="org677bbe8">判定</h4>
+<div class="outline-text-4" id="text-org677bbe8">
 <p>
 如果 P 与 &not; P 都不是形式系统的定理, 那么 P 就在该形式系统内是不可判定的
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4">Decision procedure</h4>
-<div class="outline-text-4" id="text-orgheadline4">
+<div id="outline-container-orga3112ba" class="outline-4">
+<h4 id="orga3112ba">Decision procedure</h4>
+<div class="outline-text-4" id="text-orga3112ba">
 <p>
 形式系统判定过程用来确定一个 wff 是否是一个定理. 形式系统的公理必须拥有判定
 过程, 也就是说你必须保证开始时是正确的. 一个形式系统可以没有判定过程. 一般
@@ -358,9 +443,9 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-4">
-<h4 id="orgheadline5">同构</h4>
-<div class="outline-text-4" id="text-orgheadline5">
+<div id="outline-container-org79c43a2" class="outline-4">
+<h4 id="org79c43a2">同构</h4>
+<div class="outline-text-4" id="text-org79c43a2">
 <p>
 两个复杂结构之间不同部分可以相互映射, 那么这就是一种同构. 对于形式系统来说,
 一般是给系统某种 <b>解释</b>, 这种情况下形式系统中的每一个符号都与一个词对应, 而
@@ -376,9 +461,9 @@ p     &lt;=&gt;    加
 </pre>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6">递归, 递归可枚举</h4>
-<div class="outline-text-4" id="text-orgheadline6">
+<div id="outline-container-org9c8e723" class="outline-4">
+<h4 id="org9c8e723">递归, 递归可枚举</h4>
+<div class="outline-text-4" id="text-org9c8e723">
 <p>
 二者的关系就像图形(正空间)和它的衬底(负空间).
 </p>
@@ -395,18 +480,18 @@ p     &lt;=&gt;    加
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7">logic system</h4>
-<div class="outline-text-4" id="text-orgheadline7">
+<div id="outline-container-org45dc79d" class="outline-4">
+<h4 id="org45dc79d">logic system</h4>
+<div class="outline-text-4" id="text-org45dc79d">
 <p>
 一个形式系统外加一个语义, 也就是给形式系统中形式语言的句子赋予真值
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">Definition</h3>
-<div class="outline-text-3" id="text-orgheadline9">
+<div id="outline-container-org6168d1e" class="outline-3">
+<h3 id="org6168d1e">Definition</h3>
+<div class="outline-text-3" id="text-org6168d1e">
 <p>
 Formal systems in mathmatics consist of the following elements:
 </p>
@@ -426,12 +511,12 @@ formmed or not</li>
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13">examples</h3>
-<div class="outline-text-3" id="text-orgheadline13">
-</div><div id="outline-container-orgheadline10" class="outline-4">
-<h4 id="orgheadline10">pq形式系统</h4>
-<div class="outline-text-4" id="text-orgheadline10">
+<div id="outline-container-orgecb3ffb" class="outline-3">
+<h3 id="orgecb3ffb">examples</h3>
+<div class="outline-text-3" id="text-orgecb3ffb">
+</div><div id="outline-container-org318f48e" class="outline-4">
+<h4 id="org318f48e">pq形式系统</h4>
+<div class="outline-text-4" id="text-org318f48e">
 <ol class="org-ol">
 <li>symbols: p, q, -</li>
 <li><p>
@@ -448,9 +533,9 @@ S   ::= --*
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-4">
-<h4 id="orgheadline11">Propositon logic</h4>
-<div class="outline-text-4" id="text-orgheadline11">
+<div id="outline-container-orga417edd" class="outline-4">
+<h4 id="orga417edd">Propositon logic</h4>
+<div class="outline-text-4" id="text-orga417edd">
 <ol class="org-ol">
 <li>symbols: (, ), &not;, &and;, &or;, &rarr;, &harr;, A<sub>1</sub>,
 A<sub>2</sub>,&#x2026; A<sub>n</sub>.</li>
@@ -493,9 +578,9 @@ inference rules:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-4">
-<h4 id="orgheadline12">数论系统</h4>
-<div class="outline-text-4" id="text-orgheadline12">
+<div id="outline-container-org60eb982" class="outline-4">
+<h4 id="org60eb982">数论系统</h4>
+<div class="outline-text-4" id="text-org60eb982">
 <ol class="org-ol">
 <li>symbols: 0, S, =, +, &times;, &not;, &and;, &or;, &forall;, &exist;, a, a',
 a'' &#x2026;</li>
@@ -553,9 +638,9 @@ grammar:
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">哥德尔不完全性定理</h3>
-<div class="outline-text-3" id="text-orgheadline14">
+<div id="outline-container-org36dc085" class="outline-3">
+<h3 id="org36dc085">哥德尔不完全性定理</h3>
+<div class="outline-text-3" id="text-org36dc085">
 <p>
 哥德尔的不完全性定理的证明实际就是构造一个类似说谎者悖论的公式
 </p>
@@ -567,12 +652,12 @@ grammar:
 </div>
 </div>
 
-<div id="outline-container-orgheadline29" class="outline-2">
-<h2 id="orgheadline29">Propositon logic</h2>
-<div class="outline-text-2" id="text-orgheadline29">
-</div><div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16">concepts</h3>
-<div class="outline-text-3" id="text-orgheadline16">
+<div id="outline-container-org31bc8f8" class="outline-2">
+<h2 id="org31bc8f8">Propositon logic</h2>
+<div class="outline-text-2" id="text-org31bc8f8">
+</div><div id="outline-container-org8b34fab" class="outline-3">
+<h3 id="org8b34fab">concepts</h3>
+<div class="outline-text-3" id="text-org8b34fab">
 <ol class="org-ol">
 <li>命题符号: A<sub>1</sub> A<sub>2</sub> A<sub>n</sub> are propositon symbols</li>
 <li>逻辑联接符: 命题逻辑中为 \(\lnot, \lor, \land, \rightarrow, \leftrightarrow\)</li>
@@ -588,21 +673,21 @@ grammar:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20">形式语言</h3>
-<div class="outline-text-3" id="text-orgheadline20">
-</div><div id="outline-container-orgheadline17" class="outline-4">
-<h4 id="orgheadline17">符号集</h4>
-<div class="outline-text-4" id="text-orgheadline17">
+<div id="outline-container-orgb017547" class="outline-3">
+<h3 id="orgb017547">形式语言</h3>
+<div class="outline-text-3" id="text-orgb017547">
+</div><div id="outline-container-orgc852153" class="outline-4">
+<h4 id="orgc852153">符号集</h4>
+<div class="outline-text-4" id="text-orgc852153">
 <p>
 命题符号(A<sub>1</sub>, A<sub>2</sub>, &#x2026;, A<sub>n</sub>), 左右括号, 逻辑联接符(&not;, &and;, &or;,
 &rarr;, &harr;)
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-4">
-<h4 id="orgheadline18">语法规则(wff)</h4>
-<div class="outline-text-4" id="text-orgheadline18">
+<div id="outline-container-org714df26" class="outline-4">
+<h4 id="org714df26">语法规则(wff)</h4>
+<div class="outline-text-4" id="text-org714df26">
 <p>
 语法规则是归纳定义的合式公式集的.
 </p>
@@ -614,9 +699,9 @@ grammar:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline19" class="outline-4">
-<h4 id="orgheadline19">解释</h4>
-<div class="outline-text-4" id="text-orgheadline19">
+<div id="outline-container-orgefcb51e" class="outline-4">
+<h4 id="orgefcb51e">解释</h4>
+<div class="outline-text-4" id="text-orgefcb51e">
 <p>
 逻辑符号的解释是固定的:
 </p>
@@ -633,9 +718,9 @@ grammar:
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21">真值指派</h3>
-<div class="outline-text-3" id="text-orgheadline21">
+<div id="outline-container-org5b733b9" class="outline-3">
+<h3 id="org5b733b9">真值指派</h3>
+<div class="outline-text-3" id="text-org5b733b9">
 <ol class="org-ol">
 <li>S 是一个命题符号集合,比如 {A<sub>1</sub>, A<sub>2</sub> &#x2026;}</li>
 <li>v 是一个真值指派,也就是说为 S 中的每一个命题符号指定一个真值.</li>
@@ -732,9 +817,9 @@ A 与 B有相同的真值.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline22" class="outline-3">
-<h3 id="orgheadline22">重言蕴含</h3>
-<div class="outline-text-3" id="text-orgheadline22">
+<div id="outline-container-orgbb02b8f" class="outline-3">
+<h3 id="orgbb02b8f">重言蕴含</h3>
+<div class="outline-text-3" id="text-orgbb02b8f">
 <p>
 <b>definition</b>: \(\Sigma \vDash \tau\) 当且仅当满足 &Sigma; 中每个合式公式的指派
 也满足 &tau; .
@@ -783,9 +868,9 @@ A 与 B有相同的真值.</li>
 </p></li>
 </ol>
 </div>
-<div id="outline-container-orgheadline23" class="outline-4">
-<h4 id="orgheadline23">典型的重言式</h4>
-<div class="outline-text-4" id="text-orgheadline23">
+<div id="outline-container-org64781a1" class="outline-4">
+<h4 id="org64781a1">典型的重言式</h4>
+<div class="outline-text-4" id="text-org64781a1">
 <ol class="org-ol">
 <li><p>
 分配律
@@ -847,12 +932,12 @@ if A and B{
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline27" class="outline-3">
-<h3 id="orgheadline27">归纳与递归</h3>
-<div class="outline-text-3" id="text-orgheadline27">
-</div><div id="outline-container-orgheadline24" class="outline-4">
-<h4 id="orgheadline24">concepts</h4>
-<div class="outline-text-4" id="text-orgheadline24">
+<div id="outline-container-org81d5ac5" class="outline-3">
+<h3 id="org81d5ac5">归纳与递归</h3>
+<div class="outline-text-3" id="text-org81d5ac5">
+</div><div id="outline-container-org84a913d" class="outline-4">
+<h4 id="org84a913d">concepts</h4>
+<div class="outline-text-4" id="text-org84a913d">
 <ol class="org-ol">
 <li><b>自由生成</b>: 称 C 是 B 在 f 与 g作用下自由生成的,当且仅当除满足生成条件外,
 f 和 g 在 C上的限制 f<sub>C</sub> g<sub>C</sub> 必须满足以下条件:
@@ -878,9 +963,9 @@ f 和 g 在 C上的限制 f<sub>C</sub> g<sub>C</sub> 必须满足以下条件:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline25" class="outline-4">
-<h4 id="orgheadline25">归纳</h4>
-<div class="outline-text-4" id="text-orgheadline25">
+<div id="outline-container-orgb14f067" class="outline-4">
+<h4 id="orgb14f067">归纳</h4>
+<div class="outline-text-4" id="text-orgb14f067">
 <p>
 归纳实际就是通过集合U的某些初始元素, 重复的运用几种运算, 可以构造U一个子集,
 该子集是包含初始元素并且对运算闭合的最小集合.
@@ -951,13 +1036,13 @@ C<sub>n</sub> 是所有长度为 n 的构造序列的最后一个元素组成的
 <li>对于任意的元素a<sub>n</sub>, 存在 a<sub>i</sub>, a<sub>j</sub>, 且 a<sub>n</sub> = f(a<sub>i</sub>, a<sub>j</sub>), 由归纳假设a<sub>i</sub>,
 a<sub>j</sub> 满足该性质, 那么证明 a<sub>n</sub> 也满足该性质</li>
 <li>对于任意的元素a<sub>n</sub>, a<sub>n</sub> = g(a<sub>i</sub>), 由归纳假设 a<sub>i</sub> 满足该性质, 那么证明 a<sub>n</sub>
-       也满足该性质.</li>
+也满足该性质.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline26" class="outline-4">
-<h4 id="orgheadline26">递归定理</h4>
-<div class="outline-text-4" id="text-orgheadline26">
+<div id="outline-container-orgbd3bed6" class="outline-4">
+<h4 id="orgbd3bed6">递归定理</h4>
+<div class="outline-text-4" id="text-orgbd3bed6">
 <p>
 U 的子集 C 是由 B 在 f 与 g上 <b>自由生成</b> 的, 其中:
 </p>
@@ -1016,9 +1101,9 @@ V 是集合,函数 F, G 与 f 满足:
 </div>
 </div>
 
-<div id="outline-container-orgheadline28" class="outline-3">
-<h3 id="orgheadline28">命题联结词</h3>
-<div class="outline-text-3" id="text-orgheadline28">
+<div id="outline-container-org45c944b" class="outline-3">
+<h3 id="org45c944b">命题联结词</h3>
+<div class="outline-text-3" id="text-org45c944b">
 <p>
 每一个合式公式都可以看做是一个bool 函数, 比如合式公式 &alpha; 它有 n 个命题
 符号, 那么就有一个 n 元 bool 函数与这个合式公式对应.
@@ -1047,12 +1132,12 @@ V 是集合,函数 F, G 与 f 满足:
 </div>
 </div>
 
-<div id="outline-container-orgheadline50" class="outline-2">
-<h2 id="orgheadline50">一阶逻辑</h2>
-<div class="outline-text-2" id="text-orgheadline50">
-</div><div id="outline-container-orgheadline30" class="outline-3">
-<h3 id="orgheadline30">concepts</h3>
-<div class="outline-text-3" id="text-orgheadline30">
+<div id="outline-container-org19d44b9" class="outline-2">
+<h2 id="org19d44b9">一阶逻辑</h2>
+<div class="outline-text-2" id="text-org19d44b9">
+</div><div id="outline-container-orgff596de" class="outline-3">
+<h3 id="orgff596de">concepts</h3>
+<div class="outline-text-3" id="text-orgff596de">
 <ol class="org-ol">
 <li><p>
 项: 常数符号与变量通过0次或者多次运算 \(\mathcal{F}_f\) (由函数符号确定的构
@@ -1149,12 +1234,12 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline34" class="outline-3">
-<h3 id="orgheadline34">形式语言</h3>
-<div class="outline-text-3" id="text-orgheadline34">
-</div><div id="outline-container-orgheadline31" class="outline-4">
-<h4 id="orgheadline31">符号集</h4>
-<div class="outline-text-4" id="text-orgheadline31">
+<div id="outline-container-org6777e47" class="outline-3">
+<h3 id="org6777e47">形式语言</h3>
+<div class="outline-text-3" id="text-org6777e47">
+</div><div id="outline-container-orgdfa2678" class="outline-4">
+<h4 id="orgdfa2678">符号集</h4>
+<div class="outline-text-4" id="text-orgdfa2678">
 <p>
 一阶语言的符号包括以下两类:
 </p>
@@ -1180,9 +1265,9 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline32" class="outline-4">
-<h4 id="orgheadline32">语法规则</h4>
-<div class="outline-text-4" id="text-orgheadline32">
+<div id="outline-container-org275e185" class="outline-4">
+<h4 id="org275e185">语法规则</h4>
+<div class="outline-text-4" id="text-org275e185">
 <ol class="org-ol">
 <li><p>
 项
@@ -1218,9 +1303,9 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline33" class="outline-4">
-<h4 id="orgheadline33">解释</h4>
-<div class="outline-text-4" id="text-orgheadline33">
+<div id="outline-container-orgf89e5b4" class="outline-4">
+<h4 id="orgf89e5b4">解释</h4>
+<div class="outline-text-4" id="text-orgf89e5b4">
 <p>
 一阶语言使用结构(structure)来给语言指定意义, 实际上一个一阶语言的结构就是该
 语言的一种解释, 所以结构必须为 &forall;, 函数, 谓词, 常量符号指定意义. 形式
@@ -1262,12 +1347,12 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline41" class="outline-3">
-<h3 id="orgheadline41">真值</h3>
-<div class="outline-text-3" id="text-orgheadline41">
-</div><div id="outline-container-orgheadline35" class="outline-4">
-<h4 id="orgheadline35">满足</h4>
-<div class="outline-text-4" id="text-orgheadline35">
+<div id="outline-container-org0f8e6a0" class="outline-3">
+<h3 id="org0f8e6a0">真值</h3>
+<div class="outline-text-3" id="text-org0f8e6a0">
+</div><div id="outline-container-org21d4759" class="outline-4">
+<h4 id="org21d4759">满足</h4>
+<div class="outline-text-4" id="text-org21d4759">
 <ol class="org-ol">
 <li>\(\varphi\) 是语言中的合式公式</li>
 <li>\(\mathfrak{A}\) 是语言的结构</li>
@@ -1295,9 +1380,9 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 变量依次指定论域中的元素为 \(a_1, ..., a_k\).
 </p>
 </div>
-<div id="outline-container-orgheadline36" class="outline-5">
-<h5 id="orgheadline36">项(term)</h5>
-<div class="outline-text-5" id="text-orgheadline36">
+<div id="outline-container-org04c9618" class="outline-5">
+<h5 id="org04c9618">项(term)</h5>
+<div class="outline-text-5" id="text-org04c9618">
 <p>
 项一般代表代词或者名词,所以它应该映射到论域中的一个元素
 </p>
@@ -1332,9 +1417,9 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 </div>
 </div>
 
-<div id="outline-container-orgheadline37" class="outline-5">
-<h5 id="orgheadline37">原子公式</h5>
-<div class="outline-text-5" id="text-orgheadline37">
+<div id="outline-container-org9e272b4" class="outline-5">
+<h5 id="org9e272b4">原子公式</h5>
+<div class="outline-text-5" id="text-org9e272b4">
 <p>
 原子公式是合式公式,所以它应该映射到 {T, F}
 </p>
@@ -1357,9 +1442,9 @@ etc) 就相当于lambda calculus中的 &lambda; abstraction.
 </div>
 </div>
 
-<div id="outline-container-orgheadline38" class="outline-5">
-<h5 id="orgheadline38">其它合式公式</h5>
-<div class="outline-text-5" id="text-orgheadline38">
+<div id="outline-container-org1f5e7ca" class="outline-5">
+<h5 id="org1f5e7ca">其它合式公式</h5>
+<div class="outline-text-5" id="text-org1f5e7ca">
 <ol class="org-ol">
 <li>原子公式同上</li>
 <li><p>
@@ -1401,9 +1486,9 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 </div>
 </div>
 
-<div id="outline-container-orgheadline39" class="outline-4">
-<h4 id="orgheadline39">缩写</h4>
-<div class="outline-text-4" id="text-orgheadline39">
+<div id="outline-container-org24cd552" class="outline-4">
+<h4 id="org24cd552">缩写</h4>
+<div class="outline-text-4" id="text-org24cd552">
 <ol class="org-ol">
 <li>\(\forall x \in X. P(x)\) 等价于 \(\forall x(x \in X \rightarrow P(x))\)</li>
 <li>\(\exists x \in X. P(x)\) 等价于 \(\exists x(x \in X \land P(x))\)</li>
@@ -1420,9 +1505,9 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline40" class="outline-4">
-<h4 id="orgheadline40">一阶语言的例子</h4>
-<div class="outline-text-4" id="text-orgheadline40">
+<div id="outline-container-orga165447" class="outline-4">
+<h4 id="orga165447">一阶语言的例子</h4>
+<div class="outline-text-4" id="text-orga165447">
 <ul class="org-ul">
 <li><p>
 某个类中每个对象都有某种属性:
@@ -1448,9 +1533,9 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline42" class="outline-3">
-<h3 id="orgheadline42">逻辑蕴含</h3>
-<div class="outline-text-3" id="text-orgheadline42">
+<div id="outline-container-orge7788fa" class="outline-3">
+<h3 id="orge7788fa">逻辑蕴含</h3>
+<div class="outline-text-3" id="text-orge7788fa">
 <p>
 <b>Definition</b>: 设 &Gamma; 是合式公式的集合, \(\varphi\) 是一个合式公式,那么
 &Gamma; 逻辑蕴含 \(\varphi\), 记作 \(\Gamma \vDash \varphi\), 当且仅当对于语言每
@@ -1459,9 +1544,9 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 \(\varphi\).
 </p>
 </div>
-<div id="outline-container-orgheadline43" class="outline-4">
-<h4 id="orgheadline43">examples</h4>
-<div class="outline-text-4" id="text-orgheadline43">
+<div id="outline-container-orgadd906b" class="outline-4">
+<h4 id="orgadd906b">examples</h4>
+<div class="outline-text-4" id="text-orgadd906b">
 \begin{eqnarray*}
   \forall v_1 Q v_1 \vDash Q v_2  \\
   Qv_1 \nvDash \forall v_2 Q v_2   \\
@@ -1472,9 +1557,9 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 </div>
 </div>
 
-<div id="outline-container-orgheadline44" class="outline-4">
-<h4 id="orgheadline44">几个结论</h4>
-<div class="outline-text-4" id="text-orgheadline44">
+<div id="outline-container-org6edcb66" class="outline-4">
+<h4 id="org6edcb66">几个结论</h4>
+<div class="outline-text-4" id="text-org6edcb66">
 <p>
 逻辑蕴含(\(\Gamma \vDash \varphi\))实际上还是可以看做这种直觉: &Gamma; 中的公
 式是前提, 而 \(\varphi\) 是结果, 只有满足了所有的前提条件, 结果才是可满足的
@@ -1515,9 +1600,9 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 </div>
 </div>
 
-<div id="outline-container-orgheadline45" class="outline-3">
-<h3 id="orgheadline45">同态(homomorphism)</h3>
-<div class="outline-text-3" id="text-orgheadline45">
+<div id="outline-container-org7312059" class="outline-3">
+<h3 id="org7312059">同态(homomorphism)</h3>
+<div class="outline-text-3" id="text-org7312059">
 <p>
 从 \(\mathfrak{A}\) 到 \(\mathfrak{B}\) 的同态意味着两个结构间存在一个函数:
 \(h: |\mathfrak{A}| \rightarrow |\mathfrak{B}|\), 具有下列性质:
@@ -1545,9 +1630,9 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline46" class="outline-3">
-<h3 id="orgheadline46">演绎计算</h3>
-<div class="outline-text-3" id="text-orgheadline46">
+<div id="outline-container-orgef2a9b9" class="outline-3">
+<h3 id="orgef2a9b9">演绎计算</h3>
+<div class="outline-text-3" id="text-orgef2a9b9">
 <p>
 有限集合 &Lambda; 是公理集, 通过选定推理规则, 我们可以生成新的公式, 对于公式
 集&Gamma;, &Gamma; 的 <b>定理</b> 是指 \(\Gamma \cup \Lambda\) 中的公式通过有限次的推
@@ -1590,9 +1675,9 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 该性质.</li>
 </ul>
 </div>
-<div id="outline-container-orgheadline47" class="outline-4">
-<h4 id="orgheadline47">逻辑公理集</h4>
-<div class="outline-text-4" id="text-orgheadline47">
+<div id="outline-container-orgc25aef8" class="outline-4">
+<h4 id="orgc25aef8">逻辑公理集</h4>
+<div class="outline-text-4" id="text-orgc25aef8">
 <ol class="org-ol">
 <li>重言式</li>
 <li>\(\forall x \alpha \rightarrow \alpha_t^x\) (t替换x, 要避免变量捕捉, 也就
@@ -1625,9 +1710,9 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 </div>
 </div>
 
-<div id="outline-container-orgheadline48" class="outline-4">
-<h4 id="orgheadline48">原理,定理</h4>
-<div class="outline-text-4" id="text-orgheadline48">
+<div id="outline-container-orgb004dfd" class="outline-4">
+<h4 id="orgb004dfd">原理,定理</h4>
+<div class="outline-text-4" id="text-orgb004dfd">
 <ol class="org-ol">
 <li><p>
 \(\vDash, \vdash\) 的关系
@@ -1642,16 +1727,16 @@ s(x|d) 是一个函数, 它在x点取值d, 在其它地方取值与s相同,其�
 <li><b>概化定理</b>:如果 \(\Gamma \vdash \varphi\) 且x不在 &Gamma; 中任何公式中自由
 出现, 那么 \(\Gamma \vdash \forall x \varphi\)</li>
 <li><b>演绎定理</b>: 如果 \(\Gamma;\gamma \vdash \varphi\) 那么 \(\Gamma \vdash (\gamma \rightarrow \varphi)\)
-       (逆定理也成立, 逆定理本质就是假言推理).</li>
+(逆定理也成立, 逆定理本质就是假言推理).</li>
 <li><b>归纳原理</b>: 如果 S 是包含 \(\Gamma \cup \Lambda\) 的集合, 并且在假言推理下
 封闭, 那么 S 包含 &Lambda; 的所有定理.</li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline49" class="outline-3">
-<h3 id="orgheadline49">一致性与完备性</h3>
-<div class="outline-text-3" id="text-orgheadline49">
+<div id="outline-container-orgf8e75ba" class="outline-3">
+<h3 id="orgf8e75ba">一致性与完备性</h3>
+<div class="outline-text-3" id="text-orgf8e75ba">
 <ol class="org-ol">
 <li>逻辑公理是恒为真的.</li>
 <li>一致性: 如果 \(\Gamma \vdash \varphi\) 那么 \(\Gamma \vDash \varphi\) (一致性

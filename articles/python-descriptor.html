@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:09 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>python Descriptor</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,6 +176,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -175,14 +260,14 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">Abstract</a></li>
-<li><a href="#orgheadline2">Definition and Introduction</a></li>
-<li><a href="#orgheadline3">Descriptor Protocol</a></li>
-<li><a href="#orgheadline4">Invoking Descriptors</a></li>
-<li><a href="#orgheadline5">Descriptor Example</a></li>
-<li><a href="#orgheadline6">Properties</a></li>
-<li><a href="#orgheadline7">Functions and Methods</a></li>
-<li><a href="#orgheadline8">Static Methods and Class Methods</a></li>
+<li><a href="#org6a05b16">Abstract</a></li>
+<li><a href="#org985e319">Definition and Introduction</a></li>
+<li><a href="#org503fe34">Descriptor Protocol</a></li>
+<li><a href="#org038c4ec">Invoking Descriptors</a></li>
+<li><a href="#orgdee4a02">Descriptor Example</a></li>
+<li><a href="#orgd719eaf">Properties</a></li>
+<li><a href="#org73432f4">Functions and Methods</a></li>
+<li><a href="#org81e6db4">Static Methods and Class Methods</a></li>
 </ul>
 </div>
 </div>
@@ -197,9 +282,9 @@ Foundation. All rights reserved.
 </p>
 </blockquote>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Abstract</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-org6a05b16" class="outline-2">
+<h2 id="org6a05b16">Abstract</h2>
+<div class="outline-text-2" id="text-org6a05b16">
 <p>
 Defines descriptors, summarizes the protocol, and shows how descriptors are called. Examines a custom
 descriptor and several built-in python descriptors including functions, properties, static methods, and
@@ -213,9 +298,9 @@ of how Python works and an appreciation for the elegance of its design.
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">Definition and Introduction</h2>
-<div class="outline-text-2" id="text-orgheadline2">
+<div id="outline-container-org985e319" class="outline-2">
+<h2 id="org985e319">Definition and Introduction</h2>
+<div class="outline-text-2" id="text-org985e319">
 <p>
 In general, a descriptor is an object attribute with "binding behavior", one whose attribute access has
 been overridden by methods in the descriptor protocol. Those methods are <span class="underline"><span class="underline">get</span></span>, <span class="underline"><span class="underline">set</span></span>, and
@@ -241,9 +326,9 @@ flexible set of new tools for everyday Python programs.
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">Descriptor Protocol</h2>
-<div class="outline-text-2" id="text-orgheadline3">
+<div id="outline-container-org503fe34" class="outline-2">
+<h2 id="org503fe34">Descriptor Protocol</h2>
+<div class="outline-text-2" id="text-org503fe34">
 <ul class="org-ul">
 <li>descr._<sub>get</sub>_<sub>(self, obj, type=None)</sub> &#x2013;&gt; value</li>
 
@@ -278,9 +363,9 @@ make it a data descriptor.
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4">Invoking Descriptors</h2>
-<div class="outline-text-2" id="text-orgheadline4">
+<div id="outline-container-org038c4ec" class="outline-2">
+<h2 id="org038c4ec">Invoking Descriptors</h2>
+<div class="outline-text-2" id="text-org038c4ec">
 <p>
 A descriptor can be called directly by its method name. For example, d._<sub>get</sub>_<sub>(obj)</sub>.
 </p>
@@ -309,7 +394,6 @@ For classes, the machinery is in type._<sub>getattribute</sub>__ which transform
 B._<sub>dict</sub>__['x']._<sub>get</sub>_<sub>(None, B)</sub>. In pure Python, it looks like:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__getattribute__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, key<span style="color: #DCDCCC;">)</span>:
     <span style="color: #CC9393;">"Emulate type_getattro() in Objects/typeobject.c"</span>
     <span style="color: #DFAF8F;">v</span> = <span style="color: #DCDCCC; font-weight: bold;">object</span>.__getattribute__<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, key<span style="color: #DCDCCC;">)</span>
@@ -354,16 +438,15 @@ _<sub>getattribute</sub>_<sub>()</sub>.
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5">Descriptor Example</h2>
-<div class="outline-text-2" id="text-orgheadline5">
+<div id="outline-container-orgdee4a02" class="outline-2">
+<h2 id="orgdee4a02">Descriptor Example</h2>
+<div class="outline-text-2" id="text-orgdee4a02">
 <p>
 The following code creates a class whose objects are data descriptors which prin message for each get or
 set. Overriding <span class="underline">_ etattribute_</span> is alternate approach that could do this fo ery attribute. However, this
 descriptor is useful for monitoring just a few chosen attributes:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">RevealAccess</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
     <span style="color: #CC9393;">"""A data descriptor that sets and returns values</span>
 <span style="color: #CC9393;">       normally and prints a message logging their access.</span>
@@ -407,9 +490,9 @@ methods are all based on the descriptor protocol.
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6">Properties</h2>
-<div class="outline-text-2" id="text-orgheadline6">
+<div id="outline-container-orgd719eaf" class="outline-2">
+<h2 id="orgd719eaf">Properties</h2>
+<div class="outline-text-2" id="text-orgd719eaf">
 <p>
 Calling property() is a succinct way of building a data descriptor that triggers ction calls upon access to
 an attribute. Its signature is:
@@ -423,7 +506,6 @@ property(fget=None, fset=None, fdel=None, doc=None) -&gt; property attribute
 The documentation shows a typical use to define a managed attribute x:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">C</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">getx</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span><span style="color: #DCDCCC;">)</span>: <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.__x
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">setx</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, value<span style="color: #DCDCCC;">)</span>: <span style="color: #F0DFAF; font-weight: bold;">self</span>.__x = value
@@ -435,7 +517,6 @@ The documentation shows a typical use to define a managed attribute x:
 To see how property() is implemented in terms of the descriptor protocol, here is a pure Python equivalent:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Property</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
     <span style="color: #CC9393;">"Emulate PyProperty_Type() in Objects/descrobject.c"</span>
 
@@ -475,7 +556,6 @@ not want to affect existing client code accessing the attribute direct The solut
 the value attribute in a property() data descriptor:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Cell</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
     . . .
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">getvalue</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, obj<span style="color: #DCDCCC;">)</span>:
@@ -487,9 +567,9 @@ the value attribute in a property() data descriptor:
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-2">
-<h2 id="orgheadline7">Functions and Methods</h2>
-<div class="outline-text-2" id="text-orgheadline7">
+<div id="outline-container-org73432f4" class="outline-2">
+<h2 id="org73432f4">Functions and Methods</h2>
+<div class="outline-text-2" id="text-org73432f4">
 <p>
 Python's object oriented features are built upon a function based environment.  g non-data descriptors, the
 two are merged seamlessly.
@@ -508,7 +588,6 @@ access. This means that all functions are non-data descriptors which retu ound o
 whether they are invoked from an object or a class. In pure python, it works like this:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Function</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
     . . .
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__get__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, obj, objtype=<span style="color: #BFEBBF;">None</span><span style="color: #DCDCCC;">)</span>:
@@ -549,9 +628,9 @@ implementation of instancemethod<sub>call</sub>() is only slightly more complex 
 </div>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-2">
-<h2 id="orgheadline8">Static Methods and Class Methods</h2>
-<div class="outline-text-2" id="text-orgheadline8">
+<div id="outline-container-org81e6db4" class="outline-2">
+<h2 id="org81e6db4">Static Methods and Class Methods</h2>
+<div class="outline-text-2" id="text-org81e6db4">
 <p>
 Non-data descriptors provide a simple mechanism for variations on the usual pa ns of binding functions into
 methods.
@@ -609,7 +688,6 @@ Since staticmethods return the underlying function with no changes, the example 
 Using the non-data descriptor protocol, a pure Python version of staticmethod() would look like this:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">StaticMethod</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
  <span style="color: #CC9393;">"Emulate PyStaticMethod_Type() in Objects/funcobject.c"</span>
 
@@ -641,7 +719,6 @@ underlying data.  ne use for classmethods is to create alternate class const ors
 classmethod dict.fromkeys() creates a new dictionary from a li t of keys. The pure Python equivalent is:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Dict</span>:
     . . .
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">fromkeys</span><span style="color: #DCDCCC;">(</span>klass, iterable, value=<span style="color: #BFEBBF;">None</span><span style="color: #DCDCCC;">)</span>:
@@ -664,7 +741,6 @@ Now a new dictionary of unique keys can be constructed like this:
 Using the non-data descriptor protocol, a pure Python version of classmethod() would look like this:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">ClassMethod</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
      <span style="color: #CC9393;">"Emulate PyClassMethod_Type() in Objects/funcobject.c"</span>
 

@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>jQuery</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="jquery javascript" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="jquery javascript" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -198,32 +283,32 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">一些惯例以及基本常识</a></li>
-<li><a href="#orgheadline9">jquery selector</a>
+<li><a href="#org0b798e2">一些惯例以及基本常识</a></li>
+<li><a href="#org7c173ca">jquery selector</a>
 <ul>
-<li><a href="#orgheadline2">基本选择器</a></li>
-<li><a href="#orgheadline3">层次选择器</a></li>
-<li><a href="#orgheadline8">过滤选择器</a>
+<li><a href="#orge997277">基本选择器</a></li>
+<li><a href="#orgc14529d">层次选择器</a></li>
+<li><a href="#orgc0a1cf6">过滤选择器</a>
 <ul>
-<li><a href="#orgheadline4">基本过滤选择器</a></li>
-<li><a href="#orgheadline5">内容过滤选择器</a></li>
-<li><a href="#orgheadline6">可见性</a></li>
-<li><a href="#orgheadline7">属性过滤选择器</a></li>
+<li><a href="#orgf26cda5">基本过滤选择器</a></li>
+<li><a href="#org77ff389">内容过滤选择器</a></li>
+<li><a href="#org7b84441">可见性</a></li>
+<li><a href="#org2fe8eaa">属性过滤选择器</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline10">DOM操作</a></li>
-<li><a href="#orgheadline11">jquery事件</a></li>
-<li><a href="#orgheadline12">jquery动画</a></li>
-<li><a href="#orgheadline13">ajax</a></li>
-<li><a href="#orgheadline14">jquery常用插件</a></li>
+<li><a href="#org7640632">DOM操作</a></li>
+<li><a href="#orge94b0b3">jquery事件</a></li>
+<li><a href="#org97b2e69">jquery动画</a></li>
+<li><a href="#org539b11d">ajax</a></li>
+<li><a href="#org6d5fe27">jquery常用插件</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">一些惯例以及基本常识</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-org0b798e2" class="outline-2">
+<h2 id="org0b798e2">一些惯例以及基本常识</h2>
+<div class="outline-text-2" id="text-org0b798e2">
 <ol class="org-ol">
 <li>在jquery中 \( 就是jQuery的简写,故\).trim 就是jQuery.trim的等价表示</li>
 <li>\((function(...){...})是\)(document).ready(function(&#x2026;){&#x2026;})的简写</li>
@@ -248,12 +333,12 @@ jquery对象可以包含多个DOM对象,所以可以通过index或者get(idx)来
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-2">
-<h2 id="orgheadline9">jquery selector</h2>
-<div class="outline-text-2" id="text-orgheadline9">
-</div><div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">基本选择器</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+<div id="outline-container-org7c173ca" class="outline-2">
+<h2 id="org7c173ca">jquery selector</h2>
+<div class="outline-text-2" id="text-org7c173ca">
+</div><div id="outline-container-orge997277" class="outline-3">
+<h3 id="orge997277">基本选择器</h3>
+<div class="outline-text-3" id="text-orge997277">
 <p>
 jQuery的基本语法是：$(selector).action(), 常用的选择器有：
 </p>
@@ -317,9 +402,9 @@ jQuery的基本语法是：$(selector).action(), 常用的选择器有：
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">层次选择器</h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-orgc14529d" class="outline-3">
+<h3 id="orgc14529d">层次选择器</h3>
+<div class="outline-text-3" id="text-orgc14529d">
 <p>
 获取后代元素,子元素,兄弟元素,相邻元素等
 </p>
@@ -333,12 +418,12 @@ div元素并不被该模式识别)</li>
 </div>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">过滤选择器</h3>
-<div class="outline-text-3" id="text-orgheadline8">
-</div><div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4">基本过滤选择器</h4>
-<div class="outline-text-4" id="text-orgheadline4">
+<div id="outline-container-orgc0a1cf6" class="outline-3">
+<h3 id="orgc0a1cf6">过滤选择器</h3>
+<div class="outline-text-3" id="text-orgc0a1cf6">
+</div><div id="outline-container-orgf26cda5" class="outline-4">
+<h4 id="orgf26cda5">基本过滤选择器</h4>
+<div class="outline-text-4" id="text-orgf26cda5">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 2:</span> 基本过滤选择器</caption>
 
@@ -426,9 +511,9 @@ div元素并不被该模式识别)</li>
 </table>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-4">
-<h4 id="orgheadline5">内容过滤选择器</h4>
-<div class="outline-text-4" id="text-orgheadline5">
+<div id="outline-container-org77ff389" class="outline-4">
+<h4 id="org77ff389">内容过滤选择器</h4>
+<div class="outline-text-4" id="text-org77ff389">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 3:</span> 内容过滤选择器</caption>
 
@@ -482,9 +567,9 @@ div元素并不被该模式识别)</li>
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6">可见性</h4>
-<div class="outline-text-4" id="text-orgheadline6">
+<div id="outline-container-org7b84441" class="outline-4">
+<h4 id="org7b84441">可见性</h4>
+<div class="outline-text-4" id="text-org7b84441">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 4:</span> 可见性过滤选择器</caption>
 
@@ -523,9 +608,9 @@ div元素并不被该模式识别)</li>
 </table>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7">属性过滤选择器</h4>
-<div class="outline-text-4" id="text-orgheadline7">
+<div id="outline-container-org2fe8eaa" class="outline-4">
+<h4 id="org2fe8eaa">属性过滤选择器</h4>
+<div class="outline-text-4" id="text-org2fe8eaa">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 5:</span> 属性过滤选择器</caption>
 
@@ -601,9 +686,9 @@ div元素并不被该模式识别)</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-2">
-<h2 id="orgheadline10">DOM操作</h2>
-<div class="outline-text-2" id="text-orgheadline10">
+<div id="outline-container-org7640632" class="outline-2">
+<h2 id="org7640632">DOM操作</h2>
+<div class="outline-text-2" id="text-org7640632">
 <ol class="org-ol">
 <li>创建节点: 使用 <code>$(...)</code>, 比如 <code>$('&lt;div&gt;some content&lt;/div&gt;')</code>.</li>
 <li>插入节点 $(A).xxx(B) 其中xxx代替下面的方法，注意当A是元素集合时，那么B插
@@ -675,15 +760,14 @@ div元素并不被该模式识别)</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-2">
-<h2 id="orgheadline11">jquery事件</h2>
-<div class="outline-text-2" id="text-orgheadline11">
+<div id="outline-container-orge94b0b3" class="outline-2">
+<h2 id="orge94b0b3">jquery事件</h2>
+<div class="outline-text-2" id="text-orge94b0b3">
 <ol class="org-ol">
 <li><p>
 .bind : 可以通过该方法将特定函数绑定到特定的事件上eg:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-javascript">$<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'div.li'</span><span style="color: #DCDCCC;">)</span>.bind<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'click'</span>, <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #BFEBBF;">(){</span>
   alert<span style="color: #D0BF8F;">(</span><span style="color: #CC9393;">'clicked'</span><span style="color: #D0BF8F;">)</span>;
 <span style="color: #BFEBBF;">}</span><span style="color: #DCDCCC;">)</span>
@@ -707,7 +791,6 @@ toggle()就会隐藏该元素,如果该元素已隐藏,那么调用toggle()就�
 代码：
 </p>
 <div class="org-src-container">
-
 <pre class="src src-javascript">$<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #BFEBBF;">(){</span>
   $<span style="color: #D0BF8F;">(</span><span style="color: #CC9393;">"#sub"</span><span style="color: #D0BF8F;">)</span>.bind<span style="color: #D0BF8F;">(</span><span style="color: #CC9393;">"click"</span>,<span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #93E0E3;">(</span><span style="color: #DFAF8F;">event</span><span style="color: #93E0E3;">){</span>
     <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">username</span> = $<span style="color: #9FC59F;">(</span><span style="color: #CC9393;">"#username"</span><span style="color: #9FC59F;">)</span>.val<span style="color: #9FC59F;">()</span>;  <span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">&#33719;&#21462;&#20803;&#32032;&#30340;&#20540;</span>
@@ -735,9 +818,9 @@ click不会触发sub的父元素的click事件，
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-2">
-<h2 id="orgheadline12">jquery动画</h2>
-<div class="outline-text-2" id="text-orgheadline12">
+<div id="outline-container-org97b2e69" class="outline-2">
+<h2 id="org97b2e69">jquery动画</h2>
+<div class="outline-text-2" id="text-org97b2e69">
 <ol class="org-ol">
 <li>.hide([speed]), .show([speed]), .toggle([speed]) : 显示，隐藏，如果指定speed，那么会渐变的改变元素的高
 度</li>
@@ -747,9 +830,9 @@ click不会触发sub的父元素的click事件，
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-2">
-<h2 id="orgheadline13">ajax</h2>
-<div class="outline-text-2" id="text-orgheadline13">
+<div id="outline-container-org539b11d" class="outline-2">
+<h2 id="org539b11d">ajax</h2>
+<div class="outline-text-2" id="text-org539b11d">
 <p>
 jquery ajax的回调函数的原型：
 </p>
@@ -774,9 +857,9 @@ jquery ajax的回调函数的原型：
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-2">
-<h2 id="orgheadline14">jquery常用插件</h2>
-<div class="outline-text-2" id="text-orgheadline14">
+<div id="outline-container-org6d5fe27" class="outline-2">
+<h2 id="org6d5fe27">jquery常用插件</h2>
+<div class="outline-text-2" id="text-org6d5fe27">
 <ol class="org-ol">
 <li>jquery.form
 可以很方便的将你的form变成ajax版</li>

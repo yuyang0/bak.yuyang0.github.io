@@ -1,0 +1,755 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>计算机网络</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="static/css/main.css"/>
+<link rel="shortcut icon" href="static/img/favicon.ico" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="header">
+      <div class="inner">
+        <h1 id="site-title"><a href="/"> 编码者言 </a></h1>
+        <div>
+          <a href="###" id="site-nav-btn">菜单</a>
+          <ul id="site-nav" class="vertical-nav mobi-hid">
+            <li> <a href="/">Home</a></li>
+            <li> <a href="/about.html">About</a></li>
+
+            <li> <a href="/tags.html">Tags</a></li>
+
+            <li> <a href="/atom.xml">RSS</a></li>
+          </ul>
+
+          <form id="site-search" method="get" action="https://google.com/search">
+            <input type="hidden" name="q" value="site:yuyang0.github.io" />
+            <input type="text" name="q" placeholder="Search..." />
+            <button class="btn-search" type="submit">Search</button>
+          </form>
+          <div style="clear:both;"> </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div id="content">
+<h1 class="title">计算机网络</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org62fdd88">IP</a>
+<ul>
+<li><a href="#org69df1c1">Pcket Structure</a></li>
+<li><a href="#org0d25251">IP地址的分级和组成</a></li>
+<li><a href="#orgd213f08">子网</a></li>
+<li><a href="#org750aca3">NAT</a></li>
+<li><a href="#org71e66b6">DHCP</a></li>
+</ul>
+</li>
+<li><a href="#orge77d895">TCP</a>
+<ul>
+<li><a href="#orgba0a744">协议详解</a></li>
+<li><a href="#orgd8b2011">基本原理</a></li>
+<li><a href="#orgdf79109">连接管理</a>
+<ul>
+<li><a href="#orgcf509f0">三步握手</a></li>
+<li><a href="#org95d7a08">连接关闭</a></li>
+<li><a href="#orgc4cb256">状态变化</a></li>
+</ul>
+</li>
+<li><a href="#org2098693">流量控制</a></li>
+<li><a href="#orgb0ff690">拥塞控制</a></li>
+</ul>
+</li>
+<li><a href="#org8105104">TSL/SSL</a>
+<ul>
+<li><a href="#orgc2e1ecb">数字签名</a></li>
+<li><a href="#orgb474f15">数字证书</a></li>
+<li><a href="#orgc7e0a91">https</a></li>
+</ul>
+</li>
+<li><a href="#org2d8d44f">网络设备</a></li>
+<li><a href="#org771c551">抓包工具</a>
+<ul>
+<li><a href="#org24ef521">捕捉过滤器</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org62fdd88" class="outline-2">
+<h2 id="org62fdd88">IP</h2>
+<div class="outline-text-2" id="text-org62fdd88">
+</div><div id="outline-container-org69df1c1" class="outline-3">
+<h3 id="org69df1c1">Pcket Structure</h3>
+<div class="outline-text-3" id="text-org69df1c1">
+<pre class="example">
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|Version|  IHL  |Type of Service|          Total Length         |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|         Identification        |Flags|      Fragment Offset    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|  Time to Live |    Protocol   |         Header Checksum       |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Source Address                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Destination Address                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Options                    |    Padding    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</pre>
+<ol class="org-ol">
+<li>Version:</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org0d25251" class="outline-3">
+<h3 id="org0d25251">IP地址的分级和组成</h3>
+<div class="outline-text-3" id="text-org0d25251">
+<ol class="org-ol">
+<li>A类(0开头)     0.xx.xx.xx ~ 127.xx.xx.xx</li>
+<li>B类(10开头)    128.xx.xx.xx ~ 191.xx.xx.xx</li>
+<li>C类(110开头)   192.xx.xx.xx ~ 223.xx.xx.xx</li>
+<li>D类(1110开头)  224.xx.xx.xx ~ 239.xx.xx.xx</li>
+<li>E类(1111开头)  240.xx.xx.xx ~ 255.xx.xx.xx</li>
+</ol>
+
+<p>
+为了局域网组网方便,有一部分IP是私有,也就是说带有这些ip的ip包是不会出现在公网上的,这
+些ip只应该出现私有网络内部.
+</p>
+
+<ul class="org-ul">
+<li>A类：10.0.0.0    - 10.255.255.255  (10.0.0.0/8)</li>
+<li>B类：172.16.0.0  - 172.31.255.255  (172.16.0.0/12)</li>
+<li>C类：192.168.0.0 - 192.168.255.255 (192.168.0.0/16)</li>
+</ul>
+
+<p>
+loopback网段: 127.0.0.0/8
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd213f08" class="outline-3">
+<h3 id="orgd213f08">子网</h3>
+<div class="outline-text-3" id="text-orgd213f08">
+<p>
+ip地址被分为NET ID和HOST ID, 如果ip地址的NET ID相同那么就处于同一子网, 也就可以
+使用链路层设备直接通信.
+</p>
+<ul class="org-ul">
+<li>子网掩码: 用来指定ip的哪些位是NET ID, 比如说 <code>255.255.255.0</code> 就是说IP的前24位
+是NET ID, <code>255.240.0.0</code> 就是说前12位是NET ID. 所以 <code>192.168.0.0/255.255.255.0</code>
+实际上就是指定了一个网段, 也可以用CIDR <code>192.168.0.0/24</code>, 后面的数字代表前24位是NET ID.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org750aca3" class="outline-3">
+<h3 id="org750aca3">NAT</h3>
+<div class="outline-text-3" id="text-org750aca3">
+<p>
+Network Address Translation, 主要是用来自动转换IP地址, 这样一个私有网络的所有计
+算机就可以共用一个public ip来上网. 它是使用ip和port来识别包的.
+</p>
+</div>
+</div>
+<div id="outline-container-org71e66b6" class="outline-3">
+<h3 id="org71e66b6">DHCP</h3>
+</div>
+</div>
+<div id="outline-container-orge77d895" class="outline-2">
+<h2 id="orge77d895">TCP</h2>
+<div class="outline-text-2" id="text-orge77d895">
+<p>
+tcp提供的是可靠的数据传输，这意味着要满足以下几点:
+</p>
+<ol class="org-ol">
+<li>数据报不能损坏</li>
+<li>数据报不能丢失</li>
+<li>数据报要按照发送顺序提供给上层的调用者</li>
+</ol>
+<p>
+为了应对这几点，引入很多机制
+</p>
+<ol class="org-ol">
+<li>为了应对数据报丢失和损坏，引入了 <b>确认</b> 机制，也就是ack报文。</li>
+<li>为了检测数据报损坏，所以引入了checksum</li>
+<li>为了从数据报损坏,丢失中恢复，引入 <b>重传</b> 的机制</li>
+<li>为了消除重传造成的数据报冗余，必须保证 幂等，这样就引入了 <b>序号</b> 机制, 序
+号机制也可以保证数据流的顺序。</li>
+</ol>
+</div>
+<div id="outline-container-orgba0a744" class="outline-3">
+<h3 id="orgba0a744">协议详解</h3>
+<div class="outline-text-3" id="text-orgba0a744">
+<p>
+tcp的头部格式
+</p>
+<pre class="example">
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|          Source Port          |       Destination Port        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                        Sequence Number                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Acknowledgment Number                      |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|  Data |           |U|A|P|R|S|F|                               |
+| Offset| Reserved  |R|C|S|S|Y|I|      Receive Window Size      |
+|       |           |G|K|H|T|N|N|                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|           Checksum            |         Urgent Pointer        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Options                    |    Padding    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                             data                              |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</pre>
+<p>
+<b>几点解释:</b>
+</p>
+<ol class="org-ol">
+<li>Source Port, Destination Port是端口号</li>
+<li>Sequence Number: tcp对内部传送的每一个字节都会编号, 该字段代表的就是该数
+据报第一个字节的编号.</li>
+<li>Acknowledgment Number: 当接受端收到一个tcp数据报后,会发送一个确认报文,发
+送端就是根据确认报文来判断该数据报是否发送成功,如果长时间没有收到确认报
+文,那么发送端就会重发tcp数据报, 确认报文的ACK必须为1,同时Acknowledgment
+Number代表该端期望接受数据的序号,比如接受端收到一个tcp报文,该报文的
+Sequence Number是a, 同时报文长度是b, 那么对该报文的确认报文的
+Acknowledgment Number字段就是a+b. <b>只有ACK标志为1时该字段才有效</b></li>
+<li>Data Offset: 实际数据在报文中的偏移,也可以看作是tcp头部的大小,因为tcp头部
+包含options所以他的大小是可变的,这就是该字段存在的原因.</li>
+<li>标志:
+<ul class="org-ul">
+<li>URG: 紧急指针</li>
+<li>ACK: Acknowledgement number有效</li>
+<li>PSH:</li>
+<li>RST: 重置连接, 万恶的GFW经常这么干.</li>
+<li>SYN: Synchronize sequence numbers, 三步握手时需要.</li>
+<li>FIN: finish, 关闭连接时会用到该标志</li>
+</ul></li>
+<li>Window size: 用来标示发送该数据报的一端希望接收的数据大小, 主要用来进行
+流控制(flow control).</li>
+</ol>
+<p>
+<b>其他说明:</b>
+</p>
+<ol class="org-ol">
+<li>TCP可以看做是一个全双工管道,可读可写, 也就是说一个tcp socket的读写是分离,
+互不干扰的.</li>
+<li>TCP提供了流控制,也就是说内部有缓冲区,如果缓冲区满了那么相应的操作就会阻塞,举
+个例子, 如果接受者的读缓冲区满了,那么你在发送者一端调用write就会阻塞.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgd8b2011" class="outline-3">
+<h3 id="orgd8b2011">基本原理</h3>
+<div class="outline-text-3" id="text-orgd8b2011">
+<ol class="org-ol">
+<li>tcp是使用累积确认，也就是说接收端发送了一个ack=N的确认报文，那么就意味着
+所有序号小于N的数据都已经成功接受。</li>
+<li>接收端只确认顺序到达的最大序号的报文，比如a,b,c,d四个报文，假设它们顺序到
+达但是b丢失，那么实际上对c,d的确认报文和对a的确认报文是一样的。一旦发送端
+收到的重复ACK报文达到一个阈值，那么就会重发b， 对b的ACK报文的ack实际上等
+于d的序号加上d的长度。</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgdf79109" class="outline-3">
+<h3 id="orgdf79109">连接管理</h3>
+<div class="outline-text-3" id="text-orgdf79109">
+</div><div id="outline-container-orgcf509f0" class="outline-4">
+<h4 id="orgcf509f0">三步握手</h4>
+<div class="outline-text-4" id="text-orgcf509f0">
+<p>
+如下图所示:
+<img src="static/img/tcp-three-way-handshake.png" alt="tcp-three-way-handshake.png" />
+三个报文:
+</p>
+<ol class="org-ol">
+<li>SYN标志为1, 同时为Sequence Number指定一个初始值J</li>
+<li>SYN以及ACK标志为1,同时为Sequence Number指定一个初始值K, 同时将
+Acknowledgement Number设为J+1.</li>
+<li>ACK标志为1, 同时将Acknowledgement Number设为K+1, FIN报文会消耗一个编号</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org95d7a08" class="outline-4">
+<h4 id="org95d7a08">连接关闭</h4>
+<div class="outline-text-4" id="text-org95d7a08">
+<p>
+如下图所示
+<img src="static/img/tcp-terminate.png" alt="tcp-terminate.png" />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc4cb256" class="outline-4">
+<h4 id="orgc4cb256">状态变化</h4>
+<div class="outline-text-4" id="text-orgc4cb256">
+<p>
+如下图所示
+<img src="static/img/tcp-state-change.png" alt="tcp-state-change.png" />
+</p>
+
+<p>
+<b>TIME_WAIT</b>: 关闭连接时, 执行主动关闭的一方的socket在发送了最后一个ACK后进入
+TIME_WAIT状态,并保持该状态2SML(1-4分钟), 该状态存在的原因是:
+</p>
+<ol class="org-ol">
+<li>如果最后一个ACK丢失,那么对方就会重发FIN报文,这时socket有机会发送ACK报文,
+而不是由内核发送RST报文.</li>
+<li>可以让网络中当前连接的tcp报文全部失效,因为TCP会超时重传,所以网络可能存在
+一些没有被当前客户端接受的报文,等待2SML后这些报文就都失效了. 如果不等待
+2SML, 同时你又在相同的interface上创建了socket,那么这些上一次连接的报文就
+可能被本次连接认为有效.</li>
+</ol>
+<p>
+<b>处于TIME_WAIT时,(ip, port)不可用, 所以有时重启服务器需要等一段时间.</b>, 当然
+只有在服务器有客户端连接的情况下才会出现这种情况,因为如果这时重启服务器,那么
+服务器端会执行主动关闭,所以就会进入TIME_WAIT状态. 如果没有客户端连接,那么服
+务器一般就只有一个listen socket,关闭它不会进入TIME_WAIT.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org2098693" class="outline-3">
+<h3 id="org2098693">流量控制</h3>
+<div class="outline-text-3" id="text-org2098693">
+<p>
+tcp必须匹配发送方以及接收方的速率,因为接收方处理数据的速度可能没有发送方发送
+数据的速度快，这时候需要降低发送方的发送速度，因为发送的再快，可是接收方处理
+不了的话，那也没有任何意义。
+</p>
+
+<p>
+<b>Notice</b>: 流量控制和拥塞控制不是一回事，流量控制只是为了匹配发送方，接收方的
+速率和网络没关系。拥塞控制主要是根据网络的负载情况来动态的调整发送速率，来避
+免网络拥塞.
+</p>
+
+<p>
+tcp数据报的Receive window size就是用来告知对方自己的接收缓冲区最多还能接收多
+少数据，它是通过下面的方式计算的。
+</p>
+<pre class="example">
+lastByteRcvd - lastByteRead &lt;= RcvBuffer
+rwnd = RcvBuffer - (lastByteRcvd - lastByteRead)
+</pre>
+<ol class="org-ol">
+<li>lastByteRcvd: 接收到的最大序号</li>
+<li>lastByteRead: 已经被上层处理了的最大序号</li>
+<li>rwnd: 流量窗口的大小</li>
+<li>RcvBuffer: 接收缓冲区的大小</li>
+</ol>
+<p>
+<b>zero window</b>: 当rwnd=0的时候，发送方仍然会继续发送只包含1字节数据的数据报，
+这样可以迅速的探测出对方的接收缓冲区什么时候有空间了。
+</p>
+</div>
+</div>
+<div id="outline-container-orgb0ff690" class="outline-3">
+<h3 id="orgb0ff690">拥塞控制</h3>
+</div>
+</div>
+<div id="outline-container-org8105104" class="outline-2">
+<h2 id="org8105104">TSL/SSL</h2>
+<div class="outline-text-2" id="text-org8105104">
+</div><div id="outline-container-orgc2e1ecb" class="outline-3">
+<h3 id="orgc2e1ecb">数字签名</h3>
+<div class="outline-text-3" id="text-orgc2e1ecb">
+<p>
+目的:
+</p>
+<ol class="org-ol">
+<li>确定正文内容确实来源于发送者</li>
+<li>确定正文内容没有被篡改</li>
+</ol>
+<p>
+实现:
+</p>
+<ul class="org-ul">
+<li>发送者: 对正文内容hash从而生成摘要(Digest),接着用私钥加密摘要,将密文附在正文的后面</li>
+<li>接收者: 用发送者的公钥解密得到摘要,接着hash正文,比较摘要是否一致</li>
+</ul>
+<p>
+原理: 私钥加密可以防止摘要被篡改,摘要要可以用来检查正文内容是否被篡改.
+</p>
+
+<p>
+<b>数字签名对正文是不加密的</b>
+</p>
+</div>
+</div>
+<div id="outline-container-orgb474f15" class="outline-3">
+<h3 id="orgb474f15">数字证书</h3>
+<div class="outline-text-3" id="text-orgb474f15">
+<p>
+目的: 分发公钥, 防止公钥被篡改,这也是为什么叫public key certification 的原因
+</p>
+
+<p>
+实现:
+</p>
+<ol class="org-ol">
+<li>CA机构会将你的公钥连同你的一些个人信息放入数字证书中,同时使用CA的私钥来进
+行数字签名, 数字签名也会放入数字证书中. 数字证书一般包含这些内容:
+<ul class="org-ul">
+<li>Version</li>
+<li>Serial Number: 用来唯一的标示一个证书的</li>
+<li>Certification Signature Algorithm: 签名算法(hash和加密)</li>
+<li>Certification Signature Value: 数字签名的值</li>
+<li>Issuer: 该证书的颁发机构(CA)</li>
+<li>Subject: 该证书的所有者</li>
+<li>Public Key: 证书所有者的公钥</li>
+<li>Fingerprint: 该证书的指纹,可以看做是数字证书一个身份标示</li>
+</ul></li>
+<li>很多软件比如浏览器会有受信任的CA机构的数字证书,这些证书包含了CA的公钥,当收
+到一个数字证书时,它会读取证书的颁发者,然后用颁发者的公钥来检查数字证书的签
+名是否正常.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgc7e0a91" class="outline-3">
+<h3 id="orgc7e0a91">https</h3>
+<div class="outline-text-3" id="text-orgc7e0a91">
+<p>
+要保证安全实际上要做的就是两件事:
+</p>
+<ol class="org-ol">
+<li><b>确认服务器的身份</b>,也就是说服务器不能被冒充,杜绝中间人攻击,实现方法:
+<ul class="org-ul">
+<li>通过数字证书安全的获得服务器的公钥</li>
+<li>验证服务器的私钥</li>
+</ul></li>
+<li><b>所有的通信数据要加密</b>,这样即便数据被截获也可以保证安全，实现方法是每一个
+会话都协商一个对称秘钥, 用它来加密和解密传输的信息,这所以不直接使用RSA是因
+为开销太大，同时秘钥加密的数据可以被解密，达不到加密的要求。</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2d8d44f" class="outline-2">
+<h2 id="org2d8d44f">网络设备</h2>
+<div class="outline-text-2" id="text-org2d8d44f">
+<ol class="org-ol">
+<li>集线器(HUB): 工作于第二层,基本已被淘汰, 目前基本用交换机, HUB最大的问题是当它
+接收到一个数据包后,它会向所有连接到该hub的主机广播, 这样会造成一大堆无用流量.
+这主要是因为HUB内部没有交换机内部的那种MAC地址表.</li>
+<li>网桥: 也基本被淘汰.</li>
+<li>交换机
+<ul class="org-ul">
+<li>二层交换机: 用来将链路层数据包发给相应的主机或者网络设备, 内部有个MAC地址表,交
+换机会根据各个端口接受数据包的源MAC地址来自动的更新该表.因为这个表的存在,交
+换机不用像HUB一样广播,它可以点对点的发送,所以效率要高得多.</li>
+<li>三层交换机</li>
+<li>四层交换机</li>
+</ul></li>
+<li>路由器</li>
+<li>家用路由器：名字有误导性，实际上相当于一个交换机加上路由器以及防火墙。插在Lan
+口上的电脑以及无线连接的设备就像连在交换机上组网，同时它又是一个路由器，一边
+是局域网一边是公网,同时要用到 <b>NAT</b> ，因为需要将局域网ip转换成公网ip。</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org771c551" class="outline-2">
+<h2 id="org771c551">抓包工具</h2>
+<div class="outline-text-2" id="text-org771c551">
+</div><div id="outline-container-org24ef521" class="outline-3">
+<h3 id="org24ef521">捕捉过滤器</h3>
+<div class="outline-text-3" id="text-org24ef521">
+<pre class="example">
+Protocol  Direction  Key  Value  LogicalOperation OtherExp
+</pre>
+<ol class="org-ol">
+<li>Protocol: 协议,可能的值为:ether, fddi, ip, arp, rarp, decnet, lat, sca,
+moprc, mopdl, tcp and udp, 默认是所有协议</li>
+<li>Direction: src, dst, src and dst, src or dst 默认是src or dst</li>
+<li>Key: 可以看做是某种属性名,支持的值为:host,port, net, portrange</li>
+<li>Value: 对应于Key的值</li>
+<li>LogicalOperation: not, and, or, 可以用来组合多个表达式</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div id="disqus_comment">
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        var url_path = window.location.pathname;
+        var disqus_identifier = url_path.substring(url_path.lastIndexOf('/')+1);
+        disqus_identifier? disqus_identifier: 'index';
+
+        var full_url = window.location.href.replace(/^http:/, 'https:');
+        this.page.url = full_url;
+        this.page.identifier = disqus_identifier;
+        // this.page.title = document.title;
+    };
+
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+
+        s.src = '//yuyang.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+<!-- begin footer -->
+<div id="footer">
+  <ul class="links vertical-nav">
+    <li><a href="/sitemap.xml">Sitemap</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    <li><a href="/about.html">About Me</a></li>
+    <li><a class="back-to-top" href="#">Back to Top</a></li>
+  </ul>
+  <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
+  <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
+</div>
+<script src="//apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+	window.jQuery || document.write('<script src="static/js/jquery-2.0.0.min.js"><\/script>');
+	</script>
+<script type="text/javascript" src="static/js/custom.js"></script>
+<!-- end footer -->
+</div>
+</body>
+</html>

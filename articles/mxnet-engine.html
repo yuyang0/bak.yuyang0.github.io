@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:07 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:09 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MXNET Dependency Engine</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,6 +176,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -175,29 +260,29 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">基本背景知识</a></li>
-<li><a href="#orgheadline2">Op</a></li>
-<li><a href="#orgheadline3">Var</a>
+<li><a href="#orgc55a136">基本背景知识</a></li>
+<li><a href="#org8c5f1bb">Op</a></li>
+<li><a href="#orged5f819">Var</a>
 <ul>
-<li><a href="#orgheadline4">类图</a></li>
-<li><a href="#orgheadline5">理解Var的队列</a></li>
-<li><a href="#orgheadline6">添加读依赖</a></li>
-<li><a href="#orgheadline7">添加写依赖</a></li>
-<li><a href="#orgheadline8">读依赖完成</a></li>
-<li><a href="#orgheadline9">写依赖完成</a></li>
+<li><a href="#org0ae3655">类图</a></li>
+<li><a href="#org40c1899">理解Var的队列</a></li>
+<li><a href="#orgbf109ee">添加读依赖</a></li>
+<li><a href="#org972426b">添加写依赖</a></li>
+<li><a href="#org670c351">读依赖完成</a></li>
+<li><a href="#org3ab27a6">写依赖完成</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline10">Engine</a>
+<li><a href="#org1cef3c0">Engine</a>
 <ul>
-<li><a href="#orgheadline11">总结</a></li>
+<li><a href="#org932f2c9">总结</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">基本背景知识</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-orgc55a136" class="outline-2">
+<h2 id="orgc55a136">基本背景知识</h2>
+<div class="outline-text-2" id="text-orgc55a136">
 <p>
 MXNET中有一个依赖引擎，这个引擎是用来分析计算过程的依赖关系，把不依赖的计算并行
 化，以达到提高性能的目的。它的基本原理可以看官方的<a href="https://mxnet-bing.readthedocs.io/en/latest/system/note_engine.html">文档</a>。 简单的说就是给每一个对
@@ -207,9 +292,9 @@ MXNET中有一个依赖引擎，这个引擎是用来分析计算过程的依赖
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">Op</h2>
-<div class="outline-text-2" id="text-orgheadline2">
+<div id="outline-container-org8c5f1bb" class="outline-2">
+<h2 id="org8c5f1bb">Op</h2>
+<div class="outline-text-2" id="text-org8c5f1bb">
 <p>
 Op实际上是用来代表计算过程以及它依赖的var，先来看看它的uml类图。
 </p>
@@ -231,17 +316,17 @@ Op实际上是用来代表计算过程以及它依赖的var，先来看看它的
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">Var</h2>
-<div class="outline-text-2" id="text-orgheadline3">
+<div id="outline-container-orged5f819" class="outline-2">
+<h2 id="orged5f819">Var</h2>
+<div class="outline-text-2" id="text-orged5f819">
 <p>
 var可以看做是一个tag，用来标示每一个对象的，这样Op对对象的依赖可以简化成对var的
 依赖，这样就可以构建出一个不依赖于具体的对象的通用的依赖引擎。Var是依赖引擎的关键。
 </p>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">类图</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-org0ae3655" class="outline-3">
+<h3 id="org0ae3655">类图</h3>
+<div class="outline-text-3" id="text-org0ae3655">
 
 <div class="figure">
 <p><img src="static/img/threaded-var-class-uml.png" alt="threaded-var-class-uml.png" />
@@ -274,9 +359,9 @@ Var只是一个基类，用来统一类型系统的，主要的工作在 <code>T
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">理解Var的队列</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-org40c1899" class="outline-3">
+<h3 id="org40c1899">理解Var的队列</h3>
+<div class="outline-text-3" id="text-org40c1899">
 <p>
 var的队列是依赖引擎的核心，下面我们来分析下各种情况下，如何修改队列的状态。
 </p>
@@ -325,14 +410,13 @@ var的队列是依赖引擎的核心，下面我们来分析下各种情况下�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">添加读依赖</h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-orgbf109ee" class="outline-3">
+<h3 id="orgbf109ee">添加读依赖</h3>
+<div class="outline-text-3" id="text-orgbf109ee">
 <p>
 代码主要在 <code>src/engine/Threaded_engine.cc</code> 的 <code>AppendReadDependency</code> 中。
 </p>
 <div class="org-src-container">
-
 <pre class="src src-cpp"><span style="color: #F0DFAF; font-weight: bold;">inline</span> <span style="color: #7CB8BB;">void</span> <span style="color: #BFEBBF;">ThreadedVar</span>::<span style="color: #93E0E3;">AppendReadDependency</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">OprBlock</span>* <span style="color: #DFAF8F;">opr_block</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
     <span style="color: #BFEBBF;">std</span>::<span style="color: #7CB8BB;">lock_guard</span><span style="color: #BFEBBF;">&lt;</span><span style="color: #BFEBBF;">std</span>::mutex<span style="color: #BFEBBF;">&gt;</span> <span style="color: #DFAF8F;">lock</span><span style="color: #BFEBBF;">{</span>m_<span style="color: #BFEBBF;">}</span>;
     <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>pending_write_ == nullptr<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
@@ -368,14 +452,13 @@ var的队列是依赖引擎的核心，下面我们来分析下各种情况下�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7">添加写依赖</h3>
-<div class="outline-text-3" id="text-orgheadline7">
+<div id="outline-container-org972426b" class="outline-3">
+<h3 id="org972426b">添加写依赖</h3>
+<div class="outline-text-3" id="text-org972426b">
 <p>
 代码主要在 <code>src/engine/Threaded_engine.cc</code> 的 <code>AppendWriteDependency</code> 中。
 </p>
 <div class="org-src-container">
-
 <pre class="src src-cpp"><span style="color: #F0DFAF; font-weight: bold;">inline</span> <span style="color: #7CB8BB;">void</span> <span style="color: #BFEBBF;">ThreadedVar</span>::<span style="color: #93E0E3;">AppendWriteDependency</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">OprBlock</span>* <span style="color: #DFAF8F;">opr_block</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
     <span style="color: #F0DFAF; font-weight: bold;">auto</span>&amp;&amp; <span style="color: #DFAF8F;">new_var_block</span> = <span style="color: #BFEBBF;">VersionedVarBlock</span>::New<span style="color: #BFEBBF;">()</span>;
     <span style="color: #BFEBBF;">std</span>::<span style="color: #7CB8BB;">lock_guard</span><span style="color: #BFEBBF;">&lt;</span><span style="color: #BFEBBF;">std</span>::mutex<span style="color: #BFEBBF;">&gt;</span> <span style="color: #DFAF8F;">lock</span><span style="color: #BFEBBF;">{</span>m_<span style="color: #BFEBBF;">}</span>;
@@ -414,14 +497,13 @@ var的队列是依赖引擎的核心，下面我们来分析下各种情况下�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">读依赖完成</h3>
-<div class="outline-text-3" id="text-orgheadline8">
+<div id="outline-container-org670c351" class="outline-3">
+<h3 id="org670c351">读依赖完成</h3>
+<div class="outline-text-3" id="text-org670c351">
 <p>
 代码主要在 <code>src/engine/Threaded_engine.cc</code> 的 <code>CompleteReadDependency</code> 中。
 </p>
 <div class="org-src-container">
-
 <pre class="src src-cpp"><span style="color: #F0DFAF; font-weight: bold;">template</span> <span style="color: #DCDCCC;">&lt;</span><span style="color: #F0DFAF; font-weight: bold;">typename</span> <span style="color: #7CB8BB;">Dispatcher</span><span style="color: #DCDCCC;">&gt;</span>
 <span style="color: #F0DFAF; font-weight: bold;">inline</span> <span style="color: #7CB8BB;">void</span> <span style="color: #BFEBBF;">ThreadedVar</span>::<span style="color: #93E0E3;">CompleteReadDependency</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">Dispatcher</span> <span style="color: #DFAF8F;">dispatcher</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
     <span style="color: #7CB8BB;">OprBlock</span> *<span style="color: #DFAF8F;">trigger</span> = nullptr;
@@ -453,14 +535,13 @@ var的队列是依赖引擎的核心，下面我们来分析下各种情况下�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">写依赖完成</h3>
-<div class="outline-text-3" id="text-orgheadline9">
+<div id="outline-container-org3ab27a6" class="outline-3">
+<h3 id="org3ab27a6">写依赖完成</h3>
+<div class="outline-text-3" id="text-org3ab27a6">
 <p>
 代码主要在 <code>src/engine/Threaded_engine.cc</code> 的 <code>CompleteWriteDependency</code> 中。
 </p>
 <div class="org-src-container">
-
 <pre class="src src-cpp"><span style="color: #F0DFAF; font-weight: bold;">template</span> <span style="color: #DCDCCC;">&lt;</span><span style="color: #F0DFAF; font-weight: bold;">typename</span> <span style="color: #7CB8BB;">Dispatcher</span><span style="color: #DCDCCC;">&gt;</span>
 <span style="color: #F0DFAF; font-weight: bold;">inline</span> <span style="color: #7CB8BB;">bool</span> <span style="color: #BFEBBF;">ThreadedVar</span>::<span style="color: #93E0E3;">CompleteWriteDependency</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">Dispatcher</span> <span style="color: #DFAF8F;">dispatcher</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
   <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">this is lock scope</span>
@@ -547,14 +628,13 @@ var的队列是依赖引擎的核心，下面我们来分析下各种情况下�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-2">
-<h2 id="orgheadline10">Engine</h2>
-<div class="outline-text-2" id="text-orgheadline10">
+<div id="outline-container-org1cef3c0" class="outline-2">
+<h2 id="org1cef3c0">Engine</h2>
+<div class="outline-text-2" id="text-org1cef3c0">
 <p>
 Engine是总的调用接口。
 </p>
 <div class="org-src-container">
-
 <pre class="src src-cpp"><span style="color: #7CB8BB;">void</span> <span style="color: #BFEBBF;">ThreadedEngine</span>::<span style="color: #93E0E3;">Push</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">OprHandle</span> <span style="color: #DFAF8F;">op</span>, <span style="color: #7CB8BB;">Context</span> <span style="color: #DFAF8F;">exec_ctx</span>, <span style="color: #7CB8BB;">int</span> <span style="color: #DFAF8F;">priority</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
     <span style="color: #7CB8BB;">ThreadedOpr</span>* <span style="color: #DFAF8F;">threaded_opr</span> = <span style="color: #BFEBBF;">ThreadedOpr</span>::CastFromBase<span style="color: #BFEBBF;">(</span>op<span style="color: #BFEBBF;">)</span>;
     <span style="color: #7CB8BB;">OprBlock</span>* <span style="color: #DFAF8F;">opr_block</span> = <span style="color: #BFEBBF;">OprBlock</span>::New<span style="color: #BFEBBF;">()</span>;
@@ -587,7 +667,6 @@ Engine是总的调用接口。
 的执行引擎, <code>PushToExecute</code> 的实现是不一样的。最终都会执行 <code>ExecuteOprBlock</code>.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-cpp"><span style="color: #7CB8BB;">void</span> <span style="color: #93E0E3;">ExecuteOprBlock</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">RunContext</span> <span style="color: #DFAF8F;">run_ctx</span>, <span style="color: #7CB8BB;">OprBlock</span> *<span style="color: #DFAF8F;">opr_block</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
     <span style="color: #7CB8BB;">ThreadedOpr</span>* <span style="color: #DFAF8F;">threaded_opr</span> = opr_block-&gt;opr;
     <span style="color: #7CB8BB;">CallbackOnComplete</span> <span style="color: #DFAF8F;">callback</span> = <span style="color: #F0DFAF; font-weight: bold;">this</span>-&gt;CreateCallback<span style="color: #BFEBBF;">(</span>
@@ -611,7 +690,6 @@ Engine是总的调用接口。
 上述代码实际就是执行op中的函数，同时在结束的时候运行 <code>OnCompleteStatic</code>.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-cpp"><span style="color: #7CB8BB;">void</span> <span style="color: #BFEBBF;">ThreadedEngine</span>::<span style="color: #93E0E3;">OnCompleteStatic</span><span style="color: #DCDCCC;">(</span>
     <span style="color: #7CB8BB;">Engine</span> *<span style="color: #DFAF8F;">engine</span>, <span style="color: #7CB8BB;">void</span> *<span style="color: #DFAF8F;">threaded_opr</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
   <span style="color: #F0DFAF; font-weight: bold;">static_cast</span>&lt;ThreadedEngine*&gt;<span style="color: #BFEBBF;">(</span>engine<span style="color: #BFEBBF;">)</span>-&gt;OnComplete<span style="color: #BFEBBF;">(</span>
@@ -623,7 +701,6 @@ Engine是总的调用接口。
 显然， <code>OnCompleteStatic</code> 就是执行 OnComplete。
 </p>
 <div class="org-src-container">
-
 <pre class="src src-cpp"><span style="color: #F0DFAF; font-weight: bold;">inline</span> <span style="color: #7CB8BB;">void</span> <span style="color: #BFEBBF;">ThreadedEngine</span>::<span style="color: #93E0E3;">OnComplete</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">ThreadedOpr</span>* <span style="color: #DFAF8F;">threaded_opr</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
   <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Mark complete for read variables</span>
   <span style="color: #F0DFAF; font-weight: bold;">for</span> <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">auto</span>&amp;&amp; <span style="color: #DFAF8F;">i</span> : threaded_opr-&gt;const_vars<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
@@ -677,9 +754,9 @@ Engine是总的调用接口。
 要是调用了 <code>PushToExecute</code>.
 </p>
 </div>
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11">总结</h3>
-<div class="outline-text-3" id="text-orgheadline11">
+<div id="outline-container-org932f2c9" class="outline-3">
+<h3 id="org932f2c9">总结</h3>
+<div class="outline-text-3" id="text-org932f2c9">
 <p>
 通过 <code>Push</code> 将Op的各种依赖加入相应的Var的队列，并且当依赖都满足的时候将op丢入执
 行引擎执行，当执行引擎完成后，调用 <code>Complete</code> 系列的函数来更新Var的队列,在更新队

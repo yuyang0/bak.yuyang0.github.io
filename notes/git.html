@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>git/github学习笔记</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="git github" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="git github" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -176,41 +261,41 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline3">基本使用</a>
+<li><a href="#orgdf66729">基本使用</a>
 <ul>
-<li><a href="#orgheadline1">git的基本命令</a></li>
-<li><a href="#orgheadline2">git一般的工作过程是：</a></li>
+<li><a href="#org86c6710">git的基本命令</a></li>
+<li><a href="#orgd20d42c">git一般的工作过程是：</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline15">git的原理</a>
+<li><a href="#orga87901b">git的原理</a>
 <ul>
-<li><a href="#orgheadline4">工作区(work tree)</a></li>
-<li><a href="#orgheadline5">git的暂存区(index)</a></li>
-<li><a href="#orgheadline6">版本库</a></li>
-<li><a href="#orgheadline7">git diff</a></li>
-<li><a href="#orgheadline8">HEAD, master</a></li>
-<li><a href="#orgheadline9">git reset</a></li>
-<li><a href="#orgheadline10">git checkout</a></li>
-<li><a href="#orgheadline14">git分支</a>
+<li><a href="#org177c0b4">工作区(work tree)</a></li>
+<li><a href="#orged33006">git的暂存区(index)</a></li>
+<li><a href="#org1e524ea">版本库</a></li>
+<li><a href="#org1a114c1">git diff</a></li>
+<li><a href="#org0af5caa">HEAD, master</a></li>
+<li><a href="#orgafabfad">git reset</a></li>
+<li><a href="#org2d232ec">git checkout</a></li>
+<li><a href="#org32ffeef">git分支</a>
 <ul>
-<li><a href="#orgheadline11">创建分支</a></li>
-<li><a href="#orgheadline12">切换分支</a></li>
-<li><a href="#orgheadline13">合并分支</a></li>
+<li><a href="#org58634e8">创建分支</a></li>
+<li><a href="#org9ac2e7b">切换分支</a></li>
+<li><a href="#orgb64dbca">合并分支</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline16">git github</a></li>
-<li><a href="#orgheadline17">gitignore syntax</a></li>
+<li><a href="#orga6ef7a4">git github</a></li>
+<li><a href="#org25f31f3">gitignore syntax</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">基本使用</h2>
-<div class="outline-text-2" id="text-orgheadline3">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1">git的基本命令</h3>
-<div class="outline-text-3" id="text-orgheadline1">
+<div id="outline-container-orgdf66729" class="outline-2">
+<h2 id="orgdf66729">基本使用</h2>
+<div class="outline-text-2" id="text-orgdf66729">
+</div><div id="outline-container-org86c6710" class="outline-3">
+<h3 id="org86c6710">git的基本命令</h3>
+<div class="outline-text-3" id="text-org86c6710">
 <ul class="org-ul">
 <li>安装：sudo apt-get install git git-uid</li>
 <li>init：  git init（工作目录运行，会生成一个.git目录，里面会存放索引数据）</li>
@@ -236,9 +321,9 @@ git branch -d TmpBranch 删除分支</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">git一般的工作过程是：</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+<div id="outline-container-orgd20d42c" class="outline-3">
+<h3 id="orgd20d42c">git一般的工作过程是：</h3>
+<div class="outline-text-3" id="text-orgd20d42c">
 <ol class="org-ol">
 <li>git pull(将远程分支与本地分支合并)</li>
 <li>git log（查看其他成员的更改）</li>
@@ -254,12 +339,12 @@ git branch -d TmpBranch 删除分支</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline15" class="outline-2">
-<h2 id="orgheadline15">git的原理</h2>
-<div class="outline-text-2" id="text-orgheadline15">
-</div><div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">工作区(work tree)</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-orga87901b" class="outline-2">
+<h2 id="orga87901b">git的原理</h2>
+<div class="outline-text-2" id="text-orga87901b">
+</div><div id="outline-container-org177c0b4" class="outline-3">
+<h3 id="org177c0b4">工作区(work tree)</h3>
+<div class="outline-text-3" id="text-org177c0b4">
 <p>
 就是你本地的工作目录树
 </p>
@@ -268,9 +353,9 @@ git branch -d TmpBranch 删除分支</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">git的暂存区(index)</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-orged33006" class="outline-3">
+<h3 id="orged33006">git的暂存区(index)</h3>
+<div class="outline-text-3" id="text-orged33006">
 <p>
 暂存区可以看作一个目录树，暂存区的目录树和版本库的目录树是不同的，.git目录有一个index文件，这个文件包含了
 git所管理的目录中所有文件的大小以及修改时间，每一次你调用git status或者git diff这类命令时，git都会比较工作
@@ -291,17 +376,17 @@ git所管理的目录中所有文件的大小以及修改时间，每一次你�
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">版本库</h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-org1e524ea" class="outline-3">
+<h3 id="org1e524ea">版本库</h3>
+<div class="outline-text-3" id="text-org1e524ea">
 <p>
 由git管理的分支代码的目录树，比如master分支，以及其它你自己创建的分支,当然操作时一般都只是当前分支的目录树
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7">git diff</h3>
-<div class="outline-text-3" id="text-orgheadline7">
+<div id="outline-container-org1a114c1" class="outline-3">
+<h3 id="org1a114c1">git diff</h3>
+<div class="outline-text-3" id="text-org1a114c1">
 <ul class="org-ul">
 <li>git diff : 工作区与暂存区比较</li>
 <li>git diff HEAD : 工作区与HEAD比较</li>
@@ -309,9 +394,9 @@ git所管理的目录中所有文件的大小以及修改时间，每一次你�
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">HEAD, master</h3>
-<div class="outline-text-3" id="text-orgheadline8">
+<div id="outline-container-org0af5caa" class="outline-3">
+<h3 id="org0af5caa">HEAD, master</h3>
+<div class="outline-text-3" id="text-org0af5caa">
 <p>
 HEAD(.git/HEAD)实际是一个指针,指向的是.git/refs/heads/branch-name文件, branch-name可以是master或者你自己创
 建的分支名,该文件实际指向的是该分支的最新的一次commit, 如果当前是master分支,那么这几个文件的内容应该是这
@@ -325,9 +410,9 @@ git reset &#x2013;[hard|soft|mixed]可以重置该文件到指定的commit id,�
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">git reset</h3>
-<div class="outline-text-3" id="text-orgheadline9">
+<div id="outline-container-orgafabfad" class="outline-3">
+<h3 id="orgafabfad">git reset</h3>
+<div class="outline-text-3" id="text-orgafabfad">
 <ol class="org-ol">
 <li>git reset [commit-id] &lt;path&gt; : 不影响工作区与版本库,只会用commit-id对应的版本库工作树替换暂存区的工作树,实
 际上相当于撤销先前的git add, 举几个例子:
@@ -347,20 +432,20 @@ commit-id对应的目录树, 所以commit-id之后所有的工作区,暂存区�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">git checkout</h3>
-<div class="outline-text-3" id="text-orgheadline10">
+<div id="outline-container-org2d232ec" class="outline-3">
+<h3 id="org2d232ec">git checkout</h3>
+<div class="outline-text-3" id="text-org2d232ec">
 <p>
 该命令会影响工作区
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">git分支</h3>
-<div class="outline-text-3" id="text-orgheadline14">
-</div><div id="outline-container-orgheadline11" class="outline-4">
-<h4 id="orgheadline11">创建分支</h4>
-<div class="outline-text-4" id="text-orgheadline11">
+<div id="outline-container-org32ffeef" class="outline-3">
+<h3 id="org32ffeef">git分支</h3>
+<div class="outline-text-3" id="text-org32ffeef">
+</div><div id="outline-container-org58634e8" class="outline-4">
+<h4 id="org58634e8">创建分支</h4>
+<div class="outline-text-4" id="text-org58634e8">
 <ul class="org-ul">
 <li>git branch : 显示所有分支,当前分支前会加*</li>
 <li>git branch new-branch : 创建新分支</li>
@@ -373,17 +458,17 @@ commit-id对应的目录树, 所以commit-id之后所有的工作区,暂存区�
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-4">
-<h4 id="orgheadline12">切换分支</h4>
-<div class="outline-text-4" id="text-orgheadline12">
+<div id="outline-container-org9ac2e7b" class="outline-4">
+<h4 id="org9ac2e7b">切换分支</h4>
+<div class="outline-text-4" id="text-org9ac2e7b">
 <p>
 git checkout new-br
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-4">
-<h4 id="orgheadline13">合并分支</h4>
-<div class="outline-text-4" id="text-orgheadline13">
+<div id="outline-container-orgb64dbca" class="outline-4">
+<h4 id="orgb64dbca">合并分支</h4>
+<div class="outline-text-4" id="text-orgb64dbca">
 <p>
 git merge br-name: 将名为br-name的分支与但前分支合并
 </p>
@@ -391,9 +476,9 @@ git merge br-name: 将名为br-name的分支与但前分支合并
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline16" class="outline-2">
-<h2 id="orgheadline16">git github</h2>
-<div class="outline-text-2" id="text-orgheadline16">
+<div id="outline-container-orga6ef7a4" class="outline-2">
+<h2 id="orga6ef7a4">git github</h2>
+<div class="outline-text-2" id="text-orga6ef7a4">
 <ol class="org-ol">
 <li>git remote add remoteName remoteUrl
 eg: git remote add origin git@github.com:youName/github-example.git
@@ -421,9 +506,9 @@ next: git push origin master</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline17" class="outline-2">
-<h2 id="orgheadline17">gitignore syntax</h2>
-<div class="outline-text-2" id="text-orgheadline17">
+<div id="outline-container-org25f31f3" class="outline-2">
+<h2 id="org25f31f3">gitignore syntax</h2>
+<div class="outline-text-2" id="text-org25f31f3">
 <ul class="org-ul">
 <li>"#" ： 注释</li>
 <li>！   : 取反，即匹配模式的文件不忽略</li>

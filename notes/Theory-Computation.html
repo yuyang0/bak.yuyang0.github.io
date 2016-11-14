@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:05 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>计算理论导引</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="computation" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="computation" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -198,53 +283,53 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline18">自动机理论</a>
+<li><a href="#org7f5de0f">自动机理论</a>
 <ul>
-<li><a href="#orgheadline14">正则语言</a>
+<li><a href="#org0a4e6c5">正则语言</a>
 <ul>
-<li><a href="#orgheadline1">Concepts</a></li>
-<li><a href="#orgheadline6">DFA</a>
+<li><a href="#org9378fe3">Concepts</a></li>
+<li><a href="#org3a9c9a9">DFA</a>
 <ul>
-<li><a href="#orgheadline2">Definition</a></li>
-<li><a href="#orgheadline3">example</a></li>
-<li><a href="#orgheadline4">正则运算</a></li>
-<li><a href="#orgheadline5">property</a></li>
+<li><a href="#orgd8965b2">Definition</a></li>
+<li><a href="#org9a280f4">example</a></li>
+<li><a href="#org0a8f554">正则运算</a></li>
+<li><a href="#org1788c1d">property</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline7">正则表达式</a></li>
-<li><a href="#orgheadline12">NFA</a>
+<li><a href="#org2a21260">正则表达式</a></li>
+<li><a href="#orgcb1d2fd">NFA</a>
 <ul>
-<li><a href="#orgheadline8">DFA VS NFA</a></li>
-<li><a href="#orgheadline9">definition</a></li>
-<li><a href="#orgheadline10">DFN的直观理解</a></li>
-<li><a href="#orgheadline11">property</a></li>
+<li><a href="#orgba3a7e3">DFA VS NFA</a></li>
+<li><a href="#orgd501ce2">definition</a></li>
+<li><a href="#orgf3046df">DFN的直观理解</a></li>
+<li><a href="#orgb3e7185">property</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline13">非正则语言</a></li>
+<li><a href="#org90b6569">非正则语言</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline17">上下文无关语言</a>
+<li><a href="#org17b646d">上下文无关语言</a>
 <ul>
-<li><a href="#orgheadline15">definition</a></li>
-<li><a href="#orgheadline16">乔姆斯基范式</a></li>
+<li><a href="#org4a0abd5">definition</a></li>
+<li><a href="#org947771d">乔姆斯基范式</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline19">可计算理论</a></li>
-<li><a href="#orgheadline20">计算复杂度理论</a></li>
+<li><a href="#orgc9f98ad">可计算理论</a></li>
+<li><a href="#org6264697">计算复杂度理论</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-2">
-<h2 id="orgheadline18">自动机理论</h2>
-<div class="outline-text-2" id="text-orgheadline18">
-</div><div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">正则语言</h3>
-<div class="outline-text-3" id="text-orgheadline14">
-</div><div id="outline-container-orgheadline1" class="outline-4">
-<h4 id="orgheadline1">Concepts</h4>
-<div class="outline-text-4" id="text-orgheadline1">
+<div id="outline-container-org7f5de0f" class="outline-2">
+<h2 id="org7f5de0f">自动机理论</h2>
+<div class="outline-text-2" id="text-org7f5de0f">
+</div><div id="outline-container-org0a4e6c5" class="outline-3">
+<h3 id="org0a4e6c5">正则语言</h3>
+<div class="outline-text-3" id="text-org0a4e6c5">
+</div><div id="outline-container-org9378fe3" class="outline-4">
+<h4 id="org9378fe3">Concepts</h4>
+<div class="outline-text-4" id="text-org9378fe3">
 <ul class="org-ul">
 <li>DFA: 确定型有穷自动机</li>
 <li>NFA: 非确定有穷自动机</li>
@@ -254,12 +339,12 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6">DFA</h4>
-<div class="outline-text-4" id="text-orgheadline6">
-</div><div id="outline-container-orgheadline2" class="outline-5">
-<h5 id="orgheadline2">Definition</h5>
-<div class="outline-text-5" id="text-orgheadline2">
+<div id="outline-container-org3a9c9a9" class="outline-4">
+<h4 id="org3a9c9a9">DFA</h4>
+<div class="outline-text-4" id="text-org3a9c9a9">
+</div><div id="outline-container-orgd8965b2" class="outline-5">
+<h5 id="orgd8965b2">Definition</h5>
+<div class="outline-text-5" id="text-orgd8965b2">
 <p>
 有穷自动机是一个五元组 \((Q, \Sigma, \delta, q_0, F)\):
 </p>
@@ -272,9 +357,9 @@ for the JavaScript code in this tag.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-5">
-<h5 id="orgheadline3">example</h5>
-<div class="outline-text-5" id="text-orgheadline3">
+<div id="outline-container-org9a280f4" class="outline-5">
+<h5 id="org9a280f4">example</h5>
+<div class="outline-text-5" id="text-org9a280f4">
 <p>
 下面是一个叫 M<sub>1</sub> 的有穷自动机
 </p>
@@ -337,7 +422,6 @@ for the JavaScript code in this tag.
 下面是一个M1的程序:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #BFEBBF;">(</span><span style="color: #93E0E3;">m1</span> ss<span style="color: #BFEBBF;">)</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">tbl</span>                     <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">transformation rules</span>
     '<span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>q1 . #\<span style="color: #BFEBBF;">0</span><span style="color: #9FC59F;">)</span> . q1<span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>q1 . #\<span style="color: #BFEBBF;">1</span><span style="color: #9FC59F;">)</span> . q2<span style="color: #93E0E3;">)</span>
@@ -379,9 +463,9 @@ r<sub>0</sub>, r<sub>1</sub>, &#x2026;, r<sub>n</sub> 满足下述条件:
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-5">
-<h5 id="orgheadline4">正则运算</h5>
-<div class="outline-text-5" id="text-orgheadline4">
+<div id="outline-container-org0a8f554" class="outline-5">
+<h5 id="org0a8f554">正则运算</h5>
+<div class="outline-text-5" id="text-org0a8f554">
 <p>
 设 A 与 B 是两个语言, 定义正则运算 <b>并</b> <b>连接</b> <b>星号</b>:
 </p>
@@ -392,9 +476,9 @@ r<sub>0</sub>, r<sub>1</sub>, &#x2026;, r<sub>n</sub> 满足下述条件:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-5">
-<h5 id="orgheadline5">property</h5>
-<div class="outline-text-5" id="text-orgheadline5">
+<div id="outline-container-org1788c1d" class="outline-5">
+<h5 id="org1788c1d">property</h5>
+<div class="outline-text-5" id="text-org1788c1d">
 <p>
 正则语言类是所有正则语言组成的集合
 </p>
@@ -405,9 +489,9 @@ r<sub>0</sub>, r<sub>1</sub>, &#x2026;, r<sub>n</sub> 满足下述条件:
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7">正则表达式</h4>
-<div class="outline-text-4" id="text-orgheadline7">
+<div id="outline-container-org2a21260" class="outline-4">
+<h4 id="org2a21260">正则表达式</h4>
+<div class="outline-text-4" id="text-org2a21260">
 <ol class="org-ol">
 <li>(r)|(s) is a regular expression denoting the language L(r) U L(s)</li>
 <li>(r)(S) is a regular expression denoting the language L(r)L(s)</li>
@@ -424,12 +508,12 @@ some extensions:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-4">
-<h4 id="orgheadline12">NFA</h4>
-<div class="outline-text-4" id="text-orgheadline12">
-</div><div id="outline-container-orgheadline8" class="outline-5">
-<h5 id="orgheadline8">DFA VS NFA</h5>
-<div class="outline-text-5" id="text-orgheadline8">
+<div id="outline-container-orgcb1d2fd" class="outline-4">
+<h4 id="orgcb1d2fd">NFA</h4>
+<div class="outline-text-4" id="text-orgcb1d2fd">
+</div><div id="outline-container-orgba3a7e3" class="outline-5">
+<h5 id="orgba3a7e3">DFA VS NFA</h5>
+<div class="outline-text-5" id="text-orgba3a7e3">
 <ul class="org-ul">
 <li>DFA的每一个状态对于字母表中的每一个符号总是恰好有一个转移箭头射出,而NFA对
 于每一个状态对于字母表字母表的每一个符号可能有0,1 或者多个箭头射出.</li>
@@ -443,9 +527,9 @@ some extensions:
 </div>
 </div>
 
-<div id="outline-container-orgheadline9" class="outline-5">
-<h5 id="orgheadline9">definition</h5>
-<div class="outline-text-5" id="text-orgheadline9">
+<div id="outline-container-orgd501ce2" class="outline-5">
+<h5 id="orgd501ce2">definition</h5>
+<div class="outline-text-5" id="text-orgd501ce2">
 <p>
 非确定型有穷自动机是一个五元组 \((Q, \Sigma, \delta, q_0, F)\):
 </p>
@@ -458,9 +542,9 @@ some extensions:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-5">
-<h5 id="orgheadline10">DFN的直观理解</h5>
-<div class="outline-text-5" id="text-orgheadline10">
+<div id="outline-container-orgf3046df" class="outline-5">
+<h5 id="orgf3046df">DFN的直观理解</h5>
+<div class="outline-text-5" id="text-orgf3046df">
 <ol class="org-ol">
 <li>非确定性可以看做若干"过程"能同时运行的一类并行计算.当NFA分头跟踪若干选择
 时,这对应于一个过程分叉成若干个子过程,各子过程分别进行.如果这些子过程中
@@ -485,9 +569,9 @@ some extensions:
 </div>
 </div>
 
-<div id="outline-container-orgheadline11" class="outline-5">
-<h5 id="orgheadline11">property</h5>
-<div class="outline-text-5" id="text-orgheadline11">
+<div id="outline-container-orgb3e7185" class="outline-5">
+<h5 id="orgb3e7185">property</h5>
+<div class="outline-text-5" id="text-orgb3e7185">
 <ol class="org-ol">
 <li>每一台 NFA 都有一台等价的 DFA与之对应</li>
 
@@ -519,9 +603,9 @@ Proof: 假设有正则语言 A1 A2, 它们对应的 NFA为 N1 N2, 现在构造�
 </div>
 </div>
 
-<div id="outline-container-orgheadline13" class="outline-4">
-<h4 id="orgheadline13">非正则语言</h4>
-<div class="outline-text-4" id="text-orgheadline13">
+<div id="outline-container-org90b6569" class="outline-4">
+<h4 id="org90b6569">非正则语言</h4>
+<div class="outline-text-4" id="text-org90b6569">
 <p>
 泵引理: 设A是一个正则语言,则存在一个数 p(泵长度)使得, 如果s是A中任一长度不小
 于p的字符串, 那么s可以被分为3段, s=xyz,满足下述条件:
@@ -534,12 +618,12 @@ Proof: 假设有正则语言 A1 A2, 它们对应的 NFA为 N1 N2, 现在构造�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17">上下文无关语言</h3>
-<div class="outline-text-3" id="text-orgheadline17">
-</div><div id="outline-container-orgheadline15" class="outline-4">
-<h4 id="orgheadline15">definition</h4>
-<div class="outline-text-4" id="text-orgheadline15">
+<div id="outline-container-org17b646d" class="outline-3">
+<h3 id="org17b646d">上下文无关语言</h3>
+<div class="outline-text-3" id="text-org17b646d">
+</div><div id="outline-container-org4a0abd5" class="outline-4">
+<h4 id="org4a0abd5">definition</h4>
+<div class="outline-text-4" id="text-org4a0abd5">
 <p>
 上下文无关文法是一个四元组 \((V, \Sigma, R, S)\), 这里:
 </p>
@@ -552,9 +636,9 @@ Proof: 假设有正则语言 A1 A2, 它们对应的 NFA为 N1 N2, 现在构造�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline16" class="outline-4">
-<h4 id="orgheadline16">乔姆斯基范式</h4>
-<div class="outline-text-4" id="text-orgheadline16">
+<div id="outline-container-org947771d" class="outline-4">
+<h4 id="org947771d">乔姆斯基范式</h4>
+<div class="outline-text-4" id="text-org947771d">
 <p>
 一个上下文无关文法为乔姆斯基范式,如果它的每一条规则具有如下的形式:
 </p>
@@ -568,11 +652,11 @@ a是任意的终结符, A,B,c使任意的变元,但是B,C不能是起始变元.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline19" class="outline-2">
-<h2 id="orgheadline19">可计算理论</h2>
+<div id="outline-container-orgc9f98ad" class="outline-2">
+<h2 id="orgc9f98ad">可计算理论</h2>
 </div>
-<div id="outline-container-orgheadline20" class="outline-2">
-<h2 id="orgheadline20">计算复杂度理论</h2>
+<div id="outline-container-org6264697" class="outline-2">
+<h2 id="org6264697">计算复杂度理论</h2>
 </div>
 </div>
 <div id="postamble" class="status">

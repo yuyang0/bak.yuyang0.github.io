@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>linux笔记</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,6 +176,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -175,43 +260,55 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline3">桌面相关</a>
+<li><a href="#org3fda659">桌面相关</a>
 <ul>
-<li><a href="#orgheadline1">ubuntu的terminal配色</a></li>
-<li><a href="#orgheadline2">linux mint 17双显示器</a></li>
+<li><a href="#orgbfbfe01">ubuntu的terminal配色</a></li>
+<li><a href="#org2ba68eb">linux mint 17双显示器</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline4">进程监控</a></li>
-<li><a href="#orgheadline5">wireshark的配置</a></li>
-<li><a href="#orgheadline10">命令行工具</a>
+<li><a href="#orgce2b830">进程监控</a></li>
+<li><a href="#orgb3a12ef">wireshark的配置</a></li>
+<li><a href="#org91bdad1">命令行工具</a>
 <ul>
-<li><a href="#orgheadline6">strace</a></li>
-<li><a href="#orgheadline7">htop</a></li>
-<li><a href="#orgheadline8">ifstat</a></li>
-<li><a href="#orgheadline9">lsof</a></li>
+<li><a href="#orge4562ef">系统信息</a>
+<ul>
+<li><a href="#org4cabeab">htop</a></li>
+<li><a href="#org889e3b8">iftop</a></li>
+<li><a href="#org5f05792">nethogs</a></li>
+<li><a href="#org5f82846">iptraf</a></li>
+<li><a href="#orgdc78cfd">iotop</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline11">ssh</a>
+<li><a href="#org4d72b1a">调试工具</a>
 <ul>
-<li><a href="#orgheadline12">ssh免密码登录</a></li>
+<li><a href="#org1f7528f">strace</a></li>
+<li><a href="#org38e5821">tcpdump</a></li>
+<li><a href="#org686a9be">lsof</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline13">给力的工具</a></li>
-<li><a href="#orgheadline14">常用软件配置</a></li>
-<li><a href="#orgheadline16">一些常用的技巧</a>
+</ul>
+</li>
+<li><a href="#org9dc521d">ssh</a>
 <ul>
-<li><a href="#orgheadline15">.netrc</a></li>
+<li><a href="#org832c37d">ssh免密码登录</a></li>
+</ul>
+</li>
+<li><a href="#org156e1a5">给力的工具</a></li>
+<li><a href="#org0796ebb">常用软件配置</a></li>
+<li><a href="#org820d877">一些常用的技巧</a>
+<ul>
+<li><a href="#org0c16de3">.netrc</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">桌面相关</h2>
-<div class="outline-text-2" id="text-orgheadline3">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1">ubuntu的terminal配色</h3>
-<div class="outline-text-3" id="text-orgheadline1">
+<div id="outline-container-org3fda659" class="outline-2">
+<h2 id="org3fda659">桌面相关</h2>
+<div class="outline-text-2" id="text-org3fda659">
+</div><div id="outline-container-orgbfbfe01" class="outline-3">
+<h3 id="orgbfbfe01">ubuntu的terminal配色</h3>
+<div class="outline-text-3" id="text-orgbfbfe01">
 <ol class="org-ol">
 <li>background：＃300a24</li>
 <li>foreground：#FFFFFF</li>
@@ -219,9 +316,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">linux mint 17双显示器</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+<div id="outline-container-org2ba68eb" class="outline-3">
+<h3 id="org2ba68eb">linux mint 17双显示器</h3>
+<div class="outline-text-3" id="text-org2ba68eb">
 <p>
 主要是配置从显示器的任务栏
 </p>
@@ -233,9 +330,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4">进程监控</h2>
-<div class="outline-text-2" id="text-orgheadline4">
+<div id="outline-container-orgce2b830" class="outline-2">
+<h2 id="orgce2b830">进程监控</h2>
+<div class="outline-text-2" id="text-orgce2b830">
 <p>
 使用upstart的respawn, 这是比较简单的情况,如果有更多的需求可以使用supervisor或
 者monit, 二者都有一些缺陷,比如supervisor要求程序必须前台运行,monit要求每一个程
@@ -243,9 +340,9 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5">wireshark的配置</h2>
-<div class="outline-text-2" id="text-orgheadline5">
+<div id="outline-container-orgb3a12ef" class="outline-2">
+<h2 id="orgb3a12ef">wireshark的配置</h2>
+<div class="outline-text-2" id="text-orgb3a12ef">
 <ol class="org-ol">
 <li>sudo dpkg-reconfigure wireshark-common, 图形界面点yes</li>
 <li>sudo adduser $USER wireshark</li>
@@ -254,53 +351,88 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-2">
-<h2 id="orgheadline10">命令行工具</h2>
-<div class="outline-text-2" id="text-orgheadline10">
-</div><div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">strace</h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-org91bdad1" class="outline-2">
+<h2 id="org91bdad1">命令行工具</h2>
+<div class="outline-text-2" id="text-org91bdad1">
+</div><div id="outline-container-orge4562ef" class="outline-3">
+<h3 id="orge4562ef">系统信息</h3>
+<div class="outline-text-3" id="text-orge4562ef">
+</div><div id="outline-container-org4cabeab" class="outline-4">
+<h4 id="org4cabeab">htop</h4>
+<div class="outline-text-4" id="text-org4cabeab">
+<p>
+可以以一种图形化的方式显示系统进程的各项资源(cpu, mem, etc..)占用
+</p>
+</div>
+</div>
+<div id="outline-container-org889e3b8" class="outline-4">
+<h4 id="org889e3b8">iftop</h4>
+<div class="outline-text-4" id="text-org889e3b8">
+<p>
+不同的ip地址的网络情况
+</p>
+</div>
+</div>
+<div id="outline-container-org5f05792" class="outline-4">
+<h4 id="org5f05792">nethogs</h4>
+<div class="outline-text-4" id="text-org5f05792">
+<p>
+不同的进程占用的网络带宽
+</p>
+</div>
+</div>
+<div id="outline-container-org5f82846" class="outline-4">
+<h4 id="org5f82846">iptraf</h4>
+<div class="outline-text-4" id="text-org5f82846">
+<p>
+监控各个网卡的流量
+</p>
+</div>
+</div>
+<div id="outline-container-orgdc78cfd" class="outline-4">
+<h4 id="orgdc78cfd">iotop</h4>
+<div class="outline-text-4" id="text-orgdc78cfd">
+<p>
+不同进程的磁盘io
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4d72b1a" class="outline-3">
+<h3 id="org4d72b1a">调试工具</h3>
+<div class="outline-text-3" id="text-org4d72b1a">
+</div><div id="outline-container-org1f7528f" class="outline-4">
+<h4 id="org1f7528f">strace</h4>
+<div class="outline-text-4" id="text-org1f7528f">
 <p>
 跟踪程序的系统API调用，对调试程序很有帮助。
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7">htop</h3>
-<div class="outline-text-3" id="text-orgheadline7">
-<p>
-可以以一种图形化的方式显示系统的各项资源占用
-</p>
+<div id="outline-container-org38e5821" class="outline-4">
+<h4 id="org38e5821">tcpdump</h4>
 </div>
-</div>
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">ifstat</h3>
-<div class="outline-text-3" id="text-orgheadline8">
-<p>
-简单的监控网络流量
-</p>
-</div>
-</div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">lsof</h3>
-<div class="outline-text-3" id="text-orgheadline9">
+<div id="outline-container-org686a9be" class="outline-4">
+<h4 id="org686a9be">lsof</h4>
+<div class="outline-text-4" id="text-org686a9be">
 <p>
 list open files， 显示哪些进程打开了哪些文件。
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-2">
-<h2 id="orgheadline11">ssh</h2>
-<div class="outline-text-2" id="text-orgheadline11">
+</div>
+<div id="outline-container-org9dc521d" class="outline-2">
+<h2 id="org9dc521d">ssh</h2>
+<div class="outline-text-2" id="text-org9dc521d">
 <p>
 ssh要认证，必须将本地公钥上传到服务器的authorized_keys文件中，并且该文件必须是
 600或者700权限。（不能用660,664这样的权限，只能是600或者700）
 </p>
 </div>
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12">ssh免密码登录</h3>
-<div class="outline-text-3" id="text-orgheadline12">
+<div id="outline-container-org832c37d" class="outline-3">
+<h3 id="org832c37d">ssh免密码登录</h3>
+<div class="outline-text-3" id="text-org832c37d">
 <ol class="org-ol">
 <li>先生成密钥：=ssh-keygen -t rsa= 所有的地方都enter</li>
 <li>将公钥上传到目标服务器： <code>ssh-copy-id -i /root/.ssh/id_rsa.pub
@@ -309,9 +441,9 @@ ssh要认证，必须将本地公钥上传到服务器的authorized_keys文件�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-2">
-<h2 id="orgheadline13">给力的工具</h2>
-<div class="outline-text-2" id="text-orgheadline13">
+<div id="outline-container-org156e1a5" class="outline-2">
+<h2 id="org156e1a5">给力的工具</h2>
+<div class="outline-text-2" id="text-org156e1a5">
 <ol class="org-ol">
 <li>zsh： 非常给力的shell，比bash好用</li>
 <li>percol： 可以增量式的过滤shell命令的输出结果，可以和zsh结合定制出ppkill，
@@ -323,15 +455,15 @@ ppgrep命令</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-2">
-<h2 id="orgheadline14">常用软件配置</h2>
+<div id="outline-container-org0796ebb" class="outline-2">
+<h2 id="org0796ebb">常用软件配置</h2>
 </div>
-<div id="outline-container-orgheadline16" class="outline-2">
-<h2 id="orgheadline16">一些常用的技巧</h2>
-<div class="outline-text-2" id="text-orgheadline16">
-</div><div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15">.netrc</h3>
-<div class="outline-text-3" id="text-orgheadline15">
+<div id="outline-container-org820d877" class="outline-2">
+<h2 id="org820d877">一些常用的技巧</h2>
+<div class="outline-text-2" id="text-org820d877">
+</div><div id="outline-container-org0c16de3" class="outline-3">
+<h3 id="org0c16de3">.netrc</h3>
+<div class="outline-text-3" id="text-org0c16de3">
 <p>
 这个文件可以在使用ftp时免登录, 将该文件放在主目录中，同时将权限设为600，该文件的
 基本作用主要是指定机器以及用户名与密码

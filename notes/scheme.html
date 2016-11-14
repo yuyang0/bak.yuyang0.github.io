@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>scheme笔记</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="scheme lisp" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="scheme lisp" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -176,107 +261,107 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline45">scheme笔记</a>
+<li><a href="#orgc0fff97">scheme笔记</a>
 <ul>
-<li><a href="#orgheadline6">几个概念&#xa0;&#xa0;&#xa0;<span class="tag"><span class="concept">concept</span></span></a>
+<li><a href="#org90250e0">几个概念&#xa0;&#xa0;&#xa0;<span class="tag"><span class="concept">concept</span></span></a>
 <ul>
-<li><a href="#orgheadline1">identifier</a></li>
-<li><a href="#orgheadline2">variable</a></li>
-<li><a href="#orgheadline3">atom</a></li>
-<li><a href="#orgheadline4">list</a></li>
-<li><a href="#orgheadline5">S-expression</a></li>
+<li><a href="#org9d37ed6">identifier</a></li>
+<li><a href="#orgdd41cfd">variable</a></li>
+<li><a href="#orgcec6b24">atom</a></li>
+<li><a href="#orgbf57887">list</a></li>
+<li><a href="#org908da96">S-expression</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline7">Naming Conventions</a></li>
-<li><a href="#orgheadline8">core syntactic forms&#xa0;&#xa0;&#xa0;<span class="tag"><span class="core">core</span>&#xa0;<span class="syntactic">syntactic</span>&#xa0;<span class="form">form</span></span></a></li>
-<li><a href="#orgheadline9">let&#xa0;&#xa0;&#xa0;<span class="tag"><span class="let">let</span></span></a></li>
-<li><a href="#orgheadline19">control flow</a>
+<li><a href="#org3ea5ca4">Naming Conventions</a></li>
+<li><a href="#orgf514fad">core syntactic forms&#xa0;&#xa0;&#xa0;<span class="tag"><span class="core">core</span>&#xa0;<span class="syntactic">syntactic</span>&#xa0;<span class="form">form</span></span></a></li>
+<li><a href="#orga23c171">let&#xa0;&#xa0;&#xa0;<span class="tag"><span class="let">let</span></span></a></li>
+<li><a href="#org33f0e1a">control flow</a>
 <ul>
-<li><a href="#orgheadline10">if&#xa0;&#xa0;&#xa0;<span class="tag"><span class="if">if</span></span></a></li>
-<li><a href="#orgheadline11">cond&#xa0;&#xa0;&#xa0;<span class="tag"><span class="cond">cond</span></span></a></li>
-<li><a href="#orgheadline12">when unless&#xa0;&#xa0;&#xa0;<span class="tag"><span class="when">when</span>&#xa0;<span class="unless">unless</span></span></a></li>
-<li><a href="#orgheadline13">case&#xa0;&#xa0;&#xa0;<span class="tag"><span class="case">case</span></span></a></li>
-<li><a href="#orgheadline14">do&#xa0;&#xa0;&#xa0;<span class="tag"><span class="do">do</span></span></a></li>
-<li><a href="#orgheadline15">map</a></li>
-<li><a href="#orgheadline16">for-each</a></li>
-<li><a href="#orgheadline17">apply</a></li>
-<li><a href="#orgheadline18">multiple values</a></li>
+<li><a href="#org2a0d4d5">if&#xa0;&#xa0;&#xa0;<span class="tag"><span class="if">if</span></span></a></li>
+<li><a href="#org492447d">cond&#xa0;&#xa0;&#xa0;<span class="tag"><span class="cond">cond</span></span></a></li>
+<li><a href="#org1515eca">when unless&#xa0;&#xa0;&#xa0;<span class="tag"><span class="when">when</span>&#xa0;<span class="unless">unless</span></span></a></li>
+<li><a href="#org7bec188">case&#xa0;&#xa0;&#xa0;<span class="tag"><span class="case">case</span></span></a></li>
+<li><a href="#org94ec4ee">do&#xa0;&#xa0;&#xa0;<span class="tag"><span class="do">do</span></span></a></li>
+<li><a href="#org66765cd">map</a></li>
+<li><a href="#orgc494194">for-each</a></li>
+<li><a href="#orgd162101">apply</a></li>
+<li><a href="#org8ad2423">multiple values</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline28">内置的函数</a>
+<li><a href="#orge88583c">内置的函数</a>
 <ul>
-<li><a href="#orgheadline20">predication</a></li>
-<li><a href="#orgheadline21">list procedure</a></li>
-<li><a href="#orgheadline22">number procedure</a></li>
-<li><a href="#orgheadline23">char</a></li>
-<li><a href="#orgheadline24">string</a></li>
-<li><a href="#orgheadline25">vector procedure</a></li>
-<li><a href="#orgheadline26">symbol procedure</a></li>
-<li><a href="#orgheadline27">Hash Table</a></li>
+<li><a href="#org8c0b5e5">predication</a></li>
+<li><a href="#orgc67ad5c">list procedure</a></li>
+<li><a href="#org37e6c65">number procedure</a></li>
+<li><a href="#org8c3b1e0">char</a></li>
+<li><a href="#org3fdfe15">string</a></li>
+<li><a href="#orge54ad38">vector procedure</a></li>
+<li><a href="#org2586fb0">symbol procedure</a></li>
+<li><a href="#orga97e0b5">Hash Table</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline29">macros</a>
+<li><a href="#orgeaeb118">macros</a>
 <ul>
-<li><a href="#orgheadline30">define-syntax</a></li>
-<li><a href="#orgheadline31">let-syntax与letrec-syntax</a></li>
-<li><a href="#orgheadline32">syntax-rules</a></li>
-<li><a href="#orgheadline33">syntax object</a></li>
-<li><a href="#orgheadline34">syntax-case</a></li>
-<li><a href="#orgheadline35">with-syntax</a></li>
+<li><a href="#org8018051">define-syntax</a></li>
+<li><a href="#orgd5f87b9">let-syntax与letrec-syntax</a></li>
+<li><a href="#org0730450">syntax-rules</a></li>
+<li><a href="#org46c2d7c">syntax object</a></li>
+<li><a href="#orge9fad90">syntax-case</a></li>
+<li><a href="#orga8c3f2d">with-syntax</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline40">input and output</a>
+<li><a href="#org0b42c25">input and output</a>
 <ul>
-<li><a href="#orgheadline36">port</a>
+<li><a href="#orge9f93c6">port</a>
 <ul>
-<li><a href="#orgheadline37">default port</a></li>
+<li><a href="#orgd1b1417">default port</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline38">输入输出</a></li>
-<li><a href="#orgheadline39">code example</a></li>
+<li><a href="#org7e93633">输入输出</a></li>
+<li><a href="#org6777f6a">code example</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline41">递归思想</a></li>
-<li><a href="#orgheadline42">continuation</a></li>
-<li><a href="#orgheadline43">停机问题</a></li>
-<li><a href="#orgheadline44">some example code(the little schemer)</a></li>
+<li><a href="#orgd6ef18c">递归思想</a></li>
+<li><a href="#org2cdd552">continuation</a></li>
+<li><a href="#org436b404">停机问题</a></li>
+<li><a href="#orgfe1925f">some example code(the little schemer)</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline57">racket</a>
+<li><a href="#org2fb1b6b">racket</a>
 <ul>
-<li><a href="#orgheadline46">struct(新的数据类型)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="struct">struct</span></span></a>
+<li><a href="#org112727b">struct(新的数据类型)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="struct">struct</span></span></a>
 <ul>
-<li><a href="#orgheadline47">复制更新</a></li>
-<li><a href="#orgheadline48">subtypes(类似于继承)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="subtypes">subtypes</span></span></a></li>
+<li><a href="#org964b3a5">复制更新</a></li>
+<li><a href="#org689c58f">subtypes(类似于继承)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="subtypes">subtypes</span></span></a></li>
 </ul>
 </li>
-<li><a href="#orgheadline49">match(模式匹配)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="match">match</span></span></a></li>
-<li><a href="#orgheadline50">module</a>
+<li><a href="#orga8f719f">match(模式匹配)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="match">match</span></span></a></li>
+<li><a href="#orgffb9feb">module</a>
 <ul>
-<li><a href="#orgheadline51">submodule</a>
+<li><a href="#org949c31f">submodule</a>
 <ul>
-<li><a href="#orgheadline52">module*                                                                   :module*:</a></li>
-<li><a href="#orgheadline53">module+                                                                   :module+:</a></li>
+<li><a href="#org75a9f5f">module*                                                                   :module*:</a></li>
+<li><a href="#org9a449c8">module+                                                                   :module+:</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline54">lang</a></li>
-<li><a href="#orgheadline55">require</a></li>
-<li><a href="#orgheadline56">provide</a></li>
+<li><a href="#orgcfcfa85">lang</a></li>
+<li><a href="#orgac5096f">require</a></li>
+<li><a href="#org4febb64">provide</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline66">typed racket</a>
+<li><a href="#orgf0f3966">typed racket</a>
 <ul>
-<li><a href="#orgheadline58">sample program</a></li>
-<li><a href="#orgheadline65">Types</a>
+<li><a href="#org4bf46dc">sample program</a></li>
+<li><a href="#org0da67f4">Types</a>
 <ul>
-<li><a href="#orgheadline59">Basic Types</a></li>
-<li><a href="#orgheadline60">Function Type</a></li>
-<li><a href="#orgheadline61">Union Type</a></li>
-<li><a href="#orgheadline62">Recursive Type</a></li>
-<li><a href="#orgheadline63">Subtyping</a></li>
-<li><a href="#orgheadline64">Polymorphism</a></li>
+<li><a href="#orgd9a0dfb">Basic Types</a></li>
+<li><a href="#orgc86f259">Function Type</a></li>
+<li><a href="#orgb7962ae">Union Type</a></li>
+<li><a href="#org845c16f">Recursive Type</a></li>
+<li><a href="#org3bd12f6">Subtyping</a></li>
+<li><a href="#org6b6a89f">Polymorphism</a></li>
 </ul>
 </li>
 </ul>
@@ -284,37 +369,36 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline45" class="outline-2">
-<h2 id="orgheadline45">scheme笔记</h2>
-<div class="outline-text-2" id="text-orgheadline45">
-</div><div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">几个概念&#xa0;&#xa0;&#xa0;<span class="tag"><span class="concept">concept</span></span></h3>
-<div class="outline-text-3" id="text-orgheadline6">
-</div><div id="outline-container-orgheadline1" class="outline-4">
-<h4 id="orgheadline1">identifier</h4>
-<div class="outline-text-4" id="text-orgheadline1">
+<div id="outline-container-orgc0fff97" class="outline-2">
+<h2 id="orgc0fff97">scheme笔记</h2>
+<div class="outline-text-2" id="text-orgc0fff97">
+</div><div id="outline-container-org90250e0" class="outline-3">
+<h3 id="org90250e0">几个概念&#xa0;&#xa0;&#xa0;<span class="tag"><span class="concept">concept</span></span></h3>
+<div class="outline-text-3" id="text-org90250e0">
+</div><div id="outline-container-org9d37ed6" class="outline-4">
+<h4 id="org9d37ed6">identifier</h4>
+<div class="outline-text-4" id="text-org9d37ed6">
 <p>
 标识符,可以看作是一个唯一的名字,可以用来引用变量,函数等等
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-4">
-<h4 id="orgheadline2">variable</h4>
-<div class="outline-text-4" id="text-orgheadline2">
+<div id="outline-container-orgdd41cfd" class="outline-4">
+<h4 id="orgdd41cfd">variable</h4>
+<div class="outline-text-4" id="text-orgdd41cfd">
 <p>
 变量
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-4">
-<h4 id="orgheadline3">atom</h4>
-<div class="outline-text-4" id="text-orgheadline3">
+<div id="outline-container-orgcec6b24" class="outline-4">
+<h4 id="orgcec6b24">atom</h4>
+<div class="outline-text-4" id="text-orgcec6b24">
 <ul class="org-ul">
 <li>a string of characters</li>
 <li>a string of digits</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">atom?</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>s<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">and</span> <span style="color: #93E0E3;">(</span>not <span style="color: #9FC59F;">(</span>pair? s<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
@@ -323,9 +407,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4">list</h4>
-<div class="outline-text-4" id="text-orgheadline4">
+<div id="outline-container-orgbf57887" class="outline-4">
+<h4 id="orgbf57887">list</h4>
+<div class="outline-text-4" id="text-orgbf57887">
 <p>
 a collection of atoms enclosed by parentheses. example:
 </p>
@@ -345,9 +429,9 @@ list -&gt; '()
 </pre>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-4">
-<h4 id="orgheadline5">S-expression</h4>
-<div class="outline-text-4" id="text-orgheadline5">
+<div id="outline-container-org908da96" class="outline-4">
+<h4 id="org908da96">S-expression</h4>
+<div class="outline-text-4" id="text-org908da96">
 <ul class="org-ul">
 <li>all lists</li>
 <li>all atoms</li>
@@ -359,9 +443,9 @@ sexp -&gt; list
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7">Naming Conventions</h3>
-<div class="outline-text-3" id="text-orgheadline7">
+<div id="outline-container-org3ea5ca4" class="outline-3">
+<h3 id="org3ea5ca4">Naming Conventions</h3>
+<div class="outline-text-3" id="text-org3ea5ca4">
 <ol class="org-ol">
 <li>谓词后加? , 但是常用的数字比较=, &lt;, &gt;, &lt;=, &gt;=后面不需要?</li>
 <li>类型测试, pair? , atom?</li>
@@ -371,9 +455,9 @@ sexp -&gt; list
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">core syntactic forms&#xa0;&#xa0;&#xa0;<span class="tag"><span class="core">core</span>&#xa0;<span class="syntactic">syntactic</span>&#xa0;<span class="form">form</span></span></h3>
-<div class="outline-text-3" id="text-orgheadline8">
+<div id="outline-container-orgf514fad" class="outline-3">
+<h3 id="orgf514fad">core syntactic forms&#xa0;&#xa0;&#xa0;<span class="tag"><span class="core">core</span>&#xa0;<span class="syntactic">syntactic</span>&#xa0;<span class="form">form</span></span></h3>
+<div class="outline-text-3" id="text-orgf514fad">
 <ol class="org-ol">
 <li><p>
 top-level <code>define</code> forms
@@ -382,7 +466,6 @@ top-level <code>define</code> forms
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">double-any</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>f x<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span>f x x<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
@@ -406,7 +489,7 @@ BNF:
 
 <li>variables</li>
 <li>procedure applications <code>(procedure arg1 ... argn)</code>
-      求值规则:
+求值规则:
 <ol class="org-ol">
 <li>Find the value of <code>procedure</code>.</li>
 <li>Find the value of <code>arg1</code>.</li>
@@ -449,7 +532,6 @@ variable)</li>
 等,只有以上的部分才需要解释器直接实现的
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-syntax</span> <span style="color: #DFAF8F;">let</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">syntax-rules</span> <span style="color: #D0BF8F;">()</span>
     <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_ <span style="color: #9FC59F;">(</span><span style="color: #94BFF3;">(</span>x v<span style="color: #94BFF3;">)</span> ...<span style="color: #9FC59F;">)</span> e1 e2 ...<span style="color: #93E0E3;">)</span>
@@ -470,11 +552,10 @@ variable)</li>
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">let&#xa0;&#xa0;&#xa0;<span class="tag"><span class="let">let</span></span></h3>
-<div class="outline-text-3" id="text-orgheadline9">
+<div id="outline-container-orga23c171" class="outline-3">
+<h3 id="orga23c171">let&#xa0;&#xa0;&#xa0;<span class="tag"><span class="let">let</span></span></h3>
+<div class="outline-text-3" id="text-orga23c171">
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #5F7F5F;">;;; </span><span style="color: #7F9F7F;">form 1</span>
 <span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">(</span>a exp1<span style="color: #D0BF8F;">)</span>
       <span style="color: #D0BF8F;">(</span>b exp2<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
@@ -492,7 +573,6 @@ variable)</li>
 码:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span>a exp1<span style="color: #D0BF8F;">]</span>
       <span style="color: #D0BF8F;">[</span>b exp2<span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span>
   <span style="color: #BFEBBF;">(</span>body1<span style="color: #BFEBBF;">)</span>
@@ -503,7 +583,6 @@ variable)</li>
 form2主要是为了递归, 它使得在函数体中可以引用函数名, 比如下面的代码
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #93E0E3;">fac</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span>n <span style="color: #BFEBBF;">10</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>zero? n<span style="color: #D0BF8F;">)</span>
       <span style="color: #BFEBBF;">1</span>
@@ -518,7 +597,6 @@ let*: exp2中可以引用a, 也就是a可以用来定义b, 可以用嵌套的 <c
 <code>let*</code>
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-syntax</span> <span style="color: #DFAF8F;">let*</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">syntax-rules</span> <span style="color: #D0BF8F;">()</span>
     <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_ <span style="color: #9FC59F;">()</span> e1 e2 ...<span style="color: #93E0E3;">)</span>
@@ -532,7 +610,6 @@ let*: exp2中可以引用a, 也就是a可以用来定义b, 可以用嵌套的 <c
 letrec: 主要用来解决定义递归函数时,函数名在函数体中不可见的问题,比如
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span>sum <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>lst<span style="color: #9FC59F;">)</span>
                 <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #94BFF3;">(</span>null? lst<span style="color: #94BFF3;">)</span> <span style="color: #BFEBBF;">0</span>
                     <span style="color: #94BFF3;">(</span>+ <span style="color: #E0CF9F;">(</span>car lst<span style="color: #E0CF9F;">)</span> <span style="color: #E0CF9F;">(</span>sum <span style="color: #8FB28F;">(</span>cdr lst<span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span>
@@ -544,7 +621,6 @@ letrec: 主要用来解决定义递归函数时,函数名在函数体中不可�
 体中不可见, 所以你使用 <code>(sum (cdr lst))</code> 就会出错,当然你可以使用这种方法
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span>sum <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>sum lst<span style="color: #9FC59F;">)</span>
                 <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #94BFF3;">(</span>null? lst<span style="color: #94BFF3;">)</span> <span style="color: #BFEBBF;">0</span>
                     <span style="color: #94BFF3;">(</span>+ <span style="color: #E0CF9F;">(</span>car lst<span style="color: #E0CF9F;">)</span> <span style="color: #E0CF9F;">(</span>sum sum <span style="color: #8FB28F;">(</span>cdr lst<span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span>
@@ -556,7 +632,6 @@ letrec: 主要用来解决定义递归函数时,函数名在函数体中不可�
 就引入了 <code>letrec</code>.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">letrec</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span>sum <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>ls<span style="color: #9FC59F;">)</span>
                 <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #94BFF3;">(</span>null? ls<span style="color: #94BFF3;">)</span>
                     <span style="color: #BFEBBF;">0</span>
@@ -575,7 +650,6 @@ syntax:
 <li>(let*-values ((formals expr) &#x2026;) body1 body2 &#x2026;)</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let-values</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>a b<span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">(</span>values <span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span> <span style="color: #D0BF8F;">[</span>c <span style="color: #93E0E3;">(</span>values <span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span> <span style="color: #BFEBBF;">3</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span>
   <span style="color: #BFEBBF;">(</span>list a b c<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span> <span style="color: #5F7F5F;">; </span><span style="color: #7F9F7F;">the result is (1 2 (1 2 3))</span>
 
@@ -586,18 +660,17 @@ syntax:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline19" class="outline-3">
-<h3 id="orgheadline19">control flow</h3>
-<div class="outline-text-3" id="text-orgheadline19">
-</div><div id="outline-container-orgheadline10" class="outline-4">
-<h4 id="orgheadline10">if&#xa0;&#xa0;&#xa0;<span class="tag"><span class="if">if</span></span></h4>
-<div class="outline-text-4" id="text-orgheadline10">
+<div id="outline-container-org33f0e1a" class="outline-3">
+<h3 id="org33f0e1a">control flow</h3>
+<div class="outline-text-3" id="text-org33f0e1a">
+</div><div id="outline-container-org2a0d4d5" class="outline-4">
+<h4 id="org2a0d4d5">if&#xa0;&#xa0;&#xa0;<span class="tag"><span class="if">if</span></span></h4>
+<div class="outline-text-4" id="text-org2a0d4d5">
 <p>
 当要写多个表达式时应该加入 <code>begin</code> , 注意 <code>begin</code> 会依次执行它所包含的表达式,并
 返回最后一个表达式的值
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>test-exp<span style="color: #BFEBBF;">)</span>
     <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">begin</span>
       expression1
@@ -611,7 +684,6 @@ syntax:
 法如下:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>test-exp<span style="color: #BFEBBF;">)</span>
     <span style="color: #BFEBBF;">(</span>true-exp<span style="color: #BFEBBF;">)</span>
     <span style="color: #BFEBBF;">(</span>false-exp<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
@@ -642,14 +714,13 @@ syntax:
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-4">
-<h4 id="orgheadline11">cond&#xa0;&#xa0;&#xa0;<span class="tag"><span class="cond">cond</span></span></h4>
-<div class="outline-text-4" id="text-orgheadline11">
+<div id="outline-container-org492447d" class="outline-4">
+<h4 id="org492447d">cond&#xa0;&#xa0;&#xa0;<span class="tag"><span class="cond">cond</span></span></h4>
+<div class="outline-text-4" id="text-org492447d">
 <p>
 内部相当于有个隐含的begin,所以可以直接写多个表达式
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span> <span style="color: #BFEBBF;">[</span><span style="color: #D0BF8F;">(</span>test-exp<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>exp1<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>exp2<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">]</span>
       <span style="color: #BFEBBF;">[</span>else expression3<span style="color: #BFEBBF;">]</span><span style="color: #DCDCCC;">)</span>
 </pre>
@@ -659,7 +730,6 @@ syntax:
 注意一个特殊的形式: =&gt;
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">(</span>assv 'b '<span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>a <span style="color: #BFEBBF;">1</span><span style="color: #9FC59F;">)</span> <span style="color: #9FC59F;">(</span>b <span style="color: #BFEBBF;">2</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span> =&gt; cadr<span style="color: #BFEBBF;">)</span>
       <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">else</span> #f<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>                       <span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">==&gt;  2</span>
 </pre>
@@ -669,15 +739,14 @@ syntax:
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-4">
-<h4 id="orgheadline12">when unless&#xa0;&#xa0;&#xa0;<span class="tag"><span class="when">when</span>&#xa0;<span class="unless">unless</span></span></h4>
-<div class="outline-text-4" id="text-orgheadline12">
+<div id="outline-container-org1515eca" class="outline-4">
+<h4 id="org1515eca">when unless&#xa0;&#xa0;&#xa0;<span class="tag"><span class="when">when</span>&#xa0;<span class="unless">unless</span></span></h4>
+<div class="outline-text-4" id="text-org1515eca">
 <ul class="org-ul">
 <li><p>
 (when (test-exp) exp1 exp2) : test-exp为真就执行exp1, exp2
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-syntax</span> <span style="color: #DFAF8F;">when</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">syntax-rules</span> <span style="color: #D0BF8F;">()</span>
     <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_ e0 e1 e2 ...<span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> e0 <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">begin</span> e1 e2 ...<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
@@ -688,14 +757,13 @@ syntax:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-4">
-<h4 id="orgheadline13">case&#xa0;&#xa0;&#xa0;<span class="tag"><span class="case">case</span></span></h4>
-<div class="outline-text-4" id="text-orgheadline13">
+<div id="outline-container-org7bec188" class="outline-4">
+<h4 id="org7bec188">case&#xa0;&#xa0;&#xa0;<span class="tag"><span class="case">case</span></span></h4>
+<div class="outline-text-4" id="text-org7bec188">
 <p>
 类似于C语言的switch
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">(</span>x <span style="color: #BFEBBF;">4</span><span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>y <span style="color: #BFEBBF;">5</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">case</span> <span style="color: #D0BF8F;">(</span>+ x y<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span><span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">3</span> <span style="color: #BFEBBF;">5</span> <span style="color: #BFEBBF;">7</span> <span style="color: #BFEBBF;">9</span><span style="color: #93E0E3;">)</span> 'odd<span style="color: #D0BF8F;">)</span>
@@ -705,9 +773,9 @@ syntax:
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-4">
-<h4 id="orgheadline14">do&#xa0;&#xa0;&#xa0;<span class="tag"><span class="do">do</span></span></h4>
-<div class="outline-text-4" id="text-orgheadline14">
+<div id="outline-container-org94ec4ee" class="outline-4">
+<h4 id="org94ec4ee">do&#xa0;&#xa0;&#xa0;<span class="tag"><span class="do">do</span></span></h4>
+<div class="outline-text-4" id="text-org94ec4ee">
 <p>
 <code>syntax: (do ((var init update) ...) (test result ...) expr ...)</code>
 </p>
@@ -717,7 +785,6 @@ syntax:
 着每一次迭代都绑定到update, (test res..)如果为true,那么就终止循环
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">divisors</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>n<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">do</span> <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>i <span style="color: #BFEBBF;">2</span> <span style="color: #94BFF3;">(</span>+ i <span style="color: #BFEBBF;">1</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
@@ -730,14 +797,13 @@ syntax:
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline15" class="outline-4">
-<h4 id="orgheadline15">map</h4>
-<div class="outline-text-4" id="text-orgheadline15">
+<div id="outline-container-org66765cd" class="outline-4">
+<h4 id="org66765cd">map</h4>
+<div class="outline-text-4" id="text-org66765cd">
 <p>
 (map procedure list1 list2 &#x2026;) 会返回一个 <code>list</code>
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">map</span> <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>x y<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>* x y<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
      '<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span> <span style="color: #BFEBBF;">3</span> <span style="color: #BFEBBF;">4</span><span style="color: #BFEBBF;">)</span>
      '<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">8</span> <span style="color: #BFEBBF;">7</span> <span style="color: #BFEBBF;">6</span> <span style="color: #BFEBBF;">5</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>      <span style="color: #5F7F5F;">; </span><span style="color: #7F9F7F;">return (8 14 18 20)</span>
@@ -748,18 +814,18 @@ syntax:
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline16" class="outline-4">
-<h4 id="orgheadline16">for-each</h4>
-<div class="outline-text-4" id="text-orgheadline16">
+<div id="outline-container-orgc494194" class="outline-4">
+<h4 id="orgc494194">for-each</h4>
+<div class="outline-text-4" id="text-orgc494194">
 <p>
 和 <code>map</code> 类似但是不返回一个list作为结果, 也就是说 <code>for-each</code> 是用来产生side
 effect.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline17" class="outline-4">
-<h4 id="orgheadline17">apply</h4>
-<div class="outline-text-4" id="text-orgheadline17">
+<div id="outline-container-orgd162101" class="outline-4">
+<h4 id="orgd162101">apply</h4>
+<div class="outline-text-4" id="text-orgd162101">
 <p>
 (apply procedure obj &#x2026; list)
 </p>
@@ -769,15 +835,14 @@ effect.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-4">
-<h4 id="orgheadline18">multiple values</h4>
-<div class="outline-text-4" id="text-orgheadline18">
+<div id="outline-container-org8ad2423" class="outline-4">
+<h4 id="org8ad2423">multiple values</h4>
+<div class="outline-text-4" id="text-org8ad2423">
 <ul class="org-ul">
 <li><p>
 (values obj &#x2026;) :返回多个值,注意它的返回值可以用 <code>let-values</code> 来绑定,不能用 <code>define</code>
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let-values</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>a b<span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">(</span>values <span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span>
   <span style="color: #BFEBBF;">(</span>+ a b<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
@@ -787,7 +852,6 @@ effect.
 递给consumer.注意producer必须可以不带参数的方式来调用
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>call-with-values
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">()</span> <span style="color: #D0BF8F;">(</span>values 'bond 'james<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>x y<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>cons y x<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>  <span style="color: #5F7F5F;">; </span><span style="color: #7F9F7F;">the result is (james . bond)</span>
@@ -797,12 +861,12 @@ effect.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline28" class="outline-3">
-<h3 id="orgheadline28">内置的函数</h3>
-<div class="outline-text-3" id="text-orgheadline28">
-</div><div id="outline-container-orgheadline20" class="outline-4">
-<h4 id="orgheadline20">predication</h4>
-<div class="outline-text-4" id="text-orgheadline20">
+<div id="outline-container-orge88583c" class="outline-3">
+<h3 id="orge88583c">内置的函数</h3>
+<div class="outline-text-3" id="text-orge88583c">
+</div><div id="outline-container-org8c0b5e5" class="outline-4">
+<h4 id="org8c0b5e5">predication</h4>
+<div class="outline-text-4" id="text-org8c0b5e5">
 <ol class="org-ol">
 <li>= : 只用来比较整数, 不要用来比较浮点数</li>
 <li>eq? : 可以类似的看作是指针比较, 即便是内容相同,但是如果是两个不同对象,它
@@ -815,7 +879,6 @@ effect.
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">sym1</span> 'hello<span style="color: #DCDCCC;">)</span>
 <span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">sym2</span> 'hello<span style="color: #DCDCCC;">)</span>
 <span style="color: #DCDCCC;">(</span>eq? sym1 sym2<span style="color: #DCDCCC;">)</span>
@@ -843,9 +906,9 @@ effect.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline21" class="outline-4">
-<h4 id="orgheadline21">list procedure</h4>
-<div class="outline-text-4" id="text-orgheadline21">
+<div id="outline-container-orgc67ad5c" class="outline-4">
+<h4 id="orgc67ad5c">list procedure</h4>
+<div class="outline-text-4" id="text-orgc67ad5c">
 <p>
 <code>list</code> 的语法定义:
 </p>
@@ -876,7 +939,6 @@ memq memv member memp 分别用eq? eqv? equal? 指定的procedure 来测试一�
 list, <code>(memq 'a '(b c a d e)) --&gt; (a d e)</code>
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">memq</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>x ls<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span>
@@ -890,7 +952,6 @@ list, <code>(memq 'a '(b c a d e)) --&gt; (a d e)</code>
 assq assv assoc assp 可以看做是关联数组((key1 . val1) (key2 . val2) &#x2026;)
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">assq</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>x ls<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span>
@@ -915,7 +976,6 @@ procedure returns true</li>
 (foldr f init list1 list2 &#x2026;):
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">foldl</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>f x ls<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span>
@@ -940,9 +1000,9 @@ procedure returns true</li>
 </div>
 </div>
 
-<div id="outline-container-orgheadline22" class="outline-4">
-<h4 id="orgheadline22">number procedure</h4>
-<div class="outline-text-4" id="text-orgheadline22">
+<div id="outline-container-org37e6c65" class="outline-4">
+<h4 id="org37e6c65">number procedure</h4>
+<div class="outline-text-4" id="text-org37e6c65">
 <ol class="org-ol">
 <li>zero? :</li>
 <li>positive? :</li>
@@ -954,9 +1014,9 @@ abs,gcd,expt(指数),三角系列函数(san,cos&#x2026;.)</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline23" class="outline-4">
-<h4 id="orgheadline23">char</h4>
-<div class="outline-text-4" id="text-orgheadline23">
+<div id="outline-container-org8c3b1e0" class="outline-4">
+<h4 id="org8c3b1e0">char</h4>
+<div class="outline-text-4" id="text-org8c3b1e0">
 <p>
 字符使用 <code>#\x</code> 来表示,比如 <code>a</code> 就是 <code>#\a</code>,
 </p>
@@ -978,9 +1038,9 @@ abs,gcd,expt(指数),三角系列函数(san,cos&#x2026;.)</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline24" class="outline-4">
-<h4 id="orgheadline24">string</h4>
-<div class="outline-text-4" id="text-orgheadline24">
+<div id="outline-container-org3fdfe15" class="outline-4">
+<h4 id="org3fdfe15">string</h4>
+<div class="outline-text-4" id="text-org3fdfe15">
 <p>
 双引号内的是字符串
 </p>
@@ -1006,9 +1066,9 @@ abs,gcd,expt(指数),三角系列函数(san,cos&#x2026;.)</li>
 </div>
 </div>
 
-<div id="outline-container-orgheadline25" class="outline-4">
-<h4 id="orgheadline25">vector procedure</h4>
-<div class="outline-text-4" id="text-orgheadline25">
+<div id="outline-container-orge54ad38" class="outline-4">
+<h4 id="orge54ad38">vector procedure</h4>
+<div class="outline-text-4" id="text-orge54ad38">
 <p>
 list访问时需要遍历,不够高效, vector可以像数组一样O(1)时间内访问
 </p>
@@ -1024,9 +1084,9 @@ list访问时需要遍历,不够高效, vector可以像数组一样O(1)时间内
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline26" class="outline-4">
-<h4 id="orgheadline26">symbol procedure</h4>
-<div class="outline-text-4" id="text-orgheadline26">
+<div id="outline-container-org2586fb0" class="outline-4">
+<h4 id="org2586fb0">symbol procedure</h4>
+<div class="outline-text-4" id="text-org2586fb0">
 <p>
 每一个symbol在解释器内部都是指向同一个对象,所以用eq?来测试相同的symbol会返
 回#t, 这也使得比较操作很高效
@@ -1038,9 +1098,9 @@ list访问时需要遍历,不够高效, vector可以像数组一样O(1)时间内
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline27" class="outline-4">
-<h4 id="orgheadline27">Hash Table</h4>
-<div class="outline-text-4" id="text-orgheadline27">
+<div id="outline-container-orga97e0b5" class="outline-4">
+<h4 id="orga97e0b5">Hash Table</h4>
+<div class="outline-text-4" id="text-orga97e0b5">
 <ul class="org-ul">
 <li>(make-eq-hashtable) : 使用eq?来比较两个key, 返回一个hashtable</li>
 <li>(make-eq-hashtable size)</li>
@@ -1059,9 +1119,9 @@ list访问时需要遍历,不够高效, vector可以像数组一样O(1)时间内
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline29" class="outline-3">
-<h3 id="orgheadline29">macros</h3>
-<div class="outline-text-3" id="text-orgheadline29">
+<div id="outline-container-orgeaeb118" class="outline-3">
+<h3 id="orgeaeb118">macros</h3>
+<div class="outline-text-3" id="text-orgeaeb118">
 <p>
 定义一个宏实际上就是把一个keyword与一个 macro transformer 绑定, 一个macro
 transformer一般就是一个带有一个参数的函数, 而macro transformer的输入是一个原
@@ -1070,7 +1130,6 @@ object. <code>syntax-rules</code> 返回的就是一个macro transform.所以你
 <code>syntax-rules</code> 而这样写一个宏:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-syntax</span> <span style="color: #DFAF8F;">self-as-string</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>stx<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span>datum-&gt;syntax stx
@@ -1078,14 +1137,13 @@ object. <code>syntax-rules</code> 返回的就是一个macro transform.所以你
 </pre>
 </div>
 </div>
-<div id="outline-container-orgheadline30" class="outline-4">
-<h4 id="orgheadline30">define-syntax</h4>
-<div class="outline-text-4" id="text-orgheadline30">
+<div id="outline-container-org8018051" class="outline-4">
+<h4 id="org8018051">define-syntax</h4>
+<div class="outline-text-4" id="text-org8018051">
 <p>
 和define类似
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-syntax</span> <span style="color: #DFAF8F;">let*</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">syntax-rules</span> <span style="color: #D0BF8F;">()</span>
     <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_ <span style="color: #9FC59F;">()</span> b1 b2 ...<span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #9FC59F;">()</span> b1 b2 ...<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span>
@@ -1096,11 +1154,10 @@ object. <code>syntax-rules</code> 返回的就是一个macro transform.所以你
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline31" class="outline-4">
-<h4 id="orgheadline31">let-syntax与letrec-syntax</h4>
-<div class="outline-text-4" id="text-orgheadline31">
+<div id="outline-container-orgd5f87b9" class="outline-4">
+<h4 id="orgd5f87b9">let-syntax与letrec-syntax</h4>
+<div class="outline-text-4" id="text-orgd5f87b9">
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span>f <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>x<span style="color: #9FC59F;">)</span> <span style="color: #9FC59F;">(</span>+ x <span style="color: #BFEBBF;">1</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let-syntax</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">[</span>f <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">syntax-rules</span> <span style="color: #94BFF3;">()</span>
                     <span style="color: #94BFF3;">[</span><span style="color: #E0CF9F;">(</span>_ x<span style="color: #E0CF9F;">)</span> x<span style="color: #94BFF3;">]</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">]</span>
@@ -1118,9 +1175,9 @@ object. <code>syntax-rules</code> 返回的就是一个macro transform.所以你
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline32" class="outline-4">
-<h4 id="orgheadline32">syntax-rules</h4>
-<div class="outline-text-4" id="text-orgheadline32">
+<div id="outline-container-org0730450" class="outline-4">
+<h4 id="org0730450">syntax-rules</h4>
+<div class="outline-text-4" id="text-org0730450">
 <p>
 基本语法: <code>(syntax-rules (literal ...) (pattern template) ...)</code>
 </p>
@@ -1141,7 +1198,6 @@ syntax object,然后返回一个syntax object.
     exp1 else exp2)</code> 这看起来更可读性更好:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-syntax</span> <span style="color: #DFAF8F;">my-if</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">syntax-rules</span> <span style="color: #D0BF8F;">(</span>then else<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">[</span><span style="color: #93E0E3;">(</span>_ condition then true-exp else false-exp<span style="color: #93E0E3;">)</span>
@@ -1153,9 +1209,9 @@ syntax object,然后返回一个syntax object.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline33" class="outline-4">
-<h4 id="orgheadline33">syntax object</h4>
-<div class="outline-text-4" id="text-orgheadline33">
+<div id="outline-container-org46c2d7c" class="outline-4">
+<h4 id="org46c2d7c">syntax object</h4>
+<div class="outline-text-4" id="text-org46c2d7c">
 <p>
 <code>(syntax template)</code> 的缩写为 <code>#'template</code>, syntax和quote很类似,只是它会将
 template中的pattern variable替换掉, 并且会绑定上下文信息
@@ -1169,9 +1225,9 @@ template中的pattern variable替换掉, 并且会绑定上下文信息
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline34" class="outline-4">
-<h4 id="orgheadline34">syntax-case</h4>
-<div class="outline-text-4" id="text-orgheadline34">
+<div id="outline-container-orge9fad90" class="outline-4">
+<h4 id="orge9fad90">syntax-case</h4>
+<div class="outline-text-4" id="text-orge9fad90">
 <p>
 比 <code>syntax-rules</code> 更具一般性,而且更通用, 使用syntax-case的一般形式是:
 </p>
@@ -1193,7 +1249,6 @@ x 实际就是一个包含了原始代码的syntax object. 通过syntax-case 来
 回一个包含了转换后代码的syntax object
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-syntax</span> <span style="color: #DFAF8F;">my-if</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>x<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span>syntax-case x <span style="color: #93E0E3;">(</span>then else<span style="color: #93E0E3;">)</span>
@@ -1222,11 +1277,10 @@ x 实际就是一个包含了原始代码的syntax object. 通过syntax-case 来
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline35" class="outline-4">
-<h4 id="orgheadline35">with-syntax</h4>
-<div class="outline-text-4" id="text-orgheadline35">
+<div id="outline-container-orga8c3f2d" class="outline-4">
+<h4 id="orga8c3f2d">with-syntax</h4>
+<div class="outline-text-4" id="text-orga8c3f2d">
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define-syntax</span> <span style="color: #DFAF8F;">with-syntax</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>x<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span>syntax-case x <span style="color: #93E0E3;">()</span>
@@ -1238,12 +1292,12 @@ x 实际就是一个包含了原始代码的syntax object. 通过syntax-case 来
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline40" class="outline-3">
-<h3 id="orgheadline40">input and output</h3>
-<div class="outline-text-3" id="text-orgheadline40">
-</div><div id="outline-container-orgheadline36" class="outline-4">
-<h4 id="orgheadline36">port</h4>
-<div class="outline-text-4" id="text-orgheadline36">
+<div id="outline-container-org0b42c25" class="outline-3">
+<h3 id="org0b42c25">input and output</h3>
+<div class="outline-text-3" id="text-org0b42c25">
+</div><div id="outline-container-orge9f93c6" class="outline-4">
+<h4 id="orge9f93c6">port</h4>
+<div class="outline-text-4" id="text-orge9f93c6">
 <p>
 scheme的输入输出用到一个叫做port的对象,port也是first class object, port有很
 多种类,比如文件,字符缓冲区, tcp网络连接, 管道等等
@@ -1269,7 +1323,6 @@ scheme的输入输出用到一个叫做port的对象,port也是first class objec
 给proc, 并且调用完成时会关闭port
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">call-with-output-file</span> <span style="color: #CC9393;">"data"</span>
   <span style="color: #DCDCCC; font-weight: bold;">#:exists</span> 'truncate
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>out<span style="color: #D0BF8F;">)</span>
@@ -1288,9 +1341,9 @@ scheme的输入输出用到一个叫做port的对象,port也是first class objec
 </ul></li>
 </ol>
 </div>
-<div id="outline-container-orgheadline37" class="outline-5">
-<h5 id="orgheadline37">default port</h5>
-<div class="outline-text-5" id="text-orgheadline37">
+<div id="outline-container-orgd1b1417" class="outline-5">
+<h5 id="orgd1b1417">default port</h5>
+<div class="outline-text-5" id="text-orgd1b1417">
 <p>
 默认解释器会打开2个port, 一个输入,一个输出,分别会绑定到shell的输入输出,很
 多实现还会打开一个error port,用于IO的scheme procedure都可以带一个可选的参
@@ -1312,9 +1365,9 @@ scheme的输入输出用到一个叫做port的对象,port也是first class objec
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline38" class="outline-4">
-<h4 id="orgheadline38">输入输出</h4>
-<div class="outline-text-4" id="text-orgheadline38">
+<div id="outline-container-org7e93633" class="outline-4">
+<h4 id="org7e93633">输入输出</h4>
+<div class="outline-text-4" id="text-org7e93633">
 <ul class="org-ul">
 <li>输入:
 <ol class="org-ol">
@@ -1334,11 +1387,10 @@ scheme的输入输出用到一个叫做port的对象,port也是first class objec
 </div>
 </div>
 
-<div id="outline-container-orgheadline39" class="outline-4">
-<h4 id="orgheadline39">code example</h4>
-<div class="outline-text-4" id="text-orgheadline39">
+<div id="outline-container-org6777f6a" class="outline-4">
+<h4 id="org6777f6a">code example</h4>
+<div class="outline-text-4" id="text-org6777f6a">
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">call-with-input-file</span> <span style="color: #CC9393;">"myfile.ss"</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>p<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #93E0E3;">f</span> <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>x <span style="color: #94BFF3;">(</span>read p<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
@@ -1362,9 +1414,9 @@ scheme的输入输出用到一个叫做port的对象,port也是first class objec
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline41" class="outline-3">
-<h3 id="orgheadline41">递归思想</h3>
-<div class="outline-text-3" id="text-orgheadline41">
+<div id="outline-container-orgd6ef18c" class="outline-3">
+<h3 id="orgd6ef18c">递归思想</h3>
+<div class="outline-text-3" id="text-orgd6ef18c">
 <p>
 递归的思想要从逻辑上理解，在设计一个递归函数时，一开始就要明确该函数在逻辑上
 的作用(不要一开始就陷入编码细节中)，然后分清该函数在逻辑上与子问题的联系，并
@@ -1381,14 +1433,13 @@ scheme的输入输出用到一个叫做port的对象,port也是first class objec
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline42" class="outline-3">
-<h3 id="orgheadline42">continuation</h3>
-<div class="outline-text-3" id="text-orgheadline42">
+<div id="outline-container-org2cdd552" class="outline-3">
+<h3 id="org2cdd552">continuation</h3>
+<div class="outline-text-3" id="text-org2cdd552">
 <p>
 scheme中获得当前continuation的构造是call/cc, let/cc
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>let/cc k                               <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">k is the continuation</span>
         body<span style="color: #DCDCCC;">)</span>
 <span style="color: #5F7F5F;">;;; </span><span style="color: #7F9F7F;">identical</span>
@@ -1398,11 +1449,10 @@ scheme中获得当前continuation的构造是call/cc, let/cc
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline43" class="outline-3">
-<h3 id="orgheadline43">停机问题</h3>
-<div class="outline-text-3" id="text-orgheadline43">
+<div id="outline-container-org436b404" class="outline-3">
+<h3 id="org436b404">停机问题</h3>
+<div class="outline-text-3" id="text-org436b404">
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span class="linenr">1: </span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">last-try</span>
 <span class="linenr">2: </span>  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span> x <span style="color: #D0BF8F;">)</span>
 <span class="linenr">3: </span>    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">and</span> <span style="color: #93E0E3;">(</span> will-stop ? last-try<span style="color: #93E0E3;">)</span>
@@ -1413,7 +1463,6 @@ scheme中获得当前continuation的构造是call/cc, let/cc
 上述代码中:eternity会永远运行,比如:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">eternity</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>x<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span>eternity x<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
@@ -1433,16 +1482,16 @@ scheme中获得当前continuation的构造是call/cc, let/cc
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline44" class="outline-3">
-<h3 id="orgheadline44">some example code(the little schemer)</h3>
+<div id="outline-container-orgfe1925f" class="outline-3">
+<h3 id="orgfe1925f">some example code(the little schemer)</h3>
 </div>
 </div>
-<div id="outline-container-orgheadline57" class="outline-2">
-<h2 id="orgheadline57">racket</h2>
-<div class="outline-text-2" id="text-orgheadline57">
-</div><div id="outline-container-orgheadline46" class="outline-3">
-<h3 id="orgheadline46">struct(新的数据类型)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="struct">struct</span></span></h3>
-<div class="outline-text-3" id="text-orgheadline46">
+<div id="outline-container-org2fb1b6b" class="outline-2">
+<h2 id="org2fb1b6b">racket</h2>
+<div class="outline-text-2" id="text-org2fb1b6b">
+</div><div id="outline-container-org112727b" class="outline-3">
+<h3 id="org112727b">struct(新的数据类型)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="struct">struct</span></span></h3>
+<div class="outline-text-3" id="text-org112727b">
 <p>
 语法形式: <code>(struct struct-id (field-id ...))</code>
 </p>
@@ -1455,7 +1504,6 @@ scheme中获得当前continuation的构造是call/cc, let/cc
 下面来看个例子:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>struct posn <span style="color: #BFEBBF;">(</span>x y<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>                     <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">&#23450;&#20041;&#19968;&#20010;posn&#31867;&#22411;</span>
 <span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">pos1</span> <span style="color: #BFEBBF;">(</span>posn <span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>                <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">struct-id: &#26500;&#24314;&#19968;&#20010;posn&#23454;&#20363;</span>
 <span style="color: #DCDCCC;">(</span>posn? pos1<span style="color: #DCDCCC;">)</span>                            <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">struct-id?: &#26159;&#21542;&#20026;&#19968;&#20010;posn&#23545;&#35937;&#23454;&#20363;</span>
@@ -1464,9 +1512,9 @@ scheme中获得当前continuation的构造是call/cc, let/cc
 </div>
 </div>
 
-<div id="outline-container-orgheadline47" class="outline-4">
-<h4 id="orgheadline47">复制更新</h4>
-<div class="outline-text-4" id="text-orgheadline47">
+<div id="outline-container-org964b3a5" class="outline-4">
+<h4 id="org964b3a5">复制更新</h4>
+<div class="outline-text-4" id="text-org964b3a5">
 <p>
 根据已有对象更新其中的特定域然后返回新对象
 </p>
@@ -1488,14 +1536,13 @@ Examples:
 </pre>
 </div>
 </div>
-<div id="outline-container-orgheadline48" class="outline-4">
-<h4 id="orgheadline48">subtypes(类似于继承)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="subtypes">subtypes</span></span></h4>
-<div class="outline-text-4" id="text-orgheadline48">
+<div id="outline-container-org689c58f" class="outline-4">
+<h4 id="org689c58f">subtypes(类似于继承)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="subtypes">subtypes</span></span></h4>
+<div class="outline-text-4" id="text-org689c58f">
 <p>
 语法形式: <code>(struct struct-id super-id (field-id ...))</code>
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>struct posn <span style="color: #BFEBBF;">(</span>x y<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #DCDCCC;">(</span>struct pos3d posn <span style="color: #BFEBBF;">(</span>z<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
@@ -1506,9 +1553,9 @@ Examples:
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline49" class="outline-3">
-<h3 id="orgheadline49">match(模式匹配)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="match">match</span></span></h3>
-<div class="outline-text-3" id="text-orgheadline49">
+<div id="outline-container-orga8f719f" class="outline-3">
+<h3 id="orga8f719f">match(模式匹配)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="match">match</span></span></h3>
+<div class="outline-text-3" id="text-orga8f719f">
 <p>
 正则表达式只能用来匹配字符串,而 <code>match</code> 可以用来匹配任何的 <code>scheme value</code>,
 它的语法形式如下:
@@ -1528,7 +1575,6 @@ Examples:
 下面是一个将let转换为等价的lambda形式的例子
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>match '<span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">[</span>a <span style="color: #BFEBBF;">1</span><span style="color: #93E0E3;">]</span>
               <span style="color: #93E0E3;">[</span>b <span style="color: #BFEBBF;">2</span><span style="color: #93E0E3;">]</span><span style="color: #D0BF8F;">)</span>
           <span style="color: #D0BF8F;">(</span>set! a <span style="color: #BFEBBF;">11</span><span style="color: #D0BF8F;">)</span>
@@ -1546,7 +1592,6 @@ Examples:
 literal: 字面值直接用 <code>equal?</code> 测试是否相等
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>match <span style="color: #BFEBBF;">2</span>
        <span style="color: #BFEBBF;">[</span><span style="color: #BFEBBF;">1</span> 'one<span style="color: #BFEBBF;">]</span>
        <span style="color: #BFEBBF;">[</span><span style="color: #BFEBBF;">2</span> 'two<span style="color: #BFEBBF;">]</span>
@@ -1560,7 +1605,6 @@ literal: 字面值直接用 <code>equal?</code> 测试是否相等
 (list lvp &#x2026;): 会绑定对应的标识符,注意几个特殊符号,vector和list类似
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>match '<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">1</span> + <span style="color: #BFEBBF;">2</span><span style="color: #BFEBBF;">)</span>
 <span style="color: #BFEBBF;">[</span><span style="color: #D0BF8F;">(</span>list a '+ b<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>+ a b<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">]</span><span style="color: #DCDCCC;">)</span>         <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">return 3</span>
 
@@ -1580,7 +1624,6 @@ literal: 字面值直接用 <code>equal?</code> 测试是否相等
 一些变量
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>define-struct tree <span style="color: #BFEBBF;">(</span>val left right<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #DCDCCC;">(</span>match <span style="color: #BFEBBF;">(</span>make-tree <span style="color: #BFEBBF;">0</span> <span style="color: #D0BF8F;">(</span>make-tree <span style="color: #BFEBBF;">1</span> #f #f<span style="color: #D0BF8F;">)</span> #f<span style="color: #BFEBBF;">)</span>
        <span style="color: #BFEBBF;">[</span><span style="color: #D0BF8F;">(</span>tree a <span style="color: #93E0E3;">(</span>tree b  _ _<span style="color: #93E0E3;">)</span> _<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>list a b<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">]</span><span style="color: #DCDCCC;">)</span>       <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">'(0 1)</span>
@@ -1592,7 +1635,6 @@ literal: 字面值直接用 <code>equal?</code> 测试是否相等
 面的pat
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>match '<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">3</span> <span style="color: #BFEBBF;">5</span><span style="color: #BFEBBF;">)</span>
        <span style="color: #BFEBBF;">[</span><span style="color: #D0BF8F;">(</span>list <span style="color: #93E0E3;">(</span>? odd?<span style="color: #93E0E3;">)</span> ...<span style="color: #D0BF8F;">)</span> 'yes<span style="color: #BFEBBF;">]</span><span style="color: #DCDCCC;">)</span>
 </pre>
@@ -1601,7 +1643,6 @@ literal: 字面值直接用 <code>equal?</code> 测试是否相等
 它的工作原理是这样,以下面的例子为例:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>match '<span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">(</span><span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span><span style="color: #D0BF8F;">)</span> <span style="color: #BFEBBF;">3</span> <span style="color: #BFEBBF;">6</span><span style="color: #BFEBBF;">)</span>
        <span style="color: #BFEBBF;">[</span>`<span style="color: #D0BF8F;">(</span>,<span style="color: #93E0E3;">(</span>? pred? `<span style="color: #9FC59F;">(</span>,a1 ,a2<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span> ,b ,c<span style="color: #D0BF8F;">)</span> `<span style="color: #D0BF8F;">(</span>,a1 ,b ,c<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">]</span><span style="color: #DCDCCC;">)</span>
 </pre>
@@ -1616,7 +1657,6 @@ literal: 字面值直接用 <code>equal?</code> 测试是否相等
 (quasiquote qp): unqote或unquote-splicing的部分会绑定为变量,其它部分会原样匹配
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>match '<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">1</span> + <span style="color: #BFEBBF;">2</span><span style="color: #BFEBBF;">)</span>
 <span style="color: #BFEBBF;">[</span>`<span style="color: #D0BF8F;">(</span>,a + ,b<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>+ a b<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">]</span><span style="color: #DCDCCC;">)</span>
 </pre>
@@ -1626,7 +1666,6 @@ a b都是unquote指定的部分,所以绑定为变量, 其它部分比如 + 就�
 (? expr pat &#x2026;)结合使用:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>match '<span style="color: #BFEBBF;">(</span>+ a <span style="color: #CC9393;">"hello"</span><span style="color: #BFEBBF;">)</span>
        <span style="color: #BFEBBF;">[</span>`<span style="color: #D0BF8F;">(</span>+ a ,<span style="color: #93E0E3;">(</span>? number? x<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span> x<span style="color: #BFEBBF;">]</span>
        <span style="color: #BFEBBF;">[</span>`<span style="color: #D0BF8F;">(</span>+ a ,<span style="color: #93E0E3;">(</span>? string? x<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span> x<span style="color: #BFEBBF;">]</span><span style="color: #DCDCCC;">)</span>
@@ -1644,7 +1683,6 @@ a b都是unquote指定的部分,所以绑定为变量, 其它部分比如 + 就�
 unquote(,): 指定的部分会先求职,在插入list中
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>quasiquote <span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span> <span style="color: #D0BF8F;">(</span>unquote <span style="color: #93E0E3;">(</span>+ <span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>unquote <span style="color: #93E0E3;">(</span>- <span style="color: #BFEBBF;">5</span> <span style="color: #BFEBBF;">1</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #5F7F5F;">;;; </span><span style="color: #7F9F7F;">equivalent</span>
 `<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span> ,<span style="color: #BFEBBF;">(</span>+ <span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span><span style="color: #BFEBBF;">)</span> ,<span style="color: #BFEBBF;">(</span>+ <span style="color: #BFEBBF;">5</span> <span style="color: #BFEBBF;">1</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>                <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">'(1 2 3 6)</span>
@@ -1656,7 +1694,6 @@ unquote-splicing(,@): 和unquote的行为类似, 只是它所指定的表达式�
 须返回list,这个list中的元素会拆开然后插入原list中
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme">`<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span> ,@<span style="color: #BFEBBF;">(</span>list <span style="color: #D0BF8F;">(</span>+ <span style="color: #BFEBBF;">1</span> <span style="color: #BFEBBF;">2</span><span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span><span style="color: #BFEBBF;">2</span> <span style="color: #BFEBBF;">2</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">5</span><span style="color: #DCDCCC;">)</span>         <span style="color: #5F7F5F;">;</span><span style="color: #7F9F7F;">'(1 2 3 4 5)</span>
 </pre>
 </div></li>
@@ -1665,9 +1702,9 @@ unquote-splicing(,@): 和unquote的行为类似, 只是它所指定的表达式�
 </div>
 </div>
 
-<div id="outline-container-orgheadline50" class="outline-3">
-<h3 id="orgheadline50">module</h3>
-<div class="outline-text-3" id="text-orgheadline50">
+<div id="outline-container-orgffb9feb" class="outline-3">
+<h3 id="orgffb9feb">module</h3>
+<div class="outline-text-3" id="text-orgffb9feb">
 <p>
 module的基本语法是:
 </p>
@@ -1679,7 +1716,6 @@ module的基本语法是:
 例子:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>module cake racket
         <span style="color: #BFEBBF;">(</span>provide print-cake<span style="color: #BFEBBF;">)</span>
 
@@ -1706,16 +1742,15 @@ module的基本语法是:
 入该模块时才会求值
 </p>
 </div>
-<div id="outline-container-orgheadline51" class="outline-4">
-<h4 id="orgheadline51">submodule</h4>
-<div class="outline-text-4" id="text-orgheadline51">
+<div id="outline-container-org949c31f" class="outline-4">
+<h4 id="org949c31f">submodule</h4>
+<div class="outline-text-4" id="text-org949c31f">
 <p>
 一个文件只能包含一个顶层模块,这个模块可以通过 <code>module</code> 指定,也可以通
 过 <code>lang lang-name</code> 来间接的指定, 那么在这个顶层模块中又可以定义子模块,比
 如如下代码:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme">#lang racket
 <span style="color: #DCDCCC;">(</span>module zoo racket
         <span style="color: #BFEBBF;">(</span>provide tiger<span style="color: #BFEBBF;">)</span>
@@ -1734,9 +1769,9 @@ tiger
 入子模块了
 </p>
 </div>
-<div id="outline-container-orgheadline52" class="outline-5">
-<h5 id="orgheadline52">module*                                                                   :module*:</h5>
-<div class="outline-text-5" id="text-orgheadline52">
+<div id="outline-container-org75a9f5f" class="outline-5">
+<h5 id="org75a9f5f">module*                                                                   :module*:</h5>
+<div class="outline-text-5" id="text-org75a9f5f">
 <pre class="example">
 (module* name-id initial-module-path-or-#f
 decl ...)
@@ -1748,7 +1783,6 @@ decl ...)
 见.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme">#lang racket
 
 <span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #BFEBBF;">(</span><span style="color: #93E0E3;">print-cake</span> n<span style="color: #BFEBBF;">)</span>
@@ -1774,9 +1808,9 @@ submodule的名字为main时,有一个特殊的地方,也就是说当前的文�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline53" class="outline-5">
-<h5 id="orgheadline53">module+                                                                   :module+:</h5>
-<div class="outline-text-5" id="text-orgheadline53">
+<div id="outline-container-org9a449c8" class="outline-5">
+<h5 id="org9a449c8">module+                                                                   :module+:</h5>
+<div class="outline-text-5" id="text-org9a449c8">
 <pre class="example">
 (module+ name-id
 decl ...)
@@ -1795,9 +1829,9 @@ test filename.rkt来运行测试代码
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline54" class="outline-4">
-<h4 id="orgheadline54">lang</h4>
-<div class="outline-text-4" id="text-orgheadline54">
+<div id="outline-container-orgcfcfa85" class="outline-4">
+<h4 id="orgcfcfa85">lang</h4>
+<div class="outline-text-4" id="text-orgcfcfa85">
 <p>
 racket的源文件一般需要使用 <code>#lang lang-name</code> 这样的方式来指定语言,这个实际是一
 个module的简写方式,比如 <code>#lang racket</code> 等价于:
@@ -1812,15 +1846,14 @@ racket的源文件一般需要使用 <code>#lang lang-name</code> 这样的方�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline55" class="outline-4">
-<h4 id="orgheadline55">require</h4>
-<div class="outline-text-4" id="text-orgheadline55">
+<div id="outline-container-orgac5096f" class="outline-4">
+<h4 id="orgac5096f">require</h4>
+<div class="outline-text-4" id="text-orgac5096f">
 <ol class="org-ol">
 <li><p>
 如果是文件那么应该使用这样的语法:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>require <span style="color: #CC9393;">"aa.rkt"</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #DCDCCC;">(</span>require <span style="color: #CC9393;">"../aa.rkt"</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #DCDCCC;">(</span>require <span style="color: #CC9393;">"../subdirectory/aa.rkt"</span><span style="color: #DCDCCC;">)</span>
@@ -1836,9 +1869,9 @@ racket的源文件一般需要使用 <code>#lang lang-name</code> 这样的方�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline56" class="outline-4">
-<h4 id="orgheadline56">provide</h4>
-<div class="outline-text-4" id="text-orgheadline56">
+<div id="outline-container-org4febb64" class="outline-4">
+<h4 id="org4febb64">provide</h4>
+<div class="outline-text-4" id="text-org4febb64">
 <ul class="org-ul">
 <li>导出所有: <code>(provide (all-defined-out))</code></li>
 <li>只导出通过require引入的绑定: <code>(provide (all-from-out))</code></li>
@@ -1850,7 +1883,6 @@ racket的源文件一般需要使用 <code>#lang lang-name</code> 这样的方�
 some example:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>provide run run-all<span style="color: #DCDCCC;">)</span>
 <span style="color: #DCDCCC;">(</span>provide <span style="color: #BFEBBF;">(</span>all-defined-out<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
@@ -1859,14 +1891,13 @@ some example:
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline66" class="outline-2">
-<h2 id="orgheadline66">typed racket</h2>
-<div class="outline-text-2" id="text-orgheadline66">
-</div><div id="outline-container-orgheadline58" class="outline-3">
-<h3 id="orgheadline58">sample program</h3>
-<div class="outline-text-3" id="text-orgheadline58">
+<div id="outline-container-orgf0f3966" class="outline-2">
+<h2 id="orgf0f3966">typed racket</h2>
+<div class="outline-text-2" id="text-orgf0f3966">
+</div><div id="outline-container-org4bf46dc" class="outline-3">
+<h3 id="org4bf46dc">sample program</h3>
+<div class="outline-text-3" id="text-org4bf46dc">
 <div class="org-src-container">
-
 <pre class="src src-scheme">#lang typed/racket
 <span style="color: #DCDCCC;">(</span>struct: pt <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span>x : Real<span style="color: #D0BF8F;">]</span> <span style="color: #D0BF8F;">[</span>y : Real<span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 
@@ -1878,12 +1909,12 @@ some example:
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline65" class="outline-3">
-<h3 id="orgheadline65">Types</h3>
-<div class="outline-text-3" id="text-orgheadline65">
-</div><div id="outline-container-orgheadline59" class="outline-4">
-<h4 id="orgheadline59">Basic Types</h4>
-<div class="outline-text-4" id="text-orgheadline59">
+<div id="outline-container-org0da67f4" class="outline-3">
+<h3 id="org0da67f4">Types</h3>
+<div class="outline-text-3" id="text-org0da67f4">
+</div><div id="outline-container-orgd9a0dfb" class="outline-4">
+<h4 id="orgd9a0dfb">Basic Types</h4>
+<div class="outline-text-4" id="text-orgd9a0dfb">
 <ol class="org-ol">
 <li>Number</li>
 <li>Char</li>
@@ -1892,23 +1923,22 @@ some example:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline60" class="outline-4">
-<h4 id="orgheadline60">Function Type</h4>
-<div class="outline-text-4" id="text-orgheadline60">
+<div id="outline-container-orgc86f259" class="outline-4">
+<h4 id="orgc86f259">Function Type</h4>
+<div class="outline-text-4" id="text-orgc86f259">
 <p>
 (Number -&gt; Number)
 (String String -&gt; Number)
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline61" class="outline-4">
-<h4 id="orgheadline61">Union Type</h4>
-<div class="outline-text-4" id="text-orgheadline61">
+<div id="outline-container-orgb7962ae" class="outline-4">
+<h4 id="orgb7962ae">Union Type</h4>
+<div class="outline-text-4" id="text-orgb7962ae">
 <p>
 当一个类型有几种变种时, 应该使用Union Type
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme">#lang typed/racket
 <span style="color: #DCDCCC;">(</span>define-type Tree <span style="color: #BFEBBF;">(</span>U leaf node<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #DCDCCC;">(</span>struct: leaf <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[</span>val : Number<span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
@@ -1926,29 +1956,27 @@ some example:
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline62" class="outline-4">
-<h4 id="orgheadline62">Recursive Type</h4>
-<div class="outline-text-4" id="text-orgheadline62">
+<div id="outline-container-org845c16f" class="outline-4">
+<h4 id="org845c16f">Recursive Type</h4>
+<div class="outline-text-4" id="text-org845c16f">
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>define-type BinaryTree <span style="color: #BFEBBF;">(</span>Rec BT <span style="color: #D0BF8F;">(</span>U Number <span style="color: #93E0E3;">(</span>Pair BT BT<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline63" class="outline-4">
-<h4 id="orgheadline63">Subtyping</h4>
-<div class="outline-text-4" id="text-orgheadline63">
+<div id="outline-container-org3bd12f6" class="outline-4">
+<h4 id="org3bd12f6">Subtyping</h4>
+<div class="outline-text-4" id="text-org3bd12f6">
 <p>
 任何类型都是Any的子类型.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline64" class="outline-4">
-<h4 id="orgheadline64">Polymorphism</h4>
-<div class="outline-text-4" id="text-orgheadline64">
+<div id="outline-container-org6b6a89f" class="outline-4">
+<h4 id="org6b6a89f">Polymorphism</h4>
+<div class="outline-text-4" id="text-org6b6a89f">
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span>: list-length <span style="color: #BFEBBF;">(</span>All <span style="color: #D0BF8F;">(</span>A<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>Listof A<span style="color: #93E0E3;">)</span> -&gt; Integer<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #BFEBBF;">(</span><span style="color: #93E0E3;">list-length</span> l<span style="color: #BFEBBF;">)</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>null? l<span style="color: #D0BF8F;">)</span>

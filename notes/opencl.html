@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>OpenCL笔记</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,6 +176,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -175,32 +260,32 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline5">configuration</a>
+<li><a href="#org601f02e">configuration</a>
 <ul>
-<li><a href="#orgheadline3">Linux(ubuntu, mint)</a>
+<li><a href="#org3d4cb29">Linux(ubuntu, mint)</a>
 <ul>
-<li><a href="#orgheadline1">nvidia gpu</a></li>
-<li><a href="#orgheadline2">ATI GPU</a></li>
+<li><a href="#org6e0b254">nvidia gpu</a></li>
+<li><a href="#org20f506b">ATI GPU</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline4">windows(pyopencl)</a></li>
+<li><a href="#org06c5895">windows(pyopencl)</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline6">DATETYPES</a></li>
-<li><a href="#orgheadline7">图像类型中的坑</a></li>
-<li><a href="#orgheadline8">Optimization</a></li>
+<li><a href="#org7ab10d6">DATETYPES</a></li>
+<li><a href="#org9092228">图像类型中的坑</a></li>
+<li><a href="#org3f9fb97">Optimization</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5">configuration</h2>
-<div class="outline-text-2" id="text-orgheadline5">
-</div><div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">Linux(ubuntu, mint)</h3>
-<div class="outline-text-3" id="text-orgheadline3">
-</div><div id="outline-container-orgheadline1" class="outline-4">
-<h4 id="orgheadline1">nvidia gpu</h4>
-<div class="outline-text-4" id="text-orgheadline1">
+<div id="outline-container-org601f02e" class="outline-2">
+<h2 id="org601f02e">configuration</h2>
+<div class="outline-text-2" id="text-org601f02e">
+</div><div id="outline-container-org3d4cb29" class="outline-3">
+<h3 id="org3d4cb29">Linux(ubuntu, mint)</h3>
+<div class="outline-text-3" id="text-org3d4cb29">
+</div><div id="outline-container-org6e0b254" class="outline-4">
+<h4 id="org6e0b254">nvidia gpu</h4>
+<div class="outline-text-4" id="text-org6e0b254">
 <pre class="example">
 sudo apt-get install nvidia-cuda-toolkit nvidia-opencl-dev
 </pre>
@@ -209,9 +294,9 @@ restart the OS.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-4">
-<h4 id="orgheadline2">ATI GPU</h4>
-<div class="outline-text-4" id="text-orgheadline2">
+<div id="outline-container-org20f506b" class="outline-4">
+<h4 id="org20f506b">ATI GPU</h4>
+<div class="outline-text-4" id="text-org20f506b">
 <ol class="org-ol">
 <li><p>
 安装依赖包
@@ -225,9 +310,9 @@ sudo apt-get install dh-modaliases execstack debhelper dkms lib32gcc1
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">windows(pyopencl)</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-org06c5895" class="outline-3">
+<h3 id="org06c5895">windows(pyopencl)</h3>
+<div class="outline-text-3" id="text-org06c5895">
 <ol class="org-ol">
 <li>安装Opencl, 这个比较简单，先装显卡驱动，在装APP SDK</li>
 <li>先安装python环境
@@ -243,9 +328,9 @@ windows的版本，64位就选amd64</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6">DATETYPES</h2>
-<div class="outline-text-2" id="text-orgheadline6">
+<div id="outline-container-org7ab10d6" class="outline-2">
+<h2 id="org7ab10d6">DATETYPES</h2>
+<div class="outline-text-2" id="text-org7ab10d6">
 <ol class="org-ol">
 <li>在kernel中，只能用C99的内置类型， 比如char，bool，int，float等等，但是这些
 内置类型都是指定了确切大小的。</li>
@@ -257,9 +342,9 @@ kernel中不能用，实际上在host代码中还有一种方法，就是使用C
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-2">
-<h2 id="orgheadline7">图像类型中的坑</h2>
-<div class="outline-text-2" id="text-orgheadline7">
+<div id="outline-container-org9092228" class="outline-2">
+<h2 id="org9092228">图像类型中的坑</h2>
+<div class="outline-text-2" id="text-org9092228">
 <ol class="org-ol">
 <li>图像类型虽然支持CL_RGB 但是这个不支持每一个channel是8位的数据， 所以大多数
 时候你必须给RGB的数据添加一位，来让它变成rgba，这主要是出于对齐考虑</li>
@@ -268,9 +353,9 @@ OpenCL2.0开始支持图像类型的可读可写.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-2">
-<h2 id="orgheadline8">Optimization</h2>
-<div class="outline-text-2" id="text-orgheadline8">
+<div id="outline-container-org3f9fb97" class="outline-2">
+<h2 id="org3f9fb97">Optimization</h2>
+<div class="outline-text-2" id="text-org3f9fb97">
 <ol class="org-ol">
 <li>work group 的大小最好是64的倍数</li>
 <li>使用local memory可以显著的提高性能</li>

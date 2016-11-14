@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:05 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>tags</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,6 +176,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -174,16 +259,16 @@ for the JavaScript code in this tag.
 </div>
 <div id="content">
 <h1 class="title">tags</h1>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="computation"><a id="orgheadline1"></a>computation</h2>
+<div id="outline-container-orgc8c75d3" class="outline-2">
+<h2 id="computation"><a id="orgc8c75d3"></a>computation</h2>
 <div class="outline-text-2" id="text-computation">
 <ul class="org-ul">
 <li><a href="notes/Theory-Computation.html">计算理论导引</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="mathematics"><a id="orgheadline2"></a>mathematics</h2>
+<div id="outline-container-orgc80f5a9" class="outline-2">
+<h2 id="mathematics"><a id="orgc80f5a9"></a>mathematics</h2>
 <div class="outline-text-2" id="text-mathematics">
 <ul class="org-ul">
 <li><a href="notes/Probability.html">概率论与数理统计笔记</a></li>
@@ -193,32 +278,32 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="统计"><a id="orgheadline3"></a>统计</h2>
+<div id="outline-container-org32dc57a" class="outline-2">
+<h2 id="统计"><a id="org32dc57a"></a>统计</h2>
 <div class="outline-text-2" id="text-统计">
 <ul class="org-ul">
 <li><a href="notes/Probability.html">概率论与数理统计笔记</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="概率论"><a id="orgheadline4"></a>概率论</h2>
+<div id="outline-container-org5f03c02" class="outline-2">
+<h2 id="概率论"><a id="org5f03c02"></a>概率论</h2>
 <div class="outline-text-2" id="text-概率论">
 <ul class="org-ul">
 <li><a href="notes/Probability.html">概率论与数理统计笔记</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="Probability"><a id="orgheadline5"></a>Probability</h2>
+<div id="outline-container-org5e17307" class="outline-2">
+<h2 id="Probability"><a id="org5e17307"></a>Probability</h2>
 <div class="outline-text-2" id="text-Probability">
 <ul class="org-ul">
 <li><a href="notes/Probability.html">概率论与数理统计笔记</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="theory"><a id="orgheadline6"></a>theory</h2>
+<div id="outline-container-org3b72652" class="outline-2">
+<h2 id="theory"><a id="org3b72652"></a>theory</h2>
 <div class="outline-text-2" id="text-theory">
 <ul class="org-ul">
 <li><a href="notes/number-theory.html">数论</a></li>
@@ -227,40 +312,40 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-2">
-<h2 id="number"><a id="orgheadline7"></a>number</h2>
+<div id="outline-container-org3bf6190" class="outline-2">
+<h2 id="number"><a id="org3bf6190"></a>number</h2>
 <div class="outline-text-2" id="text-number">
 <ul class="org-ul">
 <li><a href="notes/number-theory.html">数论</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-2">
-<h2 id="logic"><a id="orgheadline8"></a>logic</h2>
+<div id="outline-container-org707393e" class="outline-2">
+<h2 id="logic"><a id="org707393e"></a>logic</h2>
 <div class="outline-text-2" id="text-logic">
 <ul class="org-ul">
 <li><a href="notes/logic.html">数理逻辑</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-2">
-<h2 id="investment"><a id="orgheadline9"></a>investment</h2>
+<div id="outline-container-org5217133" class="outline-2">
+<h2 id="investment"><a id="org5217133"></a>investment</h2>
 <div class="outline-text-2" id="text-investment">
 <ul class="org-ul">
 <li><a href="notes/investment.html">投资笔记</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-2">
-<h2 id="information"><a id="orgheadline10"></a>information</h2>
+<div id="outline-container-org9c85586" class="outline-2">
+<h2 id="information"><a id="org9c85586"></a>information</h2>
 <div class="outline-text-2" id="text-information">
 <ul class="org-ul">
 <li><a href="notes/information-theory.html">信息论</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-2">
-<h2 id="emacs"><a id="orgheadline11"></a>emacs</h2>
+<div id="outline-container-org057994e" class="outline-2">
+<h2 id="emacs"><a id="org057994e"></a>emacs</h2>
 <div class="outline-text-2" id="text-emacs">
 <ul class="org-ul">
 <li><a href="notes/spacemacs.html">spacemacs笔记</a></li>
@@ -269,8 +354,8 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-2">
-<h2 id="lisp"><a id="orgheadline12"></a>lisp</h2>
+<div id="outline-container-org4561218" class="outline-2">
+<h2 id="lisp"><a id="org4561218"></a>lisp</h2>
 <div class="outline-text-2" id="text-lisp">
 <ul class="org-ul">
 <li><a href="notes/scheme.html">scheme笔记</a></li>
@@ -279,8 +364,8 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-2">
-<h2 id="scheme"><a id="orgheadline13"></a>scheme</h2>
+<div id="outline-container-org1f10c6d" class="outline-2">
+<h2 id="scheme"><a id="org1f10c6d"></a>scheme</h2>
 <div class="outline-text-2" id="text-scheme">
 <ul class="org-ul">
 <li><a href="notes/scheme.html">scheme笔记</a></li>
@@ -289,8 +374,8 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-2">
-<h2 id="python"><a id="orgheadline14"></a>python</h2>
+<div id="outline-container-org48dc44c" class="outline-2">
+<h2 id="python"><a id="org48dc44c"></a>python</h2>
 <div class="outline-text-2" id="text-python">
 <ul class="org-ul">
 <li><a href="notes/python-note.html">python笔记</a></li>
@@ -300,16 +385,16 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline15" class="outline-2">
-<h2 id="syntax"><a id="orgheadline15"></a>syntax</h2>
+<div id="outline-container-org8fcc6ff" class="outline-2">
+<h2 id="syntax"><a id="org8fcc6ff"></a>syntax</h2>
 <div class="outline-text-2" id="text-syntax">
 <ul class="org-ul">
 <li><a href="notes/javascript.html">javascript笔记</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline16" class="outline-2">
-<h2 id="javascript"><a id="orgheadline16"></a>javascript</h2>
+<div id="outline-container-org9467e02" class="outline-2">
+<h2 id="javascript"><a id="org9467e02"></a>javascript</h2>
 <div class="outline-text-2" id="text-javascript">
 <ul class="org-ul">
 <li><a href="notes/javascript.html">javascript笔记</a></li>
@@ -318,48 +403,48 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline17" class="outline-2">
-<h2 id="jquery"><a id="orgheadline17"></a>jquery</h2>
+<div id="outline-container-org12e7526" class="outline-2">
+<h2 id="jquery"><a id="org12e7526"></a>jquery</h2>
 <div class="outline-text-2" id="text-jquery">
 <ul class="org-ul">
 <li><a href="notes/jquery.html">jQuery</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-2">
-<h2 id="method"><a id="orgheadline18"></a>method</h2>
+<div id="outline-container-org88be430" class="outline-2">
+<h2 id="method"><a id="org88be430"></a>method</h2>
 <div class="outline-text-2" id="text-method">
 <ul class="org-ul">
 <li><a href="notes/how-to-study.html">how to study</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline19" class="outline-2">
-<h2 id="study"><a id="orgheadline19"></a>study</h2>
+<div id="outline-container-orga47158a" class="outline-2">
+<h2 id="study"><a id="orga47158a"></a>study</h2>
 <div class="outline-text-2" id="text-study">
 <ul class="org-ul">
 <li><a href="notes/how-to-study.html">how to study</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline20" class="outline-2">
-<h2 id="github"><a id="orgheadline20"></a>github</h2>
+<div id="outline-container-orgaeca9ab" class="outline-2">
+<h2 id="github"><a id="orgaeca9ab"></a>github</h2>
 <div class="outline-text-2" id="text-github">
 <ul class="org-ul">
 <li><a href="notes/git.html">git/github学习笔记</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline21" class="outline-2">
-<h2 id="git"><a id="orgheadline21"></a>git</h2>
+<div id="outline-container-orgd1024f1" class="outline-2">
+<h2 id="git"><a id="orgd1024f1"></a>git</h2>
 <div class="outline-text-2" id="text-git">
 <ul class="org-ul">
 <li><a href="notes/git.html">git/github学习笔记</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline22" class="outline-2">
-<h2 id="web"><a id="orgheadline22"></a>web</h2>
+<div id="outline-container-org716936a" class="outline-2">
+<h2 id="web"><a id="org716936a"></a>web</h2>
 <div class="outline-text-2" id="text-web">
 <ul class="org-ul">
 <li><a href="notes/css.html">css笔记</a></li>
@@ -368,136 +453,136 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline23" class="outline-2">
-<h2 id="css"><a id="orgheadline23"></a>css</h2>
+<div id="outline-container-orgf880640" class="outline-2">
+<h2 id="css"><a id="orgf880640"></a>css</h2>
 <div class="outline-text-2" id="text-css">
 <ul class="org-ul">
 <li><a href="notes/css.html">css笔记</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline24" class="outline-2">
-<h2 id="type"><a id="orgheadline24"></a>type</h2>
+<div id="outline-container-org4fa0e01" class="outline-2">
+<h2 id="type"><a id="org4fa0e01"></a>type</h2>
 <div class="outline-text-2" id="text-type">
 <ul class="org-ul">
 <li><a href="notes/type-system.html">Type System</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline25" class="outline-2">
-<h2 id="intepreter"><a id="orgheadline25"></a>intepreter</h2>
+<div id="outline-container-org8d84a68" class="outline-2">
+<h2 id="intepreter"><a id="org8d84a68"></a>intepreter</h2>
 <div class="outline-text-2" id="text-intepreter">
 <ul class="org-ul">
 <li><a href="notes/EOPL.html">The Essential of Programming language</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline26" class="outline-2">
-<h2 id="language"><a id="orgheadline26"></a>language</h2>
+<div id="outline-container-orgf98fcbe" class="outline-2">
+<h2 id="language"><a id="orgf98fcbe"></a>language</h2>
 <div class="outline-text-2" id="text-language">
 <ul class="org-ul">
 <li><a href="notes/EOPL.html">The Essential of Programming language</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline27" class="outline-2">
-<h2 id="programming"><a id="orgheadline27"></a>programming</h2>
+<div id="outline-container-org7af47a6" class="outline-2">
+<h2 id="programming"><a id="org7af47a6"></a>programming</h2>
 <div class="outline-text-2" id="text-programming">
 <ul class="org-ul">
 <li><a href="notes/EOPL.html">The Essential of Programming language</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline28" class="outline-2">
-<h2 id="EOPL"><a id="orgheadline28"></a>EOPL</h2>
+<div id="outline-container-org26a7a6f" class="outline-2">
+<h2 id="EOPL"><a id="org26a7a6f"></a>EOPL</h2>
 <div class="outline-text-2" id="text-EOPL">
 <ul class="org-ul">
 <li><a href="notes/EOPL.html">The Essential of Programming language</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline29" class="outline-2">
-<h2 id="SICP"><a id="orgheadline29"></a>SICP</h2>
+<div id="outline-container-org0372e57" class="outline-2">
+<h2 id="SICP"><a id="org0372e57"></a>SICP</h2>
 <div class="outline-text-2" id="text-SICP">
 <ul class="org-ul">
 <li><a href="notes/sicp.html">SICP笔记</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline30" class="outline-2">
-<h2 id="set"><a id="orgheadline30"></a>set</h2>
+<div id="outline-container-orgc0265f3" class="outline-2">
+<h2 id="set"><a id="orgc0265f3"></a>set</h2>
 <div class="outline-text-2" id="text-set">
 <ul class="org-ul">
 <li><a href="notes/set-theory.html">SET THEORY</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline31" class="outline-2">
-<h2 id="php"><a id="orgheadline31"></a>php</h2>
+<div id="outline-container-org9c1703f" class="outline-2">
+<h2 id="php"><a id="org9c1703f"></a>php</h2>
 <div class="outline-text-2" id="text-php">
 <ul class="org-ul">
 <li><a href="notes/php.html">PHP笔记</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline32" class="outline-2">
-<h2 id="mysql"><a id="orgheadline32"></a>mysql</h2>
+<div id="outline-container-org4d1482d" class="outline-2">
+<h2 id="mysql"><a id="org4d1482d"></a>mysql</h2>
 <div class="outline-text-2" id="text-mysql">
 <ul class="org-ul">
 <li><a href="notes/sql.html">MySQL笔记</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline33" class="outline-2">
-<h2 id="SQL"><a id="orgheadline33"></a>SQL</h2>
+<div id="outline-container-org21b5f1a" class="outline-2">
+<h2 id="SQL"><a id="org21b5f1a"></a>SQL</h2>
 <div class="outline-text-2" id="text-SQL">
 <ul class="org-ul">
 <li><a href="notes/sql.html">MySQL笔记</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline34" class="outline-2">
-<h2 id="db"><a id="orgheadline34"></a>db</h2>
+<div id="outline-container-org8ab4bec" class="outline-2">
+<h2 id="db"><a id="org8ab4bec"></a>db</h2>
 <div class="outline-text-2" id="text-db">
 <ul class="org-ul">
 <li><a href="notes/database.html">Database</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline35" class="outline-2">
-<h2 id="django"><a id="orgheadline35"></a>django</h2>
+<div id="outline-container-org85c548a" class="outline-2">
+<h2 id="django"><a id="org85c548a"></a>django</h2>
 <div class="outline-text-2" id="text-django">
 <ul class="org-ul">
 <li><a href="notes/django.html">DJANGO笔记</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline36" class="outline-2">
-<h2 id="java"><a id="orgheadline36"></a>java</h2>
+<div id="outline-container-orga140928" class="outline-2">
+<h2 id="java"><a id="orga140928"></a>java</h2>
 <div class="outline-text-2" id="text-java">
 <ul class="org-ul">
 <li><a href="notes/clojure.html">Clojure笔记</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline37" class="outline-2">
-<h2 id="clojure"><a id="orgheadline37"></a>clojure</h2>
+<div id="outline-container-orgb032046" class="outline-2">
+<h2 id="clojure"><a id="orgb032046"></a>clojure</h2>
 <div class="outline-text-2" id="text-clojure">
 <ul class="org-ul">
 <li><a href="notes/clojure.html">Clojure笔记</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline38" class="outline-2">
-<h2 id="client"><a id="orgheadline38"></a>client</h2>
+<div id="outline-container-org3eba36c" class="outline-2">
+<h2 id="client"><a id="org3eba36c"></a>client</h2>
 <div class="outline-text-2" id="text-client">
 <ul class="org-ul">
 <li><a href="notes/client-javascript.html">Client-Side javascript</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline39" class="outline-2">
-<h2 id="tfs"><a id="orgheadline39"></a>tfs</h2>
+<div id="outline-container-orgd320943" class="outline-2">
+<h2 id="tfs"><a id="orgd320943"></a>tfs</h2>
 <div class="outline-text-2" id="text-tfs">
 <ul class="org-ul">
 <li><a href="notes/big-data.html">Big Data</a></li>
@@ -505,8 +590,8 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline40" class="outline-2">
-<h2 id="fastdfs"><a id="orgheadline40"></a>fastdfs</h2>
+<div id="outline-container-org755f394" class="outline-2">
+<h2 id="fastdfs"><a id="org755f394"></a>fastdfs</h2>
 <div class="outline-text-2" id="text-fastdfs">
 <ul class="org-ul">
 <li><a href="notes/big-data.html">Big Data</a></li>
@@ -514,72 +599,72 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline41" class="outline-2">
-<h2 id="源码分析"><a id="orgheadline41"></a>源码分析</h2>
+<div id="outline-container-org3d786f1" class="outline-2">
+<h2 id="源码分析"><a id="org3d786f1"></a>源码分析</h2>
 <div class="outline-text-2" id="text-源码分析">
 <ul class="org-ul">
 <li><a href="articles/web-py-source-code.html">webpy源代码分析</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline42" class="outline-2">
-<h2 id="webpy"><a id="orgheadline42"></a>webpy</h2>
+<div id="outline-container-orgcd004d3" class="outline-2">
+<h2 id="webpy"><a id="orgcd004d3"></a>webpy</h2>
 <div class="outline-text-2" id="text-webpy">
 <ul class="org-ul">
 <li><a href="articles/web-py-source-code.html">webpy源代码分析</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline43" class="outline-2">
-<h2 id="defect"><a id="orgheadline43"></a>defect</h2>
+<div id="outline-container-org8320c69" class="outline-2">
+<h2 id="defect"><a id="org8320c69"></a>defect</h2>
 <div class="outline-text-2" id="text-defect">
 <ul class="org-ul">
 <li><a href="articles/defects-of-python.html">python的“缺点”</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline44" class="outline-2">
-<h2 id="coroutine"><a id="orgheadline44"></a>coroutine</h2>
+<div id="outline-container-org43811f9" class="outline-2">
+<h2 id="coroutine"><a id="org43811f9"></a>coroutine</h2>
 <div class="outline-text-2" id="text-coroutine">
 <ul class="org-ul">
 <li><a href="articles/gevent.html">gevent源码分析</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline45" class="outline-2">
-<h2 id="gevent"><a id="orgheadline45"></a>gevent</h2>
+<div id="outline-container-org3b37ea3" class="outline-2">
+<h2 id="gevent"><a id="org3b37ea3"></a>gevent</h2>
 <div class="outline-text-2" id="text-gevent">
 <ul class="org-ul">
 <li><a href="articles/gevent.html">gevent源码分析</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline46" class="outline-2">
-<h2 id="mess"><a id="orgheadline46"></a>mess</h2>
+<div id="outline-container-org02ca31e" class="outline-2">
+<h2 id="mess"><a id="org02ca31e"></a>mess</h2>
 <div class="outline-text-2" id="text-mess">
 <ul class="org-ul">
 <li><a href="articles/linux-c-garbled-characters.html">Linux平台C语言乱码</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline47" class="outline-2">
-<h2 id="c"><a id="orgheadline47"></a>c</h2>
+<div id="outline-container-orgd568b9a" class="outline-2">
+<h2 id="c"><a id="orgd568b9a"></a>c</h2>
 <div class="outline-text-2" id="text-c">
 <ul class="org-ul">
 <li><a href="articles/linux-c-garbled-characters.html">Linux平台C语言乱码</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline48" class="outline-2">
-<h2 id="linux"><a id="orgheadline48"></a>linux</h2>
+<div id="outline-container-org110e89b" class="outline-2">
+<h2 id="linux"><a id="org110e89b"></a>linux</h2>
 <div class="outline-text-2" id="text-linux">
 <ul class="org-ul">
 <li><a href="articles/linux-c-garbled-characters.html">Linux平台C语言乱码</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline49" class="outline-2">
-<h2 id="continuation"><a id="orgheadline49"></a>continuation</h2>
+<div id="outline-container-org1336f89" class="outline-2">
+<h2 id="continuation"><a id="org1336f89"></a>continuation</h2>
 <div class="outline-text-2" id="text-continuation">
 <ul class="org-ul">
 <li><a href="articles/continuation.html">Continuation</a></li>

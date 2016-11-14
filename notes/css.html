@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>css笔记</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="css web" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="css web" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -198,94 +283,93 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">三种引用css的方法</a></li>
-<li><a href="#orgheadline2">优先级</a></li>
-<li><a href="#orgheadline3">css selector</a>
+<li><a href="#orga334521">三种引用css的方法</a></li>
+<li><a href="#org74f5b2a">优先级</a></li>
+<li><a href="#orgff39735">css selector</a>
 <ul>
-<li><a href="#orgheadline4">伪类与伪对象</a></li>
+<li><a href="#orge91555f">伪类与伪对象</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline11">css box</a>
+<li><a href="#org803a54d">css box</a>
 <ul>
-<li><a href="#orgheadline5">基本解释</a></li>
-<li><a href="#orgheadline6">margin的负值</a></li>
-<li><a href="#orgheadline7">框类型</a>
+<li><a href="#org398d494">基本解释</a></li>
+<li><a href="#org7c2a7ce">margin的负值</a></li>
+<li><a href="#org77a0ed6">框类型</a>
 <ul>
-<li><a href="#orgheadline8">display</a></li>
+<li><a href="#orgc1224a8">display</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline9">上下margin叠加问题</a></li>
-<li><a href="#orgheadline10">IE6 的左右margin加倍</a></li>
+<li><a href="#orgde025e6">上下margin叠加问题</a></li>
+<li><a href="#org55c0ab5">IE6 的左右margin加倍</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline12">css定位</a>
+<li><a href="#org61d860c">css定位</a>
 <ul>
-<li><a href="#orgheadline13">普通文档流</a></li>
-<li><a href="#orgheadline14">绝对定位</a></li>
-<li><a href="#orgheadline19">浮动定位</a>
+<li><a href="#org9ed4c11">普通文档流</a></li>
+<li><a href="#orga2ab503">绝对定位</a></li>
+<li><a href="#orgea6810c">浮动定位</a>
 <ul>
-<li><a href="#orgheadline15">浮动的基本原理</a></li>
-<li><a href="#orgheadline16">clear</a></li>
-<li><a href="#orgheadline18">浮动的注意事项</a>
+<li><a href="#org15c4fc2">浮动的基本原理</a></li>
+<li><a href="#orgddbe344">clear</a></li>
+<li><a href="#org6903a34">浮动的注意事项</a>
 <ul>
-<li><a href="#orgheadline17">浮动元素是不占据空间的</a></li>
+<li><a href="#orgb4bb5cb">浮动元素是不占据空间的</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline26">css的常用属性</a>
+<li><a href="#org57877b4">css的常用属性</a>
 <ul>
-<li><a href="#orgheadline20">foreground color</a></li>
-<li><a href="#orgheadline21">background</a></li>
-<li><a href="#orgheadline22">列表相关</a></li>
-<li><a href="#orgheadline23">字体相关</a></li>
-<li><a href="#orgheadline24">段落样式</a></li>
-<li><a href="#orgheadline25">链接样式</a></li>
+<li><a href="#org54fd25d">foreground color</a></li>
+<li><a href="#org43e850d">background</a></li>
+<li><a href="#org2aadf91">列表相关</a></li>
+<li><a href="#orgf256826">字体相关</a></li>
+<li><a href="#org49fbe4d">段落样式</a></li>
+<li><a href="#orgf408bc8">链接样式</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline28">表单设计</a>
+<li><a href="#org5d9561e">表单设计</a>
 <ul>
-<li><a href="#orgheadline27">输入框(input text)</a></li>
+<li><a href="#org1c071ad">输入框(input text)</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline32">css编写的一些规则</a>
+<li><a href="#orga649cd3">css编写的一些规则</a>
 <ul>
-<li><a href="#orgheadline29">id的使用场景</a></li>
-<li><a href="#orgheadline30">class的使用场景</a></li>
-<li><a href="#orgheadline31">命名</a></li>
+<li><a href="#org21325d0">id的使用场景</a></li>
+<li><a href="#org8ac1972">class的使用场景</a></li>
+<li><a href="#orge0f18b6">命名</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline43">html5与css3</a>
+<li><a href="#org33d6dd7">html5与css3</a>
 <ul>
-<li><a href="#orgheadline36">css3边框</a>
+<li><a href="#orgdf07c07">css3边框</a>
 <ul>
-<li><a href="#orgheadline33">border-radius =&gt; 圆角</a></li>
-<li><a href="#orgheadline34">box-shadow =&gt; 添加阴影</a></li>
-<li><a href="#orgheadline35">border-image =&gt; 边框图片</a></li>
+<li><a href="#orgba4fe96">border-radius =&gt; 圆角</a></li>
+<li><a href="#org0cd83e6">box-shadow =&gt; 添加阴影</a></li>
+<li><a href="#org9747fb3">border-image =&gt; 边框图片</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline37">css3背景</a></li>
-<li><a href="#orgheadline40">css3文本效果</a>
+<li><a href="#org67f8895">css3背景</a></li>
+<li><a href="#org581c76c">css3文本效果</a>
 <ul>
-<li><a href="#orgheadline38">text-shadow =&gt; 文本阴影</a></li>
-<li><a href="#orgheadline39">word-wrap =&gt; 可以对太长的单词进行换行</a></li>
+<li><a href="#org66ba570">text-shadow =&gt; 文本阴影</a></li>
+<li><a href="#orgf5bfc8d">word-wrap =&gt; 可以对太长的单词进行换行</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline41">transform =&gt; 2D，3D转换</a></li>
-<li><a href="#orgheadline42">transition (IE9及以下版本无效)</a></li>
+<li><a href="#org24fa535">transform =&gt; 2D，3D转换</a></li>
+<li><a href="#orgb6dd636">transition (IE9及以下版本无效)</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline44">sass</a></li>
+<li><a href="#orgf1e1008">sass</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">三种引用css的方法</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-orga334521" class="outline-2">
+<h2 id="orga334521">三种引用css的方法</h2>
+<div class="outline-text-2" id="text-orga334521">
 <div class="org-src-container">
-
 <pre class="src src-html"><span style="color: #5F7F5F;">&lt;!-- </span><span style="color: #7F9F7F;">&#22806;&#37096;&#26679;&#24335;&#34920; </span><span style="color: #5F7F5F;">--&gt;</span>
 &lt;<span style="color: #93E0E3;">link</span> <span style="color: #DFAF8F;">rel</span>=<span style="color: #CC9393;">"stylesheet"</span> <span style="color: #DFAF8F;">href</span>=<span style="color: #CC9393;">"/static/css/your.css"</span> <span style="color: #DFAF8F;">type</span>=<span style="color: #CC9393;">"text/css"</span> <span style="color: #DFAF8F;">media</span>=<span style="color: #CC9393;">"screen"</span> /&gt;
 <span style="color: #5F7F5F;">&lt;!-- </span><span style="color: #7F9F7F;">&#20869;&#37096;&#26679;&#24335;&#34920; </span><span style="color: #5F7F5F;">--&gt;</span>
@@ -301,9 +385,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">优先级</h2>
-<div class="outline-text-2" id="text-orgheadline2">
+<div id="outline-container-org74f5b2a" class="outline-2">
+<h2 id="org74f5b2a">优先级</h2>
+<div class="outline-text-2" id="text-org74f5b2a">
 <p>
 很多时候可能有多个css规则来指定一个元素的属性,这时需要从中选出一个优先级最
 高的规则(<b>不是后面的规则覆盖前面的规则</b>).
@@ -330,37 +414,36 @@ for the JavaScript code in this tag.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">css selector</h2>
-<div class="outline-text-2" id="text-orgheadline3">
+<div id="outline-container-orgff39735" class="outline-2">
+<h2 id="orgff39735">css selector</h2>
+<div class="outline-text-2" id="text-orgff39735">
 <div class="org-src-container">
+<pre class="src src-css"><span style="color: #93E0E3;">p </span><span style="color: #DCDCCC;">{</span><span style="color: #DFAF8F;">color</span>: red;<span style="color: #DCDCCC;">}</span>                 <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">tag selector</span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #93E0E3;">body, ul, ol </span><span style="color: #DCDCCC;">{}</span>                 <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">body,ul,ol&#26631;&#31614;, &#26377;&#36887;&#21495;&#23601;&#24847;&#21619;&#30528;&#24179;&#31561;</span><span style="color: #5F7F5F;">*/</span>
 
-<pre class="src src-css"><span style="color: #93E0E3;">p </span>{<span style="color: #DFAF8F;">color</span>: red;}                 <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">tag selector</span><span style="color: #5F7F5F;">*/</span>
-<span style="color: #93E0E3;">body, ul, ol </span>{}                 <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">body,ul,ol&#26631;&#31614;, &#26377;&#36887;&#21495;&#23601;&#24847;&#21619;&#30528;&#24179;&#31561;</span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #93E0E3;">#nav </span><span style="color: #DCDCCC;">{</span><span style="color: #DFAF8F;">font-size</span>: <span style="color: #BFEBBF;">12px</span>;<span style="color: #DCDCCC;">}</span>         <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">id selector</span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #93E0E3;">.sidebar </span><span style="color: #DCDCCC;">{</span><span style="color: #DFAF8F;">font-family</span>:Times<span style="color: #DCDCCC;">}</span>    <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">class selector</span><span style="color: #5F7F5F;">*/</span>
 
-<span style="color: #93E0E3;">#nav </span>{<span style="color: #DFAF8F;">font-size</span>: 12px;}         <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">id selector</span><span style="color: #5F7F5F;">*/</span>
-<span style="color: #93E0E3;">.sidebar </span>{<span style="color: #DFAF8F;">font-family</span>:Times}    <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">class selector</span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #93E0E3;">h1#content </span><span style="color: #DCDCCC;">{}</span>                       <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">id&#20026;content&#30340;h1&#26631;&#31614;</span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #93E0E3;">h1.blue</span><span style="color: #DCDCCC;">{}</span>                           <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">class&#20026;blue&#30340;h1&#26631;&#31614;</span><span style="color: #5F7F5F;">*/</span>
 
-<span style="color: #93E0E3;">h1#content </span>{}                       <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">id&#20026;content&#30340;h1&#26631;&#31614;</span><span style="color: #5F7F5F;">*/</span>
-<span style="color: #93E0E3;">h1.blue</span>{}                           <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">class&#20026;blue&#30340;h1&#26631;&#31614;</span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #93E0E3;">li a </span><span style="color: #DCDCCC;">{</span><span style="color: #DFAF8F;">text-decoration</span>: none;<span style="color: #DCDCCC;">}</span>   <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">descendant selector</span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #93E0E3;">li &gt; a</span><span style="color: #DCDCCC;">{</span><span style="color: #DFAF8F;">text-decoration</span>: none;<span style="color: #DCDCCC;">}</span>  <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">&#21644;li a &#30340;&#21306;&#21035;&#26159;&#36825;&#20010;&#21482;&#36873;&#25321;&#30452;&#25509;&#23376;&#33410;&#28857;(ie6&#19981;&#25903;&#25345;)</span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #93E0E3;">h1 + p</span><span style="color: #DCDCCC;">{</span><span style="color: #DFAF8F;">font-weight</span>: bold;<span style="color: #DCDCCC;">}</span>      <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">h1&#21518;&#38754;&#30340;&#31532;&#19968;&#20010;p&#33410;&#28857;(h1&#21644;p&#24212;&#35813;&#26159;&#24179;&#32423;&#30340;,&#20063;&#23601;&#26159;&#20108;&#32773;&#26159;&#20804;&#24351;&#33410;&#28857;)</span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #93E0E3;">li #content</span><span style="color: #DCDCCC;">{}</span>                   <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">li&#19979;&#25152;&#26377;id&#20026;content&#30340;&#26631;&#31614;</span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #93E0E3;">li .blue</span><span style="color: #DCDCCC;">{}</span>
 
-<span style="color: #93E0E3;">li a </span>{<span style="color: #DFAF8F;">text-decoration</span>: none;}   <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">descendant selector</span><span style="color: #5F7F5F;">*/</span>
-<span style="color: #93E0E3;">li &gt; a</span>{<span style="color: #DFAF8F;">text-decoration</span>: none;}  <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">&#21644;li a &#30340;&#21306;&#21035;&#26159;&#36825;&#20010;&#21482;&#36873;&#25321;&#30452;&#25509;&#23376;&#33410;&#28857;(ie6&#19981;&#25903;&#25345;)</span><span style="color: #5F7F5F;">*/</span>
-<span style="color: #93E0E3;">h1 + p</span>{<span style="color: #DFAF8F;">font-weight</span>: bold;}      <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">h1&#21518;&#38754;&#30340;&#31532;&#19968;&#20010;p&#33410;&#28857;(h1&#21644;p&#24212;&#35813;&#26159;&#24179;&#32423;&#30340;,&#20063;&#23601;&#26159;&#20108;&#32773;&#26159;&#20804;&#24351;&#33410;&#28857;)</span><span style="color: #5F7F5F;">*/</span>
-<span style="color: #93E0E3;">li #content</span>{}                   <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">li&#19979;&#25152;&#26377;id&#20026;content&#30340;&#26631;&#31614;</span><span style="color: #5F7F5F;">*/</span>
-<span style="color: #93E0E3;">li .blue</span>{}
-
-<span style="color: #DFAF8F;">a</span>:link {<span style="color: #DFAF8F;">color</span>: red}             <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">pseudo-class selector</span><span style="color: #5F7F5F;">*/</span>
-<span style="color: #93E0E3;">a[title] </span>{<span style="color: #DFAF8F;">color</span>: red}           <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">attribute selector &#25152;&#26377;&#26377;title&#23646;&#24615;&#30340;a&#33410;&#28857;,&#19981;&#25903;&#25345;ie6&#21450;&#20197;&#19979;&#27983;&#35272;&#22120;</span><span style="color: #5F7F5F;">*/</span>
-a[href=<span style="color: #CC9393;">"http://www.baidu.com"</span>] {<span style="color: #DFAF8F;">color</span>:red} <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">&#25152;&#26377;href&#23646;&#24615;&#31561;&#20110;http://www.baidu.com&#30340;a&#33410;&#28857;</span><span style="color: #5F7F5F;">*/</span>
-a[href^=<span style="color: #CC9393;">"http://www.baidu.com"</span>]{<span style="color: #DFAF8F;">color</span>: red;} <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">&#25152;&#26377;href&#23646;&#24615;&#20197;http://www.baidu.com&#24320;&#22836;&#30340;a&#33410;&#28857;</span><span style="color: #5F7F5F;">*/</span>
-<span style="color: #93E0E3;">a[href$=</span><span style="color: #CC9393;">".pdf"</span><span style="color: #93E0E3;">]</span>{<span style="color: #DFAF8F;">color</span>: red;} <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">&#25152;&#26377;&#25351;&#21521;pdf&#25991;&#26723;&#30340;a&#33410;&#28857;</span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #DFAF8F;">a</span>:link <span style="color: #DCDCCC;">{</span><span style="color: #DFAF8F;">color</span>: red<span style="color: #DCDCCC;">}</span>             <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">pseudo-class selector</span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #93E0E3;">a</span><span style="color: #DCDCCC;">[</span><span style="color: #93E0E3;">title</span><span style="color: #DCDCCC;">]</span><span style="color: #93E0E3;"> </span><span style="color: #DCDCCC;">{</span><span style="color: #DFAF8F;">color</span>: red<span style="color: #DCDCCC;">}</span>           <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">attribute selector &#25152;&#26377;&#26377;title&#23646;&#24615;&#30340;a&#33410;&#28857;,&#19981;&#25903;&#25345;ie6&#21450;&#20197;&#19979;&#27983;&#35272;&#22120;</span><span style="color: #5F7F5F;">*/</span>
+a<span style="color: #DCDCCC;">[</span>href=<span style="color: #CC9393;">"http://www.baidu.com"</span><span style="color: #DCDCCC;">]</span> <span style="color: #DCDCCC;">{</span><span style="color: #DFAF8F;">color</span>:red<span style="color: #DCDCCC;">}</span> <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">&#25152;&#26377;href&#23646;&#24615;&#31561;&#20110;http://www.baidu.com&#30340;a&#33410;&#28857;</span><span style="color: #5F7F5F;">*/</span>
+a<span style="color: #DCDCCC;">[</span>href^=<span style="color: #CC9393;">"http://www.baidu.com"</span><span style="color: #DCDCCC;">]{</span><span style="color: #DFAF8F;">color</span>: red;<span style="color: #DCDCCC;">}</span> <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">&#25152;&#26377;href&#23646;&#24615;&#20197;http://www.baidu.com&#24320;&#22836;&#30340;a&#33410;&#28857;</span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #93E0E3;">a</span><span style="color: #DCDCCC;">[</span><span style="color: #93E0E3;">href$=</span><span style="color: #CC9393;">".pdf"</span><span style="color: #DCDCCC;">]</span><span style="color: #DCDCCC;">{</span><span style="color: #DFAF8F;">color</span>: red;<span style="color: #DCDCCC;">}</span> <span style="color: #5F7F5F;">/*</span><span style="color: #7F9F7F;">&#25152;&#26377;&#25351;&#21521;pdf&#25991;&#26723;&#30340;a&#33410;&#28857;</span><span style="color: #5F7F5F;">*/</span>
 </pre>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">伪类与伪对象</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-orge91555f" class="outline-3">
+<h3 id="orge91555f">伪类与伪对象</h3>
+<div class="outline-text-3" id="text-orge91555f">
 <p>
 伪类:
 </p>
@@ -436,12 +519,12 @@ a[href^=<span style="color: #CC9393;">"http://www.baidu.com"</span>]{<span style
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-2">
-<h2 id="orgheadline11">css box</h2>
-<div class="outline-text-2" id="text-orgheadline11">
-</div><div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">基本解释</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-org803a54d" class="outline-2">
+<h2 id="org803a54d">css box</h2>
+<div class="outline-text-2" id="text-org803a54d">
+</div><div id="outline-container-org398d494" class="outline-3">
+<h3 id="org398d494">基本解释</h3>
+<div class="outline-text-3" id="text-org398d494">
 <p>
 css的盒子模型：
 </p>
@@ -459,13 +542,12 @@ css的盒子模型：
 比如如下代码
 </p>
 <div class="org-src-container">
+<pre class="src src-css"><span style="color: #DFAF8F;">margin</span>:<span style="color: #BFEBBF;">25px</span> <span style="color: #BFEBBF;">50px</span> <span style="color: #BFEBBF;">75px</span> <span style="color: #BFEBBF;">100px</span>;
 
-<pre class="src src-css"><span style="color: #DFAF8F;">margin</span>:25px 50px 75px 100px;
-
-<span style="color: #DFAF8F;">margin-top</span>: 25px;
-<span style="color: #DFAF8F;">margin-right</span>: 50px;
-<span style="color: #DFAF8F;">margin-bottom</span>: 75px;
-<span style="color: #DFAF8F;">margin-left</span>: 100px;
+<span style="color: #DFAF8F;">margin-top</span>: <span style="color: #BFEBBF;">25px</span>;
+<span style="color: #DFAF8F;">margin-right</span>: <span style="color: #BFEBBF;">50px</span>;
+<span style="color: #DFAF8F;">margin-bottom</span>: <span style="color: #BFEBBF;">75px</span>;
+<span style="color: #DFAF8F;">margin-left</span>: <span style="color: #BFEBBF;">100px</span>;
 </pre>
 </div>
 <p>
@@ -473,8 +555,7 @@ css的盒子模型：
 如果指定两个值，那么第一个是上下，第二个为左右，比如
 </p>
 <div class="org-src-container">
-
-<pre class="src src-css"><span style="color: #DFAF8F;">margin</span>: 0px auto;
+<pre class="src src-css"><span style="color: #DFAF8F;">margin</span>: <span style="color: #BFEBBF;">0px</span> auto;
 </pre>
 </div>
 <p>
@@ -482,9 +563,9 @@ css的盒子模型：
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">margin的负值</h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-org7c2a7ce" class="outline-3">
+<h3 id="org7c2a7ce">margin的负值</h3>
+<div class="outline-text-3" id="text-org7c2a7ce">
 <p>
 这三个属性只有margin可以为负值，padding与border都不可以为负值，几个概念：
 </p>
@@ -522,9 +603,9 @@ margin-left：-1px，可以避免显示两条边界</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7">框类型</h3>
-<div class="outline-text-3" id="text-orgheadline7">
+<div id="outline-container-org77a0ed6" class="outline-3">
+<h3 id="org77a0ed6">框类型</h3>
+<div class="outline-text-3" id="text-org77a0ed6">
 <p>
 网页中的任何元素都可以看作是在某种框中, 框的类型有:
 </p>
@@ -557,9 +638,9 @@ border可以设置, 这在有时候需要制作一些下划线效果时特别有
 如果行框在一个浮动框的旁边, 那么行框会自动缩短来给浮动框留出空间.
 </p>
 </div>
-<div id="outline-container-orgheadline8" class="outline-4">
-<h4 id="orgheadline8">display</h4>
-<div class="outline-text-4" id="text-orgheadline8">
+<div id="outline-container-orgc1224a8" class="outline-4">
+<h4 id="orgc1224a8">display</h4>
+<div class="outline-text-4" id="text-orgc1224a8">
 <ol class="org-ol">
 <li>block: 块级元素, 默认一个元素占一行, 会产生块框</li>
 <li>inline: 行内元素, 会产生行内框.</li>
@@ -570,9 +651,9 @@ inline-block 元素不会另起一行.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">上下margin叠加问题</h3>
-<div class="outline-text-3" id="text-orgheadline9">
+<div id="outline-container-orgde025e6" class="outline-3">
+<h3 id="orgde025e6">上下margin叠加问题</h3>
+<div class="outline-text-3" id="text-orgde025e6">
 <p>
 关键点是: 如果两个 margin 上下紧挨着, 那么最终的margin 不是二者的和, 而是二
 者中较大的一个, 也就是上下margin发生叠加, <b>注意只在普通文档流有效,如果其中
@@ -619,9 +700,9 @@ margin上无效, <b>修复的主要方法是对外部元素使用 1px的padding�
 </div>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">IE6 的左右margin加倍</h3>
-<div class="outline-text-3" id="text-orgheadline10">
+<div id="outline-container-org55c0ab5" class="outline-3">
+<h3 id="org55c0ab5">IE6 的左右margin加倍</h3>
+<div class="outline-text-3" id="text-org55c0ab5">
 <p>
 当盒对象浮动时,IE6自动将盒对象的左右margin加倍,可以使用 <code>display:inline</code> 来
 消除这个影响. 因此如果要兼容ie6, 只要是浮动对象,那么都应该设置
@@ -630,24 +711,24 @@ margin上无效, <b>修复的主要方法是对外部元素使用 1px的padding�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-2">
-<h2 id="orgheadline12">css定位</h2>
-<div class="outline-text-2" id="text-orgheadline12">
+<div id="outline-container-org61d860c" class="outline-2">
+<h2 id="org61d860c">css定位</h2>
+<div class="outline-text-2" id="text-org61d860c">
 <p>
 css有3中主要的定位方式: 普通文档流, 浮动, 绝对定位
 </p>
 </div>
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13">普通文档流</h3>
-<div class="outline-text-3" id="text-orgheadline13">
+<div id="outline-container-org9ed4c11" class="outline-3">
+<h3 id="org9ed4c11">普通文档流</h3>
+<div class="outline-text-3" id="text-org9ed4c11">
 <p>
 普通文档流中各个块级元素根据出现html中的位置由上到下排列.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">绝对定位</h3>
-<div class="outline-text-3" id="text-orgheadline14">
+<div id="outline-container-orga2ab503" class="outline-3">
+<h3 id="orga2ab503">绝对定位</h3>
+<div class="outline-text-3" id="text-orga2ab503">
 <p>
 绝对定位与相对定位(position属性)
 </p>
@@ -664,12 +745,11 @@ relative: 相对于元素的原始位置而言,其原始占位信息依然存在
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-css"><span style="color: #93E0E3;">#div-1 </span>{
+<pre class="src src-css"><span style="color: #93E0E3;">#div-1 </span><span style="color: #DCDCCC;">{</span>
     <span style="color: #DFAF8F;">position</span>:relative;
-    <span style="color: #DFAF8F;">top</span>:20px;
+    <span style="color: #DFAF8F;">top</span>:<span style="color: #BFEBBF;">20px</span>;
     <span style="color: #DFAF8F;">left</span>:-40px;
-}
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -684,14 +764,18 @@ left bottom属性只对设置了position(absolute, relative, fixed)的对象有�
 果为正值就向下移动，其它的3个选项依次类推, <b>这四个属性的默认值是元素本来
 位置</b>.</li>
 </ul>
+
+<p>
+[1] <a href="http://blog.jobbole.com/37112/">http://blog.jobbole.com/37112/</a>
+</p>
 </div>
 </div>
-<div id="outline-container-orgheadline19" class="outline-3">
-<h3 id="orgheadline19">浮动定位</h3>
-<div class="outline-text-3" id="text-orgheadline19">
-</div><div id="outline-container-orgheadline15" class="outline-4">
-<h4 id="orgheadline15">浮动的基本原理</h4>
-<div class="outline-text-4" id="text-orgheadline15">
+<div id="outline-container-orgea6810c" class="outline-3">
+<h3 id="orgea6810c">浮动定位</h3>
+<div class="outline-text-3" id="text-orgea6810c">
+</div><div id="outline-container-org15c4fc2" class="outline-4">
+<h4 id="org15c4fc2">浮动的基本原理</h4>
+<div class="outline-text-4" id="text-org15c4fc2">
 <p>
 html文档有一个标准文档流，每一个块级元素(如div, p)都要单独占一行[1]
 </p>
@@ -719,9 +803,9 @@ html文档有一个标准文档流，每一个块级元素(如div, p)都要单�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline16" class="outline-4">
-<h4 id="orgheadline16">clear</h4>
-<div class="outline-text-4" id="text-orgheadline16">
+<div id="outline-container-orgddbe344" class="outline-4">
+<h4 id="orgddbe344">clear</h4>
+<div class="outline-text-4" id="text-orgddbe344">
 <ol class="org-ol">
 <li><code>clear:left</code> 意思是本元素的左边不能有浮动元素</li>
 <li><code>clear:right</code> 意思是本元素的右边不能有浮动元素</li>
@@ -729,12 +813,12 @@ html文档有一个标准文档流，每一个块级元素(如div, p)都要单�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-4">
-<h4 id="orgheadline18">浮动的注意事项</h4>
-<div class="outline-text-4" id="text-orgheadline18">
-</div><div id="outline-container-orgheadline17" class="outline-5">
-<h5 id="orgheadline17">浮动元素是不占据空间的</h5>
-<div class="outline-text-5" id="text-orgheadline17">
+<div id="outline-container-org6903a34" class="outline-4">
+<h4 id="org6903a34">浮动的注意事项</h4>
+<div class="outline-text-4" id="text-org6903a34">
+</div><div id="outline-container-orgb4bb5cb" class="outline-5">
+<h5 id="orgb4bb5cb">浮动元素是不占据空间的</h5>
+<div class="outline-text-5" id="text-orgb4bb5cb">
 <p>
 如果一个 <b>没有浮动的父元素</b> 包含的所有子元素都是浮动的,那么这个父元素的实
 际大小是 0, 而不是各个子元素大小的和(<b>如果父元素也浮动了, 那么父元素的大小
@@ -746,7 +830,6 @@ html文档有一个标准文档流，每一个块级元素(如div, p)都要单�
 可以在父元素的最后添加:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-html">&lt;<span style="color: #93E0E3;">div</span>&gt;
   ...
   &lt;<span style="color: #93E0E3;">div</span>&gt; <span style="color: #DFAF8F;">style</span>="clear:both;"&lt;/<span style="color: #93E0E3;">div</span>&gt;
@@ -760,7 +843,6 @@ html文档有一个标准文档流，每一个块级元素(如div, p)都要单�
 可以使用after 伪对象(ie6不支持):
 </p>
 <div class="org-src-container">
-
 <pre class="src src-html">&lt;<span style="color: #93E0E3;">style</span> <span style="color: #DFAF8F;">type</span>=<span style="color: #CC9393;">"text/css"</span> <span style="color: #DFAF8F;">media</span>=<span style="color: #CC9393;">"screen"</span>&gt;
   .clearfix:after{
     content: <span style="color: #CC9393;">"."</span>;
@@ -792,27 +874,26 @@ ie6支持不好.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline26" class="outline-2">
-<h2 id="orgheadline26">css的常用属性</h2>
-<div class="outline-text-2" id="text-orgheadline26">
-</div><div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20">foreground color</h3>
-<div class="outline-text-3" id="text-orgheadline20">
+<div id="outline-container-org57877b4" class="outline-2">
+<h2 id="org57877b4">css的常用属性</h2>
+<div class="outline-text-2" id="text-org57877b4">
+</div><div id="outline-container-org54fd25d" class="outline-3">
+<h3 id="org54fd25d">foreground color</h3>
+<div class="outline-text-3" id="text-org54fd25d">
 <div class="org-src-container">
-
-<pre class="src src-css"><span style="color: #93E0E3;">p </span>{
+<pre class="src src-css"><span style="color: #93E0E3;">p </span><span style="color: #DCDCCC;">{</span>
     <span style="color: #DFAF8F;">color</span>:red;
-}
-<span style="color: #93E0E3;">body </span>{
-    <span style="color: #DFAF8F;">color</span>:rgb(50, 255, 0);
-}
+<span style="color: #DCDCCC;">}</span>
+<span style="color: #93E0E3;">body </span><span style="color: #DCDCCC;">{</span>
+    <span style="color: #DFAF8F;">color</span>:rgb<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">50</span>, <span style="color: #BFEBBF;">255</span>, <span style="color: #BFEBBF;">0</span><span style="color: #BFEBBF;">)</span>;
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21">background</h3>
-<div class="outline-text-3" id="text-orgheadline21">
+<div id="outline-container-org43e850d" class="outline-3">
+<h3 id="org43e850d">background</h3>
+<div class="outline-text-3" id="text-org43e850d">
 <p>
 背景实际是设置盒子模型的 content以及padding区域的背景(也就是border以内的
 区域), 不影响 margin区域的背景,依次有以下几个属性:
@@ -839,17 +920,16 @@ Sprites</b> ):</li>
 </ol>
 
 <div class="org-src-container">
-
-<pre class="src src-css"><span style="color: #93E0E3;">#content </span>{
-    <span style="color: #DFAF8F;">background-color</span>:rgb(220, 220, 220);
-    <span style="color: #DFAF8F;">background-image</span>: url(<span style="color: #CC9393;">'sample.png'</span>);
+<pre class="src src-css"><span style="color: #93E0E3;">#content </span><span style="color: #DCDCCC;">{</span>
+    <span style="color: #DFAF8F;">background-color</span>:rgb<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">220</span>, <span style="color: #BFEBBF;">220</span>, <span style="color: #BFEBBF;">220</span><span style="color: #BFEBBF;">)</span>;
+    <span style="color: #DFAF8F;">background-image</span>: url<span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">'sample.png'</span><span style="color: #BFEBBF;">)</span>;
     <span style="color: #DFAF8F;">background-repeat</span>:no-repeat;
-    <span style="color: #DFAF8F;">background-position</span>: 20% 20px;
-}
+    <span style="color: #DFAF8F;">background-position</span>: <span style="color: #BFEBBF;">20%</span> <span style="color: #BFEBBF;">20px</span>;
+<span style="color: #DCDCCC;">}</span>
 
-<span style="color: #93E0E3;">#content </span>{
-    <span style="color: #DFAF8F;">background</span>: rgb(220, 220, 220) url(<span style="color: #CC9393;">'sample.png'</span>) no-repeat 20% 20px;
-}
+<span style="color: #93E0E3;">#content </span><span style="color: #DCDCCC;">{</span>
+    <span style="color: #DFAF8F;">background</span>: rgb<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">220</span>, <span style="color: #BFEBBF;">220</span>, <span style="color: #BFEBBF;">220</span><span style="color: #BFEBBF;">)</span> url<span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">'sample.png'</span><span style="color: #BFEBBF;">)</span> no-repeat <span style="color: #BFEBBF;">20%</span> <span style="color: #BFEBBF;">20px</span>;
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -858,9 +938,9 @@ background: [color] [image] [repeat] [attachment] [position]
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline22" class="outline-3">
-<h3 id="orgheadline22">列表相关</h3>
-<div class="outline-text-3" id="text-orgheadline22">
+<div id="outline-container-org2aadf91" class="outline-3">
+<h3 id="org2aadf91">列表相关</h3>
+<div class="outline-text-3" id="text-org2aadf91">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -906,9 +986,9 @@ background: [color] [image] [repeat] [attachment] [position]
 </table>
 </div>
 </div>
-<div id="outline-container-orgheadline23" class="outline-3">
-<h3 id="orgheadline23">字体相关</h3>
-<div class="outline-text-3" id="text-orgheadline23">
+<div id="outline-container-orgf256826" class="outline-3">
+<h3 id="orgf256826">字体相关</h3>
+<div class="outline-text-3" id="text-orgf256826">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -972,9 +1052,9 @@ background: [color] [image] [repeat] [attachment] [position]
 </table>
 </div>
 </div>
-<div id="outline-container-orgheadline24" class="outline-3">
-<h3 id="orgheadline24">段落样式</h3>
-<div class="outline-text-3" id="text-orgheadline24">
+<div id="outline-container-org49fbe4d" class="outline-3">
+<h3 id="org49fbe4d">段落样式</h3>
+<div class="outline-text-3" id="text-org49fbe4d">
 <ol class="org-ol">
 <li>line-height： 行高 [normal, length], 因为 <code>line-height</code> 会 <b>自动使文本垂
 直居中</b>, 所以有时用它来代替height与padding-top属性来实现垂直居中效果, 同
@@ -998,9 +1078,9 @@ scroll] <b>如果设置为 hidden 或 auto 那么会自动的清理包含的任�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline25" class="outline-3">
-<h3 id="orgheadline25">链接样式</h3>
-<div class="outline-text-3" id="text-orgheadline25">
+<div id="outline-container-orgf408bc8" class="outline-3">
+<h3 id="orgf408bc8">链接样式</h3>
+<div class="outline-text-3" id="text-orgf408bc8">
 <p>
 几个有用的伪类
 </p>
@@ -1012,12 +1092,12 @@ scroll] <b>如果设置为 hidden 或 auto 那么会自动的清理包含的任�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline28" class="outline-2">
-<h2 id="orgheadline28">表单设计</h2>
-<div class="outline-text-2" id="text-orgheadline28">
-</div><div id="outline-container-orgheadline27" class="outline-3">
-<h3 id="orgheadline27">输入框(input text)</h3>
-<div class="outline-text-3" id="text-orgheadline27">
+<div id="outline-container-org5d9561e" class="outline-2">
+<h2 id="org5d9561e">表单设计</h2>
+<div class="outline-text-2" id="text-org5d9561e">
+</div><div id="outline-container-org1c071ad" class="outline-3">
+<h3 id="org1c071ad">输入框(input text)</h3>
+<div class="outline-text-3" id="text-org1c071ad">
 <p>
 一般设置这样几个属性:
 </p>
@@ -1033,12 +1113,12 @@ scroll] <b>如果设置为 hidden 或 auto 那么会自动的清理包含的任�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline32" class="outline-2">
-<h2 id="orgheadline32">css编写的一些规则</h2>
-<div class="outline-text-2" id="text-orgheadline32">
-</div><div id="outline-container-orgheadline29" class="outline-3">
-<h3 id="orgheadline29">id的使用场景</h3>
-<div class="outline-text-3" id="text-orgheadline29">
+<div id="outline-container-orga649cd3" class="outline-2">
+<h2 id="orga649cd3">css编写的一些规则</h2>
+<div class="outline-text-2" id="text-orga649cd3">
+</div><div id="outline-container-org21325d0" class="outline-3">
+<h3 id="org21325d0">id的使用场景</h3>
+<div class="outline-text-3" id="text-org21325d0">
 <ol class="org-ol">
 <li>对页面进行布局时, 可以对每一个区域(div)定义一个 id, 这样可以使文档结构更
 清楚.</li>
@@ -1047,9 +1127,9 @@ scroll] <b>如果设置为 hidden 或 auto 那么会自动的清理包含的任�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline30" class="outline-3">
-<h3 id="orgheadline30">class的使用场景</h3>
-<div class="outline-text-3" id="text-orgheadline30">
+<div id="outline-container-org8ac1972" class="outline-3">
+<h3 id="org8ac1972">class的使用场景</h3>
+<div class="outline-text-3" id="text-org8ac1972">
 <ol class="org-ol">
 <li>同一页面多次使用</li>
 <li>通用且经常使用的元素</li>
@@ -1057,9 +1137,9 @@ scroll] <b>如果设置为 hidden 或 auto 那么会自动的清理包含的任�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline31" class="outline-3">
-<h3 id="orgheadline31">命名</h3>
-<div class="outline-text-3" id="text-orgheadline31">
+<div id="outline-container-orge0f18b6" class="outline-3">
+<h3 id="orge0f18b6">命名</h3>
+<div class="outline-text-3" id="text-orge0f18b6">
 <ol class="org-ol">
 <li>css大小写敏感，建议小写</li>
 <li>命名时建议用 - 来分割多个单词</li>
@@ -1068,26 +1148,25 @@ scroll] <b>如果设置为 hidden 或 auto 那么会自动的清理包含的任�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline43" class="outline-2">
-<h2 id="orgheadline43">html5与css3</h2>
-<div class="outline-text-2" id="text-orgheadline43">
-</div><div id="outline-container-orgheadline36" class="outline-3">
-<h3 id="orgheadline36">css3边框</h3>
-<div class="outline-text-3" id="text-orgheadline36">
-</div><div id="outline-container-orgheadline33" class="outline-4">
-<h4 id="orgheadline33">border-radius =&gt; 圆角</h4>
-<div class="outline-text-4" id="text-orgheadline33">
+<div id="outline-container-org33d6dd7" class="outline-2">
+<h2 id="org33d6dd7">html5与css3</h2>
+<div class="outline-text-2" id="text-org33d6dd7">
+</div><div id="outline-container-orgdf07c07" class="outline-3">
+<h3 id="orgdf07c07">css3边框</h3>
+<div class="outline-text-3" id="text-orgdf07c07">
+</div><div id="outline-container-orgba4fe96" class="outline-4">
+<h4 id="orgba4fe96">border-radius =&gt; 圆角</h4>
+<div class="outline-text-4" id="text-orgba4fe96">
 <p>
 border-radius是四个属性的简写(T-R-B-L),border-top-radius，right，bottom，left与之类似
 </p>
 <div class="org-src-container">
-
 <pre class="src src-css"><span style="color: #93E0E3;">div</span>
-{
-    <span style="color: #DFAF8F;">border</span>:2px solid;
-    <span style="color: #DFAF8F;">border-radius</span>:25px;
-    <span style="color: #DFAF8F; font-style: italic;">-moz-border-radius</span>:25px; <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Old Firefox </span><span style="color: #5F7F5F;">*/</span>
-}
+<span style="color: #DCDCCC;">{</span>
+    <span style="color: #DFAF8F;">border</span>:<span style="color: #BFEBBF;">2px</span> solid;
+    <span style="color: #DFAF8F;">border-radius</span>:<span style="color: #BFEBBF;">25px</span>;
+    <span style="color: #DFAF8F; font-style: italic;">-moz-border-radius</span>:<span style="color: #BFEBBF;">25px</span>; <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Old Firefox </span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -1095,13 +1174,12 @@ border-radius是四个属性的简写(T-R-B-L),border-top-radius，right，botto
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline34" class="outline-4">
-<h4 id="orgheadline34">box-shadow =&gt; 添加阴影</h4>
-<div class="outline-text-4" id="text-orgheadline34">
+<div id="outline-container-org0cd83e6" class="outline-4">
+<h4 id="org0cd83e6">box-shadow =&gt; 添加阴影</h4>
+<div class="outline-text-4" id="text-org0cd83e6">
 <div class="org-src-container">
-
-<pre class="src src-css"><span style="color: #DFAF8F;">box-shadow</span>: 10px 10px 5px #888888;
-<span style="color: #DFAF8F; font-style: italic;">-moz-box-shadow</span>: 10px 10px 5px #888888; <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">&#32769;&#30340; Firefox </span><span style="color: #5F7F5F;">*/</span>
+<pre class="src src-css"><span style="color: #DFAF8F;">box-shadow</span>: <span style="color: #BFEBBF;">10px</span> <span style="color: #BFEBBF;">10px</span> <span style="color: #BFEBBF;">5px</span> #<span style="color: #BFEBBF;">888888</span>;
+<span style="color: #DFAF8F; font-style: italic;">-moz-box-shadow</span>: <span style="color: #BFEBBF;">10px</span> <span style="color: #BFEBBF;">10px</span> <span style="color: #BFEBBF;">5px</span> #<span style="color: #BFEBBF;">888888</span>; <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">&#32769;&#30340; Firefox </span><span style="color: #5F7F5F;">*/</span>
 </pre>
 </div>
 <p>
@@ -1109,55 +1187,53 @@ border-radius是四个属性的简写(T-R-B-L),border-top-radius，right，botto
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline35" class="outline-4">
-<h4 id="orgheadline35">border-image =&gt; 边框图片</h4>
-<div class="outline-text-4" id="text-orgheadline35">
+<div id="outline-container-org9747fb3" class="outline-4">
+<h4 id="org9747fb3">border-image =&gt; 边框图片</h4>
+<div class="outline-text-4" id="text-org9747fb3">
 <p>
 border-image 是border-image-* 的简写
 </p>
 <div class="org-src-container">
-
 <pre class="src src-css"><span style="color: #93E0E3;">div</span>
-{
-    <span style="color: #DFAF8F;">border-image</span>:url(border.png) 30 30 round;
-    <span style="color: #DFAF8F; font-style: italic;">-moz-border-image</span>:url(border.png) 30 30 round; <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">&#32769;&#30340; Firefox </span><span style="color: #5F7F5F;">*/</span>
-    <span style="color: #DFAF8F; font-style: italic;">-webkit-border-image</span>:url(border.png) 30 30 round; <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Safari &#21644; Chrome </span><span style="color: #5F7F5F;">*/</span>
-    <span style="color: #DFAF8F; font-style: italic;">-o-border-image</span>:url(border.png) 30 30 round; <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Opera </span><span style="color: #5F7F5F;">*/</span>
-}
+<span style="color: #DCDCCC;">{</span>
+    <span style="color: #DFAF8F;">border-image</span>:url<span style="color: #BFEBBF;">(</span>border.png<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">30</span> <span style="color: #BFEBBF;">30</span> round;
+    <span style="color: #DFAF8F; font-style: italic;">-moz-border-image</span>:url<span style="color: #BFEBBF;">(</span>border.png<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">30</span> <span style="color: #BFEBBF;">30</span> round; <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">&#32769;&#30340; Firefox </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #DFAF8F; font-style: italic;">-webkit-border-image</span>:url<span style="color: #BFEBBF;">(</span>border.png<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">30</span> <span style="color: #BFEBBF;">30</span> round; <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Safari &#21644; Chrome </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #DFAF8F; font-style: italic;">-o-border-image</span>:url<span style="color: #BFEBBF;">(</span>border.png<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">30</span> <span style="color: #BFEBBF;">30</span> round; <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Opera </span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline37" class="outline-3">
-<h3 id="orgheadline37">css3背景</h3>
+<div id="outline-container-org67f8895" class="outline-3">
+<h3 id="org67f8895">css3背景</h3>
 </div>
-<div id="outline-container-orgheadline40" class="outline-3">
-<h3 id="orgheadline40">css3文本效果</h3>
-<div class="outline-text-3" id="text-orgheadline40">
-</div><div id="outline-container-orgheadline38" class="outline-4">
-<h4 id="orgheadline38">text-shadow =&gt; 文本阴影</h4>
-<div class="outline-text-4" id="text-orgheadline38">
+<div id="outline-container-org581c76c" class="outline-3">
+<h3 id="org581c76c">css3文本效果</h3>
+<div class="outline-text-3" id="text-org581c76c">
+</div><div id="outline-container-org66ba570" class="outline-4">
+<h4 id="org66ba570">text-shadow =&gt; 文本阴影</h4>
+<div class="outline-text-4" id="text-org66ba570">
 <p>
 和box-shadow类似
 </p>
 <div class="org-src-container">
-
 <pre class="src src-css"><span style="color: #93E0E3;">h1</span>
-{
-    <span style="color: #DFAF8F;">text-shadow</span>: 5px 5px 5px #FF0000;
-}
+<span style="color: #DCDCCC;">{</span>
+    <span style="color: #DFAF8F;">text-shadow</span>: <span style="color: #BFEBBF;">5px</span> <span style="color: #BFEBBF;">5px</span> <span style="color: #BFEBBF;">5px</span> #FF0000;
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline39" class="outline-4">
-<h4 id="orgheadline39">word-wrap =&gt; 可以对太长的单词进行换行</h4>
+<div id="outline-container-orgf5bfc8d" class="outline-4">
+<h4 id="orgf5bfc8d">word-wrap =&gt; 可以对太长的单词进行换行</h4>
 </div>
 </div>
-<div id="outline-container-orgheadline41" class="outline-3">
-<h3 id="orgheadline41">transform =&gt; 2D，3D转换</h3>
-<div class="outline-text-3" id="text-orgheadline41">
+<div id="outline-container-org24fa535" class="outline-3">
+<h3 id="org24fa535">transform =&gt; 2D，3D转换</h3>
+<div class="outline-text-3" id="text-org24fa535">
 <ol class="org-ol">
 <li><p>
 2d转换
@@ -1278,14 +1354,13 @@ translate(tx, ty)
 translate：根据坐标从当前位置移动
 </p>
 <div class="org-src-container">
-
-<pre class="src src-css"><span style="color: #93E0E3;">div</span>{
-    <span style="color: #DFAF8F;">transform</span>: translate(50px,100px);
-    <span style="color: #DFAF8F; font-style: italic;">-ms-transform</span>: translate(50px,100px);       <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">IE 9 </span><span style="color: #5F7F5F;">*/</span>
-    <span style="color: #DFAF8F; font-style: italic;">-webkit-transform</span>: translate(50px,100px);   <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Safari and Chrome </span><span style="color: #5F7F5F;">*/</span>
-    <span style="color: #DFAF8F; font-style: italic;">-o-transform</span>: translate(50px,100px);        <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Opera </span><span style="color: #5F7F5F;">*/</span>
-    <span style="color: #DFAF8F; font-style: italic;">-moz-transform</span>: translate(50px,100px);      <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Firefox </span><span style="color: #5F7F5F;">*/</span>
-}
+<pre class="src src-css"><span style="color: #93E0E3;">div</span><span style="color: #DCDCCC;">{</span>
+    <span style="color: #DFAF8F;">transform</span>: translate<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">50px</span>,<span style="color: #BFEBBF;">100px</span><span style="color: #BFEBBF;">)</span>;
+    <span style="color: #DFAF8F; font-style: italic;">-ms-transform</span>: translate<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">50px</span>,<span style="color: #BFEBBF;">100px</span><span style="color: #BFEBBF;">)</span>;       <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">IE 9 </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #DFAF8F; font-style: italic;">-webkit-transform</span>: translate<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">50px</span>,<span style="color: #BFEBBF;">100px</span><span style="color: #BFEBBF;">)</span>;   <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Safari and Chrome </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #DFAF8F; font-style: italic;">-o-transform</span>: translate<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">50px</span>,<span style="color: #BFEBBF;">100px</span><span style="color: #BFEBBF;">)</span>;        <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Opera </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #DFAF8F; font-style: italic;">-moz-transform</span>: translate<span style="color: #BFEBBF;">(</span><span style="color: #BFEBBF;">50px</span>,<span style="color: #BFEBBF;">100px</span><span style="color: #BFEBBF;">)</span>;      <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Firefox </span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div></li>
 </ol></li>
@@ -1376,20 +1451,19 @@ translate：根据坐标从当前位置移动
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline42" class="outline-3">
-<h3 id="orgheadline42">transition (IE9及以下版本无效)</h3>
-<div class="outline-text-3" id="text-orgheadline42">
+<div id="outline-container-orgb6dd636" class="outline-3">
+<h3 id="orgb6dd636">transition (IE9及以下版本无效)</h3>
+<div class="outline-text-3" id="text-orgb6dd636">
 <p>
 不使用js的情况下，或者从一种样式变为另一种样式的动画效果
 </p>
 <div class="org-src-container">
-
-<pre class="src src-css"><span style="color: #93E0E3;">div</span>{
-    <span style="color: #DFAF8F;">transition</span>: width 2s;
-    <span style="color: #DFAF8F; font-style: italic;">-moz-transition</span>: width 2s;  <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Firefox 4 </span><span style="color: #5F7F5F;">*/</span>
-    <span style="color: #DFAF8F; font-style: italic;">-webkit-transition</span>: width 2s;   <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Safari &#21644; Chrome </span><span style="color: #5F7F5F;">*/</span>
-    <span style="color: #DFAF8F; font-style: italic;">-o-transition</span>: width 2s;    <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Opera </span><span style="color: #5F7F5F;">*/</span>
-}
+<pre class="src src-css"><span style="color: #93E0E3;">div</span><span style="color: #DCDCCC;">{</span>
+    <span style="color: #DFAF8F;">transition</span>: width <span style="color: #BFEBBF;">2s</span>;
+    <span style="color: #DFAF8F; font-style: italic;">-moz-transition</span>: width <span style="color: #BFEBBF;">2s</span>;  <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Firefox 4 </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #DFAF8F; font-style: italic;">-webkit-transition</span>: width <span style="color: #BFEBBF;">2s</span>;   <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Safari &#21644; Chrome </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #DFAF8F; font-style: italic;">-o-transition</span>: width <span style="color: #BFEBBF;">2s</span>;    <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Opera </span><span style="color: #5F7F5F;">*/</span>
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 <p>
@@ -1398,43 +1472,42 @@ translate：根据坐标从当前位置移动
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline44" class="outline-2">
-<h2 id="orgheadline44">sass</h2>
-<div class="outline-text-2" id="text-orgheadline44">
+<div id="outline-container-orgf1e1008" class="outline-2">
+<h2 id="orgf1e1008">sass</h2>
+<div class="outline-text-2" id="text-orgf1e1008">
 <ol class="org-ol">
 <li><p>
 sass中可以嵌套的定义规则
 </p>
 <div class="org-src-container">
-
 <pre class="src src-css"><span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">style.scss </span><span style="color: #5F7F5F;">*/</span>
-<span style="color: #93E0E3;">#navbar </span>{
-    <span style="color: #DFAF8F;">width</span>: 80%;
-    <span style="color: #DFAF8F;">height</span>: 23px;
+<span style="color: #93E0E3;">#navbar </span><span style="color: #DCDCCC;">{</span>
+    <span style="color: #DFAF8F;">width</span>: <span style="color: #BFEBBF;">80%</span>;
+    <span style="color: #DFAF8F;">height</span>: <span style="color: #BFEBBF;">23px</span>;
 
-<span style="color: #93E0E3;">    ul </span>{
+<span style="color: #93E0E3;">    ul </span><span style="color: #BFEBBF;">{</span>
         <span style="color: #DFAF8F;">list-style-type</span>: none;
-    }
-<span style="color: #93E0E3;">    li </span>{
+    <span style="color: #BFEBBF;">}</span>
+<span style="color: #93E0E3;">    li </span><span style="color: #BFEBBF;">{</span>
         <span style="color: #DFAF8F;">float</span>: left;
-<span style="color: #93E0E3;">        a </span>{ <span style="color: #DFAF8F;">font-weight</span>: bold; }
-    }
-}
+<span style="color: #93E0E3;">        a </span><span style="color: #D0BF8F;">{</span> <span style="color: #DFAF8F;">font-weight</span>: bold; <span style="color: #D0BF8F;">}</span>
+    <span style="color: #BFEBBF;">}</span>
+<span style="color: #DCDCCC;">}</span>
 
 <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">style.css </span><span style="color: #5F7F5F;">*/</span>
-<span style="color: #93E0E3;">#navbar </span>{
-    <span style="color: #DFAF8F;">width</span>: 80%;
-    <span style="color: #DFAF8F;">height</span>: 23px;
-}
-<span style="color: #93E0E3;">#navbar ul </span>{
+<span style="color: #93E0E3;">#navbar </span><span style="color: #DCDCCC;">{</span>
+    <span style="color: #DFAF8F;">width</span>: <span style="color: #BFEBBF;">80%</span>;
+    <span style="color: #DFAF8F;">height</span>: <span style="color: #BFEBBF;">23px</span>;
+<span style="color: #DCDCCC;">}</span>
+<span style="color: #93E0E3;">#navbar ul </span><span style="color: #DCDCCC;">{</span>
     <span style="color: #DFAF8F;">list-style-type</span>: none;
-}
-<span style="color: #93E0E3;">#navbar li </span>{
+<span style="color: #DCDCCC;">}</span>
+<span style="color: #93E0E3;">#navbar li </span><span style="color: #DCDCCC;">{</span>
     <span style="color: #DFAF8F;">float</span>: left;
-}
-<span style="color: #93E0E3;">#navbar li a </span>{
+<span style="color: #DCDCCC;">}</span>
+<span style="color: #93E0E3;">#navbar li a </span><span style="color: #DCDCCC;">{</span>
     <span style="color: #DFAF8F;">font-weight</span>: bold;
-}
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div></li>
 
@@ -1442,24 +1515,23 @@ sass中可以嵌套的定义规则
 父引用: 用 &amp; 代替父选择子
 </p>
 <div class="org-src-container">
-
 <pre class="src src-css"><span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">style.scss </span><span style="color: #5F7F5F;">*/</span>
-<span style="color: #93E0E3;">a </span>{
+<span style="color: #93E0E3;">a </span><span style="color: #DCDCCC;">{</span>
     <span style="color: #DFAF8F;">color</span>: #ce4dd6;
-<span style="color: #93E0E3;">    &amp;:hover </span>{ <span style="color: #DFAF8F;">color</span>: #ffb3ff; }
-<span style="color: #93E0E3;">    &amp;:visited </span>{ <span style="color: #DFAF8F;">color</span>: #c458cb; }
-}
+<span style="color: #93E0E3;">    &amp;:hover </span><span style="color: #BFEBBF;">{</span> <span style="color: #DFAF8F;">color</span>: #ffb3ff; <span style="color: #BFEBBF;">}</span>
+<span style="color: #93E0E3;">    &amp;:visited </span><span style="color: #BFEBBF;">{</span> <span style="color: #DFAF8F;">color</span>: #c458cb; <span style="color: #BFEBBF;">}</span>
+<span style="color: #DCDCCC;">}</span>
 
 <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">style.css </span><span style="color: #5F7F5F;">*/</span>
-<span style="color: #93E0E3;">a </span>{
+<span style="color: #93E0E3;">a </span><span style="color: #DCDCCC;">{</span>
     <span style="color: #DFAF8F;">color</span>: #ce4dd6;
-}
-<span style="color: #DFAF8F;">a</span>:hover {
+<span style="color: #DCDCCC;">}</span>
+<span style="color: #DFAF8F;">a</span>:hover <span style="color: #DCDCCC;">{</span>
     <span style="color: #DFAF8F;">color</span>: #ffb3ff;
-}
-<span style="color: #DFAF8F;">a</span>:visited {
+<span style="color: #DCDCCC;">}</span>
+<span style="color: #DFAF8F;">a</span>:visited <span style="color: #DCDCCC;">{</span>
     <span style="color: #DFAF8F;">color</span>: #c458cb;
-}
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div></li>
 
@@ -1468,34 +1540,32 @@ sass中可以嵌套的定义规则
 插值：使用#($var)
 </p>
 <div class="org-src-container">
-
 <pre class="src src-css"><span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">style.scss </span><span style="color: #5F7F5F;">*/</span>
 $side: top;
-$radius: 10px;
+$radius: <span style="color: #BFEBBF;">10px</span>;
 
-<span style="color: #93E0E3;">.rounded- </span>{
-<span style="color: #93E0E3;">  border-#</span>{$side}-radius: $radius;
-<span style="color: #93E0E3;">  -moz-border-radius-#</span>{$side}: $radius;
-<span style="color: #93E0E3;">  -webkit-border-#</span>{$side}-radius: $radius;
-}
+<span style="color: #93E0E3;">.rounded- </span><span style="color: #DCDCCC;">{</span>
+<span style="color: #93E0E3;">  border-#</span><span style="color: #BFEBBF;">{</span>$side<span style="color: #BFEBBF;">}</span>-radius: $radius;
+<span style="color: #93E0E3;">  -moz-border-radius-#</span><span style="color: #BFEBBF;">{</span>$side<span style="color: #BFEBBF;">}</span>: $radius;
+<span style="color: #93E0E3;">  -webkit-border-#</span><span style="color: #BFEBBF;">{</span>$side<span style="color: #BFEBBF;">}</span>-radius: $radius;
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div></li>
 <li><p>
 mixin: 可以看作是自定义函数，通过@include并且在函数名后跟上实参来进行调用
 </p>
 <div class="org-src-container">
-
 <pre class="src src-css"><span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">style.scss </span><span style="color: #5F7F5F;">*/</span>
 <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">$radius &#25351;&#23450;&#20102;&#40664;&#35748;&#20540;10px </span><span style="color: #5F7F5F;">*/</span>
-<span style="color: #DCDCCC; font-weight: bold;">@mixin</span> rounded($side, $radius: 10px) {
-<span style="color: #93E0E3;">  border-#</span>{$side}-radius: $radius;
-<span style="color: #93E0E3;">  -moz-border-radius-#</span>{$side}: $radius;
-<span style="color: #93E0E3;">  -webkit-border-#</span>{$side}-radius: $radius;
-}
+<span style="color: #DCDCCC; font-weight: bold;">@mixin</span> rounded<span style="color: #DCDCCC;">(</span>$side, $radius: <span style="color: #BFEBBF;">10px</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
+<span style="color: #93E0E3;">  border-#</span><span style="color: #BFEBBF;">{</span>$side<span style="color: #BFEBBF;">}</span>-radius: $radius;
+<span style="color: #93E0E3;">  -moz-border-radius-#</span><span style="color: #BFEBBF;">{</span>$side<span style="color: #BFEBBF;">}</span>: $radius;
+<span style="color: #93E0E3;">  -webkit-border-#</span><span style="color: #BFEBBF;">{</span>$side<span style="color: #BFEBBF;">}</span>-radius: $radius;
+<span style="color: #DCDCCC;">}</span>
 
-<span style="color: #93E0E3;">#navbar li </span>{ <span style="color: #DCDCCC; font-weight: bold;">@include</span> rounded(top); }
-<span style="color: #93E0E3;">#footer </span>{ <span style="color: #DCDCCC; font-weight: bold;">@include</span> rounded(top, 5px); }
-<span style="color: #93E0E3;">#sidebar </span>{ <span style="color: #DCDCCC; font-weight: bold;">@include</span> rounded(left, 8px); }
+<span style="color: #93E0E3;">#navbar li </span><span style="color: #DCDCCC;">{</span> <span style="color: #DCDCCC; font-weight: bold;">@include</span> rounded<span style="color: #BFEBBF;">(</span>top<span style="color: #BFEBBF;">)</span>; <span style="color: #DCDCCC;">}</span>
+<span style="color: #93E0E3;">#footer </span><span style="color: #DCDCCC;">{</span> <span style="color: #DCDCCC; font-weight: bold;">@include</span> rounded<span style="color: #BFEBBF;">(</span>top, <span style="color: #BFEBBF;">5px</span><span style="color: #BFEBBF;">)</span>; <span style="color: #DCDCCC;">}</span>
+<span style="color: #93E0E3;">#sidebar </span><span style="color: #DCDCCC;">{</span> <span style="color: #DCDCCC; font-weight: bold;">@include</span> rounded<span style="color: #BFEBBF;">(</span>left, <span style="color: #BFEBBF;">8px</span><span style="color: #BFEBBF;">)</span>; <span style="color: #DCDCCC;">}</span>
 </pre>
 </div></li>
 <li>@import:导入文件，注意被导入的文件应该命名为 partial_filename.sass, 这样导入的时候就用 @import "filename"

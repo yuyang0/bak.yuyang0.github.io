@@ -3,15 +3,15 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:09 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>DJANGO笔记</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="description" content="本文介绍了python的web开发框架django的各个方面,是我阅读django book时的笔记"
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="description" content="本文介绍了python的web开发框架django的各个方面,是我阅读django book时的笔记"
  />
-<meta  name="keywords" content="django web python" />
+<meta name="keywords" content="django web python" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -56,13 +56,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -95,6 +179,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -200,73 +285,73 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">URLConf</a></li>
-<li><a href="#orgheadline10">模板</a>
+<li><a href="#orgc746c33">URLConf</a></li>
+<li><a href="#orgf2a6ebf">模板</a>
 <ul>
-<li><a href="#orgheadline2">best practices</a></li>
-<li><a href="#orgheadline6">模板的基本语法</a>
+<li><a href="#org4905e4f">best practices</a></li>
+<li><a href="#orga337646">模板的基本语法</a>
 <ul>
-<li><a href="#orgheadline3">基本示例代码</a></li>
-<li><a href="#orgheadline4">模板的'.'的用法:</a></li>
-<li><a href="#orgheadline5">过滤器</a></li>
+<li><a href="#org0056897">基本示例代码</a></li>
+<li><a href="#org1be5056">模板的'.'的用法:</a></li>
+<li><a href="#org326ac65">过滤器</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline7">使用模板的方法：</a></li>
-<li><a href="#orgheadline8">模板的包含与继承</a></li>
-<li><a href="#orgheadline9">xss安全问题</a></li>
+<li><a href="#org6878263">使用模板的方法：</a></li>
+<li><a href="#org60ccbab">模板的包含与继承</a></li>
+<li><a href="#orgb2b8249">xss安全问题</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline17">Model</a>
+<li><a href="#orgbdf3514">Model</a>
 <ul>
-<li><a href="#orgheadline11">best practices</a></li>
-<li><a href="#orgheadline12">model的基本使用：</a></li>
-<li><a href="#orgheadline13">manager</a></li>
-<li><a href="#orgheadline14">related manager</a></li>
-<li><a href="#orgheadline15">杂七杂八</a></li>
-<li><a href="#orgheadline16">几个特殊的field</a></li>
+<li><a href="#org1ed3add">best practices</a></li>
+<li><a href="#org9ef6719">model的基本使用：</a></li>
+<li><a href="#org24eaa94">manager</a></li>
+<li><a href="#org1a2c5d9">related manager</a></li>
+<li><a href="#orgc84587c">杂七杂八</a></li>
+<li><a href="#org80d91b1">几个特殊的field</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline18">表单</a>
+<li><a href="#org1841a79">表单</a>
 <ul>
-<li><a href="#orgheadline19">表单的验证步骤</a>
+<li><a href="#org0da2425">表单的验证步骤</a>
 <ul>
-<li><a href="#orgheadline20">设置validator以及clean_&lt;filedname&gt;的一般方法</a></li>
+<li><a href="#orgff6eb72">设置validator以及clean_&lt;filedname&gt;的一般方法</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline21">ModelForm</a></li>
+<li><a href="#orgc631bba">ModelForm</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline22">ContentType</a>
+<li><a href="#orgefdcba6">ContentType</a>
 <ul>
-<li><a href="#orgheadline23">Generic relations</a></li>
+<li><a href="#org9ac328e">Generic relations</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline24">signal</a></li>
-<li><a href="#orgheadline29">generic views</a>
+<li><a href="#org0039f24">signal</a></li>
+<li><a href="#orge429de1">generic views</a>
 <ul>
-<li><a href="#orgheadline28">几个有用Mixin</a>
+<li><a href="#org00daba3">几个有用Mixin</a>
 <ul>
-<li><a href="#orgheadline25">TemplateResponseMixin</a></li>
-<li><a href="#orgheadline26">SingleObjectMixin</a></li>
-<li><a href="#orgheadline27">SingleObjectTemplateResponseMixin(继承自TemplateResponseMixin)</a></li>
+<li><a href="#org5b9f3fa">TemplateResponseMixin</a></li>
+<li><a href="#org095a3f5">SingleObjectMixin</a></li>
+<li><a href="#org910aebf">SingleObjectTemplateResponseMixin(继承自TemplateResponseMixin)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline33">第三方app的使用</a>
+<li><a href="#org5336a29">第三方app的使用</a>
 <ul>
-<li><a href="#orgheadline30">south</a></li>
-<li><a href="#orgheadline31">mptt</a></li>
-<li><a href="#orgheadline32">django-braces</a></li>
+<li><a href="#org34a1757">south</a></li>
+<li><a href="#org6f20192">mptt</a></li>
+<li><a href="#orgb16d0ac">django-braces</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline34">我遇到的令人费解的error</a></li>
+<li><a href="#org0c5d459">我遇到的令人费解的error</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">URLConf</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-orgc746c33" class="outline-2">
+<h2 id="orgc746c33">URLConf</h2>
+<div class="outline-text-2" id="text-orgc746c33">
 <p>
 一些注意事项以及一些推荐的编码方式：
 </p>
@@ -283,7 +368,6 @@ for the JavaScript code in this tag.
 pattern中的view，可以不导入，而直接写字符串, patterns函数的第一个参数是前缀
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">mysite.views&#21518;&#20197;&#21450;hello&#19982;hours_ahead&#21069;&#37117;&#27809;&#26377;&#28857;&#22909;&#21495;</span>
 <span style="color: #DFAF8F;">urlpatterns</span> = patterns<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'mysite.views'</span>,
     url<span style="color: #BFEBBF;">(</span>r<span style="color: #CC9393;">'^hello/$'</span>, <span style="color: #CC9393;">'hello'</span>, name=<span style="color: #CC9393;">'hello'</span><span style="color: #BFEBBF;">)</span>,
@@ -317,12 +401,12 @@ URLConf中进行匹配</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-2">
-<h2 id="orgheadline10">模板</h2>
-<div class="outline-text-2" id="text-orgheadline10">
-</div><div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">best practices</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+<div id="outline-container-orgf2a6ebf" class="outline-2">
+<h2 id="orgf2a6ebf">模板</h2>
+<div class="outline-text-2" id="text-orgf2a6ebf">
+</div><div id="outline-container-org4905e4f" class="outline-3">
+<h3 id="org4905e4f">best practices</h3>
+<div class="outline-text-3" id="text-org4905e4f">
 <ol class="org-ol">
 <li>endblock应该带上block名，这样能让代码更清晰 eg： {% block footerjs %}&#x2026;.{% endblock footerjs %}</li>
 <li>尽量让模板代码清晰，而不是让生成的html代码清晰，所以像循环，判断逻辑代码不要为了html好看而放在同一行</li>
@@ -333,14 +417,13 @@ object_list是默认名字）</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">模板的基本语法</h3>
-<div class="outline-text-3" id="text-orgheadline6">
-</div><div id="outline-container-orgheadline3" class="outline-4">
-<h4 id="orgheadline3">基本示例代码</h4>
-<div class="outline-text-4" id="text-orgheadline3">
+<div id="outline-container-orga337646" class="outline-3">
+<h3 id="orga337646">模板的基本语法</h3>
+<div class="outline-text-3" id="text-orga337646">
+</div><div id="outline-container-org0056897" class="outline-4">
+<h4 id="org0056897">基本示例代码</h4>
+<div class="outline-text-4" id="text-org0056897">
 <div class="org-src-container">
-
 <pre class="src src-html">&lt;<span style="color: #93E0E3;">html</span>&gt;
   &lt;<span style="color: #93E0E3;">head</span>&gt;&lt;<span style="color: #93E0E3;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Ordering notice</span>&lt;/<span style="color: #93E0E3;">title</span>&gt;&lt;/<span style="color: #93E0E3;">head</span>&gt;
   &lt;<span style="color: #93E0E3;">body</span>&gt;
@@ -374,15 +457,14 @@ object_list是默认名字）</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4">模板的'.'的用法:</h4>
-<div class="outline-text-4" id="text-orgheadline4">
+<div id="outline-container-org1be5056" class="outline-4">
+<h4 id="org1be5056">模板的'.'的用法:</h4>
+<div class="outline-text-4" id="text-org1be5056">
 <ol class="org-ol">
 <li><p>
 引用字典
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">from</span> django.template <span style="color: #F0DFAF; font-weight: bold;">import</span> Template, Context
 <span style="color: #DFAF8F;">person</span> = <span style="color: #DCDCCC;">{</span><span style="color: #CC9393;">'name'</span>: <span style="color: #CC9393;">'Sally'</span>, <span style="color: #CC9393;">'age'</span>: <span style="color: #CC9393;">'43'</span><span style="color: #DCDCCC;">}</span>
 <span style="color: #DFAF8F;">t</span> = Template<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'{{ person.name }} is {{ person.age }} years old.'</span><span style="color: #DCDCCC;">)</span>
@@ -395,7 +477,6 @@ t.render<span style="color: #DCDCCC;">(</span>c<span style="color: #DCDCCC;">)</
 引用list的索引
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">from</span> django.template <span style="color: #F0DFAF; font-weight: bold;">import</span> Template, Context
 <span style="color: #DFAF8F;">t</span> = Template<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'Item 2 is {{ items.2 }}.'</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #DFAF8F;">c</span> = Context<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">{</span><span style="color: #CC9393;">'items'</span>: <span style="color: #D0BF8F;">[</span><span style="color: #CC9393;">'apples'</span>, <span style="color: #CC9393;">'bananas'</span>, <span style="color: #CC9393;">'carrots'</span><span style="color: #D0BF8F;">]</span><span style="color: #BFEBBF;">}</span><span style="color: #DCDCCC;">)</span>
@@ -407,7 +488,6 @@ t.render<span style="color: #DCDCCC;">(</span>c<span style="color: #DCDCCC;">)</
 引用对象的属性
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"> <span style="color: #F0DFAF; font-weight: bold;">from</span> django.template <span style="color: #F0DFAF; font-weight: bold;">import</span> Template, Context
  <span style="color: #F0DFAF; font-weight: bold;">import</span> datetime
  <span style="color: #DFAF8F;">d</span> = datetime.date<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">1993</span>, <span style="color: #BFEBBF;">5</span>, <span style="color: #BFEBBF;">2</span><span style="color: #DCDCCC;">)</span>
@@ -422,9 +502,9 @@ t.render<span style="color: #DCDCCC;">(</span>c<span style="color: #DCDCCC;">)</
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-4">
-<h4 id="orgheadline5">过滤器</h4>
-<div class="outline-text-4" id="text-orgheadline5">
+<div id="outline-container-org326ac65" class="outline-4">
+<h4 id="org326ac65">过滤器</h4>
+<div class="outline-text-4" id="text-org326ac65">
 <ul class="org-ul">
 <li>addslashes: 添加反斜杠到任何反斜杠</li>
 <li>date: 按指定的格式字符串参数格式化 date 或者 datetime 对象，范例：
@@ -439,16 +519,15 @@ t.render<span style="color: #DCDCCC;">(</span>c<span style="color: #DCDCCC;">)</
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7">使用模板的方法：</h3>
-<div class="outline-text-3" id="text-orgheadline7">
+<div id="outline-container-org6878263" class="outline-3">
+<h3 id="org6878263">使用模板的方法：</h3>
+<div class="outline-text-3" id="text-org6878263">
 <ol class="org-ol">
 <li>创建一个模板对象</li>
 <li>创建一个contex对象(和字典相似)</li>
 <li>render模板</li>
 </ol>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">from</span> django <span style="color: #F0DFAF; font-weight: bold;">import</span> template
 <span style="color: #DFAF8F;">t</span> = template.Template<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'My name is {{ name }}.'</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #DFAF8F;">c</span> = template.Context<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">{</span><span style="color: #CC9393;">'name'</span>: <span style="color: #CC9393;">'Adrian'</span><span style="color: #BFEBBF;">}</span><span style="color: #DCDCCC;">)</span>
@@ -460,7 +539,6 @@ t.render<span style="color: #DCDCCC;">(</span>c<span style="color: #DCDCCC;">)</
 TEMPLATE_DIRS
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">from</span> django.shortcuts <span style="color: #F0DFAF; font-weight: bold;">import</span> render_to_response
 <span style="color: #F0DFAF; font-weight: bold;">import</span> datetime
 
@@ -475,9 +553,9 @@ render_to_response只需要提供模板文件，与一个字典，它会渲染�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">模板的包含与继承</h3>
-<div class="outline-text-3" id="text-orgheadline8">
+<div id="outline-container-org60ccbab" class="outline-3">
+<h3 id="org60ccbab">模板的包含与继承</h3>
+<div class="outline-text-3" id="text-org60ccbab">
 <ul class="org-ul">
 <li>include标签
 {% include "includes/nav.html" %}，
@@ -489,7 +567,6 @@ render_to_response只需要提供模板文件，与一个字典，它会渲染�
 base.html:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-html">&lt;<span style="color: #F0DFAF; font-weight: bold;">!DOCTYPE</span> HTML PUBLIC <span style="color: #CC9393;">"-//W3C//DTD HTML 4.01//EN"</span>&gt;
 &lt;<span style="color: #93E0E3;">html</span> <span style="color: #DFAF8F;">lang</span>=<span style="color: #CC9393;">"en"</span>&gt;
   &lt;<span style="color: #93E0E3;">head</span>&gt;
@@ -507,7 +584,6 @@ base.html:
 </pre>
 </div>
 <div class="org-src-container">
-
 <pre class="src src-html">{% extends <span style="color: #CC9393;">"base.html"</span> %}
 
 {% block title %}The current time{% endblock %}
@@ -529,9 +605,9 @@ base.html:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">xss安全问题</h3>
-<div class="outline-text-3" id="text-orgheadline9">
+<div id="outline-container-orgb2b8249" class="outline-3">
+<h3 id="orgb2b8249">xss安全问题</h3>
+<div class="outline-text-3" id="text-orgb2b8249">
 <p>
 跨站脚本攻击，防范措施就是escape 用户提交的内容，去掉其中html tag
 django默认打开了auto escape，有几个template tag以及filter需要说明
@@ -556,7 +632,6 @@ var仍然会转义</li>
 在view中可以使用如下代码来escape html
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">from</span> django.utils.html <span style="color: #F0DFAF; font-weight: bold;">import</span> escape
 <span style="color: #F0DFAF; font-weight: bold;">return</span> HttpResponse<span style="color: #DCDCCC;">(</span>escape<span style="color: #BFEBBF;">(</span>some_string<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
@@ -573,12 +648,12 @@ view中操作html字符串还有几个比较有用的函数：
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline17" class="outline-2">
-<h2 id="orgheadline17">Model</h2>
-<div class="outline-text-2" id="text-orgheadline17">
-</div><div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11">best practices</h3>
-<div class="outline-text-3" id="text-orgheadline11">
+<div id="outline-container-orgbdf3514" class="outline-2">
+<h2 id="orgbdf3514">Model</h2>
+<div class="outline-text-2" id="text-orgbdf3514">
+</div><div id="outline-container-org1ed3add" class="outline-3">
+<h3 id="org1ed3add">best practices</h3>
+<div class="outline-text-3" id="text-org1ed3add">
 <ul class="org-ul">
 <li>每一个app都有一个app_label属性，这个属性的值默认是app的导入路径的最后一部分，比
 如'django.contrib.contenttypes', 那么这个app的app_label就是contenttypes，在model中ForiegnKey，
@@ -590,15 +665,14 @@ ManyToManyField中指定target model时都是使用app_label.model_name的格式
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12">model的基本使用：</h3>
-<div class="outline-text-3" id="text-orgheadline12">
+<div id="outline-container-org9ef6719" class="outline-3">
+<h3 id="org9ef6719">model的基本使用：</h3>
+<div class="outline-text-3" id="text-org9ef6719">
 <ol class="org-ol">
 <li><p>
 第一步必须设置settings.py的数据库相关域,用以下代码验证配置是否正确：
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python">python manage.py shell <span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">enter django shell</span>
 
 <span style="color: #F0DFAF; font-weight: bold;">from</span> django.db <span style="color: #F0DFAF; font-weight: bold;">import</span> connection
@@ -612,7 +686,6 @@ python manage.py startapp appname
 然后在module.py添加代码
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">from</span> django.db <span style="color: #F0DFAF; font-weight: bold;">import</span> models
 
 <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">Create your models here.</span>
@@ -652,7 +725,6 @@ python manage.py syncdb会最终执行数据库的创建
 choices：对应的域被限制在一个已定义的范围内
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">from</span> django.db <span style="color: #F0DFAF; font-weight: bold;">import</span> models
 
 <span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Person</span><span style="color: #DCDCCC;">(</span>models.Model<span style="color: #DCDCCC;">)</span>:
@@ -754,7 +826,6 @@ null=True，那么django创建数据库就不会指定NOT NULL， 而blank的作
 复杂的查询(比如需要多个条件之间为OR)可以使用Q来构造，看下面的示例代码
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">&#26684;&#24335;&#26159;fieldname__type=value</span>
 <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">&#24120;&#35265;&#30340;type&#26159;exact(&#22914;&#26524;&#30452;&#25509;&#20351;&#29992;field=value,&#37027;&#20040;type&#23601;&#26159;exact)&#65292;iexact(case sensitive),</span>
 Entry.objects.get<span style="color: #DCDCCC;">(</span>id__exact=<span style="color: #BFEBBF;">14</span><span style="color: #DCDCCC;">)</span>
@@ -782,7 +853,6 @@ Entry.objects.get<span style="color: #DCDCCC;">(</span>author__name__contain=<sp
 下面的完整的models代码示例，包括create, insert, update, delete
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">insert a record</span>
 <span style="color: #DFAF8F;">p</span> = Publisher<span style="color: #DCDCCC;">(</span>name=<span style="color: #CC9393;">'Apress'</span>,
         address=<span style="color: #CC9393;">'2855 Telegraph Ave.'</span>,
@@ -835,15 +905,14 @@ p.book_set.<span style="color: #DCDCCC; font-weight: bold;">all</span><span styl
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13">manager</h3>
-<div class="outline-text-3" id="text-orgheadline13">
+<div id="outline-container-org24eaa94" class="outline-3">
+<h3 id="org24eaa94">manager</h3>
+<div class="outline-text-3" id="text-org24eaa94">
 <p>
 每一个model都有至少有一个manager，默认的manager叫objects，也可以自定义多个manager,我们就是使用这些manager
 与django model进行交互，如查询，插入，更新等。下面是一个自定义manager的例子
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">from</span> django.db <span style="color: #F0DFAF; font-weight: bold;">import</span> models
 <span style="color: #F0DFAF; font-weight: bold;">from</span> django.utils <span style="color: #F0DFAF; font-weight: bold;">import</span> timezone
 
@@ -865,7 +934,6 @@ p.book_set.<span style="color: #DCDCCC; font-weight: bold;">all</span><span styl
 你可以用如下代码：
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #DFAF8F;">objects</span> = models.Manager<span style="color: #DCDCCC;">()</span>
 <span style="color: #DFAF8F;">publishmanager</span> = PublishedManager<span style="color: #DCDCCC;">()</span>
 </pre>
@@ -875,14 +943,13 @@ p.book_set.<span style="color: #DCDCCC; font-weight: bold;">all</span><span styl
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">related manager</h3>
-<div class="outline-text-3" id="text-orgheadline14">
+<div id="outline-container-org1a2c5d9" class="outline-3">
+<h3 id="org1a2c5d9">related manager</h3>
+<div class="outline-text-3" id="text-org1a2c5d9">
 <p>
 在ManyToManyField, ForeignKey中返回的都是related manager,比如下面的代码:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Topping</span><span style="color: #DCDCCC;">(</span>models.Model<span style="color: #DCDCCC;">)</span>:
     <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">...</span>
     <span style="color: #F0DFAF; font-weight: bold;">pass</span>
@@ -913,9 +980,9 @@ manager在默认的方法外,他还有以下方法:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15">杂七杂八</h3>
-<div class="outline-text-3" id="text-orgheadline15">
+<div id="outline-container-orgc84587c" class="outline-3">
+<h3 id="orgc84587c">杂七杂八</h3>
+<div class="outline-text-3" id="text-orgc84587c">
 <ul class="org-ul">
 <li>get_FOO_display() : 当model中有choices属性的field时,那么这个方法可以获得display name,这是<a href="https://docs.djangoproject.com/en/dev/ref/models/instances/#django.db.models.Model.get_FOO_display">文档</a></li>
 <li>get_next_by_FOO(): 当model中DateField,DatetimeField时可以通过该方法根据时间顺序获得当前记录的下一条记录</li>
@@ -923,9 +990,9 @@ manager在默认的方法外,他还有以下方法:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16">几个特殊的field</h3>
-<div class="outline-text-3" id="text-orgheadline16">
+<div id="outline-container-org80d91b1" class="outline-3">
+<h3 id="org80d91b1">几个特殊的field</h3>
+<div class="outline-text-3" id="text-org80d91b1">
 <ol class="org-ol">
 <li>FileField：有几个重要的属性
 <ul class="org-ul">
@@ -937,7 +1004,6 @@ manager在默认的方法外,他还有以下方法:
 save方法： 当你要把一个已存在的文件与model的FileField关联起来的时候，非常有用，示例代码
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">from</span> django.core.files <span style="color: #F0DFAF; font-weight: bold;">import</span> File
 <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">Open an existing file using Python's built-in open()</span>
 <span style="color: #DFAF8F;">f</span> = <span style="color: #DCDCCC; font-weight: bold;">open</span><span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'/tmp/hello.world'</span><span style="color: #DCDCCC;">)</span>
@@ -957,9 +1023,9 @@ my_model_instance.save<span style="color: #DCDCCC;">()</span>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-2">
-<h2 id="orgheadline18">表单</h2>
-<div class="outline-text-2" id="text-orgheadline18">
+<div id="outline-container-org1841a79" class="outline-2">
+<h2 id="org1841a79">表单</h2>
+<div class="outline-text-2" id="text-org1841a79">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1018,7 +1084,6 @@ my_model_instance.save<span style="color: #DCDCCC;">()</span>
 基本代码结构:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #DFAF8F;">f</span> = MyForm<span style="color: #DCDCCC;">(</span>request.POST<span style="color: #DCDCCC;">)</span>
 <span style="color: #F0DFAF; font-weight: bold;">if</span> f.is_valid<span style="color: #DCDCCC;">()</span>:
     <span style="color: #DFAF8F;">first_field</span> = f.cleaned_data<span style="color: #DCDCCC;">[</span><span style="color: #CC9393;">'first_field'</span><span style="color: #DCDCCC;">]</span>
@@ -1032,7 +1097,6 @@ my_model_instance.save<span style="color: #DCDCCC;">()</span>
 注意forms.Form的原型：
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">BaseForm</span><span style="color: #DCDCCC;">(</span>Object<span style="color: #DCDCCC;">)</span>:
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__init__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, data=<span style="color: #BFEBBF;">None</span>, files=<span style="color: #BFEBBF;">None</span>, auto_id=<span style="color: #CC9393;">'id_%s'</span>, prefix=<span style="color: #BFEBBF;">None</span>,
                  initial=<span style="color: #BFEBBF;">None</span>, error_class=ErrorList, label_suffix=<span style="color: #CC9393;">':'</span>,
@@ -1050,9 +1114,9 @@ form对象才是绑定的</li>
 <li>instance： ModelForm有效，这个是和form绑定的model对象，如果指定了，调用save()时会更新而不是创建新record</li>
 </ol>
 </div>
-<div id="outline-container-orgheadline19" class="outline-3">
-<h3 id="orgheadline19">表单的验证步骤</h3>
-<div class="outline-text-3" id="text-orgheadline19">
+<div id="outline-container-org0da2425" class="outline-3">
+<h3 id="org0da2425">表单的验证步骤</h3>
+<div class="outline-text-3" id="text-org0da2425">
 <p>
 调用form.is_valid()会触发以下动作:
 </p>
@@ -1084,15 +1148,14 @@ form对象还有一个data字典属性，它的值实际就是POST字典，比�
 self.data = data(也就是request.POST), data属性可以看做是裸数据，而cleaned_data是处理后的数据
 </p>
 </div>
-<div id="outline-container-orgheadline20" class="outline-4">
-<h4 id="orgheadline20">设置validator以及clean_&lt;filedname&gt;的一般方法</h4>
-<div class="outline-text-4" id="text-orgheadline20">
+<div id="outline-container-orgff6eb72" class="outline-4">
+<h4 id="orgff6eb72">设置validator以及clean_&lt;filedname&gt;的一般方法</h4>
+<div class="outline-text-4" id="text-orgff6eb72">
 <ol class="org-ol">
 <li><p>
 validate函数的调用保证数据的合法性，validate函数可以在model或者form中指定，下面是一段示例代码
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">from</span> django.core.exceptions <span style="color: #F0DFAF; font-weight: bold;">import</span> ValidationError
 <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">validate_delicious</span><span style="color: #DCDCCC;">(</span>value<span style="color: #DCDCCC;">)</span>:
     <span style="color: #CC9393;">""" Raise a ValidationError if the value doesn't start</span>
@@ -1130,7 +1193,6 @@ clean的调用保证去除无效的数据，并得到clean_data字典,clean主�
 合法的值</b>
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">clean_flavor</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span><span style="color: #DCDCCC;">)</span>:
     <span style="color: #DFAF8F;">flavor</span> = <span style="color: #F0DFAF; font-weight: bold;">self</span>.cleaned_data<span style="color: #DCDCCC;">[</span><span style="color: #CC9393;">'flavor'</span><span style="color: #DCDCCC;">]</span>
     <span style="color: #F0DFAF; font-weight: bold;">if</span> Flavor.objects.get<span style="color: #DCDCCC;">(</span>slug=flavor<span style="color: #DCDCCC;">)</span>. scoops_remaining &lt;= <span style="color: #BFEBBF;">0</span>:
@@ -1143,9 +1205,9 @@ clean的调用保证去除无效的数据，并得到clean_data字典,clean主�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21">ModelForm</h3>
-<div class="outline-text-3" id="text-orgheadline21">
+<div id="outline-container-orgc631bba" class="outline-3">
+<h3 id="orgc631bba">ModelForm</h3>
+<div class="outline-text-3" id="text-orgc631bba">
 <p>
 根据model来创建form，有几点注意事项
 </p>
@@ -1159,7 +1221,6 @@ instance，然后指定缺失的field的值，然后在save</li>
 面这样：
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #DFAF8F;">a</span> = Article.objects.get<span style="color: #DCDCCC;">(</span>pk=<span style="color: #BFEBBF;">1</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #DFAF8F;">f</span> = ArticleForm<span style="color: #DCDCCC;">(</span>request.POST, instance=a<span style="color: #DCDCCC;">)</span>
 f.save<span style="color: #DCDCCC;">()</span>
@@ -1175,9 +1236,9 @@ cleaned_data都是无效的</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline22" class="outline-2">
-<h2 id="orgheadline22">ContentType</h2>
-<div class="outline-text-2" id="text-orgheadline22">
+<div id="outline-container-orgefdcba6" class="outline-2">
+<h2 id="orgefdcba6">ContentType</h2>
+<div class="outline-text-2" id="text-orgefdcba6">
 <p>
 ContentType也是一个model, 所以在数据库中它也有一张表, 只是这张表每一行存储的信息都是用来描述一个已安装的
 model的, 举个例子,如果有一个名叫profiles的app, 这个app的models.py中一个名叫User的model, 为了描述这个model,
@@ -1205,7 +1266,6 @@ ContentType.model_class()
 返回描述的model的class
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">from</span> django.contrib.contenttypes.models <span style="color: #F0DFAF; font-weight: bold;">import</span> ContentType
 
 <span style="color: #DFAF8F;">user_type</span> = ContentType.objects.get<span style="color: #DCDCCC;">(</span>app_label=<span style="color: #CC9393;">'profiles'</span>, model=<span style="color: #CC9393;">'user'</span><span style="color: #DCDCCC;">)</span>
@@ -1218,9 +1278,9 @@ user_type.model_class<span style="color: #DCDCCC;">()</span>
 </div></li>
 </ol>
 </div>
-<div id="outline-container-orgheadline23" class="outline-3">
-<h3 id="orgheadline23">Generic relations</h3>
-<div class="outline-text-3" id="text-orgheadline23">
+<div id="outline-container-org9ac328e" class="outline-3">
+<h3 id="org9ac328e">Generic relations</h3>
+<div class="outline-text-3" id="text-org9ac328e">
 <p>
 它的最大的作用, 它可以创建一个外键指向多个model,也就是多张表, 而如果用 models.ForeignKey只能关联一个model,
 具体的用法还是直接看<a href="https://docs.djangoproject.com/en/dev/ref/contrib/contenttypes/#id1">文档</a>
@@ -1228,9 +1288,9 @@ user_type.model_class<span style="color: #DCDCCC;">()</span>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline24" class="outline-2">
-<h2 id="orgheadline24">signal</h2>
-<div class="outline-text-2" id="text-orgheadline24">
+<div id="outline-container-org0039f24" class="outline-2">
+<h2 id="org0039f24">signal</h2>
+<div class="outline-text-2" id="text-org0039f24">
 <p>
 signal是同步阻塞的，要异步则要与celery配合，由于signal的receiver代码与发送signal的代码分开在两处，所以代码
 可读性不好，因此尽量不要滥用signal
@@ -1245,15 +1305,15 @@ signal是同步阻塞的，要异步则要与celery配合，由于signal的recei
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline29" class="outline-2">
-<h2 id="orgheadline29">generic views</h2>
-<div class="outline-text-2" id="text-orgheadline29">
-</div><div id="outline-container-orgheadline28" class="outline-3">
-<h3 id="orgheadline28">几个有用Mixin</h3>
-<div class="outline-text-3" id="text-orgheadline28">
-</div><div id="outline-container-orgheadline25" class="outline-4">
-<h4 id="orgheadline25">TemplateResponseMixin</h4>
-<div class="outline-text-4" id="text-orgheadline25">
+<div id="outline-container-orge429de1" class="outline-2">
+<h2 id="orge429de1">generic views</h2>
+<div class="outline-text-2" id="text-orge429de1">
+</div><div id="outline-container-org00daba3" class="outline-3">
+<h3 id="org00daba3">几个有用Mixin</h3>
+<div class="outline-text-3" id="text-org00daba3">
+</div><div id="outline-container-org5b9f3fa" class="outline-4">
+<h4 id="org5b9f3fa">TemplateResponseMixin</h4>
+<div class="outline-text-4" id="text-org5b9f3fa">
 <p>
 用于render template
 </p>
@@ -1263,9 +1323,9 @@ signal是同步阻塞的，要异步则要与celery配合，由于signal的recei
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline26" class="outline-4">
-<h4 id="orgheadline26">SingleObjectMixin</h4>
-<div class="outline-text-4" id="text-orgheadline26">
+<div id="outline-container-org095a3f5" class="outline-4">
+<h4 id="org095a3f5">SingleObjectMixin</h4>
+<div class="outline-text-4" id="text-org095a3f5">
 <p>
 提供了一些用来获得单个model对象的方法
 </p>
@@ -1276,9 +1336,9 @@ signal是同步阻塞的，要异步则要与celery配合，由于signal的recei
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline27" class="outline-4">
-<h4 id="orgheadline27">SingleObjectTemplateResponseMixin(继承自TemplateResponseMixin)</h4>
-<div class="outline-text-4" id="text-orgheadline27">
+<div id="outline-container-org910aebf" class="outline-4">
+<h4 id="org910aebf">SingleObjectTemplateResponseMixin(继承自TemplateResponseMixin)</h4>
+<div class="outline-text-4" id="text-org910aebf">
 <p>
 提供获得template name的函数，DetailView就是继承的这个Mixin
 </p>
@@ -1297,12 +1357,12 @@ get_template_names() : 会返回一个包含template名字的列表，其中包�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline33" class="outline-2">
-<h2 id="orgheadline33">第三方app的使用</h2>
-<div class="outline-text-2" id="text-orgheadline33">
-</div><div id="outline-container-orgheadline30" class="outline-3">
-<h3 id="orgheadline30">south</h3>
-<div class="outline-text-3" id="text-orgheadline30">
+<div id="outline-container-org5336a29" class="outline-2">
+<h2 id="org5336a29">第三方app的使用</h2>
+<div class="outline-text-2" id="text-org5336a29">
+</div><div id="outline-container-org34a1757" class="outline-3">
+<h3 id="org34a1757">south</h3>
+<div class="outline-text-3" id="text-org34a1757">
 <p>
 south基本已经是django开发必不可少的app了，它可以自动同步model的改变，这是<a href="http://south.readthedocs.org/en/latest/index.html">文档</a>, 我这里说一下基本用法:
 </p>
@@ -1346,26 +1406,26 @@ schemamigration会生成本次修改的py文件（在your_app/migrations/下）,
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline31" class="outline-3">
-<h3 id="orgheadline31">mptt</h3>
-<div class="outline-text-3" id="text-orgheadline31">
+<div id="outline-container-org6f20192" class="outline-3">
+<h3 id="org6f20192">mptt</h3>
+<div class="outline-text-3" id="text-org6f20192">
 <p>
 可以用来存储结构化的数据，在实现评论系统时比较有用
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline32" class="outline-3">
-<h3 id="orgheadline32">django-braces</h3>
-<div class="outline-text-3" id="text-orgheadline32">
+<div id="outline-container-orgb16d0ac" class="outline-3">
+<h3 id="orgb16d0ac">django-braces</h3>
+<div class="outline-text-3" id="text-orgb16d0ac">
 <p>
 有一系列的Minix，在使用CBV时非常方便，而且还可以实现简单的REST api，它自带了几个json response
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline34" class="outline-2">
-<h2 id="orgheadline34">我遇到的令人费解的error</h2>
-<div class="outline-text-2" id="text-orgheadline34">
+<div id="outline-container-org0c5d459" class="outline-2">
+<h2 id="org0c5d459">我遇到的令人费解的error</h2>
+<div class="outline-text-2" id="text-org0c5d459">
 <ol class="org-ol">
 <li><p>
 url tag: "'str' object has no attribute 'regex'"
@@ -1373,7 +1433,6 @@ url tag: "'str' object has no attribute 'regex'"
 代码：
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">wrong</span>
 <span style="color: #DFAF8F;">urlpatterns</span>= <span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">''</span>,
               ....<span style="color: #DCDCCC;">)</span>

@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:09 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Compiler</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,6 +176,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -175,24 +260,24 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline5">IR</a>
+<li><a href="#org90be8fb">IR</a>
 <ul>
-<li><a href="#orgheadline1">Parse Tree</a></li>
-<li><a href="#orgheadline2">Homogeneous AST</a></li>
-<li><a href="#orgheadline3">Normalized Heterogeneous AST</a></li>
-<li><a href="#orgheadline4">Irregular Heterogeneous AST</a></li>
+<li><a href="#org72b7798">Parse Tree</a></li>
+<li><a href="#orgc77e384">Homogeneous AST</a></li>
+<li><a href="#org780dad3">Normalized Heterogeneous AST</a></li>
+<li><a href="#org017e18d">Irregular Heterogeneous AST</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline6">Closure Conversion</a></li>
+<li><a href="#org5dff12f">Closure Conversion</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5">IR</h2>
-<div class="outline-text-2" id="text-orgheadline5">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1">Parse Tree</h3>
-<div class="outline-text-3" id="text-orgheadline1">
+<div id="outline-container-org90be8fb" class="outline-2">
+<h2 id="org90be8fb">IR</h2>
+<div class="outline-text-2" id="text-org90be8fb">
+</div><div id="outline-container-org72b7798" class="outline-3">
+<h3 id="org72b7798">Parse Tree</h3>
+<div class="outline-text-3" id="text-org72b7798">
 <p>
 parse tree可以用parser generator自动生成，但是它包含很多非必要的信息，而且是语法
 相关的，这使得不如AST适合成为一种解释器，程序分析器以及编译器的IR，但是parse
@@ -201,9 +286,9 @@ tree在开发环境比如IDE中是很重要的，同时它也是某些代码转�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">Homogeneous AST</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+<div id="outline-container-orgc77e384" class="outline-3">
+<h3 id="orgc77e384">Homogeneous AST</h3>
+<div class="outline-text-3" id="text-orgc77e384">
 <p>
 使用同一个类型来表示所有节点, 这种做法的缺点是: 如果要给某个特定的node添加一个域，
 那么所有的node就都会有这个域，结果就是会有很多冗余信息，这使得这种AST不适合做一
@@ -212,9 +297,9 @@ tree在开发环境比如IDE中是很重要的，同时它也是某些代码转�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">Normalized Heterogeneous AST</h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-org780dad3" class="outline-3">
+<h3 id="org780dad3">Normalized Heterogeneous AST</h3>
+<div class="outline-text-3" id="text-org780dad3">
 <p>
 使用不同的类型来表示不同的节点类型，但是一个节点的子节点会使用一个数组来表示, 所
 以如果你要引用子节点，那么可能就需要使用 <code>children[0]</code>, <code>children[1]</code> 这样的语法，
@@ -223,9 +308,9 @@ tree在开发环境比如IDE中是很重要的，同时它也是某些代码转�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">Irregular Heterogeneous AST</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-org017e18d" class="outline-3">
+<h3 id="org017e18d">Irregular Heterogeneous AST</h3>
+<div class="outline-text-3" id="text-org017e18d">
 <p>
 使用不同的类型来表示不同的节点类型，但是一个节点的子节点会使用特定的名字来表示,
 比如一个 <code>AddExpNode</code> 它的子节点就可能明确的命名为left和right，而不是是用一个
@@ -235,15 +320,14 @@ tree walker。
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6">Closure Conversion</h2>
-<div class="outline-text-2" id="text-orgheadline6">
+<div id="outline-container-org5dff12f" class="outline-2">
+<h2 id="org5dff12f">Closure Conversion</h2>
+<div class="outline-text-2" id="text-org5dff12f">
 <p>
 闭包变换, 主要是为了消除函数中的自由变量, 通过给函数显式的传递一个闭包指针cp,
 函数中对自由变量的访问都是通过操作该指针得到的, 比如下面的例子:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">add</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #D0BF8F;">(</span>x<span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #93E0E3;">(</span>y<span style="color: #93E0E3;">)</span>
@@ -255,7 +339,6 @@ tree walker。
 转换后
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #5F7F5F;">;;</span><span style="color: #7F9F7F;">in order to simplify the code, we represent closure as list, the first</span>
 <span style="color: #5F7F5F;">;;</span><span style="color: #7F9F7F;">element is the function, the rest is the free variables</span>
 <span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">closure-fun</span>

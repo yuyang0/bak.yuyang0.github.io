@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Type System</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="type theory" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="type theory" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -198,79 +283,79 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">Concepts</a></li>
-<li><a href="#orgheadline2">Safety = Progress + Preservation</a></li>
-<li><a href="#orgheadline7">Simple Typed Lambda Calculus</a>
+<li><a href="#org17591bf">Concepts</a></li>
+<li><a href="#orgdae0775">Safety = Progress + Preservation</a></li>
+<li><a href="#org5ea5890">Simple Typed Lambda Calculus</a>
 <ul>
-<li><a href="#orgheadline3">Function type</a></li>
-<li><a href="#orgheadline4">terms</a></li>
-<li><a href="#orgheadline5">evaluation relation</a></li>
-<li><a href="#orgheadline6">type relations</a></li>
+<li><a href="#org4db8c51">Function type</a></li>
+<li><a href="#org4bce975">terms</a></li>
+<li><a href="#org465f12a">evaluation relation</a></li>
+<li><a href="#org32c8f83">type relations</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline8">Type extensions</a>
+<li><a href="#org7fbea52">Type extensions</a>
 <ul>
-<li><a href="#orgheadline9">base type</a></li>
-<li><a href="#orgheadline10">Unit</a></li>
-<li><a href="#orgheadline11">pairs T<sub>1</sub> &times; T<sub>2</sub></a></li>
-<li><a href="#orgheadline12">tuples {T<sub>1</sub> T<sub>2</sub> &#x2026;}</a></li>
-<li><a href="#orgheadline13">records {l<sub>i</sub> = T<sub>i</sub> &#x2026;}</a></li>
-<li><a href="#orgheadline14">sums T<sub>1</sub> + T<sub>2</sub></a></li>
-<li><a href="#orgheadline15">variants &lt;l<sub>i</sub>:T<sub>i</sub> &#x2026;&gt;</a></li>
-<li><a href="#orgheadline16">recursive function</a></li>
-<li><a href="#orgheadline17">Lists (List T)</a></li>
+<li><a href="#org1b67430">base type</a></li>
+<li><a href="#org2b5ebb2">Unit</a></li>
+<li><a href="#orgee625d1">pairs T<sub>1</sub> &times; T<sub>2</sub></a></li>
+<li><a href="#orgb95bf79">tuples {T<sub>1</sub> T<sub>2</sub> &#x2026;}</a></li>
+<li><a href="#orgfd4a4ff">records {l<sub>i</sub> = T<sub>i</sub> &#x2026;}</a></li>
+<li><a href="#org1494aba">sums T<sub>1</sub> + T<sub>2</sub></a></li>
+<li><a href="#org50963da">variants &lt;l<sub>i</sub>:T<sub>i</sub> &#x2026;&gt;</a></li>
+<li><a href="#org5b686f4">recursive function</a></li>
+<li><a href="#org39a4e38">Lists (List T)</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline18">Reference</a>
+<li><a href="#org046e4a8">Reference</a>
 <ul>
-<li><a href="#orgheadline19">type rules</a></li>
+<li><a href="#org637170b">type rules</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline20">Subtype</a>
+<li><a href="#org8f8d700">Subtype</a>
 <ul>
-<li><a href="#orgheadline21">function</a></li>
-<li><a href="#orgheadline22">record</a></li>
-<li><a href="#orgheadline23">variant</a></li>
-<li><a href="#orgheadline24">reference</a></li>
-<li><a href="#orgheadline25">The Top and Bottom types</a></li>
-<li><a href="#orgheadline26">STLC</a></li>
-<li><a href="#orgheadline27">OOP</a></li>
+<li><a href="#org77a882e">function</a></li>
+<li><a href="#orgb222423">record</a></li>
+<li><a href="#orgaee4379">variant</a></li>
+<li><a href="#orgac984af">reference</a></li>
+<li><a href="#org6471d4c">The Top and Bottom types</a></li>
+<li><a href="#org11f4c50">STLC</a></li>
+<li><a href="#org5909cdf">OOP</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline34">Polymorphism</a>
+<li><a href="#org197ed1d">Polymorphism</a>
 <ul>
-<li><a href="#orgheadline28">concepts</a></li>
-<li><a href="#orgheadline29">Parameter Polymorphism</a>
+<li><a href="#orga63268b">concepts</a></li>
+<li><a href="#org4efab48">Parameter Polymorphism</a>
 <ul>
-<li><a href="#orgheadline30">system F</a></li>
+<li><a href="#org5ebacea">system F</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline32">ad-hoc polymorphism</a>
+<li><a href="#orgb819214">ad-hoc polymorphism</a>
 <ul>
-<li><a href="#orgheadline31">Overload</a></li>
+<li><a href="#orga7b3d3d">Overload</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline33">subtype Polymorphism</a></li>
+<li><a href="#org32a986d">subtype Polymorphism</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline38">Recursive Type</a>
+<li><a href="#orgf6aaaac">Recursive Type</a>
 <ul>
-<li><a href="#orgheadline35">An Example(number list)</a></li>
-<li><a href="#orgheadline36">fix combinator</a></li>
-<li><a href="#orgheadline37">fold and unfold</a></li>
+<li><a href="#org48ab231">An Example(number list)</a></li>
+<li><a href="#orgb229f8e">fix combinator</a></li>
+<li><a href="#orgcc90c8b">fold and unfold</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline40">Type Inference</a>
+<li><a href="#org6a35b39">Type Inference</a>
 <ul>
-<li><a href="#orgheadline39">Unification Algorithm</a></li>
+<li><a href="#orgc6b3897">Unification Algorithm</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Concepts</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-org17591bf" class="outline-2">
+<h2 id="org17591bf">Concepts</h2>
+<div class="outline-text-2" id="text-org17591bf">
 <ol class="org-ol">
 <li><b>type</b>: type is a name for a collection of values(actually it also
 defines a collection of operations on these values). In general, if two
@@ -300,9 +385,9 @@ and a reduction relation, it is a untyped language.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">Safety = Progress + Preservation</h2>
-<div class="outline-text-2" id="text-orgheadline2">
+<div id="outline-container-orgdae0775" class="outline-2">
+<h2 id="orgdae0775">Safety = Progress + Preservation</h2>
+<div class="outline-text-2" id="text-orgdae0775">
 <ul class="org-ul">
 <li>Progress: A well-typed term is not stuck (either it is a value or it can
 take a step according to the evaluation rules).</li>
@@ -311,12 +396,12 @@ resulting term is also well typed.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-2">
-<h2 id="orgheadline7">Simple Typed Lambda Calculus</h2>
-<div class="outline-text-2" id="text-orgheadline7">
-</div><div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">Function type</h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-org5ea5890" class="outline-2">
+<h2 id="org5ea5890">Simple Typed Lambda Calculus</h2>
+<div class="outline-text-2" id="text-org5ea5890">
+</div><div id="outline-container-org4db8c51" class="outline-3">
+<h3 id="org4db8c51">Function type</h3>
+<div class="outline-text-3" id="text-org4db8c51">
 <p>
 The type of a function should describe the type of the argument and the
 type of the function body.
@@ -331,9 +416,9 @@ produces a function type.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">terms</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-org4bce975" class="outline-3">
+<h3 id="org4bce975">terms</h3>
+<div class="outline-text-3" id="text-org4bce975">
 \begin{eqnarray*}
   t ::= &                   &\textrm{terms}\\
         & x                 &\textrm{variable}\\
@@ -358,9 +443,9 @@ type.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">evaluation relation</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-org465f12a" class="outline-3">
+<h3 id="org465f12a">evaluation relation</h3>
+<div class="outline-text-3" id="text-org465f12a">
 \begin{eqnarray*}
   & \frac{t_1 \rightarrow t_1'}{t_1 t_2 \rightarrow t_1' t_2} \qquad &\textrm{(E-APP1)}\\
   & \frac{t_2 \rightarrow t_2'}{v_1 t_2 \rightarrow v_1 t_2'} \qquad &\textrm{(E-APP2)}\\
@@ -369,9 +454,9 @@ type.</li>
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">type relations</h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-org32c8f83" class="outline-3">
+<h3 id="org32c8f83">type relations</h3>
+<div class="outline-text-3" id="text-org32c8f83">
 \begin{eqnarray*}
   & \frac{x:T \in \Gamma}{\Gamma \vdash x:T} &\textrm{(T-VAR)} \\
   & \frac{\Gamma, x:T_1 \vdash t_2 : T_2}{\Gamma \vdash \lambda x:T_1.t_2 : T_2} &\textrm{(T-ABS)} \\
@@ -381,9 +466,9 @@ type.</li>
 </div>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-2">
-<h2 id="orgheadline8">Type extensions</h2>
-<div class="outline-text-2" id="text-orgheadline8">
+<div id="outline-container-org7fbea52" class="outline-2">
+<h2 id="org7fbea52">Type extensions</h2>
+<div class="outline-text-2" id="text-org7fbea52">
 <p>
 STLC实际上限制了 lambda calculus 的表达能力,比如说在 STLC中不能定义递归函数,
 不能编码 pair等等,但是为了给该语言添加这种表现力,我们可以直接向语言中添加一
@@ -391,17 +476,17 @@ STLC实际上限制了 lambda calculus 的表达能力,比如说在 STLC中不�
 <code>pair</code> 我们可以直接将 mkpiar,fst,snd作为扩展添加进语言中.
 </p>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">base type</h3>
-<div class="outline-text-3" id="text-orgheadline9">
+<div id="outline-container-org1b67430" class="outline-3">
+<h3 id="org1b67430">base type</h3>
+<div class="outline-text-3" id="text-org1b67430">
 <p>
 int, char, etc
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">Unit</h3>
-<div class="outline-text-3" id="text-orgheadline10">
+<div id="outline-container-org2b5ebb2" class="outline-3">
+<h3 id="org2b5ebb2">Unit</h3>
+<div class="outline-text-3" id="text-org2b5ebb2">
 <p>
 Unit type is another base type. statements or expressions which are used to
 perform side affect return Unit type. One can think Unit type means no
@@ -414,9 +499,9 @@ type.
 </div>
 </div>
 
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11">pairs T<sub>1</sub> &times; T<sub>2</sub></h3>
-<div class="outline-text-3" id="text-orgheadline11">
+<div id="outline-container-orgee625d1" class="outline-3">
+<h3 id="orgee625d1">pairs T<sub>1</sub> &times; T<sub>2</sub></h3>
+<div class="outline-text-3" id="text-orgee625d1">
 <p>
 One can think pair as a special case of tuple which only has two
 elements. The type rule of pair is as follows:
@@ -455,9 +540,9 @@ type rules
 </div>
 </div>
 
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12">tuples {T<sub>1</sub> T<sub>2</sub> &#x2026;}</h3>
-<div class="outline-text-3" id="text-orgheadline12">
+<div id="outline-container-orgb95bf79" class="outline-3">
+<h3 id="orgb95bf79">tuples {T<sub>1</sub> T<sub>2</sub> &#x2026;}</h3>
+<div class="outline-text-3" id="text-orgb95bf79">
 <p>
 t1:T1, t2:T2, t3:T3 ==&gt; (t1 t2 t3 &#x2026;.) : T1 * T2 * T3 * &#x2026;
 </p>
@@ -476,9 +561,9 @@ type rules:
 </div>
 </div>
 
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13">records {l<sub>i</sub> = T<sub>i</sub> &#x2026;}</h3>
-<div class="outline-text-3" id="text-orgheadline13">
+<div id="outline-container-orgfd4a4ff" class="outline-3">
+<h3 id="orgfd4a4ff">records {l<sub>i</sub> = T<sub>i</sub> &#x2026;}</h3>
+<div class="outline-text-3" id="text-orgfd4a4ff">
 <p>
 like the ``struct'' statement in C. every field has a name. while tuple uses
 the index to fetch the field, record uses the name to fetch the field
@@ -521,9 +606,9 @@ type rules:
 </div>
 </div>
 
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">sums T<sub>1</sub> + T<sub>2</sub></h3>
-<div class="outline-text-3" id="text-orgheadline14">
+<div id="outline-container-org1494aba" class="outline-3">
+<h3 id="org1494aba">sums T<sub>1</sub> + T<sub>2</sub></h3>
+<div class="outline-text-3" id="text-org1494aba">
 <p>
 sums is a special case of variants which has only two variants.
 </p>
@@ -545,9 +630,9 @@ type rules:
 </div>
 </div>
 
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15">variants &lt;l<sub>i</sub>:T<sub>i</sub> &#x2026;&gt;</h3>
-<div class="outline-text-3" id="text-orgheadline15">
+<div id="outline-container-org50963da" class="outline-3">
+<h3 id="org50963da">variants &lt;l<sub>i</sub>:T<sub>i</sub> &#x2026;&gt;</h3>
+<div class="outline-text-3" id="text-org50963da">
 <p>
 This data type has serveral variants. every variant is tagged with a
 label. through these tags, we can use a case expression to deconstruct the
@@ -576,9 +661,9 @@ type rules:
 </div>
 </div>
 
-<div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16">recursive function</h3>
-<div class="outline-text-3" id="text-orgheadline16">
+<div id="outline-container-org5b686f4" class="outline-3">
+<h3 id="org5b686f4">recursive function</h3>
+<div class="outline-text-3" id="text-org5b686f4">
 <p>
 add <code>fix</code> to the language.
 </p>
@@ -588,18 +673,18 @@ add <code>fix</code> to the language.
 </div>
 </div>
 
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17">Lists (List T)</h3>
-<div class="outline-text-3" id="text-orgheadline17">
+<div id="outline-container-org39a4e38" class="outline-3">
+<h3 id="org39a4e38">Lists (List T)</h3>
+<div class="outline-text-3" id="text-org39a4e38">
 <p>
 e1:T, e2:T, e3:T &#x2026; ==&gt; (e1 e2 e3 &#x2026;) : List T
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-2">
-<h2 id="orgheadline18">Reference</h2>
-<div class="outline-text-2" id="text-orgheadline18">
+<div id="outline-container-org046e4a8" class="outline-2">
+<h2 id="org046e4a8">Reference</h2>
+<div class="outline-text-2" id="text-org046e4a8">
 <ol class="org-ol">
 <li>&mu;: the state of the store. One can think &mu; as a map from location to
 expressed value</li>
@@ -638,9 +723,9 @@ type of the content pointed by this location.</li>
 \end{eqnarray*}
 </div>
 
-<div id="outline-container-orgheadline19" class="outline-3">
-<h3 id="orgheadline19">type rules</h3>
-<div class="outline-text-3" id="text-orgheadline19">
+<div id="outline-container-org637170b" class="outline-3">
+<h3 id="org637170b">type rules</h3>
+<div class="outline-text-3" id="text-org637170b">
 \begin{eqnarray*}
   & \frac{x:T \in \Gamma}{\Gamma | \Sigma \vdash x:T} &\textrm{(T-VAR)} \\
   & \frac{\Gamma,x:T_1|\Sigma \vdash t_2:T_2}{\Gamma | \Sigma \vdash \lambda x:T_1.t_2:T_1 \rightarrow T_2}  &\textrm{(T-ABS)}    \\
@@ -655,9 +740,9 @@ type of the content pointed by this location.</li>
 </div>
 </div>
 
-<div id="outline-container-orgheadline20" class="outline-2">
-<h2 id="orgheadline20">Subtype</h2>
-<div class="outline-text-2" id="text-orgheadline20">
+<div id="outline-container-org8f8d700" class="outline-2">
+<h2 id="org8f8d700">Subtype</h2>
+<div class="outline-text-2" id="text-org8f8d700">
 <p>
 if S is the Subtype of T, any term of type S can safely be used in a
 context where a term of type T is expected.
@@ -668,9 +753,9 @@ S &lt;: T means S is the subtype of T, One can think S is a subset of T.
 </p>
 </div>
 
-<div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21">function</h3>
-<div class="outline-text-3" id="text-orgheadline21">
+<div id="outline-container-org77a882e" class="outline-3">
+<h3 id="org77a882e">function</h3>
+<div class="outline-text-3" id="text-org77a882e">
 <p>
 The subtype rule of function type is as follows:
 </p>
@@ -687,15 +772,15 @@ the inverse Lemma:
 </div>
 </div>
 
-<div id="outline-container-orgheadline22" class="outline-3">
-<h3 id="orgheadline22">record</h3>
+<div id="outline-container-orgb222423" class="outline-3">
+<h3 id="orgb222423">record</h3>
 </div>
-<div id="outline-container-orgheadline23" class="outline-3">
-<h3 id="orgheadline23">variant</h3>
+<div id="outline-container-orgaee4379" class="outline-3">
+<h3 id="orgaee4379">variant</h3>
 </div>
-<div id="outline-container-orgheadline24" class="outline-3">
-<h3 id="orgheadline24">reference</h3>
-<div class="outline-text-3" id="text-orgheadline24">
+<div id="outline-container-orgac984af" class="outline-3">
+<h3 id="orgac984af">reference</h3>
+<div class="outline-text-3" id="text-orgac984af">
 \begin{eqnarray*}
   \frac{S_1 <: T_1 \qquad T_1 <: S_1}{Ref\ S_1 <: Ref \ T_1}
 \end{eqnarray*}
@@ -707,9 +792,9 @@ be equivalent in substype relation.
 </div>
 </div>
 
-<div id="outline-container-orgheadline25" class="outline-3">
-<h3 id="orgheadline25">The Top and Bottom types</h3>
-<div class="outline-text-3" id="text-orgheadline25">
+<div id="outline-container-org6471d4c" class="outline-3">
+<h3 id="org6471d4c">The Top and Bottom types</h3>
+<div class="outline-text-3" id="text-org6471d4c">
 <ol class="org-ol">
 <li><b>Top</b> is the super type of all the types</li>
 <li><b>Bot</b> is a subtype of every type</li>
@@ -717,9 +802,9 @@ be equivalent in substype relation.
 </div>
 </div>
 
-<div id="outline-container-orgheadline26" class="outline-3">
-<h3 id="orgheadline26">STLC</h3>
-<div class="outline-text-3" id="text-orgheadline26">
+<div id="outline-container-org11f4c50" class="outline-3">
+<h3 id="org11f4c50">STLC</h3>
+<div class="outline-text-3" id="text-org11f4c50">
 
 <div class="figure">
 <p><img src="static/img/STLC-subtyping.png" alt="STLC-subtyping.png" />
@@ -727,9 +812,9 @@ be equivalent in substype relation.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline27" class="outline-3">
-<h3 id="orgheadline27">OOP</h3>
-<div class="outline-text-3" id="text-orgheadline27">
+<div id="outline-container-org5909cdf" class="outline-3">
+<h3 id="org5909cdf">OOP</h3>
+<div class="outline-text-3" id="text-org5909cdf">
 <p>
 In a OOP language, t<sub>1</sub> is subtype of t<sub>2</sub> if:
 </p>
@@ -741,12 +826,12 @@ superclasses implements t<sub>2</sub>.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline34" class="outline-2">
-<h2 id="orgheadline34">Polymorphism</h2>
-<div class="outline-text-2" id="text-orgheadline34">
-</div><div id="outline-container-orgheadline28" class="outline-3">
-<h3 id="orgheadline28">concepts</h3>
-<div class="outline-text-3" id="text-orgheadline28">
+<div id="outline-container-org197ed1d" class="outline-2">
+<h2 id="org197ed1d">Polymorphism</h2>
+<div class="outline-text-2" id="text-org197ed1d">
+</div><div id="outline-container-orga63268b" class="outline-3">
+<h3 id="orga63268b">concepts</h3>
+<div class="outline-text-3" id="text-orga63268b">
 <ol class="org-ol">
 <li><b>Polymorphism</b>: in <b>function</b> programming language, Polymorphism usually
 denotes <b>Parameter Polymorphism</b>, however in <b>Object-oriented</b>
@@ -755,9 +840,9 @@ the term <b>generics(泛型)</b> is used to denote parameter polymorphism.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline29" class="outline-3">
-<h3 id="orgheadline29">Parameter Polymorphism</h3>
-<div class="outline-text-3" id="text-orgheadline29">
+<div id="outline-container-org4efab48" class="outline-3">
+<h3 id="org4efab48">Parameter Polymorphism</h3>
+<div class="outline-text-3" id="text-org4efab48">
 <p>
 这种多态一般意味着: 函数不需要知道参数的具体类型, 比如说haskell 中的一个计
 算list长度的函数length,length的类型很显然是 \([\alpha] \rightarrow int\)
@@ -807,9 +892,9 @@ pair,list,不能定义递归函数等等,当我们引入了 &Lambda; 抽象后, 
 决了. 比如编码list:
 </p>
 </div>
-<div id="outline-container-orgheadline30" class="outline-4">
-<h4 id="orgheadline30">system F</h4>
-<div class="outline-text-4" id="text-orgheadline30">
+<div id="outline-container-org5ebacea" class="outline-4">
+<h4 id="org5ebacea">system F</h4>
+<div class="outline-text-4" id="text-org5ebacea">
 
 <div class="figure">
 <p><img src="static/img/system-F.png" alt="system-F.png" />
@@ -818,12 +903,12 @@ pair,list,不能定义递归函数等等,当我们引入了 &Lambda; 抽象后, 
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline32" class="outline-3">
-<h3 id="orgheadline32">ad-hoc polymorphism</h3>
-<div class="outline-text-3" id="text-orgheadline32">
-</div><div id="outline-container-orgheadline31" class="outline-4">
-<h4 id="orgheadline31">Overload</h4>
-<div class="outline-text-4" id="text-orgheadline31">
+<div id="outline-container-orgb819214" class="outline-3">
+<h3 id="orgb819214">ad-hoc polymorphism</h3>
+<div class="outline-text-3" id="text-orgb819214">
+</div><div id="outline-container-orga7b3d3d" class="outline-4">
+<h4 id="orga7b3d3d">Overload</h4>
+<div class="outline-text-4" id="text-orga7b3d3d">
 <p>
 这种多态对不同的类型有不同的操作方式,比如haskell的 <code>+</code> 操作,该操作可以应用
 于int, float等等, 但是对于每一种类型它都有一套特有的操作方式,也就是需要重载.
@@ -831,21 +916,21 @@ pair,list,不能定义递归函数等等,当我们引入了 &Lambda; 抽象后, 
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline33" class="outline-3">
-<h3 id="orgheadline33">subtype Polymorphism</h3>
-<div class="outline-text-3" id="text-orgheadline33">
+<div id="outline-container-org32a986d" class="outline-3">
+<h3 id="org32a986d">subtype Polymorphism</h3>
+<div class="outline-text-3" id="text-org32a986d">
 <p>
 Mostly used in Object-oriented language.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline38" class="outline-2">
-<h2 id="orgheadline38">Recursive Type</h2>
-<div class="outline-text-2" id="text-orgheadline38">
-</div><div id="outline-container-orgheadline35" class="outline-3">
-<h3 id="orgheadline35">An Example(number list)</h3>
-<div class="outline-text-3" id="text-orgheadline35">
+<div id="outline-container-orgf6aaaac" class="outline-2">
+<h2 id="orgf6aaaac">Recursive Type</h2>
+<div class="outline-text-2" id="text-orgf6aaaac">
+</div><div id="outline-container-org48ab231" class="outline-3">
+<h3 id="org48ab231">An Example(number list)</h3>
+<div class="outline-text-3" id="text-org48ab231">
 <p>
 An number list is either
 </p>
@@ -886,18 +971,18 @@ a type constructed by &mu; is a <b>recursive type</b>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline36" class="outline-3">
-<h3 id="orgheadline36">fix combinator</h3>
-<div class="outline-text-3" id="text-orgheadline36">
+<div id="outline-container-orgb229f8e" class="outline-3">
+<h3 id="orgb229f8e">fix combinator</h3>
+<div class="outline-text-3" id="text-orgb229f8e">
 \begin{eqnarray*}
   fix_T = \lambda f:T \rightarrow T.(\lambda x:(\mu A.A \rightarrow T) .f (x\ x)) (\lambda x:(\mu A.A \rightarrow T). f (x\ x))
 \end{eqnarray*}
 </div>
 </div>
 
-<div id="outline-container-orgheadline37" class="outline-3">
-<h3 id="orgheadline37">fold and unfold</h3>
-<div class="outline-text-3" id="text-orgheadline37">
+<div id="outline-container-orgcc90c8b" class="outline-3">
+<h3 id="orgcc90c8b">fold and unfold</h3>
+<div class="outline-text-3" id="text-orgcc90c8b">
 <p>
 In many language, there is no explicit <code>fold</code> and <code>unfold</code> keyword. instead
 each use of a constructor to create a value implies a <code>fold</code>, and each use
@@ -918,12 +1003,12 @@ of a constructor in a pattern match implies <code>unfold</code>. The type rules 
 </div>
 </div>
 
-<div id="outline-container-orgheadline40" class="outline-2">
-<h2 id="orgheadline40">Type Inference</h2>
-<div class="outline-text-2" id="text-orgheadline40">
-</div><div id="outline-container-orgheadline39" class="outline-3">
-<h3 id="orgheadline39">Unification Algorithm</h3>
-<div class="outline-text-3" id="text-orgheadline39">
+<div id="outline-container-org6a35b39" class="outline-2">
+<h2 id="org6a35b39">Type Inference</h2>
+<div class="outline-text-2" id="text-org6a35b39">
+</div><div id="outline-container-orgc6b3897" class="outline-3">
+<h3 id="orgc6b3897">Unification Algorithm</h3>
+<div class="outline-text-3" id="text-orgc6b3897">
 <p>
 unification consumes a set of constraints and either:
 </p>

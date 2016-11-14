@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:09 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Client-Side javascript</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="javascript client" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="javascript client" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -176,77 +261,77 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">js运行方式</a></li>
-<li><a href="#orgheadline7">global window object</a>
+<li><a href="#org82ef433">js运行方式</a></li>
+<li><a href="#org94ae64e">global window object</a>
 <ul>
-<li><a href="#orgheadline2">timers</a></li>
-<li><a href="#orgheadline3">window.location</a></li>
-<li><a href="#orgheadline4">window.history</a></li>
-<li><a href="#orgheadline5">window.navigator</a></li>
-<li><a href="#orgheadline6">window.document</a></li>
+<li><a href="#org6264ccc">timers</a></li>
+<li><a href="#org0ad679b">window.location</a></li>
+<li><a href="#org53962b2">window.history</a></li>
+<li><a href="#orga147753">window.navigator</a></li>
+<li><a href="#org6f4ab41">window.document</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline18">DOM</a>
+<li><a href="#org1f2f1a6">DOM</a>
 <ul>
-<li><a href="#orgheadline8">node</a>
+<li><a href="#orge65b0be">node</a>
 <ul>
-<li><a href="#orgheadline9">节点指针以及属性</a></li>
-<li><a href="#orgheadline10">node type</a></li>
-<li><a href="#orgheadline11">Element node's attribute</a></li>
-<li><a href="#orgheadline12">Element node's content</a></li>
+<li><a href="#orga14f3b3">节点指针以及属性</a></li>
+<li><a href="#org7ce333b">node type</a></li>
+<li><a href="#org171576f">Element node's attribute</a></li>
+<li><a href="#org692036e">Element node's content</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline13">选择DOM节点</a></li>
-<li><a href="#orgheadline14">创建新DOM节点</a></li>
-<li><a href="#orgheadline15">插入DOM节点</a></li>
-<li><a href="#orgheadline16">删除,替换DOM节点</a></li>
-<li><a href="#orgheadline17">位置,scroll</a></li>
+<li><a href="#org89a6cc8">选择DOM节点</a></li>
+<li><a href="#orgb9a0fdf">创建新DOM节点</a></li>
+<li><a href="#orgfceb315">插入DOM节点</a></li>
+<li><a href="#org04789c2">删除,替换DOM节点</a></li>
+<li><a href="#orgcbb0690">位置,scroll</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline19">修改css</a>
+<li><a href="#orgf26f24f">修改css</a>
 <ul>
-<li><a href="#orgheadline20">使用style属性来修改css</a></li>
-<li><a href="#orgheadline21">获取当前的样式</a></li>
-<li><a href="#orgheadline22">className</a></li>
+<li><a href="#org7ec4928">使用style属性来修改css</a></li>
+<li><a href="#org756f96d">获取当前的样式</a></li>
+<li><a href="#org72bd2ae">className</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline35">事件</a>
+<li><a href="#org98f54bc">事件</a>
 <ul>
-<li><a href="#orgheadline23">Event Object</a></li>
-<li><a href="#orgheadline29">常用事件类型</a>
+<li><a href="#orgb6bec08">Event Object</a></li>
+<li><a href="#org2274183">常用事件类型</a>
 <ul>
-<li><a href="#orgheadline24">window的事件</a></li>
-<li><a href="#orgheadline25">UI事件</a></li>
-<li><a href="#orgheadline26">鼠标事件</a></li>
-<li><a href="#orgheadline27">键盘事件</a></li>
-<li><a href="#orgheadline28">表单事件</a></li>
+<li><a href="#orge954df9">window的事件</a></li>
+<li><a href="#org92b2f9e">UI事件</a></li>
+<li><a href="#org6503648">鼠标事件</a></li>
+<li><a href="#org901217a">键盘事件</a></li>
+<li><a href="#org29a4d16">表单事件</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline30">Register Event Handler</a></li>
-<li><a href="#orgheadline33">Event Cancellation</a>
+<li><a href="#org21fab60">Register Event Handler</a></li>
+<li><a href="#org099af62">Event Cancellation</a>
 <ul>
-<li><a href="#orgheadline31">阻止浏览器默认行为</a></li>
-<li><a href="#orgheadline32">阻止事件冒泡</a></li>
+<li><a href="#org763455f">阻止浏览器默认行为</a></li>
+<li><a href="#orgf8a9ab6">阻止事件冒泡</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline34">通用函数</a></li>
+<li><a href="#orgb747fc8">通用函数</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline41">ajax</a>
+<li><a href="#orgeeff11a">ajax</a>
 <ul>
-<li><a href="#orgheadline36">Create XMLHttpRequest</a></li>
-<li><a href="#orgheadline37">open</a></li>
-<li><a href="#orgheadline38">send</a></li>
-<li><a href="#orgheadline39">Retrieving the Response</a></li>
-<li><a href="#orgheadline40">jsonp</a></li>
+<li><a href="#org82bb2f2">Create XMLHttpRequest</a></li>
+<li><a href="#org2587148">open</a></li>
+<li><a href="#org5cc5f74">send</a></li>
+<li><a href="#org0e9a712">Retrieving the Response</a></li>
+<li><a href="#org1e27a8d">jsonp</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">js运行方式</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-org82ef433" class="outline-2">
+<h2 id="org82ef433">js运行方式</h2>
+<div class="outline-text-2" id="text-org82ef433">
 <ol class="org-ol">
 <li>&lt;script&gt;&#x2026;..&lt;/script&gt;内嵌</li>
 <li>&lt;script src="path-to-js-file"&gt; &lt;/script&gt; 外部js文件</li>
@@ -257,7 +342,6 @@ for the JavaScript code in this tag.
 任何能使用url的地方，比如 a 标签的href，form的action使用如下代码：
 </p>
 <div class="org-src-container">
-
 <pre class="src src-html">&lt;<span style="color: #93E0E3;">a</span> <span style="color: #DFAF8F;">href</span>=<span style="color: #CC9393;">"javascript: alert('hello world');"</span>&gt;&lt;/<span style="color: #93E0E3;">a</span>&gt;
 </pre>
 </div>
@@ -266,7 +350,6 @@ for the JavaScript code in this tag.
 前的页面为js的执行结果，所以如果要阻止这种行为，那么可以统一在js代码的前面加上void ，比如
 </p>
 <div class="org-src-container">
-
 <pre class="src src-html">&lt;<span style="color: #93E0E3;">a</span> <span style="color: #DFAF8F;">href</span>=<span style="color: #CC9393;">"javascript:void new Date().toLocaleTimeString();"</span>&gt;Check the time without overwriting the document&lt;/<span style="color: #93E0E3;">a</span>&gt;
 </pre>
 </div></li>
@@ -275,7 +358,6 @@ Bookmarklets
 加入书签，那么这段代码就相当于直接插入了当前页面，比如订阅到鲜果的书签：
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js">javascript:window.open<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'http://xianguo.com/subscribe?url='</span>+encodeURIComponent<span style="color: #BFEBBF;">(</span>location.href<span style="color: #BFEBBF;">)</span>, <span style="color: #CC9393;">'xianguo'</span><span style="color: #DCDCCC;">)</span>;<span style="color: #F0DFAF; font-weight: bold;">void</span><span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">0</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div></li>
@@ -283,12 +365,12 @@ Bookmarklets
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-2">
-<h2 id="orgheadline7">global window object</h2>
-<div class="outline-text-2" id="text-orgheadline7">
-</div><div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">timers</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+<div id="outline-container-org94ae64e" class="outline-2">
+<h2 id="org94ae64e">global window object</h2>
+<div class="outline-text-2" id="text-org94ae64e">
+</div><div id="outline-container-org6264ccc" class="outline-3">
+<h3 id="org6264ccc">timers</h3>
+<div class="outline-text-3" id="text-org6264ccc">
 <ol class="org-ol">
 <li>setTimeout(callback, timeout) : 只运行一次callback，返回值可以传递给clearTimeout来清除定时器</li>
 <li>clearTimeout()</li>
@@ -298,9 +380,9 @@ Bookmarklets
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">window.location</h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-org0ad679b" class="outline-3">
+<h3 id="org0ad679b">window.location</h3>
+<div class="outline-text-3" id="text-org0ad679b">
 <p>
 window.location指向一个Location object,这个object有一系列的属性,以
 <a href="http://www.oreilly.com:1234/catalog/search.html?q=JavaScript&amp;m=10#results">http://www.oreilly.com:1234/catalog/search.html?q=JavaScript&amp;m=10#results</a> 为例
@@ -317,9 +399,9 @@ window.location指向一个Location object,这个object有一系列的属性,以
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">window.history</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-org53962b2" class="outline-3">
+<h3 id="org53962b2">window.history</h3>
+<div class="outline-text-3" id="text-org53962b2">
 <ol class="org-ol">
 <li>history.forward(): 前进</li>
 <li>history.back(): 后退</li>
@@ -327,9 +409,9 @@ window.location指向一个Location object,这个object有一系列的属性,以
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">window.navigator</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-orga147753" class="outline-3">
+<h3 id="orga147753">window.navigator</h3>
+<div class="outline-text-3" id="text-orga147753">
 <ol class="org-ol">
 <li>appName:</li>
 <li>appVersion:</li>
@@ -338,9 +420,9 @@ window.location指向一个Location object,这个object有一系列的属性,以
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">window.document</h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-org6f4ab41" class="outline-3">
+<h3 id="org6f4ab41">window.document</h3>
+<div class="outline-text-3" id="text-org6f4ab41">
 <ol class="org-ol">
 <li>referrer: 一个错误的拼写, 主要用来指示用户是从什么链接跳转到该文档, 可以
 用来防盗链, 和HTTP中referer类似</li>
@@ -351,17 +433,16 @@ window.location指向一个Location object,这个object有一系列的属性,以
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-2">
-<h2 id="orgheadline18">DOM</h2>
-<div class="outline-text-2" id="text-orgheadline18">
-</div><div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">node</h3>
-<div class="outline-text-3" id="text-orgheadline8">
+<div id="outline-container-org1f2f1a6" class="outline-2">
+<h2 id="org1f2f1a6">DOM</h2>
+<div class="outline-text-2" id="text-org1f2f1a6">
+</div><div id="outline-container-orge65b0be" class="outline-3">
+<h3 id="orge65b0be">node</h3>
+<div class="outline-text-3" id="text-orge65b0be">
 <p>
 node: DOM树中的一个节点, 以下面这段html为例:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-html">&lt;<span style="color: #93E0E3;">html</span>&gt;
   &lt;<span style="color: #93E0E3;">head</span>&gt;
     &lt;<span style="color: #93E0E3;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Sample Document</span>&lt;/<span style="color: #93E0E3;">title</span>&gt;
@@ -377,9 +458,9 @@ node: DOM树中的一个节点, 以下面这段html为例:
 <img src="static/img/DOM-tree.png" alt="DOM-tree.png" />
 </p>
 </div>
-<div id="outline-container-orgheadline9" class="outline-4">
-<h4 id="orgheadline9">节点指针以及属性</h4>
-<div class="outline-text-4" id="text-orgheadline9">
+<div id="outline-container-orga14f3b3" class="outline-4">
+<h4 id="orga14f3b3">节点指针以及属性</h4>
+<div class="outline-text-4" id="text-orga14f3b3">
 <p>
 因为是树中的节点所以每个node对象都有以下的指针(以n代表一个node对象):
 </p>
@@ -408,9 +489,9 @@ value 3. Comments nodes are 8 and Document- Fragment nodes are 11.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-4">
-<h4 id="orgheadline10">node type</h4>
-<div class="outline-text-4" id="text-orgheadline10">
+<div id="outline-container-org7ce333b" class="outline-4">
+<h4 id="org7ce333b">node type</h4>
+<div class="outline-text-4" id="text-org7ce333b">
 <p>
 有三种节点类型:
 </p>
@@ -423,15 +504,14 @@ value 3. Comments nodes are 8 and Document- Fragment nodes are 11.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-4">
-<h4 id="orgheadline11">Element node's attribute</h4>
-<div class="outline-text-4" id="text-orgheadline11">
+<div id="outline-container-org171576f" class="outline-4">
+<h4 id="org171576f">Element node's attribute</h4>
+<div class="outline-text-4" id="text-org171576f">
 <p>
 element node代表一个html元素, 他可以直接获得以及设置该html元素的属性,假设f
 是一个form元素, 那么可以使用下面的代码:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js">f.action === <span style="color: #CC9393;">"http://www.baidu.com"</span> <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">test form's action attribute</span>
 f.method = <span style="color: #CC9393;">"POST"</span>                   <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">set the form's method attribute to "POST"</span>
 </pre>
@@ -453,9 +533,9 @@ f.method = <span style="color: #CC9393;">"POST"</span>                   <span s
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-4">
-<h4 id="orgheadline12">Element node's content</h4>
-<div class="outline-text-4" id="text-orgheadline12">
+<div id="outline-container-org692036e" class="outline-4">
+<h4 id="org692036e">Element node's content</h4>
+<div class="outline-text-4" id="text-org692036e">
 <ol class="org-ol">
 <li>innerHTML : 元素内的 html文本(不包含该元素本身的标签)</li>
 <li>textContent/innerText: 可以看作是innerHTML去掉所有的 HTML标签后得到的文
@@ -466,9 +546,9 @@ f.method = <span style="color: #CC9393;">"POST"</span>                   <span s
 </div>
 </div>
 
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13">选择DOM节点</h3>
-<div class="outline-text-3" id="text-orgheadline13">
+<div id="outline-container-org89a6cc8" class="outline-3">
+<h3 id="org89a6cc8">选择DOM节点</h3>
+<div class="outline-text-3" id="text-org89a6cc8">
 <ol class="org-ol">
 <li>document.getElementById: 返回单个DOM节点</li>
 <li>document.getElementsByName: 根据name属性查找, 返回NodeList, 这是一个类数
@@ -482,15 +562,14 @@ f.method = <span style="color: #CC9393;">"POST"</span>                   <span s
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">创建新DOM节点</h3>
-<div class="outline-text-3" id="text-orgheadline14">
+<div id="outline-container-orgb9a0fdf" class="outline-3">
+<h3 id="orgb9a0fdf">创建新DOM节点</h3>
+<div class="outline-text-3" id="text-orgb9a0fdf">
 <ol class="org-ol">
 <li><p>
 document.createElement: 创建元素节点
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">div</span> = document.createElement<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'div'</span><span style="color: #DCDCCC;">)</span>;
 </pre>
 </div></li>
@@ -498,9 +577,9 @@ document.createElement: 创建元素节点
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15">插入DOM节点</h3>
-<div class="outline-text-3" id="text-orgheadline15">
+<div id="outline-container-orgfceb315" class="outline-3">
+<h3 id="orgfceb315">插入DOM节点</h3>
+<div class="outline-text-3" id="text-orgfceb315">
 <p>
 可以使用 <code>insertBefore</code> 与 <code>appendChild</code> 这两个节点方法
 </p>
@@ -512,7 +591,6 @@ parentElem.appendChild(nodeToInsert);
 有两个方便的函数:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">before</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">parent</span>, <span style="color: #DFAF8F;">before</span>, <span style="color: #DFAF8F;">elem</span><span style="color: #DCDCCC;">){</span>
   <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">check if passed ``parent''</span>
   <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>! !!elem<span style="color: #BFEBBF;">){</span>
@@ -530,9 +608,9 @@ parentElem.appendChild(nodeToInsert);
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16">删除,替换DOM节点</h3>
-<div class="outline-text-3" id="text-orgheadline16">
+<div id="outline-container-org04789c2" class="outline-3">
+<h3 id="org04789c2">删除,替换DOM节点</h3>
+<div class="outline-text-3" id="text-org04789c2">
 <p>
 删除节点可以用 <code>removeChild</code> 函数.
 </p>
@@ -543,7 +621,6 @@ NodeParent.removeChild(NodeToRemove);
 所以你如果要删除一个DOM节点 <code>n</code>, 应该使用这样的代码:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js">n.parentNode.removeChild<span style="color: #DCDCCC;">(</span>n<span style="color: #DCDCCC;">)</span>;
 </pre>
 </div>
@@ -551,15 +628,14 @@ NodeParent.removeChild(NodeToRemove);
 替换一个节点使用 replaceChild 方法.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js">n.parentNode.replaceChild<span style="color: #DCDCCC;">(</span>document.createTextNode<span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">"[ REDACTED ]"</span><span style="color: #BFEBBF;">)</span>, n<span style="color: #DCDCCC;">)</span>;
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17">位置,scroll</h3>
-<div class="outline-text-3" id="text-orgheadline17">
+<div id="outline-container-orgcbb0690" class="outline-3">
+<h3 id="orgcbb0690">位置,scroll</h3>
+<div class="outline-text-3" id="text-orgcbb0690">
 <p>
 有两种坐标系统, 一种是 viewpoint coordinate, 一种是 document coordinate, 前
 者只考虑可见的窗口部分,也就是说坐标系的原点在窗口的左上角,也就是所谓的
@@ -579,7 +655,6 @@ scrollX, scrollY 代表滚动条滚动的距离.
 获得viewpoint坐标
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">box</span> = e.getBoundingClientRect<span style="color: #DCDCCC;">()</span>
 box.top;
 box.right;
@@ -593,7 +668,6 @@ e是一个DOM节点元素, 返回的那几个属性都可以为负值或者大�
 素无效.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">box</span> = e.getBoundingClientRect<span style="color: #DCDCCC;">()</span>;
 <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">w</span> = box.width || <span style="color: #DCDCCC;">(</span>box.right - box.left<span style="color: #DCDCCC;">)</span>; <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">width</span>
 <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">h</span> = box.height || <span style="color: #DCDCCC;">(</span>box.bottom - box.top<span style="color: #DCDCCC;">)</span>; <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">height</span>
@@ -603,7 +677,6 @@ e是一个DOM节点元素, 返回的那几个属性都可以为负值或者大�
 获得滚动条的offset
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">getScrollOffsets</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">w</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
   <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Use the specified window or the current window if no argument</span>
   w = w || window;
@@ -634,19 +707,18 @@ e是一个DOM节点元素, 返回的那几个属性都可以为负值或者大�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline19" class="outline-2">
-<h2 id="orgheadline19">修改css</h2>
-<div class="outline-text-2" id="text-orgheadline19">
+<div id="outline-container-orgf26f24f" class="outline-2">
+<h2 id="orgf26f24f">修改css</h2>
+<div class="outline-text-2" id="text-orgf26f24f">
 <p>
 注意因为js中标识符中不能使用 - , 所以使用驼峰命名, 比如css的 <code>font-size</code> 在js
 中就用, <code>fontSize</code>.
 </p>
 </div>
-<div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20">使用style属性来修改css</h3>
-<div class="outline-text-3" id="text-orgheadline20">
+<div id="outline-container-org7ec4928" class="outline-3">
+<h3 id="org7ec4928">使用style属性来修改css</h3>
+<div class="outline-text-3" id="text-org7ec4928">
 <div class="org-src-container">
-
 <pre class="src src-js">e.style.position = <span style="color: #CC9393;">"absolute"</span>;
 e.style.fontFamily = <span style="color: #CC9393;">"sans-serif"</span>;
 e.style.backgroundColor = <span style="color: #CC9393;">"#ffffff"</span>;
@@ -660,14 +732,13 @@ e.style.backgroundColor = <span style="color: #CC9393;">"#ffffff"</span>;
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21">获取当前的样式</h3>
-<div class="outline-text-3" id="text-orgheadline21">
+<div id="outline-container-org756f96d" class="outline-3">
+<h3 id="org756f96d">获取当前的样式</h3>
+<div class="outline-text-3" id="text-org756f96d">
 <p>
 返回当前应用在该元素上的某项css值.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">getStyle</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">elem</span>, <span style="color: #DFAF8F;">name</span><span style="color: #DCDCCC;">){</span>
   <span style="color: #F0DFAF; font-weight: bold;">if</span><span style="color: #BFEBBF;">(</span>elem.currentStyle<span style="color: #BFEBBF;">){</span>   <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">IE browser</span>
     <span style="color: #F0DFAF; font-weight: bold;">return</span> elem.currentStyle<span style="color: #D0BF8F;">[</span>name<span style="color: #D0BF8F;">]</span>;
@@ -689,9 +760,9 @@ e.style.backgroundColor = <span style="color: #CC9393;">"#ffffff"</span>;
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline22" class="outline-3">
-<h3 id="orgheadline22">className</h3>
-<div class="outline-text-3" id="text-orgheadline22">
+<div id="outline-container-org72bd2ae" class="outline-3">
+<h3 id="org72bd2ae">className</h3>
+<div class="outline-text-3" id="text-org72bd2ae">
 <p>
 通过className属性来修改HTML元素的 class属性, 之所以不用class这个词是因为它是
 js的关键字.
@@ -699,12 +770,12 @@ js的关键字.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline35" class="outline-2">
-<h2 id="orgheadline35">事件</h2>
-<div class="outline-text-2" id="text-orgheadline35">
-</div><div id="outline-container-orgheadline23" class="outline-3">
-<h3 id="orgheadline23">Event Object</h3>
-<div class="outline-text-3" id="text-orgheadline23">
+<div id="outline-container-org98f54bc" class="outline-2">
+<h2 id="org98f54bc">事件</h2>
+<div class="outline-text-2" id="text-org98f54bc">
+</div><div id="outline-container-orgb6bec08" class="outline-3">
+<h3 id="orgb6bec08">Event Object</h3>
+<div class="outline-text-3" id="text-orgb6bec08">
 <p>
 通用属性:
 </p>
@@ -727,30 +798,30 @@ js的关键字.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline29" class="outline-3">
-<h3 id="orgheadline29">常用事件类型</h3>
-<div class="outline-text-3" id="text-orgheadline29">
-</div><div id="outline-container-orgheadline24" class="outline-4">
-<h4 id="orgheadline24">window的事件</h4>
-<div class="outline-text-4" id="text-orgheadline24">
+<div id="outline-container-org2274183" class="outline-3">
+<h3 id="org2274183">常用事件类型</h3>
+<div class="outline-text-3" id="text-org2274183">
+</div><div id="outline-container-orge954df9" class="outline-4">
+<h4 id="orge954df9">window的事件</h4>
+<div class="outline-text-4" id="text-orge954df9">
 <ol class="org-ol">
 <li>load</li>
 <li>scroll</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline25" class="outline-4">
-<h4 id="orgheadline25">UI事件</h4>
-<div class="outline-text-4" id="text-orgheadline25">
+<div id="outline-container-org92b2f9e" class="outline-4">
+<h4 id="org92b2f9e">UI事件</h4>
+<div class="outline-text-4" id="text-org92b2f9e">
 <ol class="org-ol">
 <li>focus: element gains input focus</li>
 <li>blur: element loses input focus</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline26" class="outline-4">
-<h4 id="orgheadline26">鼠标事件</h4>
-<div class="outline-text-4" id="text-orgheadline26">
+<div id="outline-container-org6503648" class="outline-4">
+<h4 id="org6503648">鼠标事件</h4>
+<div class="outline-text-4" id="text-org6503648">
 <ol class="org-ol">
 <li>click</li>
 <li>dblclick</li>
@@ -762,9 +833,9 @@ js的关键字.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline27" class="outline-4">
-<h4 id="orgheadline27">键盘事件</h4>
-<div class="outline-text-4" id="text-orgheadline27">
+<div id="outline-container-org901217a" class="outline-4">
+<h4 id="org901217a">键盘事件</h4>
+<div class="outline-text-4" id="text-org901217a">
 <ul class="org-ul">
 <li>keydown/keypress: 二者是同义事件, 但是在阻止按键的默认行为时则只能用
 keypress, 当你按组合快捷键时, 它会触发多个该类事件.</li>
@@ -772,9 +843,9 @@ keypress, 当你按组合快捷键时, 它会触发多个该类事件.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline28" class="outline-4">
-<h4 id="orgheadline28">表单事件</h4>
-<div class="outline-text-4" id="text-orgheadline28">
+<div id="outline-container-org29a4d16" class="outline-4">
+<h4 id="org29a4d16">表单事件</h4>
+<div class="outline-text-4" id="text-org29a4d16">
 <ol class="org-ol">
 <li>select: 选择了文本时触发</li>
 <li>change: &lt;input type="text" /&gt;, &lt;input type="password" /&gt;, &lt;select&gt;,
@@ -786,9 +857,9 @@ keypress, 当你按组合快捷键时, 它会触发多个该类事件.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline30" class="outline-3">
-<h3 id="orgheadline30">Register Event Handler</h3>
-<div class="outline-text-3" id="text-orgheadline30">
+<div id="outline-container-org21fab60" class="outline-3">
+<h3 id="org21fab60">Register Event Handler</h3>
+<div class="outline-text-3" id="text-org21fab60">
 <ol class="org-ol">
 <li><p>
 onevent: 实际就是设置元素的html属性.基本代码模式如下:
@@ -824,12 +895,12 @@ window.addEventListener('load', function(){...}, false);
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline33" class="outline-3">
-<h3 id="orgheadline33">Event Cancellation</h3>
-<div class="outline-text-3" id="text-orgheadline33">
-</div><div id="outline-container-orgheadline31" class="outline-4">
-<h4 id="orgheadline31">阻止浏览器默认行为</h4>
-<div class="outline-text-4" id="text-orgheadline31">
+<div id="outline-container-org099af62" class="outline-3">
+<h3 id="org099af62">Event Cancellation</h3>
+<div class="outline-text-3" id="text-org099af62">
+</div><div id="outline-container-org763455f" class="outline-4">
+<h4 id="org763455f">阻止浏览器默认行为</h4>
+<div class="outline-text-4" id="text-org763455f">
 <p>
 如果是onevent这种模式注册的事件处理函数, 要阻止浏览器的默认行为, 那么事件处
 理函数应该返回false, 如果是addEventListener注册的事件处理函数, 要阻止浏览器
@@ -839,7 +910,6 @@ IE(attachEvent)注册的事件处理函数, 那么事件处理函数应该调用
 码:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">eventHandler</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">evt</span><span style="color: #DCDCCC;">){</span>
   evt = evt || window.event;    <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">for IE</span>
 
@@ -856,15 +926,14 @@ IE(attachEvent)注册的事件处理函数, 那么事件处理函数应该调用
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline32" class="outline-4">
-<h4 id="orgheadline32">阻止事件冒泡</h4>
-<div class="outline-text-4" id="text-orgheadline32">
+<div id="outline-container-orgf8a9ab6" class="outline-4">
+<h4 id="orgf8a9ab6">阻止事件冒泡</h4>
+<div class="outline-text-4" id="text-orgf8a9ab6">
 <p>
 阻止事件冒泡, 如果event有stopPropagation, 那么调用该函数, 如果是IE, 设置
 cancelBubble设为true.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">eventHandler</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">evt</span><span style="color: #DCDCCC;">){</span>
   <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>evt &amp;&amp; evt.stopPropagation<span style="color: #BFEBBF;">){</span> <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">non IE</span>
     evt.stopPropagation<span style="color: #D0BF8F;">()</span>;
@@ -877,16 +946,15 @@ cancelBubble设为true.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline34" class="outline-3">
-<h3 id="orgheadline34">通用函数</h3>
-<div class="outline-text-3" id="text-orgheadline34">
+<div id="outline-container-orgb747fc8" class="outline-3">
+<h3 id="orgb747fc8">通用函数</h3>
+<div class="outline-text-3" id="text-orgb747fc8">
 <ol class="org-ol">
 <li><p>
 获得事件处理函数中event对象(IE使用全局的event对象, 而非IE显式的传递event
 对象作为参数给事件处理函数)
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">eventhanlder</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">evt</span><span style="color: #DCDCCC;">){</span>
   evt = evt || window.event;
 <span style="color: #DCDCCC;">}</span>
@@ -896,17 +964,16 @@ cancelBubble设为true.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline41" class="outline-2">
-<h2 id="orgheadline41">ajax</h2>
-<div class="outline-text-2" id="text-orgheadline41">
-</div><div id="outline-container-orgheadline36" class="outline-3">
-<h3 id="orgheadline36">Create XMLHttpRequest</h3>
-<div class="outline-text-3" id="text-orgheadline36">
+<div id="outline-container-orgeeff11a" class="outline-2">
+<h2 id="orgeeff11a">ajax</h2>
+<div class="outline-text-2" id="text-orgeeff11a">
+</div><div id="outline-container-org82bb2f2" class="outline-3">
+<h3 id="org82bb2f2">Create XMLHttpRequest</h3>
+<div class="outline-text-3" id="text-org82bb2f2">
 <p>
 IE6没有标准的XMLHttpRequest构造函数, 可以使用以下代码模拟:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Emulate the XMLHttpRequest() constructor in IE5 and IE6</span>
 <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #DCDCCC;">(</span>window.XMLHttpRequest === <span style="color: #BFEBBF;">undefined</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
   window.XMLHttpRequest = <span style="color: #F0DFAF; font-weight: bold;">function</span><span style="color: #BFEBBF;">()</span> <span style="color: #BFEBBF;">{</span>
@@ -931,9 +998,9 @@ IE6没有标准的XMLHttpRequest构造函数, 可以使用以下代码模拟:
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline37" class="outline-3">
-<h3 id="orgheadline37">open</h3>
-<div class="outline-text-3" id="text-orgheadline37">
+<div id="outline-container-org2587148" class="outline-3">
+<h3 id="org2587148">open</h3>
+<div class="outline-text-3" id="text-org2587148">
 <p>
 指定verb('GET', 'POST'), url, async(true为异步, false为同步).
 </p>
@@ -945,7 +1012,6 @@ req.open(verb, url [, async]);
 因为你要指定你传递的数据类型(Content-Type).
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js">req.setRequestHeader<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'Content-Type'</span>, <span style="color: #CC9393;">"text/plain;charset=UTF-8"</span><span style="color: #DCDCCC;">)</span>;
 </pre>
 </div>
@@ -954,18 +1020,18 @@ req.open(verb, url [, async]);
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline38" class="outline-3">
-<h3 id="orgheadline38">send</h3>
-<div class="outline-text-3" id="text-orgheadline38">
+<div id="outline-container-org5cc5f74" class="outline-3">
+<h3 id="org5cc5f74">send</h3>
+<div class="outline-text-3" id="text-org5cc5f74">
 <p>
 <code>req.send(msg);</code>, 如果是 GET,那么msg为null, 如果是 POST, msg为你要传递的内
 容.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline39" class="outline-3">
-<h3 id="orgheadline39">Retrieving the Response</h3>
-<div class="outline-text-3" id="text-orgheadline39">
+<div id="outline-container-org0e9a712" class="outline-3">
+<h3 id="org0e9a712">Retrieving the Response</h3>
+<div class="outline-text-3" id="text-org0e9a712">
 <p>
 如果请求完成,那么XMLHttpRequest会有以下属性:
 </p>
@@ -1070,7 +1136,6 @@ req.open(verb, url [, async]);
 readyState的值比如下面这个函数:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-js"><span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">getText</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">url</span>, <span style="color: #DFAF8F;">callback</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
   <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">request</span> = <span style="color: #F0DFAF; font-weight: bold;">new</span> <span style="color: #7CB8BB;">XMLHttpRequest</span><span style="color: #BFEBBF;">()</span>;
   <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">Create new request</span>
@@ -1102,9 +1167,9 @@ readyState的值比如下面这个函数:
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline40" class="outline-3">
-<h3 id="orgheadline40">jsonp</h3>
-<div class="outline-text-3" id="text-orgheadline40">
+<div id="outline-container-org1e27a8d" class="outline-3">
+<h3 id="org1e27a8d">jsonp</h3>
+<div class="outline-text-3" id="text-org1e27a8d">
 <p>
 实际就是创建一个 <code>&lt;script&gt;...&lt;/script&gt;</code> 节点, 然后将其插入文档, 这样浏览器会
 自动的发送一个http get请求,并且把请求得到的内容当做 js代码来执行. 根据这个原

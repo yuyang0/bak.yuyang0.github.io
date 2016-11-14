@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MySQL笔记</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="SQL mysql" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="SQL mysql" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -176,58 +261,58 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline24">SQL基本知识与常用代码</a>
+<li><a href="#org2a472ab">SQL基本知识与常用代码</a>
 <ul>
-<li><a href="#orgheadline1">conventions</a></li>
-<li><a href="#orgheadline2">登录</a></li>
-<li><a href="#orgheadline3">增加新用户</a></li>
-<li><a href="#orgheadline4">database相关</a></li>
-<li><a href="#orgheadline5">SHOW</a></li>
-<li><a href="#orgheadline6">SELECT</a></li>
-<li><a href="#orgheadline9">联接</a>
+<li><a href="#org32969de">conventions</a></li>
+<li><a href="#orgccc45df">登录</a></li>
+<li><a href="#orgb54829b">增加新用户</a></li>
+<li><a href="#orge6b1af6">database相关</a></li>
+<li><a href="#org9696755">SHOW</a></li>
+<li><a href="#orgca00c78">SELECT</a></li>
+<li><a href="#org04a3881">联接</a>
 <ul>
-<li><a href="#orgheadline7">内联接(等值联接)</a></li>
-<li><a href="#orgheadline8">自联接</a></li>
+<li><a href="#orge718f1e">内联接(等值联接)</a></li>
+<li><a href="#orgf3b7850">自联接</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline10">子查询</a></li>
-<li><a href="#orgheadline11">UNION</a></li>
-<li><a href="#orgheadline12">INSERT(增)</a></li>
-<li><a href="#orgheadline13">DELETE(删)</a></li>
-<li><a href="#orgheadline14">UPDATE(改)</a></li>
-<li><a href="#orgheadline15">CREATE TABLE</a>
+<li><a href="#orge873918">子查询</a></li>
+<li><a href="#org6a5a6da">UNION</a></li>
+<li><a href="#orgfb9dbe7">INSERT(增)</a></li>
+<li><a href="#org5d417cd">DELETE(删)</a></li>
+<li><a href="#org5c52c79">UPDATE(改)</a></li>
+<li><a href="#orgce2f930">CREATE TABLE</a>
 <ul>
-<li><a href="#orgheadline16">数据类型</a></li>
-<li><a href="#orgheadline17">约束</a></li>
+<li><a href="#org5917978">数据类型</a></li>
+<li><a href="#org86c6ca1">约束</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline18">INDEX(索引)</a></li>
-<li><a href="#orgheadline19">DROP</a></li>
-<li><a href="#orgheadline20">ALTER(修改表结构)</a></li>
-<li><a href="#orgheadline21">存储过程(MySQL 5.1)</a></li>
-<li><a href="#orgheadline22">事务(transaction)</a></li>
-<li><a href="#orgheadline23">从文件创建数据表</a></li>
+<li><a href="#org9c172e8">INDEX(索引)</a></li>
+<li><a href="#org120e5c9">DROP</a></li>
+<li><a href="#org447637b">ALTER(修改表结构)</a></li>
+<li><a href="#org12d8e91">存储过程(MySQL 5.1)</a></li>
+<li><a href="#org5fb2a6a">事务(transaction)</a></li>
+<li><a href="#orgec643c0">从文件创建数据表</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline25">数据库设计的三大范式：</a></li>
-<li><a href="#orgheadline30">数据库的常用模式</a>
+<li><a href="#orgb42e99f">数据库设计的三大范式：</a></li>
+<li><a href="#org2650fb3">数据库的常用模式</a>
 <ul>
-<li><a href="#orgheadline26">主扩展模式</a></li>
-<li><a href="#orgheadline27">主从模式</a></li>
-<li><a href="#orgheadline28">名值模式</a></li>
-<li><a href="#orgheadline29">多对多模式</a></li>
+<li><a href="#org466edb6">主扩展模式</a></li>
+<li><a href="#org5d25823">主从模式</a></li>
+<li><a href="#org7891265">名值模式</a></li>
+<li><a href="#orge64b31f">多对多模式</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline31">一些建议</a></li>
+<li><a href="#orgf66d6e0">一些建议</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline24" class="outline-2">
-<h2 id="orgheadline24">SQL基本知识与常用代码</h2>
-<div class="outline-text-2" id="text-orgheadline24">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1">conventions</h3>
-<div class="outline-text-3" id="text-orgheadline1">
+<div id="outline-container-org2a472ab" class="outline-2">
+<h2 id="org2a472ab">SQL基本知识与常用代码</h2>
+<div class="outline-text-2" id="text-org2a472ab">
+</div><div id="outline-container-org32969de" class="outline-3">
+<h3 id="org32969de">conventions</h3>
+<div class="outline-text-3" id="text-org32969de">
 <ol class="org-ol">
 <li>SQL 不区分大小写,但是惯例是SQL的关键字要大写, 所有的列名,表名,数据库名都
 用小写.</li>
@@ -236,23 +321,22 @@ for the JavaScript code in this tag.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">登录</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+<div id="outline-container-orgccc45df" class="outline-3">
+<h3 id="orgccc45df">登录</h3>
+<div class="outline-text-3" id="text-orgccc45df">
 <pre class="example">
 mysql –h hostname -P port –u username –p password.
 </pre>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">增加新用户</h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-orgb54829b" class="outline-3">
+<h3 id="orgb54829b">增加新用户</h3>
+<div class="outline-text-3" id="text-orgb54829b">
 <ul class="org-ul">
 <li><p>
 grant 权限 on 数据库.* to 用户名称@登陆主机  identified 密码
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">grant</span> <span style="color: #F0DFAF; font-weight: bold;">select</span>, <span style="color: #F0DFAF; font-weight: bold;">insert</span>, <span style="color: #F0DFAF; font-weight: bold;">update</span>, <span style="color: #F0DFAF; font-weight: bold;">delete</span>
 <span style="color: #F0DFAF; font-weight: bold;">on</span> books.*
 <span style="color: #F0DFAF; font-weight: bold;">to</span> <span style="color: #DCDCCC; font-weight: bold;">user</span> identified <span style="color: #F0DFAF; font-weight: bold;">by</span> <span style="color: #CC9393;">'1234'</span>
@@ -261,9 +345,9 @@ grant 权限 on 数据库.* to 用户名称@登陆主机  identified 密码
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">database相关</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-orge6b1af6" class="outline-3">
+<h3 id="orge6b1af6">database相关</h3>
+<div class="outline-text-3" id="text-orge6b1af6">
 <ul class="org-ul">
 <li>create database 数据库名;  (创建数据库)</li>
 <li>show databases;            (显示所有数据库)</li>
@@ -271,9 +355,9 @@ grant 权限 on 数据库.* to 用户名称@登陆主机  identified 密码
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">SHOW</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-org9696755" class="outline-3">
+<h3 id="org9696755">SHOW</h3>
+<div class="outline-text-3" id="text-org9696755">
 <ul class="org-ul">
 <li>SHOW DATABASES;</li>
 <li>SHOW TABLES;</li>
@@ -286,9 +370,9 @@ grant 权限 on 数据库.* to 用户名称@登陆主机  identified 密码
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">SELECT</h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-orgca00c78" class="outline-3">
+<h3 id="orgca00c78">SELECT</h3>
+<div class="outline-text-3" id="text-orgca00c78">
 <p>
 select用来检索数据, 检索时至少要指定两条信息:
 </p>
@@ -340,7 +424,7 @@ WHERE 列名 操作符 值
 </tr>
 
 <tr>
-<td class="org-left">=,&gt;,&gt;=,&lt;,&lt;=, &lt;&gt;, !=</td>
+<td class="org-left"><code>,&gt;,&gt;</code>,&lt;,&lt;=, &lt;&gt;, !=</td>
 <td class="org-left">等于,大于..etc(!=, &lt;&gt;都是不等于的意思)</td>
 </tr>
 
@@ -382,7 +466,6 @@ LIKE: 模式必须匹配整个列,而不是一列的一部分
 通配符要尽量少用,特别是不要放在模式的开头,因为那非常慢.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> prod_name, prod_price
 <span style="color: #F0DFAF; font-weight: bold;">FROM</span> products
 <span style="color: #F0DFAF; font-weight: bold;">WHERE</span> prod_name <span style="color: #F0DFAF; font-weight: bold;">LIKE</span> <span style="color: #CC9393;">'%anvil%'</span>;
@@ -391,7 +474,6 @@ LIKE: 模式必须匹配整个列,而不是一列的一部分
 <li>REGEX: 和一般的正则表达式差不多</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sql"><span style="color: #7F9F7F;">-- (greater than)</span>
 <span style="color: #F0DFAF; font-weight: bold;">SELECT</span> prod_name, prod_price
 <span style="color: #F0DFAF; font-weight: bold;">FROM</span> products
@@ -425,7 +507,6 @@ LIKE: 模式必须匹配整个列,而不是一列的一部分
 可以用来连接多个过滤条件,必要时要加小括号来分组.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> prod_name, prod_price
 <span style="color: #F0DFAF; font-weight: bold;">FROM</span> products
 <span style="color: #F0DFAF; font-weight: bold;">WHERE</span> vend_id = <span style="color: #BFEBBF;">1003</span> <span style="color: #F0DFAF; font-weight: bold;">AND</span> prod_price &lt; <span style="color: #BFEBBF;">10</span>;
@@ -444,7 +525,6 @@ LIKE: 模式必须匹配整个列,而不是一列的一部分
 可以用下面的语句
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> price,
     quantity,
     price*quantity <span style="color: #F0DFAF; font-weight: bold;">AS</span>  expanded_price
@@ -457,7 +537,6 @@ LIKE: 模式必须匹配整个列,而不是一列的一部分
 接</b> (<b>MySQL用Concat, 其它数据库一般用 ||或+</b>), 删除空格(RTrim, LTrim, Trim).
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> Concat<span style="color: #DCDCCC;">(</span>RTrim<span style="color: #BFEBBF;">(</span>vend_name<span style="color: #BFEBBF;">)</span>, <span style="color: #CC9393;">'('</span>, RTrim<span style="color: #BFEBBF;">(</span>vend_country<span style="color: #BFEBBF;">)</span>, <span style="color: #CC9393;">')'</span><span style="color: #DCDCCC;">)</span> <span style="color: #F0DFAF; font-weight: bold;">AS</span>
 vend_title
 <span style="color: #F0DFAF; font-weight: bold;">FROM</span> vendors
@@ -475,7 +554,6 @@ vend_title
 日期的格式应该是: yyyy-mm-dd
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> cust_id, order_num
 <span style="color: #F0DFAF; font-weight: bold;">FROM</span> orders
 <span style="color: #F0DFAF; font-weight: bold;">WHERE</span> <span style="color: #7CB8BB;">Date</span><span style="color: #DCDCCC;">(</span>order_date<span style="color: #DCDCCC;">)</span> = <span style="color: #CC9393;">'2005-09-01'</span>;
@@ -495,7 +573,6 @@ vend_title
 聚集函数: AVG, COUNT, MAX, MIN, SUM.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> <span style="color: #DCDCCC; font-weight: bold;">COUNT</span><span style="color: #DCDCCC;">(</span>*<span style="color: #DCDCCC;">)</span> <span style="color: #F0DFAF; font-weight: bold;">AS</span> num_items,
     <span style="color: #DCDCCC; font-weight: bold;">MIN</span><span style="color: #DCDCCC;">(</span>prod_price<span style="color: #DCDCCC;">)</span> <span style="color: #F0DFAF; font-weight: bold;">AS</span> price_min,
     <span style="color: #DCDCCC; font-weight: bold;">MAX</span><span style="color: #DCDCCC;">(</span>prod_price<span style="color: #DCDCCC;">)</span> <span style="color: #F0DFAF; font-weight: bold;">AS</span> price_max,
@@ -517,18 +594,17 @@ vend_title
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">联接</h3>
-<div class="outline-text-3" id="text-orgheadline9">
-</div><div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7">内联接(等值联接)</h4>
-<div class="outline-text-4" id="text-orgheadline7">
+<div id="outline-container-org04a3881" class="outline-3">
+<h3 id="org04a3881">联接</h3>
+<div class="outline-text-3" id="text-org04a3881">
+</div><div id="outline-container-orge718f1e" class="outline-4">
+<h4 id="orge718f1e">内联接(等值联接)</h4>
+<div class="outline-text-4" id="text-orge718f1e">
 <p>
 vendors表存储制造商信息,其主键为vend_id, products表存储产品信息,其中有一个
 外键 vend_id指向vendors表.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> vend_name, prod_name, prod_price
 <span style="color: #F0DFAF; font-weight: bold;">FROM</span> vendors, products
 <span style="color: #F0DFAF; font-weight: bold;">WHERE</span> vendors.vend_id = products.vend_id;
@@ -538,7 +614,6 @@ vendors表存储制造商信息,其主键为vend_id, products表存储产品信�
 上例可以这样理解,先使用下面这两条语句:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> vend_name <span style="color: #F0DFAF; font-weight: bold;">FROM</span> vendors;
 <span style="color: #F0DFAF; font-weight: bold;">SELECT</span> prod_name, prod_price <span style="color: #F0DFAF; font-weight: bold;">FROM</span> products;
 </pre>
@@ -552,7 +627,6 @@ vendors表存储制造商信息,其主键为vend_id, products表存储产品信�
 等价的形式是:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> vend_name, prod_name, prod_price
 <span style="color: #F0DFAF; font-weight: bold;">FROM</span> vendors <span style="color: #F0DFAF; font-weight: bold;">INNER</span> <span style="color: #F0DFAF; font-weight: bold;">JOIN</span> products
 <span style="color: #F0DFAF; font-weight: bold;">ON</span> vendors.vend_id = products.vend_id;
@@ -564,14 +638,13 @@ INNER JOIN 是推荐的写法.
 </div>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-4">
-<h4 id="orgheadline8">自联接</h4>
-<div class="outline-text-4" id="text-orgheadline8">
+<div id="outline-container-orgf3b7850" class="outline-4">
+<h4 id="orgf3b7850">自联接</h4>
+<div class="outline-text-4" id="text-orgf3b7850">
 <p>
 联接的两个表是同一个表
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> p1.prod_id, p1.prod_name
 <span style="color: #F0DFAF; font-weight: bold;">FROM</span> products <span style="color: #F0DFAF; font-weight: bold;">AS</span> p1, products <span style="color: #F0DFAF; font-weight: bold;">AS</span> p2
 <span style="color: #F0DFAF; font-weight: bold;">WHERE</span> p1.vend_id = p2.vend_id
@@ -582,14 +655,13 @@ INNER JOIN 是推荐的写法.
 </div>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">子查询</h3>
-<div class="outline-text-3" id="text-orgheadline10">
+<div id="outline-container-orge873918" class="outline-3">
+<h3 id="orge873918">子查询</h3>
+<div class="outline-text-3" id="text-orge873918">
 <p>
 一个select 返回的结果作为另外一条select 的条件.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> cust_id, amount
 <span style="color: #F0DFAF; font-weight: bold;">FROM</span> orders
 <span style="color: #F0DFAF; font-weight: bold;">WHERE</span> amount = <span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> <span style="color: #DCDCCC; font-weight: bold;">max</span><span style="color: #BFEBBF;">(</span>amount<span style="color: #BFEBBF;">)</span> <span style="color: #F0DFAF; font-weight: bold;">from</span> orders<span style="color: #DCDCCC;">)</span>;
@@ -600,16 +672,15 @@ INNER JOIN 是推荐的写法.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11">UNION</h3>
-<div class="outline-text-3" id="text-orgheadline11">
+<div id="outline-container-org6a5a6da" class="outline-3">
+<h3 id="org6a5a6da">UNION</h3>
+<div class="outline-text-3" id="text-org6a5a6da">
 <ol class="org-ol">
 <li>必须是两条或者两条以上select语句</li>
 <li>每个select语句必须包含相同的列,表达式或者汇集函数.</li>
 <li>列数据类型必须兼容</li>
 </ol>
 <div class="org-src-container">
-
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">SELECT</span> vend_id, prod_id, prod_price
 <span style="color: #F0DFAF; font-weight: bold;">FROM</span> products
 <span style="color: #F0DFAF; font-weight: bold;">WHERE</span> prod_price &lt;= <span style="color: #BFEBBF;">5</span>
@@ -622,9 +693,9 @@ INNER JOIN 是推荐的写法.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12">INSERT(增)</h3>
-<div class="outline-text-3" id="text-orgheadline12">
+<div id="outline-container-orgfb9dbe7" class="outline-3">
+<h3 id="orgfb9dbe7">INSERT(增)</h3>
+<div class="outline-text-3" id="text-orgfb9dbe7">
 <ul class="org-ul">
 <li><p>
 插入一条记录,省略列名:
@@ -647,9 +718,9 @@ INSERT INTO 表名 (列1，列2 ...)  VALUES (val1, val2 ...), (val1, val2 ...)
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13">DELETE(删)</h3>
-<div class="outline-text-3" id="text-orgheadline13">
+<div id="outline-container-org5d417cd" class="outline-3">
+<h3 id="org5d417cd">DELETE(删)</h3>
+<div class="outline-text-3" id="text-org5d417cd">
 <ul class="org-ul">
 <li>delete  from 表名称 where  列名称=值</li>
 <li>delete from  表名称    (删除所有行，但是保留表)</li>
@@ -658,9 +729,9 @@ INSERT INTO 表名 (列1，列2 ...)  VALUES (val1, val2 ...), (val1, val2 ...)
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">UPDATE(改)</h3>
-<div class="outline-text-3" id="text-orgheadline14">
+<div id="outline-container-org5c52c79" class="outline-3">
+<h3 id="org5c52c79">UPDATE(改)</h3>
+<div class="outline-text-3" id="text-org5c52c79">
 <p>
 更新数据表某一列或者多列(<b>特别要注意where子句</b>)
 </p>
@@ -669,9 +740,9 @@ UPDATE 表名 SET 列名=新值  WHERE 列名=某值
 </pre>
 </div>
 </div>
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15">CREATE TABLE</h3>
-<div class="outline-text-3" id="text-orgheadline15">
+<div id="outline-container-orgce2f930" class="outline-3">
+<h3 id="orgce2f930">CREATE TABLE</h3>
+<div class="outline-text-3" id="text-orgce2f930">
 <p>
 创建表,基本语法:
 </p>
@@ -687,9 +758,9 @@ create  table  表名
 尽量指定NULL或者NOT NULL, 一般约束是可选的
 </p>
 </div>
-<div id="outline-container-orgheadline16" class="outline-4">
-<h4 id="orgheadline16">数据类型</h4>
-<div class="outline-text-4" id="text-orgheadline16">
+<div id="outline-container-org5917978" class="outline-4">
+<h4 id="org5917978">数据类型</h4>
+<div class="outline-text-4" id="text-org5917978">
 <ol class="org-ol">
 <li><p>
 字符串类型
@@ -893,9 +964,9 @@ create  table  表名
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline17" class="outline-4">
-<h4 id="orgheadline17">约束</h4>
-<div class="outline-text-4" id="text-orgheadline17">
+<div id="outline-container-org86c6ca1" class="outline-4">
+<h4 id="org86c6ca1">约束</h4>
+<div class="outline-text-4" id="text-org86c6ca1">
 <ul class="org-ul">
 <li>NOT NULL: 应该紧挨着类型的后面.</li>
 <li>PRIMARY KEY：主键，不用再指定unique。</li>
@@ -909,18 +980,18 @@ create  table  表名
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-3">
-<h3 id="orgheadline18">INDEX(索引)</h3>
-<div class="outline-text-3" id="text-orgheadline18">
+<div id="outline-container-org9c172e8" class="outline-3">
+<h3 id="org9c172e8">INDEX(索引)</h3>
+<div class="outline-text-3" id="text-org9c172e8">
 <ul class="org-ul">
 <li>创建索引：CREATE  INDEX  indexname ON  tablename (column [ASC|DESC], &#x2026;);</li>
 <li>删除索引：DROP INDEX indexname  ON tablename;</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline19" class="outline-3">
-<h3 id="orgheadline19">DROP</h3>
-<div class="outline-text-3" id="text-orgheadline19">
+<div id="outline-container-org120e5c9" class="outline-3">
+<h3 id="org120e5c9">DROP</h3>
+<div class="outline-text-3" id="text-org120e5c9">
 <ul class="org-ul">
 <li>删除表    : drop table 表名</li>
 <li>删除数据库: drop database 数据库名</li>
@@ -930,9 +1001,9 @@ DROP DATABASE|INDEX|PROCEDURE|TABLE|TRIGGER|USER|VIEW itemname;
 </pre>
 </div>
 </div>
-<div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20">ALTER(修改表结构)</h3>
-<div class="outline-text-3" id="text-orgheadline20">
+<div id="outline-container-org447637b" class="outline-3">
+<h3 id="org447637b">ALTER(修改表结构)</h3>
+<div class="outline-text-3" id="text-org447637b">
 <pre class="example">
 ALTER TABLE tablename
 (
@@ -947,7 +1018,6 @@ ALTER TABLE tablename
 增加列: alert  table  表名  add  列名  数据类型
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">ALTER</span> <span style="color: #F0DFAF; font-weight: bold;">TABLE</span> <span style="color: #93E0E3;">vendors</span>
 <span style="color: #F0DFAF; font-weight: bold;">ADD</span> vend_phone <span style="color: #7CB8BB;">CHAR</span><span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">20</span><span style="color: #DCDCCC;">)</span>;
 </pre>
@@ -956,7 +1026,6 @@ ALTER TABLE tablename
 删除列: ALTER TABLE 表名 DROP column 列名
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">ALTER</span> <span style="color: #F0DFAF; font-weight: bold;">TABLE</span> <span style="color: #93E0E3;">vendors</span>
 <span style="color: #F0DFAF; font-weight: bold;">DROP</span> <span style="color: #F0DFAF; font-weight: bold;">COLUMN</span> vend_phone;
 </pre>
@@ -966,7 +1035,6 @@ ALTER TABLE tablename
 定义外键:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">ALTER</span> <span style="color: #F0DFAF; font-weight: bold;">TABLE</span> <span style="color: #93E0E3;">products</span>
 <span style="color: #F0DFAF; font-weight: bold;">ADD</span> <span style="color: #F0DFAF; font-weight: bold;">CONSTRAINT</span> fk_products_vendors
 <span style="color: #F0DFAF; font-weight: bold;">FOREIGN</span> <span style="color: #F0DFAF; font-weight: bold;">KEY</span><span style="color: #DCDCCC;">(</span>vend_id<span style="color: #DCDCCC;">)</span> <span style="color: #F0DFAF; font-weight: bold;">REFERENCES</span> vendors<span style="color: #DCDCCC;">(</span>vend_id<span style="color: #DCDCCC;">)</span>;
@@ -978,15 +1046,14 @@ ALTER TABLE tablename
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21">存储过程(MySQL 5.1)</h3>
-<div class="outline-text-3" id="text-orgheadline21">
+<div id="outline-container-org12d8e91" class="outline-3">
+<h3 id="org12d8e91">存储过程(MySQL 5.1)</h3>
+<div class="outline-text-3" id="text-org12d8e91">
 <p>
 可以看做是SQl语言中的自定义函数. 也就是把一系列的 SQL 语句打包成一个自定义函
 数,然后通过这个函数名来调用这一系列的SQL语句.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">CREATE</span> <span style="color: #F0DFAF; font-weight: bold;">PROCEDURE</span> <span style="color: #93E0E3;">ordertotal</span><span style="color: #DCDCCC;">(</span>
         <span style="color: #F0DFAF; font-weight: bold;">IN</span> onumber <span style="color: #7CB8BB;">INT</span>,
         <span style="color: #F0DFAF; font-weight: bold;">IN</span> taxable <span style="color: #7CB8BB;">BOOLEAN</span>,
@@ -1020,16 +1087,15 @@ IN 代表输入参数, OUT代表输出参数.
 调用存储过程(参数要以 @ 开头):
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">CALL</span> ordertotal<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">20005</span>, <span style="color: #BFEBBF;">0</span>, @total<span style="color: #DCDCCC;">)</span>;
 <span style="color: #F0DFAF; font-weight: bold;">SELECT</span> @total;
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline22" class="outline-3">
-<h3 id="orgheadline22">事务(transaction)</h3>
-<div class="outline-text-3" id="text-orgheadline22">
+<div id="outline-container-org5fb2a6a" class="outline-3">
+<h3 id="org5fb2a6a">事务(transaction)</h3>
+<div class="outline-text-3" id="text-org5fb2a6a">
 <p>
 MySQL的 <code>MySAIM</code> 存储引擎不支持事务, <code>InnoDB</code> 支持事务, MySQL5.5的默认引擎是
 InnoDB.
@@ -1041,7 +1107,6 @@ InnoDB.
 失败的情况.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">START</span> <span style="color: #F0DFAF; font-weight: bold;">TRANSACTION</span>;
 <span style="color: #F0DFAF; font-weight: bold;">DELETE</span> <span style="color: #F0DFAF; font-weight: bold;">FROM</span> orderitems <span style="color: #F0DFAF; font-weight: bold;">WHERE</span> order_num = <span style="color: #BFEBBF;">20010</span>;
 <span style="color: #F0DFAF; font-weight: bold;">DELETE</span> <span style="color: #F0DFAF; font-weight: bold;">FROM</span> orders <span style="color: #F0DFAF; font-weight: bold;">WHERE</span> order_num = <span style="color: #BFEBBF;">20010</span>;
@@ -1053,9 +1118,9 @@ InnoDB.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline23" class="outline-3">
-<h3 id="orgheadline23">从文件创建数据表</h3>
-<div class="outline-text-3" id="text-orgheadline23">
+<div id="outline-container-orgec643c0" class="outline-3">
+<h3 id="orgec643c0">从文件创建数据表</h3>
+<div class="outline-text-3" id="text-orgec643c0">
 <ul class="org-ul">
 <li>mysql –u -p root &lt; file.sql</li>
 </ul>
@@ -1063,9 +1128,9 @@ InnoDB.
 </div>
 </div>
 
-<div id="outline-container-orgheadline25" class="outline-2">
-<h2 id="orgheadline25">数据库设计的三大范式：</h2>
-<div class="outline-text-2" id="text-orgheadline25">
+<div id="outline-container-orgb42e99f" class="outline-2">
+<h2 id="orgb42e99f">数据库设计的三大范式：</h2>
+<div class="outline-text-2" id="text-orgb42e99f">
 <ul class="org-ul">
 <li>第一范式：字段不可分，</li>
 <li>第二范式：有主键，非主键字段要依赖主键字段只要数据列里面的内容出现重复，就
@@ -1075,12 +1140,12 @@ InnoDB.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline30" class="outline-2">
-<h2 id="orgheadline30">数据库的常用模式</h2>
-<div class="outline-text-2" id="text-orgheadline30">
-</div><div id="outline-container-orgheadline26" class="outline-3">
-<h3 id="orgheadline26">主扩展模式</h3>
-<div class="outline-text-3" id="text-orgheadline26">
+<div id="outline-container-org2650fb3" class="outline-2">
+<h2 id="org2650fb3">数据库的常用模式</h2>
+<div class="outline-text-2" id="text-org2650fb3">
+</div><div id="outline-container-org466edb6" class="outline-3">
+<h3 id="org466edb6">主扩展模式</h3>
+<div class="outline-text-3" id="text-org466edb6">
 <p>
 比如说公司有不同类型的员工，如设计师，程序员，PM等，那么可以先建一个员工表，
 这个表存放所有类型的员工都有的属性，如姓名，性别，入职时间等等等，然后在设计
@@ -1088,21 +1153,21 @@ InnoDB.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline27" class="outline-3">
-<h3 id="orgheadline27">主从模式</h3>
-<div class="outline-text-3" id="text-orgheadline27">
+<div id="outline-container-org5d25823" class="outline-3">
+<h3 id="org5d25823">主从模式</h3>
+<div class="outline-text-3" id="text-org5d25823">
 <p>
 一张表的一条记录对应另一张表的多条记录。也就是一对多
 eg：论坛的板块表与帖子表就是这种关系，而帖子表与回复表也是这种关系
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline28" class="outline-3">
-<h3 id="orgheadline28">名值模式</h3>
+<div id="outline-container-org7891265" class="outline-3">
+<h3 id="org7891265">名值模式</h3>
 </div>
-<div id="outline-container-orgheadline29" class="outline-3">
-<h3 id="orgheadline29">多对多模式</h3>
-<div class="outline-text-3" id="text-orgheadline29">
+<div id="outline-container-orge64b31f" class="outline-3">
+<h3 id="orge64b31f">多对多模式</h3>
+<div class="outline-text-3" id="text-orge64b31f">
 <p>
 一本书可以有多个作者，一个作者也可以写多本书，所以书目信息表与作者信息表就是
 多对多关系，那么设计时通常是在加入一个关联表，也就是通过3个表来表示这种关系
@@ -1110,9 +1175,9 @@ eg：论坛的板块表与帖子表就是这种关系，而帖子表与回复表
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline31" class="outline-2">
-<h2 id="orgheadline31">一些建议</h2>
-<div class="outline-text-2" id="text-orgheadline31">
+<div id="outline-container-orgf66d6e0" class="outline-2">
+<h2 id="orgf66d6e0">一些建议</h2>
+<div class="outline-text-2" id="text-orgf66d6e0">
 <ol class="org-ol">
 <li>LIKE 很慢, 所以一般情况下,最好使用 full text.</li>
 <li>绝不要检索比需求多的数据, 所以不要使用 SELECT * 这样的语句.</li>

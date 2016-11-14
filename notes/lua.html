@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lua</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,6 +176,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -175,41 +260,40 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">table</a>
+<li><a href="#org015d9bf">table</a>
 <ul>
-<li><a href="#orgheadline2">初始化</a></li>
-<li><a href="#orgheadline3">遍历table</a></li>
+<li><a href="#orgaad5aee">初始化</a></li>
+<li><a href="#orgcb01bff">遍历table</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline4">metatable</a>
+<li><a href="#org8771194">metatable</a>
 <ul>
-<li><a href="#orgheadline5">特殊方法</a></li>
+<li><a href="#org821ce04">特殊方法</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline8">环境</a>
+<li><a href="#org592794f">环境</a>
 <ul>
-<li><a href="#orgheadline6">_ENV(lua5.2)</a></li>
-<li><a href="#orgheadline7">setfenv/getfenv</a></li>
+<li><a href="#orgafa2ddb">_ENV(lua5.2)</a></li>
+<li><a href="#org121f7b6">setfenv/getfenv</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline9">OOP</a></li>
-<li><a href="#orgheadline10">package</a></li>
-<li><a href="#orgheadline11">一些注意事项</a></li>
+<li><a href="#org1c60b6b">OOP</a></li>
+<li><a href="#orgaa50f9e">package</a></li>
+<li><a href="#org00b4430">一些注意事项</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">table</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-org015d9bf" class="outline-2">
+<h2 id="org015d9bf">table</h2>
+<div class="outline-text-2" id="text-org015d9bf">
 <p>
 实际上是一个hash表, 把python中dict与list杂揉到了一起,设计的并不好.
 </p>
 </div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">初始化</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+<div id="outline-container-orgaad5aee" class="outline-3">
+<h3 id="orgaad5aee">初始化</h3>
+<div class="outline-text-3" id="text-orgaad5aee">
 <div class="org-src-container">
-
 <pre class="src src-lua"><span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DFAF8F;">tbl</span> = <span style="color: #DCDCCC;">{</span>aa=<span style="color: #BFEBBF;">1</span>, bb=<span style="color: #BFEBBF;">2</span>, <span style="color: #CC9393;">"l1"</span>, <span style="color: #CC9393;">"l2"</span>, <span style="color: #CC9393;">"l3"</span><span style="color: #DCDCCC;">}</span>
 <span style="color: #DCDCCC; font-weight: bold;">print</span><span style="color: #DCDCCC;">(</span>#tbl<span style="color: #DCDCCC;">)</span>    <span style="color: #5F7F5F;">-- </span><span style="color: #7F9F7F;">return 3</span>
 <span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DFAF8F;">tbl</span> = <span style="color: #DCDCCC;">{</span>aa=<span style="color: #BFEBBF;">1</span>, bb=<span style="color: #BFEBBF;">2</span><span style="color: #DCDCCC;">}</span>
@@ -224,7 +308,6 @@ table的数字key有这些：1,2,3,4,6,7, 那么#操作符会返回4, 因为中�
 系，#检查到5的时候发现为nil就停止了 #u操作符大致等价于下面的函数.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-lua"><span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">get_len</span><span style="color: #DCDCCC;">(</span>tbl<span style="color: #DCDCCC;">)</span>
    <span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DFAF8F;">i</span> = <span style="color: #BFEBBF;">1</span>
    <span style="color: #F0DFAF; font-weight: bold;">while</span> <span style="color: #BFEBBF;">true</span> <span style="color: #F0DFAF; font-weight: bold;">do</span>
@@ -238,15 +321,14 @@ table的数字key有这些：1,2,3,4,6,7, 那么#操作符会返回4, 因为中�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">遍历table</h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-orgcb01bff" class="outline-3">
+<h3 id="orgcb01bff">遍历table</h3>
+<div class="outline-text-3" id="text-orgcb01bff">
 <p>
 pairs，ipairs都会返回一个迭代器，只是pairs会迭代所有的key，ipairs只会迭代数字key。
 所以为了方便起见，最好使用pairs
 </p>
 <div class="org-src-container">
-
 <pre class="src src-lua"><span style="color: #F0DFAF; font-weight: bold;">for</span> <span style="color: #DFAF8F;">k</span>, <span style="color: #DFAF8F;">v</span> <span style="color: #F0DFAF; font-weight: bold;">in</span> <span style="color: #DCDCCC; font-weight: bold;">pairs</span><span style="color: #DCDCCC;">(</span>tbl<span style="color: #DCDCCC;">)</span> <span style="color: #F0DFAF; font-weight: bold;">do</span>
   dosomething<span style="color: #DCDCCC;">()</span>
 <span style="color: #F0DFAF; font-weight: bold;">end</span>
@@ -255,24 +337,24 @@ pairs，ipairs都会返回一个迭代器，只是pairs会迭代所有的key，i
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4">metatable</h2>
-<div class="outline-text-2" id="text-orgheadline4">
+<div id="outline-container-org8771194" class="outline-2">
+<h2 id="org8771194">metatable</h2>
+<div class="outline-text-2" id="text-org8771194">
 <p>
 lua的每一个表或者userdata都可以有单独的元表, 其他类型的值则共享该类型的元表,
 比如说所有的整数都拥有一个相同的整数类型的元表, 我们一般对表的元表比较感兴趣.
 </p>
 </div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">特殊方法</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-org821ce04" class="outline-3">
+<h3 id="org821ce04">特殊方法</h3>
+<div class="outline-text-3" id="text-org821ce04">
 <ol class="org-ol">
 <li>__index: <b>元表的__index属性可以为函数或者表</b>, 给定表tbl以及键key,获得
 value的流程如下:
 <ul class="org-ul">
 <li>tbl[key]: 如果为nil, 也就是说key不在tbl中, 那么看下面</li>
 <li>检查tbl的元表, 如果有元表且元表有__index属性, 并且__index属性的值是函数
-        或者表,那么看下面, 否则返回nil</li>
+或者表,那么看下面, 否则返回nil</li>
 <li>如果__index属性是一个函数, 那么这样调用 __index(tbl, key)</li>
 <li>如果__index属性是一个表, 那么返回__index[key]</li>
 </ul></li>
@@ -282,18 +364,17 @@ index赋值时才会调用元表的__newindex方法.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-2">
-<h2 id="orgheadline8">环境</h2>
-<div class="outline-text-2" id="text-orgheadline8">
-</div><div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">_ENV(lua5.2)</h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-org592794f" class="outline-2">
+<h2 id="org592794f">环境</h2>
+<div class="outline-text-2" id="text-org592794f">
+</div><div id="outline-container-orgafa2ddb" class="outline-3">
+<h3 id="orgafa2ddb">_ENV(lua5.2)</h3>
+<div class="outline-text-3" id="text-orgafa2ddb">
 <p>
 lua将每一个chunk转换为一个匿名函数, 匿名函数中的自由变量(也就是全局变量)会转
 变为对表_ENV的引用,比如:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-lua">var1 = var2 + <span style="color: #BFEBBF;">1</span>
 </pre>
 </div>
@@ -301,7 +382,6 @@ lua将每一个chunk转换为一个匿名函数, 匿名函数中的自由变量(
 很显然var1, var2是全局变量, 那么这个chunk实际会转换为这个样子
 </p>
 <div class="org-src-container">
-
 <pre class="src src-lua">_ENV = <span style="color: #DCDCCC; font-weight: bold;">_G</span>
 <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #DCDCCC;">()</span>
    _ENV.var1 = _ENV.var2 + <span style="color: #BFEBBF;">1</span>
@@ -317,9 +397,9 @@ lua将每一个chunk转换为一个匿名函数, 匿名函数中的自由变量(
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7">setfenv/getfenv</h3>
-<div class="outline-text-3" id="text-orgheadline7">
+<div id="outline-container-org121f7b6" class="outline-3">
+<h3 id="org121f7b6">setfenv/getfenv</h3>
+<div class="outline-text-3" id="text-org121f7b6">
 <p>
 __ENV机制是lua5.2引入的, 在luajit中也没有实现, setfenv实际上也可以设置函数的
 环境, 第一个参数是一个函数,也可以是数字,它代表当前栈上的函数,比如说1就代表目
@@ -328,14 +408,13 @@ __ENV机制是lua5.2引入的, 在luajit中也没有实现, setfenv实际上也�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-2">
-<h2 id="orgheadline9">OOP</h2>
-<div class="outline-text-2" id="text-orgheadline9">
+<div id="outline-container-org1c60b6b" class="outline-2">
+<h2 id="org1c60b6b">OOP</h2>
+<div class="outline-text-2" id="text-org1c60b6b">
 <p>
 可以使用表来模拟OOP的行为.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-lua">Account = <span style="color: #DCDCCC;">{</span>
    balance=<span style="color: #BFEBBF;">0</span>,
    <span style="color: #93E0E3;">withdraw</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #BFEBBF;">(</span><span style="color: #DCDCCC; font-weight: bold;">self</span>, v<span style="color: #BFEBBF;">)</span>
@@ -369,9 +448,9 @@ balance值,那么Account中的balance会新对象的默认值. 同时注意冒�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-2">
-<h2 id="orgheadline10">package</h2>
-<div class="outline-text-2" id="text-orgheadline10">
+<div id="outline-container-orgaa50f9e" class="outline-2">
+<h2 id="orgaa50f9e">package</h2>
+<div class="outline-text-2" id="text-orgaa50f9e">
 <p>
 lua中比较好的package设施应该满足以下几点:
 </p>
@@ -383,7 +462,6 @@ lua中比较好的package设施应该满足以下几点:
 推荐的做法如下:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-lua"><span style="color: #5F7F5F;">-- </span><span style="color: #7F9F7F;">&#23558;&#27169;&#22359;&#29992;&#21040;&#30340;&#20840;&#23616;&#21464;&#37327;&#36171;&#20540;&#32473;local&#21464;&#37327;</span>
 <span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DCDCCC; font-weight: bold;">print</span> = <span style="color: #DCDCCC; font-weight: bold;">print</span>
 <span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DCDCCC; font-weight: bold;">error</span> = <span style="color: #DCDCCC; font-weight: bold;">error</span>
@@ -426,9 +504,9 @@ lua中比较好的package设施应该满足以下几点:
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-2">
-<h2 id="orgheadline11">一些注意事项</h2>
-<div class="outline-text-2" id="text-orgheadline11">
+<div id="outline-container-org00b4430" class="outline-2">
+<h2 id="org00b4430">一些注意事项</h2>
+<div class="outline-text-2" id="text-org00b4430">
 <ol class="org-ol">
 <li>chunk: chunk是lua执行代码的最小单位,一个chunk必定是一个block, 你可以认为
 chunk是最上层的block,一般来说一个文件中的所有lua代码是一个chunk, 在交互环

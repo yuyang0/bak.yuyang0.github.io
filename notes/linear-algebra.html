@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:05 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>线性代数</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,6 +176,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -197,38 +282,38 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">Symbols</a></li>
-<li><a href="#orgheadline2">Concepts</a></li>
-<li><a href="#orgheadline3">线性方程组</a></li>
-<li><a href="#orgheadline5">向量空间</a>
+<li><a href="#org98432fa">Symbols</a></li>
+<li><a href="#org3aa26e3">Concepts</a></li>
+<li><a href="#orgf9e3c94">线性方程组</a></li>
+<li><a href="#orge9d3d4d">向量空间</a>
 <ul>
-<li><a href="#orgheadline4">四个子空间</a></li>
+<li><a href="#orgc71d600">四个子空间</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline7">正交</a>
+<li><a href="#org19d6093">正交</a>
 <ul>
-<li><a href="#orgheadline6">投影与最小二乘</a></li>
+<li><a href="#orgca22cee">投影与最小二乘</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline12">行列式</a>
+<li><a href="#orge35f672">行列式</a>
 <ul>
-<li><a href="#orgheadline8">几何性质</a></li>
-<li><a href="#orgheadline9">Property</a></li>
-<li><a href="#orgheadline10">计算方法</a></li>
-<li><a href="#orgheadline11">克拉默法则</a></li>
+<li><a href="#org64ce333">几何性质</a></li>
+<li><a href="#org7e8d911">Property</a></li>
+<li><a href="#orgb1f8733">计算方法</a></li>
+<li><a href="#org6ebe54e">克拉默法则</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline13">特征值与特征向量</a>
+<li><a href="#org9481c54">特征值与特征向量</a>
 <ul>
-<li><a href="#orgheadline14">Definition</a></li>
+<li><a href="#org643233e">Definition</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Symbols</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-org98432fa" class="outline-2">
+<h2 id="org98432fa">Symbols</h2>
+<div class="outline-text-2" id="text-org98432fa">
 <ol class="org-ol">
 <li>V : Vector space</li>
 <li>F : stands for either <b>R</b> or <b>C</b>.</li>
@@ -238,9 +323,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">Concepts</h2>
-<div class="outline-text-2" id="text-orgheadline2">
+<div id="outline-container-org3aa26e3" class="outline-2">
+<h2 id="org3aa26e3">Concepts</h2>
+<div class="outline-text-2" id="text-org3aa26e3">
 <ol class="org-ol">
 <li><p>
 线性关系(linear relation): 源于一个很朴素的想法,如果x,y是线性关系,那么x增大或者缩小n倍,那么
@@ -299,22 +384,22 @@ T1是坐标系 I下的变换，而T2是坐标系P下面的变换, 依次将 \(P,
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">线性方程组</h2>
+<div id="outline-container-orgf9e3c94" class="outline-2">
+<h2 id="orgf9e3c94">线性方程组</h2>
 </div>
-<div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5">向量空间</h2>
-<div class="outline-text-2" id="text-orgheadline5">
-</div><div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">四个子空间</h3>
+<div id="outline-container-orge9d3d4d" class="outline-2">
+<h2 id="orge9d3d4d">向量空间</h2>
+<div class="outline-text-2" id="text-orge9d3d4d">
+</div><div id="outline-container-orgc71d600" class="outline-3">
+<h3 id="orgc71d600">四个子空间</h3>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-2">
-<h2 id="orgheadline7">正交</h2>
-<div class="outline-text-2" id="text-orgheadline7">
-</div><div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">投影与最小二乘</h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-org19d6093" class="outline-2">
+<h2 id="org19d6093">正交</h2>
+<div class="outline-text-2" id="text-org19d6093">
+</div><div id="outline-container-orgca22cee" class="outline-3">
+<h3 id="orgca22cee">投影与最小二乘</h3>
+<div class="outline-text-3" id="text-orgca22cee">
 \begin{equation*}
   P = A(A^TA)^{-1}A^T
 \end{equation*}
@@ -322,12 +407,12 @@ T1是坐标系 I下的变换，而T2是坐标系P下面的变换, 依次将 \(P,
 </div>
 </div>
 
-<div id="outline-container-orgheadline12" class="outline-2">
-<h2 id="orgheadline12">行列式</h2>
-<div class="outline-text-2" id="text-orgheadline12">
-</div><div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">几何性质</h3>
-<div class="outline-text-3" id="text-orgheadline8">
+<div id="outline-container-orge35f672" class="outline-2">
+<h2 id="orge35f672">行列式</h2>
+<div class="outline-text-2" id="text-orge35f672">
+</div><div id="outline-container-org64ce333" class="outline-3">
+<h3 id="org64ce333">几何性质</h3>
+<div class="outline-text-3" id="text-org64ce333">
 <ol class="org-ol">
 <li>二维时是2个矩阵列向量组成的平行四边形的面积</li>
 <li>三维时是3个矩阵列向量组成的立方体的体积</li>
@@ -339,9 +424,9 @@ T1是坐标系 I下的变换，而T2是坐标系P下面的变换, 依次将 \(P,
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">Property</h3>
-<div class="outline-text-3" id="text-orgheadline9">
+<div id="outline-container-org7e8d911" class="outline-3">
+<h3 id="org7e8d911">Property</h3>
+<div class="outline-text-3" id="text-org7e8d911">
 <ol class="org-ol">
 <li>\(det(I) = 1\)</li>
 <li>交换两行，那么行列式的值变号</li>
@@ -380,9 +465,9 @@ T1是坐标系 I下的变换，而T2是坐标系P下面的变换, 依次将 \(P,
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">计算方法</h3>
-<div class="outline-text-3" id="text-orgheadline10">
+<div id="outline-container-orgb1f8733" class="outline-3">
+<h3 id="orgb1f8733">计算方法</h3>
+<div class="outline-text-3" id="text-orgb1f8733">
 <ol class="org-ol">
 <li>将矩阵行归约成梯形形式，主元的乘积就是行列式(三角矩阵的行列式等于对角线元素的
 乘积), 如果交换了行，那么要添加适当的正负号.(<b>计算机使用这种方法计算行列式</b>)</li>
@@ -396,9 +481,9 @@ T1是坐标系 I下的变换，而T2是坐标系P下面的变换, 依次将 \(P,
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11">克拉默法则</h3>
-<div class="outline-text-3" id="text-orgheadline11">
+<div id="outline-container-org6ebe54e" class="outline-3">
+<h3 id="org6ebe54e">克拉默法则</h3>
+<div class="outline-text-3" id="text-org6ebe54e">
 <ol class="org-ol">
 <li>逆矩阵： \(A^{-1} = \frac{1}{det(A)} C^T\) , 其中C是代数余子式组成的矩阵。</li>
 <li><p>
@@ -417,17 +502,17 @@ T1是坐标系 I下的变换，而T2是坐标系P下面的变换, 依次将 \(P,
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-2">
-<h2 id="orgheadline13">特征值与特征向量</h2>
-<div class="outline-text-2" id="text-orgheadline13">
+<div id="outline-container-org9481c54" class="outline-2">
+<h2 id="org9481c54">特征值与特征向量</h2>
+<div class="outline-text-2" id="text-org9481c54">
 <p>
 特征值和特征向量只对方阵有意义，主要是用来简化计算的，通过将任意的向量向特征向量
 的方向做分解可以大大的简化计算
 </p>
 </div>
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">Definition</h3>
-<div class="outline-text-3" id="text-orgheadline14">
+<div id="outline-container-org643233e" class="outline-3">
+<h3 id="org643233e">Definition</h3>
+<div class="outline-text-3" id="text-org643233e">
 \begin{equation*}
   Ax = \lambda x
 \end{equation*}

@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>nginx</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,6 +176,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -175,60 +260,60 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline4">nginx的安装</a>
+<li><a href="#orgfbd72e9">nginx的安装</a>
 <ul>
-<li><a href="#orgheadline1">安装</a></li>
-<li><a href="#orgheadline2">重新编译安装</a></li>
-<li><a href="#orgheadline3">nginx的配置目录布局</a></li>
+<li><a href="#org97e6b60">安装</a></li>
+<li><a href="#orgcfc9cd8">重新编译安装</a></li>
+<li><a href="#org040c405">nginx的配置目录布局</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline11">nginx的基础知识</a>
+<li><a href="#orga2bf27d">nginx的基础知识</a>
 <ul>
-<li><a href="#orgheadline5">基本术语</a></li>
-<li><a href="#orgheadline6">phase</a></li>
-<li><a href="#orgheadline7">phases与指令的关系</a></li>
-<li><a href="#orgheadline8">nginx如何匹配请求</a>
+<li><a href="#org2272b05">基本术语</a></li>
+<li><a href="#org4938883">phase</a></li>
+<li><a href="#org5ee85ee">phases与指令的关系</a></li>
+<li><a href="#org25ceedc">nginx如何匹配请求</a>
 <ul>
-<li><a href="#orgheadline9">匹配server块</a></li>
-<li><a href="#orgheadline10">匹配location</a></li>
+<li><a href="#orga43db90">匹配server块</a></li>
+<li><a href="#org440cea8">匹配location</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline12">nginx配置</a>
+<li><a href="#orgeb10cd8">nginx配置</a>
 <ul>
-<li><a href="#orgheadline13">最外层</a></li>
-<li><a href="#orgheadline14">events</a></li>
-<li><a href="#orgheadline15">http</a></li>
-<li><a href="#orgheadline16">server</a></li>
-<li><a href="#orgheadline17">location</a></li>
+<li><a href="#org503b9a7">最外层</a></li>
+<li><a href="#orga1625da">events</a></li>
+<li><a href="#org0307aef">http</a></li>
+<li><a href="#org215c1cd">server</a></li>
+<li><a href="#orgc495b51">location</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline18">nginx的变量</a>
+<li><a href="#org09f4a9b">nginx的变量</a>
 <ul>
-<li><a href="#orgheadline19">nginx的内置变量</a></li>
-<li><a href="#orgheadline20">常见的指令</a></li>
+<li><a href="#orgbd796ed">nginx的内置变量</a></li>
+<li><a href="#orgfa1d795">常见的指令</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline26">nginx常用模块</a>
+<li><a href="#orgc41fb01">nginx常用模块</a>
 <ul>
-<li><a href="#orgheadline21">map(ngx_http_map_module)</a></li>
-<li><a href="#orgheadline22">GEO(ngx_http_geo_module)</a></li>
-<li><a href="#orgheadline23">Access(ngx_http_access_module)</a></li>
-<li><a href="#orgheadline24">Rewrite(ngx_http_rewrite_module)</a></li>
-<li><a href="#orgheadline25">Echo(ngx_http_echo_module)</a></li>
+<li><a href="#org9940aa4">map(ngx_http_map_module)</a></li>
+<li><a href="#orgd4c06a0">GEO(ngx_http_geo_module)</a></li>
+<li><a href="#org21a4c00">Access(ngx_http_access_module)</a></li>
+<li><a href="#org0142809">Rewrite(ngx_http_rewrite_module)</a></li>
+<li><a href="#orgdeee6c0">Echo(ngx_http_echo_module)</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline27">nginx与lua</a>
+<li><a href="#org82ceb6f">nginx与lua</a>
 <ul>
-<li><a href="#orgheadline28">安装</a></li>
-<li><a href="#orgheadline29">常用指令(nginx配置中使用)</a></li>
-<li><a href="#orgheadline30">lua中能使用的API</a></li>
-<li><a href="#orgheadline31">lua数据共享</a></li>
-<li><a href="#orgheadline32">lua socket</a>
+<li><a href="#org081fa4c">安装</a></li>
+<li><a href="#orgf87fe4c">常用指令(nginx配置中使用)</a></li>
+<li><a href="#org9aebe71">lua中能使用的API</a></li>
+<li><a href="#org087c20c">lua数据共享</a></li>
+<li><a href="#org1f77507">lua socket</a>
 <ul>
-<li><a href="#orgheadline33">TCP SOCKET</a></li>
-<li><a href="#orgheadline34">UDP SOCKET</a></li>
+<li><a href="#org71de202">TCP SOCKET</a></li>
+<li><a href="#org855bc91">UDP SOCKET</a></li>
 </ul>
 </li>
 </ul>
@@ -236,12 +321,12 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4">nginx的安装</h2>
-<div class="outline-text-2" id="text-orgheadline4">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1">安装</h3>
-<div class="outline-text-3" id="text-orgheadline1">
+<div id="outline-container-orgfbd72e9" class="outline-2">
+<h2 id="orgfbd72e9">nginx的安装</h2>
+<div class="outline-text-2" id="text-orgfbd72e9">
+</div><div id="outline-container-org97e6b60" class="outline-3">
+<h3 id="org97e6b60">安装</h3>
+<div class="outline-text-3" id="text-org97e6b60">
 <p>
 可以直接使用ubuntu仓库中的nginx,不过版本有点陈旧,下面说一说编译安装, 编译安
 装是非常典型的configure, make, make install模式, 我只说一说configure的常用选
@@ -259,9 +344,9 @@ for the JavaScript code in this tag.
 </pre>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">重新编译安装</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+<div id="outline-container-orgcfc9cd8" class="outline-3">
+<h3 id="orgcfc9cd8">重新编译安装</h3>
+<div class="outline-text-3" id="text-orgcfc9cd8">
 <p>
 有时候我们发现nginx缺少模块,需要重新编译安装, 那么使用如下步骤:
 </p>
@@ -275,9 +360,9 @@ for the JavaScript code in this tag.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">nginx的配置目录布局</h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-org040c405" class="outline-3">
+<h3 id="org040c405">nginx的配置目录布局</h3>
+<div class="outline-text-3" id="text-org040c405">
 <p>
 使用ubuntu的apt安装的nginx的配置一般有如下的目录格式
 </p>
@@ -306,12 +391,12 @@ http {
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-2">
-<h2 id="orgheadline11">nginx的基础知识</h2>
-<div class="outline-text-2" id="text-orgheadline11">
-</div><div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">基本术语</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-orga2bf27d" class="outline-2">
+<h2 id="orga2bf27d">nginx的基础知识</h2>
+<div class="outline-text-2" id="text-orga2bf27d">
+</div><div id="outline-container-org2272b05" class="outline-3">
+<h3 id="org2272b05">基本术语</h3>
+<div class="outline-text-3" id="text-org2272b05">
 <ol class="org-ol">
 <li>upstream（上游）: 是指nginx后端的服务, 比如tornado, redis等等</li>
 <li>downstream(下游): 指浏览器, 或者其它向nginx请求服务的程序.</li>
@@ -324,9 +409,9 @@ url, 然后跳回find config phase, 所以它就会使用修改后的url去匹�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">phase</h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-org4938883" class="outline-3">
+<h3 id="org4938883">phase</h3>
+<div class="outline-text-3" id="text-org4938883">
 <p>
 一个http请求会依次经过如下11个phase:
 </p>
@@ -334,7 +419,7 @@ url, 然后跳回find config phase, 所以它就会使用修改后的url去匹�
 <li>post read: 接收完请求头之后的第一个阶段,它位于uri重写之前, 实际上很少有
 模块会注册在该阶段,默认的情况下, 该阶段被跳过.</li>
 <li>server rewrite: server级别的uri重写阶段, 如果set, rewrite等ngx_rewrite模
-      块的指令放在server内,但在location外,那么就运行于该阶段.</li>
+块的指令放在server内,但在location外,那么就运行于该阶段.</li>
 <li>find config: 寻找location配置阶段,该阶段使用重写之后的uri来查找对应的
 location,值得注意的是该阶段可能会被执行多次,因为也可能有location级别的重
 写指令, <b>该阶段不允许模块注册</b>.</li>
@@ -351,7 +436,7 @@ location,值得注意的是该阶段可能会被执行多次,因为也可能有l
 <li>post access: 访问权限控制的后一阶段,该阶段根据权限控制阶段的执行结果进行
 相应处理. <b>该阶段不允许模块注册</b>.</li>
 <li>try files: try_files指令的处理阶段，如果没有配置try_files
-      指令，则该阶段被跳过,  <b>该阶段不允许模块注册</b>.</li>
+指令，则该阶段被跳过,  <b>该阶段不允许模块注册</b>.</li>
 <li>content: 内容生成阶段, 该阶段产生响应, 并发送到客户端. 如果location中没有
 任何像echo,content_by_lua这样运行于content phase的指令,那么nginx会把当前
 请求的 URI 映射到文件系统的静态资源服务模块, 如果文件系统没有对应的文件那
@@ -365,9 +450,9 @@ location,值得注意的是该阶段可能会被执行多次,因为也可能有l
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7">phases与指令的关系</h3>
-<div class="outline-text-3" id="text-orgheadline7">
+<div id="outline-container-org5ee85ee" class="outline-3">
+<h3 id="org5ee85ee">phases与指令的关系</h3>
+<div class="outline-text-3" id="text-org5ee85ee">
 <p>
 几乎所有的指令都与某一个phase相关联, 指令的实际执行顺序是这样决定的:
 </p>
@@ -380,7 +465,7 @@ echo的顺序如何, set必定在echo的前面执行. <b>建议书写配置时�
 况:
 <ol class="org-ol">
 <li>有些指令是按照书写顺序来执行的, 比如set, set_unescape_uri, set_by_lua
-         等</li>
+等</li>
 <li>绝大多数第三方模块只能运行于所属phase的结尾,所以内置模块的指令必定早于
 第三方模块指令的执行, 因此rewrite必定在rewrite_by_lua前面执行.
 set_by_lua之所以能和内置的set指令交叉执行,是因为使用了一些特殊技巧</li>
@@ -391,16 +476,16 @@ set_by_lua之所以能和内置的set指令交叉执行,是因为使用了一些
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">nginx如何匹配请求</h3>
-<div class="outline-text-3" id="text-orgheadline8">
+<div id="outline-container-org25ceedc" class="outline-3">
+<h3 id="org25ceedc">nginx如何匹配请求</h3>
+<div class="outline-text-3" id="text-org25ceedc">
 <p>
 实际先匹配server块, 接着匹配该server块中的location.
 </p>
 </div>
-<div id="outline-container-orgheadline9" class="outline-4">
-<h4 id="orgheadline9">匹配server块</h4>
-<div class="outline-text-4" id="text-orgheadline9">
+<div id="outline-container-orga43db90" class="outline-4">
+<h4 id="orga43db90">匹配server块</h4>
+<div class="outline-text-4" id="text-orga43db90">
 <ol class="org-ol">
 <li>匹配listen指令
 <ul class="org-ul">
@@ -424,9 +509,9 @@ port）
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-4">
-<h4 id="orgheadline10">匹配location</h4>
-<div class="outline-text-4" id="text-orgheadline10">
+<div id="outline-container-org440cea8" class="outline-4">
+<h4 id="org440cea8">匹配location</h4>
+<div class="outline-text-4" id="text-org440cea8">
 <p>
 实际上是根据location后面的url来匹配, 该rul会有一些前缀来标示url的类型(正则
 或者非正则, 非正则会区分是精确匹配或者前缀匹配, 正则规则又会区分大小写),
@@ -458,7 +543,6 @@ port）
 大体上你可以认为优先级是: =规则 &gt; ^~规则 &gt; 正则规则 &gt; 无前缀规则
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">location = / <span style="color: #DCDCCC;">{}</span>                 <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">&#21482;&#21305;&#37197;/, &#19981;&#20250;&#21305;&#37197;/xxx</span>
 location / <span style="color: #DCDCCC;">{}</span>
 location ^~ /images/ <span style="color: #DCDCCC;">{}</span>
@@ -469,9 +553,9 @@ location ~* <span style="color: #CC9393;">\.</span><span style="color: #DCDCCC;"
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-2">
-<h2 id="orgheadline12">nginx配置</h2>
-<div class="outline-text-2" id="text-orgheadline12">
+<div id="outline-container-orgeb10cd8" class="outline-2">
+<h2 id="orgeb10cd8">nginx配置</h2>
+<div class="outline-text-2" id="text-orgeb10cd8">
 <p>
 nginx配置的基本结构是:
 </p>
@@ -500,9 +584,9 @@ http {
 }
 </pre>
 </div>
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13">最外层</h3>
-<div class="outline-text-3" id="text-orgheadline13">
+<div id="outline-container-org503b9a7" class="outline-3">
+<h3 id="org503b9a7">最外层</h3>
+<div class="outline-text-3" id="text-org503b9a7">
 <ol class="org-ol">
 <li>user: 指定worker进程的用户名以及用户组</li>
 <li>worker_processes: woker进程的数量,一般和CPU的核数一样</li>
@@ -510,9 +594,9 @@ http {
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">events</h3>
-<div class="outline-text-3" id="text-orgheadline14">
+<div id="outline-container-orga1625da" class="outline-3">
+<h3 id="orga1625da">events</h3>
+<div class="outline-text-3" id="text-orga1625da">
 <p>
 主要是配置事件相关
 </p>
@@ -522,17 +606,17 @@ http {
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15">http</h3>
-<div class="outline-text-3" id="text-orgheadline15">
+<div id="outline-container-org0307aef" class="outline-3">
+<h3 id="org0307aef">http</h3>
+<div class="outline-text-3" id="text-org0307aef">
 <p>
 一些http相关的配置
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16">server</h3>
-<div class="outline-text-3" id="text-orgheadline16">
+<div id="outline-container-org215c1cd" class="outline-3">
+<h3 id="org215c1cd">server</h3>
+<div class="outline-text-3" id="text-org215c1cd">
 <p>
 配置虚拟机, 最重要的是它的listen,server_name指令, 很多主机商就是用这种配置来
 用一台机器服务多个网站的,配置多个server块, 每一个块的server_name改为对应的域
@@ -540,9 +624,9 @@ http {
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17">location</h3>
-<div class="outline-text-3" id="text-orgheadline17">
+<div id="outline-container-orgc495b51" class="outline-3">
+<h3 id="orgc495b51">location</h3>
+<div class="outline-text-3" id="text-orgc495b51">
 <p>
 这个块主要是指定对特定url的操作, location后面有一个url参数, 该参数就是用来匹
 配http请求的url的,如果匹配成功,那么就执行对应的块中的指令.
@@ -550,16 +634,15 @@ http {
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-2">
-<h2 id="orgheadline18">nginx的变量</h2>
-<div class="outline-text-2" id="text-orgheadline18">
+<div id="outline-container-org09f4a9b" class="outline-2">
+<h2 id="org09f4a9b">nginx的变量</h2>
+<div class="outline-text-2" id="text-org09f4a9b">
 <p>
 nginx变量是在nginx启动时创建, 而在请求中赋值的,变量在每一次请求中都有一个单独
 的副本(<b>子请求也会有单独的副本</b>), 同时变量的生命周期与请求绑定,与location块无
 关,不要想当然的认为它和程序语言的静态作用域相同.请看如下例子:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">server <span style="color: #DCDCCC;">{</span>
     listen <span style="color: #BFEBBF;">8080</span>;
     location /foo <span style="color: #BFEBBF;">{</span>
@@ -578,9 +661,9 @@ nginx变量是在nginx启动时创建, 而在请求中赋值的,变量在每一�
 访问/foo会得到hello, 因为你在/foo中对$a进行了赋值.
 </p>
 </div>
-<div id="outline-container-orgheadline19" class="outline-3">
-<h3 id="orgheadline19">nginx的内置变量</h3>
-<div class="outline-text-3" id="text-orgheadline19">
+<div id="outline-container-orgbd796ed" class="outline-3">
+<h3 id="orgbd796ed">nginx的内置变量</h3>
+<div class="outline-text-3" id="text-orgbd796ed">
 <ol class="org-ol">
 <li>$request_uri: 未解码的uri,包含query string</li>
 <li>$uri: 已解码的uri, 不包含query string</li>
@@ -591,9 +674,9 @@ Tom.注意返回的值是未解码形式.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20">常见的指令</h3>
-<div class="outline-text-3" id="text-orgheadline20">
+<div id="outline-container-orgfa1d795" class="outline-3">
+<h3 id="orgfa1d795">常见的指令</h3>
+<div class="outline-text-3" id="text-orgfa1d795">
 <ol class="org-ol">
 <li>set: 创建nginx变量并且赋值(rewrite phase)</li>
 <li>set_unescape_uri: 创建nginx变量,但是会将值解码后赋给该变量(rewrite phase)</li>
@@ -602,18 +685,17 @@ Tom.注意返回的值是未解码形式.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline26" class="outline-2">
-<h2 id="orgheadline26">nginx常用模块</h2>
-<div class="outline-text-2" id="text-orgheadline26">
-</div><div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21">map(ngx_http_map_module)</h3>
-<div class="outline-text-3" id="text-orgheadline21">
+<div id="outline-container-orgc41fb01" class="outline-2">
+<h2 id="orgc41fb01">nginx常用模块</h2>
+<div class="outline-text-2" id="text-orgc41fb01">
+</div><div id="outline-container-org9940aa4" class="outline-3">
+<h3 id="org9940aa4">map(ngx_http_map_module)</h3>
+<div class="outline-text-3" id="text-org9940aa4">
 <ol class="org-ol">
 <li><p>
 map: <code>map string $variable { ... }</code>
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">map $<span style="color: #DFAF8F;">http_user_agent</span> $<span style="color: #DFAF8F;">bad_client</span> <span style="color: #DCDCCC;">{</span>
     default            <span style="color: #BFEBBF;">0</span>;
     <span style="color: #CC9393;">"~*Baiduspider"</span>    <span style="color: #BFEBBF;">1</span>;
@@ -630,14 +712,13 @@ map: <code>map string $variable { ... }</code>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline22" class="outline-3">
-<h3 id="orgheadline22">GEO(ngx_http_geo_module)</h3>
-<div class="outline-text-3" id="text-orgheadline22">
+<div id="outline-container-orgd4c06a0" class="outline-3">
+<h3 id="orgd4c06a0">GEO(ngx_http_geo_module)</h3>
+<div class="outline-text-3" id="text-orgd4c06a0">
 <p>
 可以根据客户端的ip来设置变量的值, 只能放在http块中
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">geo $<span style="color: #DFAF8F;">geo</span> <span style="color: #DCDCCC;">{</span>
     default        <span style="color: #BFEBBF;">0</span>;
 
@@ -656,9 +737,9 @@ map: <code>map string $variable { ... }</code>
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline23" class="outline-3">
-<h3 id="orgheadline23">Access(ngx_http_access_module)</h3>
-<div class="outline-text-3" id="text-orgheadline23">
+<div id="outline-container-org21a4c00" class="outline-3">
+<h3 id="org21a4c00">Access(ngx_http_access_module)</h3>
+<div class="outline-text-3" id="text-org21a4c00">
 <p>
 用来对请求进行权限检查
 </p>
@@ -677,9 +758,9 @@ map: <code>map string $variable { ... }</code>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline24" class="outline-3">
-<h3 id="orgheadline24">Rewrite(ngx_http_rewrite_module)</h3>
-<div class="outline-text-3" id="text-orgheadline24">
+<div id="outline-container-org0142809" class="outline-3">
+<h3 id="org0142809">Rewrite(ngx_http_rewrite_module)</h3>
+<div class="outline-text-3" id="text-org0142809">
 <p>
 该模块的指令如果放在server中,那么运行在server rewrite阶段, 如果放在location
 中,那么就运行在rewrite阶段
@@ -691,7 +772,6 @@ if: <code>if (condition) { ... }</code>, if是非常诡异的指令,能不用就
 if只有在location中,并且在以下两种情况才100%正确:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh"><span style="color: #F0DFAF; font-weight: bold;">if</span><span style="color: #DCDCCC;">(</span>condition<span style="color: #DCDCCC;">){</span>
     <span style="color: #F0DFAF; font-weight: bold;">return</span> status_code
 <span style="color: #DCDCCC;">}</span>
@@ -721,9 +801,9 @@ return URL;
 </div>
 </div>
 
-<div id="outline-container-orgheadline25" class="outline-3">
-<h3 id="orgheadline25">Echo(ngx_http_echo_module)</h3>
-<div class="outline-text-3" id="text-orgheadline25">
+<div id="outline-container-orgdeee6c0" class="outline-3">
+<h3 id="orgdeee6c0">Echo(ngx_http_echo_module)</h3>
+<div class="outline-text-3" id="text-orgdeee6c0">
 <p>
 这是第三方模块,提供了一些类似于shell的命令, 该模块的大部分指令运行于content
 phase. 常用的指令:
@@ -739,7 +819,6 @@ echo_location_async: 和echo_location不过是异步的(HTTP GET), 也就是说�
 求很有可能在子请求之前结束. 但是nginx会保证输出指令的执行顺序:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">location /main <span style="color: #DCDCCC;">{</span>
         echo_reset_timer;
         echo_location_async /sub1;
@@ -772,23 +851,22 @@ took 0.000 sec for total.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline27" class="outline-2">
-<h2 id="orgheadline27">nginx与lua</h2>
-<div class="outline-text-2" id="text-orgheadline27">
+<div id="outline-container-org82ceb6f" class="outline-2">
+<h2 id="org82ceb6f">nginx与lua</h2>
+<div class="outline-text-2" id="text-org82ceb6f">
 <p>
 将lua解释器嵌入到nginx, 使用lua可以比较轻松的实现一些业务逻辑, 这样就可以将
 nginx从一个单纯的http服务器变成一个web应用服务器,在配合nginx高效的IO模型,性能
 十分强大. 对于逻辑不复杂的业务直接使用lua在nginx这层实现是个不错的选择.
 </p>
 </div>
-<div id="outline-container-orgheadline28" class="outline-3">
-<h3 id="orgheadline28">安装</h3>
-<div class="outline-text-3" id="text-orgheadline28">
+<div id="outline-container-org081fa4c" class="outline-3">
+<h3 id="org081fa4c">安装</h3>
+<div class="outline-text-3" id="text-org081fa4c">
 <p>
 依赖于luajit,也可以使用lua, 不过luajit性能更好, ubuntu上可以使用如下命令安装
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">sudo apt-get install libluajit-5.1-dev
 </pre>
 </div>
@@ -801,7 +879,6 @@ nginx从一个单纯的http服务器变成一个web应用服务器,在配合ngin
 nginx安装
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">./configure  --add-module=/path/to/ngx_lua <span style="color: #CC9393;">\</span>
              --add-module=/path/to/ngx_devel_kit
 </pre>
@@ -810,7 +887,6 @@ nginx安装
 tengine上安装
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">./configure  --with-http_lua_module <span style="color: #CC9393;">\</span>
              --add-module=/path/to/ngx_devel_kit
 </pre>
@@ -818,9 +894,9 @@ tengine上安装
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline29" class="outline-3">
-<h3 id="orgheadline29">常用指令(nginx配置中使用)</h3>
-<div class="outline-text-3" id="text-orgheadline29">
+<div id="outline-container-orgf87fe4c" class="outline-3">
+<h3 id="orgf87fe4c">常用指令(nginx配置中使用)</h3>
+<div class="outline-text-3" id="text-orgf87fe4c">
 <ol class="org-ol">
 <li>set_by_lua: 作用于rewrite phase, 和set指令类似, 只是值是由lua脚本产生的,
 该指令可以和set交叉运行</li>
@@ -834,9 +910,9 @@ ngx_rewrite模块的指令总是先于该指令.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline30" class="outline-3">
-<h3 id="orgheadline30">lua中能使用的API</h3>
-<div class="outline-text-3" id="text-orgheadline30">
+<div id="outline-container-org9aebe71" class="outline-3">
+<h3 id="org9aebe71">lua中能使用的API</h3>
+<div class="outline-text-3" id="text-org9aebe71">
 <p>
 ngx_lua暴露给lua的api都被放在ngx这个全局变量中,这是官方<a href="http://wiki.nginx.org/HttpLuaModule">文档</a> 其中比较常用的有
 这些,(<b>特别要注意这些api所在phase,这是使用任何nginx模块都需要特别注意的</b>)
@@ -898,9 +974,9 @@ location = /api {
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline31" class="outline-3">
-<h3 id="orgheadline31">lua数据共享</h3>
-<div class="outline-text-3" id="text-orgheadline31">
+<div id="outline-container-org087c20c" class="outline-3">
+<h3 id="org087c20c">lua数据共享</h3>
+<div class="outline-text-3" id="text-org087c20c">
 <ol class="org-ol">
 <li>请求级别: 使用ngx.ctx, 它是一个table, 你可以使用它来在同一请求的不同的
 phase间传递数据</li>
@@ -915,9 +991,9 @@ IPC机制, ngx_lua使用share memory实现了一个ngx.shared.DICT, 内部是使
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline32" class="outline-3">
-<h3 id="orgheadline32">lua socket</h3>
-<div class="outline-text-3" id="text-orgheadline32">
+<div id="outline-container-org1f77507" class="outline-3">
+<h3 id="org1f77507">lua socket</h3>
+<div class="outline-text-3" id="text-org1f77507">
 <p>
 ngx_lua实现了一个socket库,它能以非阻塞的形式进行网络操作. 利用这个库我们可以
 直接访问upstream的服务,比如redis, memcache等, 也可以访问tornado这样的上游服
@@ -926,16 +1002,15 @@ rewrite_by_lua, access_by_lua, content_by_lua,ngx.timer中</b>, 该库的api分�
 类tcp和udp.
 </p>
 </div>
-<div id="outline-container-orgheadline33" class="outline-4">
-<h4 id="orgheadline33">TCP SOCKET</h4>
-<div class="outline-text-4" id="text-orgheadline33">
+<div id="outline-container-org71de202" class="outline-4">
+<h4 id="org71de202">TCP SOCKET</h4>
+<div class="outline-text-4" id="text-org71de202">
 <ol class="org-ol">
 <li>创建tcp socket对象, 使用ngx.socket.tcp来创建, <code>local sock = ngx.socket.tcp()</code></li>
 <li><p>
 connect: 可以使用hostname/ip, port, 也可以使用unix socket文件
 </p>
 <div class="org-src-container">
-
 <pre class="src src-lua"><span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DFAF8F;">ok</span>, <span style="color: #DFAF8F;">err</span> = sock:connect<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"www.google.com"</span>, <span style="color: #BFEBBF;">80</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DFAF8F;">ok</span>, <span style="color: #DFAF8F;">err</span> = sock:connect<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"220.181.57.216"</span>, <span style="color: #BFEBBF;">80</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DFAF8F;">ok</span>, <span style="color: #DFAF8F;">err</span> = sock:connect<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"unix:/tmp/memcached.sock"</span><span style="color: #DCDCCC;">)</span>
@@ -958,7 +1033,6 @@ send: 发送数据, 一定要先设置超时, 如果成功那么返回发送的�
 那么返回nil,以及一个错误消息字符串, 出错时socket会自动关闭,无需手动清理
 </p>
 <div class="org-src-container">
-
 <pre class="src src-lua">sock:settimeout<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">1000</span><span style="color: #DCDCCC;">)</span>  <span style="color: #5F7F5F;">-- </span><span style="color: #7F9F7F;">one second timeout</span>
 <span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DFAF8F;">bytes</span>, <span style="color: #DFAF8F;">err</span> = sock:send<span style="color: #DCDCCC;">(</span>request<span style="color: #DCDCCC;">)</span>
 </pre>
@@ -970,7 +1044,6 @@ send: 发送数据, 一定要先设置超时, 如果成功那么返回发送的�
 示例代码:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-lua">sock:settimeout<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">1000</span><span style="color: #DCDCCC;">)</span>  <span style="color: #5F7F5F;">-- </span><span style="color: #7F9F7F;">one second timeout</span>
 <span style="color: #F0DFAF; font-weight: bold;">local</span> <span style="color: #DFAF8F;">line</span>, <span style="color: #DFAF8F;">err</span>, <span style="color: #DFAF8F;">partial</span> = sock:receive<span style="color: #DCDCCC;">()</span>
 <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #F0DFAF; font-weight: bold;">not</span> line <span style="color: #F0DFAF; font-weight: bold;">then</span>
@@ -982,8 +1055,8 @@ ngx.say<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"succ
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline34" class="outline-4">
-<h4 id="orgheadline34">UDP SOCKET</h4>
+<div id="outline-container-org855bc91" class="outline-4">
+<h4 id="org855bc91">UDP SOCKET</h4>
 </div>
 </div>
 </div>

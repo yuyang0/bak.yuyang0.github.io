@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:09 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Big Data</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="fastdfs tfs" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="fastdfs tfs" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -176,122 +261,127 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline18">1. 基本理论</a>
+<li><a href="#orgc57e4b8">1. 基本理论</a>
 <ul>
-<li><a href="#orgheadline5">1.1. 系统的关键指标</a>
+<li><a href="#org6c6d27e">1.1. 系统的关键指标</a>
 <ul>
-<li><a href="#orgheadline1">1.1.1. 性能</a></li>
-<li><a href="#orgheadline2">1.1.2. 扩展性(scalability)</a></li>
-<li><a href="#orgheadline3">1.1.3. 可用性(availablity)</a></li>
-<li><a href="#orgheadline4">1.1.4. 一致性(consistency)</a></li>
+<li><a href="#orgb3cb610">1.1.1. 性能</a></li>
+<li><a href="#org9414fb8">1.1.2. 扩展性(scalability)</a></li>
+<li><a href="#orgb7a0058">1.1.3. 可用性(availablity)</a></li>
+<li><a href="#orgc756cbe">1.1.4. 一致性(consistency)</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline10">1.2. 常用技术</a>
+<li><a href="#org6f3ff70">1.2. 常用技术</a>
 <ul>
-<li><a href="#orgheadline6">1.2.1. 数据分布</a></li>
-<li><a href="#orgheadline7">1.2.2. 复制</a></li>
-<li><a href="#orgheadline8">1.2.3. 容错</a></li>
-<li><a href="#orgheadline9">1.2.4. 集群管理</a></li>
+<li><a href="#orgef480be">1.2.1. 数据分布</a></li>
+<li><a href="#orgc97a61b">1.2.2. 复制</a></li>
+<li><a href="#org4a9b0d3">1.2.3. 容错</a></li>
+<li><a href="#orgdfcb7c4">1.2.4. 集群管理</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline17">1.3. 常见理论</a>
+<li><a href="#org1d17185">1.3. 常见理论</a>
 <ul>
-<li><a href="#orgheadline11">1.3.1. CAP</a></li>
-<li><a href="#orgheadline12">1.3.2. BASE</a></li>
-<li><a href="#orgheadline13">1.3.3. Paxos</a></li>
-<li><a href="#orgheadline14">1.3.4. Raft</a></li>
-<li><a href="#orgheadline15">1.3.5. 2PC</a></li>
-<li><a href="#orgheadline16">1.3.6. Vector Lock</a></li>
+<li><a href="#orge72571c">1.3.1. CAP</a></li>
+<li><a href="#org0b6c583">1.3.2. BASE</a></li>
+<li><a href="#org97ded30">1.3.3. Paxos</a></li>
+<li><a href="#orgee96a38">1.3.4. Raft</a></li>
+<li><a href="#orga4987f7">1.3.5. 2PC</a></li>
+<li><a href="#org049e0a5">1.3.6. Vector Lock</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline24">2. 分布式文件系统</a>
+<li><a href="#orge4de920">2. 分布式文件系统</a>
 <ul>
-<li><a href="#orgheadline19">2.1. fastdfs</a></li>
-<li><a href="#orgheadline20">2.2. tfs</a></li>
-<li><a href="#orgheadline21">2.3. HDFS</a></li>
-<li><a href="#orgheadline22">2.4. GFS(google)</a></li>
-<li><a href="#orgheadline23">2.5. Ceph</a></li>
+<li><a href="#org1f15d76">2.1. fastdfs</a></li>
+<li><a href="#orgbd81b62">2.2. tfs</a></li>
+<li><a href="#orgdb06f33">2.3. HDFS</a></li>
+<li><a href="#org2013aec">2.4. GFS(google)</a></li>
+<li><a href="#org655ac63">2.5. Ceph</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline50">3. NOSQL</a>
+<li><a href="#org3071efa">3. NOSQL</a>
 <ul>
-<li><a href="#orgheadline31">3.1. 分布式键值系统</a>
+<li><a href="#orgc9f26f6">3.1. 分布式键值系统</a>
 <ul>
-<li><a href="#orgheadline25">3.1.1. Dynamo(amazon)/Riak</a></li>
-<li><a href="#orgheadline26">3.1.2. Tair(taobao)</a></li>
-<li><a href="#orgheadline30">3.1.3. Redis Cluster</a></li>
+<li><a href="#org6ba0be1">3.1.1. Dynamo(amazon)/Riak</a></li>
+<li><a href="#orge61c331">3.1.2. Tair(taobao)</a></li>
+<li><a href="#org8e10eda">3.1.3. Redis Cluster</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline38">3.2. 分布式文档数据库</a>
+<li><a href="#org7bab229">3.2. 分布式文档数据库</a>
 <ul>
-<li><a href="#orgheadline32">3.2.1. 基本原理</a></li>
-<li><a href="#orgheadline36">3.2.2. MongoDB</a></li>
-<li><a href="#orgheadline37">3.2.3. CouchDB</a></li>
+<li><a href="#org3087bb8">3.2.1. 基本原理</a></li>
+<li><a href="#orgf7fc7ec">3.2.2. MongoDB</a></li>
+<li><a href="#org2765144">3.2.3. CouchDB</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline44">3.3. 分布式表格系统</a>
+<li><a href="#org179550e">3.3. 分布式表格系统</a>
 <ul>
-<li><a href="#orgheadline39">3.3.1. 基本原理</a></li>
-<li><a href="#orgheadline40">3.3.2. 数据模型</a></li>
-<li><a href="#orgheadline41">3.3.3. BigTable(google)/HBase</a></li>
-<li><a href="#orgheadline42">3.3.4. Megastore(google)</a></li>
-<li><a href="#orgheadline43">3.3.5. DynamoDB(amazon)</a></li>
+<li><a href="#org7c9a2d9">3.3.1. 基本原理</a></li>
+<li><a href="#org61b0641">3.3.2. 数据模型</a></li>
+<li><a href="#org9801fe9">3.3.3. BigTable(google)/HBase</a></li>
+<li><a href="#org8d7ed00">3.3.4. Megastore(google)</a></li>
+<li><a href="#org2375722">3.3.5. DynamoDB(amazon)</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline48">3.4. 分布式关系数据库</a>
+<li><a href="#org9b00588">3.4. 分布式关系数据库</a>
 <ul>
-<li><a href="#orgheadline45">3.4.1. Spanner(google)</a></li>
-<li><a href="#orgheadline46">3.4.2. OceanBase</a></li>
-<li><a href="#orgheadline47">3.4.3. CockroachDB</a></li>
+<li><a href="#orge17f1a2">3.4.1. Spanner(google)</a></li>
+<li><a href="#orgcb036e3">3.4.2. OceanBase</a></li>
+<li><a href="#org1d1434a">3.4.3. CockroachDB</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline49">3.5. 图数据库</a></li>
+<li><a href="#orged1bc64">3.5. 图数据库</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline56">4. 分布式资源管理</a>
+<li><a href="#org8e1e47a">4. 分布式资源管理</a>
 <ul>
-<li><a href="#orgheadline51">4.1. 设计动机</a></li>
-<li><a href="#orgheadline52">4.2. 发展路径</a></li>
-<li><a href="#orgheadline53">4.3. mesos</a></li>
-<li><a href="#orgheadline54">4.4. YARN</a></li>
-<li><a href="#orgheadline55">4.5. Borg(google)</a></li>
+<li><a href="#orgb14837f">4.1. 设计动机</a></li>
+<li><a href="#org3f34cb8">4.2. 发展路径</a></li>
+<li><a href="#org2a4a9e5">4.3. mesos</a></li>
+<li><a href="#orgd1e8181">4.4. YARN</a></li>
+<li><a href="#org0ea8138">4.5. Borg(google)</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline59">5. 分布式锁</a>
+<li><a href="#org01bd0dd">5. 分布式锁</a>
 <ul>
-<li><a href="#orgheadline57">5.1. chubby(google)/zookeeper</a></li>
-<li><a href="#orgheadline58">5.2. etcd</a></li>
+<li><a href="#orgb27179d">5.1. zookeeper</a>
+<ul>
+<li><a href="#orgf105053">5.1.1. 提供的保证</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline67">6. 分布式中间件</a>
-<ul>
-<li><a href="#orgheadline62">6.1. 分布式消息中间件</a>
-<ul>
-<li><a href="#orgheadline60">6.1.1. kafka</a></li>
-<li><a href="#orgheadline61">6.1.2. metaq</a></li>
+<li><a href="#org34666b9">5.2. etcd</a></li>
+<li><a href="#org10cc6d9">5.3. chubby(google)</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline63">6.2. 分布式服务框架</a></li>
-<li><a href="#orgheadline64">6.3. 数据访问层</a></li>
-<li><a href="#orgheadline65">6.4. 软负载中心</a></li>
-<li><a href="#orgheadline66">6.5. 配置管理</a></li>
+<li><a href="#org370312b">6. 分布式中间件</a>
+<ul>
+<li><a href="#org7ed48a8">6.1. 分布式消息中间件</a>
+<ul>
+<li><a href="#org264bd17">6.1.1. kafka</a></li>
+<li><a href="#orgd15810d">6.1.2. metaq</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline68">7. CDN</a></li>
-<li><a href="#orgheadline75">8. 分布式计算系统</a>
-<ul>
-<li><a href="#orgheadline71">8.1. 批处理系统(离线处理)</a>
-<ul>
-<li><a href="#orgheadline69">8.1.1. MapReduce</a></li>
-<li><a href="#orgheadline70">8.1.2. Spark</a></li>
+<li><a href="#orga3af0cb">6.2. 分布式服务框架</a></li>
+<li><a href="#org3b94c4c">6.3. 数据访问层</a></li>
+<li><a href="#orgf3cac11">6.4. 软负载中心</a></li>
+<li><a href="#orge1da6c2">6.5. 配置管理</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline74">8.2. 实时流处理系统(在线处理)</a>
+<li><a href="#org2225032">7. CDN</a></li>
+<li><a href="#org419c852">8. 分布式计算系统</a>
 <ul>
-<li><a href="#orgheadline72">8.2.1. storm</a></li>
-<li><a href="#orgheadline73">8.2.2. Spark Streaming</a></li>
+<li><a href="#org9b7aca5">8.1. 批处理系统(离线处理)</a>
+<ul>
+<li><a href="#orga3da980">8.1.1. MapReduce</a></li>
+<li><a href="#org783145c">8.1.2. Spark</a></li>
+</ul>
+</li>
+<li><a href="#org9126e12">8.2. 实时流处理系统(在线处理)</a>
+<ul>
+<li><a href="#orgab05b05">8.2.1. storm</a></li>
+<li><a href="#org5b0302d">8.2.2. Spark Streaming</a></li>
 </ul>
 </li>
 </ul>
@@ -299,18 +389,18 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-2">
-<h2 id="orgheadline18"><span class="section-number-2">1</span> 基本理论</h2>
+<div id="outline-container-orgc57e4b8" class="outline-2">
+<h2 id="orgc57e4b8"><span class="section-number-2">1</span> 基本理论</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 全景图： <img src="static/img/big-data-opensource-system.jpg" alt="big-data-opensource-system.jpg" />
 </p>
 </div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><span class="section-number-3">1.1</span> 系统的关键指标</h3>
+<div id="outline-container-org6c6d27e" class="outline-3">
+<h3 id="org6c6d27e"><span class="section-number-3">1.1</span> 系统的关键指标</h3>
 <div class="outline-text-3" id="text-1-1">
-</div><div id="outline-container-orgheadline1" class="outline-4">
-<h4 id="orgheadline1"><span class="section-number-4">1.1.1</span> 性能</h4>
+</div><div id="outline-container-orgb3cb610" class="outline-4">
+<h4 id="orgb3cb610"><span class="section-number-4">1.1.1</span> 性能</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
 性能一般来说是两个指标：吞吐量和延迟。
@@ -321,8 +411,8 @@ for the JavaScript code in this tag.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-4">
-<h4 id="orgheadline2"><span class="section-number-4">1.1.2</span> 扩展性(scalability)</h4>
+<div id="outline-container-org9414fb8" class="outline-4">
+<h4 id="org9414fb8"><span class="section-number-4">1.1.2</span> 扩展性(scalability)</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <p>
 理想的情况下，分布式系统应该线性扩展，也就是说系统的计算与存储能力应该随着系统节
@@ -330,8 +420,8 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-4">
-<h4 id="orgheadline3"><span class="section-number-4">1.1.3</span> 可用性(availablity)</h4>
+<div id="outline-container-orgb7a0058" class="outline-4">
+<h4 id="orgb7a0058"><span class="section-number-4">1.1.3</span> 可用性(availablity)</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <p>
 可用性是指系统在遇到各种异常时仍然能够正常提供服务的能力。分布式系统为了保证可用
@@ -341,8 +431,8 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4"><span class="section-number-4">1.1.4</span> 一致性(consistency)</h4>
+<div id="outline-container-orgc756cbe" class="outline-4">
+<h4 id="orgc756cbe"><span class="section-number-4">1.1.4</span> 一致性(consistency)</h4>
 <div class="outline-text-4" id="text-1-1-4">
 <p>
 因为复制的存在，所以系统就存在一致性问题，主要由这几种：
@@ -393,11 +483,11 @@ your write consistency。一般在会话期间，客户端的读写都在同一�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10"><span class="section-number-3">1.2</span> 常用技术</h3>
+<div id="outline-container-org6f3ff70" class="outline-3">
+<h3 id="org6f3ff70"><span class="section-number-3">1.2</span> 常用技术</h3>
 <div class="outline-text-3" id="text-1-2">
-</div><div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6"><span class="section-number-4">1.2.1</span> 数据分布</h4>
+</div><div id="outline-container-orgef480be" class="outline-4">
+<h4 id="orgef480be"><span class="section-number-4">1.2.1</span> 数据分布</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 数据分布和分片(sharding)与分区(partitioning)表述的是同一个意思, 也就是为了扩展性，
@@ -410,8 +500,8 @@ your write consistency。一般在会话期间，客户端的读写都在同一�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7"><span class="section-number-4">1.2.2</span> 复制</h4>
+<div id="outline-container-orgc97a61b" class="outline-4">
+<h4 id="orgc97a61b"><span class="section-number-4">1.2.2</span> 复制</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <p>
 复制是一种冗余技术，用来保证当服务器出现故障时不丢失数据，它主要用来提高系统可用
@@ -425,8 +515,8 @@ your write consistency。一般在会话期间，客户端的读写都在同一�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-4">
-<h4 id="orgheadline8"><span class="section-number-4">1.2.3</span> 容错</h4>
+<div id="outline-container-org4a9b0d3" class="outline-4">
+<h4 id="org4a9b0d3"><span class="section-number-4">1.2.3</span> 容错</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <p>
 因为分布式系统大多运行于X86服务器上，X86服务器性价比高，可是不够可靠，同时数据中
@@ -448,8 +538,8 @@ your write consistency。一般在会话期间，客户端的读写都在同一�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-4">
-<h4 id="orgheadline9"><span class="section-number-4">1.2.4</span> 集群管理</h4>
+<div id="outline-container-orgdfcb7c4" class="outline-4">
+<h4 id="orgdfcb7c4"><span class="section-number-4">1.2.4</span> 集群管理</h4>
 <div class="outline-text-4" id="text-1-2-4">
 <ol class="org-ol">
 <li>中心式的结构: 主要依赖中心节点来管理。</li>
@@ -458,11 +548,11 @@ your write consistency。一般在会话期间，客户端的读写都在同一�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17"><span class="section-number-3">1.3</span> 常见理论</h3>
+<div id="outline-container-org1d17185" class="outline-3">
+<h3 id="org1d17185"><span class="section-number-3">1.3</span> 常见理论</h3>
 <div class="outline-text-3" id="text-1-3">
-</div><div id="outline-container-orgheadline11" class="outline-4">
-<h4 id="orgheadline11"><span class="section-number-4">1.3.1</span> CAP</h4>
+</div><div id="outline-container-orge72571c" class="outline-4">
+<h4 id="orge72571c"><span class="section-number-4">1.3.1</span> CAP</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 原始定义：
@@ -482,8 +572,8 @@ partitions occur.</li>
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-4">
-<h4 id="orgheadline12"><span class="section-number-4">1.3.2</span> BASE</h4>
+<div id="outline-container-org0b6c583" class="outline-4">
+<h4 id="org0b6c583"><span class="section-number-4">1.3.2</span> BASE</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <ol class="org-ol">
 <li>an application works basically all the time (basically available),</li>
@@ -492,11 +582,11 @@ partitions occur.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-4">
-<h4 id="orgheadline13"><span class="section-number-4">1.3.3</span> Paxos</h4>
+<div id="outline-container-org97ded30" class="outline-4">
+<h4 id="org97ded30"><span class="section-number-4">1.3.3</span> Paxos</h4>
 </div>
-<div id="outline-container-orgheadline14" class="outline-4">
-<h4 id="orgheadline14"><span class="section-number-4">1.3.4</span> Raft</h4>
+<div id="outline-container-orgee96a38" class="outline-4">
+<h4 id="orgee96a38"><span class="section-number-4">1.3.4</span> Raft</h4>
 <div class="outline-text-4" id="text-1-3-4">
 <p>
 和paxos类似的算法，但是在牺牲了很少可用性的情况下，对paxos做了很大的简化。比较容
@@ -504,11 +594,11 @@ partitions occur.</li>
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline15" class="outline-4">
-<h4 id="orgheadline15"><span class="section-number-4">1.3.5</span> 2PC</h4>
+<div id="outline-container-orga4987f7" class="outline-4">
+<h4 id="orga4987f7"><span class="section-number-4">1.3.5</span> 2PC</h4>
 </div>
-<div id="outline-container-orgheadline16" class="outline-4">
-<h4 id="orgheadline16"><span class="section-number-4">1.3.6</span> Vector Lock</h4>
+<div id="outline-container-org049e0a5" class="outline-4">
+<h4 id="org049e0a5"><span class="section-number-4">1.3.6</span> Vector Lock</h4>
 <div class="outline-text-4" id="text-1-3-6">
 <p>
 分布式系统中由于复制的存在，所以当读的时候容易出现同一份数据的多个版本，我们必须
@@ -522,27 +612,27 @@ CLock也只能排出partial order，而无法排出total order。也就是说系
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline24" class="outline-2">
-<h2 id="orgheadline24"><span class="section-number-2">2</span> 分布式文件系统</h2>
+<div id="outline-container-orge4de920" class="outline-2">
+<h2 id="orge4de920"><span class="section-number-2">2</span> 分布式文件系统</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-orgheadline19" class="outline-3">
-<h3 id="orgheadline19"><span class="section-number-3">2.1</span> fastdfs</h3>
+</div><div id="outline-container-org1f15d76" class="outline-3">
+<h3 id="org1f15d76"><span class="section-number-3">2.1</span> fastdfs</h3>
 </div>
-<div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20"><span class="section-number-3">2.2</span> tfs</h3>
+<div id="outline-container-orgbd81b62" class="outline-3">
+<h3 id="orgbd81b62"><span class="section-number-3">2.2</span> tfs</h3>
 </div>
-<div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21"><span class="section-number-3">2.3</span> HDFS</h3>
+<div id="outline-container-orgdb06f33" class="outline-3">
+<h3 id="orgdb06f33"><span class="section-number-3">2.3</span> HDFS</h3>
 </div>
-<div id="outline-container-orgheadline22" class="outline-3">
-<h3 id="orgheadline22"><span class="section-number-3">2.4</span> GFS(google)</h3>
+<div id="outline-container-org2013aec" class="outline-3">
+<h3 id="org2013aec"><span class="section-number-3">2.4</span> GFS(google)</h3>
 </div>
-<div id="outline-container-orgheadline23" class="outline-3">
-<h3 id="orgheadline23"><span class="section-number-3">2.5</span> Ceph</h3>
+<div id="outline-container-org655ac63" class="outline-3">
+<h3 id="org655ac63"><span class="section-number-3">2.5</span> Ceph</h3>
 </div>
 </div>
-<div id="outline-container-orgheadline50" class="outline-2">
-<h2 id="orgheadline50"><span class="section-number-2">3</span> NOSQL</h2>
+<div id="outline-container-org3071efa" class="outline-2">
+<h2 id="org3071efa"><span class="section-number-2">3</span> NOSQL</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 NOSQL的出现主要是为了处理以下问题才出现：
@@ -550,39 +640,39 @@ NOSQL的出现主要是为了处理以下问题才出现：
 <ol class="org-ol">
 <li>避免不必要的复杂性，关系数据库提供了很多功能，但是这些功能对于特定的应用是不
 需要的。</li>
-<li>提高系统高吞吐量</li>
+<li>提高系统吞吐量</li>
 <li>提供可用性与一致性之间的折衷，有些场景数据的一致性是不重要，那么这时候我们可
 以牺牲一致性来换取性能，但是关系数据库不允许这样做</li>
 <li>高水平扩展能力并且能运行于廉价的硬件上. <b>高扩展性是NOSQL的最主要的动机</b>.</li>
 <li>降低系统的管理与运维复杂性, 比如自动的故障检测与恢复，以及自动的负载均衡等等。</li>
 </ol>
 </div>
-<div id="outline-container-orgheadline31" class="outline-3">
-<h3 id="orgheadline31"><span class="section-number-3">3.1</span> 分布式键值系统</h3>
+<div id="outline-container-orgc9f26f6" class="outline-3">
+<h3 id="orgc9f26f6"><span class="section-number-3">3.1</span> 分布式键值系统</h3>
 <div class="outline-text-3" id="text-3-1">
-</div><div id="outline-container-orgheadline25" class="outline-4">
-<h4 id="orgheadline25"><span class="section-number-4">3.1.1</span> Dynamo(amazon)/Riak</h4>
+</div><div id="outline-container-org6ba0be1" class="outline-4">
+<h4 id="org6ba0be1"><span class="section-number-4">3.1.1</span> Dynamo(amazon)/Riak</h4>
 </div>
-<div id="outline-container-orgheadline26" class="outline-4">
-<h4 id="orgheadline26"><span class="section-number-4">3.1.2</span> Tair(taobao)</h4>
+<div id="outline-container-orge61c331" class="outline-4">
+<h4 id="orge61c331"><span class="section-number-4">3.1.2</span> Tair(taobao)</h4>
 </div>
-<div id="outline-container-orgheadline30" class="outline-4">
-<h4 id="orgheadline30"><span class="section-number-4">3.1.3</span> Redis Cluster</h4>
+<div id="outline-container-org8e10eda" class="outline-4">
+<h4 id="org8e10eda"><span class="section-number-4">3.1.3</span> Redis Cluster</h4>
 <div class="outline-text-4" id="text-3-1-3">
-</div><ol class="org-ol"><li><a id="orgheadline27"></a>一致性<br  /><div class="outline-text-5" id="text-3-1-3-1">
+</div><ol class="org-ol"><li><a id="org8c7a94b"></a>一致性<br  /><div class="outline-text-5" id="text-3-1-3-1">
 <p>
 redis使用的是一种弱一致性模型，在复制的时候它使用的是异步复制，所以是有可能u丢失
 数据的
 </p>
 </div></li>
-<li><a id="orgheadline28"></a>数据分布<br  /><div class="outline-text-5" id="text-3-1-3-2">
+<li><a id="orga023835"></a>数据分布<br  /><div class="outline-text-5" id="text-3-1-3-2">
 <p>
 集群中有16384个slot，映射规则是直接直接CRC16然后取模(对hash tag会作特殊处理), 接
 着手工将这16384个slot映射到物理机上。
 <img src="static/img/redis-cluster-slots.png" alt="redis-cluster-slots.png" />
 </p>
 </div></li>
-<li><a id="orgheadline29"></a>复制<br  /><div class="outline-text-5" id="text-3-1-3-3">
+<li><a id="orgcb3d31b"></a>复制<br  /><div class="outline-text-5" id="text-3-1-3-3">
 <p>
 redis的复制本质上是通过主从实现的，所以其实是一种基于机器的复制，对于K/V系统而言
 基于slot的复制应该是一个更好的选择，基于机器的复制最大的缺点就是当一台机器挂掉后，
@@ -604,11 +694,11 @@ C C1 C2
 </div></li></ol>
 </div>
 </div>
-<div id="outline-container-orgheadline38" class="outline-3">
-<h3 id="orgheadline38"><span class="section-number-3">3.2</span> 分布式文档数据库</h3>
+<div id="outline-container-org7bab229" class="outline-3">
+<h3 id="org7bab229"><span class="section-number-3">3.2</span> 分布式文档数据库</h3>
 <div class="outline-text-3" id="text-3-2">
-</div><div id="outline-container-orgheadline32" class="outline-4">
-<h4 id="orgheadline32"><span class="section-number-4">3.2.1</span> 基本原理</h4>
+</div><div id="outline-container-org3087bb8" class="outline-4">
+<h4 id="org3087bb8"><span class="section-number-4">3.2.1</span> 基本原理</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 系统无预先定义的模式，每个document都有多个属性，更通俗的说文档就是 <b>键值对的有序
@@ -626,15 +716,15 @@ C C1 C2
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline36" class="outline-4">
-<h4 id="orgheadline36"><span class="section-number-4">3.2.2</span> MongoDB</h4>
+<div id="outline-container-orgf7fc7ec" class="outline-4">
+<h4 id="orgf7fc7ec"><span class="section-number-4">3.2.2</span> MongoDB</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <p>
 mongodb可以跑单机模式，可以跑复制集，也可以通过分片跑集群模式，下面说的都是集群
 模式
 </p>
 </div>
-<ol class="org-ol"><li><a id="orgheadline33"></a>数据分布<br  /><div class="outline-text-5" id="text-3-2-2-1">
+<ol class="org-ol"><li><a id="org3338a59"></a>数据分布<br  /><div class="outline-text-5" id="text-3-2-2-1">
 <p>
 mongodb的数据分片需要指定一个shard key，实际就是要指定以那个属性为分片的依据，分
 片方式有三种：
@@ -649,8 +739,8 @@ mongodb弄了个代理性质的节点mongos，如果你以shard key来查询，�
 的分片，如果你以非shard key来查询，那么它会向所有的分片广播。
 </p>
 </div></li>
-<li><a id="orgheadline34"></a>一致性模型<br  /></li>
-<li><a id="orgheadline35"></a>复制<br  /><div class="outline-text-5" id="text-3-2-2-3">
+<li><a id="orgb3245a1"></a>一致性模型<br  /></li>
+<li><a id="orgb080211"></a>复制<br  /><div class="outline-text-5" id="text-3-2-2-3">
 <p>
 mongodb的复制是通过复制集来实现的，本质上是一种以机器为单位的复制。复制集可以单
 独用，同时在集群环境中, <b>每一个分片就是一个复制集</b>, 复制集之间数据同步是异步的,
@@ -659,15 +749,15 @@ mongodb的复制是通过复制集来实现的，本质上是一种以机器为�
 </p>
 </div></li></ol>
 </div>
-<div id="outline-container-orgheadline37" class="outline-4">
-<h4 id="orgheadline37"><span class="section-number-4">3.2.3</span> CouchDB</h4>
+<div id="outline-container-org2765144" class="outline-4">
+<h4 id="org2765144"><span class="section-number-4">3.2.3</span> CouchDB</h4>
 </div>
 </div>
-<div id="outline-container-orgheadline44" class="outline-3">
-<h3 id="orgheadline44"><span class="section-number-3">3.3</span> 分布式表格系统</h3>
+<div id="outline-container-org179550e" class="outline-3">
+<h3 id="org179550e"><span class="section-number-3">3.3</span> 分布式表格系统</h3>
 <div class="outline-text-3" id="text-3-3">
-</div><div id="outline-container-orgheadline39" class="outline-4">
-<h4 id="orgheadline39"><span class="section-number-4">3.3.1</span> 基本原理</h4>
+</div><div id="outline-container-org7c9a2d9" class="outline-4">
+<h4 id="org7c9a2d9"><span class="section-number-4">3.3.1</span> 基本原理</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <p>
 表格系统实际和关系数据库类似，只是它弱化了多表关联，对事务的支持很弱(分布式事务
@@ -679,8 +769,8 @@ family)，每一个列族可以动态的添加属性。所以它不像文档模�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline40" class="outline-4">
-<h4 id="orgheadline40"><span class="section-number-4">3.3.2</span> 数据模型</h4>
+<div id="outline-container-org61b0641" class="outline-4">
+<h4 id="org61b0641"><span class="section-number-4">3.3.2</span> 数据模型</h4>
 <div class="outline-text-4" id="text-3-3-2">
 <p>
 表格系统提供的数据模型是一个表格，从更本质的角度讲 <b>一个稀疏的、分布式的、持久化
@@ -691,13 +781,13 @@ family)，每一个列族可以动态的添加属性。所以它不像文档模�
 </pre>
 <p>
 每一个行都有一个行健(row key), 对于列，你需要指定列族(column family), 一张表的列
-不宜过多，最多几百个，但是列可以有几乎无限个。一个列使用 <code>family:qualifier</code> 来标
-示
+族不宜过多，最多几百个，但是列可以有几乎无限个。一个列使用 <code>family:qualifier</code> 来
+标示
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline41" class="outline-4">
-<h4 id="orgheadline41"><span class="section-number-4">3.3.3</span> BigTable(google)/HBase</h4>
+<div id="outline-container-org9801fe9" class="outline-4">
+<h4 id="org9801fe9"><span class="section-number-4">3.3.3</span> BigTable(google)/HBase</h4>
 <div class="outline-text-4" id="text-3-3-3">
 <p>
 这二者非常类似, 从本质上说bigtable/HBase是建立在GFS/HDFS上的一个分布式索引，这里
@@ -729,29 +819,29 @@ bigtable/hbase为列存储的原因。</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline42" class="outline-4">
-<h4 id="orgheadline42"><span class="section-number-4">3.3.4</span> Megastore(google)</h4>
+<div id="outline-container-org8d7ed00" class="outline-4">
+<h4 id="org8d7ed00"><span class="section-number-4">3.3.4</span> Megastore(google)</h4>
 <div class="outline-text-4" id="text-3-3-4">
 <p>
 在bigtable上的一层抽象，提供了一个sql接口。
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline43" class="outline-4">
-<h4 id="orgheadline43"><span class="section-number-4">3.3.5</span> DynamoDB(amazon)</h4>
+<div id="outline-container-org2375722" class="outline-4">
+<h4 id="org2375722"><span class="section-number-4">3.3.5</span> DynamoDB(amazon)</h4>
 </div>
 </div>
-<div id="outline-container-orgheadline48" class="outline-3">
-<h3 id="orgheadline48"><span class="section-number-3">3.4</span> 分布式关系数据库</h3>
+<div id="outline-container-org9b00588" class="outline-3">
+<h3 id="org9b00588"><span class="section-number-3">3.4</span> 分布式关系数据库</h3>
 <div class="outline-text-3" id="text-3-4">
-</div><div id="outline-container-orgheadline45" class="outline-4">
-<h4 id="orgheadline45"><span class="section-number-4">3.4.1</span> Spanner(google)</h4>
+</div><div id="outline-container-orge17f1a2" class="outline-4">
+<h4 id="orge17f1a2"><span class="section-number-4">3.4.1</span> Spanner(google)</h4>
 </div>
-<div id="outline-container-orgheadline46" class="outline-4">
-<h4 id="orgheadline46"><span class="section-number-4">3.4.2</span> OceanBase</h4>
+<div id="outline-container-orgcb036e3" class="outline-4">
+<h4 id="orgcb036e3"><span class="section-number-4">3.4.2</span> OceanBase</h4>
 </div>
-<div id="outline-container-orgheadline47" class="outline-4">
-<h4 id="orgheadline47"><span class="section-number-4">3.4.3</span> CockroachDB</h4>
+<div id="outline-container-org1d1434a" class="outline-4">
+<h4 id="org1d1434a"><span class="section-number-4">3.4.3</span> CockroachDB</h4>
 <div class="outline-text-4" id="text-3-4-3">
 <p>
 google spanner的开源实现版本。
@@ -759,15 +849,15 @@ google spanner的开源实现版本。
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline49" class="outline-3">
-<h3 id="orgheadline49"><span class="section-number-3">3.5</span> 图数据库</h3>
+<div id="outline-container-orged1bc64" class="outline-3">
+<h3 id="orged1bc64"><span class="section-number-3">3.5</span> 图数据库</h3>
 </div>
 </div>
-<div id="outline-container-orgheadline56" class="outline-2">
-<h2 id="orgheadline56"><span class="section-number-2">4</span> 分布式资源管理</h2>
+<div id="outline-container-org8e1e47a" class="outline-2">
+<h2 id="org8e1e47a"><span class="section-number-2">4</span> 分布式资源管理</h2>
 <div class="outline-text-2" id="text-4">
-</div><div id="outline-container-orgheadline51" class="outline-3">
-<h3 id="orgheadline51"><span class="section-number-3">4.1</span> 设计动机</h3>
+</div><div id="outline-container-orgb14837f" class="outline-3">
+<h3 id="orgb14837f"><span class="section-number-3">4.1</span> 设计动机</h3>
 <div class="outline-text-3" id="text-4-1">
 <ol class="org-ol">
 <li>提高集群的资源利用率, 为了避免干扰,传统上不同的框架要部署到不同的集群, 这样就
@@ -777,8 +867,8 @@ google spanner的开源实现版本。
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline52" class="outline-3">
-<h3 id="orgheadline52"><span class="section-number-3">4.2</span> 发展路径</h3>
+<div id="outline-container-org3f34cb8" class="outline-3">
+<h3 id="org3f34cb8"><span class="section-number-3">4.2</span> 发展路径</h3>
 <div class="outline-text-3" id="text-4-2">
 <ol class="org-ol">
 <li>集中式：资源管理与应用管理放在一起，典型的就是MapReduce的JobTracker。</li>
@@ -787,65 +877,80 @@ google spanner的开源实现版本。
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline53" class="outline-3">
-<h3 id="orgheadline53"><span class="section-number-3">4.3</span> mesos</h3>
+<div id="outline-container-org2a4a9e5" class="outline-3">
+<h3 id="org2a4a9e5"><span class="section-number-3">4.3</span> mesos</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 mesos是berkeley的AMP实验室开源出来的一个分布式资源管理系统
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline54" class="outline-3">
-<h3 id="orgheadline54"><span class="section-number-3">4.4</span> YARN</h3>
+<div id="outline-container-orgd1e8181" class="outline-3">
+<h3 id="orgd1e8181"><span class="section-number-3">4.4</span> YARN</h3>
 </div>
-<div id="outline-container-orgheadline55" class="outline-3">
-<h3 id="orgheadline55"><span class="section-number-3">4.5</span> Borg(google)</h3>
+<div id="outline-container-org0ea8138" class="outline-3">
+<h3 id="org0ea8138"><span class="section-number-3">4.5</span> Borg(google)</h3>
 </div>
 </div>
-<div id="outline-container-orgheadline59" class="outline-2">
-<h2 id="orgheadline59"><span class="section-number-2">5</span> 分布式锁</h2>
+<div id="outline-container-org01bd0dd" class="outline-2">
+<h2 id="org01bd0dd"><span class="section-number-2">5</span> 分布式锁</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 这类系统实际上都提供的是一种强一致的信息存储服务,底层都使用的是一致性算法(PAXOS,
 RAFT), 它们一般用来存储系统关键的元信息. 当然它们都提供了不同的接口
 </p>
 </div>
-<div id="outline-container-orgheadline57" class="outline-3">
-<h3 id="orgheadline57"><span class="section-number-3">5.1</span> chubby(google)/zookeeper</h3>
+<div id="outline-container-orgb27179d" class="outline-3">
+<h3 id="orgb27179d"><span class="section-number-3">5.1</span> zookeeper</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 提供的是一个文件系统类似的数据接口.
 </p>
 </div>
+<div id="outline-container-orgf105053" class="outline-4">
+<h4 id="orgf105053"><span class="section-number-4">5.1.1</span> 提供的保证</h4>
+<div class="outline-text-4" id="text-5-1-1">
+<ol class="org-ol">
+<li>所有的write都会被排序, 都会通过ZAB协议复制到集群的每一台机器,实际上zk的每
+一个写操作都有一个序号 <code>zxid</code>.</li>
+<li>同一个client的写遵循FIFO</li>
+<li>read是直接读所连接的服务器所保存的数据，可能读到过期的数据，不过zk提供了
+<code>sync</code> 这个API</li>
+</ol>
 </div>
-<div id="outline-container-orgheadline58" class="outline-3">
-<h3 id="orgheadline58"><span class="section-number-3">5.2</span> etcd</h3>
+</div>
+</div>
+<div id="outline-container-org34666b9" class="outline-3">
+<h3 id="org34666b9"><span class="section-number-3">5.2</span> etcd</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 底层使用raft算法, 提供的是一个K/V式的接口
 </p>
 </div>
 </div>
+<div id="outline-container-org10cc6d9" class="outline-3">
+<h3 id="org10cc6d9"><span class="section-number-3">5.3</span> chubby(google)</h3>
 </div>
-<div id="outline-container-orgheadline67" class="outline-2">
-<h2 id="orgheadline67"><span class="section-number-2">6</span> 分布式中间件</h2>
+</div>
+<div id="outline-container-org370312b" class="outline-2">
+<h2 id="org370312b"><span class="section-number-2">6</span> 分布式中间件</h2>
 <div class="outline-text-2" id="text-6">
-</div><div id="outline-container-orgheadline62" class="outline-3">
-<h3 id="orgheadline62"><span class="section-number-3">6.1</span> 分布式消息中间件</h3>
+</div><div id="outline-container-org7ed48a8" class="outline-3">
+<h3 id="org7ed48a8"><span class="section-number-3">6.1</span> 分布式消息中间件</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 消息中间件的主要作用是用来异步与解耦。
 </p>
 </div>
-<div id="outline-container-orgheadline60" class="outline-4">
-<h4 id="orgheadline60"><span class="section-number-4">6.1.1</span> kafka</h4>
+<div id="outline-container-org264bd17" class="outline-4">
+<h4 id="org264bd17"><span class="section-number-4">6.1.1</span> kafka</h4>
 </div>
-<div id="outline-container-orgheadline61" class="outline-4">
-<h4 id="orgheadline61"><span class="section-number-4">6.1.2</span> metaq</h4>
+<div id="outline-container-orgd15810d" class="outline-4">
+<h4 id="orgd15810d"><span class="section-number-4">6.1.2</span> metaq</h4>
 </div>
 </div>
-<div id="outline-container-orgheadline63" class="outline-3">
-<h3 id="orgheadline63"><span class="section-number-3">6.2</span> 分布式服务框架</h3>
+<div id="outline-container-orga3af0cb" class="outline-3">
+<h3 id="orga3af0cb"><span class="section-number-3">6.2</span> 分布式服务框架</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 这货主要是为了在SOA之后，能够方便进行服务调用，以及方便的开发新的服务。和rpc框架
@@ -853,8 +958,8 @@ RAFT), 它们一般用来存储系统关键的元信息. 当然它们都提供�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline64" class="outline-3">
-<h3 id="orgheadline64"><span class="section-number-3">6.3</span> 数据访问层</h3>
+<div id="outline-container-org3b94c4c" class="outline-3">
+<h3 id="org3b94c4c"><span class="section-number-3">6.3</span> 数据访问层</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 这个主要是在数据库水平拆分后，方便上层应用使用，实际就是一个代理性质的东西。有了
@@ -863,8 +968,8 @@ RAFT), 它们一般用来存储系统关键的元信息. 当然它们都提供�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline65" class="outline-3">
-<h3 id="orgheadline65"><span class="section-number-3">6.4</span> 软负载中心</h3>
+<div id="outline-container-orgf3cac11" class="outline-3">
+<h3 id="orgf3cac11"><span class="section-number-3">6.4</span> 软负载中心</h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
 这个主要是为了维护服务提供者的列表，同时让服务使用者能够实时的感知到服务提供者的
@@ -872,8 +977,8 @@ RAFT), 它们一般用来存储系统关键的元信息. 当然它们都提供�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline66" class="outline-3">
-<h3 id="orgheadline66"><span class="section-number-3">6.5</span> 配置管理</h3>
+<div id="outline-container-orge1da6c2" class="outline-3">
+<h3 id="orge1da6c2"><span class="section-number-3">6.5</span> 配置管理</h3>
 <div class="outline-text-3" id="text-6-5">
 <p>
 用来统一的管理各个系统的配置。
@@ -881,8 +986,8 @@ RAFT), 它们一般用来存储系统关键的元信息. 当然它们都提供�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline68" class="outline-2">
-<h2 id="orgheadline68"><span class="section-number-2">7</span> CDN</h2>
+<div id="outline-container-org2225032" class="outline-2">
+<h2 id="org2225032"><span class="section-number-2">7</span> CDN</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 CDN从本质上说是一个分布式缓存系统，它的基本使用流程是这样
@@ -897,35 +1002,35 @@ CDN从本质上说是一个分布式缓存系统，它的基本使用流程是�
 </div>
 </div>
 
-<div id="outline-container-orgheadline75" class="outline-2">
-<h2 id="orgheadline75"><span class="section-number-2">8</span> 分布式计算系统</h2>
+<div id="outline-container-org419c852" class="outline-2">
+<h2 id="org419c852"><span class="section-number-2">8</span> 分布式计算系统</h2>
 <div class="outline-text-2" id="text-8">
-</div><div id="outline-container-orgheadline71" class="outline-3">
-<h3 id="orgheadline71"><span class="section-number-3">8.1</span> 批处理系统(离线处理)</h3>
+</div><div id="outline-container-org9b7aca5" class="outline-3">
+<h3 id="org9b7aca5"><span class="section-number-3">8.1</span> 批处理系统(离线处理)</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 这种一般以追求系统的吞吐量为目标。
 </p>
 </div>
-<div id="outline-container-orgheadline69" class="outline-4">
-<h4 id="orgheadline69"><span class="section-number-4">8.1.1</span> MapReduce</h4>
+<div id="outline-container-orga3da980" class="outline-4">
+<h4 id="orga3da980"><span class="section-number-4">8.1.1</span> MapReduce</h4>
 </div>
-<div id="outline-container-orgheadline70" class="outline-4">
-<h4 id="orgheadline70"><span class="section-number-4">8.1.2</span> Spark</h4>
+<div id="outline-container-org783145c" class="outline-4">
+<h4 id="org783145c"><span class="section-number-4">8.1.2</span> Spark</h4>
 </div>
 </div>
-<div id="outline-container-orgheadline74" class="outline-3">
-<h3 id="orgheadline74"><span class="section-number-3">8.2</span> 实时流处理系统(在线处理)</h3>
+<div id="outline-container-org9126e12" class="outline-3">
+<h3 id="org9126e12"><span class="section-number-3">8.2</span> 实时流处理系统(在线处理)</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 这种系统一般以追求系统的延迟为目标。
 </p>
 </div>
-<div id="outline-container-orgheadline72" class="outline-4">
-<h4 id="orgheadline72"><span class="section-number-4">8.2.1</span> storm</h4>
+<div id="outline-container-orgab05b05" class="outline-4">
+<h4 id="orgab05b05"><span class="section-number-4">8.2.1</span> storm</h4>
 </div>
-<div id="outline-container-orgheadline73" class="outline-4">
-<h4 id="orgheadline73"><span class="section-number-4">8.2.2</span> Spark Streaming</h4>
+<div id="outline-container-org5b0302d" class="outline-4">
+<h4 id="org5b0302d"><span class="section-number-4">8.2.2</span> Spark Streaming</h4>
 </div>
 </div>
 </div>

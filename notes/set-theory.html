@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SET THEORY</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="mathematics set" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="mathematics set" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -198,78 +283,78 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">总体把握</a>
+<li><a href="#org634ef7f">总体把握</a>
 <ul>
-<li><a href="#orgheadline2">朴素集合论（直觉上）：康托儿创立</a></li>
-<li><a href="#orgheadline3">罗素悖论（理发师悖论）</a></li>
+<li><a href="#orgbfa697d">朴素集合论（直觉上）：康托儿创立</a></li>
+<li><a href="#org5bc3d7f">罗素悖论（理发师悖论）</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline4">公理化集合论</a>
+<li><a href="#org8152dc5">公理化集合论</a>
 <ul>
-<li><a href="#orgheadline5">Extensionality Axiom(外延公理)</a></li>
-<li><a href="#orgheadline6">Empty Set Axiom(空集公理)</a></li>
-<li><a href="#orgheadline7">Pairing Axiom(偶集公理)</a></li>
-<li><a href="#orgheadline8">Power Set Axiom(幂集公理)</a></li>
-<li><a href="#orgheadline9">Union Axiom(并集公理)</a></li>
-<li><a href="#orgheadline10">Subset Axioms(子集公理)</a></li>
-<li><a href="#orgheadline11">Axiom of Choice</a></li>
-<li><a href="#orgheadline12">Infinity Axiom</a></li>
+<li><a href="#org24b7aa6">Extensionality Axiom(外延公理)</a></li>
+<li><a href="#orgc8547eb">Empty Set Axiom(空集公理)</a></li>
+<li><a href="#orgeb1e9a2">Pairing Axiom(偶集公理)</a></li>
+<li><a href="#org1eea018">Power Set Axiom(幂集公理)</a></li>
+<li><a href="#org521a8fa">Union Axiom(并集公理)</a></li>
+<li><a href="#orgd961e73">Subset Axioms(子集公理)</a></li>
+<li><a href="#org0722f05">Axiom of Choice</a></li>
+<li><a href="#orgce3150f">Infinity Axiom</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline19">Algebra of sets</a>
+<li><a href="#org2861a4e">Algebra of sets</a>
 <ul>
-<li><a href="#orgheadline13">Commutative laws</a></li>
-<li><a href="#orgheadline14">Associative laws</a></li>
-<li><a href="#orgheadline15">Distributive laws</a></li>
-<li><a href="#orgheadline16">De Morgan's laws</a></li>
-<li><a href="#orgheadline17">Identities involving &empty;</a></li>
-<li><a href="#orgheadline18">some properties</a></li>
+<li><a href="#org24d266c">Commutative laws</a></li>
+<li><a href="#org29af8d0">Associative laws</a></li>
+<li><a href="#org542eccf">Distributive laws</a></li>
+<li><a href="#org6b4d83d">De Morgan's laws</a></li>
+<li><a href="#org7de068e">Identities involving &empty;</a></li>
+<li><a href="#orgfb32b47">some properties</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline26">Relations and Functions</a>
+<li><a href="#org21d607d">Relations and Functions</a>
 <ul>
-<li><a href="#orgheadline20">ordered pair</a></li>
-<li><a href="#orgheadline21">Relation</a>
+<li><a href="#orgb1e4326">ordered pair</a></li>
+<li><a href="#org35f2eeb">Relation</a>
 <ul>
-<li><a href="#orgheadline22">n-ary relations</a></li>
+<li><a href="#orgaf8627a">n-ary relations</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline23">Function</a></li>
-<li><a href="#orgheadline24">Equivalence Relations</a></li>
-<li><a href="#orgheadline25">Ordering Relation</a></li>
+<li><a href="#orgd5b2ec7">Function</a></li>
+<li><a href="#org0bd0dd3">Equivalence Relations</a></li>
+<li><a href="#org8599cc5">Ordering Relation</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline27">Natural Number</a>
+<li><a href="#orgd1a9d3b">Natural Number</a>
 <ul>
-<li><a href="#orgheadline28">concepts and conventions</a></li>
-<li><a href="#orgheadline29">Inductive Set</a></li>
-<li><a href="#orgheadline30">Peano's Postulates(皮亚诺公理)</a>
+<li><a href="#orgfae2fcb">concepts and conventions</a></li>
+<li><a href="#org3ed2719">Inductive Set</a></li>
+<li><a href="#org18df198">Peano's Postulates(皮亚诺公理)</a>
 <ul>
-<li><a href="#orgheadline31">Peano System</a></li>
+<li><a href="#org8cb7394">Peano System</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline32">RECURSION ON &omega;</a></li>
+<li><a href="#org2b5b67a">RECURSION ON &omega;</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline35">Cardinal Number and Axiom of Choice</a>
+<li><a href="#org4878d31">Cardinal Number and Axiom of Choice</a>
 <ul>
-<li><a href="#orgheadline33">EQUINUMEROSITY</a></li>
-<li><a href="#orgheadline34">FINITE SET</a></li>
+<li><a href="#org4a3389f">EQUINUMEROSITY</a></li>
+<li><a href="#org2f74b62">FINITE SET</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">总体把握</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-org634ef7f" class="outline-2">
+<h2 id="org634ef7f">总体把握</h2>
+<div class="outline-text-2" id="text-org634ef7f">
 <p>
 naive set theory（Cantor）=&gt; 罗素悖论(Russell's paradox) =&gt;公理化集合论
 </p>
 </div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">朴素集合论（直觉上）：康托儿创立</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+<div id="outline-container-orgbfa697d" class="outline-3">
+<h3 id="orgbfa697d">朴素集合论（直觉上）：康托儿创立</h3>
+<div class="outline-text-3" id="text-orgbfa697d">
 <p>
 几个基本概念：
 </p>
@@ -325,9 +410,9 @@ d 的第五位不同于 r(5) 的第五位<br  />
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">罗素悖论（理发师悖论）</h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-org5bc3d7f" class="outline-3">
+<h3 id="org5bc3d7f">罗素悖论（理发师悖论）</h3>
+<div class="outline-text-3" id="text-org5bc3d7f">
 <p>
 <b>通俗表述</b>: 一个理发师声称给城里不刮胡子的人刮胡子，而且也只给这些不刮胡子的
 人刮，那么理发师该不该给自己刮胡子。(any collection definable is a set)
@@ -346,17 +431,17 @@ d 的第五位不同于 r(5) 的第五位<br  />
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4">公理化集合论</h2>
-<div class="outline-text-2" id="text-orgheadline4">
+<div id="outline-container-org8152dc5" class="outline-2">
+<h2 id="org8152dc5">公理化集合论</h2>
+<div class="outline-text-2" id="text-org8152dc5">
 <p>
 不定义什么是集合，而是通过这些公理来推导确定某些集合是存在的,某些集合是不存在
 的，这些公理都是小心设计，所以避开了罗素悖论。
 </p>
 </div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">Extensionality Axiom(外延公理)</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-org24b7aa6" class="outline-3">
+<h3 id="org24b7aa6">Extensionality Axiom(外延公理)</h3>
+<div class="outline-text-3" id="text-org24b7aa6">
 <p>
 判断2个集合是否相等
 </p>
@@ -366,9 +451,9 @@ d 的第五位不同于 r(5) 的第五位<br  />
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">Empty Set Axiom(空集公理)</h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-orgc8547eb" class="outline-3">
+<h3 id="orgc8547eb">Empty Set Axiom(空集公理)</h3>
+<div class="outline-text-3" id="text-orgc8547eb">
 <p>
 存在一个唯一的空集
 </p>
@@ -385,9 +470,9 @@ identical form:
 </div>
 </div>
 
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7">Pairing Axiom(偶集公理)</h3>
-<div class="outline-text-3" id="text-orgheadline7">
+<div id="outline-container-orgeb1e9a2" class="outline-3">
+<h3 id="orgeb1e9a2">Pairing Axiom(偶集公理)</h3>
+<div class="outline-text-3" id="text-orgeb1e9a2">
 <p>
 For any set u and v, {u, v} is the pair set whose only members are u and
 v.
@@ -398,9 +483,9 @@ v.
 </div>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">Power Set Axiom(幂集公理)</h3>
-<div class="outline-text-3" id="text-orgheadline8">
+<div id="outline-container-org1eea018" class="outline-3">
+<h3 id="org1eea018">Power Set Axiom(幂集公理)</h3>
+<div class="outline-text-3" id="text-org1eea018">
 <p>
 对于任意集合A，存在一个集合B，恰好以A的一切子集为元素
 </p>
@@ -416,9 +501,9 @@ some propertyies of Power set:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">Union Axiom(并集公理)</h3>
-<div class="outline-text-3" id="text-orgheadline9">
+<div id="outline-container-org521a8fa" class="outline-3">
+<h3 id="org521a8fa">Union Axiom(并集公理)</h3>
+<div class="outline-text-3" id="text-org521a8fa">
 <p>
 a &cup; c is the set whose member belong to a or c
 </p>
@@ -445,9 +530,9 @@ extremely: \(\bigcup \emptyset = \emptyset\)
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">Subset Axioms(子集公理)</h3>
-<div class="outline-text-3" id="text-orgheadline10">
+<div id="outline-container-orgd961e73" class="outline-3">
+<h3 id="orgd961e73">Subset Axioms(子集公理)</h3>
+<div class="outline-text-3" id="text-orgd961e73">
 <p>
 For each formula __ not containning B, the following is an axiom:
 </p>
@@ -527,9 +612,9 @@ identical form:
 </div>
 </div>
 
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11">Axiom of Choice</h3>
-<div class="outline-text-3" id="text-orgheadline11">
+<div id="outline-container-org0722f05" class="outline-3">
+<h3 id="org0722f05">Axiom of Choice</h3>
+<div class="outline-text-3" id="text-org0722f05">
 <ol class="org-ol">
 <li><p>
 first form
@@ -542,9 +627,9 @@ R.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12">Infinity Axiom</h3>
-<div class="outline-text-3" id="text-orgheadline12">
+<div id="outline-container-orgce3150f" class="outline-3">
+<h3 id="orgce3150f">Infinity Axiom</h3>
+<div class="outline-text-3" id="text-orgce3150f">
 <p>
 There exists an inductice set:
 </p>
@@ -555,12 +640,12 @@ There exists an inductice set:
 </div>
 </div>
 
-<div id="outline-container-orgheadline19" class="outline-2">
-<h2 id="orgheadline19">Algebra of sets</h2>
-<div class="outline-text-2" id="text-orgheadline19">
-</div><div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13">Commutative laws</h3>
-<div class="outline-text-3" id="text-orgheadline13">
+<div id="outline-container-org2861a4e" class="outline-2">
+<h2 id="org2861a4e">Algebra of sets</h2>
+<div class="outline-text-2" id="text-org2861a4e">
+</div><div id="outline-container-org24d266c" class="outline-3">
+<h3 id="org24d266c">Commutative laws</h3>
+<div class="outline-text-3" id="text-org24d266c">
 \begin{eqnarray*}
   A \cap B &=& B \cap A    \\
   A \cup B &=& B \cup A
@@ -568,9 +653,9 @@ There exists an inductice set:
 </div>
 </div>
 
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">Associative laws</h3>
-<div class="outline-text-3" id="text-orgheadline14">
+<div id="outline-container-org29af8d0" class="outline-3">
+<h3 id="org29af8d0">Associative laws</h3>
+<div class="outline-text-3" id="text-org29af8d0">
 \begin{eqnarray*}
   A \cup (B \cup C) &=& (A \cup B) \cup C   \\
   A \cap (B \cap C) &=& (A \cap B) \cap C
@@ -578,9 +663,9 @@ There exists an inductice set:
 </div>
 </div>
 
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15">Distributive laws</h3>
-<div class="outline-text-3" id="text-orgheadline15">
+<div id="outline-container-org542eccf" class="outline-3">
+<h3 id="org542eccf">Distributive laws</h3>
+<div class="outline-text-3" id="text-org542eccf">
 \begin{eqnarray*}
   A \cap (B \cup C) &=& (A \cap C) \cup (A \cap C)  \\
   A \cup (B \cap C) &=& (A \cup C) \cap (A \cup C)
@@ -588,9 +673,9 @@ There exists an inductice set:
 </div>
 </div>
 
-<div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16">De Morgan's laws</h3>
-<div class="outline-text-3" id="text-orgheadline16">
+<div id="outline-container-org6b4d83d" class="outline-3">
+<h3 id="org6b4d83d">De Morgan's laws</h3>
+<div class="outline-text-3" id="text-org6b4d83d">
 \begin{eqnarray*}
   C - (A \cup B) &=& (C - A) \cap (C - B) \\
   C - (A \cap B) &=& (C - A) \cup (C - B)
@@ -598,9 +683,9 @@ There exists an inductice set:
 </div>
 </div>
 
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17">Identities involving &empty;</h3>
-<div class="outline-text-3" id="text-orgheadline17">
+<div id="outline-container-org7de068e" class="outline-3">
+<h3 id="org7de068e">Identities involving &empty;</h3>
+<div class="outline-text-3" id="text-org7de068e">
 \begin{eqnarray*}
   A \cup \emptyset &=& A     \\
   A \cap \emptyset &=& \emptyset  \\
@@ -609,9 +694,9 @@ There exists an inductice set:
 </div>
 </div>
 
-<div id="outline-container-orgheadline18" class="outline-3">
-<h3 id="orgheadline18">some properties</h3>
-<div class="outline-text-3" id="text-orgheadline18">
+<div id="outline-container-orgfb32b47" class="outline-3">
+<h3 id="orgfb32b47">some properties</h3>
+<div class="outline-text-3" id="text-orgfb32b47">
 \begin{eqnarray*}
   A \subseteq B &\rightarrow& A \cup C \subseteq B \cup C   \\
   A \subseteq B &\rightarrow& A \cap C \subseteq B \cap C   \\
@@ -621,12 +706,12 @@ There exists an inductice set:
 </div>
 </div>
 
-<div id="outline-container-orgheadline26" class="outline-2">
-<h2 id="orgheadline26">Relations and Functions</h2>
-<div class="outline-text-2" id="text-orgheadline26">
-</div><div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20">ordered pair</h3>
-<div class="outline-text-3" id="text-orgheadline20">
+<div id="outline-container-org21d607d" class="outline-2">
+<h2 id="org21d607d">Relations and Functions</h2>
+<div class="outline-text-2" id="text-org21d607d">
+</div><div id="outline-container-orgb1e4326" class="outline-3">
+<h3 id="orgb1e4326">ordered pair</h3>
+<div class="outline-text-3" id="text-orgb1e4326">
 <p>
 Definition: &lt;x, y&gt; is defined to be {{x}, {x, y}}
 </p>
@@ -648,9 +733,9 @@ if x &isin; A and y &isin; B then &lt;x, y&gt; &isin; \(\mathcal{PP}(A \cup B)\)
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21">Relation</h3>
-<div class="outline-text-3" id="text-orgheadline21">
+<div id="outline-container-org35f2eeb" class="outline-3">
+<h3 id="org35f2eeb">Relation</h3>
+<div class="outline-text-3" id="text-org35f2eeb">
 <p>
 <b>Definition</b>: A relation is a set of ordered pairs.
 </p>
@@ -672,9 +757,9 @@ if x &isin; A and y &isin; B then &lt;x, y&gt; &isin; \(\mathcal{PP}(A \cup B)\)
 we say R is a relation on A, it means that R is a subset of (A &times; A)
 </p>
 </div>
-<div id="outline-container-orgheadline22" class="outline-4">
-<h4 id="orgheadline22">n-ary relations</h4>
-<div class="outline-text-4" id="text-orgheadline22">
+<div id="outline-container-orgaf8627a" class="outline-4">
+<h4 id="orgaf8627a">n-ary relations</h4>
+<div class="outline-text-4" id="text-orgaf8627a">
 \begin{eqnarray*}
   \langle x_1, x_2, x_3 \rangle &=& \langle \langle x_1,x_2 \rangle, x_3\rangle \\
   \langle x_1, x_2, x_3, x_4 \rangle &=& \langle \langle x_1,x_2,x_3 \rangle, x_4\rangle \\
@@ -687,9 +772,9 @@ The N-ARY RELATIONS are defined similar to 3-ary and 4-ary relation.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline23" class="outline-3">
-<h3 id="orgheadline23">Function</h3>
-<div class="outline-text-3" id="text-orgheadline23">
+<div id="outline-container-orgd5b2ec7" class="outline-3">
+<h3 id="orgd5b2ec7">Function</h3>
+<div class="outline-text-3" id="text-orgd5b2ec7">
 <p>
 <b>Definition</b>: a function is relation F such that for each x in dom F, there
 is only one y such that xFy.
@@ -730,9 +815,9 @@ is only one x such that xRy.
 </div>
 </div>
 
-<div id="outline-container-orgheadline24" class="outline-3">
-<h3 id="orgheadline24">Equivalence Relations</h3>
-<div class="outline-text-3" id="text-orgheadline24">
+<div id="outline-container-org0bd0dd3" class="outline-3">
+<h3 id="org0bd0dd3">Equivalence Relations</h3>
+<div class="outline-text-3" id="text-org0bd0dd3">
 <ol class="org-ol">
 <li>R is <b>reflexive</b> on A, by which we mean that xRx for all x &isin; A</li>
 <li>R is <b>symmetric</b> on A, by which we mean that whenever xRy, then also yRx</li>
@@ -756,9 +841,9 @@ transitive so xRx
 </div>
 </div>
 
-<div id="outline-container-orgheadline25" class="outline-3">
-<h3 id="orgheadline25">Ordering Relation</h3>
-<div class="outline-text-3" id="text-orgheadline25">
+<div id="outline-container-org8599cc5" class="outline-3">
+<h3 id="org8599cc5">Ordering Relation</h3>
+<div class="outline-text-3" id="text-org8599cc5">
 <p>
 顺序关系比如大于,小于(不包含小于等于, 大于等于).
 </p>
@@ -785,9 +870,9 @@ holds.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline27" class="outline-2">
-<h2 id="orgheadline27">Natural Number</h2>
-<div class="outline-text-2" id="text-orgheadline27">
+<div id="outline-container-orgd1a9d3b" class="outline-2">
+<h2 id="orgd1a9d3b">Natural Number</h2>
+<div class="outline-text-2" id="text-orgd1a9d3b">
 <blockquote>
 <p>
 There are, in general, two ways of introducing new objects for mathematical
@@ -795,9 +880,9 @@ study: the axiomatic approch and the constructive approch.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgheadline28" class="outline-3">
-<h3 id="orgheadline28">concepts and conventions</h3>
-<div class="outline-text-3" id="text-orgheadline28">
+<div id="outline-container-orgfae2fcb" class="outline-3">
+<h3 id="orgfae2fcb">concepts and conventions</h3>
+<div class="outline-text-3" id="text-orgfae2fcb">
 <ol class="org-ol">
 <li>&omega; : the set of natural number</li>
 <li><p>
@@ -810,9 +895,9 @@ transitive set: A set <code>A</code> is said to be transitive set iff
 </div>
 </div>
 
-<div id="outline-container-orgheadline29" class="outline-3">
-<h3 id="orgheadline29">Inductive Set</h3>
-<div class="outline-text-3" id="text-orgheadline29">
+<div id="outline-container-org3ed2719" class="outline-3">
+<h3 id="org3ed2719">Inductive Set</h3>
+<div class="outline-text-3" id="text-org3ed2719">
 <p>
 we construct natural number like this:
 </p>
@@ -855,16 +940,16 @@ successor". ie
 </div>
 </div>
 
-<div id="outline-container-orgheadline30" class="outline-3">
-<h3 id="orgheadline30">Peano's Postulates(皮亚诺公理)</h3>
-<div class="outline-text-3" id="text-orgheadline30">
+<div id="outline-container-org18df198" class="outline-3">
+<h3 id="org18df198">Peano's Postulates(皮亚诺公理)</h3>
+<div class="outline-text-3" id="text-org18df198">
 <p>
 皮亚诺公理是对自然数的公理化
 </p>
 </div>
-<div id="outline-container-orgheadline31" class="outline-4">
-<h4 id="orgheadline31">Peano System</h4>
-<div class="outline-text-4" id="text-orgheadline31">
+<div id="outline-container-org8cb7394" class="outline-4">
+<h4 id="org8cb7394">Peano System</h4>
+<div class="outline-text-4" id="text-org8cb7394">
 <p>
 Peano System to be a triple \(\langle N, S,e\rangle\) consisting of a set N,
 a function \(S:N \rightarrow N\), and a member \(e \in N\) such that the
@@ -910,9 +995,9 @@ requirement that S be one-to-one rules out the system of Fig
 
 
 
-<div id="outline-container-orgheadline32" class="outline-3">
-<h3 id="orgheadline32">RECURSION ON &omega;</h3>
-<div class="outline-text-3" id="text-orgheadline32">
+<div id="outline-container-org2b5b67a" class="outline-3">
+<h3 id="org2b5b67a">RECURSION ON &omega;</h3>
+<div class="outline-text-3" id="text-org2b5b67a">
 <p>
 let A be a set, a &isin; A and \(F: A \rightarrow A\). Then there exists a unique
 function \(h: \omega \rightarrow A\) such that
@@ -952,21 +1037,21 @@ h(3)=S(S(S(e))) &#x2026;
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline35" class="outline-2">
-<h2 id="orgheadline35">Cardinal Number and Axiom of Choice</h2>
-<div class="outline-text-2" id="text-orgheadline35">
-</div><div id="outline-container-orgheadline33" class="outline-3">
-<h3 id="orgheadline33">EQUINUMEROSITY</h3>
-<div class="outline-text-3" id="text-orgheadline33">
+<div id="outline-container-org4878d31" class="outline-2">
+<h2 id="org4878d31">Cardinal Number and Axiom of Choice</h2>
+<div class="outline-text-2" id="text-org4878d31">
+</div><div id="outline-container-org4a3389f" class="outline-3">
+<h3 id="org4a3389f">EQUINUMEROSITY</h3>
+<div class="outline-text-3" id="text-org4a3389f">
 <p>
 <b>Definition</b>: A set <code>A</code> is equinumerous to a set B(written \(A \approx B\)) iff there is
 a one-to-one function from A onto B.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline34" class="outline-3">
-<h3 id="orgheadline34">FINITE SET</h3>
-<div class="outline-text-3" id="text-orgheadline34">
+<div id="outline-container-org2f74b62" class="outline-3">
+<h3 id="org2f74b62">FINITE SET</h3>
+<div class="outline-text-3" id="text-org2f74b62">
 <p>
 <b>Definition</b>: A set is <b>finite</b> iff it is equinumerous to some natural
 nunmber. Otherwise it is infinite.

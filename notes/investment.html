@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:05 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>投资笔记</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="investment" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="investment" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -176,42 +261,42 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">投资原则</a></li>
-<li><a href="#orgheadline2">some advice</a></li>
-<li><a href="#orgheadline10">财务报表基础</a>
+<li><a href="#orgd84fae3">投资原则</a></li>
+<li><a href="#org2dc4f76">some advice</a></li>
+<li><a href="#orgf6d9aa6">财务报表基础</a>
 <ul>
-<li><a href="#orgheadline3">资产负债表</a>
+<li><a href="#org3ee251a">资产负债表</a>
 <ul>
-<li><a href="#orgheadline4">资产(流动性高的排前面)</a></li>
-<li><a href="#orgheadline5">负债(偿还期限短的排前面)</a></li>
-<li><a href="#orgheadline6">所有者权益</a></li>
-<li><a href="#orgheadline7">一般的财务比率</a></li>
+<li><a href="#org2033cec">资产(流动性高的排前面)</a></li>
+<li><a href="#orgcc2312e">负债(偿还期限短的排前面)</a></li>
+<li><a href="#orgf530288">所有者权益</a></li>
+<li><a href="#orge039074">一般的财务比率</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline8">损益表(或利润表)</a></li>
-<li><a href="#orgheadline9">现金流量表</a></li>
+<li><a href="#orgf2218a8">损益表(或利润表)</a></li>
+<li><a href="#orgebd7b7e">现金流量表</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline11">常用的会计术语</a></li>
-<li><a href="#orgheadline12">分析公司的五个方面：</a>
+<li><a href="#org012adfb">常用的会计术语</a></li>
+<li><a href="#org9ebf7cf">分析公司的五个方面：</a>
 <ul>
-<li><a href="#orgheadline13">成长性</a></li>
-<li><a href="#orgheadline14">收益性</a></li>
+<li><a href="#orgec0c64a">成长性</a></li>
+<li><a href="#orgd138cc4">收益性</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline17">财务伪装</a>
+<li><a href="#org44489ab">财务伪装</a>
 <ul>
-<li><a href="#orgheadline15">六个危险信号</a></li>
-<li><a href="#orgheadline16">七个缺陷</a></li>
+<li><a href="#orge6437dc">六个危险信号</a></li>
+<li><a href="#org4931bea">七个缺陷</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline18">财务英文词汇：</a></li>
+<li><a href="#org5f014fc">财务英文词汇：</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">投资原则</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-orgd84fae3" class="outline-2">
+<h2 id="orgd84fae3">投资原则</h2>
+<div class="outline-text-2" id="text-orgd84fae3">
 <ol class="org-ol">
 <li>做好功课</li>
 <li>寻找有强大竞争力的公司
@@ -222,9 +307,9 @@ for the JavaScript code in this tag.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">some advice</h2>
-<div class="outline-text-2" id="text-orgheadline2">
+<div id="outline-container-org2dc4f76" class="outline-2">
+<h2 id="org2dc4f76">some advice</h2>
+<div class="outline-text-2" id="text-org2dc4f76">
 <ol class="org-ol">
 <li>不要试图通过发现下一个微软公司而获得巨额收益。你应该关注于发现股价已低于估
 值的可靠的公司。所以不要预测市场上哪个小公司会成为大公司，而应该潜心的寻找
@@ -260,19 +345,19 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-2">
-<h2 id="orgheadline10">财务报表基础</h2>
-<div class="outline-text-2" id="text-orgheadline10">
-</div><div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">资产负债表</h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-orgf6d9aa6" class="outline-2">
+<h2 id="orgf6d9aa6">财务报表基础</h2>
+<div class="outline-text-2" id="text-orgf6d9aa6">
+</div><div id="outline-container-org3ee251a" class="outline-3">
+<h3 id="org3ee251a">资产负债表</h3>
+<div class="outline-text-3" id="text-org3ee251a">
 <p>
 资产负债表公司特定的时间点的资产与负债情况
 </p>
 </div>
-<div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4">资产(流动性高的排前面)</h4>
-<div class="outline-text-4" id="text-orgheadline4">
+<div id="outline-container-org2033cec" class="outline-4">
+<h4 id="org2033cec">资产(流动性高的排前面)</h4>
+<div class="outline-text-4" id="text-org2033cec">
 <ol class="org-ol">
 <li>流动资产
 <ul class="org-ul">
@@ -296,9 +381,9 @@ for the JavaScript code in this tag.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-4">
-<h4 id="orgheadline5">负债(偿还期限短的排前面)</h4>
-<div class="outline-text-4" id="text-orgheadline5">
+<div id="outline-container-orgcc2312e" class="outline-4">
+<h4 id="orgcc2312e">负债(偿还期限短的排前面)</h4>
+<div class="outline-text-4" id="text-orgcc2312e">
 <ol class="org-ol">
 <li>流动负债（期限短于一年必须以现金偿还的债务）
 <ul class="org-ul">
@@ -312,17 +397,17 @@ for the JavaScript code in this tag.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6">所有者权益</h4>
-<div class="outline-text-4" id="text-orgheadline6">
+<div id="outline-container-orgf530288" class="outline-4">
+<h4 id="orgf530288">所有者权益</h4>
+<div class="outline-text-4" id="text-orgf530288">
 <p>
 总资产减去总负债，未分配利润（利润中没有被股东分红分出去的部分，是一个累计账户，包含多年的累计利润）
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7">一般的财务比率</h4>
-<div class="outline-text-4" id="text-orgheadline7">
+<div id="outline-container-orge039074" class="outline-4">
+<h4 id="orge039074">一般的财务比率</h4>
+<div class="outline-text-4" id="text-orge039074">
 <ul class="org-ul">
 <li>流动比率 = 流动资产 / 流动负债
 该比率一般要高于1,因为如果流动资产低于流动负债,那么公司短期内很有可能出现财务危机,
@@ -334,9 +419,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">损益表(或利润表)</h3>
-<div class="outline-text-3" id="text-orgheadline8">
+<div id="outline-container-orgf2218a8" class="outline-3">
+<h3 id="orgf2218a8">损益表(或利润表)</h3>
+<div class="outline-text-3" id="text-orgf2218a8">
 <p>
 损益表是公司一段时间里损失或者赚了多少会计利润（不同于现金利润）, 可以提供绩
 效评估的功能. 收入应满足2个条件: 服务或产品已经提供给顾客, 公司预期能够收回
@@ -359,9 +444,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">现金流量表</h3>
-<div class="outline-text-3" id="text-orgheadline9">
+<div id="outline-container-orgebd7b7e" class="outline-3">
+<h3 id="orgebd7b7e">现金流量表</h3>
+<div class="outline-text-3" id="text-orgebd7b7e">
 <p>
 现金流量表是记录全部流入流出公司现金的情况，包括经营活动发生的现金流量，投资活动发生的现金流量和筹集资金活动发生的现金流量。
 经营活动发生的现金流是需要重点关注的项目.
@@ -399,34 +484,34 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-2">
-<h2 id="orgheadline11">常用的会计术语</h2>
-<div class="outline-text-2" id="text-orgheadline11">
+<div id="outline-container-org012adfb" class="outline-2">
+<h2 id="org012adfb">常用的会计术语</h2>
+<div class="outline-text-2" id="text-org012adfb">
 <p>
 会计利润：所有者支付除资本以外的所有要素报酬之后剩下的利润，会计利润必须要与收入和费用（包括折旧）尽可能的匹配。然而现金利润测算的是实际生意中流入流出了多少。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline12" class="outline-2">
-<h2 id="orgheadline12">分析公司的五个方面：</h2>
-<div class="outline-text-2" id="text-orgheadline12">
+<div id="outline-container-org9ebf7cf" class="outline-2">
+<h2 id="org9ebf7cf">分析公司的五个方面：</h2>
+<div class="outline-text-2" id="text-org9ebf7cf">
 <p>
 一个成功的投资者是购买一个好主意，而不是购买一个收购机器，如果不知道一个企业除掉收购之后的真实增长率是多少，那就不要买他的股票
 </p>
 </div>
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13">成长性</h3>
-<div class="outline-text-3" id="text-orgheadline13">
+<div id="outline-container-orgec0c64a" class="outline-3">
+<h3 id="orgec0c64a">成长性</h3>
+<div class="outline-text-3" id="text-orgec0c64a">
 <ul class="org-ul">
 <li><b>成长性</b> ：销售增长主要来自于四个方面：销售更多的产品和服务，提高价格，销售新的产品和服务，收购别的公司。要特别弄清楚公司的成长来自于哪些方面，并且每一方面占得比重是多少，对于收购要特别注意。</li>
 <li><b>成长的质量</b> ：当公司的利润增长长期（5到10年）超过销售增长时，要明白公司是如何获得超额的利润的，通过削减成本可以提高利润率，但是不可持续，因为你不可能无休止的削减成本，特别是不适当的削减成本，少交税，回购股票对股东有利，可是也是短期的，是低质量的成长</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">收益性</h3>
-<div class="outline-text-3" id="text-orgheadline14">
+<div id="outline-container-orgd138cc4" class="outline-3">
+<h3 id="orgd138cc4">收益性</h3>
+<div class="outline-text-3" id="text-orgd138cc4">
 <p>
 有两个评估指标：资本收益率和自由现金流量
 </p>
@@ -461,12 +546,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgheadline17" class="outline-2">
-<h2 id="orgheadline17">财务伪装</h2>
-<div class="outline-text-2" id="text-orgheadline17">
-</div><div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15">六个危险信号</h3>
-<div class="outline-text-3" id="text-orgheadline15">
+<div id="outline-container-org44489ab" class="outline-2">
+<h2 id="org44489ab">财务伪装</h2>
+<div class="outline-text-2" id="text-org44489ab">
+</div><div id="outline-container-orge6437dc" class="outline-3">
+<h3 id="orge6437dc">六个危险信号</h3>
+<div class="outline-text-3" id="text-orge6437dc">
 <ul class="org-ul">
 <li>衰退的现金流：如果公司净利润仍在大幅增长，可是经营性现金流却在粗略的同比例增长或者还有衰退，，那么就应该特别注意。</li>
 <li>连续的一次性费用：</li>
@@ -477,9 +562,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16">七个缺陷</h3>
-<div class="outline-text-3" id="text-orgheadline16">
+<div id="outline-container-org4931bea" class="outline-3">
+<h3 id="org4931bea">七个缺陷</h3>
+<div class="outline-text-3" id="text-org4931bea">
 <ul class="org-ul">
 <li>投资收益：试图将投资收益合并入营业利润来推高财务业绩。</li>
 <li>养老金缺陷：</li>
@@ -511,9 +596,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgheadline18" class="outline-2">
-<h2 id="orgheadline18">财务英文词汇：</h2>
-<div class="outline-text-2" id="text-orgheadline18">
+<div id="outline-container-org5f014fc" class="outline-2">
+<h2 id="org5f014fc">财务英文词汇：</h2>
+<div class="outline-text-2" id="text-org5f014fc">
 <ul class="org-ul">
 <li>ROE                      净资产收益率</li>
 <li>ROA                      资产收益率</li>

@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PHP笔记</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="php web" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="php web" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -198,59 +283,59 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">php标记</a></li>
-<li><a href="#orgheadline5">变量</a>
+<li><a href="#orgde06b87">php标记</a></li>
+<li><a href="#orga927339">变量</a>
 <ul>
-<li><a href="#orgheadline2">变量</a></li>
-<li><a href="#orgheadline3">常量</a></li>
-<li><a href="#orgheadline4">作用域</a></li>
+<li><a href="#org322bb0d">变量</a></li>
+<li><a href="#org2cd3a27">常量</a></li>
+<li><a href="#org927c77c">作用域</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline8">操作符与控制结构</a>
+<li><a href="#org129244f">操作符与控制结构</a>
 <ul>
-<li><a href="#orgheadline6">操作符&#xa0;&#xa0;&#xa0;<span class="tag"><span class="operator">operator</span></span></a></li>
-<li><a href="#orgheadline7">控制结构</a></li>
+<li><a href="#org8bf3da4">操作符&#xa0;&#xa0;&#xa0;<span class="tag"><span class="operator">operator</span></span></a></li>
+<li><a href="#orgf645153">控制结构</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline9">php数组</a>
+<li><a href="#orgffb3e5f">php数组</a>
 <ul>
-<li><a href="#orgheadline10">数组定义</a></li>
-<li><a href="#orgheadline11">数组的key</a></li>
-<li><a href="#orgheadline12">访问或者修改</a></li>
-<li><a href="#orgheadline13">循环访问</a></li>
-<li><a href="#orgheadline14">数组排序（原地改变数组）</a></li>
-<li><a href="#orgheadline15">其它数组函数</a></li>
+<li><a href="#org1e1a1f3">数组定义</a></li>
+<li><a href="#org6bc5a4a">数组的key</a></li>
+<li><a href="#org0680112">访问或者修改</a></li>
+<li><a href="#org3ea091b">循环访问</a></li>
+<li><a href="#org16a5dd3">数组排序（原地改变数组）</a></li>
+<li><a href="#org9b1ed98">其它数组函数</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline16">字符串处理函数</a>
+<li><a href="#org9bb69ed">字符串处理函数</a>
 <ul>
-<li><a href="#orgheadline17">常规字符串处理函数</a></li>
-<li><a href="#orgheadline18">正则表达式函数</a></li>
+<li><a href="#orgadbcd5d">常规字符串处理函数</a></li>
+<li><a href="#orgd290d97">正则表达式函数</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline19">文件</a></li>
-<li><a href="#orgheadline24">function</a>
+<li><a href="#org8b184d6">文件</a></li>
+<li><a href="#orgd51586d">function</a>
 <ul>
-<li><a href="#orgheadline20">定义</a></li>
-<li><a href="#orgheadline21">可变参数</a></li>
-<li><a href="#orgheadline22">引用</a></li>
-<li><a href="#orgheadline23">注意事项</a></li>
+<li><a href="#orgca39ab9">定义</a></li>
+<li><a href="#orgd8b3fd0">可变参数</a></li>
+<li><a href="#org8d3078c">引用</a></li>
+<li><a href="#org398208e">注意事项</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline25">OOP</a></li>
-<li><a href="#orgheadline28">php与数据库（mysql）</a>
+<li><a href="#org5382bf5">OOP</a></li>
+<li><a href="#orgfcc3f8f">php与数据库（mysql）</a>
 <ul>
-<li><a href="#orgheadline26">示例代码</a></li>
-<li><a href="#orgheadline27">解释</a></li>
+<li><a href="#orga83c2f9">示例代码</a></li>
+<li><a href="#org1e949c5">解释</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline29">其它技巧</a></li>
+<li><a href="#orga577b8b">其它技巧</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">php标记</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-orgde06b87" class="outline-2">
+<h2 id="orgde06b87">php标记</h2>
+<div class="outline-text-2" id="text-orgde06b87">
 <ol class="org-ol">
 <li>&lt;?php ?&gt; 是推荐的写法, 如果是纯php代码文件,那么建议省略 ?&gt;标记, 这是为了
 防止php输出文件末尾空格</li>
@@ -259,7 +344,6 @@ for the JavaScript code in this tag.
 echo 效率高, 但是当使用 if, foreach, for, while 这样的结构时应该用这样的语法:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-php">&lt;?php if ($expression == true): ?&gt;
   This will show if the expression is true.
 &lt;?php else: ?&gt;
@@ -280,21 +364,21 @@ echo 效率高, 但是当使用 if, foreach, for, while 这样的结构时应该
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5">变量</h2>
-<div class="outline-text-2" id="text-orgheadline5">
-</div><div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">变量</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+<div id="outline-container-orga927339" class="outline-2">
+<h2 id="orga927339">变量</h2>
+<div class="outline-text-2" id="text-orga927339">
+</div><div id="outline-container-org322bb0d" class="outline-3">
+<h3 id="org322bb0d">变量</h3>
+<div class="outline-text-3" id="text-org322bb0d">
 <ol class="org-ol">
 <li>变量必须要$符号，和perl类似.</li>
 <li>大小写：php的变量与常量区分大小写，而函数名，类名，方法名不区分大小写。</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">常量</h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-org2cd3a27" class="outline-3">
+<h3 id="org2cd3a27">常量</h3>
+<div class="outline-text-3" id="text-org2cd3a27">
 <ol class="org-ol">
 <li>常量用define定义，常量使用时不需要$符号，eg: define(“const_var”, 100),使
 用时直接用const_var不需要引号与$。</li>
@@ -307,9 +391,9 @@ echo 效率高, 但是当使用 if, foreach, for, while 这样的结构时应该
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">作用域</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-org927c77c" class="outline-3">
+<h3 id="org927c77c">作用域</h3>
+<div class="outline-text-3" id="text-org927c77c">
 <ol class="org-ol">
 <li>超全局变量</li>
 <li>常量：一旦声明在脚本内全局可用，函数内外可用</li>
@@ -319,7 +403,6 @@ echo 效率高, 但是当使用 if, foreach, for, while 这样的结构时应该
 码:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-scheme"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">define</span> <span style="color: #93E0E3;">test</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">[</span>i <span style="color: #BFEBBF;">0</span><span style="color: #93E0E3;">]</span><span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #93E0E3;">(</span>x<span style="color: #93E0E3;">)</span>
@@ -334,21 +417,21 @@ echo 效率高, 但是当使用 if, foreach, for, while 这样的结构时应该
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-2">
-<h2 id="orgheadline8">操作符与控制结构</h2>
-<div class="outline-text-2" id="text-orgheadline8">
-</div><div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">操作符&#xa0;&#xa0;&#xa0;<span class="tag"><span class="operator">operator</span></span></h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-org129244f" class="outline-2">
+<h2 id="org129244f">操作符与控制结构</h2>
+<div class="outline-text-2" id="text-org129244f">
+</div><div id="outline-container-org8bf3da4" class="outline-3">
+<h3 id="org8bf3da4">操作符&#xa0;&#xa0;&#xa0;<span class="tag"><span class="operator">operator</span></span></h3>
+<div class="outline-text-3" id="text-org8bf3da4">
 <p>
 php的运算符基本和c语言类似。有一个===与==这个和js类似，一个类型与值都比较，
 一个只比较值。
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7">控制结构</h3>
-<div class="outline-text-3" id="text-orgheadline7">
+<div id="outline-container-orgf645153" class="outline-3">
+<h3 id="orgf645153">控制结构</h3>
+<div class="outline-text-3" id="text-orgf645153">
 <p>
 php的控制结构与C语言类似，if，switch，while，do…..while循环，for循环，多了
 一个foreach，foreach是专门用于数组的，break和continue的作用于C类似，还有一
@@ -357,16 +440,16 @@ php的控制结构与C语言类似，if，switch，while，do…..while循环，
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-2">
-<h2 id="orgheadline9">php数组</h2>
-<div class="outline-text-2" id="text-orgheadline9">
+<div id="outline-container-orgffb3e5f" class="outline-2">
+<h2 id="orgffb3e5f">php数组</h2>
+<div class="outline-text-2" id="text-orgffb3e5f">
 <p>
 php数组是一个强大的数据结构
 </p>
 </div>
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">数组定义</h3>
-<div class="outline-text-3" id="text-orgheadline10">
+<div id="outline-container-org1e1a1f3" class="outline-3">
+<h3 id="org1e1a1f3">数组定义</h3>
+<div class="outline-text-3" id="text-org1e1a1f3">
 <ul class="org-ul">
 <li>$arr = array（'a', 'b', 'c'）</li>
 <li>$arr = array(‘first’=&gt;’a‘，‘second’ =&gt; ‘b’, ‘third’ =&gt;’c’),</li>
@@ -377,9 +460,9 @@ php数组是一个强大的数据结构
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11">数组的key</h3>
-<div class="outline-text-3" id="text-orgheadline11">
+<div id="outline-container-org6bc5a4a" class="outline-3">
+<h3 id="org6bc5a4a">数组的key</h3>
+<div class="outline-text-3" id="text-org6bc5a4a">
 <ol class="org-ol">
 <li>key只能为整数或者字符串</li>
 <li>如果key是float,那么四舍五入</li>
@@ -389,18 +472,18 @@ php数组是一个强大的数据结构
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12">访问或者修改</h3>
-<div class="outline-text-3" id="text-orgheadline12">
+<div id="outline-container-org0680112" class="outline-3">
+<h3 id="org0680112">访问或者修改</h3>
+<div class="outline-text-3" id="text-org0680112">
 <ul class="org-ul">
 <li>$arr[key] : 访问键为key的元素,如果不存在则返回错误</li>
 <li>$arr[key] = val : 修改键值为key的元素的值,如果不存在那么就新建</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13">循环访问</h3>
-<div class="outline-text-3" id="text-orgheadline13">
+<div id="outline-container-org3ea091b" class="outline-3">
+<h3 id="org3ea091b">循环访问</h3>
+<div class="outline-text-3" id="text-org3ea091b">
 <ol class="org-ol">
 <li><p>
 foreach循环
@@ -421,7 +504,6 @@ each：返回数组中当前的 键／值对并将数组指针向前移动一步
 是一个数组
 </p>
 <div class="org-src-container">
-
 <pre class="src src-php">$arr = array(
     "aa" =&gt; "one",
     "bb" =&gt; "two",
@@ -440,7 +522,6 @@ list会将数组中索引为0,1,2…….对应的值依次赋给list的参数，
 环中有用,当函数使用数组返回多个值时也很有用.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-php">$arr = array("aa", "bb", "cc", "hello" =&gt; "dd");
 list($a, $b, $c) = $arr; /* $a="aa", $b="bb", $c="cc"*/
 list($a, , $c) = $arr;   /* $a="aa", $c="cc" */
@@ -450,9 +531,9 @@ list($a, , $c) = $arr;   /* $a="aa", $c="cc" */
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">数组排序（原地改变数组）</h3>
-<div class="outline-text-3" id="text-orgheadline14">
+<div id="outline-container-org16a5dd3" class="outline-3">
+<h3 id="org16a5dd3">数组排序（原地改变数组）</h3>
+<div class="outline-text-3" id="text-org16a5dd3">
 <ul class="org-ul">
 <li>sort（对普通数组排序 ，不要应用于字典数组，因为它返回的排序数组会抹掉原字典数组的key，而将它的key变为0,1,2……）</li>
 <li>asort（对字典数组的value排序）</li>
@@ -464,9 +545,9 @@ list($a, , $c) = $arr;   /* $a="aa", $c="cc" */
 </div>
 </div>
 
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15">其它数组函数</h3>
-<div class="outline-text-3" id="text-orgheadline15">
+<div id="outline-container-org9b1ed98" class="outline-3">
+<h3 id="org9b1ed98">其它数组函数</h3>
+<div class="outline-text-3" id="text-org9b1ed98">
 <ul class="org-ul">
 <li>current（当前数组内部指针指向的元素，pos是current的别名）</li>
 <li>next（下一个元素的值）</li>
@@ -491,16 +572,16 @@ list($a, , $c) = $arr;   /* $a="aa", $c="cc" */
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline16" class="outline-2">
-<h2 id="orgheadline16">字符串处理函数</h2>
-<div class="outline-text-2" id="text-orgheadline16">
+<div id="outline-container-org9bb69ed" class="outline-2">
+<h2 id="org9bb69ed">字符串处理函数</h2>
+<div class="outline-text-2" id="text-org9bb69ed">
 <p>
 不原地改变，而是返回一个新的结果字符串
 </p>
 </div>
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17">常规字符串处理函数</h3>
-<div class="outline-text-3" id="text-orgheadline17">
+<div id="outline-container-orgadbcd5d" class="outline-3">
+<h3 id="orgadbcd5d">常规字符串处理函数</h3>
+<div class="outline-text-3" id="text-orgadbcd5d">
 <ul class="org-ul">
 <li>trim(ltrim,rtrim(别名chop)：删除字符串的首尾两端的空格。ltrim只删除开头的空格，rtrim只删除结尾的空格。</li>
 <li>nl2br: 将字符串中的\n转换为,&lt;br /&gt;标签，这样可以在html中换行。</li>
@@ -518,9 +599,9 @@ list($a, , $c) = $arr;   /* $a="aa", $c="cc" */
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-3">
-<h3 id="orgheadline18">正则表达式函数</h3>
-<div class="outline-text-3" id="text-orgheadline18">
+<div id="outline-container-orgd290d97" class="outline-3">
+<h3 id="orgd290d97">正则表达式函数</h3>
+<div class="outline-text-3" id="text-orgd290d97">
 <ul class="org-ul">
 <li>ereg（eregi不区分大小写）：搜索一个匹配，可以使用子模式。</li>
 <li>ereg_replace,eregi_replace：替换</li>
@@ -542,9 +623,9 @@ Perl正则表达式和POSISX表达式的区别：perl正则表达式的模式需
 </div>
 </div>
 
-<div id="outline-container-orgheadline19" class="outline-2">
-<h2 id="orgheadline19">文件</h2>
-<div class="outline-text-2" id="text-orgheadline19">
+<div id="outline-container-org8b184d6" class="outline-2">
+<h2 id="org8b184d6">文件</h2>
+<div class="outline-text-2" id="text-org8b184d6">
 <ul class="org-ul">
 <li>fopen：打开文件，为了移植性模式应该加上b。可以打开网络上的远程文件。</li>
 <li>fwrite（fputs是fwrite的别名）：写文件</li>
@@ -562,12 +643,12 @@ Perl正则表达式和POSISX表达式的区别：perl正则表达式的模式需
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline24" class="outline-2">
-<h2 id="orgheadline24">function</h2>
-<div class="outline-text-2" id="text-orgheadline24">
-</div><div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20">定义</h3>
-<div class="outline-text-3" id="text-orgheadline20">
+<div id="outline-container-orgd51586d" class="outline-2">
+<h2 id="orgd51586d">function</h2>
+<div class="outline-text-2" id="text-orgd51586d">
+</div><div id="outline-container-orgca39ab9" class="outline-3">
+<h3 id="orgca39ab9">定义</h3>
+<div class="outline-text-3" id="text-orgca39ab9">
 <pre class="example">
 function  func_name($a, $b….)
 {
@@ -579,7 +660,6 @@ function  func_name($a, $b….)
 似.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-php">&lt;?php
 function foo($arg_1, $arg_2, /* ..., */ $arg_n)
 {
@@ -591,9 +671,9 @@ function foo($arg_1, $arg_2, /* ..., */ $arg_n)
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21">可变参数</h3>
-<div class="outline-text-3" id="text-orgheadline21">
+<div id="outline-container-orgd8b3fd0" class="outline-3">
+<h3 id="orgd8b3fd0">可变参数</h3>
+<div class="outline-text-3" id="text-orgd8b3fd0">
 <ol class="org-ol">
 <li>func_num_args() : 返回当前调用的参数个数</li>
 <li><p>
@@ -601,7 +681,6 @@ func_get_arg(int $arg_num) : 返回单个参数, eg: func_get_arg(0) 返回当�
 调用地第一个参数.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-php">&lt;?php
 function foo()
 {
@@ -621,15 +700,14 @@ foo('first arg', 'second arg');
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline22" class="outline-3">
-<h3 id="orgheadline22">引用</h3>
-<div class="outline-text-3" id="text-orgheadline22">
+<div id="outline-container-org8d3078c" class="outline-3">
+<h3 id="org8d3078c">引用</h3>
+<div class="outline-text-3" id="text-org8d3078c">
 <p>
 函数可以传递引用也可以返回引用,函数返回引用时必须在定义与调用的时候都加上&amp;，
 但是return语句不用加&amp;
 </p>
 <div class="org-src-container">
-
 <pre class="src src-php">&lt;?php
 function add_some_extra(&amp;$string)
 {
@@ -652,9 +730,9 @@ $newref =&amp; returns_reference();
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline23" class="outline-3">
-<h3 id="orgheadline23">注意事项</h3>
-<div class="outline-text-3" id="text-orgheadline23">
+<div id="outline-container-org398208e" class="outline-3">
+<h3 id="org398208e">注意事项</h3>
+<div class="outline-text-3" id="text-org398208e">
 <ol class="org-ol">
 <li>php 的函数中要引用全局变量, 必须使用 global $varname; 来申明,否则php它会
 自动创建一个初始值为0的新变量 <b>bad design</b>.</li>
@@ -668,14 +746,13 @@ design</b></li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline25" class="outline-2">
-<h2 id="orgheadline25">OOP</h2>
-<div class="outline-text-2" id="text-orgheadline25">
+<div id="outline-container-org5382bf5" class="outline-2">
+<h2 id="org5382bf5">OOP</h2>
+<div class="outline-text-2" id="text-org5382bf5">
 <p>
 示例代码:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-php">&lt;?php
 
 class A
@@ -765,14 +842,13 @@ $object = new A() //实例化类
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline28" class="outline-2">
-<h2 id="orgheadline28">php与数据库（mysql）</h2>
-<div class="outline-text-2" id="text-orgheadline28">
-</div><div id="outline-container-orgheadline26" class="outline-3">
-<h3 id="orgheadline26">示例代码</h3>
-<div class="outline-text-3" id="text-orgheadline26">
+<div id="outline-container-orgfcc3f8f" class="outline-2">
+<h2 id="orgfcc3f8f">php与数据库（mysql）</h2>
+<div class="outline-text-2" id="text-orgfcc3f8f">
+</div><div id="outline-container-orga83c2f9" class="outline-3">
+<h3 id="orga83c2f9">示例代码</h3>
+<div class="outline-text-3" id="text-orga83c2f9">
 <div class="org-src-container">
-
 <pre class="src src-php">&lt;?php
 
 //面向过程的代码
@@ -811,9 +887,9 @@ $db-&gt;close();
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline27" class="outline-3">
-<h3 id="orgheadline27">解释</h3>
-<div class="outline-text-3" id="text-orgheadline27">
+<div id="outline-container-org1e949c5" class="outline-3">
+<h3 id="org1e949c5">解释</h3>
+<div class="outline-text-3" id="text-org1e949c5">
 <p>
 php执行一次query时,如果是select 查询,那么会返回一个mysqli_result对象.如果是
 其它查询,那么成功就返回 True.
@@ -827,7 +903,6 @@ fetch_assoc(方法): 将一条记录作为一个关联数组返回, 数组的key
 field name, 同时将记录指针移到下一条记录.可以用while了来循环读取.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-php">while ($row = $result-&gt;fetch_assoc()) {
     printf ("%s (%s)\n", $row["Name"], $row["CountryCode"]);
 }
@@ -838,9 +913,9 @@ field name, 同时将记录指针移到下一条记录.可以用while了来循�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline29" class="outline-2">
-<h2 id="orgheadline29">其它技巧</h2>
-<div class="outline-text-2" id="text-orgheadline29">
+<div id="outline-container-orga577b8b" class="outline-2">
+<h2 id="orga577b8b">其它技巧</h2>
+<div class="outline-text-2" id="text-orga577b8b">
 <ol class="org-ol">
 <li>对字符串可以使用单，双引号的场合尽量使用单引号，因为使用双引号效率不高。</li>
 <li>可以在表达式前加 @ 来抑制错误.</li>
@@ -852,7 +927,6 @@ field name, 同时将记录指针移到下一条记录.可以用while了来循�
 密码加密推荐使用crypt函数的blowfish算法，不推荐使用sha1,或者md5.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-php">&lt;?php
 $hash = crypt($password);
 if (crypt($user_input, $hash) == $hash) { /* use hash as the salt */

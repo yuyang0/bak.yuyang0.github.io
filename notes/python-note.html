@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>python笔记</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
-<meta  name="keywords" content="python" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<meta name="keywords" content="python" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -54,13 +54,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -93,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -176,121 +261,127 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">python的编码规范</a></li>
-<li><a href="#orgheadline2">python 文件处理</a></li>
-<li><a href="#orgheadline3">作用域规则</a></li>
-<li><a href="#orgheadline10">杂七杂八</a>
+<li><a href="#org80e94d6">python的编码规范</a></li>
+<li><a href="#org6f1d82c">python 文件处理</a></li>
+<li><a href="#orgca9ddf7">作用域规则</a></li>
+<li><a href="#org3ac1a02">杂七杂八</a>
 <ul>
-<li><a href="#orgheadline4">除法</a></li>
-<li><a href="#orgheadline5">一些内置函数的解释</a></li>
-<li><a href="#orgheadline6">dir</a></li>
-<li><a href="#orgheadline7">globals  And lolcals</a></li>
-<li><a href="#orgheadline8">getattr,__getattr__,__getattribute__</a></li>
-<li><a href="#orgheadline9">__import__(接字符串而不是name)</a></li>
+<li><a href="#org39e36c1">除法</a></li>
+<li><a href="#org2307af1">一些内置函数的解释</a></li>
+<li><a href="#org8b6d5d5">dir</a></li>
+<li><a href="#org3986ae2">globals  And lolcals</a></li>
+<li><a href="#orga06cb28">getattr,__getattr__,__getattribute__</a></li>
+<li><a href="#orgb58bc4e">__import__(接字符串而不是name)</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline16">装饰器</a>
+<li><a href="#org7b7aefc">装饰器</a>
 <ul>
-<li><a href="#orgheadline11">装饰器的基本形式</a></li>
-<li><a href="#orgheadline12">使用类作为装饰器(推荐的做法)</a></li>
-<li><a href="#orgheadline13">使用类作为装饰器装饰类方法</a></li>
-<li><a href="#orgheadline14">给装饰器添加参数</a></li>
-<li><a href="#orgheadline15">functools模块</a></li>
+<li><a href="#orge9bb136">装饰器的基本形式</a></li>
+<li><a href="#org5eb753d">使用类作为装饰器(推荐的做法)</a></li>
+<li><a href="#org420e762">使用类作为装饰器装饰类方法</a></li>
+<li><a href="#org552d3d3">给装饰器添加参数</a></li>
+<li><a href="#orgf159b36">functools模块</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline20">迭代器</a>
+<li><a href="#orgdbd165f">迭代器</a>
 <ul>
-<li><a href="#orgheadline17">迭代器的基本知识</a></li>
-<li><a href="#orgheadline18">生成器generator</a></li>
-<li><a href="#orgheadline19">for循环的迭代过程</a></li>
+<li><a href="#org0275142">迭代器的基本知识</a></li>
+<li><a href="#orgfe2798d">生成器generator</a></li>
+<li><a href="#org28739c4">for循环的迭代过程</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline21">with</a></li>
-<li><a href="#orgheadline22">模块</a>
+<li><a href="#org408dac5">with</a></li>
+<li><a href="#orge612576">模块</a>
 <ul>
-<li><a href="#orgheadline23">relative import</a></li>
+<li><a href="#org3369ffd">absolute import</a></li>
+<li><a href="#org7572550">relative import</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline31">OOP</a>
+<li><a href="#orge14a838">OOP</a>
 <ul>
-<li><a href="#orgheadline24">基本OOP代码示例</a></li>
-<li><a href="#orgheadline25">属性搜索树</a></li>
-<li><a href="#orgheadline28">类的设计</a>
+<li><a href="#org091fc3d">基本OOP代码示例</a></li>
+<li><a href="#org3314fff">属性搜索树</a></li>
+<li><a href="#org86206f8">类的设计</a>
 <ul>
-<li><a href="#orgheadline26">is a</a></li>
-<li><a href="#orgheadline27">has a</a></li>
+<li><a href="#orgc4573eb">is a</a></li>
+<li><a href="#org7bcae5b">has a</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline29">常见的运算符重载</a></li>
-<li><a href="#orgheadline30">Descriptor</a></li>
+<li><a href="#org372c2bc">常见的运算符重载</a></li>
+<li><a href="#org4cede5e">Descriptor</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline32">metaclass</a></li>
-<li><a href="#orgheadline33">python异常</a>
+<li><a href="#orgae8a743">metaclass</a></li>
+<li><a href="#org029a085">python异常</a>
 <ul>
-<li><a href="#orgheadline34">try &#x2026; except语句</a></li>
-<li><a href="#orgheadline35">raise</a></li>
-<li><a href="#orgheadline36">异常</a></li>
+<li><a href="#org4ebda53">try &#x2026; except语句</a></li>
+<li><a href="#orgd7747c9">raise</a></li>
+<li><a href="#org50ea86f">异常</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline37">python中文处理</a></li>
-<li><a href="#orgheadline39">一些很诡异的问题</a>
+<li><a href="#org95c8538">python中文处理</a></li>
+<li><a href="#orge2353db">一些很诡异的问题</a>
 <ul>
-<li><a href="#orgheadline38">传引用</a></li>
+<li><a href="#org93f300f">传引用</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline58">一些标准库的使用说明</a>
+<li><a href="#orgc3f59d7">一些标准库的使用说明</a>
 <ul>
-<li><a href="#orgheadline40">python 正则表达式</a></li>
-<li><a href="#orgheadline41">logging</a>
+<li><a href="#org9025f48">python 正则表达式</a></li>
+<li><a href="#org3d0f9b4">logging</a>
 <ul>
-<li><a href="#orgheadline42">基本概念</a></li>
-<li><a href="#orgheadline43">logger层次关系</a></li>
-<li><a href="#orgheadline44">日志输出的过程</a></li>
-<li><a href="#orgheadline45">常用api</a></li>
+<li><a href="#orgf25be99">基本概念</a></li>
+<li><a href="#orgee87fd7">logger层次关系</a></li>
+<li><a href="#org6fabc4e">日志输出的过程</a></li>
+<li><a href="#orga77eb86">常用api</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline48">多线程</a>
+<li><a href="#org5bbde7b">多线程</a>
 <ul>
-<li><a href="#orgheadline46">Thread</a></li>
-<li><a href="#orgheadline47">threading</a></li>
+<li><a href="#org9aa53ab">Thread</a></li>
+<li><a href="#org47928f8">threading</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline54">collections</a>
+<li><a href="#org0ba5748">collections</a>
 <ul>
-<li><a href="#orgheadline49">Counter</a></li>
-<li><a href="#orgheadline50">deque 双端队列</a></li>
-<li><a href="#orgheadline51">defaultdict</a></li>
-<li><a href="#orgheadline52">namedtuple</a></li>
-<li><a href="#orgheadline53">OrderedDict</a></li>
+<li><a href="#orgaa81832">Counter</a></li>
+<li><a href="#org743516f">deque 双端队列</a></li>
+<li><a href="#org158b9d8">defaultdict</a></li>
+<li><a href="#orgabfcd94">namedtuple</a></li>
+<li><a href="#org9c5f551">OrderedDict</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline55">pickle</a></li>
-<li><a href="#orgheadline56">json</a></li>
-<li><a href="#orgheadline57">HTMLParser</a></li>
+<li><a href="#orgb9a01e1">pickle</a></li>
+<li><a href="#org3b5cd11">json</a></li>
+<li><a href="#orge23ee03">HTMLParser</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline64">一些第三方库的使用方法</a>
+<li><a href="#org2111caa">一些第三方库的使用方法</a>
 <ul>
-<li><a href="#orgheadline59">requests</a></li>
-<li><a href="#orgheadline60">pip</a></li>
-<li><a href="#orgheadline61">pyquery</a></li>
-<li><a href="#orgheadline62">watchdog</a></li>
-<li><a href="#orgheadline63">rauth</a></li>
+<li><a href="#org8938c66">requests</a></li>
+<li><a href="#org54c4b16">pip</a></li>
+<li><a href="#orge1afa12">pyquery</a></li>
+<li><a href="#org5bcc393">watchdog</a></li>
+<li><a href="#orgc19051e">rauth</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline67">常用工具的使用方法</a>
+<li><a href="#org11cd83f">测试</a>
 <ul>
-<li><a href="#orgheadline65">virtualenv</a></li>
-<li><a href="#orgheadline66">ipython</a></li>
+<li><a href="#org40c32e4">example</a></li>
+</ul>
+</li>
+<li><a href="#org24dceb4">常用工具的使用方法</a>
+<ul>
+<li><a href="#org8a4fee6">virtualenv</a></li>
+<li><a href="#orgaba96b4">ipython</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">python的编码规范</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-org80e94d6" class="outline-2">
+<h2 id="org80e94d6">python的编码规范</h2>
+<div class="outline-text-2" id="text-org80e94d6">
 <ol class="org-ol">
 <li>用4个空格缩进</li>
 <li>每一行不超过80个字符,当一行超过80个字符时,可以用\来连接下一行,当对一个二元操作符断行时,应该将操作符留在
@@ -313,7 +404,6 @@ for the JavaScript code in this tag.
 的操作符两边放空格
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #DFAF8F;">i</span> = i + <span style="color: #BFEBBF;">1</span>
 <span style="color: #DFAF8F;">submitted</span> += <span style="color: #BFEBBF;">1</span>
 <span style="color: #DFAF8F;">x</span> = x*<span style="color: #BFEBBF;">2</span> - <span style="color: #BFEBBF;">1</span>
@@ -355,9 +445,9 @@ No:  dict ['key'] = list [index]
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">python 文件处理</h2>
-<div class="outline-text-2" id="text-orgheadline2">
+<div id="outline-container-org6f1d82c" class="outline-2">
+<h2 id="org6f1d82c">python 文件处理</h2>
+<div class="outline-text-2" id="text-org6f1d82c">
 <p>
 open打开文件时的选项：
 </p>
@@ -368,7 +458,6 @@ r+: 如果写文件，那么会从当前位置覆盖写，而不是插入，当�
 入文件内容，然后用覆盖该文件时应使用如下代码
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">with</span> <span style="color: #DCDCCC; font-weight: bold;">open</span><span style="color: #DCDCCC;">(</span>filename, <span style="color: #CC9393;">'r+'</span><span style="color: #DCDCCC;">)</span> <span style="color: #F0DFAF; font-weight: bold;">as</span>  f:
     <span style="color: #DFAF8F;">content</span> = f.read<span style="color: #DCDCCC;">()</span>
     <span style="color: #DFAF8F;">new_content</span> = do_something<span style="color: #DCDCCC;">()</span>
@@ -387,7 +476,6 @@ string, 所以对于二进制文件,你必须指定b</li>
 遍历一个文件夹的所有文件
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">import</span> os
 <span style="color: #F0DFAF; font-weight: bold;">import</span> os.path
 
@@ -401,9 +489,9 @@ string, 所以对于二进制文件,你必须指定b</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">作用域规则</h2>
-<div class="outline-text-2" id="text-orgheadline3">
+<div id="outline-container-orgca9ddf7" class="outline-2">
+<h2 id="orgca9ddf7">作用域规则</h2>
+<div class="outline-text-2" id="text-orgca9ddf7">
 <ol class="org-ol">
 <li>if, for, while等不会创建新的作用域, 也就是说它们不同于c中block structure.</li>
 <li>每一个模块会创建一个模块作用域</li>
@@ -418,32 +506,32 @@ string, 所以对于二进制文件,你必须指定b</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-2">
-<h2 id="orgheadline10">杂七杂八</h2>
-<div class="outline-text-2" id="text-orgheadline10">
-</div><div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">除法</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-org3ac1a02" class="outline-2">
+<h2 id="org3ac1a02">杂七杂八</h2>
+<div class="outline-text-2" id="text-org3ac1a02">
+</div><div id="outline-container-org39e36c1" class="outline-3">
+<h3 id="org39e36c1">除法</h3>
+<div class="outline-text-3" id="text-org39e36c1">
 <ul class="org-ul">
 <li>X/Y: python2中的行为和C语言类似，3/2=1, 3/2.0=1.5; 在python3中，这是真除法，也就是会一直保留小数位,3/2 = 1.5</li>
 <li>X//Y: 在python2以及3中都是floor除法，也就是取整数区间的左边边界，5//2 = 2, 5//-2 = -3</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">一些内置函数的解释</h3>
+<div id="outline-container-org2307af1" class="outline-3">
+<h3 id="org2307af1">一些内置函数的解释</h3>
 </div>
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">dir</h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-org8b6d5d5" class="outline-3">
+<h3 id="org8b6d5d5">dir</h3>
+<div class="outline-text-3" id="text-org8b6d5d5">
 <p>
 获得对象的所有属性,也就是顶层的那些names
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7">globals  And lolcals</h3>
-<div class="outline-text-3" id="text-orgheadline7">
+<div id="outline-container-org3986ae2" class="outline-3">
+<h3 id="org3986ae2">globals  And lolcals</h3>
+<div class="outline-text-3" id="text-org3986ae2">
 <ol class="org-ol">
 <li>globals(): 返回一个字典,字典包括当前模块(也就是调用globals()的模块)的所有模块级属性, 同时还包
 括'<span class="underline"><span class="underline">builtins</span></span>'属性, 还包括几个特殊变量__file__, <span class="underline"><span class="underline">package</span></span>, <span class="underline"><span class="underline">doc</span></span></li>
@@ -452,15 +540,14 @@ string, 所以对于二进制文件,你必须指定b</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">getattr,__getattr__,__getattribute__</h3>
-<div class="outline-text-3" id="text-orgheadline8">
+<div id="outline-container-orga06cb28" class="outline-3">
+<h3 id="orga06cb28">getattr,__getattr__,__getattribute__</h3>
+<div class="outline-text-3" id="text-orga06cb28">
 <ol class="org-ol">
 <li><p>
 __getattr__只有在属性不存在时才调用,该方法用的多
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">ClassName</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__getattr__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, name<span style="color: #DCDCCC;">)</span>:
         dosomething<span style="color: #DCDCCC;">()</span>
@@ -473,9 +560,9 @@ __getattr__只有在属性不存在时才调用,该方法用的多
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">__import__(接字符串而不是name)</h3>
-<div class="outline-text-3" id="text-orgheadline9">
+<div id="outline-container-orgb58bc4e" class="outline-3">
+<h3 id="orgb58bc4e">__import__(接字符串而不是name)</h3>
+<div class="outline-text-3" id="text-orgb58bc4e">
 <p>
 原型：  __import__(name[, globals[, locals[, fromlist[, level]]]])
 </p>
@@ -489,7 +576,6 @@ attr1,attr2&#x2026; <b>这个参数一般需要指定</b></li>
 
 
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">snippet 1</span>
 <span style="color: #F0DFAF; font-weight: bold;">from</span> spam.ham <span style="color: #F0DFAF; font-weight: bold;">import</span> eggs, sausage <span style="color: #F0DFAF; font-weight: bold;">as</span> saus
 
@@ -505,14 +591,13 @@ attr1,attr2&#x2026; <b>这个参数一般需要指定</b></li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline16" class="outline-2">
-<h2 id="orgheadline16">装饰器</h2>
-<div class="outline-text-2" id="text-orgheadline16">
-</div><div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11">装饰器的基本形式</h3>
-<div class="outline-text-3" id="text-orgheadline11">
+<div id="outline-container-org7b7aefc" class="outline-2">
+<h2 id="org7b7aefc">装饰器</h2>
+<div class="outline-text-2" id="text-org7b7aefc">
+</div><div id="outline-container-orge9bb136" class="outline-3">
+<h3 id="orge9bb136">装饰器的基本形式</h3>
+<div class="outline-text-3" id="text-orge9bb136">
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">deco</span><span style="color: #DCDCCC;">(</span>func<span style="color: #DCDCCC;">)</span>:
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">_deco</span><span style="color: #DCDCCC;">()</span>:
         <span style="color: #F0DFAF; font-weight: bold;">print</span><span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"before myfunc() called."</span><span style="color: #DCDCCC;">)</span>
@@ -533,11 +618,10 @@ attr1,attr2&#x2026; <b>这个参数一般需要指定</b></li>
 </div>
 </div>
 
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12">使用类作为装饰器(推荐的做法)</h3>
-<div class="outline-text-3" id="text-orgheadline12">
+<div id="outline-container-org5eb753d" class="outline-3">
+<h3 id="org5eb753d">使用类作为装饰器(推荐的做法)</h3>
+<div class="outline-text-3" id="text-org5eb753d">
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">deco</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__init__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, func<span style="color: #DCDCCC;">)</span>:
         <span style="color: #F0DFAF; font-weight: bold;">self</span>.func = func
@@ -558,15 +642,14 @@ myfunc = deco(myfunc) 所以myfunc就是一个deco类的实例，然后myfunc(*a
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13">使用类作为装饰器装饰类方法</h3>
-<div class="outline-text-3" id="text-orgheadline13">
+<div id="outline-container-org420e762" class="outline-3">
+<h3 id="org420e762">使用类作为装饰器装饰类方法</h3>
+<div class="outline-text-3" id="text-org420e762">
 <p>
 下面的代码也可以装饰非类方法,也就是装饰普通函数,也就意味着下面的代码可以替代2,因为如果装饰的是普通函数,
 那么会直接调用该函数,所以不会触发descriptor的__get__方法
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">deco</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__init__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, func<span style="color: #DCDCCC;">)</span>:
         <span style="color: #F0DFAF; font-weight: bold;">self</span>.func = func
@@ -596,11 +679,10 @@ myfunc.__get__(test_obj),该函数返回已将test_obj绑定到myfunc.__call__�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">给装饰器添加参数</h3>
-<div class="outline-text-3" id="text-orgheadline14">
+<div id="outline-container-org552d3d3" class="outline-3">
+<h3 id="org552d3d3">给装饰器添加参数</h3>
+<div class="outline-text-3" id="text-org552d3d3">
 <div class="org-src-container">
-
 <pre class="src src-python"> <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">deco</span><span style="color: #DCDCCC;">(</span>arg<span style="color: #DCDCCC;">)</span>:
      <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">_deco</span><span style="color: #DCDCCC;">(</span>func<span style="color: #DCDCCC;">)</span>:
          <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__deco</span><span style="color: #DCDCCC;">()</span>:
@@ -625,9 +707,9 @@ myfunc<span style="color: #DCDCCC;">()</span>
 </div>
 </div>
 
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15">functools模块</h3>
-<div class="outline-text-3" id="text-orgheadline15">
+<div id="outline-container-orgf159b36" class="outline-3">
+<h3 id="orgf159b36">functools模块</h3>
+<div class="outline-text-3" id="text-orgf159b36">
 <ul class="org-ul">
 <li><p>
 wraps: 这个装饰器可以确保函数在装饰后属性的一致,比如上面的例子 myfunc=deco(myfunc), 那么此时
@@ -635,7 +717,6 @@ myfunc的__name__, __doc__等属性都不在是原myfunc的值了,而是_deco的
 息都丢失的话,那么这显然是一个大问题,而wraps可以用来应付这个问题
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"> <span style="color: #F0DFAF; font-weight: bold;">import</span> functools
 <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">deco</span><span style="color: #DCDCCC;">(</span>func<span style="color: #DCDCCC;">)</span>:
      <span style="color: #7CB8BB;">@functools.wraps</span><span style="color: #DCDCCC;">(</span>func<span style="color: #DCDCCC;">)</span>
@@ -659,7 +740,6 @@ partial: 有时候你知道一个函数的一部分参数,这个时候你可以�
 数的函数,就是函数式语言中的curry,partial大体上等于以下代码
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">partial</span><span style="color: #DCDCCC;">(</span>func, *args, **keywords<span style="color: #DCDCCC;">)</span>:
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">newfunc</span><span style="color: #DCDCCC;">(</span>*fargs, **fkeywords<span style="color: #DCDCCC;">)</span>:
         <span style="color: #DFAF8F;">newkeywords</span> = keywords.copy<span style="color: #DCDCCC;">()</span>
@@ -675,30 +755,30 @@ partial: 有时候你知道一个函数的一部分参数,这个时候你可以�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline20" class="outline-2">
-<h2 id="orgheadline20">迭代器</h2>
-<div class="outline-text-2" id="text-orgheadline20">
-</div><div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17">迭代器的基本知识</h3>
-<div class="outline-text-3" id="text-orgheadline17">
+<div id="outline-container-orgdbd165f" class="outline-2">
+<h2 id="orgdbd165f">迭代器</h2>
+<div class="outline-text-2" id="text-orgdbd165f">
+</div><div id="outline-container-org0275142" class="outline-3">
+<h3 id="org0275142">迭代器的基本知识</h3>
+<div class="outline-text-3" id="text-org0275142">
 <p>
 迭代器对象是序列对象的一般化,每一个迭代器对象都有一个next方法,该方法每调用一次都会返回下一个元素,当没有元素
 可返回时要触发StopIteration异常,这就是迭代对象的实质了
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-3">
-<h3 id="orgheadline18">生成器generator</h3>
-<div class="outline-text-3" id="text-orgheadline18">
+<div id="outline-container-orgfe2798d" class="outline-3">
+<h3 id="orgfe2798d">生成器generator</h3>
+<div class="outline-text-3" id="text-orgfe2798d">
 <p>
 从大多数方面看生成器函数和普通函数一致,它们二者最大的不同时,普通函数是直接通过return返回一个值,而生成器函
 数是通过yield返回一个迭代器对象,所以每一个生成器函数调用后都是返回一个迭代器对象,这是本质的区别
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline19" class="outline-3">
-<h3 id="orgheadline19">for循环的迭代过程</h3>
-<div class="outline-text-3" id="text-orgheadline19">
+<div id="outline-container-org28739c4" class="outline-3">
+<h3 id="org28739c4">for循环的迭代过程</h3>
+<div class="outline-text-3" id="text-org28739c4">
 <p>
 for item in obj语句的执行过程其实是这样
 </p>
@@ -712,9 +792,9 @@ for item in obj语句的执行过程其实是这样
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline21" class="outline-2">
-<h2 id="orgheadline21">with</h2>
-<div class="outline-text-2" id="text-orgheadline21">
+<div id="outline-container-org408dac5" class="outline-2">
+<h2 id="org408dac5">with</h2>
+<div class="outline-text-2" id="text-org408dac5">
 <p>
 基本模型：
 </p>
@@ -729,23 +809,51 @@ with exp as name:
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline22" class="outline-2">
-<h2 id="orgheadline22">模块</h2>
-<div class="outline-text-2" id="text-orgheadline22">
+<div id="outline-container-orge612576" class="outline-2">
+<h2 id="orge612576">模块</h2>
+<div class="outline-text-2" id="text-orge612576">
 <p>
 模块的_X与__all__: 当调用from XX import * 时, 如果指定了__all__, 那么就只导
 入__all__中的名字,如果没指定__all__,那么导入所有除了以下划线开头的全部模块级
 名字, 也就是说不会导入 _X 这样的名字
 </p>
 </div>
-<div id="outline-container-orgheadline23" class="outline-3">
-<h3 id="orgheadline23">relative import</h3>
-<div class="outline-text-3" id="text-orgheadline23">
+<div id="outline-container-org3369ffd" class="outline-3">
+<h3 id="org3369ffd">absolute import</h3>
+<div class="outline-text-3" id="text-org3369ffd">
 <p>
-相对导入必须使用from xxx import yyy 的形式, 而且xxx必须以点号开头, import
-xxx 的形式都是绝对导入, python默认是绝对导入,也就是搜索sys.path, 一般来说
-sys.path的第一项就是主模块的所在的目录,相对导入需要以下的语法:对于如下的一个
-目录结构
+只导入 <code>sys.path</code> 指定的路径下的模块，一般来说sys.path的第一项就是 <b>作为入口
+被执行的脚本的所在的目录</b>, 比如你在命令行执行 <code>python aa.py</code> 那么第一项就是
+<code>aa.py</code> 所在的目录. 绝对导入的语法：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">import</span> foo
+<span style="color: #F0DFAF; font-weight: bold;">from</span> xxx <span style="color: #F0DFAF; font-weight: bold;">import</span> aaa <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">xxx &#19981;&#33021;&#20197; . &#24320;&#22836;</span>
+</pre>
+</div>
+<p>
+上面的这种语法在Py2,py3中是不同的：
+</p>
+<ul class="org-ul">
+<li>py3： 是绝对导入，也就是说只搜索sys.path</li>
+<li>py2: 行为比较混淆，它会同时搜索当前文件(包含import语句的文件，不是入口执行
+文件)所在目录的模块，同时也会搜索sys.path,这很容易造成包内部的模块覆盖掉
+sys.path的模块</li>
+</ul>
+<p>
+<b>为了兼容性，建议使用 from <span class="underline"><span class="underline">future</span></span> import absolute_import</b> 来统一该语法的
+行为。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7572550" class="outline-3">
+<h3 id="org7572550">relative import</h3>
+<div class="outline-text-3" id="text-org7572550">
+<p>
+相对导入必须使用from xxx import yyy 的形式, 而且xxx必须以点号开头, import xxx
+的形式都是绝对导入, 相对导入需要以下的语法:对于如下的一个目录结构
 </p>
 <pre class="example">
 package/
@@ -763,7 +871,6 @@ package/
 假设在moduleX.py or subpackage1/__init__.py中，那么下列的相对导入是合法的
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">from</span> .moduleY <span style="color: #F0DFAF; font-weight: bold;">import</span> spam
 <span style="color: #F0DFAF; font-weight: bold;">from</span> .moduleY <span style="color: #F0DFAF; font-weight: bold;">import</span> spam <span style="color: #F0DFAF; font-weight: bold;">as</span> ham
 <span style="color: #F0DFAF; font-weight: bold;">from</span> . <span style="color: #F0DFAF; font-weight: bold;">import</span> moduleY
@@ -782,19 +889,18 @@ package/
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline31" class="outline-2">
-<h2 id="orgheadline31">OOP</h2>
-<div class="outline-text-2" id="text-orgheadline31">
-</div><div id="outline-container-orgheadline24" class="outline-3">
-<h3 id="orgheadline24">基本OOP代码示例</h3>
-<div class="outline-text-3" id="text-orgheadline24">
+<div id="outline-container-orge14a838" class="outline-2">
+<h2 id="orge14a838">OOP</h2>
+<div class="outline-text-2" id="text-orge14a838">
+</div><div id="outline-container-org091fc3d" class="outline-3">
+<h3 id="org091fc3d">基本OOP代码示例</h3>
+<div class="outline-text-3" id="text-org091fc3d">
 <p>
 类,类的实例和模块都只是一个命名空间,命名空间的属性都可以修改,所以非常灵活,对于基于类的对象而言,可以使用dir内
 置函数来查看命名空间, <b>类与类的实例都是对象,二者都是使用字典对象实现的命名空间,二者的__dict__属性基本就是命名空间
 字典</b>, 看如下代码:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Test</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
     <span style="color: #CC9393;">"""</span>
 <span style="color: #CC9393;">    a Test Class</span>
@@ -826,14 +932,13 @@ val1, val2, <span class="underline"><span class="underline">init</span></span>, 
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline25" class="outline-3">
-<h3 id="orgheadline25">属性搜索树</h3>
-<div class="outline-text-3" id="text-orgheadline25">
+<div id="outline-container-org3314fff" class="outline-3">
+<h3 id="org3314fff">属性搜索树</h3>
+<div class="outline-text-3" id="text-org3314fff">
 <p>
 当调用obj.attr时,python有一个属性的搜索过程,比如下面的代码
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">D1</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
     <span style="color: #F0DFAF; font-weight: bold;">pass</span>
 
@@ -884,20 +989,20 @@ D2.w， 但是C2是D2的子类，并且重载了w属性，这种情况下应该�
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline28" class="outline-3">
-<h3 id="orgheadline28">类的设计</h3>
-<div class="outline-text-3" id="text-orgheadline28">
-</div><div id="outline-container-orgheadline26" class="outline-4">
-<h4 id="orgheadline26">is a</h4>
-<div class="outline-text-4" id="text-orgheadline26">
+<div id="outline-container-org86206f8" class="outline-3">
+<h3 id="org86206f8">类的设计</h3>
+<div class="outline-text-3" id="text-org86206f8">
+</div><div id="outline-container-orgc4573eb" class="outline-4">
+<h4 id="orgc4573eb">is a</h4>
+<div class="outline-text-4" id="text-orgc4573eb">
 <p>
 如何现实中两个事物是is a的关系，那么就应该用继承，比如teacher is a person，那么Teacher就应该继承Person
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline27" class="outline-4">
-<h4 id="orgheadline27">has a</h4>
-<div class="outline-text-4" id="text-orgheadline27">
+<div id="outline-container-org7bcae5b" class="outline-4">
+<h4 id="org7bcae5b">has a</h4>
+<div class="outline-text-4" id="text-org7bcae5b">
 <p>
 比如一个商店有商品，有营业员，有顾客，那么商店与商品，营业员，顾客就是has a的关系，这时候应该使用组合，也
 就是说商店是一个容器，在该容器对象的构造函数中创建营业员对象，创建商品对象，创建顾客对象，具体到python就
@@ -906,9 +1011,9 @@ D2.w， 但是C2是D2的子类，并且重载了w属性，这种情况下应该�
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline29" class="outline-3">
-<h3 id="orgheadline29">常见的运算符重载</h3>
-<div class="outline-text-3" id="text-orgheadline29">
+<div id="outline-container-org372c2bc" class="outline-3">
+<h3 id="org372c2bc">常见的运算符重载</h3>
+<div class="outline-text-3" id="text-org372c2bc">
 <ol class="org-ol">
 <li>__getattr__ <span class="underline"><span class="underline">setattr___使用obj.attr时如果该属性obj中没有attr属性，这时会调用__getattr</span></span>, __setattr___会
 拦截所有的属性赋值，也就是obj.attr = val这样的语句都等价于obj.__setattr___('attr', val)，这是
@@ -926,15 +1031,14 @@ obj.__call__('a','b'),这是一个很常用的方法</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline30" class="outline-3">
-<h3 id="orgheadline30">Descriptor</h3>
-<div class="outline-text-3" id="text-orgheadline30">
+<div id="outline-container-org4cede5e" class="outline-3">
+<h3 id="org4cede5e">Descriptor</h3>
+<div class="outline-text-3" id="text-org4cede5e">
 <p>
 任何对象只要定义了__get__, <span class="underline"><span class="underline">set</span></span>, __del__三者之一，那么就是descriptor，这
 是一份不错的<a href="http://docs.python.org/2/howto/descriptor.html">tutorial</a>， 示例代码:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">RevealAccess</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
     <span style="color: #CC9393;">"""A data descriptor that sets and returns values</span>
 <span style="color: #CC9393;">       normally and prints a message logging their access.</span>
@@ -980,25 +1084,25 @@ Retrieving var "x"
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline32" class="outline-2">
-<h2 id="orgheadline32">metaclass</h2>
-<div class="outline-text-2" id="text-orgheadline32">
+<div id="outline-container-orgae8a743" class="outline-2">
+<h2 id="orgae8a743">metaclass</h2>
+<div class="outline-text-2" id="text-orgae8a743">
 <p>
 在python中类也是对象，生成instance的叫class，生成class的就叫metaclass。type就是
 python中内建的一个metaclass
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline33" class="outline-2">
-<h2 id="orgheadline33">python异常</h2>
-<div class="outline-text-2" id="text-orgheadline33">
+<div id="outline-container-org029a085" class="outline-2">
+<h2 id="org029a085">python异常</h2>
+<div class="outline-text-2" id="text-org029a085">
 <p>
 只说明基于类的异常, 老版的python中基于字符串的异常不考虑
 </p>
 </div>
-<div id="outline-container-orgheadline34" class="outline-3">
-<h3 id="orgheadline34">try &#x2026; except语句</h3>
-<div class="outline-text-3" id="text-orgheadline34">
+<div id="outline-container-org4ebda53" class="outline-3">
+<h3 id="org4ebda53">try &#x2026; except语句</h3>
+<div class="outline-text-3" id="text-org4ebda53">
 <pre class="example">
 try:
     main-block
@@ -1022,9 +1126,9 @@ python2.5以后版本才可以else,finally混在一起,执行try 中语句块时
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline35" class="outline-3">
-<h3 id="orgheadline35">raise</h3>
-<div class="outline-text-3" id="text-orgheadline35">
+<div id="outline-container-orgd7747c9" class="outline-3">
+<h3 id="orgd7747c9">raise</h3>
+<div class="outline-text-3" id="text-orgd7747c9">
 <p>
 raise语句的几种形式
 </p>
@@ -1043,9 +1147,9 @@ raise语句的几种形式
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline36" class="outline-3">
-<h3 id="orgheadline36">异常</h3>
-<div class="outline-text-3" id="text-orgheadline36">
+<div id="outline-container-org50ea86f" class="outline-3">
+<h3 id="org50ea86f">异常</h3>
+<div class="outline-text-3" id="text-org50ea86f">
 <p>
 异常都是类, exceptions must be old-style classes or derived from BaseException.也就是说,要么是老式类,要么
 是BaseException的子类,实践中用户自定义的类最好继承于Exception,并且必须以Error结尾, <b>注意except语句是基于超
@@ -1054,9 +1158,9 @@ raise语句的几种形式
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline37" class="outline-2">
-<h2 id="orgheadline37">python中文处理</h2>
-<div class="outline-text-2" id="text-orgheadline37">
+<div id="outline-container-org95c8538" class="outline-2">
+<h2 id="org95c8538">python中文处理</h2>
+<div class="outline-text-2" id="text-org95c8538">
 <p>
 中文处理一直是一个比较棘手的问题,各种乱码一直让程序员苦不堪言,这里主要介绍
 python中文处理的一般原则, 先介绍几个基本概念(强烈建议看看这篇<a href="http://nedbatchelder.com/text/unipain.html">文章</a>):
@@ -1093,7 +1197,6 @@ python2与python3的区别:
 python2中字面字符串是byte string, 而3中是unicode string
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #DFAF8F;">ss</span> = <span style="color: #CC9393;">'&#20320;&#22909;'</span>                     <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">python2&#20026;byte string, python3&#20026;unicode string</span>
 <span style="color: #DFAF8F;">ss</span> = u<span style="color: #CC9393;">'&#20320;&#22909;'</span>                    <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">python2&#24471;&#21040;unicode string</span>
 <span style="color: #DFAF8F;">ss</span> = b<span style="color: #CC9393;">'&#20320;&#22909;'</span>                    <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">python3&#24471;&#21040;byte string</span>
@@ -1144,14 +1247,13 @@ python3不允许二者混合.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline39" class="outline-2">
-<h2 id="orgheadline39">一些很诡异的问题</h2>
-<div class="outline-text-2" id="text-orgheadline39">
-</div><div id="outline-container-orgheadline38" class="outline-3">
-<h3 id="orgheadline38">传引用</h3>
-<div class="outline-text-3" id="text-orgheadline38">
+<div id="outline-container-orge2353db" class="outline-2">
+<h2 id="orge2353db">一些很诡异的问题</h2>
+<div class="outline-text-2" id="text-orge2353db">
+</div><div id="outline-container-org93f300f" class="outline-3">
+<h3 id="org93f300f">传引用</h3>
+<div class="outline-text-3" id="text-org93f300f">
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #DFAF8F;">gg</span> = <span style="color: #BFEBBF;">None</span>
 <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">test</span><span style="color: #DCDCCC;">(</span>aa=<span style="color: #BFEBBF;">{}</span><span style="color: #DCDCCC;">)</span>:
     <span style="color: #F0DFAF; font-weight: bold;">print</span> aa
@@ -1170,28 +1272,28 @@ test<span style="color: #DCDCCC;">()</span>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline58" class="outline-2">
-<h2 id="orgheadline58">一些标准库的使用说明</h2>
-<div class="outline-text-2" id="text-orgheadline58">
-</div><div id="outline-container-orgheadline40" class="outline-3">
-<h3 id="orgheadline40">python 正则表达式</h3>
-<div class="outline-text-3" id="text-orgheadline40">
+<div id="outline-container-orgc3f59d7" class="outline-2">
+<h2 id="orgc3f59d7">一些标准库的使用说明</h2>
+<div class="outline-text-2" id="text-orgc3f59d7">
+</div><div id="outline-container-org9025f48" class="outline-3">
+<h3 id="org9025f48">python 正则表达式</h3>
+<div class="outline-text-3" id="text-org9025f48">
 <p>
 python的正则表达式是通过re这个标准库支持的,这是一篇写的不错的<a href="https://www.evernote.com/shard/s89/sh/8d66ae55-5f2e-4a68-b11d-c8ae8ad3de56/00bfb7913d34061da0083d8286ff1592">文章</a>, 我可耻的用evernote保存下来
 了,上面有原文章的连接.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline41" class="outline-3">
-<h3 id="orgheadline41">logging</h3>
-<div class="outline-text-3" id="text-orgheadline41">
+<div id="outline-container-org3d0f9b4" class="outline-3">
+<h3 id="org3d0f9b4">logging</h3>
+<div class="outline-text-3" id="text-org3d0f9b4">
 <p>
 和log4j类似,先说几个基本概念
 </p>
 </div>
-<div id="outline-container-orgheadline42" class="outline-4">
-<h4 id="orgheadline42">基本概念</h4>
-<div class="outline-text-4" id="text-orgheadline42">
+<div id="outline-container-orgf25be99" class="outline-4">
+<h4 id="orgf25be99">基本概念</h4>
+<div class="outline-text-4" id="text-orgf25be99">
 <ol class="org-ol">
 <li>Logger: 用户程序主要调用的就是该类的实例的方法</li>
 <li>Handler:　指定日志应该保存到何处，比如console,file等等.</li>
@@ -1200,15 +1302,14 @@ python的正则表达式是通过re这个标准库支持的,这是一篇写的�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline43" class="outline-4">
-<h4 id="orgheadline43">logger层次关系</h4>
-<div class="outline-text-4" id="text-orgheadline43">
+<div id="outline-container-orgee87fd7" class="outline-4">
+<h4 id="orgee87fd7">logger层次关系</h4>
+<div class="outline-text-4" id="text-orgee87fd7">
 <p>
 获得logger一般使用 <code>logging.getLogger</code> 这个api, 它会接受一个name参数, name
 如果不指定那么获得root logger, 假设如下代码:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">import</span> logging
 
 <span style="color: #DFAF8F;">root</span> = logging.getLogger<span style="color: #DCDCCC;">()</span>
@@ -1225,9 +1326,9 @@ logger的消息会传递给父logger, 所以你运行这行代码 <code>logger2.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline44" class="outline-4">
-<h4 id="orgheadline44">日志输出的过程</h4>
-<div class="outline-text-4" id="text-orgheadline44">
+<div id="outline-container-org6fabc4e" class="outline-4">
+<h4 id="org6fabc4e">日志输出的过程</h4>
+<div class="outline-text-4" id="text-org6fabc4e">
 <p>
 假设你运行 <code>logger.info("hello")</code>, 那么这条消息如何输出呢?
 </p>
@@ -1243,9 +1344,9 @@ logger的消息会传递给父logger, 所以你运行这行代码 <code>logger2.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline45" class="outline-4">
-<h4 id="orgheadline45">常用api</h4>
-<div class="outline-text-4" id="text-orgheadline45">
+<div id="outline-container-orga77eb86" class="outline-4">
+<h4 id="orga77eb86">常用api</h4>
+<div class="outline-text-4" id="text-orga77eb86">
 <ol class="org-ol">
 <li>logging.basicConfig: 用来设置root logger的handler, 如果发现handler已设置,那
 么什么也不做.</li>
@@ -1274,15 +1375,15 @@ except语句块中有效</b>, 因为你必须在处理异常时, sys.exc_info才
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline48" class="outline-3">
-<h3 id="orgheadline48">多线程</h3>
-<div class="outline-text-3" id="text-orgheadline48">
-</div><div id="outline-container-orgheadline46" class="outline-4">
-<h4 id="orgheadline46">Thread</h4>
+<div id="outline-container-org5bbde7b" class="outline-3">
+<h3 id="org5bbde7b">多线程</h3>
+<div class="outline-text-3" id="text-org5bbde7b">
+</div><div id="outline-container-org9aa53ab" class="outline-4">
+<h4 id="org9aa53ab">Thread</h4>
 </div>
-<div id="outline-container-orgheadline47" class="outline-4">
-<h4 id="orgheadline47">threading</h4>
-<div class="outline-text-4" id="text-orgheadline47">
+<div id="outline-container-org47928f8" class="outline-4">
+<h4 id="org47928f8">threading</h4>
+<div class="outline-text-4" id="text-org47928f8">
 <p>
 threading是一个更高层的模块，它使用更加方便，所以一般情况都是使用该模块
 </p>
@@ -1296,7 +1397,6 @@ daemon： 如果已经没有活动的non-daemon(daemon=False)线程的话, 整�
 Queue: 同步队列
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">from</span> Queue <span style="color: #F0DFAF; font-weight: bold;">import</span> Queue
 <span style="color: #DFAF8F;">q</span> = Queue<span style="color: #DCDCCC;">()</span>
 <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">thread1</span>
@@ -1316,17 +1416,16 @@ q.join<span style="color: #DCDCCC;">()</span>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline54" class="outline-3">
-<h3 id="orgheadline54">collections</h3>
-<div class="outline-text-3" id="text-orgheadline54">
-</div><div id="outline-container-orgheadline49" class="outline-4">
-<h4 id="orgheadline49">Counter</h4>
-<div class="outline-text-4" id="text-orgheadline49">
+<div id="outline-container-org0ba5748" class="outline-3">
+<h3 id="org0ba5748">collections</h3>
+<div class="outline-text-3" id="text-org0ba5748">
+</div><div id="outline-container-orgaa81832" class="outline-4">
+<h4 id="orgaa81832">Counter</h4>
+<div class="outline-text-4" id="text-orgaa81832">
 <p>
 字典的子类，可以用于统计可迭代对象中重复元素出现的次数,这是<a href="http://docs.python.org/2/library/collections.html#counter-objects">文档</a>
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">from</span> collections <span style="color: #F0DFAF; font-weight: bold;">import</span> Counter
 <span style="color: #DFAF8F;">cn_str</span> = Counter<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'hello world'</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #F0DFAF; font-weight: bold;">print</span> cn_str
@@ -1356,9 +1455,9 @@ Counter除了有dict的方法外，还有几个特有的方法
 </div>
 </div>
 
-<div id="outline-container-orgheadline50" class="outline-4">
-<h4 id="orgheadline50">deque 双端队列</h4>
-<div class="outline-text-4" id="text-orgheadline50">
+<div id="outline-container-org743516f" class="outline-4">
+<h4 id="org743516f">deque 双端队列</h4>
+<div class="outline-text-4" id="text-org743516f">
 <p>
 可以从左边或者右边添加或者删除元素,这是<a href="http://docs.python.org/2/library/collections.html#deque-objects">文档</a> ,主要有append,appendleft(单个元素),extend,extendleft(可迭代对
 象),pop, popleft等等
@@ -1366,9 +1465,9 @@ Counter除了有dict的方法外，还有几个特有的方法
 </div>
 </div>
 
-<div id="outline-container-orgheadline51" class="outline-4">
-<h4 id="orgheadline51">defaultdict</h4>
-<div class="outline-text-4" id="text-orgheadline51">
+<div id="outline-container-org158b9d8" class="outline-4">
+<h4 id="org158b9d8">defaultdict</h4>
+<div class="outline-text-4" id="text-org158b9d8">
 <p>
 提供了一个default_factory属性,通过初始化defaultdict实例时对该属性赋值,那么以后如果出现key不存在的情况,不
 会出现KeyError,而是调用这个默认工厂函数,然后返回该工厂函数的返回值,这是<a href="http://docs.python.org/2/library/collections.html#defaultdict-objects">文档</a> ,这是几段代码示例:
@@ -1394,14 +1493,13 @@ Counter除了有dict的方法外，还有几个特有的方法
 </pre>
 </div>
 </div>
-<div id="outline-container-orgheadline52" class="outline-4">
-<h4 id="orgheadline52">namedtuple</h4>
-<div class="outline-text-4" id="text-orgheadline52">
+<div id="outline-container-orgabfcd94" class="outline-4">
+<h4 id="orgabfcd94">namedtuple</h4>
+<div class="outline-text-4" id="text-orgabfcd94">
 <p>
 一个tuple的子类,可以给tuple的每一项添加一个名字,以后就可以通过 X.y这样的方式来访问了,看代码:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">from</span> collections <span style="color: #F0DFAF; font-weight: bold;">import</span> namedtuple
 
 <span style="color: #DFAF8F;">Point</span> = namedtuple<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'Point'</span>, <span style="color: #BFEBBF;">[</span><span style="color: #CC9393;">'x'</span>, <span style="color: #CC9393;">'y'</span><span style="color: #BFEBBF;">]</span>, verbose=<span style="color: #BFEBBF;">False</span><span style="color: #DCDCCC;">)</span>
@@ -1426,14 +1524,13 @@ Point(x=11, y=22)
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline53" class="outline-4">
-<h4 id="orgheadline53">OrderedDict</h4>
-<div class="outline-text-4" id="text-orgheadline53">
+<div id="outline-container-org9c5f551" class="outline-4">
+<h4 id="org9c5f551">OrderedDict</h4>
+<div class="outline-text-4" id="text-org9c5f551">
 <p>
 OrderedDict是dict的子类,它会记住key插入的顺序,默认的dict是会排序的, 比如下面的代码
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">from</span> collections <span style="color: #F0DFAF; font-weight: bold;">import</span> OrderedDict
 <span style="color: #DFAF8F;">l</span> = <span style="color: #DCDCCC;">[</span><span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">'b'</span>, <span style="color: #BFEBBF;">3</span><span style="color: #BFEBBF;">)</span>, <span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">'f'</span>, <span style="color: #BFEBBF;">2</span><span style="color: #BFEBBF;">)</span>, <span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">'a'</span>, <span style="color: #BFEBBF;">1</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">]</span>
 <span style="color: #DFAF8F;">d</span> = <span style="color: #DCDCCC; font-weight: bold;">dict</span><span style="color: #DCDCCC;">(</span>l<span style="color: #DCDCCC;">)</span>
@@ -1455,9 +1552,9 @@ popitem(last=True): last为True,那么就是LIFO, 比如上例就是先弹出(a,
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline55" class="outline-3">
-<h3 id="orgheadline55">pickle</h3>
-<div class="outline-text-3" id="text-orgheadline55">
+<div id="outline-container-orgb9a01e1" class="outline-3">
+<h3 id="orgb9a01e1">pickle</h3>
+<div class="outline-text-3" id="text-orgb9a01e1">
 <ul class="org-ul">
 <li>dump(self, obj, file) 将对象序列化到文件</li>
 <li>dumps(self, obj)      会返回序列化的字符串</li>
@@ -1465,7 +1562,6 @@ popitem(last=True): last为True,那么就是LIFO, 比如上例就是先弹出(a,
 <li>loads(str)      从字符串加载对象</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">import</span> pickle
 <span style="color: #DFAF8F;">d</span> = <span style="color: #DCDCCC;">{</span><span style="color: #CC9393;">'tag'</span>:<span style="color: #CC9393;">'django'</span><span style="color: #DCDCCC;">}</span>
 <span style="color: #F0DFAF; font-weight: bold;">with</span> <span style="color: #DCDCCC; font-weight: bold;">open</span><span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'aa.pickle'</span>, <span style="color: #CC9393;">'wb'</span><span style="color: #DCDCCC;">)</span> <span style="color: #F0DFAF; font-weight: bold;">as</span> fp:
@@ -1477,20 +1573,24 @@ popitem(last=True): last为True,那么就是LIFO, 比如上例就是先弹出(a,
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline56" class="outline-3">
-<h3 id="orgheadline56">json</h3>
-<div class="outline-text-3" id="text-orgheadline56">
+<div id="outline-container-org3b5cd11" class="outline-3">
+<h3 id="org3b5cd11">json</h3>
+<div class="outline-text-3" id="text-org3b5cd11">
 <p>
 和pickle类似,也是dump,dumps,load,loads这几个接口(以s结尾的就是字符串,否则就
 是文件),json模块默认只能encode与decode python的内置类型，比如数字，字符串，
 list，tuple，dict等，如果你要endcode自定义的类，那么你需要扩展，代码示例如下：
 </p>
-<script src="https://gist.github.com/yuyang0/6945963.js"></script>
+<div class="HTML">
+<p>
+&lt;script src="<a href="https://gist.github.com/yuyang0/6945963.js">https://gist.github.com/yuyang0/6945963.js</a>"&gt;&lt;/script&gt;
+</p>
+
+</div>
 <p>
 调用的时候直接使用如下代码：
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #DFAF8F;">d</span> = <span style="color: #DCDCCC;">{</span>
     <span style="color: #CC9393;">'status'</span>: <span style="color: #BFEBBF;">0</span>,
     <span style="color: #CC9393;">'data'</span>: <span style="color: #DCDCCC; font-weight: bold;">list</span><span style="color: #BFEBBF;">(</span>comments<span style="color: #BFEBBF;">)</span>,
@@ -1506,14 +1606,13 @@ cls参数指定用来encode的class，后面的user参数用来向自定义的en
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline57" class="outline-3">
-<h3 id="orgheadline57">HTMLParser</h3>
-<div class="outline-text-3" id="text-orgheadline57">
+<div id="outline-container-orge23ee03" class="outline-3">
+<h3 id="orge23ee03">HTMLParser</h3>
+<div class="outline-text-3" id="text-orge23ee03">
 <p>
 文档中的示例代码:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">from</span> HTMLParser <span style="color: #F0DFAF; font-weight: bold;">import</span> HTMLParser
 
 <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">create a subclass and override the handler methods</span>
@@ -1539,12 +1638,12 @@ parser.feed<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'
 </div>
 </div>
 
-<div id="outline-container-orgheadline64" class="outline-2">
-<h2 id="orgheadline64">一些第三方库的使用方法</h2>
-<div class="outline-text-2" id="text-orgheadline64">
-</div><div id="outline-container-orgheadline59" class="outline-3">
-<h3 id="orgheadline59">requests</h3>
-<div class="outline-text-3" id="text-orgheadline59">
+<div id="outline-container-org2111caa" class="outline-2">
+<h2 id="org2111caa">一些第三方库的使用方法</h2>
+<div class="outline-text-2" id="text-org2111caa">
+</div><div id="outline-container-org8938c66" class="outline-3">
+<h3 id="org8938c66">requests</h3>
+<div class="outline-text-3" id="text-org8938c66">
 <p>
 python的标准库中的urllib,urllib2的接口并不好用,requests的接口更简洁一致,这是官方<a href="http://docs.python-requests.org/en/latest/">文档</a>
 </p>
@@ -1554,7 +1653,6 @@ get
 requests.get(url, **kwargs)
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #DFAF8F;">payload</span> = <span style="color: #DCDCCC;">{</span><span style="color: #CC9393;">'key1'</span>: <span style="color: #CC9393;">'value1'</span>, <span style="color: #CC9393;">'key2'</span>: <span style="color: #CC9393;">'value2'</span><span style="color: #DCDCCC;">}</span>
 <span style="color: #DFAF8F;">r</span> = requests.get<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"http://httpbin.org/get"</span>, params=payload<span style="color: #DCDCCC;">)</span>
 </pre>
@@ -1568,7 +1666,6 @@ requests.post(url, data=None, **kwargs)
 <li>kwargs: 可以使用headers =  {&#x2026;.}指定http request header</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">import</span> json
 <span style="color: #DFAF8F;">url</span> = <span style="color: #CC9393;">'https://api.github.com/some/endpoint'</span>
 <span style="color: #DFAF8F;">payload</span> = <span style="color: #DCDCCC;">{</span><span style="color: #CC9393;">'some'</span>: <span style="color: #CC9393;">'data'</span><span style="color: #DCDCCC;">}</span>
@@ -1583,7 +1680,6 @@ requests.put(url, **kwargs)</li>
 response object
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">import</span> requests
 <span style="color: #DFAF8F;">r</span> = requests.get<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'http://www.baidu.com'</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #F0DFAF; font-weight: bold;">print</span> r.text
@@ -1601,9 +1697,9 @@ response object
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline60" class="outline-3">
-<h3 id="orgheadline60">pip</h3>
-<div class="outline-text-3" id="text-orgheadline60">
+<div id="outline-container-org54c4b16" class="outline-3">
+<h3 id="org54c4b16">pip</h3>
+<div class="outline-text-3" id="text-org54c4b16">
 <p>
 从github安装包
 pip install git+git://github.com/yourname/package.git
@@ -1611,14 +1707,13 @@ pip install git+git://github.com/yourname/package.git
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline61" class="outline-3">
-<h3 id="orgheadline61">pyquery</h3>
-<div class="outline-text-3" id="text-orgheadline61">
+<div id="outline-container-orge1afa12" class="outline-3">
+<h3 id="orge1afa12">pyquery</h3>
+<div class="outline-text-3" id="text-orge1afa12">
 <p>
 一个使用jquery语法的html解析器,非常方便,比BeautifulSoup好用,这是它的<a href="http://pythonhosted.org/pyquery/index.html">文档</a>
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python">form pyquery <span style="color: #F0DFAF; font-weight: bold;">import</span> PyQuery
 <span style="color: #DFAF8F;">html</span> = <span style="color: #CC9393;">'&lt;html&gt;&lt;title&gt;hello world&lt;/title&gt;&lt;/html&gt;'</span>
 <span style="color: #DFAF8F;">d</span> = PyQuery<span style="color: #DCDCCC;">(</span>html, parser = <span style="color: #CC9393;">'html'</span><span style="color: #DCDCCC;">)</span>
@@ -1629,7 +1724,6 @@ d<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'title'</sp
 在调用PyQuery时尽量指定parser, 因为默认判断有时会出错,比如用xml的parser去解析html会得到不正确的结果.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #DFAF8F;">d</span> = PyQuery<span style="color: #DCDCCC;">(</span>html, parser = <span style="color: #CC9393;">'html'</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">selector</span>
 d<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'body'</span><span style="color: #DCDCCC;">)</span>
@@ -1645,14 +1739,13 @@ d<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'meta[name=
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline62" class="outline-3">
-<h3 id="orgheadline62">watchdog</h3>
-<div class="outline-text-3" id="text-orgheadline62">
+<div id="outline-container-org5bcc393" class="outline-3">
+<h3 id="org5bcc393">watchdog</h3>
+<div class="outline-text-3" id="text-org5bcc393">
 <p>
 看门狗,用来监控文件系统改变,这是<a href="http://pythonhosted.org/watchdog/">文档</a>, 基本使用:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">import</span> time
 <span style="color: #F0DFAF; font-weight: bold;">from</span> watchdog.observers <span style="color: #F0DFAF; font-weight: bold;">import</span> Observer
 <span style="color: #F0DFAF; font-weight: bold;">from</span> watchdog.events <span style="color: #F0DFAF; font-weight: bold;">import</span> LoggingEventHandler
@@ -1681,9 +1774,9 @@ d<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'meta[name=
 </div>
 </div>
 
-<div id="outline-container-orgheadline63" class="outline-3">
-<h3 id="orgheadline63">rauth</h3>
-<div class="outline-text-3" id="text-orgheadline63">
+<div id="outline-container-orgc19051e" class="outline-3">
+<h3 id="orgc19051e">rauth</h3>
+<div class="outline-text-3" id="text-orgc19051e">
 <p>
 一个Oauth库,这是<a href="https://rauth.readthedocs.org/en/latest/">文档</a>, 这是一份示例
 <a href="https://gist.github.com/yuyang0/5949932">代码</a>, 基本上照着流程走就OK了
@@ -1692,12 +1785,88 @@ d<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">'meta[name=
 </div>
 </div>
 
-<div id="outline-container-orgheadline67" class="outline-2">
-<h2 id="orgheadline67">常用工具的使用方法</h2>
-<div class="outline-text-2" id="text-orgheadline67">
-</div><div id="outline-container-orgheadline65" class="outline-3">
-<h3 id="orgheadline65">virtualenv</h3>
-<div class="outline-text-3" id="text-orgheadline65">
+<div id="outline-container-org11cd83f" class="outline-2">
+<h2 id="org11cd83f">测试</h2>
+<div class="outline-text-2" id="text-org11cd83f">
+<p>
+流行的就是pytest了，tox可以测试代码在不同环境下(py2.7, py3.5, flake8 etc..)是否
+能通过, 它可以自动测试这些环境，很方便, 这些工具的配置比较乱
+</p>
+<ul class="org-ul">
+<li>tox: 配置文件: <code>tox.ini</code></li>
+<li>pytest: 配置文件: <code>pytest.ini</code>, <code>tox.ini</code>, <code>setup.cfg</code></li>
+<li>pytest-cov: 配置文件 <code>setup.cfg</code></li>
+<li>pep8: 配置文件　=tox.ini=, <code>setup.cfg</code></li>
+<li>flake8: 配置文件　=tox.ini=, <code>setup.cfg</code></li>
+</ul>
+
+<p>
+<b>我的建议是tox的配置放在tox.ini中，其它的都放在setup.cfg中</b>
+</p>
+</div>
+<div id="outline-container-org40c32e4" class="outline-3">
+<h3 id="org40c32e4">example</h3>
+<div class="outline-text-3" id="text-org40c32e4">
+<p>
+tox.ini
+</p>
+<pre class="example">
+[tox]
+envlist = py27, py35, pypy, flake8
+
+[testenv]
+commands = {envpython} setup.py test
+deps = -rrequirements.txt
+
+[testenv:flake8]
+basepython=python
+deps=flake8
+commands=flake8 setup.py tests
+
+[testenv:pypy]
+basepython=pypy
+</pre>
+<p>
+setup.cfg
+</p>
+<pre class="example">
+[metadata]
+description-file = readme.md
+
+[aliases]
+test=pytest
+
+# pytest-cov configuration
+[coverage:run]
+omit =
+    gmesos/api.py
+    gmesos/deployment.py
+
+# pytest configuration (pytest&gt;3.0)
+[tool:pytest]
+testpaths = tests
+addopts = --cov=gmesos --cov-report term-missing
+
+# pep8 configuration
+[pep8]
+exclude = gmesos/interface.py
+max-line-length = 160
+
+# flake8 configuration
+[flake8]
+exclude = gmesos/interface.py,venv/
+max-line-length = 160
+ignore= F401
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org24dceb4" class="outline-2">
+<h2 id="org24dceb4">常用工具的使用方法</h2>
+<div class="outline-text-2" id="text-org24dceb4">
+</div><div id="outline-container-org8a4fee6" class="outline-3">
+<h3 id="org8a4fee6">virtualenv</h3>
+<div class="outline-text-3" id="text-org8a4fee6">
 <p>
 这是一份不错的<a href="http://docs.python-guide.org/en/latest/dev/virtualenvs.html">tutorial</a>
 </p>
@@ -1719,9 +1888,9 @@ export WORKON_HOME=~/envs
 source /usr/local/bin/virtualenvwrapper.sh
 </pre></li>
 <li>mkvirtualenv my_env
-      在WORKON_HOME中创建一个名为my_env虚拟环境</li>
+在WORKON_HOME中创建一个名为my_env虚拟环境</li>
 <li>workon my_env
-      切换到my_env环境</li>
+切换到my_env环境</li>
 <li>deactivate</li>
 <li>lssitepackages</li>
 <li>lsvirtualenv</li>
@@ -1735,9 +1904,9 @@ source /usr/local/bin/virtualenvwrapper.sh
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline66" class="outline-3">
-<h3 id="orgheadline66">ipython</h3>
-<div class="outline-text-3" id="text-orgheadline66">
+<div id="outline-container-orgaba96b4" class="outline-3">
+<h3 id="orgaba96b4">ipython</h3>
+<div class="outline-text-3" id="text-orgaba96b4">
 <p>
 ipython是一个增强的python interpreter,有许多有趣的功能
 </p>

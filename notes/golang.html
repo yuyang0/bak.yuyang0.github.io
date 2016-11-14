@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-03 Sat 18:06 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-14 Mon 23:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Go语言</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Yu Yang" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,6 +176,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
@@ -175,52 +260,57 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">go代码规范</a></li>
-<li><a href="#orgheadline2">变量</a></li>
-<li><a href="#orgheadline3">基本类型</a>
+<li><a href="#orgdbad23b">go代码规范</a></li>
+<li><a href="#org33ed449">变量</a></li>
+<li><a href="#org03a76eb">基本类型</a>
 <ul>
-<li><a href="#orgheadline4">nil</a></li>
-<li><a href="#orgheadline5">bool</a></li>
-<li><a href="#orgheadline6">整数</a></li>
-<li><a href="#orgheadline7">浮点</a></li>
-<li><a href="#orgheadline8">复数</a></li>
-<li><a href="#orgheadline9">字符</a></li>
-<li><a href="#orgheadline10">字符串</a>
+<li><a href="#org2aa774d">nil</a></li>
+<li><a href="#orge8fbe8a">bool</a></li>
+<li><a href="#org1d7106d">整数</a></li>
+<li><a href="#org6c17df2">浮点</a></li>
+<li><a href="#orgd4c5be3">复数</a></li>
+<li><a href="#org0749cc6">字符</a></li>
+<li><a href="#orgc165228">字符串</a>
 <ul>
-<li><a href="#orgheadline11">fmt</a></li>
-<li><a href="#orgheadline12">strings</a></li>
-<li><a href="#orgheadline13">strconv</a></li>
+<li><a href="#org3a2de94">fmt</a></li>
+<li><a href="#orgc7aba98">strings</a></li>
+<li><a href="#org1e78942">strconv</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline14">数组</a></li>
-<li><a href="#orgheadline15">切片(slice)</a></li>
-<li><a href="#orgheadline16">字典(map)</a></li>
-<li><a href="#orgheadline17">channel</a></li>
-<li><a href="#orgheadline18">struct</a></li>
-<li><a href="#orgheadline20">interface</a>
+<li><a href="#orgafb4983">数组</a></li>
+<li><a href="#org3826880">切片(slice)</a></li>
+<li><a href="#org03b3d79">字典(map)</a></li>
+<li><a href="#orged5c444">channel</a></li>
+<li><a href="#orgf9cce9b">struct</a></li>
+<li><a href="#org77efe11">interface</a>
 <ul>
-<li><a href="#orgheadline19">interface{}</a></li>
+<li><a href="#orgbc1b276">interface{}</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline21">内置函数</a></li>
-<li><a href="#orgheadline22">go工程管理</a></li>
-<li><a href="#orgheadline23">reflect</a></li>
-<li><a href="#orgheadline27">Cgo</a>
+<li><a href="#org57231db">内置函数</a></li>
+<li><a href="#orgabf38b9">go工程管理</a></li>
+<li><a href="#orgd2e1bac">reflect</a></li>
+<li><a href="#orga8de1b9">Cgo</a>
 <ul>
-<li><a href="#orgheadline24">注意事项(高能预警)</a></li>
-<li><a href="#orgheadline25">类型转换</a></li>
-<li><a href="#orgheadline26">go中引用C</a></li>
+<li><a href="#org876b149">注意事项(高能预警)</a></li>
+<li><a href="#org5599ee9">类型转换</a></li>
+<li><a href="#orgd2a9c38">go中引用C</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline28">Tips(best practice)</a></li>
+<li><a href="#org820d070">Tips(best practice)</a></li>
+<li><a href="#org30e5c4b">坑</a>
+<ul>
+<li><a href="#orgc0488c6">closure</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">go代码规范</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-orgdbad23b" class="outline-2">
+<h2 id="orgdbad23b">go代码规范</h2>
+<div class="outline-text-2" id="text-orgdbad23b">
 <ol class="org-ol">
 <li>使用驼峰命名法, 私有名字以小写字母开头，公有名字以大写字母开头, 也就是说 <b>小写
 字母开头，那么只在本包内可见，大写字母开头才能在包外可见</b></li>
@@ -229,9 +319,9 @@ for the JavaScript code in this tag.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">变量</h2>
-<div class="outline-text-2" id="text-orgheadline2">
+<div id="outline-container-org33ed449" class="outline-2">
+<h2 id="org33ed449">变量</h2>
+<div class="outline-text-2" id="text-org33ed449">
 <p>
 变量的声明主要有两种方法
 </p>
@@ -245,7 +335,6 @@ for the JavaScript code in this tag.
 些额外的内存来存储信息, slice则不需要。
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">var</span> s <span style="color: #DCDCCC;">[]</span><span style="color: #7CB8BB;">int</span>
 s = <span style="color: #DCDCCC; font-weight: bold;">append</span><span style="color: #DCDCCC;">(</span>s, <span style="color: #BFEBBF;">1</span><span style="color: #DCDCCC;">)</span>      <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">ok</span>
 
@@ -259,25 +348,24 @@ m<span style="color: #DCDCCC;">[</span><span style="color: #CC9393;">"aa"</span>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">基本类型</h2>
-<div class="outline-text-2" id="text-orgheadline3">
+<div id="outline-container-org03a76eb" class="outline-2">
+<h2 id="org03a76eb">基本类型</h2>
+<div class="outline-text-2" id="text-org03a76eb">
 <p>
 go引用提供了很多基本类型，这些基本类型分为两类：值类型和引用类型。 <b>map，channel，
 slice,interface, function，method是引用类型，其它的包括array，struct都是值类型</b>.
 这两种类型的不同在函数调用时会表现出不同。
 </p>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">nil</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-org2aa774d" class="outline-3">
+<h3 id="org2aa774d">nil</h3>
+<div class="outline-text-3" id="text-org2aa774d">
 <p>
 只能赋值给 <b>指针</b> 和 <b>引用</b> 类型的变量. 实践中主要用来指示slice，map，interface
 是未初始化的值。虽然nil和空的slice和map有很多相似之处，比如调用len会返回0，但是
 他们并不是一回事。看下面的例子。
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">var</span> slice <span style="color: #DCDCCC;">[]</span><span style="color: #7CB8BB;">int</span>            <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">slice == nil &#36820;&#22238;true</span>
 slice = <span style="color: #DCDCCC; font-weight: bold;">make</span><span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">[]</span><span style="color: #7CB8BB;">int</span>, <span style="color: #BFEBBF;">0</span><span style="color: #DCDCCC;">)</span>     <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">slice == nil &#36820;&#22238;false</span>
 
@@ -289,7 +377,6 @@ mm = <span style="color: #DCDCCC; font-weight: bold;">make</span><span style="co
 <b>slice, map, interface只能与nil进行比较</b>
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">var</span> ss <span style="color: #DCDCCC;">[]</span><span style="color: #7CB8BB;">int</span>
 ss == <span style="color: #BFEBBF;">nil</span>          <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">ok</span>
 ss == <span style="color: #DCDCCC;">[]</span><span style="color: #7CB8BB;">int</span><span style="color: #DCDCCC;">{</span><span style="color: #BFEBBF;">1</span>, <span style="color: #BFEBBF;">2</span><span style="color: #DCDCCC;">}</span>  <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">error</span>
@@ -297,53 +384,52 @@ ss == <span style="color: #DCDCCC;">[]</span><span style="color: #7CB8BB;">int</
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">bool</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-orge8fbe8a" class="outline-3">
+<h3 id="orge8fbe8a">bool</h3>
+<div class="outline-text-3" id="text-orge8fbe8a">
 <p>
 只能取值true，false。不能通过其它类型转换为bool，所以 <code>aa:=bool(1)</code> 这样的语句是
 错误的。
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">整数</h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-org1d7106d" class="outline-3">
+<h3 id="org1d7106d">整数</h3>
+<div class="outline-text-3" id="text-org1d7106d">
 <p>
 可以取值int, uint, int8,int16,int32, int64, uint8(byte), uint16, uint32, uint64.
 int, uint是平台相关的，可能为32或者64位。
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7">浮点</h3>
-<div class="outline-text-3" id="text-orgheadline7">
+<div id="outline-container-org6c17df2" class="outline-3">
+<h3 id="org6c17df2">浮点</h3>
+<div class="outline-text-3" id="text-org6c17df2">
 <p>
 可以为float32或者float64，浮点不能使用==来直接比较相等，可以使用math包的 <code>Fdim</code> 来处理
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">复数</h3>
+<div id="outline-container-orgd4c5be3" class="outline-3">
+<h3 id="orgd4c5be3">复数</h3>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">字符</h3>
-<div class="outline-text-3" id="text-orgheadline9">
+<div id="outline-container-org0749cc6" class="outline-3">
+<h3 id="org0749cc6">字符</h3>
+<div class="outline-text-3" id="text-org0749cc6">
 <p>
 可以为byte或者rune(rune和int32是等价的)，前者是字节或者是unicode
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">字符串</h3>
-<div class="outline-text-3" id="text-orgheadline10">
+<div id="outline-container-orgc165228" class="outline-3">
+<h3 id="orgc165228">字符串</h3>
+<div class="outline-text-3" id="text-orgc165228">
 <p>
 <b>go中字符串不可变</b>, go中的字符串实际就是utf8编码的字节流，所以如果存储的全部是英
 文字符那么他和字节流(<code>[]byte</code>)没什么两样，但是如果有汉字，那么需要注意，因为一个
 汉字在utf8中需要3到4个字节，所以你可能需要使用 <code>[]rune(s)</code> 转换成unicode字符串
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">var</span> str string <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#22768;&#26126;&#19968;&#20010;&#23383;&#31526;&#20018;&#21464;&#37327;</span>
 str = <span style="color: #CC9393;">"Hello world"</span> <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#23383;&#31526;&#20018;&#36171;&#20540;</span>
 ch := str<span style="color: #DCDCCC;">[</span><span style="color: #BFEBBF;">0</span><span style="color: #DCDCCC;">]</span> <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">&#21462;&#23383;&#31526;&#20018;&#30340;&#31532;&#19968;&#20010;&#23383;&#31526;</span>
@@ -359,9 +445,9 @@ fmt.<span style="color: #93E0E3;">Printf</span><span style="color: #DCDCCC;">(</
 </pre>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-4">
-<h4 id="orgheadline11">fmt</h4>
-<div class="outline-text-4" id="text-orgheadline11">
+<div id="outline-container-org3a2de94" class="outline-4">
+<h4 id="org3a2de94">fmt</h4>
+<div class="outline-text-4" id="text-org3a2de94">
 <p>
 这个包包括了很多字符串格式化的命令。这个包的函数命名有一些规律
 </p>
@@ -390,14 +476,13 @@ fmt.Sprintf(format, args...)       //返回一个字符串
 </pre>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-4">
-<h4 id="orgheadline12">strings</h4>
-<div class="outline-text-4" id="text-orgheadline12">
+<div id="outline-container-orgc7aba98" class="outline-4">
+<h4 id="orgc7aba98">strings</h4>
+<div class="outline-text-4" id="text-orgc7aba98">
 <p>
 标准库中的strings包含了许多常见的字符串处理函数。
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go">strings.<span style="color: #93E0E3;">Split</span><span style="color: #DCDCCC;">(</span>ss, sep<span style="color: #DCDCCC;">)</span>
 strings.<span style="color: #93E0E3;">SplitAfter</span><span style="color: #DCDCCC;">(</span>ss, sep<span style="color: #DCDCCC;">)</span>    <span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">&#20445;&#30041;&#20998;&#38548;&#31526;</span>
 strings.<span style="color: #93E0E3;">Join</span><span style="color: #DCDCCC;">(</span>xs, sep<span style="color: #DCDCCC;">)</span>          <span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">&#20351;&#29992;sep&#23558;xs&#30340;&#20803;&#32032;&#36830;&#25509;&#25104;&#23383;&#31526;&#20018;</span>
@@ -417,23 +502,22 @@ strings.<span style="color: #93E0E3;">Index</span><span style="color: #DCDCCC;">
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-4">
-<h4 id="orgheadline13">strconv</h4>
-<div class="outline-text-4" id="text-orgheadline13">
+<div id="outline-container-org1e78942" class="outline-4">
+<h4 id="org1e78942">strconv</h4>
+<div class="outline-text-4" id="text-org1e78942">
 <p>
 这个包可以将字符串和其它类型进行转换
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">数组</h3>
-<div class="outline-text-3" id="text-orgheadline14">
+<div id="outline-container-orgafb4983" class="outline-3">
+<h3 id="orgafb4983">数组</h3>
+<div class="outline-text-3" id="text-orgafb4983">
 <p>
 数组是一个定长的序列，创建了长度就不能更改了。在go中切片远比数组通用
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go"><span style="color: #DCDCCC;">[</span>length<span style="color: #DCDCCC;">]</span>Type
 <span style="color: #DCDCCC;">[</span>length<span style="color: #DCDCCC;">]</span><span style="color: #7CB8BB;">Type</span><span style="color: #DCDCCC;">{</span>val1, val2, ..., valN<span style="color: #DCDCCC;">}</span>
 <span style="color: #DCDCCC;">[</span>...<span style="color: #DCDCCC;">]</span><span style="color: #7CB8BB;">Type</span><span style="color: #DCDCCC;">{</span>val1, val2, ... , valN<span style="color: #DCDCCC;">}</span>
@@ -453,15 +537,14 @@ aa := <span style="color: #DCDCCC;">[</span>...<span style="color: #DCDCCC;">]</
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15">切片(slice)</h3>
-<div class="outline-text-3" id="text-orgheadline15">
+<div id="outline-container-org3826880" class="outline-3">
+<h3 id="org3826880">切片(slice)</h3>
+<div class="outline-text-3" id="text-org3826880">
 <p>
 切片是引用类型，在标准库中，所有的api都使用切片，创建切片和创建数组最大的区别是，
 数组必须在[]中指定长度，切片则一直是空的
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go"><span style="color: #DCDCCC; font-weight: bold;">make</span><span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">[]</span><span style="color: #7CB8BB;">Type</span>, length, capacity<span style="color: #DCDCCC;">)</span>
 <span style="color: #DCDCCC; font-weight: bold;">make</span><span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">[]</span><span style="color: #7CB8BB;">Type</span>, length<span style="color: #DCDCCC;">)</span>
 <span style="color: #DCDCCC;">[]</span><span style="color: #7CB8BB;">Type</span><span style="color: #DCDCCC;">{}</span>
@@ -487,11 +570,10 @@ newSlice := <span style="color: #DCDCCC; font-weight: bold;">append</span><span 
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16">字典(map)</h3>
-<div class="outline-text-3" id="text-orgheadline16">
+<div id="outline-container-org03b3d79" class="outline-3">
+<h3 id="org03b3d79">字典(map)</h3>
+<div class="outline-text-3" id="text-org03b3d79">
 <div class="org-src-container">
-
 <pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">var</span> aa <span style="color: #F0DFAF; font-weight: bold;">map</span><span style="color: #DCDCCC;">[</span><span style="color: #7CB8BB;">string</span><span style="color: #DCDCCC;">]</span> int           <span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">&#22768;&#26126;</span>
 bb := <span style="color: #DCDCCC; font-weight: bold;">make</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">map</span><span style="color: #BFEBBF;">[</span><span style="color: #7CB8BB;">string</span><span style="color: #BFEBBF;">]</span> int<span style="color: #DCDCCC;">)</span>       <span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">&#22768;&#26126;&#24182;&#36171;&#20540;</span>
 cc := <span style="color: #DCDCCC; font-weight: bold;">make</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">map</span><span style="color: #BFEBBF;">[</span><span style="color: #7CB8BB;">string</span><span style="color: #BFEBBF;">]</span> int, <span style="color: #BFEBBF;">100</span><span style="color: #DCDCCC;">)</span>  <span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F;">&#25351;&#23450;&#21021;&#22987;&#23481;&#37327;</span>
@@ -509,9 +591,9 @@ value, ok := myMap<span style="color: #DCDCCC;">[</span><span style="color: #CC9
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17">channel</h3>
-<div class="outline-text-3" id="text-orgheadline17">
+<div id="outline-container-orged5c444" class="outline-3">
+<h3 id="orged5c444">channel</h3>
+<div class="outline-text-3" id="text-orged5c444">
 <p>
 channel是goroutine之间的通信方式, 它是线程安全的,但是要注意,如果你传递的指针,那
 么它仍然有可能出现竞争条件
@@ -522,7 +604,6 @@ channel是goroutine之间的通信方式, 它是线程安全的,但是要注意,
 使用如下的代码来测试channel是不是已经关闭
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go">e, ok := &lt;- channel
 <span style="color: #F0DFAF; font-weight: bold;">if</span> ok <span style="color: #DCDCCC;">{</span>
   <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">get a item</span>
@@ -540,7 +621,6 @@ channel是goroutine之间的通信方式, 它是线程安全的,但是要注意,
 channel的超时
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">select</span> <span style="color: #DCDCCC;">{</span>
 <span style="color: #F0DFAF; font-weight: bold;">case</span> err := &lt;-c:
   <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">use err and reply</span>
@@ -554,7 +634,6 @@ quit channel是通知goroutine退出的最佳方式，在需要退出的时候cl
 样任何goroutine只要使用这样的代码测试就可以了
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">select</span> <span style="color: #DCDCCC;">{</span>
 <span style="color: #F0DFAF; font-weight: bold;">case</span> &lt;- quitChan:
   <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">quit</span>
@@ -568,20 +647,19 @@ quit channel是通知goroutine退出的最佳方式，在需要退出的时候cl
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-3">
-<h3 id="orgheadline18">struct</h3>
+<div id="outline-container-orgf9cce9b" class="outline-3">
+<h3 id="orgf9cce9b">struct</h3>
 </div>
-<div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20">interface</h3>
-<div class="outline-text-3" id="text-orgheadline20">
-</div><div id="outline-container-orgheadline19" class="outline-4">
-<h4 id="orgheadline19">interface{}</h4>
-<div class="outline-text-4" id="text-orgheadline19">
+<div id="outline-container-org77efe11" class="outline-3">
+<h3 id="org77efe11">interface</h3>
+<div class="outline-text-3" id="text-org77efe11">
+</div><div id="outline-container-orgbc1b276" class="outline-4">
+<h4 id="orgbc1b276">interface{}</h4>
+<div class="outline-text-4" id="text-orgbc1b276">
 <p>
 type assertion(类型断言)
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">var</span> anything <span style="color: #F0DFAF; font-weight: bold;">interface</span><span style="color: #DCDCCC;">{}</span> = <span style="color: #CC9393;">"hello"</span>
 aString := anything.<span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">string</span><span style="color: #DCDCCC;">)</span>              <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">unsafe, may panic</span>
 <span style="color: #F0DFAF; font-weight: bold;">if</span> aString, ok := anything.<span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">string</span><span style="color: #DCDCCC;">)</span>; ok <span style="color: #DCDCCC;">{</span> <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">safe, check ok</span>
@@ -604,11 +682,12 @@ aString := anything.<span style="color: #DCDCCC;">(</span><span style="color: #7
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline21" class="outline-2">
-<h2 id="orgheadline21">内置函数</h2>
-<div class="outline-text-2" id="text-orgheadline21">
+<div id="outline-container-org57231db" class="outline-2">
+<h2 id="org57231db">内置函数</h2>
+<div class="outline-text-2" id="text-org57231db">
 <ol class="org-ol">
-<li>append： 添加元素到切片, 使用 <code>aa=append(aa, ele)</code> 的语法。</li>
+<li>append： 添加元素到切片, 使用 <code>aa=append(aa, ele)</code> 的语法。将一个切片追加到另
+一个切片 <code>s1 = append(s1, s2...)</code> 也就是要放省略号。</li>
 <li>close： 关闭通道</li>
 <li>make：用来创建slice，map，channel。可以指定长度和容量</li>
 <li>delete：从map中删除项</li>
@@ -616,9 +695,9 @@ aString := anything.<span style="color: #DCDCCC;">(</span><span style="color: #7
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline22" class="outline-2">
-<h2 id="orgheadline22">go工程管理</h2>
-<div class="outline-text-2" id="text-orgheadline22">
+<div id="outline-container-orgabf38b9" class="outline-2">
+<h2 id="orgabf38b9">go工程管理</h2>
+<div class="outline-text-2" id="text-orgabf38b9">
 <ol class="org-ol">
 <li>自己编写的package的名字一般要和文件夹一样(go允许二者不一样，但是为了避免混淆，
 建议一样)，但是main package的文件夹一般不取main</li>
@@ -636,9 +715,9 @@ aString := anything.<span style="color: #DCDCCC;">(</span><span style="color: #7
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline23" class="outline-2">
-<h2 id="orgheadline23">reflect</h2>
-<div class="outline-text-2" id="text-orgheadline23">
+<div id="outline-container-orgd2e1bac" class="outline-2">
+<h2 id="orgd2e1bac">reflect</h2>
+<div class="outline-text-2" id="text-orgd2e1bac">
 <p>
 这个是go语言的发射机制,它主要是用来获取interface下面值的type与value的, reflect包
 有两个类型Type和Value.
@@ -649,12 +728,12 @@ aString := anything.<span style="color: #DCDCCC;">(</span><span style="color: #7
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline27" class="outline-2">
-<h2 id="orgheadline27">Cgo</h2>
-<div class="outline-text-2" id="text-orgheadline27">
-</div><div id="outline-container-orgheadline24" class="outline-3">
-<h3 id="orgheadline24">注意事项(高能预警)</h3>
-<div class="outline-text-3" id="text-orgheadline24">
+<div id="outline-container-orga8de1b9" class="outline-2">
+<h2 id="orga8de1b9">Cgo</h2>
+<div class="outline-text-2" id="text-orga8de1b9">
+</div><div id="outline-container-org876b149" class="outline-3">
+<h3 id="org876b149">注意事项(高能预警)</h3>
+<div class="outline-text-3" id="text-org876b149">
 <ol class="org-ol">
 <li>import "C" 的上面不能有空行, 也就说这一行要和注释紧挨着.</li>
 <li>cgo不支持调用C语言中可变参数的函数, 所以你不能调用 <code>C.printf</code> 这类的函数</li>
@@ -662,7 +741,6 @@ aString := anything.<span style="color: #DCDCCC;">(</span><span style="color: #7
 cgo创建结构体时一般会有对齐,所以在初始化结构体时要注意, 必须显式的指定值对应的name.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">package</span> main
 
 <span style="color: #5F7F5F;">/*</span>
@@ -691,9 +769,9 @@ p1因为对齐的存在会编译报错.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline25" class="outline-3">
-<h3 id="orgheadline25">类型转换</h3>
-<div class="outline-text-3" id="text-orgheadline25">
+<div id="outline-container-org5599ee9" class="outline-3">
+<h3 id="org5599ee9">类型转换</h3>
+<div class="outline-text-3" id="text-org5599ee9">
 <p>
 go可以很方便的和C语言交互，为了相互调用必须对数据类型进行转换，也就是在C的类型和
 go的类型之间相互转换。整数字面值不需要使用C.int转换，所以在需要使用C.int的地方可
@@ -723,7 +801,6 @@ void * -&gt; unsafe.Pointer
 &#x2013;&gt; *C.int) 需要这样的代码
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">var</span> ig int = <span style="color: #BFEBBF;">1</span>
 <span style="color: #DCDCCC;">(</span>*C.int<span style="color: #DCDCCC;">)(</span>unsafe.<span style="color: #93E0E3;">Pointer</span><span style="color: #BFEBBF;">(</span>&amp;ig<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
@@ -732,7 +809,6 @@ void * -&gt; unsafe.Pointer
 对于C中需要void*的场景,只需要将指针转换成 <code>unsafe.Pointer</code> 就好, 所以对于 <code>free</code> 应该这样调用
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go">gs := <span style="color: #CC9393;">"hello world"</span>
 cs := C.<span style="color: #93E0E3;">CString</span><span style="color: #DCDCCC;">(</span>gs<span style="color: #DCDCCC;">)</span>
 C.<span style="color: #93E0E3;">free</span><span style="color: #DCDCCC;">(</span>unsafe.<span style="color: #93E0E3;">Pointer</span><span style="color: #BFEBBF;">(</span>cs<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
@@ -740,9 +816,9 @@ C.<span style="color: #93E0E3;">free</span><span style="color: #DCDCCC;">(</span
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline26" class="outline-3">
-<h3 id="orgheadline26">go中引用C</h3>
-<div class="outline-text-3" id="text-orgheadline26">
+<div id="outline-container-orgd2a9c38" class="outline-3">
+<h3 id="orgd2a9c38">go中引用C</h3>
+<div class="outline-text-3" id="text-orgd2a9c38">
 <p>
 C中的名称都可以使用“C”这个“包”访问到
 </p>
@@ -751,7 +827,6 @@ C中的名称都可以使用“C”这个“包”访问到
 类型：C.int, C.float, *C.int 代表C中的int，foat以及int*，
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">package</span> main
 
 <span style="color: #5F7F5F;">/*</span>
@@ -789,7 +864,6 @@ string对于string因为C的原因需要特殊处理, C string是不会被GC回�
 用 <code>defer C.free(unsafe.Pointer(x))</code> 来回收内存
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">package</span> main
 
 <span style="color: #5F7F5F;">/*</span>
@@ -828,7 +902,6 @@ string对于string因为C的原因需要特殊处理, C string是不会被GC回�
 这在调用一些系统调用时非常有用.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go">n, err := C.<span style="color: #93E0E3;">sqrt</span><span style="color: #DCDCCC;">(</span>-<span style="color: #BFEBBF;">1</span><span style="color: #DCDCCC;">)</span>
 _, err := C.<span style="color: #93E0E3;">voidFunc</span><span style="color: #DCDCCC;">()</span>
 </pre>
@@ -841,7 +914,6 @@ struct
 看代码
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">package</span> main
 
 <span style="color: #5F7F5F;">/*</span>
@@ -874,15 +946,14 @@ struct
 </div>
 </div>
 
-<div id="outline-container-orgheadline28" class="outline-2">
-<h2 id="orgheadline28">Tips(best practice)</h2>
-<div class="outline-text-2" id="text-orgheadline28">
+<div id="outline-container-org820d070" class="outline-2">
+<h2 id="org820d070">Tips(best practice)</h2>
+<div class="outline-text-2" id="text-org820d070">
 <ol class="org-ol">
 <li><p>
 处理错误时避免多重嵌套，先处理错误的情况
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">if</span> err != <span style="color: #BFEBBF;">nil</span> <span style="color: #DCDCCC;">{</span>
   <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">handle error</span>
 <span style="color: #DCDCCC;">}</span>
@@ -894,7 +965,6 @@ struct
 使用type switch来处理type cast
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">switch</span> x := v.<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">type</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
 <span style="color: #F0DFAF; font-weight: bold;">case</span> string:
   fmt.<span style="color: #93E0E3;">Printf</span><span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">"%s"</span>, x<span style="color: #BFEBBF;">)</span>
@@ -907,7 +977,6 @@ struct
 命名应该尽可能的短小，比如：
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">package</span>  db
 <span style="color: #F0DFAF; font-weight: bold;">type</span> <span style="color: #7CB8BB;">DB</span> <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #DCDCCC;">{</span>
 <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">some fields</span>
@@ -933,6 +1002,41 @@ struct
 源泄露，通过buffered channel或者quit channel可以避免。quit channel是更通用的
 做法</li>
 </ol>
+</div>
+</div>
+<div id="outline-container-org30e5c4b" class="outline-2">
+<h2 id="org30e5c4b">坑</h2>
+<div class="outline-text-2" id="text-org30e5c4b">
+</div><div id="outline-container-orgc0488c6" class="outline-3">
+<h3 id="orgc0488c6">closure</h3>
+<div class="outline-text-3" id="text-orgc0488c6">
+<p>
+先看一段错误代码
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">func</span> <span style="color: #93E0E3;">main</span><span style="color: #DCDCCC;">()</span> <span style="color: #DCDCCC;">{</span>
+  <span style="color: #F0DFAF; font-weight: bold;">var</span> wg sync.WaitGroup
+
+  s := <span style="color: #DCDCCC; font-weight: bold;">make</span><span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[]</span><span style="color: #7CB8BB;">int</span>, <span style="color: #BFEBBF;">5</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #F0DFAF; font-weight: bold;">for</span> i := <span style="color: #BFEBBF;">0</span>; i &lt; <span style="color: #DCDCCC; font-weight: bold;">len</span><span style="color: #BFEBBF;">(</span>s<span style="color: #BFEBBF;">)</span>; i++ <span style="color: #BFEBBF;">{</span>
+    wg.<span style="color: #93E0E3;">Add</span><span style="color: #D0BF8F;">(</span><span style="color: #BFEBBF;">1</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #F0DFAF; font-weight: bold;">go</span> <span style="color: #F0DFAF; font-weight: bold;">func</span><span style="color: #D0BF8F;">()</span> <span style="color: #D0BF8F;">{</span>
+      <span style="color: #F0DFAF; font-weight: bold;">defer</span> wg.<span style="color: #93E0E3;">Done</span><span style="color: #93E0E3;">()</span>
+      fmt.<span style="color: #93E0E3;">Print</span><span style="color: #93E0E3;">(</span>s<span style="color: #9FC59F;">[</span>i<span style="color: #9FC59F;">]</span><span style="color: #93E0E3;">)</span>
+    <span style="color: #D0BF8F;">}()</span>
+  <span style="color: #BFEBBF;">}</span>
+  wg.<span style="color: #93E0E3;">Wait</span><span style="color: #BFEBBF;">()</span>
+<span style="color: #DCDCCC;">}</span>
+</pre>
+</div>
+<p>
+这段代码有很大可能出现index out of range的错误，原因for中的i是被接下来的所有循环
+共享的，所以对i的修改会传递到所有的goroutine中，因为goroutine的启动会有一点延迟，
+所以等goroutine启动开始运行时i很可能已被修改成了5，自然就会出现index out of
+range的错误，正确的做法是将i作为参数传递给goroutine的那个匿名函数。 <b>匿名函数中
+使用上层作用域的变量要谨慎</b>.
+</p>
+</div>
 </div>
 </div>
 </div>
