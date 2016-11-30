@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-14 Mon 23:08 -->
+<!-- 2016-11-30 Wed 22:47 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>python笔记</title>
@@ -549,11 +549,44 @@ __getattr__只有在属性不存在时才调用,该方法用的多
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">ClassName</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
+    <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__init__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, obj<span style="color: #DCDCCC;">)</span>:
+        <span style="color: #F0DFAF; font-weight: bold;">self</span>.obj = obj
+
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__getattr__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, name<span style="color: #DCDCCC;">)</span>:
+        <span style="color: #F0DFAF; font-weight: bold;">if</span> name.startswith<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"__"</span><span style="color: #DCDCCC;">)</span> <span style="color: #F0DFAF; font-weight: bold;">and</span> name.endswith<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"__"</span><span style="color: #DCDCCC;">)</span>:
+            <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #DCDCCC; font-weight: bold;">super</span><span style="color: #DCDCCC;">(</span>ClassName, <span style="color: #F0DFAF; font-weight: bold;">self</span><span style="color: #DCDCCC;">)</span>.__getattr__<span style="color: #DCDCCC;">(</span>name<span style="color: #DCDCCC;">)</span>
         dosomething<span style="color: #DCDCCC;">()</span>
         <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #DCDCCC; font-weight: bold;">super</span><span style="color: #DCDCCC;">(</span>ClassName, <span style="color: #F0DFAF; font-weight: bold;">self</span><span style="color: #DCDCCC;">)</span>.__getattr__<span style="color: #DCDCCC;">(</span>name<span style="color: #DCDCCC;">)</span>
 </pre>
+</div>
+<p>
+<b>在该函数中不要使用不存在的属性，因为这会导致循环递归</b>, 该函数实现不正确很
+容易导致copy，pickle之类的模块出现循环递归。因为copy，pickle之类的模块在创
+建新对象的过程大体时这样的：
+</p>
+<ol class="org-ol">
+<li>调用 <code>__new__</code> 创建一个新对象</li>
+<li>调用 <code>__setstate_</code> 来设置对象状态</li>
+</ol>
+<p>
+第一步并没有调用 <code>__init__</code>, 所以很多属性(比如obj)是不存在的，一旦你在
+<code>__getattr__</code> 使用了 <code>__init__</code> 中创建的属性，并且你又没有定义
+<code>__setstate__</code> 的话，那么第二步就会导致循环递归。 避免循环递归的
+方式有以下几种：
+</p>
+<ol class="org-ol">
+<li>是过滤掉 <code>__xxx__</code> 这样的属性,就像示例中那样。这样 <code>__setstate__</code> 之类的属性就被过滤掉了</li>
+<li>定义 <code>__setstate__</code>, 这样第二步就不会进去 <code>__getattr__</code></li>
+<li><p>
+在 <code>__getattr__</code> 的开头过滤掉你所使用的属性。 比如：
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__getattr__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, name<span style="color: #DCDCCC;">)</span>:
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> name == <span style="color: #CC9393;">"obj"</span>:
+        <span style="color: #F0DFAF; font-weight: bold;">raise</span> <span style="color: #7CB8BB;">AttributeError</span><span style="color: #DCDCCC;">()</span>
+</pre>
 </div></li>
+</ol></li>
 <li>__getattribute__是每一次obj.attr时都会调用,所以它可以拦截所有的属性查询, 用的很少</li>
 <li>getattr: 原型getattr(object, name[, default]), getattr(x, 'foobar')等价于x.foobar优势就在于getattr可以
 使用字符串,注意如果是获得类实例的方法,那么self参数就可以忽略了,只需要传入除self之外的其它参数就好</li>
