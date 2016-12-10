@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-30 Wed 22:47 -->
+<!-- 2016-12-10 Sat 18:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>python笔记</title>
@@ -533,8 +533,9 @@ string, 所以对于二进制文件,你必须指定b</li>
 <h3 id="org3986ae2">globals  And lolcals</h3>
 <div class="outline-text-3" id="text-org3986ae2">
 <ol class="org-ol">
-<li>globals(): 返回一个字典,字典包括当前模块(也就是调用globals()的模块)的所有模块级属性, 同时还包
-括'<span class="underline"><span class="underline">builtins</span></span>'属性, 还包括几个特殊变量__file__, <span class="underline"><span class="underline">package</span></span>, <span class="underline"><span class="underline">doc</span></span></li>
+<li><code>globals()</code>: 返回一个字典,字典包括当前模块(也就是调用 <code>globals()</code> 的模块)
+的所有模块级属性, 同时还包括 <code>__builtins__</code> 属性, 还包括几个特殊变量
+<code>__file__, __package__, __doc__</code>.</li>
 <li>locals(): 这个只返回局部空间(比如函数的局部变量)的变量与值的字典,注意这个字典不能修改,如果强行修改会引发
 严重后果,比如解释器崩溃</li>
 </ol>
@@ -545,7 +546,7 @@ string, 所以对于二进制文件,你必须指定b</li>
 <div class="outline-text-3" id="text-orga06cb28">
 <ol class="org-ol">
 <li><p>
-__getattr__只有在属性不存在时才调用,该方法用的多
+<code>__getattr__</code> 只有在属性不存在时才调用,该方法用的多
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">ClassName</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:

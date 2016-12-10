@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-14 Mon 23:08 -->
+<!-- 2016-12-10 Sat 18:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>计算机网络</title>
@@ -294,7 +294,8 @@ for the JavaScript code in this tag.
 <li><a href="#org2d8d44f">网络设备</a></li>
 <li><a href="#org771c551">抓包工具</a>
 <ul>
-<li><a href="#org24ef521">捕捉过滤器</a></li>
+<li><a href="#org1e96631">Capture Filter</a></li>
+<li><a href="#org5227e28">Didsplay Filter</a></li>
 </ul>
 </li>
 </ul>
@@ -684,19 +685,73 @@ rwnd = RcvBuffer - (lastByteRcvd - lastByteRead)
 <div id="outline-container-org771c551" class="outline-2">
 <h2 id="org771c551">抓包工具</h2>
 <div class="outline-text-2" id="text-org771c551">
-</div><div id="outline-container-org24ef521" class="outline-3">
-<h3 id="org24ef521">捕捉过滤器</h3>
-<div class="outline-text-3" id="text-org24ef521">
+<p>
+主要有tcpdump和wireshark
+</p>
+</div>
+<div id="outline-container-org1e96631" class="outline-3">
+<h3 id="org1e96631">Capture Filter</h3>
+<div class="outline-text-3" id="text-org1e96631">
+<p>
+这是启动抓包之前需要设置的过滤器,设置后在本次抓包过程中不可更改, 格式是
+wireshark, tcpdump通用
+</p>
 <pre class="example">
-Protocol  Direction  Key  Value  LogicalOperation OtherExp
+Exp       ::= AtomicExp LogicOp Exp | AtomicExp
+AtomicExp ::= Protocol  Direction  Key  Value
+
+LogicOp   ::= and | or | not | &amp;&amp; | ! | ||
+
+Protocol  ::= ether| fddi| tr| wlan| ip| ip6| arp| rarp| decnet| tcp | udp
+Direction ::= src | dst | src or dst
+Key       ::= host | net | port | portrange
 </pre>
 <ol class="org-ol">
 <li>Protocol: 协议,可能的值为:ether, fddi, ip, arp, rarp, decnet, lat, sca,
 moprc, mopdl, tcp and udp, 默认是所有协议</li>
 <li>Direction: src, dst, src and dst, src or dst 默认是src or dst</li>
-<li>Key: 可以看做是某种属性名,支持的值为:host,port, net, portrange</li>
-<li>Value: 对应于Key的值</li>
+<li>Key: 可以看做是某种属性名,支持的值为:host,port, net, portrange, 默认是host</li>
+<li><p>
+Value: 对应于Key的值
+</p>
+<pre class="example">
+portrange 10000-10020
+port 27011
+host 127.0.0.1
+net 192.168.1.0/24
+</pre></li>
 <li>LogicalOperation: not, and, or, 可以用来组合多个表达式</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org5227e28" class="outline-3">
+<h3 id="org5227e28">Didsplay Filter</h3>
+<div class="outline-text-3" id="text-org5227e28">
+<p>
+通过Capture filter过滤后得到的包如果还是太多,那么可以通过display filter来过滤,只
+让过滤后的包显示出来, <b>wireshark专用</b>
+</p>
+
+<pre class="example">
+Exp ::= AtomicExp LogicOp Exp | AtomicExp
+AtomicExp ::= Protocol.Key1.Key2 CompOp Value
+
+LogicOp ::= and | or | not | &amp;&amp; | ! | ||
+CompOp  ::= eq | ne | gt | lt | ge | le | == | != | &lt; | &gt; | &lt;= | &gt;=
+
+Protocol ::= ether| fddi| tr| wlan| ip| ip6| arp| rarp| decnet| tcp | udp
+</pre>
+<ol class="org-ol">
+<li><p>
+Key1, Key2 是可选的,不同的协议是不同的,常用的:
+</p>
+<pre class="example">
+ip.addr, ip.src, ip.dst
+tcp.port, tcp.srcport, tcp.dstport
+</pre>
+<p>
+更详细就查文档
+</p></li>
 </ol>
 </div>
 </div>
