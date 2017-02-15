@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-14 Mon 23:08 -->
+<!-- 2017-02-15 Wed 21:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>UNIX网络编程</title>
@@ -279,7 +279,18 @@ for the JavaScript code in this tag.
 <li><a href="#orgf3af4a1">SO_LINGER</a></li>
 <li><a href="#orgcbc3519">SO_RCVBUF/SO_SNDBUF</a></li>
 <li><a href="#orgedf26bf">SO_RCVLOWAT/SO_SNDLOWAT</a></li>
-<li><a href="#org691ff4a">SO_REUSEADDR/SO_REUSEPORT</a></li>
+<li><a href="#org4eb1388">SO_REUSEADDR</a>
+<ul>
+<li><a href="#org361d2f6">tcp</a></li>
+<li><a href="#orge025582">udp</a></li>
+</ul>
+</li>
+<li><a href="#org81f3b2d">SO_REUSEPORT</a>
+<ul>
+<li><a href="#org400e8bd">tcp</a></li>
+<li><a href="#orgd899113">udp</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#org2264bbb">编程技巧</a>
@@ -581,12 +592,70 @@ SO_RCVLOWAT(默认为1)那么可读, 如果发送缓冲区的空闲空间大于S
 </p>
 </div>
 </div>
-<div id="outline-container-org691ff4a" class="outline-3">
-<h3 id="org691ff4a">SO_REUSEADDR/SO_REUSEPORT</h3>
-<div class="outline-text-3" id="text-org691ff4a">
+<div id="outline-container-org4eb1388" class="outline-3">
+<h3 id="org4eb1388">SO_REUSEADDR</h3>
+<div class="outline-text-3" id="text-org4eb1388">
+</div><div id="outline-container-org361d2f6" class="outline-4">
+<h4 id="org361d2f6">tcp</h4>
+<div class="outline-text-4" id="text-org361d2f6">
+<ol class="org-ol">
+<li>可以避免重启服务器时的 address already in use 的错误</li>
+<li>指定该选项,那么可以在相同的端口上启动多个实例,也就是多个socket bind到相同
+的端口,但是ip地址必须不同</li>
+<li>即便指定该选项,tcp也不能bind完全相同的地址(相同的ip与port)到多个socket,如
+果要这么做,那么需要使用 <code>SO_REUSEPORT</code> 选项.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orge025582" class="outline-4">
+<h4 id="orge025582">udp</h4>
+<div class="outline-text-4" id="text-orge025582">
 <p>
-主要是避免重启服务器程序时的address already in use的错误.
+如果指定了该选项,那么你可以bind完全相同的地址(相同的ip与port)到多个socket, 当
+收到数据报时,如果你指定的是多播地址,那么数据报会发送给每一个绑定的socket,如果
+是单播地址,那么随机的选择一个socket.对单播地址的场景, <b>建议使用SO_REUSEPORT</b>,
+因为它可以将数据报更均衡的发布到多个socket上.
 </p>
+</div>
+</div>
+</div>
+<div id="outline-container-org81f3b2d" class="outline-3">
+<h3 id="org81f3b2d">SO_REUSEPORT</h3>
+<div class="outline-text-3" id="text-org81f3b2d">
+<p>
+这个选项用来将完全相同的地址bind到多个socket,支持tcp,udp
+</p>
+</div>
+<div id="outline-container-org400e8bd" class="outline-4">
+<h4 id="org400e8bd">tcp</h4>
+<div class="outline-text-4" id="text-org400e8bd">
+<p>
+通常的tcp服务器都是这样的:
+</p>
+<ol class="org-ol">
+<li>一个线程创建listen socket,然后accept,得到连接后下发到工作线程,memcached就
+是这么实现的,但是它有一个问题就是这个accept的线程在极端场景可能成为瓶颈.</li>
+<li>多个线程同时在一个listen socket上accept,哪个线程得到新连接那么它就负责处
+理.这种方式的问题是负载不均衡.也就是说有的线程得到的连接多,有的得到的少.</li>
+</ol>
+<p>
+上面的两种做法的问题根源是 <b>只能有一个listen socklet</b>, 通过指定
+<code>SO_REUSEPORT</code>, 可以创建多个绑定到相同地址的listen socket, 这样你可以在不同
+的进程或者线程里面单独的accept到该地址的新连接,操作系统负责将新连接均匀的分
+布到各个listen socket.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd899113" class="outline-4">
+<h4 id="orgd899113">udp</h4>
+<div class="outline-text-4" id="text-orgd899113">
+<p>
+单个socket的recv buffer是有锁的,所以多线程的使用单个socket是得不到明显的性能
+提升的.甚至可能使性能下降,通过指定 <code>SO_REUSEPORT</code> 你可以创建多个绑定到相同地
+址的udp socket,这样你就可以在不同的线程或者进程中单独的收发到该地址的数据报.因
+为使用的是不同的socket,所以也就不会用锁竞争的问题.
+</p>
+</div>
 </div>
 </div>
 </div>

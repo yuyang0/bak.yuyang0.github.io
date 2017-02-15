@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-12-10 Sat 18:55 -->
+<!-- 2017-02-15 Wed 21:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>计算机网络</title>
@@ -639,6 +639,7 @@ rwnd = RcvBuffer - (lastByteRcvd - lastByteRead)
 </ol>
 </div>
 </div>
+
 <div id="outline-container-orgc7e0a91" class="outline-3">
 <h3 id="orgc7e0a91">https</h3>
 <div class="outline-text-3" id="text-orgc7e0a91">
@@ -652,13 +653,23 @@ rwnd = RcvBuffer - (lastByteRcvd - lastByteRead)
 <li>验证服务器的私钥</li>
 </ul></li>
 <li><b>所有的通信数据要加密</b>,这样即便数据被截获也可以保证安全，实现方法是每一个
-会话都协商一个对称秘钥, 用它来加密和解密传输的信息,这所以不直接使用RSA是因
+会话都协商一个对称秘钥, 用它来加密和解密传输的信息,之所以不直接使用RSA是因
 为开销太大，同时秘钥加密的数据可以被解密，达不到加密的要求。</li>
+</ol>
+
+<p>
+<b>CA机构必须保证不做恶</b>, 因为一旦CA机构干坏事那就基本没有安全可言，CNNIC就是一
+ 个例子，比如它可以配合gfw这样进行中间人攻击：
+</p>
+<ol class="org-ol">
+<li>它签发一个证书给某台服务器</li>
+<li>用GFW的dns劫持将访问google等网站的请求导向1中的服务器</li>
+<li>因为CNNIC的证书被浏览器信任，所以浏览器会高高兴兴的和1中的服务器进行https
+通信，这样gfw也就可以解密你的https请求了</li>
 </ol>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org2d8d44f" class="outline-2">
 <h2 id="org2d8d44f">网络设备</h2>
 <div class="outline-text-2" id="text-org2d8d44f">
@@ -666,7 +677,9 @@ rwnd = RcvBuffer - (lastByteRcvd - lastByteRead)
 <li>集线器(HUB): 工作于第二层,基本已被淘汰, 目前基本用交换机, HUB最大的问题是当它
 接收到一个数据包后,它会向所有连接到该hub的主机广播, 这样会造成一大堆无用流量.
 这主要是因为HUB内部没有交换机内部的那种MAC地址表.</li>
-<li>网桥: 也基本被淘汰.</li>
+<li>网桥: 也基本被淘汰. 它有两个端口，作用是可以把一个大的局域网分成两个小的局域
+网,这样可以显著的减少广播包的数量。但是每一个小的局域网内部还是需要广播，还是
+没有交换机那样点对点传播高效。</li>
 <li>交换机
 <ul class="org-ul">
 <li>二层交换机: 用来将链路层数据包发给相应的主机或者网络设备, 内部有个MAC地址表,交

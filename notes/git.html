@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-14 Mon 23:08 -->
+<!-- 2017-02-15 Wed 21:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>git/github学习笔记</title>
@@ -274,15 +274,6 @@ for the JavaScript code in this tag.
 <li><a href="#org1e524ea">版本库</a></li>
 <li><a href="#org1a114c1">git diff</a></li>
 <li><a href="#org0af5caa">HEAD, master</a></li>
-<li><a href="#orgafabfad">git reset</a></li>
-<li><a href="#org2d232ec">git checkout</a></li>
-<li><a href="#org32ffeef">git分支</a>
-<ul>
-<li><a href="#org58634e8">创建分支</a></li>
-<li><a href="#org9ac2e7b">切换分支</a></li>
-<li><a href="#orgb64dbca">合并分支</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li><a href="#orga6ef7a4">git github</a></li>
@@ -298,26 +289,56 @@ for the JavaScript code in this tag.
 <div class="outline-text-3" id="text-org86c6710">
 <ul class="org-ul">
 <li>安装：sudo apt-get install git git-uid</li>
-<li>init：  git init（工作目录运行，会生成一个.git目录，里面会存放索引数据）</li>
-<li>add:    git add(添加文件)
-git add . （添加所有）
-（只有添加了新文件时才需要git add，如果只是修改了或删除了文件，可以只执行git commit -a）</li>
-<li>commit: git commit(提交，一般调用add后只是在临时区，只有调用commit才会
-提交到git)
-git commit -m "comment"
-git commit -a           commit all</li>
+<li><code>init</code>:  git init（工作目录运行，会生成一个.git目录，里面会存放索引数据）</li>
+<li><code>add</code>: 将文件添加到暂存区
+<ol class="org-ol">
+<li><code>git add</code>: 添加文件</li>
+<li><code>git add .</code>: 添加所有</li>
+</ol></li>
+<li><code>commit</code>: 提交到版本库，一般调用add后只是在暂存区，只有调用commit才会提交到git版本库
+<ol class="org-ol">
+<li><code>git commit -m "comment"</code>:</li>
+<li><code>git commit -a</code>: 提交所有</li>
+<li><code>git commit --amend</code>: 可以重新提交上一次commit,这在上一次提交遗漏了某些文件
+时非常有用.</li>
+</ol></li>
 <li>clone:  git clone 只要有.git目录，那么就可以调用该命令来得到git管理的
 所有文件
 eg: git clone test.git dest\_dir/    git-&#x2014;&gt;dest\_dir
     git clone 账户@IP:工作树路径 你的目录     远程github</li>
 <li>pull:  git pull（将远程分支拉到本地，然后和本地分支合并）</li>
 <li>push： git push（将本地分支推送远程仓库）</li>
-<li>branch： 创建分支或者查看有哪些分支
-git branch             查看有哪些分支
-git branch TmpBranch  创建分支
-git branch -d TmpBranch 删除分支</li>
-<li>checkout：改变分支（git checkout TmpBranch)</li>
-<li>merge：将制定分支与当前分支合并(git merge TmpBranch 将TmpBranch与当前分支合并）</li>
+<li><code>branch</code>:  创建分支或者查看有哪些分支
+<ol class="org-ol">
+<li><code>git branch</code>: 查看有哪些分支</li>
+<li><code>git branch &lt;branch&gt;</code>  创建分支</li>
+<li><code>git branch -d &lt;branch&gt;</code> 删除分支,如果有commit没有合并,那么会拒绝删除</li>
+<li><code>git branch -D &lt;branch&gt;</code>: 和上一个类似,但是会强制删除</li>
+</ol></li>
+<li><code>merge</code>:将制定分支与当前分支合并(git merge TmpBranch 将TmpBranch与当前分支合并）</li>
+<li><code>checkout</code>:切换到分支, tag或者撤销工作目录的修改
+<ol class="org-ol">
+<li><code>git checkout &lt;branch/tag&gt;</code>: 切换到分支或者tag</li>
+<li><code>git checkout -- &lt;file&gt;</code>: 撤销工作目录&lt;file&gt;的修改,实际上就是用暂存区的文件
+替换工作目录</li>
+</ol></li>
+<li><code>diff</code>: 比较工作区与暂存区或者暂存区与版本库的差异
+<ol class="org-ol">
+<li><code>git diff</code>:工作区与暂存区的diff</li>
+<li><code>git diff --staged</code>: 暂存区与版本库的diff</li>
+</ol></li>
+<li><code>reset</code>:重置, <code>&lt;commit&gt;</code> 如果不指定那么就为 <code>HEAD</code>,可以使用 <code>HEAD^/HEAD~1</code> (父
+提交), <code>HEAD^^/HEAD~2</code> (父父提交)等类似的语法指定相对于HEAD的偏移.
+<ol class="org-ol">
+<li><code>git reset &lt;commit&gt; &lt;file&gt;</code>: 不修改引用,但是撤销对文件的暂存,也就是用版本库
+中的文件替换暂存区中的文件, 工作目录的文件不会变动</li>
+<li><code>git reset --hard &lt;commit&gt;</code>: 将引用设置为commit, 同时用commit的文件替换暂存
+区和工作目录. <b>慎用</b>.</li>
+<li><code>git reset --soft &lt;commit&gt;</code>: 只将引用设置为commit, 不修改暂存区和工作目录</li>
+<li><code>git reset --mixed &lt;commit&gt;</code>: 将引用设置为commit,同时替换暂存区,但是不替换
+工作目录</li>
+</ol></li>
+<li><code>blame</code>: 用来确定文件的每一行都是谁修改的</li>
 </ul>
 </div>
 </div>
@@ -408,71 +429,6 @@ HEAD(.git/HEAD)实际是一个指针,指向的是.git/refs/heads/branch-name文�
 <li>.git/refs/heads/master:  235fd887b9f85d44ce94e8d733b8814509c1d4e8 (master分支最新一次提交的id),通过
 git reset &#x2013;[hard|soft|mixed]可以重置该文件到指定的commit id,那么在你指定的commit id之后的提交就都会丢失.</li>
 </ul>
-</div>
-</div>
-<div id="outline-container-orgafabfad" class="outline-3">
-<h3 id="orgafabfad">git reset</h3>
-<div class="outline-text-3" id="text-orgafabfad">
-<ol class="org-ol">
-<li>git reset [commit-id] &lt;path&gt; : 不影响工作区与版本库,只会用commit-id对应的版本库工作树替换暂存区的工作树,实
-际上相当于撤销先前的git add, 举几个例子:
-<ul class="org-ul">
-<li>git reset HEAD: 就是版本库中当前分支的最新一次提交的工作树替换暂存区的工作树</li>
-<li>git reset : 等价于 git reset HEAD</li>
-</ul></li>
-<li>git reset &#x2013;hard [commit-id] : 会将版本库的引用重定向到commit-id,同时将暂存区与工作区的工作树都重置为
-commit-id对应的目录树, 所以commit-id之后所有的工作区,暂存区改动以及版本库提交都会删除, <b>该命令非常危险</b>
-举几个例子:
-<ul class="org-ul">
-<li>git reset &#x2013;hard HEAD^  : 重置HEAD到父提交, 当前提交的内容都会删除 <b>危险</b></li>
-<li>git reset &#x2013;hard commit-id : 重置到commit-id指定的提交, commit-id之后的提交都会删除, <b>危险</b></li>
-</ul></li>
-<li>git reset &#x2013;soft [commit-id] : 只重置版本库的引用,但是不影响暂存区与工作区,用法和2类似</li>
-<li>git reset &#x2013;mixed [commit-id] : 重置版本库和暂存区,不改变工作区</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org2d232ec" class="outline-3">
-<h3 id="org2d232ec">git checkout</h3>
-<div class="outline-text-3" id="text-org2d232ec">
-<p>
-该命令会影响工作区
-</p>
-</div>
-</div>
-<div id="outline-container-org32ffeef" class="outline-3">
-<h3 id="org32ffeef">git分支</h3>
-<div class="outline-text-3" id="text-org32ffeef">
-</div><div id="outline-container-org58634e8" class="outline-4">
-<h4 id="org58634e8">创建分支</h4>
-<div class="outline-text-4" id="text-org58634e8">
-<ul class="org-ul">
-<li>git branch : 显示所有分支,当前分支前会加*</li>
-<li>git branch new-branch : 创建新分支</li>
-<li>git branch new-br start-point: 创建新分支,并以start-point为起点初始化</li>
-<li>git branch -d br-name: 删除分支,如果分支上有没有合并到其他分支的提交,那么拒绝删除</li>
-<li>git branch -D br-name: 和上一个类似,但是会强制删除</li>
-<li>git branch -m old-name new-name : 将名为old-name的分支重命名为new-name,如果已存在名为new-name的分支,那
-么重命名失败</li>
-<li>git branch -M old-name new-name: 强制重命名</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org9ac2e7b" class="outline-4">
-<h4 id="org9ac2e7b">切换分支</h4>
-<div class="outline-text-4" id="text-org9ac2e7b">
-<p>
-git checkout new-br
-</p>
-</div>
-</div>
-<div id="outline-container-orgb64dbca" class="outline-4">
-<h4 id="orgb64dbca">合并分支</h4>
-<div class="outline-text-4" id="text-orgb64dbca">
-<p>
-git merge br-name: 将名为br-name的分支与但前分支合并
-</p>
-</div>
 </div>
 </div>
 </div>

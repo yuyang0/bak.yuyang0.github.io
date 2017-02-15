@@ -3,7 +3,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
       <loc>https://yuyang0.github.io/sitemap.html</loc>
-      <lastmod>2016-12-10</lastmod>
+      <lastmod>2017-02-15</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -171,7 +171,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/golang.html</loc>
-      <lastmod>2016-10-11</lastmod>
+      <lastmod>2017-01-02</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -243,7 +243,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/unp.html</loc>
-      <lastmod>2016-10-31</lastmod>
+      <lastmod>2017-01-12</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -255,7 +255,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/git.html</loc>
-      <lastmod>2016-06-09</lastmod>
+      <lastmod>2017-01-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -338,6 +338,12 @@
       <priority>0.5</priority>
    </url>
 <url>
+      <loc>https://yuyang0.github.io/notes/x86-assembly-language.html</loc>
+      <lastmod>2017-02-07</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+<url>
       <loc>https://yuyang0.github.io/notes/loader-linker-library.html</loc>
       <lastmod>2016-06-09</lastmod>
       <changefreq>weekly</changefreq>
@@ -393,7 +399,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/computer-network.html</loc>
-      <lastmod>2016-12-08</lastmod>
+      <lastmod>2017-01-01</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -411,13 +417,13 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/sitemap.html</loc>
-      <lastmod>2016-12-10</lastmod>
+      <lastmod>2017-02-15</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
 <url>
       <loc>https://yuyang0.github.io/tags.html</loc>
-      <lastmod>2016-11-30</lastmod>
+      <lastmod>2016-12-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-14 Mon 23:08 -->
+<!-- 2017-02-15 Wed 21:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Go语言</title>
@@ -1030,12 +1030,45 @@ struct
 </pre>
 </div>
 <p>
-这段代码有很大可能出现index out of range的错误，原因for中的i是被接下来的所有循环
-共享的，所以对i的修改会传递到所有的goroutine中，因为goroutine的启动会有一点延迟，
-所以等goroutine启动开始运行时i很可能已被修改成了5，自然就会出现index out of
-range的错误，正确的做法是将i作为参数传递给goroutine的那个匿名函数。 <b>匿名函数中
-使用上层作用域的变量要谨慎</b>.
+这段代码有很大可能出现index out of range的错误，对于for loop需要记住一点：
 </p>
+<ol class="org-ol">
+<li><code>for exp {body}</code> 这样的表达式中, <code>exp</code> 中创建的变量在所有迭代中是共享的，也就
+是说是同一个变量，但是body中创建的变量是不共享的。你可以认为exp中创建的变量的
+作用域是for表达式所在的作用域，而不是body所在的作用域</li>
+</ol>
+<p>
+所以上面的例子中i是共享的，所以对i的修改会传递到所有的goroutine中，因为goroutine
+的启动会有一点延迟，所以等goroutine启动开始运行时i很可能已被修改成了5，自然就会
+出现index out of range的错误，正确的做法:
+</p>
+<ol class="org-ol">
+<li>将i作为参数传递给goroutine的那个匿名函数。</li>
+<li><p>
+在body创建一个新的变量,eg
+</p>
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #F0DFAF; font-weight: bold;">func</span> <span style="color: #93E0E3;">main</span><span style="color: #DCDCCC;">()</span> <span style="color: #DCDCCC;">{</span>
+  <span style="color: #F0DFAF; font-weight: bold;">var</span> wg sync.WaitGroup
+
+  s := <span style="color: #DCDCCC; font-weight: bold;">make</span><span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">[]</span><span style="color: #7CB8BB;">int</span>, <span style="color: #BFEBBF;">5</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #F0DFAF; font-weight: bold;">for</span> i := <span style="color: #BFEBBF;">0</span>; i &lt; <span style="color: #DCDCCC; font-weight: bold;">len</span><span style="color: #BFEBBF;">(</span>s<span style="color: #BFEBBF;">)</span>; i++ <span style="color: #BFEBBF;">{</span>
+    i := i
+    wg.<span style="color: #93E0E3;">Add</span><span style="color: #D0BF8F;">(</span><span style="color: #BFEBBF;">1</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #F0DFAF; font-weight: bold;">go</span> <span style="color: #F0DFAF; font-weight: bold;">func</span><span style="color: #D0BF8F;">()</span> <span style="color: #D0BF8F;">{</span>
+      <span style="color: #F0DFAF; font-weight: bold;">defer</span> wg.<span style="color: #93E0E3;">Done</span><span style="color: #93E0E3;">()</span>
+      fmt.<span style="color: #93E0E3;">Print</span><span style="color: #93E0E3;">(</span>s<span style="color: #9FC59F;">[</span>i<span style="color: #9FC59F;">]</span><span style="color: #93E0E3;">)</span>
+    <span style="color: #D0BF8F;">}()</span>
+  <span style="color: #BFEBBF;">}</span>
+  wg.<span style="color: #93E0E3;">Wait</span><span style="color: #BFEBBF;">()</span>
+<span style="color: #DCDCCC;">}</span>
+</pre>
+</div>
+
+<p>
+<b>匿名函数中使用上层作用域的变量要谨慎</b>.
+</p></li>
+</ol>
 </div>
 </div>
 </div>
