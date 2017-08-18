@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-14 Mon 23:09 -->
+<!-- 2017-08-18 Fri 22:14 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C开发技巧</title>
@@ -284,6 +284,11 @@ for the JavaScript code in this tag.
 <li><a href="#org9cc27ca">EPOLL</a></li>
 </ul>
 </li>
+<li><a href="#orge2de259">Makefile相关</a>
+<ul>
+<li><a href="#orga49c371">变量</a></li>
+</ul>
+</li>
 <li><a href="#orge242ac2">基本概念</a></li>
 </ul>
 </div>
@@ -476,7 +481,46 @@ int, long, long long以及这些类型的无符号版本使用,
 <ol class="org-ol">
 <li>边缘触发：只有文件描述符改变时才触发, 也就是说即便文件描述符是就绪的，
 epoll_wait仍然可能阻塞，因为数据可能是上一次读操作没有读完。</li>
-<li>水平触发：只要文件描述符目前是就绪的就会触发，*该模式用的多*.</li>
+<li>水平触发：只要文件描述符目前是就绪的就会触发， <b>该模式用的多</b>.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orge2de259" class="outline-2">
+<h2 id="orge2de259">Makefile相关</h2>
+<div class="outline-text-2" id="text-orge2de259">
+<p>
+make运行makefile分为两步
+</p>
+<ol class="org-ol">
+<li>扫描整个makefile，把所有的include的makefile都包含进来，进行必要的变量替换，接着生成依赖图</li>
+<li>根据依赖图来执行动作</li>
+</ol>
+</div>
+<div id="outline-container-orga49c371" class="outline-3">
+<h3 id="orga49c371">变量</h3>
+<div class="outline-text-3" id="text-orga49c371">
+<p>
+makefile中的变量和C里面的宏很类似，就是直接原样替换
+</p>
+<ol class="org-ol">
+<li><p>
+定义: 两种定义方法，一种可以使用后面定义的变量（=），一种不可以(:=)
+</p>
+<pre class="example">
+var = $(AA)aaaa
+var := $(AA) bb
+</pre></li>
+<li>变量的优先级是：
+<ul class="org-ul">
+<li>命令行指定的变量优先级最高: 它会使makefile内部对同一变量的赋值无效，也就
+是说只要命令行指定了，那么就以命令行为准，当然makefile中的变量使用了
+override关键字，那么makefile中的赋值会覆盖命令行的定义。</li>
+<li>makefile内部的赋值创建的变量其次</li>
+<li>运行make时的环境变量：环境变量在命令行没有指定该变量时会成为该变量的默认
+值,可以通过export，unexport来为makefile中运行的shell命令设置或者清除环境
+变量。</li>
+</ul></li>
 </ol>
 </div>
 </div>

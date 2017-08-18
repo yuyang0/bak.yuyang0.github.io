@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-02-15 Wed 21:24 -->
+<!-- 2017-08-18 Fri 22:14 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>计算机网络</title>
@@ -291,6 +291,7 @@ for the JavaScript code in this tag.
 <li><a href="#orgc7e0a91">https</a></li>
 </ul>
 </li>
+<li><a href="#org4e23d1d">DNS</a></li>
 <li><a href="#org2d8d44f">网络设备</a></li>
 <li><a href="#org771c551">抓包工具</a>
 <ul>
@@ -668,6 +669,19 @@ rwnd = RcvBuffer - (lastByteRcvd - lastByteRead)
 通信，这样gfw也就可以解密你的https请求了</li>
 </ol>
 </div>
+</div>
+</div>
+<div id="outline-container-org4e23d1d" class="outline-2">
+<h2 id="org4e23d1d">DNS</h2>
+<div class="outline-text-2" id="text-org4e23d1d">
+<ol class="org-ol">
+<li>NS记录用来将一个subdomain授权给其它的dns server管理</li>
+<li>CNAME记录不能与其它记录共存</li>
+<li>SOA和CNAME记录对同一个name只能有一条。</li>
+<li>TXT可以指定多条记录，每一条记录内部又可以指定多条字符串。在dns包中每一个字符
+串都是1byte存放字符串的长度，接着跟着字符串的长度，字符串不需要以0结尾。</li>
+<li>DNS包中的authority section只能放NS记录</li>
+</ol>
 </div>
 </div>
 <div id="outline-container-org2d8d44f" class="outline-2">

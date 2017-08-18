@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-14 Mon 23:08 -->
+<!-- 2017-08-18 Fri 22:20 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>线性代数</title>
@@ -284,7 +284,24 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#org98432fa">Symbols</a></li>
 <li><a href="#org3aa26e3">Concepts</a></li>
-<li><a href="#orgf9e3c94">线性方程组</a></li>
+<li><a href="#orgf9e3c94">线性方程组</a>
+<ul>
+<li><a href="#org2f11371">高斯-若尔当消元法</a></li>
+<li><a href="#orgccedb05">置换矩阵</a></li>
+</ul>
+</li>
+<li><a href="#org8feae32">矩阵</a>
+<ul>
+<li><a href="#org601645a">矩阵的乘法</a>
+<ul>
+<li><a href="#org5f3a101">单元素</a></li>
+<li><a href="#org3ecdae6">行的线性组合</a></li>
+<li><a href="#org708795b">列的线性组合</a></li>
+<li><a href="#org6f5d913">分块矩阵</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#orge9d3d4d">向量空间</a>
 <ul>
 <li><a href="#orgc71d600">四个子空间</a></li>
@@ -386,7 +403,98 @@ T1是坐标系 I下的变换，而T2是坐标系P下面的变换, 依次将 \(P,
 </div>
 <div id="outline-container-orgf9e3c94" class="outline-2">
 <h2 id="orgf9e3c94">线性方程组</h2>
+<div class="outline-text-2" id="text-orgf9e3c94">
+</div><div id="outline-container-org2f11371" class="outline-3">
+<h3 id="org2f11371">高斯-若尔当消元法</h3>
+<div class="outline-text-3" id="text-org2f11371">
+\begin{equation*}
+  \begin{bmatrix} A I \end{bmatrix}
+  \rightarrow
+  \begin{bmatrix}I A^{-1} \end{bmatrix}
+\end{equation*}
+
+<p>
+通过高斯消元法来将A变换为I，这样就得到了A的逆。
+</p>
 </div>
+</div>
+<div id="outline-container-orgccedb05" class="outline-3">
+<h3 id="orgccedb05">置换矩阵</h3>
+<div class="outline-text-3" id="text-orgccedb05">
+<p>
+这些矩阵可以用来交换矩阵的行, 重要性质： \(AA^T=I\)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org8feae32" class="outline-2">
+<h2 id="org8feae32">矩阵</h2>
+<div class="outline-text-2" id="text-org8feae32">
+</div><div id="outline-container-org601645a" class="outline-3">
+<h3 id="org601645a">矩阵的乘法</h3>
+<div class="outline-text-3" id="text-org601645a">
+</div><div id="outline-container-org5f3a101" class="outline-4">
+<h4 id="org5f3a101">单元素</h4>
+<div class="outline-text-4" id="text-org5f3a101">
+<p>
+乘积的第i行第j个元素是A的第i行乘以B的第j行。
+</p>
+\begin{equation*}
+  c_{ij} = \sum_{k=1}^k a_{ik}b_{kj}
+\end{equation*}
+</div>
+</div>
+
+<div id="outline-container-org3ecdae6" class="outline-4">
+<h4 id="org3ecdae6">行的线性组合</h4>
+<div class="outline-text-4" id="text-org3ecdae6">
+\begin{equation*}
+  \begin{bmatrix} a_1 a_2 \dots a_n \end{bmatrix}
+  \begin{bmatrix} R_1 \\ R_2 \\ \vdots \\ R_n \end{bmatrix}
+  =
+  \begin{bmatrix} a_1R_1 \\ + \\ a_2R_2 \\ + \\ \vdots \\ a_nR_n \end{bmatrix}
+\end{equation*}
+
+<p>
+所以对于 AB=C 可以这样理解： C的每一行都是A的对应行乘以B，所以A的第一行作为
+系数对B的每一行做线性组合的得到C的第一行，其他的行依次类推
+</p>
+</div>
+</div>
+
+<div id="outline-container-org708795b" class="outline-4">
+<h4 id="org708795b">列的线性组合</h4>
+<div class="outline-text-4" id="text-org708795b">
+\begin{equation*}
+  \begin{bmatrix} C_1 C_2 \dots C_n \end{bmatrix}
+  \begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{bmatrix}
+  =
+  \begin{bmatrix}a_1C_1 + a_2C_2 + \dots + a_nC_n \end{bmatrix}
+\end{equation*}
+
+<p>
+所以对于 AB=C 可以这样理解： C的每一列都是A乘以B的对应列，所以B的第一列作为
+系数对A的每一列做线性组合的得到C的第一列，其他的列依次类推
+</p>
+</div>
+</div>
+<div id="outline-container-org6f5d913" class="outline-4">
+<h4 id="org6f5d913">分块矩阵</h4>
+<div class="outline-text-4" id="text-org6f5d913">
+<p>
+可以从分块矩阵的角度理解矩阵乘法, 规则和单元素时很类似，也是行乘以列
+</p>
+\begin{equation*}
+  \begin{bmatrix} A_{11} A_{12} \\ A_{21} A_{22} \end{bmatrix}
+  \begin{bmatrix} B_{11} \\ B_{21} \end{bmatrix}
+  =
+  \begin{bmatrix}A_{11}B_{11} + A_{12}B_{21} \\ A_{21}B_{11} + A_{22}B_{21} \end{bmatrix}
+\end{equation*}
+</div>
+</div>
+</div>
+</div>
+
 <div id="outline-container-orge9d3d4d" class="outline-2">
 <h2 id="orge9d3d4d">向量空间</h2>
 <div class="outline-text-2" id="text-orge9d3d4d">
@@ -400,8 +508,35 @@ T1是坐标系 I下的变换，而T2是坐标系P下面的变换, 依次将 \(P,
 </div><div id="outline-container-orgca22cee" class="outline-3">
 <h3 id="orgca22cee">投影与最小二乘</h3>
 <div class="outline-text-3" id="text-orgca22cee">
+<p>
+投影矩阵是下面的公式
+</p>
 \begin{equation*}
   P = A(A^TA)^{-1}A^T
+\end{equation*}
+
+<p>
+因为A很多时候是不可逆的比如A不是方阵，所以 \((A^TA)^{-1}\) 是不能进一步化简的，
+如果A可逆，那么最终的结果就是 I,也就是说投影是它自身，这是符合几何上的直觉的.同
+时上面的公式有一个前提就是 \(A^TA\) 必须是可逆的，可以证明只要A的列向量是线性无
+关的，那么就是可逆的,证明如下：
+</p>
+\begin{equation*}
+  (A^TA)x = 0  \\
+  x^T(A^TA)x = 0 \\
+  (Ax)^TAx = 0   \\
+  Ax = 0
+\end{equation*}
+
+<p>
+证明的思路就是：一个矩阵可逆也就意味它的线性齐次方程组只有零解，最重要的一步是方程两边乘以 \(x^T\)
+</p>
+
+<p>
+如果A的列向量是标准正交的，那么
+</p>
+\begin{equation*}
+  P = AA^T
 \end{equation*}
 </div>
 </div>
@@ -525,7 +660,8 @@ x就是特征向量,\(\lambda\) 就是特征值, 他们可以使用下式来计�
 \end{equation*}
 
 <p>
-这个式子就是特征方程
+这个式子就是特征方程, 也就是说 \(A-\lambda I\) 的列必须时线性相关的，那么如果A是一
+个三角矩阵那么特征值就是A对角线上的元素。
 </p>
 
 \begin{equation*}

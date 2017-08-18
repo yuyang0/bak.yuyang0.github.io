@@ -3,7 +3,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
       <loc>https://yuyang0.github.io/sitemap.html</loc>
-      <lastmod>2017-02-15</lastmod>
+      <lastmod>2017-08-18</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -135,7 +135,7 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/c-dev-skills.html</loc>
-      <lastmod>2016-06-09</lastmod>
+      <lastmod>2017-08-16</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -214,6 +214,12 @@
 <url>
       <loc>https://yuyang0.github.io/notes/php.html</loc>
       <lastmod>2016-06-09</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+<url>
+      <loc>https://yuyang0.github.io/notes/pktgen.html</loc>
+      <lastmod>2017-06-25</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -356,6 +362,12 @@
       <priority>0.5</priority>
    </url>
 <url>
+      <loc>https://yuyang0.github.io/notes/architecture.html</loc>
+      <lastmod>2017-06-25</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+<url>
       <loc>https://yuyang0.github.io/notes/information-theory.html</loc>
       <lastmod>2016-06-09</lastmod>
       <changefreq>weekly</changefreq>
@@ -393,13 +405,13 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/linear-algebra.html</loc>
-      <lastmod>2016-08-11</lastmod>
+      <lastmod>2017-08-18</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
 <url>
       <loc>https://yuyang0.github.io/notes/computer-network.html</loc>
-      <lastmod>2017-01-01</lastmod>
+      <lastmod>2017-02-25</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -417,13 +429,13 @@
    </url>
 <url>
       <loc>https://yuyang0.github.io/sitemap.html</loc>
-      <lastmod>2017-02-15</lastmod>
+      <lastmod>2017-08-18</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
 <url>
       <loc>https://yuyang0.github.io/tags.html</loc>
-      <lastmod>2016-12-10</lastmod>
+      <lastmod>2017-08-18</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>

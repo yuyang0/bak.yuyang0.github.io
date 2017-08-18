@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-08-18 Fri 22:14 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pktgen教程与代码分析</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="static/css/main.css"/>
+<link rel="shortcut icon" href="static/img/favicon.ico" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="header">
+      <div class="inner">
+        <h1 id="site-title"><a href="/"> 编码者言 </a></h1>
+        <div>
+          <a href="###" id="site-nav-btn">菜单</a>
+          <ul id="site-nav" class="vertical-nav mobi-hid">
+            <li> <a href="/">Home</a></li>
+            <li> <a href="/about.html">About</a></li>
+
+            <li> <a href="/tags.html">Tags</a></li>
+
+            <li> <a href="/atom.xml">RSS</a></li>
+          </ul>
+
+          <form id="site-search" method="get" action="https://google.com/search">
+            <input type="hidden" name="q" value="site:yuyang0.github.io" />
+            <input type="text" name="q" placeholder="Search..." />
+            <button class="btn-search" type="submit">Search</button>
+          </form>
+          <div style="clear:both;"> </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div id="content">
+<h1 class="title">Pktgen教程与代码分析</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org3940b1b">基本介绍</a></li>
+<li><a href="#org236357d">教程</a>
+<ul>
+<li><a href="#orgbc9d169">flow</a></li>
+</ul>
+</li>
+<li><a href="#org7b74c75">源码分析</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3940b1b" class="outline-2">
+<h2 id="org3940b1b">基本介绍</h2>
+<div class="outline-text-2" id="text-org3940b1b">
+<p>
+Pktgen是一个高性能的发包工具，最开始是在内核中实现的，后来在dpdk平台也实现了。
+</p>
+</div>
+</div>
+<div id="outline-container-org236357d" class="outline-2">
+<h2 id="org236357d">教程</h2>
+<div class="outline-text-2" id="text-org236357d">
+<p>
+pktgen官方的文档比较简单，这里对其做一些补充
+</p>
+</div>
+<div id="outline-container-orgbc9d169" class="outline-3">
+<h3 id="orgbc9d169">flow</h3>
+<div class="outline-text-3" id="text-orgbc9d169">
+<p>
+flow可以看做时一系列的包，每一个包都需要设置一些参数，比如mac地址，ip， tcp，
+udp的端口等等 flow根据设置的方式以及命令 的不同，flow分为三种。
+</p>
+
+<ol class="org-ol">
+<li>single: 该flow的参数时通过 <code>set</code> 系列命令指定的,这种设定意味着发的包都是一样的。</li>
+<li><p>
+seq: 参数是通过seq命令指定的，和single的区别是你可以指定多种不同类型的包
+(最多16种), 比如：
+</p>
+<pre class="example">
+seq 0 all 0000:4455:6677 0000:1234:5678 10.11.0.1 10.10.0.1/16 5 6 ipv4 udp 1 128 0
+seq 1 all 0000:6677:4455 1234:0000:5678 10.11.0.1 10.10.0.1/16 5 6 ipv4 udp 1 128 0
+set all seq_cnt 2
+</pre>
+<p>
+这就指定了两种不同类型的包，也就是说pktgen可以发很多包，但包的种类只有两种，
+注意port的 <code>seq_cnt</code> 必须要设置正确
+</p></li>
+<li>range: 参数是通过range命令设置的，它最大的好处时包的参数比如ip，port可以根
+据你设置的start,max,min,inc参数来变动，这样包的种类就比seq要丰富得多。</li>
+</ol>
+
+<p>
+<b>这三种flow是互斥的，也就是同一你只能使用一种</b>.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org7b74c75" class="outline-2">
+<h2 id="org7b74c75">源码分析</h2>
+<div class="outline-text-2" id="text-org7b74c75">
+<p>
+在源码这一层，每一个flow的参数都是通过一个 <code>pktgen_seq_t=来表示的。每一个port都会有一个 =pktgen_seq_t</code> 的数组 <code>seq_pkt</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #F0DFAF; font-weight: bold;">enum</span><span style="color: #DCDCCC;">{</span>
+    <span style="color: #DFAF8F;">NUM_SEQ_PKTS</span>            = <span style="color: #BFEBBF;">16</span>, <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Number of buffers to support in sequence </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #DFAF8F;">NUM_EXTRA_TX_PKTS</span>       = <span style="color: #BFEBBF;">8</span>,  <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Number of extra TX packets </span><span style="color: #5F7F5F;">*/</span>
+
+    <span style="color: #DFAF8F;">FIRST_SEQ_PKT</span>           = <span style="color: #BFEBBF;">0</span>,
+    <span style="color: #DFAF8F;">SINGLE_PKT</span>              = <span style="color: #BFEBBF;">(</span>FIRST_SEQ_PKT + NUM_SEQ_PKTS<span style="color: #BFEBBF;">)</span>, <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">16 </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #DFAF8F;">PING_PKT</span>                = <span style="color: #BFEBBF;">(</span>SINGLE_PKT + <span style="color: #BFEBBF;">1</span><span style="color: #BFEBBF;">)</span>,     <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">17 </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #DFAF8F;">RANGE_PKT</span>               = <span style="color: #BFEBBF;">(</span>PING_PKT + <span style="color: #BFEBBF;">1</span><span style="color: #BFEBBF;">)</span>,     <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">18 </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #DFAF8F;">DUMP_PKT</span>                = <span style="color: #BFEBBF;">(</span>RANGE_PKT + <span style="color: #BFEBBF;">1</span><span style="color: #BFEBBF;">)</span>,      <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">19 </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #DFAF8F;">EXTRA_TX_PKT</span>            = <span style="color: #BFEBBF;">(</span>DUMP_PKT + <span style="color: #BFEBBF;">1</span><span style="color: #BFEBBF;">)</span>,     <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">20 </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #DFAF8F;">NUM_TOTAL_PKTS</span>          = <span style="color: #BFEBBF;">(</span>EXTRA_TX_PKT + NUM_EXTRA_TX_PKTS<span style="color: #BFEBBF;">)</span>,
+<span style="color: #DCDCCC;">}</span>;
+
+<span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">port_info_s</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #7CB8BB;">uint16_t</span> <span style="color: #DFAF8F;">pid</span>;   <span style="color: #5F7F5F;">/**</span><span style="color: #7F9F7F;">&lt; Port ID value </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #7CB8BB;">rte_atomic32_t</span> <span style="color: #DFAF8F;">port_flags</span>;  <span style="color: #5F7F5F;">/**</span><span style="color: #7F9F7F;">&lt; Special send flags for ARP and other </span><span style="color: #5F7F5F;">*/</span>
+
+    <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">Packet buffer space for traffic generator, shared for all packets per port </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #7CB8BB;">uint16_t</span> <span style="color: #DFAF8F;">seqIdx</span>;    <span style="color: #5F7F5F;">/**</span><span style="color: #7F9F7F;">&lt; Current Packet sequence index 0 to NUM_SEQ_PKTS </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #7CB8BB;">uint16_t</span> <span style="color: #DFAF8F;">seqCnt</span>;    <span style="color: #5F7F5F;">/**</span><span style="color: #7F9F7F;">&lt; Current packet sequence max count </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #7CB8BB;">uint16_t</span> <span style="color: #DFAF8F;">prime_cnt</span>;   <span style="color: #5F7F5F;">/**</span><span style="color: #7F9F7F;">&lt; Set the number of packets to send in a prime command </span><span style="color: #5F7F5F;">*/</span>
+
+    <span style="color: #7CB8BB;">pkt_seq_t</span> *<span style="color: #DFAF8F;">seq_pkt</span>;   <span style="color: #5F7F5F;">/**</span><span style="color: #7F9F7F;">&lt; Sequence of packets seq_pkt[NUM_SEQ_PKTS]=default packet </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #7CB8BB;">range_info_t</span> <span style="color: #DFAF8F;">range</span>;   <span style="color: #5F7F5F;">/**</span><span style="color: #7F9F7F;">&lt; Range Information </span><span style="color: #5F7F5F;">*/</span>
+
+    <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">q_info</span> <span style="color: #BFEBBF;">{</span>
+        <span style="color: #7CB8BB;">rte_atomic32_t</span> <span style="color: #DFAF8F;">flags</span>;   <span style="color: #5F7F5F;">/**</span><span style="color: #7F9F7F;">&lt; Special send flags for ARP and other </span><span style="color: #5F7F5F;">*/</span>
+        <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">mbuf_table</span> <span style="color: #DFAF8F;">tx_mbufs</span>; <span style="color: #5F7F5F;">/**</span><span style="color: #7F9F7F;">&lt; mbuf holder for transmit packets </span><span style="color: #5F7F5F;">*/</span>
+        <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">rte_mempool</span> *<span style="color: #DFAF8F;">rx_mp</span>;  <span style="color: #5F7F5F;">/**</span><span style="color: #7F9F7F;">&lt; Pool pointer for port RX mbufs </span><span style="color: #5F7F5F;">*/</span>
+        <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">rte_mempool</span> *<span style="color: #DFAF8F;">tx_mp</span>;  <span style="color: #5F7F5F;">/**</span><span style="color: #7F9F7F;">&lt; Pool pointer for default TX mbufs </span><span style="color: #5F7F5F;">*/</span>
+        <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">rte_mempool</span> *<span style="color: #DFAF8F;">range_mp</span>; <span style="color: #5F7F5F;">/**</span><span style="color: #7F9F7F;">&lt; Pool pointer for port Range TX mbufs </span><span style="color: #5F7F5F;">*/</span>
+        <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">rte_mempool</span> *<span style="color: #DFAF8F;">seq_mp</span>; <span style="color: #5F7F5F;">/**</span><span style="color: #7F9F7F;">&lt; Pool pointer for port Sequence TX mbufs </span><span style="color: #5F7F5F;">*/</span>
+        <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">rte_mempool</span> *<span style="color: #DFAF8F;">pcap_mp</span>;  <span style="color: #5F7F5F;">/**</span><span style="color: #7F9F7F;">&lt; Pool pointer for port PCAP TX mbufs </span><span style="color: #5F7F5F;">*/</span>
+        <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">rte_mempool</span> *<span style="color: #DFAF8F;">special_mp</span>; <span style="color: #5F7F5F;">/**</span><span style="color: #7F9F7F;">&lt; Pool pointer for special TX mbufs </span><span style="color: #5F7F5F;">*/</span>
+        <span style="color: #7CB8BB;">uint64_t</span> <span style="color: #DFAF8F;">tx_cnt</span>, <span style="color: #DFAF8F;">rx_cnt</span>;
+    <span style="color: #BFEBBF;">}</span> <span style="color: #DFAF8F;">q</span><span style="color: #BFEBBF;">[</span>NUM_Q<span style="color: #BFEBBF;">]</span>;
+
+<span style="color: #DCDCCC;">}</span> <span style="color: #7CB8BB;">port_info_t</span>;
+</pre>
+</div>
+<p>
+<code>seq_pkt</code> 的大小就是 <code>NUM_TOTAL_PKTS</code> 指定的。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #F0DFAF; font-weight: bold;">static</span> __inline__ <span style="color: #7CB8BB;">void</span>
+<span style="color: #93E0E3;">pktgen_setup_cb</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">rte_mempool</span> *<span style="color: #DFAF8F;">mp</span>,
+                <span style="color: #7CB8BB;">void</span> *<span style="color: #DFAF8F;">opaque</span>, <span style="color: #7CB8BB;">void</span> *<span style="color: #DFAF8F;">obj</span>, <span style="color: #7CB8BB;">unsigned</span> <span style="color: #7CB8BB;">obj_idx</span> <span style="color: #DFAF8F;">__rte_unused</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">{</span>
+    <span style="color: #7CB8BB;">pkt_data_t</span> *<span style="color: #DFAF8F;">data</span> = <span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">pkt_data_t</span> *<span style="color: #BFEBBF;">)</span>opaque;
+    <span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">rte_mbuf</span> *<span style="color: #DFAF8F;">m</span> = <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">rte_mbuf</span> *<span style="color: #BFEBBF;">)</span>obj;
+    <span style="color: #7CB8BB;">port_info_t</span> *<span style="color: #DFAF8F;">info</span>;
+    <span style="color: #7CB8BB;">pkt_seq_t</span> *<span style="color: #DFAF8F;">pkt</span>;
+    <span style="color: #7CB8BB;">uint16_t</span> <span style="color: #DFAF8F;">qid</span>;
+
+    info = data-&gt;info;
+    qid = data-&gt;qid;
+
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>mp == info-&gt;q<span style="color: #D0BF8F;">[</span>qid<span style="color: #D0BF8F;">]</span>.tx_mp<span style="color: #BFEBBF;">)</span>
+        pkt = &amp;info-&gt;seq_pkt<span style="color: #BFEBBF;">[</span>SINGLE_PKT<span style="color: #BFEBBF;">]</span>;
+    <span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>mp == info-&gt;q<span style="color: #D0BF8F;">[</span>qid<span style="color: #D0BF8F;">]</span>.range_mp<span style="color: #BFEBBF;">)</span>
+        pkt = &amp;info-&gt;seq_pkt<span style="color: #BFEBBF;">[</span>RANGE_PKT<span style="color: #BFEBBF;">]</span>;
+    <span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>mp == info-&gt;q<span style="color: #D0BF8F;">[</span>qid<span style="color: #D0BF8F;">]</span>.seq_mp<span style="color: #BFEBBF;">)</span>
+        pkt = &amp;info-&gt;seq_pkt<span style="color: #BFEBBF;">[</span>info-&gt;seqIdx<span style="color: #BFEBBF;">]</span>;
+    <span style="color: #F0DFAF; font-weight: bold;">else</span>
+        pkt = <span style="color: #BFEBBF;">NULL</span>;
+
+    <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">allocate each mbuf and put them on a list to be freed. </span><span style="color: #5F7F5F;">*/</span>
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>mp == info-&gt;q<span style="color: #D0BF8F;">[</span>qid<span style="color: #D0BF8F;">]</span>.tx_mp<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+        pktgen_packet_ctor<span style="color: #D0BF8F;">(</span>info, SINGLE_PKT, -<span style="color: #BFEBBF;">1</span><span style="color: #D0BF8F;">)</span>;
+
+        rte_memcpy<span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span><span style="color: #7CB8BB;">uint8_t</span> *<span style="color: #93E0E3;">)</span>m-&gt;buf_addr + m-&gt;data_off,
+                   <span style="color: #93E0E3;">(</span><span style="color: #7CB8BB;">uint8_t</span> *<span style="color: #93E0E3;">)</span>&amp;pkt-&gt;hdr, MAX_PKT_SIZE<span style="color: #D0BF8F;">)</span>;
+
+        m-&gt;pkt_len  = pkt-&gt;pktSize;
+        m-&gt;data_len = pkt-&gt;pktSize;
+    <span style="color: #BFEBBF;">}</span> <span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>mp == info-&gt;q<span style="color: #D0BF8F;">[</span>qid<span style="color: #D0BF8F;">]</span>.range_mp<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+        pktgen_range_ctor<span style="color: #D0BF8F;">(</span>&amp;info-&gt;range, pkt<span style="color: #D0BF8F;">)</span>;
+        pktgen_packet_ctor<span style="color: #D0BF8F;">(</span>info, RANGE_PKT, -<span style="color: #BFEBBF;">1</span><span style="color: #D0BF8F;">)</span>;
+
+        rte_memcpy<span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span><span style="color: #7CB8BB;">uint8_t</span> *<span style="color: #93E0E3;">)</span>m-&gt;buf_addr + m-&gt;data_off,
+                   <span style="color: #93E0E3;">(</span><span style="color: #7CB8BB;">uint8_t</span> *<span style="color: #93E0E3;">)</span>&amp;pkt-&gt;hdr, MAX_PKT_SIZE<span style="color: #D0BF8F;">)</span>;
+
+        m-&gt;pkt_len  = pkt-&gt;pktSize;
+        m-&gt;data_len = pkt-&gt;pktSize;
+    <span style="color: #BFEBBF;">}</span> <span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>mp == info-&gt;q<span style="color: #D0BF8F;">[</span>qid<span style="color: #D0BF8F;">]</span>.seq_mp<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+        <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>pktgen.is_gui_running<span style="color: #D0BF8F;">)</span>
+            ...
+        <span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #D0BF8F;">{</span>
+            pkt = &amp;info-&gt;seq_pkt<span style="color: #93E0E3;">[</span>info-&gt;seqIdx<span style="color: #93E0E3;">]</span>;
+            pktgen_packet_ctor<span style="color: #93E0E3;">(</span>info, info-&gt;seqIdx, -<span style="color: #BFEBBF;">1</span><span style="color: #93E0E3;">)</span>;
+
+            rte_memcpy<span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span><span style="color: #7CB8BB;">uint8_t</span> *<span style="color: #9FC59F;">)</span>m-&gt;buf_addr + m-&gt;data_off,
+                       <span style="color: #9FC59F;">(</span><span style="color: #7CB8BB;">uint8_t</span> *<span style="color: #9FC59F;">)</span>&amp;pkt-&gt;hdr, MAX_PKT_SIZE<span style="color: #93E0E3;">)</span>;
+
+            m-&gt;pkt_len  = pkt-&gt;pktSize;
+            m-&gt;data_len = pkt-&gt;pktSize;
+
+            pkt = &amp;info-&gt;seq_pkt<span style="color: #93E0E3;">[</span>info-&gt;seqIdx<span style="color: #93E0E3;">]</span>;
+
+            <span style="color: #5F7F5F;">/* </span><span style="color: #7F9F7F;">move to the next packet in the sequence. </span><span style="color: #5F7F5F;">*/</span>
+            <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #93E0E3;">(</span>unlikely<span style="color: #9FC59F;">(</span>++info-&gt;seqIdx &gt;= info-&gt;seqCnt<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+                info-&gt;seqIdx = <span style="color: #BFEBBF;">0</span>;
+        <span style="color: #D0BF8F;">}</span>
+    <span style="color: #BFEBBF;">}</span>
+<span style="color: #DCDCCC;">}</span>
+</pre>
+</div>
+<p>
+pktgen_setup_cb 这个函数对mempool中的每一个packet都会调用一次,它将设置好所有
+需要发出去的包。 根据类型的不同分为三类
+</p>
+<ol class="org-ol">
+<li>single:这个其实很简单，就是根据 <code>seq_pkt[SINGLE_PKT]</code> 中的设置来生成最终的
+包，该包会保存到 <code>seq_pkt[SINGLE_PKT].hdr</code> 中，接着就把这个最终包复制到
+mempool的packet中。</li>
+<li>range: 先要根据port中的range来修改 <code>seq_pkt[RANGE_PKT]</code> 中的设置，接下来就
+和single差不多了，只是生成最终包保存在 <code>seq_pkt[RANGE_PKT].hdr</code> 中</li>
+<li>seq: 和single类似，只是设置信息来自 <code>seq_pkt[port-&gt;seqIdx]</code>,结果也保存在
+<code>seq_pkt[port-&gt;seqeIdx].hdr</code> 中。每运行一次 seqIdx都会加一，这样就可以在你
+设置的所有seq上轮转了。</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div id="disqus_comment">
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        var url_path = window.location.pathname;
+        var disqus_identifier = url_path.substring(url_path.lastIndexOf('/')+1);
+        disqus_identifier? disqus_identifier: 'index';
+
+        var full_url = window.location.href.replace(/^http:/, 'https:');
+        this.page.url = full_url;
+        this.page.identifier = disqus_identifier;
+        // this.page.title = document.title;
+    };
+
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+
+        s.src = '//yuyang.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+<!-- begin footer -->
+<div id="footer">
+  <ul class="links vertical-nav">
+    <li><a href="/sitemap.xml">Sitemap</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    <li><a href="/about.html">About Me</a></li>
+    <li><a class="back-to-top" href="#">Back to Top</a></li>
+  </ul>
+  <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
+  <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
+</div>
+<script src="//apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+	window.jQuery || document.write('<script src="static/js/jquery-2.0.0.min.js"><\/script>');
+	</script>
+<script type="text/javascript" src="static/js/custom.js"></script>
+<!-- end footer -->
+</div>
+</body>
+</html>
