@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-08-18 Fri 22:20 -->
+<!-- 2017-10-08 Sun 21:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>线性代数</title>
@@ -288,6 +288,12 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#org2f11371">高斯-若尔当消元法</a></li>
 <li><a href="#orgccedb05">置换矩阵</a></li>
+<li><a href="#orga6becad">Ax=b 的解</a>
+<ul>
+<li><a href="#org0372f97">算法</a></li>
+<li><a href="#org428f968">解的个数</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#org8feae32">矩阵</a>
@@ -300,10 +306,13 @@ for the JavaScript code in this tag.
 <li><a href="#org6f5d913">分块矩阵</a></li>
 </ul>
 </li>
+<li><a href="#orgfffad53">逆矩阵(非奇异矩阵)</a></li>
 </ul>
 </li>
 <li><a href="#orge9d3d4d">向量空间</a>
 <ul>
+<li><a href="#orgc1080b4">property</a></li>
+<li><a href="#org7f90c77">子空间</a></li>
 <li><a href="#orgc71d600">四个子空间</a></li>
 </ul>
 </li>
@@ -358,8 +367,6 @@ F(x1 + x2) = F(x1) + F(x2)
 很显然F应该是一个乘以常数的操作, 因为只有y=ax时, y与x才是线性关系.实际上我
 们可以推广到多维的情况y=a1x1+a2x2+a3x3, 那么y与(x1, x2, x3)^T 是线性关系, 那
 么(a1, a2, a3) 就是线性操作</li>
-<li>逆矩阵(非奇异矩阵)</li>
-<li>投影矩阵</li>
 <li><p>
 相似矩阵
 </p>
@@ -379,25 +386,6 @@ F(x1 + x2) = F(x1) + F(x2)
 <p>
 T1是坐标系 I下的变换，而T2是坐标系P下面的变换, 依次将 \(P,T2,P^{-1}\) 应用到A就会得到B。
 </p></li>
-
-<li>向量空间(\(V\)): 一个在 <b>加法</b> 以及 <b>标量乘法</b> 上 <b>闭合</b> 的集合, 并且该集合
-要满足以下性质:
-<ol class="org-ol">
-<li>交换律: 对所有的 \(u, v \in V\) 都有 \(u+v = v+u\).</li>
-<li>结合律: 对所有的 \(u, v, w \in V\) 都有 \((u+v) + w = u + (v+w)\)</li>
-<li>加法单位元: 存在一个元素 \(0 \in V\), 使得对所有的 \(v \in V\) 都有 \(v+0=v\)</li>
-<li>加法逆: 对所有的 \(v \in V\), 都存在 \(w \in V\) 使得 \(v + w = 0\).</li>
-<li>乘法单位元: 对所有的 \(v \in V\), 都有 \(1v = v\).</li>
-<li>分配性质: 对所有的 \(a, b \in F, u,v \in V\) 都有
-\(a(u+v) = au+av, (a+b)u = au + bu\)</li>
-</ol></li>
-<li>子空间(\(U\)): \(U\) 是 \(V\) 的子空间, 那么意味着: \(U \subseteq V\), 且在加法以及标
-量乘法上闭合:
-<ol class="org-ol">
-<li>\(0 \in U\)</li>
-<li>if \(u, v \in U\) then \(u+v \in U\)</li>
-<li>if \(a \in F, u \in U\) then \(au \in U\)</li>
-</ol></li>
 </ol>
 </div>
 </div>
@@ -424,6 +412,41 @@ T1是坐标系 I下的变换，而T2是坐标系P下面的变换, 依次将 \(P,
 <p>
 这些矩阵可以用来交换矩阵的行, 重要性质： \(AA^T=I\)
 </p>
+</div>
+</div>
+<div id="outline-container-orga6becad" class="outline-3">
+<h3 id="orga6becad">Ax=b 的解</h3>
+<div class="outline-text-3" id="text-orga6becad">
+</div><div id="outline-container-org0372f97" class="outline-4">
+<h4 id="org0372f97">算法</h4>
+<div class="outline-text-4" id="text-org0372f97">
+<p>
+变换为梯形矩阵，接着将所有的自由变量设为0，找到特解，接着再求 Ax=0 的解，这
+样就可以通过向量形式把所有的解都表示出来。
+</p>
+\begin{equation*}
+  x = x_p + c_1x_1 + ... + c_nx_n
+\end{equation*}
+
+<p>
+\(x_p\) 是特解， \(c_n\) 是任意实数， \(x_n\) 是 \(Ax=0\) 的解
+</p>
+</div>
+</div>
+<div id="outline-container-org428f968" class="outline-4">
+<h4 id="org428f968">解的个数</h4>
+<div class="outline-text-4" id="text-org428f968">
+<p>
+A 是 m×n 的矩阵，且 A 的轶是 r，那么：
+</p>
+<ol class="org-ol">
+<li>m=n=r 则有一个解</li>
+<li>r = n &lt; m 则 0 个或者 1 个解, 因为高斯消元之后下面肯定有0行。实际就是方程
+比未知数多。</li>
+<li>r = m &lt; n 则有无穷多个解, 高斯消元之后下面肯定没有0行,实际上是未知数比方程多。</li>
+<li>r &lt; n 且 r &lt; m 则 0 个解或者无穷多个解</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
@@ -493,13 +516,69 @@ T1是坐标系 I下的变换，而T2是坐标系P下面的变换, 依次将 \(P,
 </div>
 </div>
 </div>
+
+<div id="outline-container-orgfffad53" class="outline-3">
+<h3 id="orgfffad53">逆矩阵(非奇异矩阵)</h3>
+<div class="outline-text-3" id="text-orgfffad53">
+<p>
+只有方阵才有逆矩阵，矩阵A可逆意味着矩阵的列向量是线性无关的
+</p>
+</div>
+</div>
 </div>
 
 <div id="outline-container-orge9d3d4d" class="outline-2">
 <h2 id="orge9d3d4d">向量空间</h2>
 <div class="outline-text-2" id="text-orge9d3d4d">
-</div><div id="outline-container-orgc71d600" class="outline-3">
+<p>
+向量空间(\(V\)): 一个在 <b>加法</b> 以及 <b>标量乘法</b> 上 <b>闭合</b> 的集合。
+</p>
+</div>
+<div id="outline-container-orgc1080b4" class="outline-3">
+<h3 id="orgc1080b4">property</h3>
+<div class="outline-text-3" id="text-orgc1080b4">
+<p>
+向量空间满足以下性质:
+</p>
+<ol class="org-ol">
+<li>交换律: 对所有的 \(u, v \in V\) 都有 \(u+v = v+u\).</li>
+<li>结合律: 对所有的 \(u, v, w \in V\) 都有 \((u+v) + w = u + (v+w)\)</li>
+<li>加法单位元: 存在一个元素 \(0 \in V\), 使得对所有的 \(v \in V\) 都有 \(v+0=v\)</li>
+<li>加法逆: 对所有的 \(v \in V\), 都存在 \(w \in V\) 使得 \(v + w = 0\).</li>
+<li>乘法单位元: 对所有的 \(v \in V\), 都有 \(1v = v\).</li>
+<li>分配性质: 对所有的 \(a, b \in F, u,v \in V\) 都有
+\(a(u+v) = au+av, (a+b)u = au + bu\)</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org7f90c77" class="outline-3">
+<h3 id="org7f90c77">子空间</h3>
+<div class="outline-text-3" id="text-org7f90c77">
+<p>
+子空间(\(U\)): \(U\) 是 \(V\) 的子空间, 那么意味着: \(U \subseteq V\), 且在加法以及标
+量乘法上闭合:
+</p>
+<ol class="org-ol">
+<li>\(0 \in U\)</li>
+<li>if \(u, v \in U\) then \(u+v \in U\)</li>
+<li>if \(a \in F, u \in U\) then \(au \in U\)</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgc71d600" class="outline-3">
 <h3 id="orgc71d600">四个子空间</h3>
+<div class="outline-text-3" id="text-orgc71d600">
+<p>
+A时m×n的矩阵，那么则存在四个子空间：列空间(\(C(A)\)), 行空间(\(C(A^T)\)), 零空间
+(\(N(A)\)), 左零空间(\(N(A^T)\)). 它们有如下性质：
+</p>
+<ol class="org-ol">
+<li>列空间和左零空间正交，行空间和零空间正交，这从向量的乘积可以比较容易的得出</li>
+<li>列空间与行空间的维数相同，都等于A的轶r</li>
+<li>零空间的维数时 n-r</li>
+<li>左零空间的维数时 m-r</li>
+</ol>
+</div>
 </div>
 </div>
 <div id="outline-container-org19d6093" class="outline-2">
@@ -533,7 +612,7 @@ T1是坐标系 I下的变换，而T2是坐标系P下面的变换, 依次将 \(P,
 </p>
 
 <p>
-如果A的列向量是标准正交的，那么
+如果A的列向量是标准正交的,也就是说 \(A^TA = I\) ，那么
 </p>
 \begin{equation*}
   P = AA^T
@@ -665,7 +744,8 @@ x就是特征向量,\(\lambda\) 就是特征值, 他们可以使用下式来计�
 </p>
 
 \begin{equation*}
-  S^{-1}AS = \Lambda
+  AS = S \Lambda  \\
+  A = S \Lambda S^{-1}  \\
   A^n = S \Lambda^n S^{-1}
 \end{equation*}
 
