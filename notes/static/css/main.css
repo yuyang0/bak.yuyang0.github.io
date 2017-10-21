@@ -15,11 +15,6 @@ body{
     width: 60%;
     margin: 0 auto;
 }
-/* duoshuo */
-#ds-thread{
-    width: 60%;
-    margin: 0 auto;
-}
 
 a:focus,
 a:active,
@@ -366,7 +361,7 @@ thead tr:hover, thead tr{
     background-color: rgb(222, 222, 222);
 }
 
-#site-nav li.current-page a
+.current-page a
 {
     background: #d52349;
     color: #fff !important;
@@ -597,6 +592,17 @@ thead tr:hover, thead tr{
         max-width: 100%;
         min-width: 0;
     }
+    #content, #tag-cloud-wrapper{
+        margin: 1em 0;
+    }
+    #disqus_comment{
+        width: 90%;
+        margin: 0 auto;
+    }
+    /* hidden back to top icon */
+    #fixed-back-to-top{
+        margin-right: -10000px;
+    }
 }
 
 @media only screen and (max-width: 640px) {
@@ -650,12 +656,16 @@ thead tr:hover, thead tr{
         float: none;
         border-top: 1px solid #444
     }
-    #site-nav li a{
+    #site-nav li a {
+        border-radius:0;
+        margin:0;
         font-size: 12px;
     }
-    #content, #tag-cloud-wrapper{
-        margin: 5%;
+
+    .current-page a {
+        background: rgb(200, 200, 200);
     }
+
     #footer{
         display: none;
     }

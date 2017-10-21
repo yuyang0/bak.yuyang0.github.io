@@ -53,3 +53,9 @@ $(function(){
     $homeLi.addClass('current-page');
   }
 })
+
+$(function() {
+  $("#site-nav-btn").click(function(){
+    $("#site-nav").toggleClass("mobi-hid");
+  });
+})
