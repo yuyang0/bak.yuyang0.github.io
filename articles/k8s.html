@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2018-06-22 五 12:48 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kubernetes在极验的应用与实践</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Yu Yang" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="static/css/main.css"/>
+<link rel="shortcut icon" href="static/img/favicon.ico" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="header">
+      <div class="inner">
+        <h1 id="site-title"><a href="/"> 编码者言 </a></h1>
+        <div>
+          <a href="###" id="site-nav-btn">菜单</a>
+          <ul id="site-nav" class="vertical-nav mobi-hid">
+            <li> <a href="/">Home</a></li>
+            <li> <a href="/about.html">About</a></li>
+
+            <li> <a href="/tags.html">Tags</a></li>
+
+            <li> <a href="/atom.xml">RSS</a></li>
+          </ul>
+
+          <form id="site-search" method="get" action="https://google.com/search">
+            <input type="hidden" name="q" value="site:yuyang0.github.io" />
+            <input type="text" name="q" placeholder="Search..." />
+            <button class="btn-search" type="submit">Search</button>
+          </form>
+          <div style="clear:both;"> </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div id="content">
+<h1 class="title">Kubernetes在极验的应用与实践</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgb3436b6">背景</a></li>
+<li><a href="#org159dad2">PAAS</a>
+<ul>
+<li><a href="#org5d4eccf">Architecture</a></li>
+<li><a href="#org4dadd06">极验内部工作流</a></li>
+</ul>
+</li>
+<li><a href="#org80d8b3c">Job</a></li>
+<li><a href="#org35f4398">总结</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb3436b6" class="outline-2">
+<h2 id="orgb3436b6">背景</h2>
+<div class="outline-text-2" id="text-orgb3436b6">
+<p>
+最近四年，容器技术的快速发展给系统平台技术带来了深远的影响，随着kubernetes确立起
+编排领域的霸主地位，整个容器生态也日渐明朗：容器引擎领域docker仍然占据主导地位，
+编排领域kubernetes一统天下，正是基于这种背景，而且随着极验的快速发展，原有的技术
+平台和运维平台已经无法很好的满足需求，所以最终我们引入了kubernetes。通过
+kubernetes我们完整的统一了内部的技术平台, 下面从两方面来介绍kubernetes在极验的应
+用。
+</p>
+</div>
+</div>
+<div id="outline-container-org159dad2" class="outline-2">
+<h2 id="org159dad2">PAAS</h2>
+<div class="outline-text-2" id="text-org159dad2">
+<p>
+PAAS作为IAAS和SAAS的中间层，虽然在公有云市场一直不温不火，但是在内部而言, PAAS有
+其不可替代的作用：
+</p>
+<ol class="org-ol">
+<li>它可以极大的降低应用上线的难度，保证应用开发人员在没有运维协助的情况下上线，升级，回滚</li>
+<li>它可以统一整个工作流</li>
+<li>降低系统管理的难度。</li>
+</ol>
+<p>
+当引入kubernetes后，在其上构建一个PAAS就成了一个很自然的想法，通过一系列的调研，
+最终我们发现现存的PAAS大多大而全，但是确实太重，不太符合我们的需要，而且考虑到这
+类系统根据内部的需求肯定要做一定的调整，最终我们决定自己开发。
+</p>
+</div>
+<div id="outline-container-org5d4eccf" class="outline-3">
+<h3 id="org5d4eccf">Architecture</h3>
+<div class="outline-text-3" id="text-org5d4eccf">
+<p>
+PAAS的简化的系统结构图如下（有一些组件做了精简）
+<img src="static/img/kae-architecture.png" alt="kae-architecture.png" />
+</p>
+
+<p>
+PAAS主要提供了两个操作接口：CLI和WEB，CLI的功能全面，WEB界面对有些功能做了精简
+（主要是为了避免手残误操作）。下面是一个项目的截图
+<img src="static/img/kae-app-web-ui.png" alt="kae-app-web-ui.png" />
+</p>
+
+<p>
+通过这个界面可以很方便做一些常规操作，比如部署，回滚，伸缩，查看审计日志等等。
+</p>
+</div>
+</div>
+<div id="outline-container-org4dadd06" class="outline-3">
+<h3 id="org4dadd06">极验内部工作流</h3>
+<div class="outline-text-3" id="text-org4dadd06">
+
+<div class="figure">
+<p><img src="static/img/kae-workflow.png" alt="kae-workflow.png" />
+</p>
+</div>
+
+<p>
+开发人员将代码push到gitlab同时打上release tag，gitlab的CI会自动的调用CLI来向PAAS
+注册应用和版本，同时CI也会自动的调用CLI来build对应的版本，这个过程会生成对应的
+docker image，接着应用开发人员就可以在web界面上升级与部署了，当然发现情况不对也
+可以直接在web界面回滚，得益于kubernetes自带的滚动更新支持，整个过程都可以做到对
+服务不产生影响。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org80d8b3c" class="outline-2">
+<h2 id="org80d8b3c">Job</h2>
+<div class="outline-text-2" id="text-org80d8b3c">
+<p>
+这部分最主要的目标其实是支持短时间运行的任务，特别是GPU任务，在极验内部，我们在
+2016年基于mesos开发了一个支持GPU的Scheduler，可以对任务自动的容错和排队，基本能
+满足我们的需求。但是这个有一些缺点，比如因为人力有限，HA部分基本没做，数据持久化
+因为当初的设计原因做的也不是非常好。所以当我们引入kubernetes之后，自然而然就考虑
+把其移植到kubernetes上，得益于kubernetes的强大功能，整个移植过程比较顺利，它同样
+可以通过命令行和web界面操作。它的主要功能有：
+</p>
+<ol class="org-ol">
+<li>任务自动排队</li>
+<li>任务失败会自动重试，次数由用户指定</li>
+<li>可以在web界面或者命令行看到流式的stdout</li>
+<li>可以自动拉取要运行的代码</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org35f4398" class="outline-2">
+<h2 id="org35f4398">总结</h2>
+<div class="outline-text-2" id="text-org35f4398">
+<p>
+通过引入kubernetes以及基于kubernetes的运维工具的开发，最终得到了一个统一的内部平
+台，较好的提高了公司的自动化运维水平。
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div id="disqus_comment">
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        var url_path = window.location.pathname;
+        var disqus_identifier = url_path.substring(url_path.lastIndexOf('/')+1);
+        disqus_identifier? disqus_identifier: 'index';
+
+        var full_url = window.location.href.replace(/^http:/, 'https:');
+        this.page.url = full_url;
+        this.page.identifier = disqus_identifier;
+        // this.page.title = document.title;
+    };
+
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+
+        s.src = '//yuyang.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+<!-- begin footer -->
+<div id="footer">
+  <ul class="links vertical-nav">
+    <li><a href="/sitemap.xml">Sitemap</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    <li><a href="/about.html">About Me</a></li>
+    <li><a class="back-to-top" href="#">Back to Top</a></li>
+  </ul>
+  <span>© 2013 Yu Yang's Blog, Created by org-mode and dropbox</span>
+  <a href="#" class="back-to-top" id="fixed-back-to-top" ></a>
+</div>
+<script src="//apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+	window.jQuery || document.write('<script src="static/js/jquery-2.0.0.min.js"><\/script>');
+	</script>
+<script type="text/javascript" src="static/js/custom.js"></script>
+<!-- end footer -->
+</div>
+</body>
+</html>
