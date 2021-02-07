@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-14 Mon 23:09 -->
+<!-- 2018-06-22 五 12:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MXNET Symbol系统</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -186,7 +187,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -260,30 +261,30 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga15779b">背景知识</a></li>
-<li><a href="#orge9e70f5">Symbol</a>
+<li><a href="#orgd95a25c">背景知识</a></li>
+<li><a href="#orgb0229d1">Symbol</a>
 <ul>
-<li><a href="#orgf3f6ad0">类图</a>
+<li><a href="#org3ae6467">类图</a>
 <ul>
-<li><a href="#orgf21fc71">Symbol</a></li>
-<li><a href="#orgda6a34f">Node</a></li>
-<li><a href="#orga799b84">DataEntry</a></li>
+<li><a href="#org5419120">Symbol</a></li>
+<li><a href="#org74e4050">Node</a></li>
+<li><a href="#orga9abed8">DataEntry</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org9f6c51a">StaticGraph</a>
+<li><a href="#orge37ac0a">StaticGraph</a>
 <ul>
-<li><a href="#orgf923540">类图</a></li>
+<li><a href="#org3bbb614">类图</a></li>
 </ul>
 </li>
-<li><a href="#orgedb9f30">Executor</a></li>
+<li><a href="#org4ebbe22">Executor</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga15779b" class="outline-2">
-<h2 id="orga15779b">背景知识</h2>
-<div class="outline-text-2" id="text-orga15779b">
+<div id="outline-container-orgd95a25c" class="outline-2">
+<h2 id="orgd95a25c">背景知识</h2>
+<div class="outline-text-2" id="text-orgd95a25c">
 <p>
 Mxnet是需要手工构建计算图的。mxnet的基本运行流程是这样的:
 </p>
@@ -294,26 +295,26 @@ Mxnet是需要手工构建计算图的。mxnet的基本运行流程是这样的:
 </ol>
 </div>
 </div>
-<div id="outline-container-orge9e70f5" class="outline-2">
-<h2 id="orge9e70f5">Symbol</h2>
-<div class="outline-text-2" id="text-orge9e70f5">
+<div id="outline-container-orgb0229d1" class="outline-2">
+<h2 id="orgb0229d1">Symbol</h2>
+<div class="outline-text-2" id="text-orgb0229d1">
 <p>
 Symbol就是用来构造计算图的。它主要是提供面向用户的接口, 通过Symbol使用者可以构建
 一个计算图，当真正要计算的时候，会转换成StaticGraph。
 </p>
 </div>
-<div id="outline-container-orgf3f6ad0" class="outline-3">
-<h3 id="orgf3f6ad0">类图</h3>
-<div class="outline-text-3" id="text-orgf3f6ad0">
+<div id="outline-container-org3ae6467" class="outline-3">
+<h3 id="org3ae6467">类图</h3>
+<div class="outline-text-3" id="text-org3ae6467">
 
 <div class="figure">
 <p><img src="static/img/symbol-class-uml.png" alt="symbol-class-uml.png" />
 </p>
 </div>
 </div>
-<div id="outline-container-orgf21fc71" class="outline-4">
-<h4 id="orgf21fc71">Symbol</h4>
-<div class="outline-text-4" id="text-orgf21fc71">
+<div id="outline-container-org5419120" class="outline-4">
+<h4 id="org5419120">Symbol</h4>
+<div class="outline-text-4" id="text-org5419120">
 <ol class="org-ol">
 <li><code>heads_</code>: 实际代表的是Node的op的输出，有几个输出就有几个元素，这些DataEntry对
 象的source指向同一个Noe实例，index会递增。有一个例外就是通过Group得到symbol，
@@ -324,18 +325,18 @@ symbol group成一个。</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgda6a34f" class="outline-4">
-<h4 id="orgda6a34f">Node</h4>
-<div class="outline-text-4" id="text-orgda6a34f">
+<div id="outline-container-org74e4050" class="outline-4">
+<h4 id="org74e4050">Node</h4>
+<div class="outline-text-4" id="text-org74e4050">
 <p>
 这个是最核心的对象，最重要的属性是inputs，通过inputs就将不同的symbol串起来了。其
 它的属性都是很直观的。
 </p>
 </div>
 </div>
-<div id="outline-container-orga799b84" class="outline-4">
-<h4 id="orga799b84">DataEntry</h4>
-<div class="outline-text-4" id="text-orga799b84">
+<div id="outline-container-orga9abed8" class="outline-4">
+<h4 id="orga9abed8">DataEntry</h4>
+<div class="outline-text-4" id="text-orga9abed8">
 <p>
 这个对象主要是用来代表输出，source代表是哪个Node的op的输出，index代表是第几个输
 出。
@@ -344,17 +345,17 @@ symbol group成一个。</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org9f6c51a" class="outline-2">
-<h2 id="org9f6c51a">StaticGraph</h2>
-<div class="outline-text-2" id="text-org9f6c51a">
+<div id="outline-container-orge37ac0a" class="outline-2">
+<h2 id="orge37ac0a">StaticGraph</h2>
+<div class="outline-text-2" id="text-orge37ac0a">
 <p>
 这实际上也是计算图，它是被mxnet内部使用的，它可以和Symbol进行相互转换，Symbol是
 面向用户的接口，所以更灵活，StaticGraph是内部使用，所以更好优化。
 </p>
 </div>
-<div id="outline-container-orgf923540" class="outline-3">
-<h3 id="orgf923540">类图</h3>
-<div class="outline-text-3" id="text-orgf923540">
+<div id="outline-container-org3bbb614" class="outline-3">
+<h3 id="org3bbb614">类图</h3>
+<div class="outline-text-3" id="text-org3bbb614">
 
 <div class="figure">
 <p><img src="static/img/static-graph-class-uml.png" alt="static-graph-class-uml.png" />
@@ -364,8 +365,8 @@ symbol group成一个。</li>
 </div>
 </div>
 
-<div id="outline-container-orgedb9f30" class="outline-2">
-<h2 id="orgedb9f30">Executor</h2>
+<div id="outline-container-org4ebbe22" class="outline-2">
+<h2 id="org4ebbe22">Executor</h2>
 </div>
 </div>
 <div id="postamble" class="status">

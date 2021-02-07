@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-14 Mon 23:09 -->
+<!-- 2018-06-22 五 12:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>使用org-mode与dropbox搭建静态博客</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -186,7 +187,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -256,9 +257,9 @@ for the JavaScript code in this tag.
 </div>
 <div id="content">
 <h1 class="title">使用org-mode与dropbox搭建静态博客</h1>
-<div id="outline-container-orge44057f" class="outline-2">
-<h2 id="orge44057f">org-mode</h2>
-<div class="outline-text-2" id="text-orge44057f">
+<div id="outline-container-org4d2a61e" class="outline-2">
+<h2 id="org4d2a61e">org-mode</h2>
+<div class="outline-text-2" id="text-org4d2a61e">
 <p>
 org-mode是emacs的一个主模式,所以如果你不用emacs那么一切都无从谈起,vim有一个org-mode的移植版本
 根据官方的的说法:Org mode is for keeping notes, maintaining TODO lists, planning projects, and authoring
@@ -275,9 +276,9 @@ org-mode还有一个叫Babel的神器,它可以让你在文档中直接运行代
 </div>
 </div>
 </div>
-<div id="outline-container-orgaf5537a" class="outline-2">
-<h2 id="orgaf5537a">dropbox</h2>
-<div class="outline-text-2" id="text-orgaf5537a">
+<div id="outline-container-org11ce9cb" class="outline-2">
+<h2 id="org11ce9cb">dropbox</h2>
+<div class="outline-text-2" id="text-org11ce9cb">
 <p>
 DropBox 是一款非常优秀的免费网络文件同步工具(云存储服务)。当你在不同的电脑、平板、手机上都安装了 Dropbox 之后，
 无论在其中任何一个设备上新增、修改或删除文件，Dropbox 将会通过网络全自动地将这个更改应用到你全部的设备上去，让
@@ -301,9 +302,9 @@ dropbox搭建静态博客就是利用的pancake.io这个第三方应用.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org5382756" class="outline-2">
-<h2 id="org5382756">搭建静态博客</h2>
-<div class="outline-text-2" id="text-org5382756">
+<div id="outline-container-org76e1931" class="outline-2">
+<h2 id="org76e1931">搭建静态博客</h2>
+<div class="outline-text-2" id="text-org76e1931">
 <p>
      目前搭建静态博客有很多种方法,很流行的一种就是利用github pages,我之所以不用这种方法是因为,这种方法不能和org-mode无缝
 衔接,而且一旦文档修改就必须使用git将文档push到github上,比较麻烦,不像dropbox一旦改动自动同步.而且我觉得版本管理对编写

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-12-10 Sat 18:56 -->
+<!-- 2018-06-22 五 12:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>python的“缺点”</title>
@@ -69,6 +69,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -187,7 +188,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -261,29 +262,29 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org4408531">类型系统</a></li>
-<li><a href="#org060464e">缩进</a></li>
-<li><a href="#org4ed4f4c">变量的定义与赋值</a>
+<li><a href="#org291cb9e">类型系统</a></li>
+<li><a href="#org8394519">缩进</a></li>
+<li><a href="#org99d860b">变量的定义与赋值</a>
 <ul>
-<li><a href="#orgab0ea0c">基本概念</a>
+<li><a href="#orgc78d426">基本概念</a>
 <ul>
-<li><a href="#org7db506f">环境（environment）</a></li>
-<li><a href="#orgdd6401c">声明</a></li>
-<li><a href="#org5eeec9b">赋值</a></li>
-<li><a href="#org2332431">作用域</a></li>
-<li><a href="#org700b239">python的作用域规则</a></li>
+<li><a href="#orgcbcafba">环境（environment）</a></li>
+<li><a href="#orgaab7398">声明</a></li>
+<li><a href="#org7593959">赋值</a></li>
+<li><a href="#org9421ab5">作用域</a></li>
+<li><a href="#orge25efb7">python的作用域规则</a></li>
 </ul>
 </li>
-<li><a href="#org666c561">python的设计失误</a></li>
+<li><a href="#org1c284be">python的设计失误</a></li>
 </ul>
 </li>
-<li><a href="#org15d36f8">GIL</a></li>
+<li><a href="#org03f7a49">GIL</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org4408531" class="outline-2">
-<h2 id="org4408531">类型系统</h2>
-<div class="outline-text-2" id="text-org4408531">
+<div id="outline-container-org291cb9e" class="outline-2">
+<h2 id="org291cb9e">类型系统</h2>
+<div class="outline-text-2" id="text-org291cb9e">
 <p>
 python是一个动态类型的语言，它只能进行动态类型检查，所谓动态类型检查，实际就
 是说，python只有在运行时会进行类型检查,比如说这样的代码：
@@ -346,9 +347,9 @@ pycharm我也可以很轻松的让它出错。</li>
 </p>
 </div>
 </div>
-<div id="outline-container-org060464e" class="outline-2">
-<h2 id="org060464e">缩进</h2>
-<div class="outline-text-2" id="text-org060464e">
+<div id="outline-container-org8394519" class="outline-2">
+<h2 id="org8394519">缩进</h2>
+<div class="outline-text-2" id="text-org8394519">
 <p>
 python强制缩进是一个明智的选择，它使得代码的可读性有了质的飞跃，但是它使用空
 格这样的不可见字符来标示一个块的结束，我认为不是什么很好的选择。ruby社区有一
@@ -413,19 +414,20 @@ python这类语言的代码的, 这不是因为编辑器不够强大，而是本
 </ol>
 </div>
 </div>
-<div id="outline-container-org4ed4f4c" class="outline-2">
-<h2 id="org4ed4f4c">变量的定义与赋值</h2>
-<div class="outline-text-2" id="text-org4ed4f4c">
+<div id="outline-container-org99d860b" class="outline-2">
+<h2 id="org99d860b">变量的定义与赋值</h2>
+<div class="outline-text-2" id="text-org99d860b">
 <p>
 python中不区分变量的定义与赋值，这也是一个设计失误
 </p>
 </div>
-<div id="outline-container-orgab0ea0c" class="outline-3">
-<h3 id="orgab0ea0c">基本概念</h3>
-<div class="outline-text-3" id="text-orgab0ea0c">
-</div><div id="outline-container-org7db506f" class="outline-4">
-<h4 id="org7db506f">环境（environment）</h4>
-<div class="outline-text-4" id="text-org7db506f">
+<div id="outline-container-orgc78d426" class="outline-3">
+<h3 id="orgc78d426">基本概念</h3>
+<div class="outline-text-3" id="text-orgc78d426">
+</div>
+<div id="outline-container-orgcbcafba" class="outline-4">
+<h4 id="orgcbcafba">环境（environment）</h4>
+<div class="outline-text-4" id="text-orgcbcafba">
 <p>
 如果你写过解释器，那么你一定遇到过这个东西，简单的说环境就是用来跟踪在程序
  的执行过程中，每一个标识符都绑定到什么值，所以从逻辑上它就是一个
@@ -469,36 +471,36 @@ python中不区分变量的定义与赋值，这也是一个设计失误
 </p>
 </div>
 </div>
-<div id="outline-container-orgdd6401c" class="outline-4">
-<h4 id="orgdd6401c">声明</h4>
-<div class="outline-text-4" id="text-orgdd6401c">
+<div id="outline-container-orgaab7398" class="outline-4">
+<h4 id="orgaab7398">声明</h4>
+<div class="outline-text-4" id="text-orgaab7398">
 <p>
 实际就是在当前变量所在作用域创建一个key/value对, 注意实际上是调用 <code>bind</code> 方
 法. 前提是该变量没有在当前作用域中绑定.
 </p>
 </div>
 </div>
-<div id="outline-container-org5eeec9b" class="outline-4">
-<h4 id="org5eeec9b">赋值</h4>
-<div class="outline-text-4" id="text-org5eeec9b">
+<div id="outline-container-org7593959" class="outline-4">
+<h4 id="org7593959">赋值</h4>
+<div class="outline-text-4" id="text-org7593959">
 <p>
 改变作用域中变量的值,如果当前作用域中没有该变量,那么就父作用域中找,
  如果该变量不存在那么出错. 实际上该动作就是 <code>set</code> 方法.
 </p>
 </div>
 </div>
-<div id="outline-container-org2332431" class="outline-4">
-<h4 id="org2332431">作用域</h4>
-<div class="outline-text-4" id="text-org2332431">
+<div id="outline-container-org9421ab5" class="outline-4">
+<h4 id="org9421ab5">作用域</h4>
+<div class="outline-text-4" id="text-org9421ab5">
 <p>
 每当进入一个新的作用域，那么解释器就会创建一个scope对象，该对象的
  parent指针会指向当前的scope对象，从而构成一个链式的作用域。
 </p>
 </div>
 </div>
-<div id="outline-container-org700b239" class="outline-4">
-<h4 id="org700b239">python的作用域规则</h4>
-<div class="outline-text-4" id="text-org700b239">
+<div id="outline-container-orge25efb7" class="outline-4">
+<h4 id="orge25efb7">python的作用域规则</h4>
+<div class="outline-text-4" id="text-orge25efb7">
 <p>
 python有一个内置作用域，这个作用域的所有绑定是在任何地方都可见的。python的内
 置函数以及内置异常都是在内置作用域中. 可以使用如下代码来查看内置作用域有哪些
@@ -516,9 +518,9 @@ python有一个内置作用域，这个作用域的所有绑定是在任何地�
 </div>
 </div>
 </div>
-<div id="outline-container-org666c561" class="outline-3">
-<h3 id="org666c561">python的设计失误</h3>
-<div class="outline-text-3" id="text-org666c561">
+<div id="outline-container-org1c284be" class="outline-3">
+<h3 id="org1c284be">python的设计失误</h3>
+<div class="outline-text-3" id="text-org1c284be">
 <p>
 python有一个巨大的设计失误就是没有明确的区分变量的 <b>声明</b> 与 <b>赋值</b>,也就是说
 python的"="有两种语义：当前作用域不存在该变量时，它会在作用域中创建该绑定，如果
@@ -570,12 +572,12 @@ assignment). 这其中有一些很细微的区别. 在inner中i=i+1会在当前�
 </div>
 </div>
 </div>
-<div id="outline-container-org15d36f8" class="outline-2">
-<h2 id="org15d36f8">GIL</h2>
-<div class="outline-text-2" id="text-org15d36f8">
+<div id="outline-container-org03f7a49" class="outline-2">
+<h2 id="org03f7a49">GIL</h2>
+<div class="outline-text-2" id="text-org03f7a49">
 <p>
 这是python被广为诟病的一个东西，与其说它是语言本身的问题，还不如说它是官方的C
-语言实现的问题，JPython就没有这个问题。简单的说GIL是一个全局锁，GIL的
+语言实现的问题，JPython以及pypy都没有这个问题。简单的说GIL是一个全局锁，GIL的
 存在简化了解释器的实现，但是代价是python的多线程变成了“伪多线程”，也就是说
 python的多线程程序任一时刻只能运行一个单一的线程，它无法有效的运用多核CPU的优
 势。因此对于使用python编写的CPU密集型的程序，你不要指望通过多线程来提高性能，

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-14 Mon 23:09 -->
+<!-- 2018-06-22 五 12:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>python Descriptor</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -186,7 +187,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -260,14 +261,14 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6a05b16">Abstract</a></li>
-<li><a href="#org985e319">Definition and Introduction</a></li>
-<li><a href="#org503fe34">Descriptor Protocol</a></li>
-<li><a href="#org038c4ec">Invoking Descriptors</a></li>
-<li><a href="#orgdee4a02">Descriptor Example</a></li>
-<li><a href="#orgd719eaf">Properties</a></li>
-<li><a href="#org73432f4">Functions and Methods</a></li>
-<li><a href="#org81e6db4">Static Methods and Class Methods</a></li>
+<li><a href="#org01253fb">Abstract</a></li>
+<li><a href="#orgac61e43">Definition and Introduction</a></li>
+<li><a href="#org46db00d">Descriptor Protocol</a></li>
+<li><a href="#orgd1c9bf4">Invoking Descriptors</a></li>
+<li><a href="#org039412a">Descriptor Example</a></li>
+<li><a href="#org8a0de63">Properties</a></li>
+<li><a href="#org16345d8">Functions and Methods</a></li>
+<li><a href="#org819a627">Static Methods and Class Methods</a></li>
 </ul>
 </div>
 </div>
@@ -282,9 +283,9 @@ Foundation. All rights reserved.
 </p>
 </blockquote>
 
-<div id="outline-container-org6a05b16" class="outline-2">
-<h2 id="org6a05b16">Abstract</h2>
-<div class="outline-text-2" id="text-org6a05b16">
+<div id="outline-container-org01253fb" class="outline-2">
+<h2 id="org01253fb">Abstract</h2>
+<div class="outline-text-2" id="text-org01253fb">
 <p>
 Defines descriptors, summarizes the protocol, and shows how descriptors are called. Examines a custom
 descriptor and several built-in python descriptors including functions, properties, static methods, and
@@ -298,9 +299,9 @@ of how Python works and an appreciation for the elegance of its design.
 </div>
 </div>
 
-<div id="outline-container-org985e319" class="outline-2">
-<h2 id="org985e319">Definition and Introduction</h2>
-<div class="outline-text-2" id="text-org985e319">
+<div id="outline-container-orgac61e43" class="outline-2">
+<h2 id="orgac61e43">Definition and Introduction</h2>
+<div class="outline-text-2" id="text-orgac61e43">
 <p>
 In general, a descriptor is an object attribute with "binding behavior", one whose attribute access has
 been overridden by methods in the descriptor protocol. Those methods are <span class="underline"><span class="underline">get</span></span>, <span class="underline"><span class="underline">set</span></span>, and
@@ -326,9 +327,9 @@ flexible set of new tools for everyday Python programs.
 </div>
 </div>
 
-<div id="outline-container-org503fe34" class="outline-2">
-<h2 id="org503fe34">Descriptor Protocol</h2>
-<div class="outline-text-2" id="text-org503fe34">
+<div id="outline-container-org46db00d" class="outline-2">
+<h2 id="org46db00d">Descriptor Protocol</h2>
+<div class="outline-text-2" id="text-org46db00d">
 <ul class="org-ul">
 <li>descr._<sub>get</sub>_<sub>(self, obj, type=None)</sub> &#x2013;&gt; value</li>
 
@@ -363,9 +364,9 @@ make it a data descriptor.
 </div>
 </div>
 
-<div id="outline-container-org038c4ec" class="outline-2">
-<h2 id="org038c4ec">Invoking Descriptors</h2>
-<div class="outline-text-2" id="text-org038c4ec">
+<div id="outline-container-orgd1c9bf4" class="outline-2">
+<h2 id="orgd1c9bf4">Invoking Descriptors</h2>
+<div class="outline-text-2" id="text-orgd1c9bf4">
 <p>
 A descriptor can be called directly by its method name. For example, d._<sub>get</sub>_<sub>(obj)</sub>.
 </p>
@@ -395,7 +396,7 @@ B._<sub>dict</sub>__['x']._<sub>get</sub>_<sub>(None, B)</sub>. In pure Python, 
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__getattribute__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, key<span style="color: #DCDCCC;">)</span>:
-    <span style="color: #CC9393;">"Emulate type_getattro() in Objects/typeobject.c"</span>
+    <span style="color: #9FC59F;">"Emulate type_getattro() in Objects/typeobject.c"</span>
     <span style="color: #DFAF8F;">v</span> = <span style="color: #DCDCCC; font-weight: bold;">object</span>.__getattribute__<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, key<span style="color: #DCDCCC;">)</span>
     <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #DCDCCC; font-weight: bold;">hasattr</span><span style="color: #DCDCCC;">(</span>v, <span style="color: #CC9393;">'__get__'</span><span style="color: #DCDCCC;">)</span>:
        <span style="color: #F0DFAF; font-weight: bold;">return</span> v.__get__<span style="color: #DCDCCC;">(</span><span style="color: #BFEBBF;">None</span>, <span style="color: #F0DFAF; font-weight: bold;">self</span><span style="color: #DCDCCC;">)</span>
@@ -438,9 +439,9 @@ _<sub>getattribute</sub>_<sub>()</sub>.
 </div>
 </div>
 
-<div id="outline-container-orgdee4a02" class="outline-2">
-<h2 id="orgdee4a02">Descriptor Example</h2>
-<div class="outline-text-2" id="text-orgdee4a02">
+<div id="outline-container-org039412a" class="outline-2">
+<h2 id="org039412a">Descriptor Example</h2>
+<div class="outline-text-2" id="text-org039412a">
 <p>
 The following code creates a class whose objects are data descriptors which prin message for each get or
 set. Overriding <span class="underline">_ etattribute_</span> is alternate approach that could do this fo ery attribute. However, this
@@ -448,9 +449,9 @@ descriptor is useful for monitoring just a few chosen attributes:
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">RevealAccess</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
-    <span style="color: #CC9393;">"""A data descriptor that sets and returns values</span>
-<span style="color: #CC9393;">       normally and prints a message logging their access.</span>
-<span style="color: #CC9393;">    """</span>
+    <span style="color: #9FC59F;">"""A data descriptor that sets and returns values</span>
+<span style="color: #9FC59F;">       normally and prints a message logging their access.</span>
+<span style="color: #9FC59F;">    """</span>
 
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__init__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, initval=<span style="color: #BFEBBF;">None</span>, name=<span style="color: #CC9393;">'var'</span><span style="color: #DCDCCC;">)</span>:
         <span style="color: #F0DFAF; font-weight: bold;">self</span>.val = initval
@@ -490,9 +491,9 @@ methods are all based on the descriptor protocol.
 </div>
 </div>
 
-<div id="outline-container-orgd719eaf" class="outline-2">
-<h2 id="orgd719eaf">Properties</h2>
-<div class="outline-text-2" id="text-orgd719eaf">
+<div id="outline-container-org8a0de63" class="outline-2">
+<h2 id="org8a0de63">Properties</h2>
+<div class="outline-text-2" id="text-org8a0de63">
 <p>
 Calling property() is a succinct way of building a data descriptor that triggers ction calls upon access to
 an attribute. Its signature is:
@@ -518,7 +519,7 @@ To see how property() is implemented in terms of the descriptor protocol, here i
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Property</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
-    <span style="color: #CC9393;">"Emulate PyProperty_Type() in Objects/descrobject.c"</span>
+    <span style="color: #9FC59F;">"Emulate PyProperty_Type() in Objects/descrobject.c"</span>
 
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__init__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, fget=<span style="color: #BFEBBF;">None</span>, fset=<span style="color: #BFEBBF;">None</span>, fdel=<span style="color: #BFEBBF;">None</span>, doc=<span style="color: #BFEBBF;">None</span><span style="color: #DCDCCC;">)</span>:
         <span style="color: #F0DFAF; font-weight: bold;">self</span>.fget = fget
@@ -542,6 +543,8 @@ To see how property() is implemented in terms of the descriptor protocol, here i
         <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.fdel <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #BFEBBF;">None</span>:
             <span style="color: #F0DFAF; font-weight: bold;">raise</span> <span style="color: #7CB8BB;">AttributeError</span>, <span style="color: #CC9393;">"can't delete attribute"</span>
         <span style="color: #F0DFAF; font-weight: bold;">self</span>.fdel<span style="color: #DCDCCC;">(</span>obj<span style="color: #DCDCCC;">)</span>
+
+
 </pre>
 </div>
 <p>
@@ -559,7 +562,7 @@ the value attribute in a property() data descriptor:
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Cell</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
     . . .
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">getvalue</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, obj<span style="color: #DCDCCC;">)</span>:
-        <span style="color: #CC9393;">"Recalculate cell before returning value"</span>
+        <span style="color: #9FC59F;">"Recalculate cell before returning value"</span>
         <span style="color: #F0DFAF; font-weight: bold;">self</span>.recalc<span style="color: #DCDCCC;">()</span>
         <span style="color: #F0DFAF; font-weight: bold;">return</span> obj._value
     <span style="color: #DFAF8F;">value</span> = <span style="color: #DCDCCC; font-weight: bold;">property</span><span style="color: #DCDCCC;">(</span>getvalue<span style="color: #DCDCCC;">)</span>
@@ -567,9 +570,9 @@ the value attribute in a property() data descriptor:
 </div>
 </div>
 </div>
-<div id="outline-container-org73432f4" class="outline-2">
-<h2 id="org73432f4">Functions and Methods</h2>
-<div class="outline-text-2" id="text-org73432f4">
+<div id="outline-container-org16345d8" class="outline-2">
+<h2 id="org16345d8">Functions and Methods</h2>
+<div class="outline-text-2" id="text-org16345d8">
 <p>
 Python's object oriented features are built upon a function based environment.  g non-data descriptors, the
 two are merged seamlessly.
@@ -591,7 +594,7 @@ whether they are invoked from an object or a class. In pure python, it works lik
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Function</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
     . . .
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__get__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, obj, objtype=<span style="color: #BFEBBF;">None</span><span style="color: #DCDCCC;">)</span>:
-        <span style="color: #CC9393;">"Simulate func_descr_get() in Objects/funcobject.c"</span>
+        <span style="color: #9FC59F;">"Simulate func_descr_get() in Objects/funcobject.c"</span>
         <span style="color: #F0DFAF; font-weight: bold;">return</span> types.MethodType<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, obj, objtype<span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
@@ -628,9 +631,9 @@ implementation of instancemethod<sub>call</sub>() is only slightly more complex 
 </div>
 </div>
 
-<div id="outline-container-org81e6db4" class="outline-2">
-<h2 id="org81e6db4">Static Methods and Class Methods</h2>
-<div class="outline-text-2" id="text-org81e6db4">
+<div id="outline-container-org819a627" class="outline-2">
+<h2 id="org819a627">Static Methods and Class Methods</h2>
+<div class="outline-text-2" id="text-org819a627">
 <p>
 Non-data descriptors provide a simple mechanism for variations on the usual pa ns of binding functions into
 methods.
@@ -689,7 +692,7 @@ Using the non-data descriptor protocol, a pure Python version of staticmethod() 
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">StaticMethod</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
- <span style="color: #CC9393;">"Emulate PyStaticMethod_Type() in Objects/funcobject.c"</span>
+ <span style="color: #9FC59F;">"Emulate PyStaticMethod_Type() in Objects/funcobject.c"</span>
 
  <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__init__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, f<span style="color: #DCDCCC;">)</span>:
       <span style="color: #F0DFAF; font-weight: bold;">self</span>.f = f
@@ -722,7 +725,7 @@ classmethod dict.fromkeys() creates a new dictionary from a li t of keys. The pu
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">Dict</span>:
     . . .
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">fromkeys</span><span style="color: #DCDCCC;">(</span>klass, iterable, value=<span style="color: #BFEBBF;">None</span><span style="color: #DCDCCC;">)</span>:
-        <span style="color: #CC9393;">"Emulate dict_fromkeys() in Objects/dictobject.c"</span>
+        <span style="color: #9FC59F;">"Emulate dict_fromkeys() in Objects/dictobject.c"</span>
         <span style="color: #DFAF8F;">d</span> = klass<span style="color: #DCDCCC;">()</span>
         <span style="color: #F0DFAF; font-weight: bold;">for</span> key <span style="color: #F0DFAF; font-weight: bold;">in</span> iterable:
             <span style="color: #DFAF8F;">d</span><span style="color: #DCDCCC;">[</span>key<span style="color: #DCDCCC;">]</span> = value
@@ -742,7 +745,7 @@ Using the non-data descriptor protocol, a pure Python version of classmethod() w
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">ClassMethod</span><span style="color: #DCDCCC;">(</span><span style="color: #DCDCCC; font-weight: bold;">object</span><span style="color: #DCDCCC;">)</span>:
-     <span style="color: #CC9393;">"Emulate PyClassMethod_Type() in Objects/funcobject.c"</span>
+     <span style="color: #9FC59F;">"Emulate PyClassMethod_Type() in Objects/funcobject.c"</span>
 
      <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">__init__</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, f<span style="color: #DCDCCC;">)</span>:
           <span style="color: #F0DFAF; font-weight: bold;">self</span>.f = f

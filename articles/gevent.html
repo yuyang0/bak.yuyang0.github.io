@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-14 Mon 23:09 -->
+<!-- 2018-06-22 五 12:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>gevent源码分析</title>
@@ -69,6 +69,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -187,7 +188,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -261,71 +262,72 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org12a2ef5">基本概念</a>
+<li><a href="#org87b925d">基本概念</a>
 <ul>
-<li><a href="#orgcf249f5">coroutine</a></li>
+<li><a href="#org99f9576">coroutine</a></li>
 </ul>
 </li>
-<li><a href="#orgbd25ca0">gevent背景知识</a>
+<li><a href="#orgfa30487">gevent背景知识</a>
 <ul>
-<li><a href="#org1c6ad79">greenlet</a>
+<li><a href="#orgba7e9e7">greenlet</a>
 <ul>
-<li><a href="#orgb1f465e">api</a></li>
+<li><a href="#orge5b0d6a">api</a></li>
 </ul>
 </li>
-<li><a href="#orgb48cf45">libev</a></li>
+<li><a href="#orgc94b1e9">libev</a></li>
 </ul>
 </li>
-<li><a href="#org6e61cfb">gevent源码分析</a>
+<li><a href="#org4398e08">gevent源码分析</a>
 <ul>
-<li><a href="#org7f5b1f5">core</a>
+<li><a href="#org1c66e67">core</a>
 <ul>
-<li><a href="#org629d56d">core源码分析</a></li>
-<li><a href="#org6c8473f">core的api总结</a></li>
+<li><a href="#orgafe3bfc">core源码分析</a></li>
+<li><a href="#org8ec2fa2">core的api总结</a></li>
 </ul>
 </li>
-<li><a href="#orgf30db6a">HUB</a>
+<li><a href="#org4f2e71c">HUB</a>
 <ul>
-<li><a href="#orgabc158a">Waiter</a></li>
+<li><a href="#org340e375">Waiter</a></li>
 </ul>
 </li>
-<li><a href="#org349c363">Greenlet</a></li>
-<li><a href="#org96c10f4">socket模块</a></li>
-<li><a href="#org9527390">timeout模块</a>
+<li><a href="#org7a415ca">Greenlet</a></li>
+<li><a href="#orgfbd3c77">socket模块</a></li>
+<li><a href="#org50d3ba2">timeout模块</a>
 <ul>
-<li><a href="#org8df9013">timeout使用指南</a></li>
+<li><a href="#orge52a729">timeout使用指南</a></li>
 </ul>
 </li>
-<li><a href="#org4990a00">Event</a>
+<li><a href="#orgaa6ad72">Event</a>
 <ul>
-<li><a href="#orgc71664d">Event使用指南</a></li>
+<li><a href="#org6d8c779">Event使用指南</a></li>
 </ul>
 </li>
-<li><a href="#org8268979">AsycResult</a></li>
-<li><a href="#org804bcce">queue</a></li>
-<li><a href="#org40ec0b4">channel</a>
+<li><a href="#org83eb70d">AsycResult</a></li>
+<li><a href="#org20cbd18">queue</a></li>
+<li><a href="#orge150c41">channel</a>
 <ul>
-<li><a href="#orgf1ef74f">channel使用指南</a></li>
+<li><a href="#org4738872">channel使用指南</a></li>
 </ul>
 </li>
-<li><a href="#org6476d09">其它</a></li>
+<li><a href="#orgb813740">其它</a></li>
 </ul>
 </li>
-<li><a href="#org472874d">第三方库</a>
+<li><a href="#org75a2243">第三方库</a>
 <ul>
-<li><a href="#org9d2424d">greenify</a></li>
-<li><a href="#orgf16e8a0">PyMongo</a></li>
+<li><a href="#orgf02d7bd">greenify</a></li>
+<li><a href="#org74f411a">PyMongo</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org12a2ef5" class="outline-2">
-<h2 id="org12a2ef5">基本概念</h2>
-<div class="outline-text-2" id="text-org12a2ef5">
-</div><div id="outline-container-orgcf249f5" class="outline-3">
-<h3 id="orgcf249f5">coroutine</h3>
-<div class="outline-text-3" id="text-orgcf249f5">
+<div id="outline-container-org87b925d" class="outline-2">
+<h2 id="org87b925d">基本概念</h2>
+<div class="outline-text-2" id="text-org87b925d">
+</div>
+<div id="outline-container-org99f9576" class="outline-3">
+<h3 id="org99f9576">coroutine</h3>
+<div class="outline-text-3" id="text-org99f9576">
 <p>
 Coroutine 也就是 corporate routine，中文名就是协程，从它的英文可以看出是协同
 的例程的意思, 实际上这个概念和进程与线程有相似之处, 因为linux线程就是所谓的
@@ -366,16 +368,16 @@ Coroutine 也就是 corporate routine，中文名就是协程，从它的英文�
 </div>
 </div>
 </div>
-<div id="outline-container-orgbd25ca0" class="outline-2">
-<h2 id="orgbd25ca0">gevent背景知识</h2>
-<div class="outline-text-2" id="text-orgbd25ca0">
+<div id="outline-container-orgfa30487" class="outline-2">
+<h2 id="orgfa30487">gevent背景知识</h2>
+<div class="outline-text-2" id="text-orgfa30487">
 <p>
 gevent用到了了libev以及greenlet还有cares,下面简单的介绍这几个库.
 </p>
 </div>
-<div id="outline-container-org1c6ad79" class="outline-3">
-<h3 id="org1c6ad79">greenlet</h3>
-<div class="outline-text-3" id="text-org1c6ad79">
+<div id="outline-container-orgba7e9e7" class="outline-3">
+<h3 id="orgba7e9e7">greenlet</h3>
+<div class="outline-text-3" id="text-orgba7e9e7">
 <p>
 实际是一个协程库(官方叫micro-thread), 它只提供协程本身,要在协程间切
 换调度必须你在程序中手动来进行,直接上代码:
@@ -399,9 +401,9 @@ gr1, gr2以及运行该代码的解释器本身都是协程, 协程对象的swit
 来切换,比如 <code>gr2.switch</code> 就是切换到gr2.
 </p>
 </div>
-<div id="outline-container-orgb1f465e" class="outline-4">
-<h4 id="orgb1f465e">api</h4>
-<div class="outline-text-4" id="text-orgb1f465e">
+<div id="outline-container-orge5b0d6a" class="outline-4">
+<h4 id="orge5b0d6a">api</h4>
+<div class="outline-text-4" id="text-orge5b0d6a">
 <ol class="org-ol">
 <li>greenlet(run=None, parent=None): 创建一个greenlet实例.</li>
 <li>greenlet.getcurrent:</li>
@@ -419,9 +421,9 @@ gr1, gr2以及运行该代码的解释器本身都是协程, 协程对象的swit
 </div>
 </div>
 </div>
-<div id="outline-container-orgb48cf45" class="outline-3">
-<h3 id="orgb48cf45">libev</h3>
-<div class="outline-text-3" id="text-orgb48cf45">
+<div id="outline-container-orgc94b1e9" class="outline-3">
+<h3 id="orgc94b1e9">libev</h3>
+<div class="outline-text-3" id="text-orgc94b1e9">
 <p>
 和libevent类似, libev是一个事件循环库,他可以监听各个file descriptor, 一旦发现
 就绪就调用对应的回调函数, gevent内部就是使用libev来监听socket的.为了后续理解
@@ -445,7 +447,7 @@ io, timer, signal等等):
 </p>
 <div class="org-src-container">
 <pre class="src src-c"><span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">a single header file is required</span>
-<span style="color: #94BFF3;">#include</span> <span style="color: #CC9393;">&lt;ev.h&gt;</span>
+<span style="color: #94BFF3;">#include</span> <span style="color: #DCDCCC;">&lt;</span><span style="color: #CC9393;">ev.h</span><span style="color: #DCDCCC;">&gt;</span>
 
 <span style="color: #94BFF3;">#include</span> <span style="color: #DCDCCC;">&lt;</span><span style="color: #CC9393;">stdio.h</span><span style="color: #DCDCCC;">&gt;</span> <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">for puts</span>
 
@@ -508,16 +510,16 @@ io, timer, signal等等):
 </div>
 </div>
 </div>
-<div id="outline-container-org6e61cfb" class="outline-2">
-<h2 id="org6e61cfb">gevent源码分析</h2>
-<div class="outline-text-2" id="text-org6e61cfb">
+<div id="outline-container-org4398e08" class="outline-2">
+<h2 id="org4398e08">gevent源码分析</h2>
+<div class="outline-text-2" id="text-org4398e08">
 <p>
 开始之前先申明: <b>本文分析的是gevent1.0</b>.
 </p>
 </div>
-<div id="outline-container-org7f5b1f5" class="outline-3">
-<h3 id="org7f5b1f5">core</h3>
-<div class="outline-text-3" id="text-org7f5b1f5">
+<div id="outline-container-org1c66e67" class="outline-3">
+<h3 id="org1c66e67">core</h3>
+<div class="outline-text-3" id="text-org1c66e67">
 <p>
 core.ppyx文件实际上是用Cython写的代码，在Makefile中有这样一行代码:
 </p>
@@ -527,6 +529,7 @@ gevent/gevent.core.c: gevent/core.ppyx gevent/libev.pxd
         echo                          &gt;&gt; gevent.core.c
         echo '#include "callbacks.c"' &gt;&gt; gevent.core.c
         mv gevent.core.* gevent/
+
 </pre>
 <p>
 上面的代码告诉我们core.ppyx会先转换为gevent.core.c这个C语言文件,然后在编译成
@@ -575,9 +578,9 @@ cb函数.在gevent中回调函数一般是协程的switch方法, 这样一旦调
 另一个协程中去执行.
 </p>
 </div>
-<div id="outline-container-org629d56d" class="outline-4">
-<h4 id="org629d56d">core源码分析</h4>
-<div class="outline-text-4" id="text-org629d56d">
+<div id="outline-container-orgafe3bfc" class="outline-4">
+<h4 id="orgafe3bfc">core源码分析</h4>
+<div class="outline-text-4" id="text-orgafe3bfc">
 <p>
 这一节来分析core.ppyx的源码, 在一次提醒你注意,代码是Cython, 我对Cython也不
 太熟,但是代码大致能看懂. 同时要明白该模块是对libev的封装, libev中loop,
@@ -643,6 +646,7 @@ watcher: 这是libev的watcher对象的封装,作为例子,我只分析io这一�
 watcher.
 </p>
 <pre class="example">
+
 #define WATCHER_BASE(TYPE)                                            \
     cdef public loop loop                                             \
     cdef object _callback                                             \
@@ -733,9 +737,9 @@ GET_OBJECT的作用是通过结构体中某一个域的指针来获得整个结�
 </ol>
 </div>
 </div>
-<div id="outline-container-org6c8473f" class="outline-4">
-<h4 id="org6c8473f">core的api总结</h4>
-<div class="outline-text-4" id="text-org6c8473f">
+<div id="outline-container-org8ec2fa2" class="outline-4">
+<h4 id="org8ec2fa2">core的api总结</h4>
+<div class="outline-text-4" id="text-org8ec2fa2">
 <p>
 假设Loop代表类, loop代表实例
 </p>
@@ -758,9 +762,9 @@ fun就会在事件循环要阻塞时运行, spawn以及rawlink都会使用该方
 </div>
 </div>
 </div>
-<div id="outline-container-orgf30db6a" class="outline-3">
-<h3 id="orgf30db6a">HUB</h3>
-<div class="outline-text-3" id="text-orgf30db6a">
+<div id="outline-container-org4f2e71c" class="outline-3">
+<h3 id="org4f2e71c">HUB</h3>
+<div class="outline-text-3" id="text-org4f2e71c">
 <p>
 这实际上是greenlet的子类,所以它的每一个实例实际上就代表一个协程,这个类创建的
 协程是专门用来运行事件循环的.
@@ -810,9 +814,9 @@ fun就会在事件循环要阻塞时运行, spawn以及rawlink都会使用该方
 事件循环的. 该函数一般是在调用 <code>hub.switch</code> 时开始运行的.
 </p>
 </div>
-<div id="outline-container-orgabc158a" class="outline-4">
-<h4 id="orgabc158a">Waiter</h4>
-<div class="outline-text-4" id="text-orgabc158a">
+<div id="outline-container-org340e375" class="outline-4">
+<h4 id="org340e375">Waiter</h4>
+<div class="outline-text-4" id="text-org340e375">
 <p>
 协程间的通信机制.
 </p>
@@ -828,7 +832,7 @@ fun就会在事件循环要阻塞时运行, spawn以及rawlink都会使用该方
         <span style="color: #F0DFAF; font-weight: bold;">self</span>._exception = _NONE
 
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">get</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span><span style="color: #DCDCCC;">)</span>:
-        <span style="color: #CC9393;">"""If a value/an exception is stored, return/raise it. Otherwise until switch() or throw() is called."""</span>
+        <span style="color: #9FC59F;">"""If a value/an exception is stored, return/raise it. Otherwise until switch() or throw() is called."""</span>
         <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>._exception <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #F0DFAF; font-weight: bold;">not</span> _NONE:
             <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>._exception <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #BFEBBF;">None</span>:
                 <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.value
@@ -843,7 +847,7 @@ fun就会在事件循环要阻塞时运行, spawn以及rawlink都会使用该方
                 <span style="color: #F0DFAF; font-weight: bold;">self</span>.greenlet = <span style="color: #BFEBBF;">None</span>
 
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">switch</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, value=<span style="color: #BFEBBF;">None</span><span style="color: #DCDCCC;">)</span>:
-        <span style="color: #CC9393;">"""Switch to the greenlet if one's available. Otherwise store the value."""</span>
+        <span style="color: #9FC59F;">"""Switch to the greenlet if one's available. Otherwise store the value."""</span>
         <span style="color: #DFAF8F;">greenlet</span> = <span style="color: #F0DFAF; font-weight: bold;">self</span>.greenlet
         <span style="color: #F0DFAF; font-weight: bold;">if</span> greenlet <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #BFEBBF;">None</span>:
             <span style="color: #F0DFAF; font-weight: bold;">self</span>.value = value
@@ -855,6 +859,7 @@ fun就会在事件循环要阻塞时运行, spawn以及rawlink都会使用该方
                 switch<span style="color: #DCDCCC;">(</span>value<span style="color: #DCDCCC;">)</span>
             <span style="color: #F0DFAF; font-weight: bold;">except</span>:
                 <span style="color: #F0DFAF; font-weight: bold;">self</span>.hub.handle_error<span style="color: #DCDCCC;">(</span>switch, *sys.exc_info<span style="color: #BFEBBF;">()</span><span style="color: #DCDCCC;">)</span>
+
 </pre>
 </div>
 <p>
@@ -909,9 +914,9 @@ waiter的value属性, 接着调用get会直接返回value属性,而不阻塞.注
 </div>
 </div>
 </div>
-<div id="outline-container-org349c363" class="outline-3">
-<h3 id="org349c363">Greenlet</h3>
-<div class="outline-text-3" id="text-org349c363">
+<div id="outline-container-org7a415ca" class="outline-3">
+<h3 id="org7a415ca">Greenlet</h3>
+<div class="outline-text-3" id="text-org7a415ca">
 <p>
 这也是一个greenlet的子类,它也是用来产生协程的, 我们先来看看我们创建协程时常
 用的spawn函数的源码:
@@ -924,9 +929,9 @@ waiter的value属性, 接着调用get会直接返回value属性,而不阻塞.注
 
     <span style="color: #7CB8BB;">@classmethod</span>
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">spawn</span><span style="color: #DCDCCC;">(</span>cls, *args, **kwargs<span style="color: #DCDCCC;">)</span>:
-        <span style="color: #CC9393;">"""Return a new :class:`Greenlet` object, scheduled to start.</span>
-<span style="color: #CC9393;">        The arguments are passed to :meth:`Greenlet.__init__`.</span>
-<span style="color: #CC9393;">        """</span>
+        <span style="color: #9FC59F;">"""Return a new :class:`Greenlet` object, scheduled to start.</span>
+<span style="color: #9FC59F;">        The arguments are passed to :meth:`Greenlet.__init__`.</span>
+<span style="color: #9FC59F;">        """</span>
         <span style="color: #DFAF8F;">g</span> = cls<span style="color: #DCDCCC;">(</span>*args, **kwargs<span style="color: #DCDCCC;">)</span>
         g.start<span style="color: #DCDCCC;">()</span>
         <span style="color: #F0DFAF; font-weight: bold;">return</span> g
@@ -939,7 +944,7 @@ gevent.spawn实际就是Greenlet类的spawn方法,该方法直接创建一个Gre
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">start</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span><span style="color: #DCDCCC;">)</span>:
-    <span style="color: #CC9393;">"""Schedule the greenlet to run in this loop iteration"""</span>
+    <span style="color: #9FC59F;">"""Schedule the greenlet to run in this loop iteration"""</span>
     <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>._start_event <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #BFEBBF;">None</span>:
         <span style="color: #F0DFAF; font-weight: bold;">self</span>._start_event = <span style="color: #F0DFAF; font-weight: bold;">self</span>.parent.loop.run_callback<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>.switch<span style="color: #DCDCCC;">)</span>
 </pre>
@@ -964,9 +969,9 @@ start方法实际上就是把该实例丢到hub协程的循环当中,也就是�
 </p>
 </div>
 </div>
-<div id="outline-container-org96c10f4" class="outline-3">
-<h3 id="org96c10f4">socket模块</h3>
-<div class="outline-text-3" id="text-org96c10f4">
+<div id="outline-container-orgfbd3c77" class="outline-3">
+<h3 id="orgfbd3c77">socket模块</h3>
+<div class="outline-text-3" id="text-orgfbd3c77">
 <p>
 我们知道为了发挥协程的威力, 我们不能使用标准socket库,必须使用gevent实现的
 socket库, 现在我们来分析一下gevent的socket模块,看看该模块是如何使用协程的,
@@ -994,6 +999,7 @@ socket库, 现在我们来分析一下gevent的socket模块,看看该模块是�
         <span style="color: #DFAF8F;">io</span> = <span style="color: #F0DFAF; font-weight: bold;">self</span>.hub.loop.io
         <span style="color: #F0DFAF; font-weight: bold;">self</span>._read_event = io<span style="color: #DCDCCC;">(</span>fileno, <span style="color: #BFEBBF;">1</span><span style="color: #DCDCCC;">)</span>
         <span style="color: #F0DFAF; font-weight: bold;">self</span>._write_event = io<span style="color: #DCDCCC;">(</span>fileno, <span style="color: #BFEBBF;">2</span><span style="color: #DCDCCC;">)</span>
+
 </pre>
 </div>
 <p>
@@ -1022,13 +1028,13 @@ recv直接调用内置模块的recv方法,如果发现该调用会阻塞,那么�
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">_wait</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, watcher, timeout_exc=timeout<span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">'timed out'</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>:
-    <span style="color: #CC9393;">"""Block the current greenlet until *watcher* has pending events.</span>
+    <span style="color: #9FC59F;">"""Block the current greenlet until *watcher* has pending events.</span>
 
-<span style="color: #CC9393;">    If *timeout* is non-negative, then *timeout_exc* is raised after *timeout* second has passed.</span>
-<span style="color: #CC9393;">    By default *timeout_exc* is ``socket.timeout('timed out')``.</span>
+<span style="color: #9FC59F;">    If *timeout* is non-negative, then *timeout_exc* is raised after *timeout* second has passed.</span>
+<span style="color: #9FC59F;">    By default *timeout_exc* is ``socket.timeout('timed out')``.</span>
 
-<span style="color: #CC9393;">    If :func:`cancel_wait` is called, raise ``socket.error(EBADF, 'File descriptor was closed in another greenlet')``.</span>
-<span style="color: #CC9393;">    """</span>
+<span style="color: #9FC59F;">    If :func:`cancel_wait` is called, raise ``socket.error(EBADF, 'File descriptor was closed in another greenlet')``.</span>
+<span style="color: #9FC59F;">    """</span>
     <span style="color: #F0DFAF; font-weight: bold;">assert</span> watcher.callback <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #BFEBBF;">None</span>, <span style="color: #CC9393;">'This socket is already used by another greenlet: %r'</span> % <span style="color: #DCDCCC;">(</span>watcher.callback, <span style="color: #DCDCCC;">)</span>
     <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.timeout <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #F0DFAF; font-weight: bold;">not</span> <span style="color: #BFEBBF;">None</span>:
         <span style="color: #DFAF8F;">timeout</span> = Timeout.start_new<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>.timeout, timeout_exc, ref=<span style="color: #BFEBBF;">False</span><span style="color: #DCDCCC;">)</span>
@@ -1050,9 +1056,9 @@ recv直接调用内置模块的recv方法,如果发现该调用会阻塞,那么�
 </p>
 </div>
 </div>
-<div id="outline-container-org9527390" class="outline-3">
-<h3 id="org9527390">timeout模块</h3>
-<div class="outline-text-3" id="text-org9527390">
+<div id="outline-container-org50d3ba2" class="outline-3">
+<h3 id="org50d3ba2">timeout模块</h3>
+<div class="outline-text-3" id="text-org50d3ba2">
 <p>
 该模块实现了一个超时机制, 它先挂起当前的协程, 当指定的时间到了之后,它会切换
 到该协程,并且在该协程中抛出异常. 这样就实现了挂起协程的目的
@@ -1065,7 +1071,7 @@ recv直接调用内置模块的recv方法,如果发现该调用会阻塞,那么�
         <span style="color: #F0DFAF; font-weight: bold;">self</span>.timer = get_hub<span style="color: #DCDCCC;">()</span>.loop.timer<span style="color: #DCDCCC;">(</span>seconds <span style="color: #F0DFAF; font-weight: bold;">or</span> <span style="color: #BFEBBF;">0</span>.<span style="color: #BFEBBF;">0</span>, ref=ref, priority=priority<span style="color: #DCDCCC;">)</span>
 
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">start</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span><span style="color: #DCDCCC;">)</span>:
-        <span style="color: #CC9393;">"""Schedule the timeout."""</span>
+        <span style="color: #9FC59F;">"""Schedule the timeout."""</span>
         <span style="color: #F0DFAF; font-weight: bold;">assert</span> <span style="color: #F0DFAF; font-weight: bold;">not</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.pending, <span style="color: #CC9393;">'%r is already started; to restart it, cancel it first'</span> % <span style="color: #F0DFAF; font-weight: bold;">self</span>
         <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.seconds <span style="color: #F0DFAF; font-weight: bold;">is</span> <span style="color: #BFEBBF;">None</span>:  <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">"fake" timeout (never expires)</span>
             <span style="color: #F0DFAF; font-weight: bold;">pass</span>
@@ -1087,12 +1093,13 @@ recv直接调用内置模块的recv方法,如果发现该调用会阻塞,那么�
 
     <span style="color: #7CB8BB;">@property</span>
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">pending</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span><span style="color: #DCDCCC;">)</span>:
-        <span style="color: #CC9393;">"""Return True if the timeout is scheduled to be raised."""</span>
+        <span style="color: #9FC59F;">"""Return True if the timeout is scheduled to be raised."""</span>
         <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.timer.pending <span style="color: #F0DFAF; font-weight: bold;">or</span> <span style="color: #F0DFAF; font-weight: bold;">self</span>.timer.active
 
     <span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">cancel</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span><span style="color: #DCDCCC;">)</span>:
-        <span style="color: #CC9393;">"""If the timeout is pending, cancel it. Otherwise, do nothing."""</span>
+        <span style="color: #9FC59F;">"""If the timeout is pending, cancel it. Otherwise, do nothing."""</span>
         <span style="color: #F0DFAF; font-weight: bold;">self</span>.timer.stop<span style="color: #DCDCCC;">()</span>
+
 </pre>
 </div>
 <p>
@@ -1121,9 +1128,9 @@ start_new是一个包装函数, 正常情况下你要先创建一个timeout实�
 的start方法, 现在你只需要调用这个方法它就会把这两步一起搞定.
 </p>
 </div>
-<div id="outline-container-org8df9013" class="outline-4">
-<h4 id="org8df9013">timeout使用指南</h4>
-<div class="outline-text-4" id="text-org8df9013">
+<div id="outline-container-orge52a729" class="outline-4">
+<h4 id="orge52a729">timeout使用指南</h4>
+<div class="outline-text-4" id="text-orge52a729">
 <p>
 一般情况下timeout都是这样使用的
 </p>
@@ -1160,17 +1167,17 @@ timeout.start<span style="color: #DCDCCC;">()</span>
 </div>
 </div>
 </div>
-<div id="outline-container-org4990a00" class="outline-3">
-<h3 id="org4990a00">Event</h3>
-<div class="outline-text-3" id="text-org4990a00">
+<div id="outline-container-orgaa6ad72" class="outline-3">
+<h3 id="orgaa6ad72">Event</h3>
+<div class="outline-text-3" id="text-orgaa6ad72">
 <p>
 该模块的Event实现了协程间的通知机制, 也就是一个协程可以唤醒监听该event的所
 有协程.
 </p>
 </div>
-<div id="outline-container-orgc71664d" class="outline-4">
-<h4 id="orgc71664d">Event使用指南</h4>
-<div class="outline-text-4" id="text-orgc71664d">
+<div id="outline-container-org6d8c779" class="outline-4">
+<h4 id="org6d8c779">Event使用指南</h4>
+<div class="outline-text-4" id="text-org6d8c779">
 <p>
 在一个协程中创建event对象,并调用该对象的wait方法,这样该协程就会阻塞,直到另
 外一个协程调用了该event对象的set方法,代码如下:
@@ -1187,18 +1194,19 @@ evt.<span style="color: #DCDCCC; font-weight: bold;">set</span><span style="colo
 </div>
 </div>
 </div>
-<div id="outline-container-org8268979" class="outline-3">
-<h3 id="org8268979">AsycResult</h3>
+<div id="outline-container-org83eb70d" class="outline-3">
+<h3 id="org83eb70d">AsycResult</h3>
 </div>
-<div id="outline-container-org804bcce" class="outline-3">
-<h3 id="org804bcce">queue</h3>
+<div id="outline-container-org20cbd18" class="outline-3">
+<h3 id="org20cbd18">queue</h3>
 </div>
-<div id="outline-container-org40ec0b4" class="outline-3">
-<h3 id="org40ec0b4">channel</h3>
-<div class="outline-text-3" id="text-org40ec0b4">
-</div><div id="outline-container-orgf1ef74f" class="outline-4">
-<h4 id="orgf1ef74f">channel使用指南</h4>
-<div class="outline-text-4" id="text-orgf1ef74f">
+<div id="outline-container-orge150c41" class="outline-3">
+<h3 id="orge150c41">channel</h3>
+<div class="outline-text-3" id="text-orge150c41">
+</div>
+<div id="outline-container-org4738872" class="outline-4">
+<h4 id="org4738872">channel使用指南</h4>
+<div class="outline-text-4" id="text-org4738872">
 <p>
 和go语言的channel类似,只是没有缓存也没有类型信息,如果要缓存,那么可能queue
 更合适
@@ -1219,9 +1227,9 @@ chan.put<span style="color: #DCDCCC;">(</span>val<span style="color: #DCDCCC;">)
 </div>
 </div>
 </div>
-<div id="outline-container-org6476d09" class="outline-3">
-<h3 id="org6476d09">其它</h3>
-<div class="outline-text-3" id="text-org6476d09">
+<div id="outline-container-orgb813740" class="outline-3">
+<h3 id="orgb813740">其它</h3>
+<div class="outline-text-3" id="text-orgb813740">
 <p>
 在Greenlet类的join函数中有如下代码：
 </p>
@@ -1238,27 +1246,27 @@ rawlink的作用是注册一个函数，这个函数会在这个greenlet运行�
 </div>
 </div>
 </div>
-<div id="outline-container-org472874d" class="outline-2">
-<h2 id="org472874d">第三方库</h2>
-<div class="outline-text-2" id="text-org472874d">
+<div id="outline-container-org75a2243" class="outline-2">
+<h2 id="org75a2243">第三方库</h2>
+<div class="outline-text-2" id="text-org75a2243">
 <p>
 gevent不像go一样是官方内置的，所以有些时候和第三方库配合会有一些问题，总的来说
 python写成的库可以直接monkey patch，C写成的库可以直接用豆瓣开源的greenify来打
 patch。
 </p>
 </div>
-<div id="outline-container-org9d2424d" class="outline-3">
-<h3 id="org9d2424d">greenify</h3>
-<div class="outline-text-3" id="text-org9d2424d">
+<div id="outline-container-orgf02d7bd" class="outline-3">
+<h3 id="orgf02d7bd">greenify</h3>
+<div class="outline-text-3" id="text-orgf02d7bd">
 <p>
 这个库可以将C扩展打patch，这样可以让他们兼容gevent，它直接工作于二进制文件这一级，
 不需要你修改C扩展代码，目前只支持ELF文件格式。他会自动的对网络相关的代码来patch。
 </p>
 </div>
 </div>
-<div id="outline-container-orgf16e8a0" class="outline-3">
-<h3 id="orgf16e8a0">PyMongo</h3>
-<div class="outline-text-3" id="text-orgf16e8a0">
+<div id="outline-container-org74f411a" class="outline-3">
+<h3 id="org74f411a">PyMongo</h3>
+<div class="outline-text-3" id="text-org74f411a">
 <p>
 有几个注意事项。
 </p>

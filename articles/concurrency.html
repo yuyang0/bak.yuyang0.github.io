@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
 <head>
-<!-- 2016-11-14 Mon 23:09 -->
+<!-- 2018-06-22 五 12:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>并发</title>
@@ -69,6 +69,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -187,7 +188,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -261,13 +262,13 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org07c921b">1. CSP</a></li>
-<li><a href="#org2db1c5d">2. Actor</a></li>
+<li><a href="#org8efab78">1. CSP</a></li>
+<li><a href="#org4c7749a">2. Actor</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org07c921b" class="outline-2">
-<h2 id="org07c921b"><span class="section-number-2">1</span> CSP</h2>
+<div id="outline-container-org8efab78" class="outline-2">
+<h2 id="org8efab78"><span class="section-number-2">1</span> CSP</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 CSP的执行实体是一个一个的process，这些process之间通过channel通信，代表语言是go，
@@ -289,8 +290,8 @@ process在读该channel那么该process就会阻塞，同理读的时候也一�
 </p>
 </div>
 </div>
-<div id="outline-container-org2db1c5d" class="outline-2">
-<h2 id="org2db1c5d"><span class="section-number-2">2</span> Actor</h2>
+<div id="outline-container-org4c7749a" class="outline-2">
+<h2 id="org4c7749a"><span class="section-number-2">2</span> Actor</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Actor模型的执行实体是actor，每一个actor都有一个关联的mailbox，每个actor都可以读

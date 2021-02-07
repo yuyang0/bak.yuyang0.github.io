@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-14 Mon 23:09 -->
+<!-- 2018-06-22 五 12:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Tair源码分析</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -186,7 +187,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -260,24 +261,25 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5d4ee53">Config Server</a>
+<li><a href="#org6601ca1">Config Server</a>
 <ul>
-<li><a href="#org128c3dd">Conf_server_table_manager.[hpp|cpp]</a></li>
-<li><a href="#orgba41992">Server_info[hpp|cpp]</a></li>
-<li><a href="#org706d8f0">Server_conf_thread.[hpp|cpp]</a></li>
+<li><a href="#org6c8906c">Conf_server_table_manager.[hpp|cpp]</a></li>
+<li><a href="#orgeab5625">Server_info[hpp|cpp]</a></li>
+<li><a href="#org5f8f45f">Server_conf_thread.[hpp|cpp]</a></li>
 </ul>
 </li>
-<li><a href="#orge798dc6">Data Server</a></li>
-<li><a href="#org093a042">Client</a></li>
+<li><a href="#orgfd40ed5">Data Server</a></li>
+<li><a href="#orga67fd65">Client</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org5d4ee53" class="outline-2">
-<h2 id="org5d4ee53">Config Server</h2>
-<div class="outline-text-2" id="text-org5d4ee53">
-</div><div id="outline-container-org128c3dd" class="outline-3">
-<h3 id="org128c3dd">Conf_server_table_manager.[hpp|cpp]</h3>
-<div class="outline-text-3" id="text-org128c3dd">
+<div id="outline-container-org6601ca1" class="outline-2">
+<h2 id="org6601ca1">Config Server</h2>
+<div class="outline-text-2" id="text-org6601ca1">
+</div>
+<div id="outline-container-org6c8906c" class="outline-3">
+<h3 id="org6c8906c">Conf_server_table_manager.[hpp|cpp]</h3>
+<div class="outline-text-3" id="text-org6c8906c">
 <p>
 这个文件实际上包含了一个Group的核心配置信息,在内部这些信息会mmap到一个文件, 这样
 当系统在运行的时候,我们可以根据这个文件来获得该Group的配置,这对debug非常有用. 该
@@ -285,9 +287,9 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-orgba41992" class="outline-3">
-<h3 id="orgba41992">Server_info[hpp|cpp]</h3>
-<div class="outline-text-3" id="text-orgba41992">
+<div id="outline-container-orgeab5625" class="outline-3">
+<h3 id="orgeab5625">Server_info[hpp|cpp]</h3>
+<div class="outline-text-3" id="text-orgeab5625">
 <p>
 这个文件主要包含server_info和node_info这两个类.
 </p>
@@ -321,9 +323,9 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-org706d8f0" class="outline-3">
-<h3 id="org706d8f0">Server_conf_thread.[hpp|cpp]</h3>
-<div class="outline-text-3" id="text-org706d8f0">
+<div id="outline-container-org5f8f45f" class="outline-3">
+<h3 id="org5f8f45f">Server_conf_thread.[hpp|cpp]</h3>
+<div class="outline-text-3" id="text-org5f8f45f">
 <p>
 该文件主要实现了一个管理configserver配置的线程.
 </p>
@@ -336,11 +338,11 @@ vector(config_server_info_list).</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orge798dc6" class="outline-2">
-<h2 id="orge798dc6">Data Server</h2>
+<div id="outline-container-orgfd40ed5" class="outline-2">
+<h2 id="orgfd40ed5">Data Server</h2>
 </div>
-<div id="outline-container-org093a042" class="outline-2">
-<h2 id="org093a042">Client</h2>
+<div id="outline-container-orga67fd65" class="outline-2">
+<h2 id="orga67fd65">Client</h2>
 </div>
 </div>
 <div id="postamble" class="status">

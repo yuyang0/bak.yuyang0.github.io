@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-14 Mon 23:09 -->
+<!-- 2018-06-22 五 12:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MXNET Dependency Engine</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -186,7 +187,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -260,29 +261,29 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc55a136">基本背景知识</a></li>
-<li><a href="#org8c5f1bb">Op</a></li>
-<li><a href="#orged5f819">Var</a>
+<li><a href="#orgabc5ff1">基本背景知识</a></li>
+<li><a href="#org4c8e012">Op</a></li>
+<li><a href="#org5bb710b">Var</a>
 <ul>
-<li><a href="#org0ae3655">类图</a></li>
-<li><a href="#org40c1899">理解Var的队列</a></li>
-<li><a href="#orgbf109ee">添加读依赖</a></li>
-<li><a href="#org972426b">添加写依赖</a></li>
-<li><a href="#org670c351">读依赖完成</a></li>
-<li><a href="#org3ab27a6">写依赖完成</a></li>
+<li><a href="#org35bd324">类图</a></li>
+<li><a href="#org1262ebc">理解Var的队列</a></li>
+<li><a href="#orgeaa7d22">添加读依赖</a></li>
+<li><a href="#orgf1a5a41">添加写依赖</a></li>
+<li><a href="#org2f13077">读依赖完成</a></li>
+<li><a href="#orgf4d2825">写依赖完成</a></li>
 </ul>
 </li>
-<li><a href="#org1cef3c0">Engine</a>
+<li><a href="#org3fe8f22">Engine</a>
 <ul>
-<li><a href="#org932f2c9">总结</a></li>
+<li><a href="#org632c7ab">总结</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc55a136" class="outline-2">
-<h2 id="orgc55a136">基本背景知识</h2>
-<div class="outline-text-2" id="text-orgc55a136">
+<div id="outline-container-orgabc5ff1" class="outline-2">
+<h2 id="orgabc5ff1">基本背景知识</h2>
+<div class="outline-text-2" id="text-orgabc5ff1">
 <p>
 MXNET中有一个依赖引擎，这个引擎是用来分析计算过程的依赖关系，把不依赖的计算并行
 化，以达到提高性能的目的。它的基本原理可以看官方的<a href="https://mxnet-bing.readthedocs.io/en/latest/system/note_engine.html">文档</a>。 简单的说就是给每一个对
@@ -292,9 +293,9 @@ MXNET中有一个依赖引擎，这个引擎是用来分析计算过程的依赖
 </p>
 </div>
 </div>
-<div id="outline-container-org8c5f1bb" class="outline-2">
-<h2 id="org8c5f1bb">Op</h2>
-<div class="outline-text-2" id="text-org8c5f1bb">
+<div id="outline-container-org4c8e012" class="outline-2">
+<h2 id="org4c8e012">Op</h2>
+<div class="outline-text-2" id="text-org4c8e012">
 <p>
 Op实际上是用来代表计算过程以及它依赖的var，先来看看它的uml类图。
 </p>
@@ -316,17 +317,17 @@ Op实际上是用来代表计算过程以及它依赖的var，先来看看它的
 </ol>
 </div>
 </div>
-<div id="outline-container-orged5f819" class="outline-2">
-<h2 id="orged5f819">Var</h2>
-<div class="outline-text-2" id="text-orged5f819">
+<div id="outline-container-org5bb710b" class="outline-2">
+<h2 id="org5bb710b">Var</h2>
+<div class="outline-text-2" id="text-org5bb710b">
 <p>
 var可以看做是一个tag，用来标示每一个对象的，这样Op对对象的依赖可以简化成对var的
 依赖，这样就可以构建出一个不依赖于具体的对象的通用的依赖引擎。Var是依赖引擎的关键。
 </p>
 </div>
-<div id="outline-container-org0ae3655" class="outline-3">
-<h3 id="org0ae3655">类图</h3>
-<div class="outline-text-3" id="text-org0ae3655">
+<div id="outline-container-org35bd324" class="outline-3">
+<h3 id="org35bd324">类图</h3>
+<div class="outline-text-3" id="text-org35bd324">
 
 <div class="figure">
 <p><img src="static/img/threaded-var-class-uml.png" alt="threaded-var-class-uml.png" />
@@ -359,9 +360,9 @@ Var只是一个基类，用来统一类型系统的，主要的工作在 <code>T
 </div>
 </div>
 
-<div id="outline-container-org40c1899" class="outline-3">
-<h3 id="org40c1899">理解Var的队列</h3>
-<div class="outline-text-3" id="text-org40c1899">
+<div id="outline-container-org1262ebc" class="outline-3">
+<h3 id="org1262ebc">理解Var的队列</h3>
+<div class="outline-text-3" id="text-org1262ebc">
 <p>
 var的队列是依赖引擎的核心，下面我们来分析下各种情况下，如何修改队列的状态。
 </p>
@@ -410,16 +411,16 @@ var的队列是依赖引擎的核心，下面我们来分析下各种情况下�
 </p>
 </div>
 </div>
-<div id="outline-container-orgbf109ee" class="outline-3">
-<h3 id="orgbf109ee">添加读依赖</h3>
-<div class="outline-text-3" id="text-orgbf109ee">
+<div id="outline-container-orgeaa7d22" class="outline-3">
+<h3 id="orgeaa7d22">添加读依赖</h3>
+<div class="outline-text-3" id="text-orgeaa7d22">
 <p>
 代码主要在 <code>src/engine/Threaded_engine.cc</code> 的 <code>AppendReadDependency</code> 中。
 </p>
 <div class="org-src-container">
 <pre class="src src-cpp"><span style="color: #F0DFAF; font-weight: bold;">inline</span> <span style="color: #7CB8BB;">void</span> <span style="color: #BFEBBF;">ThreadedVar</span>::<span style="color: #93E0E3;">AppendReadDependency</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">OprBlock</span>* <span style="color: #DFAF8F;">opr_block</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
     <span style="color: #BFEBBF;">std</span>::<span style="color: #7CB8BB;">lock_guard</span><span style="color: #BFEBBF;">&lt;</span><span style="color: #BFEBBF;">std</span>::mutex<span style="color: #BFEBBF;">&gt;</span> <span style="color: #DFAF8F;">lock</span><span style="color: #BFEBBF;">{</span>m_<span style="color: #BFEBBF;">}</span>;
-    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>pending_write_ == nullptr<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>pending_write_ == <span style="color: #BFEBBF;">nullptr</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
         <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">invariant: is_ready_to_read()</span>
         CHECK_GE<span style="color: #D0BF8F;">(</span>num_pending_reads_, <span style="color: #BFEBBF;">0</span><span style="color: #D0BF8F;">)</span>;
         <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">STATE CHANGE</span>
@@ -428,8 +429,8 @@ var的队列是依赖引擎的核心，下面我们来分析下各种情况下�
         opr_block-&gt;decr_wait<span style="color: #D0BF8F;">()</span>;
     <span style="color: #BFEBBF;">}</span> <span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #BFEBBF;">{</span>
         <span style="color: #F0DFAF; font-weight: bold;">auto</span>&amp;&amp; <span style="color: #DFAF8F;">new_var_block</span> = <span style="color: #BFEBBF;">VersionedVarBlock</span>::New<span style="color: #D0BF8F;">()</span>;
-        assert<span style="color: #D0BF8F;">(</span>head_-&gt;next == nullptr<span style="color: #D0BF8F;">)</span>;
-        assert<span style="color: #D0BF8F;">(</span>head_-&gt;trigger == nullptr<span style="color: #D0BF8F;">)</span>;
+        assert<span style="color: #D0BF8F;">(</span>head_-&gt;next == <span style="color: #BFEBBF;">nullptr</span><span style="color: #D0BF8F;">)</span>;
+        assert<span style="color: #D0BF8F;">(</span>head_-&gt;trigger == <span style="color: #BFEBBF;">nullptr</span><span style="color: #D0BF8F;">)</span>;
         assert<span style="color: #D0BF8F;">(</span>head_-&gt;write == <span style="color: #BFEBBF;">false</span><span style="color: #D0BF8F;">)</span>;
         <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">append things to next.</span>
         head_-&gt;next = new_var_block;
@@ -452,9 +453,9 @@ var的队列是依赖引擎的核心，下面我们来分析下各种情况下�
 </ol>
 </div>
 </div>
-<div id="outline-container-org972426b" class="outline-3">
-<h3 id="org972426b">添加写依赖</h3>
-<div class="outline-text-3" id="text-org972426b">
+<div id="outline-container-orgf1a5a41" class="outline-3">
+<h3 id="orgf1a5a41">添加写依赖</h3>
+<div class="outline-text-3" id="text-orgf1a5a41">
 <p>
 代码主要在 <code>src/engine/Threaded_engine.cc</code> 的 <code>AppendWriteDependency</code> 中。
 </p>
@@ -463,8 +464,8 @@ var的队列是依赖引擎的核心，下面我们来分析下各种情况下�
     <span style="color: #F0DFAF; font-weight: bold;">auto</span>&amp;&amp; <span style="color: #DFAF8F;">new_var_block</span> = <span style="color: #BFEBBF;">VersionedVarBlock</span>::New<span style="color: #BFEBBF;">()</span>;
     <span style="color: #BFEBBF;">std</span>::<span style="color: #7CB8BB;">lock_guard</span><span style="color: #BFEBBF;">&lt;</span><span style="color: #BFEBBF;">std</span>::mutex<span style="color: #BFEBBF;">&gt;</span> <span style="color: #DFAF8F;">lock</span><span style="color: #BFEBBF;">{</span>m_<span style="color: #BFEBBF;">}</span>;
     <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">invariant.</span>
-    assert<span style="color: #BFEBBF;">(</span>head_-&gt;next == nullptr<span style="color: #BFEBBF;">)</span>;
-    assert<span style="color: #BFEBBF;">(</span>head_-&gt;trigger == nullptr<span style="color: #BFEBBF;">)</span>;
+    assert<span style="color: #BFEBBF;">(</span>head_-&gt;next == <span style="color: #BFEBBF;">nullptr</span><span style="color: #BFEBBF;">)</span>;
+    assert<span style="color: #BFEBBF;">(</span>head_-&gt;trigger == <span style="color: #BFEBBF;">nullptr</span><span style="color: #BFEBBF;">)</span>;
     assert<span style="color: #BFEBBF;">(</span>head_-&gt;write == <span style="color: #BFEBBF;">false</span><span style="color: #BFEBBF;">)</span>;
     <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">attach to head.</span>
     head_-&gt;next = new_var_block;
@@ -472,7 +473,7 @@ var的队列是依赖引擎的核心，下面我们来分析下各种情况下�
     head_-&gt;write = <span style="color: #BFEBBF;">true</span>;
 
     <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">check if it is ready to write</span>
-    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>pending_write_ == nullptr<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>pending_write_ == <span style="color: #BFEBBF;">nullptr</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
         <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">invariant: is_ready_to_read()</span>
         pending_write_ = head_;
         CHECK_GE<span style="color: #D0BF8F;">(</span>num_pending_reads_, <span style="color: #BFEBBF;">0</span><span style="color: #D0BF8F;">)</span>;
@@ -486,6 +487,7 @@ var的队列是依赖引擎的核心，下面我们来分析下各种情况下�
     <span style="color: #BFEBBF;">}</span>
     head_ = new_var_block;
 <span style="color: #DCDCCC;">}</span>
+
 </pre>
 </div>
 <p>
@@ -497,30 +499,30 @@ var的队列是依赖引擎的核心，下面我们来分析下各种情况下�
 </p>
 </div>
 </div>
-<div id="outline-container-org670c351" class="outline-3">
-<h3 id="org670c351">读依赖完成</h3>
-<div class="outline-text-3" id="text-org670c351">
+<div id="outline-container-org2f13077" class="outline-3">
+<h3 id="org2f13077">读依赖完成</h3>
+<div class="outline-text-3" id="text-org2f13077">
 <p>
 代码主要在 <code>src/engine/Threaded_engine.cc</code> 的 <code>CompleteReadDependency</code> 中。
 </p>
 <div class="org-src-container">
 <pre class="src src-cpp"><span style="color: #F0DFAF; font-weight: bold;">template</span> <span style="color: #DCDCCC;">&lt;</span><span style="color: #F0DFAF; font-weight: bold;">typename</span> <span style="color: #7CB8BB;">Dispatcher</span><span style="color: #DCDCCC;">&gt;</span>
 <span style="color: #F0DFAF; font-weight: bold;">inline</span> <span style="color: #7CB8BB;">void</span> <span style="color: #BFEBBF;">ThreadedVar</span>::<span style="color: #93E0E3;">CompleteReadDependency</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">Dispatcher</span> <span style="color: #DFAF8F;">dispatcher</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
-    <span style="color: #7CB8BB;">OprBlock</span> *<span style="color: #DFAF8F;">trigger</span> = nullptr;
+    <span style="color: #7CB8BB;">OprBlock</span> *<span style="color: #DFAF8F;">trigger</span> = <span style="color: #BFEBBF;">nullptr</span>;
     <span style="color: #BFEBBF;">{</span>
         <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">this is lock scope</span>
         <span style="color: #BFEBBF;">std</span>::<span style="color: #7CB8BB;">lock_guard</span><span style="color: #D0BF8F;">&lt;</span><span style="color: #BFEBBF;">std</span>::mutex<span style="color: #D0BF8F;">&gt;</span> <span style="color: #DFAF8F;">lock</span><span style="color: #D0BF8F;">{</span>m_<span style="color: #D0BF8F;">}</span>;
         CHECK_GT<span style="color: #D0BF8F;">(</span>num_pending_reads_, <span style="color: #BFEBBF;">0</span><span style="color: #D0BF8F;">)</span>;
 
         <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>--num_pending_reads_ == <span style="color: #BFEBBF;">0</span><span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
-            <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #93E0E3;">(</span>pending_write_ != nullptr<span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">{</span>
+            <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #93E0E3;">(</span>pending_write_ != <span style="color: #BFEBBF;">nullptr</span><span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">{</span>
                 <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">STATE CHANGE</span>
                 trigger = pending_write_-&gt;trigger;
                 num_pending_reads_ = kWriteTriggered;
             <span style="color: #93E0E3;">}</span>
         <span style="color: #D0BF8F;">}</span>
     <span style="color: #BFEBBF;">}</span>
-    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>trigger != nullptr &amp;&amp; trigger-&gt;decr_wait<span style="color: #D0BF8F;">()</span> == <span style="color: #BFEBBF;">0</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>trigger != <span style="color: #BFEBBF;">nullptr</span> &amp;&amp; trigger-&gt;decr_wait<span style="color: #D0BF8F;">()</span> == <span style="color: #BFEBBF;">0</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
         dispatcher<span style="color: #D0BF8F;">(</span>trigger<span style="color: #D0BF8F;">)</span>;
     <span style="color: #BFEBBF;">}</span>
 <span style="color: #DCDCCC;">}</span>
@@ -535,9 +537,9 @@ var的队列是依赖引擎的核心，下面我们来分析下各种情况下�
 </p>
 </div>
 </div>
-<div id="outline-container-org3ab27a6" class="outline-3">
-<h3 id="org3ab27a6">写依赖完成</h3>
-<div class="outline-text-3" id="text-org3ab27a6">
+<div id="outline-container-orgf4d2825" class="outline-3">
+<h3 id="orgf4d2825">写依赖完成</h3>
+<div class="outline-text-3" id="text-orgf4d2825">
 <p>
 代码主要在 <code>src/engine/Threaded_engine.cc</code> 的 <code>CompleteWriteDependency</code> 中。
 </p>
@@ -546,12 +548,12 @@ var的队列是依赖引擎的核心，下面我们来分析下各种情况下�
 <span style="color: #F0DFAF; font-weight: bold;">inline</span> <span style="color: #7CB8BB;">bool</span> <span style="color: #BFEBBF;">ThreadedVar</span>::<span style="color: #93E0E3;">CompleteWriteDependency</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">Dispatcher</span> <span style="color: #DFAF8F;">dispatcher</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
   <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">this is lock scope</span>
   <span style="color: #7CB8BB;">VersionedVarBlock</span> *<span style="color: #DFAF8F;">old_pending_write</span>, *<span style="color: #DFAF8F;">end_of_read_chain</span>;
-  <span style="color: #7CB8BB;">OprBlock</span>* <span style="color: #DFAF8F;">trigger_write</span> = nullptr;
+  <span style="color: #7CB8BB;">OprBlock</span>* <span style="color: #DFAF8F;">trigger_write</span> = <span style="color: #BFEBBF;">nullptr</span>;
   <span style="color: #BFEBBF;">{</span>
     <span style="color: #BFEBBF;">std</span>::<span style="color: #7CB8BB;">lock_guard</span><span style="color: #D0BF8F;">&lt;</span><span style="color: #BFEBBF;">std</span>::mutex<span style="color: #D0BF8F;">&gt;</span> <span style="color: #DFAF8F;">lock</span><span style="color: #D0BF8F;">{</span>m_<span style="color: #D0BF8F;">}</span>;
     <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">invariants</span>
-    assert<span style="color: #D0BF8F;">(</span>head_-&gt;next == nullptr<span style="color: #D0BF8F;">)</span>;
-    assert<span style="color: #D0BF8F;">(</span>pending_write_ != nullptr<span style="color: #D0BF8F;">)</span>;
+    assert<span style="color: #D0BF8F;">(</span>head_-&gt;next == <span style="color: #BFEBBF;">nullptr</span><span style="color: #D0BF8F;">)</span>;
+    assert<span style="color: #D0BF8F;">(</span>pending_write_ != <span style="color: #BFEBBF;">nullptr</span><span style="color: #D0BF8F;">)</span>;
     CHECK_EQ<span style="color: #D0BF8F;">(</span>num_pending_reads_, kWriteTriggered<span style="color: #D0BF8F;">)</span>;
 
     <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">really delete</span>
@@ -574,7 +576,7 @@ var的队列是依赖引擎的核心，下面我们来分析下各种情况下�
       end_of_read_chain = end_of_read_chain-&gt;next;
     <span style="color: #D0BF8F;">}</span>
     <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>end_of_read_chain == head_<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
-      pending_write_ = nullptr;
+      pending_write_ = <span style="color: #BFEBBF;">nullptr</span>;
     <span style="color: #D0BF8F;">}</span> <span style="color: #F0DFAF; font-weight: bold;">else</span> <span style="color: #D0BF8F;">{</span>
       <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F;">check if there is pending reads, if not trigger write</span>
       assert<span style="color: #93E0E3;">(</span>end_of_read_chain-&gt;write == <span style="color: #BFEBBF;">true</span><span style="color: #93E0E3;">)</span>;
@@ -599,12 +601,12 @@ var的队列是依赖引擎的核心，下面我们来分析下各种情况下�
     <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>cur_head-&gt;trigger-&gt;decr_wait<span style="color: #93E0E3;">()</span> == <span style="color: #BFEBBF;">0</span><span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
       dispatcher<span style="color: #93E0E3;">(</span>cur_head-&gt;trigger<span style="color: #93E0E3;">)</span>;
     <span style="color: #D0BF8F;">}</span>
-    <span style="color: #F0DFAF; font-weight: bold;">auto</span> <span style="color: #7CB8BB;">prev</span> = cur_head;
+    <span style="color: #F0DFAF; font-weight: bold;">auto</span> <span style="color: #DFAF8F;">prev</span> = cur_head;
     cur_head = cur_head-&gt;next;
-    assert<span style="color: #D0BF8F;">(</span>cur_head != nullptr<span style="color: #D0BF8F;">)</span>;
+    assert<span style="color: #D0BF8F;">(</span>cur_head != <span style="color: #BFEBBF;">nullptr</span><span style="color: #D0BF8F;">)</span>;
     <span style="color: #BFEBBF;">VersionedVarBlock</span>::Delete<span style="color: #D0BF8F;">(</span>prev<span style="color: #D0BF8F;">)</span>;
   <span style="color: #BFEBBF;">}</span>
-  <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>trigger_write != nullptr &amp;&amp; trigger_write-&gt;decr_wait<span style="color: #D0BF8F;">()</span> == <span style="color: #BFEBBF;">0</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+  <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>trigger_write != <span style="color: #BFEBBF;">nullptr</span> &amp;&amp; trigger_write-&gt;decr_wait<span style="color: #D0BF8F;">()</span> == <span style="color: #BFEBBF;">0</span><span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
     dispatcher<span style="color: #D0BF8F;">(</span>trigger_write<span style="color: #D0BF8F;">)</span>;
   <span style="color: #BFEBBF;">}</span>
   <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #BFEBBF;">false</span>;
@@ -628,9 +630,9 @@ var的队列是依赖引擎的核心，下面我们来分析下各种情况下�
 </div>
 </div>
 </div>
-<div id="outline-container-org1cef3c0" class="outline-2">
-<h2 id="org1cef3c0">Engine</h2>
-<div class="outline-text-2" id="text-org1cef3c0">
+<div id="outline-container-org3fe8f22" class="outline-2">
+<h2 id="org3fe8f22">Engine</h2>
+<div class="outline-text-2" id="text-org3fe8f22">
 <p>
 Engine是总的调用接口。
 </p>
@@ -640,7 +642,7 @@ Engine是总的调用接口。
     <span style="color: #7CB8BB;">OprBlock</span>* <span style="color: #DFAF8F;">opr_block</span> = <span style="color: #BFEBBF;">OprBlock</span>::New<span style="color: #BFEBBF;">()</span>;
     opr_block-&gt;opr = threaded_opr;
 
-    opr_block-&gt;wait.store<span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">static_cast</span>&lt;<span style="color: #7CB8BB;">int</span>&gt;<span style="color: #D0BF8F;">(</span>
+    opr_block-&gt;wait.store<span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">static_cast</span><span style="color: #D0BF8F;">&lt;</span><span style="color: #7CB8BB;">int</span><span style="color: #D0BF8F;">&gt;(</span>
                               threaded_opr-&gt;const_vars.size<span style="color: #93E0E3;">()</span> +
                               threaded_opr-&gt;mutable_vars.size<span style="color: #93E0E3;">()</span> + <span style="color: #BFEBBF;">1</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>;
     opr_block-&gt;ctx = exec_ctx;
@@ -658,6 +660,7 @@ Engine是总的调用接口。
         <span style="color: #F0DFAF; font-weight: bold;">this</span>-&gt;PushToExecute<span style="color: #D0BF8F;">(</span>opr_block, <span style="color: #BFEBBF;">true</span><span style="color: #D0BF8F;">)</span>;
     <span style="color: #BFEBBF;">}</span>
 <span style="color: #DCDCCC;">}</span>
+
 </pre>
 </div>
 <p>
@@ -684,6 +687,7 @@ Engine是总的调用接口。
 
     <span style="color: #BFEBBF;">OprBlock</span>::Delete<span style="color: #BFEBBF;">(</span>opr_block<span style="color: #BFEBBF;">)</span>;
   <span style="color: #DCDCCC;">}</span>
+
 </pre>
 </div>
 <p>
@@ -692,9 +696,10 @@ Engine是总的调用接口。
 <div class="org-src-container">
 <pre class="src src-cpp"><span style="color: #7CB8BB;">void</span> <span style="color: #BFEBBF;">ThreadedEngine</span>::<span style="color: #93E0E3;">OnCompleteStatic</span><span style="color: #DCDCCC;">(</span>
     <span style="color: #7CB8BB;">Engine</span> *<span style="color: #DFAF8F;">engine</span>, <span style="color: #7CB8BB;">void</span> *<span style="color: #DFAF8F;">threaded_opr</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
-  <span style="color: #F0DFAF; font-weight: bold;">static_cast</span>&lt;ThreadedEngine*&gt;<span style="color: #BFEBBF;">(</span>engine<span style="color: #BFEBBF;">)</span>-&gt;OnComplete<span style="color: #BFEBBF;">(</span>
-      <span style="color: #F0DFAF; font-weight: bold;">static_cast</span>&lt;ThreadedOpr*&gt;<span style="color: #D0BF8F;">(</span>threaded_opr<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>;
+  <span style="color: #F0DFAF; font-weight: bold;">static_cast</span><span style="color: #BFEBBF;">&lt;</span><span style="color: #7CB8BB;">ThreadedEngine</span>*<span style="color: #BFEBBF;">&gt;(</span>engine<span style="color: #BFEBBF;">)</span>-&gt;OnComplete<span style="color: #BFEBBF;">(</span>
+      <span style="color: #F0DFAF; font-weight: bold;">static_cast</span><span style="color: #D0BF8F;">&lt;</span><span style="color: #7CB8BB;">ThreadedOpr</span>*<span style="color: #D0BF8F;">&gt;(</span>threaded_opr<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>;
 <span style="color: #DCDCCC;">}</span>
+
 </pre>
 </div>
 <p>
@@ -745,6 +750,7 @@ Engine是总的调用接口。
     <span style="color: #BFEBBF;">ThreadedOpr</span>::Delete<span style="color: #D0BF8F;">(</span>threaded_opr<span style="color: #D0BF8F;">)</span>;
   <span style="color: #BFEBBF;">}</span>
 <span style="color: #DCDCCC;">}</span>
+
 </pre>
 </div>
 <p>
@@ -754,9 +760,9 @@ Engine是总的调用接口。
 要是调用了 <code>PushToExecute</code>.
 </p>
 </div>
-<div id="outline-container-org932f2c9" class="outline-3">
-<h3 id="org932f2c9">总结</h3>
-<div class="outline-text-3" id="text-org932f2c9">
+<div id="outline-container-org632c7ab" class="outline-3">
+<h3 id="org632c7ab">总结</h3>
+<div class="outline-text-3" id="text-org632c7ab">
 <p>
 通过 <code>Push</code> 将Op的各种依赖加入相应的Var的队列，并且当依赖都满足的时候将op丢入执
 行引擎执行，当执行引擎完成后，调用 <code>Complete</code> 系列的函数来更新Var的队列,在更新队

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-14 Mon 23:09 -->
+<!-- 2018-06-22 五 12:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>wsgi</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -186,7 +187,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -256,9 +257,9 @@ for the JavaScript code in this tag.
 </div>
 <div id="content">
 <h1 class="title">wsgi</h1>
-<div id="outline-container-org15c4a19" class="outline-2">
-<h2 id="org15c4a19">wsgi (Python Web Server Gateway Interface)</h2>
-<div class="outline-text-2" id="text-org15c4a19">
+<div id="outline-container-org677dc24" class="outline-2">
+<h2 id="org677dc24">wsgi (Python Web Server Gateway Interface)</h2>
+<div class="outline-text-2" id="text-org677dc24">
 <p>
 简单的说wsgi是定义了一种规范，它可以使任何符合该规范的web应用(比如网站)都可
 以运行在任何符合该规范的web server上，就像插座与插头，要想插头插入插孔中，你
@@ -268,9 +269,9 @@ for the JavaScript code in this tag.
 server，该规范在<a href="http://www.python.org/dev/peps/pep-3333/">EPE 3333</a> 中说明
 </p>
 </div>
-<div id="outline-container-org4d5bcd9" class="outline-3">
-<h3 id="org4d5bcd9">The Application/Framework Side(web应用端)</h3>
-<div class="outline-text-3" id="text-org4d5bcd9">
+<div id="outline-container-org79839da" class="outline-3">
+<h3 id="org79839da">The Application/Framework Side(web应用端)</h3>
+<div class="outline-text-3" id="text-org79839da">
 <p>
 这一端必须定义一个接受两个参数的可调用对象，可调用对象可以是函数，类方法，
 类以及一个包含__call__的类实例，下面是pep3333的示例代码：
@@ -294,6 +295,7 @@ server，该规范在<a href="http://www.python.org/dev/peps/pep-3333/">EPE 3333
         <span style="color: #DFAF8F;">response_headers</span> = <span style="color: #DCDCCC;">[</span><span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">'Content-type'</span>, <span style="color: #CC9393;">'text/plain'</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">]</span>
         <span style="color: #F0DFAF; font-weight: bold;">self</span>.start<span style="color: #DCDCCC;">(</span>status, response_headers<span style="color: #DCDCCC;">)</span>
         <span style="color: #F0DFAF; font-weight: bold;">yield</span> HELLO_WORLD
+
 </pre>
 </div>
 <p>
@@ -307,9 +309,9 @@ server，该规范在<a href="http://www.python.org/dev/peps/pep-3333/">EPE 3333
 </p>
 </div>
 </div>
-<div id="outline-container-org8056954" class="outline-3">
-<h3 id="org8056954">The Server/Gateway Side (web server端)</h3>
-<div class="outline-text-3" id="text-org8056954">
+<div id="outline-container-org5a21125" class="outline-3">
+<h3 id="org5a21125">The Server/Gateway Side (web server端)</h3>
+<div class="outline-text-3" id="text-org5a21125">
 <p>
 在server指定的代码会在每一次http请求时调用。它主要是environ以及一个名为
 start_response的函数传递给在web应用端定义的可调用对象，然后获得返回值

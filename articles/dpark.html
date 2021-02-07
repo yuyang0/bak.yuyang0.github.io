@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-14 Mon 23:09 -->
+<!-- 2018-06-22 五 12:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dpark</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -186,7 +187,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -260,67 +261,67 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge08a23b">Big Picture</a></li>
-<li><a href="#orgd0f6dc3">RDD</a>
+<li><a href="#org5cd6ac3">Big Picture</a></li>
+<li><a href="#org9d9ad19">RDD</a>
 <ul>
-<li><a href="#org10e436b">Transformations</a></li>
-<li><a href="#orgd63da08">Actions</a></li>
-<li><a href="#org10113d1">Dependency</a>
+<li><a href="#org24ee80d">Transformations</a></li>
+<li><a href="#org9609b13">Actions</a></li>
+<li><a href="#orgd68b51a">Dependency</a>
 <ul>
-<li><a href="#org9c0be0d">Narrow Dependency</a></li>
-<li><a href="#org98ccb3f">Wide Dependency</a></li>
+<li><a href="#org4ecc47b">Narrow Dependency</a></li>
+<li><a href="#orgc92a284">Wide Dependency</a></li>
 </ul>
 </li>
-<li><a href="#orgccba5cd">Partitioner</a></li>
-<li><a href="#org696283b">Aggregator</a></li>
-<li><a href="#org550cbb0">Merger</a></li>
-<li><a href="#org0f28797">RDD</a></li>
+<li><a href="#org0a47dff">Partitioner</a></li>
+<li><a href="#orge7aef30">Aggregator</a></li>
+<li><a href="#org45d2c77">Merger</a></li>
+<li><a href="#orgfbb92f9">RDD</a></li>
 </ul>
 </li>
-<li><a href="#org8dcb98f">Context(context.py)</a>
+<li><a href="#org0e94254">Context(context.py)</a>
 <ul>
-<li><a href="#orgf6b75bc">DparkContext</a></li>
-<li><a href="#org9565f74">命令行参数</a></li>
+<li><a href="#orgafb7173">DparkContext</a></li>
+<li><a href="#orge21fea3">命令行参数</a></li>
 </ul>
 </li>
-<li><a href="#org85e4644">cache(cache.py)</a>
+<li><a href="#org9bd9494">cache(cache.py)</a>
 <ul>
-<li><a href="#orgc5a0025">Cache</a></li>
-<li><a href="#orgdda4206">DiskCache</a></li>
-<li><a href="#org81aa304">CacheTracker</a></li>
+<li><a href="#org50a2ed3">Cache</a></li>
+<li><a href="#org7ef1990">DiskCache</a></li>
+<li><a href="#org8f27f27">CacheTracker</a></li>
 </ul>
 </li>
-<li><a href="#orge209d2a">Tracker(tracker.py)</a>
+<li><a href="#org159594f">Tracker(tracker.py)</a>
 <ul>
-<li><a href="#orge700cf4">消息类型</a></li>
+<li><a href="#orgb94c915">消息类型</a></li>
 </ul>
 </li>
-<li><a href="#orge2338cb">shuffle</a></li>
-<li><a href="#org3eee15e">env(env.py)</a></li>
-<li><a href="#org7bb8c59">conf(conf.py)</a></li>
-<li><a href="#org6a361f4">调度系统</a>
+<li><a href="#org912fa3b">shuffle</a></li>
+<li><a href="#orgfac45ce">env(env.py)</a></li>
+<li><a href="#org218a3cf">conf(conf.py)</a></li>
+<li><a href="#orge23c130">调度系统</a>
 <ul>
-<li><a href="#org9b13102">基本概念</a></li>
-<li><a href="#orga22a887">Stage</a></li>
-<li><a href="#orga58a925">DAGScheduler</a></li>
-<li><a href="#orge8db922">MesosScheduler</a></li>
-<li><a href="#org3d09bd7">Task(task.py)</a></li>
+<li><a href="#org1b77a2a">基本概念</a></li>
+<li><a href="#orgb96e2d2">Stage</a></li>
+<li><a href="#org6466aba">DAGScheduler</a></li>
+<li><a href="#org7015826">MesosScheduler</a></li>
+<li><a href="#org4826ebd">Task(task.py)</a></li>
 </ul>
 </li>
-<li><a href="#org3b020c1">Executor(executor.py)</a>
+<li><a href="#org9ec1de1">Executor(executor.py)</a>
 <ul>
-<li><a href="#org0cb6552">web server</a></li>
-<li><a href="#orged32314">进程池</a></li>
-<li><a href="#orgd5c42c7">run_task</a></li>
-<li><a href="#org224c83b">MyExecutor</a></li>
+<li><a href="#org2b0c9e0">web server</a></li>
+<li><a href="#org05c3bc6">进程池</a></li>
+<li><a href="#org0a9834a">run_task</a></li>
+<li><a href="#org705e1ff">MyExecutor</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge08a23b" class="outline-2">
-<h2 id="orge08a23b">Big Picture</h2>
-<div class="outline-text-2" id="text-orge08a23b">
+<div id="outline-container-org5cd6ac3" class="outline-2">
+<h2 id="org5cd6ac3">Big Picture</h2>
+<div class="outline-text-2" id="text-org5cd6ac3">
 <p>
 dpark的计算过程是这样的：
 </p>
@@ -339,16 +340,16 @@ mesos)来运行。</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgd0f6dc3" class="outline-2">
-<h2 id="orgd0f6dc3">RDD</h2>
-<div class="outline-text-2" id="text-orgd0f6dc3">
+<div id="outline-container-org9d9ad19" class="outline-2">
+<h2 id="org9d9ad19">RDD</h2>
+<div class="outline-text-2" id="text-org9d9ad19">
 <p>
 RDD可以理解为一个集合.
 </p>
 </div>
-<div id="outline-container-org10e436b" class="outline-3">
-<h3 id="org10e436b">Transformations</h3>
-<div class="outline-text-3" id="text-org10e436b">
+<div id="outline-container-org24ee80d" class="outline-3">
+<h3 id="org24ee80d">Transformations</h3>
+<div class="outline-text-3" id="text-org24ee80d">
 <ol class="org-ol">
 <li><p>
 groupBy: 先通过map得到key，然后reduceByKey
@@ -362,9 +363,9 @@ groupBy: 先通过map得到key，然后reduceByKey
 </ol>
 </div>
 </div>
-<div id="outline-container-orgd63da08" class="outline-3">
-<h3 id="orgd63da08">Actions</h3>
-<div class="outline-text-3" id="text-orgd63da08">
+<div id="outline-container-org9609b13" class="outline-3">
+<h3 id="org9609b13">Actions</h3>
+<div class="outline-text-3" id="text-org9609b13">
 <p>
 dpark上的计算是惰性的，当你调用一系列的transformation时，计算并没有真正触发，只
 有调用Action时才真正触发运算，常用的Action如下：
@@ -406,12 +407,13 @@ dpark上的计算是惰性的，当你调用一系列的transformation时，计�
 </table>
 </div>
 </div>
-<div id="outline-container-org10113d1" class="outline-3">
-<h3 id="org10113d1">Dependency</h3>
-<div class="outline-text-3" id="text-org10113d1">
-</div><div id="outline-container-org9c0be0d" class="outline-4">
-<h4 id="org9c0be0d">Narrow Dependency</h4>
-<div class="outline-text-4" id="text-org9c0be0d">
+<div id="outline-container-orgd68b51a" class="outline-3">
+<h3 id="orgd68b51a">Dependency</h3>
+<div class="outline-text-3" id="text-orgd68b51a">
+</div>
+<div id="outline-container-org4ecc47b" class="outline-4">
+<h4 id="org4ecc47b">Narrow Dependency</h4>
+<div class="outline-text-4" id="text-org4ecc47b">
 <p>
 父RDD的一个分区最多只被子RDD的一个分区所依赖，为了实现方便，他又分为两种类型：
 </p>
@@ -437,9 +439,9 @@ dpark上的计算是惰性的，当你调用一系列的transformation时，计�
 </ol>
 </div>
 </div>
-<div id="outline-container-org98ccb3f" class="outline-4">
-<h4 id="org98ccb3f">Wide Dependency</h4>
-<div class="outline-text-4" id="text-org98ccb3f">
+<div id="outline-container-orgc92a284" class="outline-4">
+<h4 id="orgc92a284">Wide Dependency</h4>
+<div class="outline-text-4" id="text-orgc92a284">
 <p>
 父RDD的一个分区被子RDD的多个分区所依赖，这种依赖意味着为了计算子RDD的一个分区，
 我们必须进行shuffle操作。shuffle对性能的影响很大。
@@ -450,9 +452,9 @@ dpark上的计算是惰性的，当你调用一系列的transformation时，计�
 </div>
 </div>
 </div>
-<div id="outline-container-orgccba5cd" class="outline-3">
-<h3 id="orgccba5cd">Partitioner</h3>
-<div class="outline-text-3" id="text-orgccba5cd">
+<div id="outline-container-org0a47dff" class="outline-3">
+<h3 id="org0a47dff">Partitioner</h3>
+<div class="outline-text-3" id="text-org0a47dff">
 <p>
 返回分区的相关的信息 <b>接口</b>:
 </p>
@@ -473,9 +475,9 @@ dpark上的计算是惰性的，当你调用一系列的transformation时，计�
 </ol>
 </div>
 </div>
-<div id="outline-container-org696283b" class="outline-3">
-<h3 id="org696283b">Aggregator</h3>
-<div class="outline-text-3" id="text-org696283b">
+<div id="outline-container-orge7aef30" class="outline-3">
+<h3 id="orge7aef30">Aggregator</h3>
+<div class="outline-text-3" id="text-orge7aef30">
 <p>
 聚合器，实际上指定了如何把多个值聚合起来, 实现实际上包含三个函数：
 </p>
@@ -491,9 +493,9 @@ set(UniqAggregator), 还可以是其它的容器类型,这个东西主要是用�
 </p>
 </div>
 </div>
-<div id="outline-container-org550cbb0" class="outline-3">
-<h3 id="org550cbb0">Merger</h3>
-<div class="outline-text-3" id="text-org550cbb0">
+<div id="outline-container-org45d2c77" class="outline-3">
+<h3 id="org45d2c77">Merger</h3>
+<div class="outline-text-3" id="text-org45d2c77">
 <p>
 合并K/V键值对
 </p>
@@ -504,9 +506,9 @@ set(UniqAggregator), 还可以是其它的容器类型,这个东西主要是用�
 </ol>
 </div>
 </div>
-<div id="outline-container-org0f28797" class="outline-3">
-<h3 id="org0f28797">RDD</h3>
-<div class="outline-text-3" id="text-org0f28797">
+<div id="outline-container-orgfbb92f9" class="outline-3">
+<h3 id="orgfbb92f9">RDD</h3>
+<div class="outline-text-3" id="text-orgfbb92f9">
 <p>
 这个类是用来描述rdd的，它有很多子类, 这些类都有以下几个比较重要的属性和方法:
 </p>
@@ -519,12 +521,13 @@ set(UniqAggregator), 还可以是其它的容器类型,这个东西主要是用�
 </div>
 </div>
 </div>
-<div id="outline-container-org8dcb98f" class="outline-2">
-<h2 id="org8dcb98f">Context(context.py)</h2>
-<div class="outline-text-2" id="text-org8dcb98f">
-</div><div id="outline-container-orgf6b75bc" class="outline-3">
-<h3 id="orgf6b75bc">DparkContext</h3>
-<div class="outline-text-3" id="text-orgf6b75bc">
+<div id="outline-container-org0e94254" class="outline-2">
+<h2 id="org0e94254">Context(context.py)</h2>
+<div class="outline-text-2" id="text-org0e94254">
+</div>
+<div id="outline-container-orgafb7173" class="outline-3">
+<h3 id="orgafb7173">DparkContext</h3>
+<div class="outline-text-3" id="text-orgafb7173">
 <p>
 DparkContext类中中有几个非常重要的方法:
 </p>
@@ -535,9 +538,9 @@ DparkContext类中中有几个非常重要的方法:
 </ol>
 </div>
 </div>
-<div id="outline-container-org9565f74" class="outline-3">
-<h3 id="org9565f74">命令行参数</h3>
-<div class="outline-text-3" id="text-org9565f74">
+<div id="outline-container-orge21fea3" class="outline-3">
+<h3 id="orge21fea3">命令行参数</h3>
+<div class="outline-text-3" id="text-orge21fea3">
 <p>
 add_default_options, parse_options都是用来获取命令行参数的。命令行参数有以下几个：
 </p>
@@ -551,24 +554,24 @@ add_default_options, parse_options都是用来获取命令行参数的。命令�
 </div>
 </div>
 </div>
-<div id="outline-container-org85e4644" class="outline-2">
-<h2 id="org85e4644">cache(cache.py)</h2>
-<div class="outline-text-2" id="text-org85e4644">
+<div id="outline-container-org9bd9494" class="outline-2">
+<h2 id="org9bd9494">cache(cache.py)</h2>
+<div class="outline-text-2" id="text-org9bd9494">
 <p>
 缓存相关
 </p>
 </div>
-<div id="outline-container-orgc5a0025" class="outline-3">
-<h3 id="orgc5a0025">Cache</h3>
-<div class="outline-text-3" id="text-orgc5a0025">
+<div id="outline-container-org50a2ed3" class="outline-3">
+<h3 id="org50a2ed3">Cache</h3>
+<div class="outline-text-3" id="text-org50a2ed3">
 <p>
 实际是对字典的一层包装, 提供get, put, clear三个方法.
 </p>
 </div>
 </div>
-<div id="outline-container-orgdda4206" class="outline-3">
-<h3 id="orgdda4206">DiskCache</h3>
-<div class="outline-text-3" id="text-orgdda4206">
+<div id="outline-container-org7ef1990" class="outline-3">
+<h3 id="org7ef1990">DiskCache</h3>
+<div class="outline-text-3" id="text-org7ef1990">
 <p>
 文件cache，将rdd的每一个分区保存为一个文件$(WORK_DIR)/cache/rddId_splitId.pid
 </p>
@@ -580,9 +583,9 @@ add_default_options, parse_options都是用来获取命令行参数的。命令�
 </ul>
 </div>
 </div>
-<div id="outline-container-org81aa304" class="outline-3">
-<h3 id="org81aa304">CacheTracker</h3>
-<div class="outline-text-3" id="text-org81aa304">
+<div id="outline-container-org8f27f27" class="outline-3">
+<h3 id="org8f27f27">CacheTracker</h3>
+<div class="outline-text-3" id="text-org8f27f27">
 <p>
 它内部有一个DiskCache对象，也就是用来缓存rdd的分区计算结果的。每一个split缓存在
 哪个host都是会保存到TrackerServer上的。{“cache:rddIdx-splitIdx": hostname}
@@ -594,9 +597,9 @@ add_default_options, parse_options都是用来获取命令行参数的。命令�
 </div>
 </div>
 
-<div id="outline-container-orge209d2a" class="outline-2">
-<h2 id="orge209d2a">Tracker(tracker.py)</h2>
-<div class="outline-text-2" id="text-orge209d2a">
+<div id="outline-container-org159594f" class="outline-2">
+<h2 id="org159594f">Tracker(tracker.py)</h2>
+<div class="outline-text-2" id="text-org159594f">
 <p>
 实际上是使用zmq实现的一个服务器与客户端, 这个服务器会跟踪整个系统的信息，比如每
 个rdd的split的缓存节点的url，shuffle的相关信息等等。像CacheTracker，
@@ -609,9 +612,9 @@ MapOutputTracker都需要和TrackServer进行交互。
 <li>TrackerClient: 客户端实现, 主要是一个call方法可以向服务端发送消息</li>
 </ol>
 </div>
-<div id="outline-container-orge700cf4" class="outline-3">
-<h3 id="orge700cf4">消息类型</h3>
-<div class="outline-text-3" id="text-orge700cf4">
+<div id="outline-container-orgb94c915" class="outline-3">
+<h3 id="orgb94c915">消息类型</h3>
+<div class="outline-text-3" id="text-orgb94c915">
 <ol class="org-ol">
 <li><p>
 SetValueMessage: 设置key所对应的值,注意值必须为列表
@@ -654,9 +657,9 @@ GetValueMessage: 返回和key绑定的值列表
 </div>
 </div>
 
-<div id="outline-container-orge2338cb" class="outline-2">
-<h2 id="orge2338cb">shuffle</h2>
-<div class="outline-text-2" id="text-orge2338cb">
+<div id="outline-container-org912fa3b" class="outline-2">
+<h2 id="org912fa3b">shuffle</h2>
+<div class="outline-text-2" id="text-org912fa3b">
 <p>
 因为宽依赖的关系，rdd的一个split的数据可能分布在多个不同机器上，所以必须通过
 shuffle来重组，实际上宽依赖的计算是这样进行的：
@@ -698,9 +701,9 @@ fetch_one: 根据uri来下载数据,数据的格式是:
 </ol>
 </div>
 </div>
-<div id="outline-container-org3eee15e" class="outline-2">
-<h2 id="org3eee15e">env(env.py)</h2>
-<div class="outline-text-2" id="text-org3eee15e">
+<div id="outline-container-orgfac45ce" class="outline-2">
+<h2 id="orgfac45ce">env(env.py)</h2>
+<div class="outline-text-2" id="text-orgfac45ce">
 <p>
 实际就是DparkEnv这个类, 内部有一个environ列表:
 </p>
@@ -713,7 +716,7 @@ fetch_one: 根据uri来下载数据,数据的格式是:
 设置eviron中的属性,如果是master机器会设置如下的属性:
 </p>
 <ul class="org-ul">
-<li>SERVER_URI: 在master上是一个file url,实际上是<a href="file://WORKDIR[0">file://WORKDIR[0</a>], 其它节点
+<li>SERVER_URI: 在master上是一个file url,实际上是<a href="file://WORKDIR">file://WORKDIR</a>[0], 其它节点
 上为 <a href="http://hostname%3Aport/workdir_basename">http://hostname:port/workdir_basename</a> , 比如如果一个workdir为
 <code>/tmp/dpark/20150827-111925-yy-5488</code>, 那么这个url可能就是
 <a href="http://yy:45445/20150827-111925-yy-5488">http://yy:45445/20150827-111925-yy-5488</a>, 这个url很重要，它是节点间获取数
@@ -739,9 +742,9 @@ fetch_one: 根据uri来下载数据,数据的格式是:
 </ol>
 </div>
 </div>
-<div id="outline-container-org7bb8c59" class="outline-2">
-<h2 id="org7bb8c59">conf(conf.py)</h2>
-<div class="outline-text-2" id="text-org7bb8c59">
+<div id="outline-container-org218a3cf" class="outline-2">
+<h2 id="org218a3cf">conf(conf.py)</h2>
+<div class="outline-text-2" id="text-org218a3cf">
 <ol class="org-ol">
 <li>DPARK_WORK_DIR: 工作目录,shuffle等操作都会使用该目录.可能包含多个目录,以逗号
 分割</li>
@@ -750,12 +753,13 @@ fetch_one: 根据uri来下载数据,数据的格式是:
 </ol>
 </div>
 </div>
-<div id="outline-container-org6a361f4" class="outline-2">
-<h2 id="org6a361f4">调度系统</h2>
-<div class="outline-text-2" id="text-org6a361f4">
-</div><div id="outline-container-org9b13102" class="outline-3">
-<h3 id="org9b13102">基本概念</h3>
-<div class="outline-text-3" id="text-org9b13102">
+<div id="outline-container-orge23c130" class="outline-2">
+<h2 id="orge23c130">调度系统</h2>
+<div class="outline-text-2" id="text-orge23c130">
+</div>
+<div id="outline-container-org1b77a2a" class="outline-3">
+<h3 id="org1b77a2a">基本概念</h3>
+<div class="outline-text-3" id="text-org1b77a2a">
 <ol class="org-ol">
 <li>partitioner： 获得分区的个数，以及根据你传进去的key来获得分区的下标</li>
 <li>job：一个作业实际就是一次Action触发的整个任务</li>
@@ -766,9 +770,9 @@ shuffle dependence</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orga22a887" class="outline-3">
-<h3 id="orga22a887">Stage</h3>
-<div class="outline-text-3" id="text-orga22a887">
+<div id="outline-container-orgb96e2d2" class="outline-3">
+<h3 id="orgb96e2d2">Stage</h3>
+<div class="outline-text-3" id="text-orgb96e2d2">
 <p>
 所有的transformation在rdd上最后会形成一个有向无环图(DAG), 所以要把那些能在一台机
 器上运行的任务切分出来，dpark就是用stage表示的，注意dpark只在两个地方创建stage，
@@ -782,9 +786,9 @@ shuffle dependence</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orga58a925" class="outline-3">
-<h3 id="orga58a925">DAGScheduler</h3>
-<div class="outline-text-3" id="text-orga58a925">
+<div id="outline-container-org6466aba" class="outline-3">
+<h3 id="org6466aba">DAGScheduler</h3>
+<div class="outline-text-3" id="text-org6466aba">
 <p>
 这是一个很核心的类，也就是后面的LocalScheduler，ProcessScheduler，MesosScheduler
 都是继承的这个类，下面详细的分析一下这个类：
@@ -817,17 +821,17 @@ shuffleDependence那么就创建stage。</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orge8db922" class="outline-3">
-<h3 id="orge8db922">MesosScheduler</h3>
-<div class="outline-text-3" id="text-orge8db922">
+<div id="outline-container-org7015826" class="outline-3">
+<h3 id="org7015826">MesosScheduler</h3>
+<div class="outline-text-3" id="text-org7015826">
 <ol class="org-ol">
 <li>createTask: 返回一个mesos要求的TaskInfo</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org3d09bd7" class="outline-3">
-<h3 id="org3d09bd7">Task(task.py)</h3>
-<div class="outline-text-3" id="text-org3d09bd7">
+<div id="outline-container-org4826ebd" class="outline-3">
+<h3 id="org4826ebd">Task(task.py)</h3>
+<div class="outline-text-3" id="text-org4826ebd">
 <p>
 一个stage会根据分区拆分成多个task，每个task一般运行于不同的机器，所以task实际上
 就是mesos中的运行单元，mesos的scheduler得到资源后就会提交一个task。注意这里的
@@ -846,21 +850,22 @@ taskInfo的data属性上，这样通过mesos，executor就可以通过解压反�
 </div>
 </div>
 </div>
-<div id="outline-container-org3b020c1" class="outline-2">
-<h2 id="org3b020c1">Executor(executor.py)</h2>
-<div class="outline-text-2" id="text-org3b020c1">
-</div><div id="outline-container-org0cb6552" class="outline-3">
-<h3 id="org0cb6552">web server</h3>
-<div class="outline-text-3" id="text-org0cb6552">
+<div id="outline-container-org9ec1de1" class="outline-2">
+<h2 id="org9ec1de1">Executor(executor.py)</h2>
+<div class="outline-text-2" id="text-org9ec1de1">
+</div>
+<div id="outline-container-org2b0c9e0" class="outline-3">
+<h3 id="org2b0c9e0">web server</h3>
+<div class="outline-text-3" id="text-org2b0c9e0">
 <p>
 在executor中启动了一个http server，这个server是用来获取本地文件系统的中的文件,
 也就是work_dir中的文件的。
 </p>
 </div>
 </div>
-<div id="outline-container-orged32314" class="outline-3">
-<h3 id="orged32314">进程池</h3>
-<div class="outline-text-3" id="text-orged32314">
+<div id="outline-container-org05c3bc6" class="outline-3">
+<h3 id="org05c3bc6">进程池</h3>
+<div class="outline-text-3" id="text-org05c3bc6">
 <p>
 executor用一个进程池来运行task，这个进程池的创建主要在get_idle_workers中，使用
 multiprocess的pool来创建的。之所以用进程池也是为了规避GIL的影响。多线程无法利用
@@ -868,17 +873,17 @@ multiprocess的pool来创建的。之所以用进程池也是为了规避GIL的�
 </p>
 </div>
 </div>
-<div id="outline-container-orgd5c42c7" class="outline-3">
-<h3 id="orgd5c42c7">run_task</h3>
-<div class="outline-text-3" id="text-orgd5c42c7">
+<div id="outline-container-org0a9834a" class="outline-3">
+<h3 id="org0a9834a">run_task</h3>
+<div class="outline-text-3" id="text-org0a9834a">
 <p>
 这个函数就是运行task的关键函数。
 </p>
 </div>
 </div>
-<div id="outline-container-org224c83b" class="outline-3">
-<h3 id="org224c83b">MyExecutor</h3>
-<div class="outline-text-3" id="text-org224c83b">
+<div id="outline-container-org705e1ff" class="outline-3">
+<h3 id="org705e1ff">MyExecutor</h3>
+<div class="outline-text-3" id="text-org705e1ff">
 <p>
 这是按mesos的要求实现的Executor类
 </p>

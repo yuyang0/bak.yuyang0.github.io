@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-14 Mon 23:09 -->
+<!-- 2018-06-22 五 12:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Continuation</title>
@@ -69,6 +69,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -187,7 +188,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -261,24 +262,24 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org008f2db">continuation</a>
+<li><a href="#org74ed9a7">continuation</a>
 <ul>
-<li><a href="#org6234c76">call/cc, let/cc</a></li>
-<li><a href="#orgd7d70bb">应用</a></li>
+<li><a href="#org6ab477e">call/cc, let/cc</a></li>
+<li><a href="#org31797c9">应用</a></li>
 </ul>
 </li>
-<li><a href="#org549f69d">CPS</a>
+<li><a href="#orgf4f90e6">CPS</a>
 <ul>
-<li><a href="#orgdf0d8a6">自动CPS转换</a></li>
-<li><a href="#org49c100b">CPS的应用</a></li>
+<li><a href="#orgc032b03">自动CPS转换</a></li>
+<li><a href="#orgd48c42e">CPS的应用</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org008f2db" class="outline-2">
-<h2 id="org008f2db">continuation</h2>
-<div class="outline-text-2" id="text-org008f2db">
+<div id="outline-container-org74ed9a7" class="outline-2">
+<h2 id="org74ed9a7">continuation</h2>
+<div class="outline-text-2" id="text-org74ed9a7">
 <p>
 这是一份关于continuation的<a href="http://www.cs.unm.edu/~williams/cs491/appcont.pdf">文档</a>, 将continuation讲的非常清楚,我简要的总结下我的理解:
 先说几个概念与符号:
@@ -350,9 +351,9 @@ data context.</li>
 我们就说q是一个尾调用, 尾调用是不会增加栈的, 因为它本质上就是一个goto语句.</li>
 </ol>
 </div>
-<div id="outline-container-org6234c76" class="outline-3">
-<h3 id="org6234c76">call/cc, let/cc</h3>
-<div class="outline-text-3" id="text-org6234c76">
+<div id="outline-container-org6ab477e" class="outline-3">
+<h3 id="org6ab477e">call/cc, let/cc</h3>
+<div class="outline-text-3" id="text-org6ab477e">
 <p>
 <code>call/cc</code> [1]是 <code>call-with-current-continuation</code> 的缩写. 它的基本形式是这样的:
 </p>
@@ -425,9 +426,9 @@ escape procedure,所以上面的表达式又等价于 <code>(cont (lambda(x) x))
 </p>
 </div>
 </div>
-<div id="outline-container-orgd7d70bb" class="outline-3">
-<h3 id="orgd7d70bb">应用</h3>
-<div class="outline-text-3" id="text-orgd7d70bb">
+<div id="outline-container-org31797c9" class="outline-3">
+<h3 id="org31797c9">应用</h3>
+<div class="outline-text-3" id="text-org31797c9">
 <ol class="org-ol">
 <li><p>
 BREAK与RESUME, 通过BREAK来暂停, 通过RESUME来从暂停的位置启动.
@@ -500,6 +501,7 @@ let/cc中, 调用raise实际就是调用continuation
 <span style="color: #5F7F5F;">;;    </span><span style="color: #7F9F7F;">(cond</span>
 <span style="color: #5F7F5F;">;;     </span><span style="color: #7F9F7F;">((even? ret) ((lambda (v) 'even) ret))</span>
 <span style="color: #5F7F5F;">;;     </span><span style="color: #7F9F7F;">((positive? ret) ((lambda (v) 'positive) ret))))</span>
+
 </pre>
 </div>
 <p>
@@ -511,9 +513,9 @@ let/cc中, 调用raise实际就是调用continuation
 </div>
 </div>
 </div>
-<div id="outline-container-org549f69d" class="outline-2">
-<h2 id="org549f69d">CPS</h2>
-<div class="outline-text-2" id="text-org549f69d">
+<div id="outline-container-orgf4f90e6" class="outline-2">
+<h2 id="orgf4f90e6">CPS</h2>
+<div class="outline-text-2" id="text-orgf4f90e6">
 <p>
 <a href="http://en.wikipedia.org/wiki/Continuation-passing_style">CPS</a>(continuation passing style). 核心就是每一个函数都会带一个额外的参数
 (continuation),前面说了continuation代表的是the rest of computation, 因此这
@@ -521,9 +523,9 @@ let/cc中, 调用raise实际就是调用continuation
 方式编写的函数最后都会使用函数的计算结果来调用你传递的那个continuation.
 </p>
 </div>
-<div id="outline-container-orgdf0d8a6" class="outline-3">
-<h3 id="orgdf0d8a6">自动CPS转换</h3>
-<div class="outline-text-3" id="text-orgdf0d8a6">
+<div id="outline-container-orgc032b03" class="outline-3">
+<h3 id="orgc032b03">自动CPS转换</h3>
+<div class="outline-text-3" id="text-orgc032b03">
 <p>
 一个自动进行CPS转换的宏
 </p>
@@ -604,9 +606,9 @@ continuation</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org49c100b" class="outline-3">
-<h3 id="org49c100b">CPS的应用</h3>
-<div class="outline-text-3" id="text-org49c100b">
+<div id="outline-container-orgd48c42e" class="outline-3">
+<h3 id="orgd48c42e">CPS的应用</h3>
+<div class="outline-text-3" id="text-orgd48c42e">
 <p>
 如果将一个解释器转换为CPS形式, 那么就可以很容易的实现像 scheme中call/cc,
 let/cc这样可以获得当前continuation的结构, 因为解释器的continuation代表的解

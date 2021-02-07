@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-14 Mon 23:09 -->
+<!-- 2018-06-22 五 12:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linux平台C语言乱码</title>
@@ -69,6 +69,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -187,7 +188,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -257,9 +258,9 @@ for the JavaScript code in this tag.
 </div>
 <div id="content">
 <h1 class="title">Linux平台C语言乱码</h1>
-<div id="outline-container-orgf94ec43" class="outline-2">
-<h2 id="orgf94ec43">文件加载到显示的过程</h2>
-<div class="outline-text-2" id="text-orgf94ec43">
+<div id="outline-container-orgca8915b" class="outline-2">
+<h2 id="orgca8915b">文件加载到显示的过程</h2>
+<div class="outline-text-2" id="text-orgca8915b">
 <p>
 只要是用过linux的人都应该遇到过乱码的问题，众所周知，乱码的产生的主要原因是编
 码的问题，以B编码方式去读取以A编码方式编码的文件时就会产生乱码，文件读取到显示
@@ -279,9 +280,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd4f0a64" class="outline-2">
-<h2 id="orgd4f0a64">linux乱码产生的原因</h2>
-<div class="outline-text-2" id="text-orgd4f0a64">
+<div id="outline-container-org37ffc59" class="outline-2">
+<h2 id="org37ffc59">linux乱码产生的原因</h2>
+<div class="outline-text-2" id="text-org37ffc59">
 <p>
 在linux下显示终端的默认编码方式一般是utf8，而中文windows产生的文件默认编码则
 是gb2312，linux首先读取文件到内存,这时内存中的数据是对原始消息使用gb2312编码
@@ -290,9 +291,9 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc2ce450" class="outline-2">
-<h2 id="orgc2ce450">如何避免乱码</h2>
-<div class="outline-text-2" id="text-orgc2ce450">
+<div id="outline-container-org09c2c94" class="outline-2">
+<h2 id="org09c2c94">如何避免乱码</h2>
+<div class="outline-text-2" id="text-org09c2c94">
 <p>
 从上面的讨论可以看出，在linux下要不产生乱码，必须让内存中的二进制数据是对原
 始信息通过utf8编码得到的，那么如何保证这一点呢，有两种方式，一种是让文件本身
@@ -348,8 +349,8 @@ utf8编码得到的二进制信息，这里分两种情况讨论:
 下面就看看如何在程序中进行转换，先看代码:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="linenr"> 1: </span><span style="color: #94BFF3;">#include</span><span style="color: #CC9393;">&lt;stdio.h&gt;</span>
-<span class="linenr"> 2: </span><span style="color: #94BFF3;">#include</span><span style="color: #CC9393;">&lt;iconv.h&gt;</span>
+<pre class="src src-C"><span class="linenr"> 1: </span><span style="color: #94BFF3;">#include</span><span style="color: #DCDCCC;">&lt;</span><span style="color: #CC9393;">stdio.h</span><span style="color: #DCDCCC;">&gt;</span>
+<span class="linenr"> 2: </span><span style="color: #94BFF3;">#include</span><span style="color: #DCDCCC;">&lt;</span><span style="color: #CC9393;">iconv.h</span><span style="color: #DCDCCC;">&gt;</span>
 <span class="linenr"> 3: </span>
 <span class="linenr"> 4: </span><span style="color: #94BFF3;">#define</span> <span style="color: #DFAF8F;">MAXLINE</span> <span style="color: #BFEBBF;">1024</span>
 <span class="linenr"> 5: </span><span style="color: #7CB8BB;">int</span> <span style="color: #93E0E3;">main</span><span style="color: #DCDCCC;">()</span>

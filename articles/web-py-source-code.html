@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-14 Mon 23:09 -->
+<!-- 2018-06-22 五 12:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>webpy源代码分析</title>
@@ -69,6 +69,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -187,7 +188,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -257,9 +258,9 @@ for the JavaScript code in this tag.
 </div>
 <div id="content">
 <h1 class="title">webpy源代码分析</h1>
-<div id="outline-container-orgaf73aca" class="outline-2">
-<h2 id="orgaf73aca">缘起</h2>
-<div class="outline-text-2" id="text-orgaf73aca">
+<div id="outline-container-org8e183ea" class="outline-2">
+<h2 id="org8e183ea">缘起</h2>
+<div class="outline-text-2" id="text-org8e183ea">
 <p>
 最近一直学习web开发方面的东西，个人是python的死忠，所以自然的也就开始玩python的web开发框架，可是对于我这种爱
 钻牛角尖的人来说，仅仅使用是不够的，我必须要搞清楚它是怎么运行的，因此也就有了分析python web框架源码的念头，
@@ -268,9 +269,9 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-orgdf3a9e4" class="outline-2">
-<h2 id="orgdf3a9e4">一 源码分析要有所取舍</h2>
-<div class="outline-text-2" id="text-orgdf3a9e4">
+<div id="outline-container-org0c0af52" class="outline-2">
+<h2 id="org0c0af52">一 源码分析要有所取舍</h2>
+<div class="outline-text-2" id="text-org0c0af52">
 <p>
 web开发目前已经变得很专业，专业的同义词其实就是很复杂，web相关的东西一个月也说不完，因此源码分析的时候我们必
 须有所取舍，要抓住实质性的东西，因为只有这些东西才能帮你更好的理解web开发，理解python web框架，实际上web开发
@@ -284,9 +285,9 @@ session等等一些特性，但是就实质而言这些东西都不是必须。�
 </p>
 </div>
 </div>
-<div id="outline-container-orgfac8910" class="outline-2">
-<h2 id="orgfac8910">一次web请求的从生到死</h2>
-<div class="outline-text-2" id="text-orgfac8910">
+<div id="outline-container-orgab9bd52" class="outline-2">
+<h2 id="orgab9bd52">一次web请求的从生到死</h2>
+<div class="outline-text-2" id="text-orgab9bd52">
 <p>
 先上源码：
 </p>
@@ -314,12 +315,13 @@ session等等一些特性，但是就实质而言这些东西都不是必须。�
 生到死的全过程，来详尽的分析与这一过程相关的代码
 </p>
 </div>
-<div id="outline-container-orgfece8e2" class="outline-3">
-<h3 id="orgfece8e2">准备</h3>
-<div class="outline-text-3" id="text-orgfece8e2">
-</div><div id="outline-container-orgc054798" class="outline-4">
-<h4 id="orgc054798">程序的初始化</h4>
-<div class="outline-text-4" id="text-orgc054798">
+<div id="outline-container-org2e2b96a" class="outline-3">
+<h3 id="org2e2b96a">准备</h3>
+<div class="outline-text-3" id="text-org2e2b96a">
+</div>
+<div id="outline-container-org57a92b1" class="outline-4">
+<h4 id="org57a92b1">程序的初始化</h4>
+<div class="outline-text-4" id="text-org57a92b1">
 <p>
 回到上面的代码，我们来看看代码的初始化，最核心的也就是app，由
 </p>
@@ -348,6 +350,7 @@ session等等一些特性，但是就实质而言这些东西都不是必须。�
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">init_mapping</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, mapping<span style="color: #DCDCCC;">)</span>:
     <span style="color: #F0DFAF; font-weight: bold;">self</span>.mapping = <span style="color: #DCDCCC; font-weight: bold;">list</span><span style="color: #DCDCCC;">(</span>utils.group<span style="color: #BFEBBF;">(</span>mapping, <span style="color: #BFEBBF;">2</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+
 </pre>
 </div>
 <p>
@@ -357,9 +360,9 @@ list(utils.group(mapping, 2))的作用就是将mapping切割为2个元素一组�
 </p>
 </div>
 </div>
-<div id="outline-container-orgd58e882" class="outline-4">
-<h4 id="orgd58e882">wsgi</h4>
-<div class="outline-text-4" id="text-orgd58e882">
+<div id="outline-container-orgb743efe" class="outline-4">
+<h4 id="orgb743efe">wsgi</h4>
+<div class="outline-text-4" id="text-orgb743efe">
 <p>
 wsgi是一种规范，它对框架的要求就是：必须定义一个接受两个参数的可调用对象，可调用对象可以是函数，类方法，类
 以及一个包含__call__的类实例，这两个参数分别为environ，start_response, 前者是一个字典，该字典会包含许多有
@@ -369,6 +372,7 @@ wsgi是一种规范，它对框架的要求就是：必须定义一个接受两�
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">run</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, *middleware<span style="color: #DCDCCC;">)</span>:
     <span style="color: #F0DFAF; font-weight: bold;">return</span> wsgi.runwsgi<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>.wsgifunc<span style="color: #BFEBBF;">(</span>*middleware<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+
 </pre>
 </div>
 <p>
@@ -416,7 +420,7 @@ load : 这个函数的代码大体如下:
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #F0DFAF; font-weight: bold;">def</span> <span style="color: #93E0E3;">load</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">self</span>, env<span style="color: #DCDCCC;">)</span>:
-    <span style="color: #CC9393;">"""Initializes ctx using env."""</span>
+    <span style="color: #9FC59F;">"""Initializes ctx using env."""</span>
     <span style="color: #DFAF8F;">ctx</span> = web.ctx
     ctx.clear<span style="color: #DCDCCC;">()</span>
     <span style="color: #DFAF8F;">ctx.status</span> = <span style="color: #CC9393;">'200 OK'</span>
@@ -438,14 +442,14 @@ web.ctx可以看作是一个字典对象(threadeddict),只是这个对象不仅�
 </div>
 </div>
 </div>
-<div id="outline-container-orgb66edee" class="outline-3">
-<h3 id="orgb66edee">接受web请求</h3>
+<div id="outline-container-org9320963" class="outline-3">
+<h3 id="org9320963">接受web请求</h3>
 </div>
-<div id="outline-container-org38207bd" class="outline-3">
-<h3 id="org38207bd">处理web请求</h3>
+<div id="outline-container-orgd7414c4" class="outline-3">
+<h3 id="orgd7414c4">处理web请求</h3>
 </div>
-<div id="outline-container-org6d9b27d" class="outline-3">
-<h3 id="org6d9b27d">返回response</h3>
+<div id="outline-container-orgd07ac46" class="outline-3">
+<h3 id="orgd07ac46">返回response</h3>
 </div>
 </div>
 </div>
